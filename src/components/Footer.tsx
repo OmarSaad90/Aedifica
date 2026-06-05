@@ -42,9 +42,9 @@ const COLUMNS = [
 export function Footer() {
   return (
     <footer className="bg-anthracite border-t-2 border-datum">
-      <div className="max-w-7xl mx-auto px-6 pt-14 pb-10 lg:pt-16 lg:pb-12">
+      <div className="max-w-7xl mx-auto px-6 pt-8 pb-5 lg:pt-9 lg:pb-6">
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2.6fr] gap-12 lg:gap-20 mb-14 lg:mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2.6fr] gap-8 lg:gap-20 mb-4 lg:mb-5">
 
           {/* Brand */}
           <div>
@@ -75,11 +75,11 @@ export function Footer() {
             {COLUMNS.map(({ heading, links }) => (
               <div key={heading}>
                 <p
-                  className="text-[10px] text-white/35 uppercase tracking-[0.18em] mb-4 select-none"
+                  className="text-[10px] text-white/35 uppercase tracking-[0.18em] mb-3 select-none"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   {heading}
                 </p>
-                <ul className="space-y-2.5 list-none">
+                <ul className="space-y-2 list-none">
                   {links.map(({ label, href }) => (
                     <li key={label}>
                       <Link
@@ -98,7 +98,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="border-t border-white/10 pt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <p
             className="text-[12px] text-white/25"
             style={{ fontFamily: 'var(--font-body)' }}>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 
 const VIEWPORT = { once: true, margin: '-60px 0px' } as const
@@ -8,25 +9,25 @@ const PARTNERS = [
     name: 'Education institutions',
     desc: 'Build student pathways connecting construction learning, career readiness, future credentials, and articulation possibilities.',
     cta: 'Discuss an Education Partnership',
-    href: '#education',
+    to: '/partner',
   },
   {
     name: 'Workforce and community organizations',
     desc: 'Connect adult participants to a practical bridge cohort designed around employer relevance, support coordination, and advancement.',
     cta: 'Discuss a Rebuild Cohort',
-    href: '#workforce',
+    to: '/partner',
   },
   {
     name: 'Employers',
     desc: 'Help validate the roles, participate in capstone experiences, and meet prepared emerging talent through an accountable interview model.',
     cta: 'Become an Employer Partner',
-    href: '#employers',
+    to: '/partner',
   },
   {
     name: 'Funding and state partners',
     desc: 'Support a measurable workforce model designed for credible reporting, employer linkage, and responsible scale.',
     cta: 'Request an Institutional Briefing',
-    href: '#funding',
+    to: '/partner',
   },
 ] as const
 
@@ -52,7 +53,7 @@ export function Partnership() {
 
           {/* DOM order 2: partner rows — left column on desktop */}
           <div className="lg:col-start-1 lg:row-start-1">
-            {PARTNERS.map(({ name, desc, cta, href }, i) => (
+            {PARTNERS.map(({ name, desc, cta, to }, i) => (
               <motion.div
                 key={name}
                 className="border-t border-sediment/25 py-8 lg:py-9"
@@ -66,8 +67,8 @@ export function Partnership() {
                     style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
                     {name}
                   </h3>
-                  <a
-                    href={href}
+                  <Link
+                    to={to}
                     className="flex-shrink-0 inline-flex items-center gap-2 text-[13px] text-datum tracking-[-0.01em] group self-start"
                     style={{ fontFamily: 'var(--font-body)' }}>
                     {cta}
@@ -76,7 +77,7 @@ export function Partnership() {
                       aria-hidden="true">
                       →
                     </span>
-                  </a>
+                  </Link>
                 </div>
                 <p
                   className="text-[14px] text-anthracite/60 leading-[1.7]"

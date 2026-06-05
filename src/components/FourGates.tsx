@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 
 const VIEWPORT = { once: true, margin: '-60px 0px' } as const
@@ -64,11 +65,13 @@ export function FourGates() {
                 key={num}
                 className={[
                   'py-8 lg:py-10',
+                  (i === 0 || i === 3) ? 'bg-sediment' : '',
+                  (i === 0 || i === 3)
+                    ? 'px-5 lg:px-8 xl:px-10'
+                    : (isLeft ? 'lg:pr-10 xl:pr-14' : 'lg:pl-10 xl:pl-14'),
                   !isLast ? 'border-b border-sediment/25' : '',
                   !isTop ? 'lg:border-b-0' : '',
-                  isLeft
-                    ? 'lg:pr-10 xl:pr-14 lg:border-r lg:border-sediment/25'
-                    : 'lg:pl-10 xl:pl-14',
+                  isLeft ? 'lg:border-r lg:border-sediment/25' : '',
                 ].filter(Boolean).join(' ')}
                 initial={reduce ? undefined : { opacity: 0, y: 20 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -106,12 +109,12 @@ export function FourGates() {
             style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
             Curriculum without these commitments is a class. Aedifica is designed to build a pathway.
           </p>
-          <a
-            href="#partnership"
+          <Link
+            to="/partner"
             className="flex-shrink-0 inline-flex items-center justify-center bg-patina text-white text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-patina/85"
             style={{ fontFamily: 'var(--font-body)' }}>
             Discuss a Founding Partnership
-          </a>
+          </Link>
         </motion.div>
 
       </div>

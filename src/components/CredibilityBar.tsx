@@ -40,7 +40,7 @@ function PillarItem({ label, subtext }: { label: string; subtext: string }) {
 
 export function CredibilityBar() {
   return (
-    <section className="bg-bone py-14" aria-label="Program commitments">
+    <section className="bg-bone py-14 relative z-10 -mt-10 lg:-mt-14 border-t border-datum/20" aria-label="Program commitments">
       <div className="max-w-[1400px] mx-auto px-6">
 
         {/* Eyebrow */}

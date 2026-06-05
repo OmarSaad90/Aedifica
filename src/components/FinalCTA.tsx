@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 
 const VIEWPORT = { once: true, margin: '-60px 0px' } as const
@@ -8,8 +9,9 @@ export function FinalCTA() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-datum py-24 lg:py-32" aria-labelledby="final-cta-heading">
-      <div className="max-w-[900px] mx-auto px-6 text-center">
+    <section className="bg-snow pt-10 lg:pt-16 pb-0" aria-labelledby="final-cta-heading">
+      <div className="max-w-[1100px] mx-auto px-6">
+      <div className="bg-datum px-10 pt-16 pb-12 lg:px-16 lg:pt-20 lg:pb-14 text-center rounded-t-[2rem]">
 
         <motion.h2
           id="final-cta-heading"
@@ -40,20 +42,21 @@ export function FinalCTA() {
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
           viewport={reduce ? undefined : VIEWPORT}
           transition={reduce ? undefined : { duration: 0.5, delay: 0.22, ease: EASE }}>
-          <a
-            href="#contact"
+          <Link
+            to="/partner"
             className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
             style={{ fontFamily: 'var(--font-body)' }}>
             Start a Partnership Conversation
-          </a>
-          <a
-            href="#briefing"
+          </Link>
+          <Link
+            to="/partner"
             className="inline-flex items-center justify-center border border-white/35 text-white text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/10"
             style={{ fontFamily: 'var(--font-body)' }}>
             Request an Institutional Briefing
-          </a>
+          </Link>
         </motion.div>
 
+      </div>
       </div>
     </section>
   )

@@ -1,0 +1,487 @@
+import { Link } from 'react-router-dom'
+import { motion, useReducedMotion } from 'motion/react'
+
+const VIEWPORT = { once: true, margin: '-60px 0px' } as const
+const EASE = [0.25, 0.1, 0.25, 1] as const
+const SPRING = [0.32, 0.72, 0, 1] as const
+
+const AUDIENCES = [
+  {
+    type: 'Community-based organizations',
+    desc: 'Developing employment or pre-apprenticeship programming with limited internal capacity to navigate complex workforce funding structures.',
+  },
+  {
+    type: 'County colleges',
+    desc: 'Connecting available funding to credentials, articulation agreements, and employment pathways for adult and non-traditional learners.',
+  },
+  {
+    type: 'Districts and vocational institutions',
+    desc: 'Pursuing career-connected learning resources, CTE expansion, and workforce-aligned program development.',
+  },
+  {
+    type: 'Training providers',
+    desc: 'Refining an apprenticeship or construction workforce proposal with competitive program architecture and measurable outcomes.',
+  },
+] as const
+
+const DELIVERABLES = [
+  {
+    num: '01',
+    name: 'Opportunity and eligibility review',
+    body: 'Assessment of the most relevant funding vehicles for the organization\'s current program capacity, mission alignment, and geographic focus.',
+    phase: 'Discovery',
+  },
+  {
+    num: '02',
+    name: 'Program architecture',
+    body: 'Design of the program structure: delivery model, learning objectives, partner roles, and the measurable outcomes framework required for competitive proposals.',
+    phase: 'Architecture',
+  },
+  {
+    num: '03',
+    name: 'Partner and evidence matrix',
+    body: 'Documentation of the institutional partners, employer commitments, and evidence base required to make the program credible to reviewers.',
+    phase: 'Architecture',
+  },
+  {
+    num: '04',
+    name: 'Narrative and proposal authoring',
+    body: 'Development of the program narrative, participant-outcome projections, and a proposal document aligned to funder requirements and review criteria.',
+    phase: 'Authoring',
+  },
+  {
+    num: '05',
+    name: 'Budget and measurement alignment',
+    body: 'Budget construction, allowable cost review, and outcome metric calibration to ensure the request is fundable and the program is reportable.',
+    phase: 'Authoring',
+  },
+  {
+    num: '06',
+    name: 'Submission readiness review',
+    body: 'Final review of proposal completeness, required attachments, funder alignment, and submission logistics before the deadline.',
+    phase: 'Submission',
+  },
+] as const
+
+const FUNDING = [
+  {
+    name: 'Pre-Apprenticeship in Career Education (PACE)',
+    note: 'NJ Department of Labor and Workforce Development',
+  },
+  {
+    name: 'Growing Apprenticeships in New Sectors (GAINS)',
+    note: 'NJ DOL, sector-specific workforce expansion',
+  },
+  {
+    name: 'NJ Economic Development Authority workforce opportunities',
+    note: 'NJEDA career pathway and workforce investment programs',
+  },
+  {
+    name: 'Workforce Innovation and Opportunity Act Title I pathways',
+    note: 'Federal WIOA: adult, dislocated worker, and youth services',
+  },
+  {
+    name: 'Federal apprenticeship and workforce-related opportunities',
+    note: 'DOL apprenticeship, infrastructure workforce, and related federal programs',
+  },
+] as const
+
+const DIFFERENTIATORS = [
+  'Program structure designed before the proposal is written',
+  'Partner and employer matrix built before the ask',
+  'Outcomes framework calibrated to funder expectations from the start',
+  'Budget and allowable cost review before submission',
+] as const
+
+export function Launch() {
+  const reduce = useReducedMotion()
+
+  return (
+    <main>
+
+      {/* ── Hero ── */}
+      <section
+        className="bg-patina min-h-[88vh] flex flex-col justify-end pb-16 lg:pb-24"
+        aria-labelledby="launch-h1">
+
+        <div className="max-w-7xl mx-auto px-6 w-full">
+          <div className="lg:grid lg:grid-cols-[1fr_0.5fr] lg:gap-16 lg:items-end">
+
+            <div>
+              <motion.span
+                className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/15 text-white px-3 py-1 mb-10 select-none"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 10 }}
+                animate={reduce ? undefined : { opacity: 1, y: 0 }}
+                transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
+                Year 1 · Grant Strategy
+              </motion.span>
+
+              <motion.h1
+                id="launch-h1"
+                className="text-[2.75rem] lg:text-[4.5rem] xl:text-[6rem] leading-[0.96] tracking-[-0.035em] text-white italic mb-10"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+                initial={reduce ? undefined : { opacity: 0, y: 40 }}
+                animate={reduce ? undefined : { opacity: 1, y: 0 }}
+                transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
+                Fund workforce pathways designed to deliver and report outcomes.
+              </motion.h1>
+
+              <motion.div
+                className="flex flex-wrap items-center gap-x-0 gap-y-3"
+                initial={reduce ? undefined : { opacity: 0, y: 14 }}
+                animate={reduce ? undefined : { opacity: 1, y: 0 }}
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.4, ease: EASE }}>
+                {(['Fixed-fee', 'Institutions', 'New Jersey', 'Year 1 launch'] as const).map((item, i) => (
+                  <span
+                    key={item}
+                    className="text-[13px] text-white/55 tracking-[-0.01em]"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    {item}
+                    {i < 3 && <span className="mx-4 text-white/20" aria-hidden="true">·</span>}
+                  </span>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Photo zone — right column */}
+            <motion.div
+              className="hidden lg:flex flex-col justify-end"
+              initial={reduce ? undefined : { opacity: 0, y: 24 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={reduce ? undefined : { duration: 0.65, delay: 0.32, ease: EASE }}>
+              <div className="h-[300px] xl:h-[360px] bg-white/8 border border-white/18 flex items-end p-5">
+                <span
+                  className="text-[10.5px] text-white/30 tracking-[0.1em] uppercase leading-[1.5]"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  Photo: Grant preparation<br />review session
+                </span>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── Who It Serves ── bg-snow */}
+      <section className="bg-snow py-16 lg:py-24 xl:py-28" aria-labelledby="launch-serves-h2">
+        <div className="max-w-7xl mx-auto px-6">
+
+          <motion.h2
+            id="launch-serves-h2"
+            className="text-[2.25rem] lg:text-[4rem] xl:text-[5.25rem] leading-[1.04] tracking-[-0.03em] text-anthracite italic mb-14 lg:mb-20"
+            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+            initial={reduce ? undefined : { opacity: 0, y: 28 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.7, ease: SPRING }}>
+            Built for institutions serious about funding programs the right way.
+          </motion.h2>
+
+          <div className="border-t border-sediment/25">
+            {AUDIENCES.map(({ type, desc }, i) => (
+              <motion.div
+                key={type}
+                className="grid grid-cols-1 lg:grid-cols-[0.4fr_1fr] lg:gap-16 xl:gap-24 border-b border-sediment/25 py-7 lg:py-8 lg:items-start"
+                initial={reduce ? undefined : { opacity: 0, y: 16 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.45, delay: i * 0.07, ease: EASE }}>
+                <h3
+                  className="text-[1.125rem] lg:text-[1.375rem] xl:text-[1.875rem] text-anthracite italic leading-[1.2] tracking-[-0.02em] mb-2 lg:mb-0"
+                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                  {type}
+                </h3>
+                <p
+                  className="text-[14.5px] text-anthracite/60 leading-[1.7]"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  {desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── Program Architecture First ── bg-bone */}
+      <section className="bg-bone py-16 lg:py-24 xl:py-28" aria-label="What makes Launch different">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="lg:grid lg:grid-cols-[1.15fr_1fr] lg:gap-14 xl:gap-20 lg:items-start">
+
+            {/* Left: photo zone + pull statement */}
+            <div>
+              <motion.div
+                className="h-[240px] lg:h-[310px] xl:h-[370px] bg-patina/10 border border-patina/18 flex items-end p-5 mb-10"
+                initial={reduce ? undefined : { opacity: 0, y: 20 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
+                <span
+                  className="text-[10.5px] text-anthracite/30 tracking-[0.1em] uppercase leading-[1.5]"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  Photo: Program architecture<br />planning session
+                </span>
+              </motion.div>
+
+              <motion.p
+                className="text-[2rem] lg:text-[2.5rem] xl:text-[3rem] leading-[1.1] tracking-[-0.025em] text-anthracite italic"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+                initial={reduce ? undefined : { opacity: 0, y: 20 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.65, delay: 0.1, ease: EASE }}>
+                A fundable proposal describes a program that can deliver. Launch designs the program first.
+              </motion.p>
+            </div>
+
+            {/* Right: explanation */}
+            <div className="lg:pt-6 mt-10 lg:mt-0">
+              <motion.p
+                className="text-[15.5px] text-anthracite/70 leading-[1.72] mb-7"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 18 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.55, delay: 0.08, ease: EASE }}>
+                Most grant-writing services produce proposals. Launch produces program architecture first: a defined delivery model, a realistic outcomes framework, and a partner matrix that funders and reviewers can evaluate on its own merits.
+              </motion.p>
+
+              <motion.p
+                className="text-[15.5px] text-anthracite/70 leading-[1.72] mb-10"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 18 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.55, delay: 0.14, ease: EASE }}>
+                When the narrative follows a credible architecture, the proposal is stronger. When the program is designed to be reportable, the funder's confidence is founded on something real.
+              </motion.p>
+
+              <motion.ul
+                className="list-none space-y-3.5"
+                initial={reduce ? undefined : { opacity: 0, y: 14 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.2, ease: EASE }}>
+                {DIFFERENTIATORS.map(pt => (
+                  <li key={pt} className="flex gap-3.5 items-start">
+                    <span className="flex-shrink-0 w-[4px] h-[4px] bg-patina mt-[8px]" aria-hidden="true" />
+                    <span
+                      className="text-[14px] text-anthracite/65 leading-[1.65]"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {pt}
+                    </span>
+                  </li>
+                ))}
+              </motion.ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── Six Deliverables ── bg-anthracite */}
+      <section
+        className="bg-anthracite py-16 lg:py-24 relative overflow-hidden"
+        aria-labelledby="deliverables-h2">
+
+        {/* Ghost word — bleeds bottom-right */}
+        <span
+          className="pointer-events-none select-none absolute bottom-0 right-0 leading-[0.82] text-white translate-x-[6%] translate-y-[18%]"
+          style={{
+            fontFamily: 'var(--font-heading)',
+            fontWeight: 300,
+            fontSize: 'clamp(8rem, 16vw, 16rem)',
+            opacity: 0.03,
+          }}
+          aria-hidden="true">
+          Launch
+        </span>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+
+          <div className="lg:grid lg:grid-cols-[1fr_1.5fr] lg:gap-20 xl:gap-28 lg:items-start mb-14 lg:mb-16">
+            <div>
+              <motion.p
+                className="text-[10.5px] text-white/30 uppercase tracking-[0.22em] mb-6 select-none"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0 }}
+                whileInView={reduce ? undefined : { opacity: 1 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.45, ease: EASE }}>
+                What Launch delivers
+              </motion.p>
+              <motion.h2
+                id="deliverables-h2"
+                className="text-[2.25rem] lg:text-[3.25rem] xl:text-[4rem] leading-[1.07] tracking-[-0.03em] text-white italic"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+                initial={reduce ? undefined : { opacity: 0, y: 24 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
+                Six stages. One fixed-fee engagement.
+              </motion.h2>
+            </div>
+            <motion.p
+              className="text-[15px] text-white/45 leading-[1.72] lg:pt-14 xl:pt-16"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 18 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.55, delay: 0.1, ease: EASE }}>
+              Launch is scoped as a complete engagement: from identifying the right funding opportunity through final submission. The fixed-fee model ensures that program-design work is built in, not billed separately.
+            </motion.p>
+          </div>
+
+          <div className="border-t border-white/10">
+            {DELIVERABLES.map(({ num, name, body, phase }, i) => (
+              <motion.div
+                key={num}
+                className="grid grid-cols-1 lg:grid-cols-[72px_1fr_120px] lg:gap-10 xl:gap-14 border-b border-white/10 py-7 lg:py-9 lg:items-start"
+                initial={reduce ? undefined : { opacity: 0, y: 18 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.45, delay: i * 0.05, ease: EASE }}>
+                <span
+                  className="text-[3rem] lg:text-[3.75rem] xl:text-[4.5rem] text-white/28 italic leading-none mb-4 lg:mb-0 block"
+                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+                  aria-hidden="true">
+                  {num}
+                </span>
+                <div>
+                  <h3
+                    className="text-[1.125rem] lg:text-[1.25rem] text-white italic leading-[1.2] tracking-[-0.02em] mb-2.5"
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                    {name}
+                  </h3>
+                  <p
+                    className="text-[14px] text-white/50 leading-[1.7]"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    {body}
+                  </p>
+                </div>
+                <div className="mt-4 lg:mt-0 lg:pt-1">
+                  <span
+                    className="inline-block text-[10px] text-white/65 uppercase tracking-[0.16em] bg-white/10 px-2.5 py-1"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    {phase}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── Relevant Funding ── bg-snow */}
+      <section className="bg-snow py-16 lg:py-24 xl:py-28" aria-labelledby="funding-h2">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="lg:grid lg:grid-cols-[1fr_1.3fr] lg:gap-16 xl:gap-24 lg:items-start">
+
+            {/* Left: context + H2 */}
+            <div>
+              <motion.p
+                className="text-[10.5px] text-quarry uppercase tracking-[0.22em] mb-8 select-none"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0 }}
+                whileInView={reduce ? undefined : { opacity: 1 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.45, ease: EASE }}>
+                Where this fits
+              </motion.p>
+              <motion.h2
+                id="funding-h2"
+                className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic mb-8"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+                initial={reduce ? undefined : { opacity: 0, y: 24 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
+                New Jersey is deploying significant workforce investment. Institutions that access it with credible program design will define the next generation of pathways.
+              </motion.h2>
+              <motion.p
+                className="text-[14.5px] text-anthracite/60 leading-[1.7]"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 16 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.1, ease: EASE }}>
+                Launch is relevant to organizations pursuing any of the funding vehicles below. An initial opportunity review will determine fit, eligibility, and timeline before any engagement begins.
+              </motion.p>
+            </div>
+
+            {/* Right: funding category rows */}
+            <div className="mt-10 lg:mt-0">
+              <div className="border-t border-sediment/25">
+                {FUNDING.map(({ name, note }, i) => (
+                  <motion.div
+                    key={name}
+                    className="border-b border-sediment/25 py-6 lg:py-7"
+                    initial={reduce ? undefined : { opacity: 0, y: 14 }}
+                    whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                    viewport={reduce ? undefined : VIEWPORT}
+                    transition={reduce ? undefined : { duration: 0.4, delay: i * 0.06, ease: EASE }}>
+                    <p
+                      className="text-[1rem] lg:text-[1.125rem] text-anthracite italic leading-[1.3] tracking-[-0.015em] mb-1.5"
+                      style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                      {name}
+                    </p>
+                    <p
+                      className="text-[12.5px] text-anthracite/45 leading-[1.5]"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {note}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ── bg-snow pb-0, contained patina block */}
+      <section className="bg-snow pt-10 lg:pt-16 pb-0" aria-label="Start a Launch engagement">
+        <div className="max-w-[1100px] mx-auto px-6">
+          <motion.div
+            className="bg-patina px-10 pt-16 pb-12 lg:px-16 lg:pt-20 lg:pb-14 text-center rounded-t-[2rem]"
+            initial={reduce ? undefined : { opacity: 0, y: 28 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
+
+            <h2
+              className="text-[2rem] lg:text-[3rem] xl:text-[3.5rem] leading-[1.08] tracking-[-0.03em] text-white italic mb-6"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+              A funding opportunity review is the first step.
+            </h2>
+
+            <p
+              className="text-[15.5px] text-white/70 leading-[1.7] max-w-[52ch] mx-auto mb-10"
+              style={{ fontFamily: 'var(--font-body)' }}>
+              Submit a funding opportunity for initial review. Aedifica will assess fit, eligibility, and timeline before any engagement begins. No commitment required.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link
+                to="/partner"
+                className="inline-flex items-center justify-center bg-white text-patina text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
+                style={{ fontFamily: 'var(--font-body)' }}>
+                Discuss a Launch Engagement
+              </Link>
+              <Link
+                to="/partner"
+                className="inline-flex items-center justify-center bg-transparent text-white/80 border border-white/30 text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/8 hover:text-white"
+                style={{ fontFamily: 'var(--font-body)' }}>
+                Submit an Opportunity for Review
+              </Link>
+            </div>
+
+          </motion.div>
+        </div>
+      </section>
+
+    </main>
+  )
+}

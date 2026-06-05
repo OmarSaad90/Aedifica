@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 
 const VIEWPORT = { once: true, margin: '-60px 0px' } as const
@@ -85,12 +86,12 @@ export function Outcomes() {
                   </motion.li>
                 ))}
               </ul>
-              <a
-                href="#impact"
+              <Link
+                to="/impact"
                 className="inline-flex items-center justify-center bg-patina text-white text-[14px] tracking-[-0.01em] px-6 py-3 active:scale-[0.98] transition-transform duration-100 hover:bg-patina/85"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 View Our Impact Framework
-              </a>
+              </Link>
             </motion.div>
           </div>
 

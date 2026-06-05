@@ -15,7 +15,7 @@ export function TheGap() {
           <div>
             <motion.h2
               id="gap-heading"
-              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.1] tracking-[-0.025em] text-anthracite italic mb-8 max-w-[28ch]"
+              className="text-[2.25rem] lg:text-[3.75rem] xl:text-[5rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic mb-8"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 24 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
