@@ -210,14 +210,13 @@ export function Partner() {
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
     if (!form.firstName || !form.lastName || !emailOk || !form.organization || !form.orgType || !form.message || !form.consent) return
     setSubmitting(true)
-    const body = new URLSearchParams({
-      'form-name': 'partner-inquiry',
-      ...Object.fromEntries(
+    const body = new URLSearchParams(
+      Object.fromEntries(
         Object.entries(form).filter(([, v]) => typeof v === 'string') as [string, string][]
-      ),
-    })
+      )
+    )
     try {
-      await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
+      await fetch('https://usebasin.com/f/5f39f537ee84', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
     } finally {
       setSubmitting(false)
       setSubmitted(true)
