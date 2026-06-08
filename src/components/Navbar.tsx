@@ -52,9 +52,9 @@ export function Navbar() {
               AEDIFICA
             </span>
             <span className="hidden xl:contents">
-              <span className="text-sediment text-[11px] select-none">·</span>
+              <span className="text-anthracite/30 text-[12px] select-none">·</span>
               <span
-                className="text-sediment text-[11px] italic"
+                className="text-anthracite/55 text-[12px] italic"
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
                 We build the builders.
               </span>
@@ -72,7 +72,7 @@ export function Navbar() {
             onMouseLeave={scheduleClose}>
             <Link
               to="/services"
-              className="flex items-center gap-1 text-[13px] text-anthracite/55 hover:text-anthracite transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap"
+              className="flex items-center gap-1 text-[13px] text-anthracite/70 hover:text-anthracite transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap"
               aria-expanded={servicesOpen}
               aria-haspopup="true">
               Services
@@ -153,7 +153,7 @@ export function Navbar() {
             <Link
               key={to}
               to={to}
-              className="text-[13px] text-anthracite/55 hover:text-anthracite hover:underline hover:underline-offset-4 hover:decoration-anthracite/25 transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap">
+              className="text-[13px] text-anthracite/70 hover:text-anthracite hover:underline hover:underline-offset-4 hover:decoration-anthracite/25 transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap">
               {label}
             </Link>
           ))}
@@ -278,16 +278,20 @@ export function Navbar() {
 function LogoMark() {
   return (
     <svg
-      width="22"
-      height="26"
-      viewBox="0 0 110 130"
+      width="20"
+      height="24"
+      viewBox="0 0 100 112"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       className="flex-shrink-0"
     >
-      <path d="M 15 120 L 15 65 Q 15 12, 55 12 Q 95 12, 95 65 L 95 120 L 78 120 L 78 65 Q 78 28, 55 28 Q 32 28, 32 65 L 32 120 Z" fill="#2D2D31"/>
-      <path d="M 44 28 L 66 28 L 72 52 L 38 52 Z" fill="#6667AB"/>
-      <rect x="32" y="78" width="46" height="7" fill="#2D2D31"/>
+      {/* Arch walls — smooth cubic bezier curves */}
+      <path
+        d="M 8 108 L 8 72 C 8 49 27 30 50 30 C 73 30 92 49 92 72 L 92 108 L 74 108 L 74 72 C 74 59 63 48 50 48 C 37 48 26 59 26 72 L 26 108 Z"
+        fill="#2D2D31"
+      />
+      {/* Datum keystone at arch crown */}
+      <path d="M 40 30 L 60 30 L 56 48 L 44 48 Z" fill="#6667AB" />
     </svg>
   )
 }

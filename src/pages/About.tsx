@@ -1,7 +1,30 @@
+import { SEO, SITE_URL } from '../components/SEO'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 
-const VIEWPORT = { once: true, margin: '-60px 0px' } as const
+const ABOUT_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'AboutPage',
+      url: `${SITE_URL}/about`,
+      name: 'About Aedifica | We Build the Builders',
+      description:
+        'Aedifica builds construction-management workforce pathways for overlooked talent in New Jersey through disciplined employer partnerships and measurable outcomes.',
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      about: { '@id': `${SITE_URL}/#organization` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'About', item: `${SITE_URL}/about` },
+      ],
+    },
+  ],
+} as Record<string, unknown>
+
+const VIEWPORT = { once: true, margin: '100px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
@@ -68,16 +91,19 @@ const TEAM = [
     name: 'Dr. Karim Karam',
     role: 'Co-Founder & CEO',
     bio: 'Leads construction-management education at Stevens Institute of Technology, where he has delivered pre-college engineering workshops for New Jersey high-school students for over five years. Prior infrastructure and workforce leadership at Sarooj Construction Company across major infrastructure projects. Leads Aedifica\'s program architecture and institutional partner relationships.',
+    image: 'founder-karim',
   },
   {
     name: 'Dr. Nicole Silva',
     role: 'Co-Founder & Community Partnerships Lead',
     bio: 'Cross-sector workforce development and partnership experience across Union and Essex counties, New Jersey. Cultivated the partnership between Stevens Institute and Hillside Innovation Academy that became a foundation for Aedifica\'s community delivery model. Leads Aedifica\'s community organization and workforce agency relationships.',
+    image: 'founder-nicole',
   },
   {
     name: 'Kimi Stephenson',
     role: 'Co-Founder & Community Program Lead',
     bio: 'MS in Construction Engineering and Management, Stevens Institute of Technology. BA, Rutgers University-New Brunswick. Co-designed and co-delivered the Bridging Brilliance STEM program at Hillside Innovation Academy: eight weeks, 21 students, documented as an Aedifica delivery foundation.',
+    image: 'founder-kimi',
   },
 ] as const
 
@@ -86,6 +112,12 @@ export function About() {
 
   return (
     <main>
+      <SEO
+        title="About Aedifica | We Build the Builders"
+        description="Aedifica builds construction-management workforce pathways for overlooked talent in New Jersey through disciplined employer partnerships and measurable outcomes."
+        path="/about"
+        schema={ABOUT_SCHEMA}
+      />
 
       {/* ── Hero ── */}
       <section
@@ -95,7 +127,7 @@ export function About() {
         <div className="max-w-7xl mx-auto px-6 w-full">
 
           <motion.span
-            className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/60 px-3 py-1 mb-6 select-none"
+            className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/70 px-3 py-1 mb-6 select-none"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 10 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -114,7 +146,7 @@ export function About() {
           </motion.h1>
 
           <motion.p
-            className="text-[14.5px] text-white/45 leading-[1.65] max-w-[60ch]"
+            className="text-[14.5px] text-white/60 leading-[1.65] max-w-[60ch]"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 14 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -160,12 +192,12 @@ export function About() {
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.55, delay: 0.12, ease: EASE }}>
                 <p
-                  className="text-[15px] text-anthracite/65 leading-[1.72]"
+                  className="text-[15px] text-anthracite/75 leading-[1.72]"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   Aedifica was conceived at the intersection of three stubborn realities: a construction workforce ageing out faster than it is being replaced; a curriculum pipeline that too often treats industry as an afterthought; and a growing population of non-traditional learners who possess enormous capacity but are poorly served by institutional pathways designed for eighteen-year-olds.
                 </p>
                 <p
-                  className="text-[15px] text-anthracite/65 leading-[1.72]"
+                  className="text-[15px] text-anthracite/75 leading-[1.72]"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   Our founders came from both sides of that divide: licensed engineers and site experience on one hand, curriculum designers and educator-practitioners on the other. Aedifica exists because they refused to accept the polite fiction that these are separate problems for separate professions.
                 </p>
@@ -199,15 +231,21 @@ export function About() {
                   Strategic Commitments
                 </p>
                 <ul className="list-none">
-                  {COMMITMENTS.map((item) => (
-                    <li key={item.label} className="flex gap-3 border-b border-sediment/15 py-3.5">
+                  {COMMITMENTS.map((item, i) => (
+                    <motion.li
+                      key={item.label}
+                      className="flex gap-3 border-b border-sediment/15 py-3.5"
+                      initial={reduce ? undefined : { opacity: 0, x: -10 }}
+                      whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
+                      viewport={reduce ? undefined : VIEWPORT}
+                      transition={reduce ? undefined : { duration: 0.38, delay: 0.22 + i * 0.07, ease: EASE }}>
                       <span className="flex-shrink-0 w-[4px] h-[4px] bg-datum mt-[9px]" aria-hidden="true" />
                       <p
-                        className="text-[13.5px] text-anthracite/70 leading-[1.55]"
+                        className="text-[13.5px] text-anthracite/75 leading-[1.55]"
                         style={{ fontFamily: 'var(--font-body)' }}>
                         <strong>{item.label}</strong> {item.desc}
                       </p>
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
               </motion.div>
@@ -228,7 +266,7 @@ export function About() {
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.7, ease: SPRING }}>
             <p
-              className="text-[12.5px] text-anthracite/60 uppercase tracking-[0.2em] mb-6 select-none font-medium"
+              className="text-[12.5px] text-anthracite/75 uppercase tracking-[0.2em] mb-6 select-none font-medium"
               style={{ fontFamily: 'var(--font-body)' }}>
               Mission
             </p>
@@ -251,7 +289,7 @@ export function About() {
               Four values. No fifth.
             </motion.h2>
             <motion.p
-              className="text-[14px] text-anthracite/55 leading-[1.7] mt-4 lg:mt-0"
+              className="text-[14px] text-anthracite/70 leading-[1.7] mt-4 lg:mt-0"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 14 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -277,13 +315,13 @@ export function About() {
               <h3 className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] italic text-white leading-[1.06] tracking-[-0.03em] mb-6" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
                 {VALUES[0].name}
               </h3>
-              <p className="text-[15px] text-white/72 leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[15px] text-white/80 leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[0].description}
               </p>
             </div>
             <div className="mt-8 lg:mt-0 lg:pt-1">
-              <p className="text-[10px] text-white/45 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
-              <p className="text-[14px] text-white/65 leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[10px] text-white/60 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
+              <p className="text-[14px] text-white/75 leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[0].practice}
               </p>
             </div>
@@ -305,13 +343,13 @@ export function About() {
               <h3 className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] italic text-anthracite leading-[1.06] tracking-[-0.03em] mb-6" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
                 {VALUES[1].name}
               </h3>
-              <p className="text-[15px] text-anthracite/70 leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[15px] text-anthracite/75 leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[1].description}
               </p>
             </div>
             <div className="mt-8 lg:mt-0 lg:pt-1">
-              <p className="text-[10px] text-anthracite/45 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
-              <p className="text-[14px] text-anthracite/65 leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[10px] text-anthracite/60 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
+              <p className="text-[14px] text-anthracite/75 leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[1].practice}
               </p>
             </div>
@@ -332,13 +370,13 @@ export function About() {
               <h3 className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] italic text-white leading-[1.06] tracking-[-0.03em] mb-6" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
                 {VALUES[2].name}
               </h3>
-              <p className="text-[15px] text-white/72 leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[15px] text-white/80 leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[2].description}
               </p>
             </div>
             <div className="mt-8 lg:mt-0 lg:pt-1">
-              <p className="text-[10px] text-white/45 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
-              <p className="text-[14px] text-white/65 leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[10px] text-white/60 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
+              <p className="text-[14px] text-white/75 leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[2].practice}
               </p>
             </div>
@@ -358,11 +396,11 @@ export function About() {
             <h3 className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] italic text-anthracite leading-[1.06] tracking-[-0.03em] mb-6" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
               {VALUES[3].name}
             </h3>
-            <p className="text-[15px] text-anthracite/70 leading-[1.72] mb-8" style={{ fontFamily: 'var(--font-body)' }}>
+            <p className="text-[15px] text-anthracite/75 leading-[1.72] mb-8" style={{ fontFamily: 'var(--font-body)' }}>
               {VALUES[3].description}
             </p>
-            <p className="text-[10px] text-anthracite/45 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
-            <p className="text-[14px] text-anthracite/65 leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
+            <p className="text-[10px] text-anthracite/60 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
+            <p className="text-[14px] text-anthracite/75 leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
               {VALUES[3].practice}
             </p>
           </motion.div>
@@ -404,8 +442,16 @@ export function About() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, delay: 0.08 * i, ease: EASE }}>
 
-              {/* Photo zone */}
-              <div className="bg-quarry/18 w-full h-[220px] lg:w-[220px] lg:h-[280px] flex-shrink-0" />
+              {/* Photo */}
+              <div className="w-full h-[220px] lg:w-[220px] lg:h-[280px] flex-shrink-0 overflow-hidden">
+                <img
+                  src={`https://picsum.photos/seed/${member.image}/440/560`}
+                  alt=""
+                  className="w-full h-full object-cover"
+                  style={{ filter: 'grayscale(15%) contrast(1.05)' }}
+                  loading="lazy"
+                />
+              </div>
 
               {/* Bio */}
               <div className="lg:pt-1">
@@ -420,7 +466,7 @@ export function About() {
                   {member.name}
                 </h3>
                 <p
-                  className="text-[14.5px] text-anthracite/65 leading-[1.72] max-w-[56ch]"
+                  className="text-[14.5px] text-anthracite/75 leading-[1.72] max-w-[56ch]"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   {member.bio}
                 </p>
@@ -430,7 +476,7 @@ export function About() {
           ))}
 
           <motion.p
-            className="text-[12px] text-anthracite/35 leading-[1.6] mt-6 italic"
+            className="text-[12px] text-anthracite/50 leading-[1.6] mt-6 italic"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0 }}
             whileInView={reduce ? undefined : { opacity: 1 }}
@@ -459,7 +505,7 @@ export function About() {
             </h2>
 
             <p
-              className="text-[15px] text-white/65 leading-[1.7] max-w-[52ch] mx-auto mb-10"
+              className="text-[15px] text-white/75 leading-[1.7] max-w-[52ch] mx-auto mb-10"
               style={{ fontFamily: 'var(--font-body)' }}>
               Speak with Aedifica about what a founding partnership, employer engagement, or institutional briefing looks like in practice.
             </p>

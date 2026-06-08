@@ -1,7 +1,30 @@
+import { SEO, SITE_URL } from '../components/SEO'
 import { useState, useRef } from 'react'
 import { motion, useReducedMotion, AnimatePresence } from 'motion/react'
 
-const VIEWPORT = { once: true, margin: '-60px 0px' } as const
+const PARTNER_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ContactPage',
+      url: `${SITE_URL}/partner`,
+      name: "Partner With Aedifica | Build New Jersey's CM Workforce Pathway",
+      description:
+        'Partner with Aedifica as an education institution, workforce organization, employer, or funding partner to build accountable construction-management pathways in New Jersey.',
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      about: { '@id': `${SITE_URL}/#organization` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Partner With Us', item: `${SITE_URL}/partner` },
+      ],
+    },
+  ],
+} as Record<string, unknown>
+
+const VIEWPORT = { once: true, margin: '100px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
@@ -159,7 +182,7 @@ const selectCls =
   'w-full px-4 py-3 bg-snow border border-sediment/35 text-anthracite text-[14px] focus:border-datum focus:outline-none transition-colors duration-150 appearance-none cursor-pointer'
 
 const labelCls =
-  'block text-[10.5px] text-anthracite/55 uppercase tracking-[0.16em] mb-1.5 select-none'
+  'block text-[10.5px] text-anthracite/70 uppercase tracking-[0.16em] mb-1.5 select-none'
 
 export function Partner() {
   const reduce = useReducedMotion()
@@ -196,6 +219,12 @@ export function Partner() {
 
   return (
     <main>
+      <SEO
+        title="Partner With Aedifica | Build New Jersey's CM Workforce Pathway"
+        description="Partner with Aedifica as an education institution, workforce organization, employer, or funding partner to build accountable construction-management pathways in New Jersey."
+        path="/partner"
+        schema={PARTNER_SCHEMA}
+      />
 
       {/* ── Hero ── */}
       <section
@@ -217,7 +246,7 @@ export function Partner() {
         <div className="max-w-7xl mx-auto px-6 w-full">
 
           <motion.span
-            className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/60 px-3 py-1 mb-6 select-none"
+            className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/70 px-3 py-1 mb-6 select-none"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 10 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -236,7 +265,7 @@ export function Partner() {
           </motion.h1>
 
           <motion.p
-            className="text-[14.5px] text-white/45 leading-[1.65] max-w-[58ch]"
+            className="text-[14.5px] text-white/60 leading-[1.65] max-w-[58ch]"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 14 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -347,7 +376,7 @@ export function Partner() {
                 : 'Tell us about your organization.'}
             </h2>
             <p
-              className="text-[14px] text-anthracite/50 leading-[1.7] max-w-[58ch]"
+              className="text-[14px] text-anthracite/65 leading-[1.7] max-w-[58ch]"
               style={{ fontFamily: 'var(--font-body)' }}>
               Aedifica reviews every inquiry. You will hear back within five business days.
             </p>
@@ -372,7 +401,7 @@ export function Partner() {
                   Your inquiry has been received. Aedifica will respond within five business days.
                 </p>
                 <p
-                  className="text-[14px] text-anthracite/50 leading-[1.7]"
+                  className="text-[14px] text-anthracite/65 leading-[1.7]"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   If your inquiry is time-sensitive due to a funding deadline, please note that in
                   your message.
@@ -600,7 +629,7 @@ export function Partner() {
                         className="mt-[3px] flex-shrink-0 w-4 h-4 border border-sediment/40 accent-datum cursor-pointer"
                       />
                       <span
-                        className="text-[12.5px] text-anthracite/50 leading-[1.58]"
+                        className="text-[12.5px] text-anthracite/65 leading-[1.58]"
                         style={{ fontFamily: 'var(--font-body)' }}>
                         I understand this inquiry will be reviewed by Aedifica. No information will be shared with third parties.
                       </span>

@@ -40,7 +40,7 @@ export function Hero() {
         </motion.h1>
 
         <motion.p
-          className="text-[15.5px] text-anthracite/65 leading-[1.65] max-w-[54ch] mb-9"
+          className="text-[15.5px] text-anthracite/70 leading-[1.65] max-w-[54ch] mb-9"
           style={{ fontFamily: 'var(--font-body)' }}
           initial={reduce ? undefined : { opacity: 0, y: 18 }}
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -72,7 +72,7 @@ export function Hero() {
         </motion.div>
 
         <motion.p
-          className="text-[11.5px] text-anthracite/40 leading-relaxed max-w-[50ch]"
+          className="text-[12px] text-anthracite/65 leading-relaxed max-w-[50ch]"
           style={{ fontFamily: 'var(--font-body)' }}
           initial={reduce ? undefined : { opacity: 0 }}
           animate={reduce ? undefined : { opacity: 1 }}

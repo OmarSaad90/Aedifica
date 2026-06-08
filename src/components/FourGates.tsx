@@ -1,117 +1,113 @@
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 
-const VIEWPORT = { once: true, margin: '-60px 0px' } as const
-const EASE = [0.25, 0.1, 0.25, 1] as const
+const VIEWPORT    = { once: true, margin: '-60px 0px' } as const
+const EASE        = [0.25, 0.1, 0.25, 1] as const
+const SPRING_EASE = [0.32, 0.72, 0, 1] as const
 
 const GATES = [
   {
-    num: '01',
+    num:   '01',
     title: 'Recruitment and community support',
-    body: 'A community or recruitment partner helps identify participants and define attendance support, case-management coordination, supportive services, and data responsibilities.',
+    body:  'A community or recruitment partner helps identify participants and define attendance support, case-management coordination, supportive services, and data responsibilities.',
   },
   {
-    num: '02',
+    num:   '02',
     title: 'Funding and fiscal alignment',
-    body: 'A funding or fiscal partner establishes how the cohort is supported, administered, and reported before delivery obligations begin.',
+    body:  'A funding or fiscal partner establishes how the cohort is supported, administered, and reported before delivery obligations begin.',
   },
   {
-    num: '03',
+    num:   '03',
     title: 'Employer commitment',
-    body: 'Participating employers help validate role relevance, inform capstone expectations, and commit to a defined interview opportunity for qualified completers.',
+    body:  'Participating employers help validate role relevance, inform capstone expectations, and commit to a defined interview opportunity for qualified completers.',
   },
   {
-    num: '04',
+    num:   '04',
     title: 'Articulation or apprenticeship pathway',
-    body: 'A signed progression route with an apprenticeship sponsor, union local, county college, or employer training program creates a credible next step beyond completion.',
+    body:  'A signed progression route with an apprenticeship sponsor, union local, county college, or employer training program creates a credible next step beyond completion.',
   },
 ] as const
+
+// Per-cell border rules for the 2×2 grid
+const CELL_BORDERS: Record<number, string> = {
+  0: 'border-b border-sediment/20 lg:border-r',
+  1: 'border-b border-sediment/20',
+  2: 'border-b border-sediment/20 lg:border-b-0 lg:border-r',
+  3: '',
+}
 
 export function FourGates() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-snow py-16 lg:py-24" aria-labelledby="gates-heading">
+    <section className="bg-snow py-14 lg:py-20" aria-labelledby="gates-heading">
       <div className="max-w-7xl mx-auto px-6">
-
-        <motion.p
-          className="text-[10.5px] text-quarry uppercase tracking-[0.22em] mb-8 select-none"
-          style={{ fontFamily: 'var(--font-body)' }}
-          initial={reduce ? undefined : { opacity: 0, y: 12 }}
-          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-          viewport={reduce ? undefined : VIEWPORT}
-          transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
-          From Readiness to Advancement
-        </motion.p>
 
         <motion.h2
           id="gates-heading"
-          className="text-[2.25rem] lg:text-[3.25rem] xl:text-[3.875rem] leading-[1.08] tracking-[-0.028em] text-anthracite italic mb-12 lg:mb-16 max-w-[34ch]"
+          className="text-[2.25rem] lg:text-[3.25rem] xl:text-[3.875rem] leading-[1.08] tracking-[-0.028em] text-anthracite italic mb-10 lg:mb-14 max-w-[32ch]"
           style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
           initial={reduce ? undefined : { opacity: 0, y: 24 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
           viewport={reduce ? undefined : VIEWPORT}
           transition={reduce ? undefined : { duration: 0.55, delay: 0.06, ease: EASE }}>
-          A disciplined pathway requires four commitments before instruction begins.
+          A disciplined pathway requires{' '}
+          <span className="text-datum">four commitments</span>{' '}
+          before instruction begins.
         </motion.h2>
 
-        <div className="max-w-[56rem] mx-auto grid grid-cols-1 lg:grid-cols-2">
-          {GATES.map(({ num, title, body }, i) => {
-            const isLeft = i % 2 === 0
-            const isTop = i < 2
-            const isLast = i === 3
-            return (
-              <motion.div
-                key={num}
-                className={[
-                  'py-8 lg:py-10',
-                  (i === 0 || i === 3) ? 'bg-sediment' : '',
-                  (i === 0 || i === 3)
-                    ? 'px-5 lg:px-8 xl:px-10'
-                    : (isLeft ? 'lg:pr-10 xl:pr-14' : 'lg:pl-10 xl:pl-14'),
-                  !isLast ? 'border-b border-sediment/25' : '',
-                  !isTop ? 'lg:border-b-0' : '',
-                  isLeft ? 'lg:border-r lg:border-sediment/25' : '',
-                ].filter(Boolean).join(' ')}
-                initial={reduce ? undefined : { opacity: 0, y: 20 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.5, delay: i * 0.07, ease: EASE }}>
-                <span
-                  className="block text-[10.5px] text-datum uppercase tracking-[0.18em] mb-4 select-none"
-                  style={{ fontFamily: 'var(--font-body)' }}
-                  aria-hidden="true">
-                  {num}
-                </span>
-                <h3
-                  className="text-[1.125rem] lg:text-[1.25rem] leading-[1.25] tracking-[-0.02em] text-anthracite italic mb-3"
-                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                  {title}
-                </h3>
-                <p
-                  className="text-[14px] text-anthracite/60 leading-[1.7]"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  {body}
-                </p>
-              </motion.div>
-            )
-          })}
+        {/* 2×2 grid — all cells on snow surface, sediment dividers */}
+        <div className="max-w-[56rem] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            {GATES.map(({ title, body }, i) => {
+              const isLeft = i % 2 === 0
+              return (
+                <motion.div
+                  key={i}
+                  className={[
+                    'py-8 lg:py-10',
+                    CELL_BORDERS[i],
+                    isLeft ? 'lg:pr-12 xl:pr-16' : 'lg:pl-12 xl:pl-16',
+                  ].filter(Boolean).join(' ')}
+                  initial={reduce ? undefined : { opacity: 0, y: 16 }}
+                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                  viewport={reduce ? undefined : VIEWPORT}
+                  transition={reduce ? undefined : { duration: 0.55, delay: i * 0.08, ease: SPRING_EASE }}>
+
+                  {/* Datum accent rule — architectural marker, not a sequence number */}
+                  <div className="w-6 h-[2px] bg-datum mb-5" aria-hidden="true" />
+
+                  <h3
+                    className="text-[1.0625rem] lg:text-[1.1875rem] leading-[1.25] tracking-[-0.02em] text-anthracite italic mb-2.5"
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                    {title}
+                  </h3>
+                  <p
+                    className="text-[13.5px] text-anthracite/75 leading-[1.7] max-w-[46ch]"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    {body}
+                  </p>
+                </motion.div>
+              )
+            })}
+          </div>
         </div>
 
+        {/* Footer CTA */}
         <motion.div
-          className="max-w-[56rem] mx-auto border-t border-sediment/25 pt-10 lg:pt-12 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8"
+          className="max-w-[56rem] mx-auto border-t border-sediment/20 pt-8 lg:pt-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6"
           initial={reduce ? undefined : { opacity: 0, y: 20 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
           viewport={reduce ? undefined : VIEWPORT}
-          transition={reduce ? undefined : { duration: 0.6, delay: 0.15, ease: EASE }}>
+          transition={reduce ? undefined : { duration: 0.6, delay: 0.2, ease: EASE }}>
           <p
-            className="text-[1.125rem] lg:text-[1.25rem] text-anthracite italic leading-[1.5] max-w-[44ch]"
+            className="text-[1.0625rem] lg:text-[1.1875rem] text-anthracite/80 italic leading-[1.5] max-w-[44ch]"
             style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
             Curriculum without these commitments is a class. Aedifica is designed to build a pathway.
           </p>
           <Link
             to="/partner"
-            className="flex-shrink-0 inline-flex items-center justify-center bg-patina text-white text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-patina/85"
+            className="flex-shrink-0 inline-flex items-center justify-center bg-datum text-white text-[13px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-colors duration-150 hover:bg-datum/85"
             style={{ fontFamily: 'var(--font-body)' }}>
             Discuss a Founding Partnership
           </Link>

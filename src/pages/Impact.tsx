@@ -1,7 +1,30 @@
+import { SEO, SITE_URL } from '../components/SEO'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 
-const VIEWPORT = { once: true, margin: '-60px 0px' } as const
+const IMPACT_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      url: `${SITE_URL}/impact`,
+      name: 'Projects & Impact | Aedifica Delivery Foundation · NJ',
+      description:
+        "Review Aedifica's educational delivery foundation, planned Rebuild outcome reporting framework, and accountable partnership model for New Jersey construction pathways.",
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      about: { '@id': `${SITE_URL}/#organization` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Projects & Impact', item: `${SITE_URL}/impact` },
+      ],
+    },
+  ],
+} as Record<string, unknown>
+
+const VIEWPORT = { once: true, margin: '100px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
@@ -45,67 +68,69 @@ export function Impact() {
 
   return (
     <main>
+      <SEO
+        title="Projects & Impact | Aedifica Delivery Foundation · NJ"
+        description="Review Aedifica's educational delivery foundation, planned Rebuild outcome reporting framework, and accountable partnership model for New Jersey construction pathways."
+        path="/impact"
+        schema={IMPACT_SCHEMA}
+      />
 
       {/* ── Hero ── */}
       <section
-        className="bg-anthracite min-h-[72vh] flex flex-col justify-end pb-16 lg:pb-24"
+        className="bg-anthracite min-h-[72vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="impact-h1">
 
-        <div className="max-w-7xl mx-auto px-6 w-full">
-          <div className="lg:grid lg:grid-cols-[1fr_0.5fr] lg:gap-16 lg:items-end">
+        {/* Full-bleed right-half photo — desktop only */}
+        <motion.div
+          className="hidden lg:block absolute inset-y-0 right-0 w-2/5"
+          initial={reduce ? undefined : { opacity: 0 }}
+          animate={reduce ? undefined : { opacity: 1 }}
+          transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
+          <img
+            src="https://picsum.photos/seed/impact-review/800/600"
+            alt=""
+            className="w-full h-full object-cover"
+            style={{ filter: 'grayscale(25%) contrast(1.08)' }}
+            loading="eager"
+          />
+        </motion.div>
 
-            <div>
-              <motion.span
-                className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/60 px-3 py-1 mb-10 select-none"
-                style={{ fontFamily: 'var(--font-body)' }}
-                initial={reduce ? undefined : { opacity: 0, y: 10 }}
-                animate={reduce ? undefined : { opacity: 1, y: 0 }}
-                transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-                Evidence &amp; Accountability
-              </motion.span>
-
-              <motion.h1
-                id="impact-h1"
-                className="text-[2.75rem] lg:text-[4.5rem] xl:text-[6rem] leading-[0.96] tracking-[-0.035em] text-white italic mb-10"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-                initial={reduce ? undefined : { opacity: 0, y: 40 }}
-                animate={reduce ? undefined : { opacity: 1, y: 0 }}
-                transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
-                Built on relevant experience. Designed to prove future outcomes.
-              </motion.h1>
-
-              <motion.div
-                className="flex flex-wrap items-center gap-x-0 gap-y-3"
-                initial={reduce ? undefined : { opacity: 0, y: 14 }}
-                animate={reduce ? undefined : { opacity: 1, y: 0 }}
-                transition={reduce ? undefined : { duration: 0.5, delay: 0.4, ease: EASE }}>
-                {(['Delivery foundation', 'Future reporting', 'New Jersey'] as const).map((item, i) => (
-                  <span
-                    key={item}
-                    className="text-[13px] text-white/40 tracking-[-0.01em]"
-                    style={{ fontFamily: 'var(--font-body)' }}>
-                    {item}
-                    {i < 2 && <span className="mx-4 text-white/15" aria-hidden="true">·</span>}
-                  </span>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* Photo zone — right column */}
-            <motion.div
-              className="hidden lg:flex flex-col justify-end"
-              initial={reduce ? undefined : { opacity: 0, y: 24 }}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+          <div className="lg:max-w-[60%] lg:pr-8 xl:pr-12">
+            <motion.span
+              className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/70 px-3 py-1 mb-10 select-none"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 10 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
-              transition={reduce ? undefined : { duration: 0.65, delay: 0.32, ease: EASE }}>
-              <div className="h-[300px] xl:h-[360px] bg-white/6 border border-white/12 flex items-end p-5">
-                <span
-                  className="text-[10.5px] text-white/25 tracking-[0.1em] uppercase leading-[1.5]"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  Photo: Program review<br />and documentation
-                </span>
-              </div>
-            </motion.div>
+              transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
+              Evidence &amp; Accountability
+            </motion.span>
 
+            <motion.h1
+              id="impact-h1"
+              className="text-[2.75rem] lg:text-[4.5rem] xl:text-[6rem] leading-[0.96] tracking-[-0.035em] text-white italic mb-10"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+              initial={reduce ? undefined : { opacity: 0, y: 40 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
+              Built on relevant experience. Designed to prove future outcomes.
+            </motion.h1>
+
+            <motion.div
+              className="flex flex-wrap items-center gap-x-0 gap-y-3"
+              initial={reduce ? undefined : { opacity: 0, y: 14 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.4, ease: EASE }}>
+              {(['Delivery foundation', 'Future reporting', 'New Jersey'] as const).map((item, i) => (
+                <span
+                  key={item}
+                  className="text-[13px] text-white/60 tracking-[-0.01em]"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  {item}
+                  {i < 2 && <span className="mx-4 text-white/20" aria-hidden="true">·</span>}
+                </span>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
@@ -127,7 +152,7 @@ export function Impact() {
 
             <div className="lg:pt-3">
               <motion.p
-                className="text-[15.5px] text-anthracite/65 leading-[1.72] mb-6"
+                className="text-[15.5px] text-anthracite/75 leading-[1.72] mb-6"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 18 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -136,7 +161,7 @@ export function Impact() {
                 Aedifica is being built on a clear principle: workforce investment must be accountable to learners, employers, and institutional partners. That requires not blending categories that should stay distinct.
               </motion.p>
               <motion.p
-                className="text-[15.5px] text-anthracite/65 leading-[1.72]"
+                className="text-[15.5px] text-anthracite/75 leading-[1.72]"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 18 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -182,15 +207,15 @@ export function Impact() {
                   5
                 </p>
                 <p
-                  className="text-[11px] text-anthracite/50 uppercase tracking-[0.16em] mt-2"
+                  className="text-[11px] text-anthracite/65 uppercase tracking-[0.16em] mt-2"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   Years of delivery
                 </p>
                 <div className="mt-5 space-y-1.5">
-                  <p className="text-[12.5px] text-anthracite/55 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>2 summer sessions annually</p>
-                  <p className="text-[12.5px] text-anthracite/55 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>High-school students</p>
-                  <p className="text-[12.5px] text-anthracite/55 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>Stevens Institute of Technology</p>
-                  <p className="text-[12.5px] text-anthracite/55 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>Continuing</p>
+                  <p className="text-[12.5px] text-anthracite/70 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>2 summer sessions annually</p>
+                  <p className="text-[12.5px] text-anthracite/70 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>High-school students</p>
+                  <p className="text-[12.5px] text-anthracite/70 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>Stevens Institute of Technology</p>
+                  <p className="text-[12.5px] text-anthracite/70 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>Continuing</p>
                 </div>
               </div>
 
@@ -202,31 +227,31 @@ export function Impact() {
                   Pre-College Engineering Workshops, Stevens Institute of Technology
                 </h3>
                 <p
-                  className="text-[14.5px] text-anthracite/65 leading-[1.72] mb-5"
+                  className="text-[14.5px] text-anthracite/75 leading-[1.72] mb-5"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   Dr. Karim Karam has delivered pre-college engineering workshops for high-school students through Stevens Institute of Technology across five years of continuous delivery. Two intensive one-week summer sessions run annually, introducing students to engineering thinking, technical problem-solving, and academic preparation for STEM pathways.
                 </p>
                 <p
-                  className="text-[14.5px] text-anthracite/65 leading-[1.72] mb-8"
+                  className="text-[14.5px] text-anthracite/75 leading-[1.72] mb-8"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   This experience informs Aedifica's secondary curriculum approach, instructional sequencing design, and student engagement methodology for the planned Pathway offering.
                 </p>
                 <p
-                  className="text-[11.5px] text-anthracite/40 leading-[1.6] italic"
+                  className="text-[11.5px] text-anthracite/55 leading-[1.6] italic"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   Prior educational delivery experience. Not Aedifica workforce placement outcomes.
                 </p>
               </div>
 
-              {/* Photo zone */}
-              <div className="hidden lg:block">
-                <div className="h-[260px] xl:h-[300px] bg-datum/8 border border-datum/15 flex items-end p-4">
-                  <span
-                    className="text-[10px] text-anthracite/30 tracking-[0.1em] uppercase leading-[1.5]"
-                    style={{ fontFamily: 'var(--font-body)' }}>
-                    Photo: Stevens workshop<br />session
-                  </span>
-                </div>
+              {/* Photo */}
+              <div className="mt-6 lg:mt-0 overflow-hidden h-[220px] lg:h-[300px] xl:h-[380px]">
+                <img
+                  src="https://picsum.photos/seed/engineering-workshop/600/300"
+                  alt=""
+                  className="w-full h-full object-cover"
+                  style={{ filter: 'grayscale(20%) contrast(1.05)' }}
+                  loading="lazy"
+                />
               </div>
 
             </div>
@@ -241,15 +266,15 @@ export function Impact() {
             transition={reduce ? undefined : { duration: 0.6, delay: 0.08, ease: EASE }}>
             <div className="lg:grid lg:grid-cols-[0.6fr_1fr_200px] lg:gap-12 xl:gap-16 lg:items-start">
 
-              {/* Photo zone — left this time (asymmetry) */}
-              <div className="hidden lg:block">
-                <div className="h-[260px] xl:h-[300px] bg-patina/8 border border-patina/15 flex items-end p-4">
-                  <span
-                    className="text-[10px] text-anthracite/30 tracking-[0.1em] uppercase leading-[1.5]"
-                    style={{ fontFamily: 'var(--font-body)' }}>
-                    Photo: Bridging Brilliance<br />program session
-                  </span>
-                </div>
+              {/* Photo — left (asymmetry) */}
+              <div className="overflow-hidden h-[220px] lg:h-[300px] xl:h-[380px]">
+                <img
+                  src="https://picsum.photos/seed/stem-program/600/300"
+                  alt=""
+                  className="w-full h-full object-cover"
+                  style={{ filter: 'grayscale(20%) contrast(1.05)' }}
+                  loading="lazy"
+                />
               </div>
 
               {/* Description */}
@@ -260,23 +285,23 @@ export function Impact() {
                   Bridging Brilliance STEM Program, Hillside Innovation Academy
                 </h3>
                 <p
-                  className="text-[14.5px] text-anthracite/65 leading-[1.72] mb-5"
+                  className="text-[14.5px] text-anthracite/75 leading-[1.72] mb-5"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   Kimi Stephenson and Dr. Karim Karam co-delivered an intensive 8-week STEM program at Hillside Innovation Academy, serving 21 students. The program was recognized as highly successful, with a full post-project report available on request.
                 </p>
                 <p
-                  className="text-[14.5px] text-anthracite/65 leading-[1.72] mb-8"
+                  className="text-[14.5px] text-anthracite/75 leading-[1.72] mb-8"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   This delivery experience informs the design of Aedifica Explore, the planned middle- and high-school construction and infrastructure career exposure offering.
                 </p>
                 <p
-                  className="text-[11.5px] text-anthracite/40 leading-[1.6] italic"
+                  className="text-[11.5px] text-anthracite/55 leading-[1.6] italic"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   Prior educational delivery experience. Not Aedifica workforce placement outcomes.
                 </p>
               </div>
 
-              {/* Stat anchor — right this time */}
+              {/* Stat anchor — right */}
               <div>
                 <p
                   className="text-[7rem] lg:text-[9rem] xl:text-[10rem] leading-[0.85] tracking-[-0.04em] text-patina italic select-none"
@@ -285,15 +310,15 @@ export function Impact() {
                   21
                 </p>
                 <p
-                  className="text-[11px] text-anthracite/50 uppercase tracking-[0.16em] mt-2"
+                  className="text-[11px] text-anthracite/65 uppercase tracking-[0.16em] mt-2"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   Students served
                 </p>
                 <div className="mt-5 space-y-1.5">
-                  <p className="text-[12.5px] text-anthracite/55 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>8-week intensive</p>
-                  <p className="text-[12.5px] text-anthracite/55 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>Hillside Innovation Academy</p>
-                  <p className="text-[12.5px] text-anthracite/55 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>STEM curriculum</p>
-                  <p className="text-[12.5px] text-anthracite/55 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>Report available on request</p>
+                  <p className="text-[12.5px] text-anthracite/70 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>8-week intensive</p>
+                  <p className="text-[12.5px] text-anthracite/70 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>Hillside Innovation Academy</p>
+                  <p className="text-[12.5px] text-anthracite/70 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>STEM curriculum</p>
+                  <p className="text-[12.5px] text-anthracite/70 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>Report available on request</p>
                 </div>
               </div>
 
@@ -307,17 +332,20 @@ export function Impact() {
       <section className="bg-anthracite py-16 lg:py-24 relative overflow-hidden" aria-labelledby="framework-h2">
 
         {/* Ghost word */}
-        <span
+        <motion.span
           className="pointer-events-none select-none absolute bottom-0 right-0 leading-[0.82] text-white translate-x-[5%] translate-y-[20%]"
+          initial={reduce ? undefined : { opacity: 0 }}
+          whileInView={reduce ? undefined : { opacity: 0.03 }}
+          viewport={reduce ? undefined : VIEWPORT}
+          transition={reduce ? undefined : { duration: 1.6, delay: 0.4, ease: EASE }}
           style={{
             fontFamily: 'var(--font-heading)',
             fontWeight: 300,
             fontSize: 'clamp(7rem, 14vw, 14rem)',
-            opacity: 0.03,
           }}
           aria-hidden="true">
           Report
-        </span>
+        </motion.span>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="lg:grid lg:grid-cols-[1fr_1.6fr] lg:gap-20 xl:gap-28 lg:items-start">
@@ -344,7 +372,7 @@ export function Impact() {
                 What Aedifica will measure and report.
               </motion.h2>
               <motion.p
-                className="text-[14px] text-white/45 leading-[1.7] mb-8"
+                className="text-[14px] text-white/60 leading-[1.7] mb-8"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 16 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -353,7 +381,7 @@ export function Impact() {
                 Following an initial Rebuild cohort, Aedifica intends to publish outcomes across eight categories. Each is reported separately: no blending, no substituting enrollment for placement, no combining employment and continuing education.
               </motion.p>
               <motion.p
-                className="text-[11.5px] text-white/25 leading-[1.65] italic"
+                className="text-[11.5px] text-white/45 leading-[1.65] italic"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0 }}
                 whileInView={reduce ? undefined : { opacity: 1 }}
@@ -379,7 +407,7 @@ export function Impact() {
                     {category}
                   </p>
                   <p
-                    className="text-[13px] text-white/48 leading-[1.65]"
+                    className="text-[13px] text-white/60 leading-[1.65]"
                     style={{ fontFamily: 'var(--font-body)' }}>
                     {measure}
                   </p>
@@ -408,7 +436,7 @@ export function Impact() {
             </h2>
 
             <p
-              className="text-[15.5px] text-white/65 leading-[1.7] max-w-[52ch] mx-auto mb-10"
+              className="text-[15.5px] text-white/75 leading-[1.7] max-w-[52ch] mx-auto mb-10"
               style={{ fontFamily: 'var(--font-body)' }}>
               Speak with Aedifica about the reporting framework, partnership model, or how Rebuild outcomes will be measured and published.
             </p>

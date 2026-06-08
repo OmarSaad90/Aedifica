@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#2D2D31"/>
+
+  <!-- Subtle margin guides (very low opacity) -->
+  <rect x="80" y="0" width="1040" height="630" fill="none"/>
+
+  <!-- Arch mark — centered, scaled 2.0× from 100×112 viewBox -->
+  <!-- translate: x = 600 - (100/2)*2 = 600-100 = 500, y = 112 -->
+  <g transform="translate(500, 112) scale(2)">
+    <!-- Arch walls in snow -->
+    <path
+      d="M 8 108 L 8 72 C 8 49 27 30 50 30 C 73 30 92 49 92 72 L 92 108 L 74 108 L 74 72 C 74 59 63 48 50 48 C 37 48 26 59 26 72 L 26 108 Z"
+      fill="#FAF7F1"
+    />
+    <!-- Datum keystone -->
+    <path d="M 40 30 L 60 30 L 56 48 L 44 48 Z" fill="#6667AB"/>
+    <!-- Crossbar — background color cuts through arch opening -->
+    <rect x="26" y="82" width="48" height="6" fill="#2D2D31"/>
+  </g>
+
+  <!-- AEDIFICA wordmark -->
+  <text
+    x="600"
+    y="408"
+    text-anchor="middle"
+    font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif"
+    font-size="60"
+    font-weight="600"
+    letter-spacing="18"
+    fill="#FAF7F1"
+  >AEDIFICA</text>
+
+  <!-- Tagline -->
+  <text
+    x="600"
+    y="452"
+    text-anchor="middle"
+    font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif"
+    font-size="19"
+    letter-spacing="1.5"
+    fill="#FAF7F1"
+    opacity="0.42"
+  >Construction-Management Workforce Pathways · New Jersey</text>
+
+  <!-- Datum accent line -->
+  <rect x="80" y="510" width="1040" height="1" fill="#6667AB" opacity="0.55"/>
+
+  <!-- Domain -->
+  <text
+    x="600"
+    y="549"
+    text-anchor="middle"
+    font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif"
+    font-size="14"
+    letter-spacing="4"
+    fill="#FAF7F1"
+    opacity="0.28"
+  >EDFCA.COM</text>
+
+</svg>

@@ -37,7 +37,7 @@ export function Outcomes() {
 
             <motion.h2
               id="outcomes-heading"
-              className="text-[2.75rem] lg:text-[4.5rem] xl:text-[5.5rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic"
+              className="text-[2.75rem] lg:text-[4.5rem] xl:text-[5.5rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic mb-8 lg:mb-10"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 24 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -45,12 +45,28 @@ export function Outcomes() {
               transition={reduce ? undefined : { duration: 0.55, delay: 0.08, ease: EASE }}>
               Outcomes belong on the record.
             </motion.h2>
+
+            {/* Placeholder image — replace with real photo */}
+            <motion.div
+              className="overflow-hidden"
+              initial={reduce ? undefined : { opacity: 0, y: 16 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.6, delay: 0.18, ease: EASE }}>
+              <img
+                src="https://picsum.photos/seed/workforce-report/800/520"
+                alt=""
+                className="w-full h-auto object-cover"
+                style={{ filter: 'grayscale(20%) contrast(1.05)' }}
+                loading="lazy"
+              />
+            </motion.div>
           </div>
 
           {/* Right column: body + reporting categories + CTA */}
           <div className="lg:pt-8 xl:pt-10">
             <motion.p
-              className="text-[15px] text-anthracite/65 leading-[1.72] mb-8"
+              className="text-[15px] text-anthracite/75 leading-[1.72] mb-8"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 20 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -76,7 +92,7 @@ export function Outcomes() {
                 {CATEGORIES.map((cat, i) => (
                   <motion.li
                     key={cat}
-                    className="text-[13.5px] text-anthracite/65 leading-[1.65]"
+                    className="text-[13.5px] text-anthracite/75 leading-[1.65]"
                     style={{ fontFamily: 'var(--font-body)' }}
                     initial={reduce ? undefined : { opacity: 0, x: -6 }}
                     whileInView={reduce ? undefined : { opacity: 1, x: 0 }}

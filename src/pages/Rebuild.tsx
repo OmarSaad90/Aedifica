@@ -1,7 +1,34 @@
+import { SEO, SITE_URL } from '../components/SEO'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 
-const VIEWPORT = { once: true, margin: '-60px 0px' } as const
+const REBUILD_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'EducationalOccupationalProgram',
+      name: 'Aedifica Rebuild',
+      description:
+        'A planned 12-week adult bridge cohort for credible entry and progression in construction-management careers in New Jersey.',
+      provider: { '@id': `${SITE_URL}/#organization` },
+      timeToComplete: 'P12W',
+      educationalProgramMode: 'in-person',
+      occupationalCategory: 'Construction Manager',
+      educationalCredentialAwarded: 'Certificate of Completion',
+      areaServed: { '@type': 'State', name: 'New Jersey' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
+        { '@type': 'ListItem', position: 3, name: 'Rebuild', item: `${SITE_URL}/services/rebuild` },
+      ],
+    },
+  ],
+} as Record<string, unknown>
+
+const VIEWPORT = { once: true, margin: '100px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
@@ -130,69 +157,71 @@ export function Rebuild() {
 
   return (
     <main>
+      <SEO
+        title="Rebuild | Adult Construction-Management Bridge Cohort in NJ"
+        description="Rebuild is Aedifica's planned 12-week adult bridge cohort designed for credible entry and progression in construction-management careers in New Jersey."
+        path="/services/rebuild"
+        schema={REBUILD_SCHEMA}
+      />
 
       {/* ── Hero ── */}
       <section
-        className="bg-datum min-h-[88vh] flex flex-col justify-end pb-16 lg:pb-24"
+        className="bg-datum min-h-[68vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="rebuild-h1">
 
-        <div className="max-w-7xl mx-auto px-6 w-full">
-          <div className="lg:grid lg:grid-cols-[1fr_0.5fr] lg:gap-16 lg:items-end">
+        {/* Full-bleed right-half photo — desktop only */}
+        <motion.div
+          className="hidden lg:block absolute inset-y-0 right-0 w-2/5"
+          initial={reduce ? undefined : { opacity: 0 }}
+          animate={reduce ? undefined : { opacity: 1 }}
+          transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
+          <img
+            src="https://picsum.photos/seed/cohort-construction/800/600"
+            alt=""
+            className="w-full h-full object-cover"
+            style={{ filter: 'grayscale(25%) contrast(1.08)' }}
+            loading="eager"
+          />
+        </motion.div>
 
-            <div>
-              <motion.span
-                className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/15 text-white px-3 py-1 mb-10 select-none"
-                style={{ fontFamily: 'var(--font-body)' }}
-                initial={reduce ? undefined : { opacity: 0, y: 10 }}
-                animate={reduce ? undefined : { opacity: 1, y: 0 }}
-                transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-                Year 1 · Adult Bridge Cohort
-              </motion.span>
-
-              <motion.h1
-                id="rebuild-h1"
-                className="text-[2.75rem] lg:text-[4.5rem] xl:text-[6rem] leading-[0.96] tracking-[-0.035em] text-white italic mb-10"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-                initial={reduce ? undefined : { opacity: 0, y: 40 }}
-                animate={reduce ? undefined : { opacity: 1, y: 0 }}
-                transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
-                A credible bridge into construction-management-track opportunity.
-              </motion.h1>
-
-              <motion.div
-                className="flex flex-wrap items-center gap-x-0 gap-y-3"
-                initial={reduce ? undefined : { opacity: 0, y: 14 }}
-                animate={reduce ? undefined : { opacity: 1, y: 0 }}
-                transition={reduce ? undefined : { duration: 0.5, delay: 0.4, ease: EASE }}>
-                {(['12 weeks', 'New Jersey', 'Adult learners', 'Year 1 launch'] as const).map((item, i) => (
-                  <span key={item} className="text-[13px] text-white/55 tracking-[-0.01em]" style={{ fontFamily: 'var(--font-body)' }}>
-                    {item}
-                    {i < 3 && <span className="mx-4 text-white/20" aria-hidden="true">·</span>}
-                  </span>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* Photo zone — right column, floats at bottom */}
-            <motion.div
-              className="hidden lg:flex flex-col justify-end"
-              initial={reduce ? undefined : { opacity: 0, y: 24 }}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+          <div className="lg:max-w-[60%] lg:pr-8 xl:pr-12">
+            <motion.span
+              className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/15 text-white px-3 py-1 mb-10 select-none"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 10 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
-              transition={reduce ? undefined : { duration: 0.65, delay: 0.32, ease: EASE }}>
-              <div className="h-[300px] xl:h-[360px] bg-white/8 border border-white/18 flex items-end p-5">
-                <span
-                  className="text-[10.5px] text-white/30 tracking-[0.1em] uppercase leading-[1.5]"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  Photo: Cohort participant<br />reviewing project documentation
-                </span>
-              </div>
-            </motion.div>
+              transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
+              Year 1 · Adult Bridge Cohort
+            </motion.span>
 
+            <motion.h1
+              id="rebuild-h1"
+              className="text-[2.75rem] lg:text-[4.5rem] xl:text-[6rem] leading-[0.96] tracking-[-0.035em] text-white italic mb-10"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+              initial={reduce ? undefined : { opacity: 0, y: 40 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
+              A credible bridge into construction-management-track opportunity.
+            </motion.h1>
+
+            <motion.div
+              className="flex flex-wrap items-center gap-x-0 gap-y-3"
+              initial={reduce ? undefined : { opacity: 0, y: 14 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.4, ease: EASE }}>
+              {(['12 weeks', 'New Jersey', 'Adult learners', 'Year 1 launch'] as const).map((item, i) => (
+                <span key={item} className="text-[13px] text-white/65 tracking-[-0.01em]" style={{ fontFamily: 'var(--font-body)' }}>
+                  {item}
+                  {i < 3 && <span className="mx-4 text-white/25" aria-hidden="true">·</span>}
+                </span>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ── Who It Serves ── bg-snow, massive editorial heading + audience strip */}
+      {/* ── Who It Serves ── */}
       <section className="bg-snow pt-20 pb-0 lg:pt-28 overflow-hidden" aria-labelledby="who-h2">
         <div className="max-w-7xl mx-auto px-6">
 
@@ -207,7 +236,6 @@ export function Rebuild() {
             Talent that has been outside the usual recruiting channel. Not outside the opportunity.
           </motion.h2>
 
-          {/* Audience strip */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-sediment/25">
             {AUDIENCES.map(({ label, desc }, i) => (
               <motion.div
@@ -228,7 +256,7 @@ export function Rebuild() {
                   {label}
                 </p>
                 <p
-                  className="text-[13.5px] text-anthracite/55 leading-[1.65]"
+                  className="text-[13.5px] text-anthracite/70 leading-[1.65]"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   {desc}
                 </p>
@@ -238,12 +266,11 @@ export function Rebuild() {
         </div>
       </section>
 
-      {/* ── Learning Areas ── bg-bone, asymmetric, photo zone left, numbered list right */}
+      {/* ── Learning Areas ── */}
       <section className="bg-bone py-16 lg:py-24" aria-labelledby="learn-h2">
         <div className="max-w-7xl mx-auto px-6">
           <div className="lg:grid lg:grid-cols-[1fr_1.15fr] lg:gap-14 xl:gap-20 lg:items-start">
 
-            {/* Left: heading + body + photo zone */}
             <div>
               <motion.h2
                 id="learn-h2"
@@ -257,7 +284,7 @@ export function Rebuild() {
               </motion.h2>
 
               <motion.p
-                className="text-[15px] text-anthracite/60 leading-[1.72] mb-10"
+                className="text-[15px] text-anthracite/75 leading-[1.72] mb-10"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 18 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -267,20 +294,21 @@ export function Rebuild() {
               </motion.p>
 
               <motion.div
-                className="h-[260px] lg:h-[320px] xl:h-[380px] bg-sediment/18 border border-sediment/30 flex items-end p-5"
+                className="overflow-hidden"
                 initial={reduce ? undefined : { opacity: 0, y: 16 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.55, delay: 0.18, ease: EASE }}>
-                <span
-                  className="text-[10.5px] text-anthracite/30 tracking-[0.1em] uppercase leading-[1.5]"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  Photo: Participant working<br />with digital construction tools
-                </span>
+                <img
+                  src="https://picsum.photos/seed/digital-construction/700/420"
+                  alt=""
+                  className="w-full h-auto object-cover"
+                  style={{ filter: 'grayscale(20%) contrast(1.05)' }}
+                  loading="lazy"
+                />
               </motion.div>
             </div>
 
-            {/* Right: numbered areas */}
             <div className="mt-12 lg:mt-0">
               <ul className="list-none border-t border-sediment/25">
                 {LEARN_AREAS.map((area, i) => (
@@ -298,7 +326,7 @@ export function Rebuild() {
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <span
-                      className="text-[14px] text-anthracite/72 leading-[1.6] pt-1"
+                      className="text-[14px] text-anthracite/75 leading-[1.6] pt-1"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {area}
                     </span>
@@ -310,29 +338,32 @@ export function Rebuild() {
         </div>
       </section>
 
-      {/* ── Four Gates ── bg-anthracite, dark section, 4 full-width rows */}
+      {/* ── Four Gates ── */}
       <section
         className="bg-anthracite relative overflow-hidden py-20 lg:py-28"
         aria-labelledby="gates-h2">
 
-        <span
+        <motion.span
           className="pointer-events-none select-none absolute bottom-0 right-0 leading-[0.8] text-white translate-x-[10%] translate-y-[18%]"
+          initial={reduce ? undefined : { opacity: 0 }}
+          whileInView={reduce ? undefined : { opacity: 0.035 }}
+          viewport={reduce ? undefined : VIEWPORT}
+          transition={reduce ? undefined : { duration: 1.6, delay: 0.4, ease: EASE }}
           style={{
             fontFamily: 'var(--font-heading)',
             fontWeight: 300,
             fontSize: 'clamp(8rem, 18vw, 18rem)',
-            opacity: 0.035,
           }}
           aria-hidden="true">
           Gates
-        </span>
+        </motion.span>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
 
           <div className="lg:grid lg:grid-cols-[1fr_1.6fr] lg:gap-20 xl:gap-28 lg:items-start mb-14 lg:mb-18">
             <div>
               <motion.p
-                className="text-[10.5px] text-white/30 uppercase tracking-[0.22em] mb-6 select-none"
+                className="text-[10.5px] text-white/35 uppercase tracking-[0.22em] mb-6 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0 }}
                 whileInView={reduce ? undefined : { opacity: 1 }}
@@ -352,7 +383,7 @@ export function Rebuild() {
               </motion.h2>
             </div>
             <motion.p
-              className="text-[15px] text-white/45 leading-[1.72] lg:pt-14 xl:pt-16"
+              className="text-[15px] text-white/60 leading-[1.72] lg:pt-14 xl:pt-16"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 18 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -384,19 +415,19 @@ export function Rebuild() {
                     {title}
                   </h3>
                   <p
-                    className="text-[14px] text-white/50 leading-[1.7]"
+                    className="text-[14px] text-white/65 leading-[1.7]"
                     style={{ fontFamily: 'var(--font-body)' }}>
                     {body}
                   </p>
                 </div>
                 <div className="mt-5 lg:mt-0 lg:pt-1">
                   <p
-                    className="text-[10px] text-white/25 uppercase tracking-[0.16em] mb-2"
+                    className="text-[10px] text-white/30 uppercase tracking-[0.16em] mb-2"
                     style={{ fontFamily: 'var(--font-body)' }}>
                     Provided by
                   </p>
                   <p
-                    className="text-[13.5px] text-white/45 leading-[1.6] italic"
+                    className="text-[13.5px] text-white/60 leading-[1.6] italic"
                     style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
                     {who}
                   </p>
@@ -408,7 +439,7 @@ export function Rebuild() {
         </div>
       </section>
 
-      {/* ── Role Ladder ── bg-snow, big italic time labels in datum */}
+      {/* ── Role Ladder ── */}
       <section className="bg-snow py-16 lg:py-24 overflow-hidden" aria-labelledby="ladder-h2">
         <div className="max-w-7xl mx-auto px-6">
 
@@ -435,7 +466,7 @@ export function Rebuild() {
               </motion.h2>
             </div>
             <motion.p
-              className="text-[15px] text-anthracite/58 leading-[1.72] lg:pb-2"
+              className="text-[15px] text-anthracite/75 leading-[1.72] lg:pb-2"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 18 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -472,7 +503,7 @@ export function Rebuild() {
                   {roles.map(role => (
                     <li
                       key={role}
-                      className="text-[13.5px] text-anthracite/65 leading-[1.55]"
+                      className="text-[13.5px] text-anthracite/75 leading-[1.55]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {role}
                     </li>
@@ -483,7 +514,7 @@ export function Rebuild() {
           </div>
 
           <motion.p
-            className="text-[12px] text-anthracite/38 leading-[1.65] mt-8 max-w-[72ch]"
+            className="text-[12px] text-anthracite/45 leading-[1.65] mt-8 max-w-[72ch]"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0 }}
             whileInView={reduce ? undefined : { opacity: 1 }}
@@ -494,7 +525,7 @@ export function Rebuild() {
         </div>
       </section>
 
-      {/* ── Two Audiences ── bg-bone, datum + patina full panels */}
+      {/* ── Two Audiences ── */}
       <section className="bg-bone py-16 lg:py-24" aria-label="Partner and employer value">
         <div className="max-w-7xl mx-auto px-6">
 
@@ -510,7 +541,6 @@ export function Rebuild() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-5">
 
-            {/* Community and institutional partners — datum */}
             <motion.div
               className="bg-datum px-8 py-10 lg:px-10 lg:py-12 flex flex-col"
               initial={reduce ? undefined : { opacity: 0, y: 20 }}
@@ -518,7 +548,7 @@ export function Rebuild() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
               <p
-                className="text-[10.5px] text-white/45 uppercase tracking-[0.18em] mb-5 select-none"
+                className="text-[10.5px] text-white/50 uppercase tracking-[0.18em] mb-5 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Community and institutional partners
               </p>
@@ -530,9 +560,9 @@ export function Rebuild() {
               <ul className="list-none space-y-3.5 mb-10 flex-1">
                 {PARTNER_POINTS.map(pt => (
                   <li key={pt} className="flex gap-3.5 items-start">
-                    <span className="flex-shrink-0 w-[4px] h-[4px] bg-white/35 mt-[7px]" aria-hidden="true" />
+                    <span className="flex-shrink-0 w-[4px] h-[4px] bg-white/40 mt-[7px]" aria-hidden="true" />
                     <span
-                      className="text-[13.5px] text-white/68 leading-[1.65]"
+                      className="text-[13.5px] text-white/75 leading-[1.65]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {pt}
                     </span>
@@ -548,7 +578,6 @@ export function Rebuild() {
               </Link>
             </motion.div>
 
-            {/* Employers — patina */}
             <motion.div
               className="bg-patina px-8 py-10 lg:px-10 lg:py-12 flex flex-col"
               initial={reduce ? undefined : { opacity: 0, y: 20 }}
@@ -556,7 +585,7 @@ export function Rebuild() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, delay: 0.1, ease: SPRING }}>
               <p
-                className="text-[10.5px] text-white/45 uppercase tracking-[0.18em] mb-5 select-none"
+                className="text-[10.5px] text-white/50 uppercase tracking-[0.18em] mb-5 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Employers
               </p>
@@ -568,9 +597,9 @@ export function Rebuild() {
               <ul className="list-none space-y-3.5 mb-10 flex-1">
                 {EMPLOYER_POINTS.map(pt => (
                   <li key={pt} className="flex gap-3.5 items-start">
-                    <span className="flex-shrink-0 w-[4px] h-[4px] bg-white/35 mt-[7px]" aria-hidden="true" />
+                    <span className="flex-shrink-0 w-[4px] h-[4px] bg-white/40 mt-[7px]" aria-hidden="true" />
                     <span
-                      className="text-[13.5px] text-white/68 leading-[1.65]"
+                      className="text-[13.5px] text-white/75 leading-[1.65]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {pt}
                     </span>
@@ -590,7 +619,7 @@ export function Rebuild() {
         </div>
       </section>
 
-      {/* ── Reporting Commitment ── bg-snow, left editorial + right numbered list */}
+      {/* ── Reporting Commitment ── */}
       <section className="bg-snow py-16 lg:py-24" aria-labelledby="reporting-h2">
         <div className="max-w-7xl mx-auto px-6">
           <div className="lg:grid lg:grid-cols-[1fr_1.1fr] lg:gap-16 xl:gap-24 lg:items-start">
@@ -616,7 +645,7 @@ export function Rebuild() {
                 Outcomes on the record. Every category reported separately.
               </motion.h2>
               <motion.p
-                className="text-[15px] text-anthracite/58 leading-[1.72]"
+                className="text-[15px] text-anthracite/75 leading-[1.72]"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 18 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -637,7 +666,7 @@ export function Rebuild() {
                     viewport={reduce ? undefined : VIEWPORT}
                     transition={reduce ? undefined : { duration: 0.4, delay: 0.06 + i * 0.045, ease: EASE }}>
                     <span
-                      className="text-[1rem] lg:text-[1.125rem] xl:text-[1.25rem] text-anthracite/72 italic leading-[1.45] tracking-[-0.015em]"
+                      className="text-[1rem] lg:text-[1.125rem] xl:text-[1.25rem] text-anthracite/75 italic leading-[1.45] tracking-[-0.015em]"
                       style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
                       {item}
                     </span>
@@ -650,51 +679,62 @@ export function Rebuild() {
         </div>
       </section>
 
-      {/* ── CTA ── contained block, matching homepage */}
+      {/* ── CTA ── */}
       <section className="bg-snow pt-10 lg:pt-16 pb-0" aria-labelledby="rebuild-cta-h2">
         <div className="max-w-[1100px] mx-auto px-6">
-          <div className="bg-datum px-10 pt-16 pb-12 lg:px-16 lg:pt-20 lg:pb-14 text-center rounded-t-[2rem]">
+          <div className="relative px-10 pt-16 pb-12 lg:px-16 lg:pt-20 lg:pb-14 text-center rounded-t-[2rem] overflow-hidden">
 
-            <motion.h2
-              id="rebuild-cta-h2"
-              className="text-[2.25rem] lg:text-[3.5rem] xl:text-[4.25rem] leading-[1.07] tracking-[-0.03em] text-white italic mb-8"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-              initial={reduce ? undefined : { opacity: 0, y: 28 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.7, ease: SPRING }}>
-              Year 1 partnerships are being formed now.
-            </motion.h2>
+            <img
+              src="https://picsum.photos/seed/rebuild-site/1400/700"
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ filter: 'grayscale(30%) contrast(1.1)' }}
+            />
+            <div className="absolute inset-0 bg-datum/88" aria-hidden="true" />
 
-            <motion.p
-              className="text-[15px] text-white/62 leading-[1.72] mb-10 max-w-[52ch] mx-auto"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={reduce ? undefined : { opacity: 0, y: 18 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.55, delay: 0.12, ease: EASE }}>
-              Discuss a Rebuild cohort partnership, an employer participation role, or an institutional briefing on Aedifica's planned delivery model.
-            </motion.p>
+            <div className="relative z-10">
+              <motion.h2
+                id="rebuild-cta-h2"
+                className="text-[2.25rem] lg:text-[3.5rem] xl:text-[4.25rem] leading-[1.07] tracking-[-0.03em] text-white italic mb-8"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+                initial={reduce ? undefined : { opacity: 0, y: 28 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.7, ease: SPRING }}>
+                Year 1 partnerships are being formed now.
+              </motion.h2>
 
-            <motion.div
-              className="flex flex-col sm:flex-row justify-center gap-4"
-              initial={reduce ? undefined : { opacity: 0, y: 16 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.5, delay: 0.22, ease: EASE }}>
-              <Link
-                to="/partner"
-                className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                Discuss a Rebuild Partnership
-              </Link>
-              <Link
-                to="/partner"
-                className="inline-flex items-center justify-center border border-white/35 text-white text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/10"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                Become an Employer Participant
-              </Link>
-            </motion.div>
+              <motion.p
+                className="text-[15px] text-white/75 leading-[1.72] mb-10 max-w-[52ch] mx-auto"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 18 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.55, delay: 0.12, ease: EASE }}>
+                Discuss a Rebuild cohort partnership, an employer participation role, or an institutional briefing on Aedifica's planned delivery model.
+              </motion.p>
+
+              <motion.div
+                className="flex flex-col sm:flex-row justify-center gap-4"
+                initial={reduce ? undefined : { opacity: 0, y: 16 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.22, ease: EASE }}>
+                <Link
+                  to="/partner"
+                  className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  Discuss a Rebuild Partnership
+                </Link>
+                <Link
+                  to="/partner"
+                  className="inline-flex items-center justify-center border border-white/35 text-white text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/10"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  Become an Employer Participant
+                </Link>
+              </motion.div>
+            </div>
 
           </div>
         </div>

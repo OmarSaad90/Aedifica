@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ReactLenis } from 'lenis/react'
 import { Navbar } from './components/Navbar'
 import { Footer } from './components/Footer'
 import { ScrollToTop } from './components/ScrollToTop'
@@ -16,6 +17,7 @@ import { Partner } from './pages/Partner'
 
 function App() {
   return (
+    <ReactLenis root options={{ lerp: 0.1, smoothWheel: true }}>
     <BrowserRouter>
       <ScrollToTop />
       <Navbar />
@@ -37,6 +39,7 @@ function App() {
       </div>
       <Footer />
     </BrowserRouter>
+    </ReactLenis>
   )
 }
 

@@ -7,7 +7,7 @@ export function TheGap() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-snow py-16 lg:py-24" aria-labelledby="gap-heading">
+    <section className="bg-anthracite py-16 lg:py-24" aria-labelledby="gap-heading">
       <div className="max-w-7xl mx-auto px-6">
         <div className="lg:grid lg:grid-cols-[1fr_0.75fr] lg:gap-16 xl:gap-20 lg:items-start">
 
@@ -15,7 +15,7 @@ export function TheGap() {
           <div>
             <motion.h2
               id="gap-heading"
-              className="text-[2.25rem] lg:text-[3.75rem] xl:text-[5rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic mb-8"
+              className="text-[2.25rem] lg:text-[3.75rem] xl:text-[5rem] leading-[1.05] tracking-[-0.03em] text-white italic mb-8"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 24 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -26,7 +26,7 @@ export function TheGap() {
             </motion.h2>
 
             <motion.p
-              className="text-[15.5px] text-anthracite/65 leading-[1.72]"
+              className="text-[15.5px] text-white/65 leading-[1.72]"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 20 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -43,10 +43,10 @@ export function TheGap() {
             </motion.p>
           </div>
 
-          {/* Right column: pull quote at display scale — stepped down intentionally */}
+          {/* Right column: pull quote at display scale */}
           <div className="mt-12 lg:mt-0 lg:pt-16 xl:pt-20">
             <motion.div
-              className="w-10 border-t-2 border-datum/50 mb-7"
+              className="w-10 border-t-2 border-datum mb-7"
               initial={reduce ? undefined : { opacity: 0, scaleX: 0 }}
               whileInView={reduce ? undefined : { opacity: 1, scaleX: 1 }}
               viewport={reduce ? undefined : VIEWPORT}
@@ -55,7 +55,7 @@ export function TheGap() {
               aria-hidden="true"
             />
             <motion.p
-              className="text-[1.75rem] lg:text-[2.125rem] xl:text-[2.625rem] text-datum leading-[1.25] italic"
+              className="text-[1.75rem] lg:text-[2.125rem] xl:text-[2.625rem] text-white/85 leading-[1.25] italic"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 20 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -64,7 +64,8 @@ export function TheGap() {
             >
               A pathway is credible only when it connects preparation to
               employer relevance, articulation opportunities, and outcomes
-              that can be reported honestly.
+              that can be{' '}
+              <span className="text-datum">reported honestly.</span>
             </motion.p>
           </div>
 

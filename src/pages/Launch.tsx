@@ -1,7 +1,36 @@
+import { SEO, SITE_URL } from '../components/SEO'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 
-const VIEWPORT = { once: true, margin: '-60px 0px' } as const
+const LAUNCH_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      name: 'Aedifica Launch',
+      description:
+        'Fixed-fee workforce grant strategy and proposal-authoring support for New Jersey community organizations, education institutions, and training providers.',
+      provider: { '@id': `${SITE_URL}/#organization` },
+      serviceType: 'Workforce Grant Strategy and Proposal Authoring',
+      areaServed: { '@type': 'State', name: 'New Jersey' },
+      audience: {
+        '@type': 'Audience',
+        audienceType:
+          'Community organizations, education institutions, and workforce training providers in New Jersey',
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
+        { '@type': 'ListItem', position: 3, name: 'Launch', item: `${SITE_URL}/services/launch` },
+      ],
+    },
+  ],
+} as Record<string, unknown>
+
+const VIEWPORT = { once: true, margin: '100px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
@@ -98,67 +127,69 @@ export function Launch() {
 
   return (
     <main>
+      <SEO
+        title="Launch | Workforce Grant Strategy & Proposal Authoring · NJ"
+        description="Fixed-fee workforce grant strategy and proposal-authoring support for New Jersey community organizations, education institutions, and training providers."
+        path="/services/launch"
+        schema={LAUNCH_SCHEMA}
+      />
 
       {/* ── Hero ── */}
       <section
-        className="bg-patina min-h-[88vh] flex flex-col justify-end pb-16 lg:pb-24"
+        className="bg-patina min-h-[68vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="launch-h1">
 
-        <div className="max-w-7xl mx-auto px-6 w-full">
-          <div className="lg:grid lg:grid-cols-[1fr_0.5fr] lg:gap-16 lg:items-end">
+        {/* Full-bleed right-half photo — desktop only */}
+        <motion.div
+          className="hidden lg:block absolute inset-y-0 right-0 w-2/5"
+          initial={reduce ? undefined : { opacity: 0 }}
+          animate={reduce ? undefined : { opacity: 1 }}
+          transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
+          <img
+            src="https://picsum.photos/seed/grant-meeting/800/600"
+            alt=""
+            className="w-full h-full object-cover"
+            style={{ filter: 'grayscale(25%) contrast(1.08)' }}
+            loading="eager"
+          />
+        </motion.div>
 
-            <div>
-              <motion.span
-                className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/15 text-white px-3 py-1 mb-10 select-none"
-                style={{ fontFamily: 'var(--font-body)' }}
-                initial={reduce ? undefined : { opacity: 0, y: 10 }}
-                animate={reduce ? undefined : { opacity: 1, y: 0 }}
-                transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-                Year 1 · Grant Strategy
-              </motion.span>
-
-              <motion.h1
-                id="launch-h1"
-                className="text-[2.75rem] lg:text-[4.5rem] xl:text-[6rem] leading-[0.96] tracking-[-0.035em] text-white italic mb-10"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-                initial={reduce ? undefined : { opacity: 0, y: 40 }}
-                animate={reduce ? undefined : { opacity: 1, y: 0 }}
-                transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
-                Fund workforce pathways designed to deliver and report outcomes.
-              </motion.h1>
-
-              <motion.div
-                className="flex flex-wrap items-center gap-x-0 gap-y-3"
-                initial={reduce ? undefined : { opacity: 0, y: 14 }}
-                animate={reduce ? undefined : { opacity: 1, y: 0 }}
-                transition={reduce ? undefined : { duration: 0.5, delay: 0.4, ease: EASE }}>
-                {(['Fixed-fee', 'Institutions', 'New Jersey', 'Year 1 launch'] as const).map((item, i) => (
-                  <span
-                    key={item}
-                    className="text-[13px] text-white/55 tracking-[-0.01em]"
-                    style={{ fontFamily: 'var(--font-body)' }}>
-                    {item}
-                    {i < 3 && <span className="mx-4 text-white/20" aria-hidden="true">·</span>}
-                  </span>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* Photo zone — right column */}
-            <motion.div
-              className="hidden lg:flex flex-col justify-end"
-              initial={reduce ? undefined : { opacity: 0, y: 24 }}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+          <div className="lg:max-w-[60%] lg:pr-8 xl:pr-12">
+            <motion.span
+              className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/15 text-white px-3 py-1 mb-10 select-none"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 10 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
-              transition={reduce ? undefined : { duration: 0.65, delay: 0.32, ease: EASE }}>
-              <div className="h-[300px] xl:h-[360px] bg-white/8 border border-white/18 flex items-end p-5">
-                <span
-                  className="text-[10.5px] text-white/30 tracking-[0.1em] uppercase leading-[1.5]"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  Photo: Grant preparation<br />review session
-                </span>
-              </div>
-            </motion.div>
+              transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
+              Year 1 · Grant Strategy
+            </motion.span>
 
+            <motion.h1
+              id="launch-h1"
+              className="text-[2.75rem] lg:text-[4.5rem] xl:text-[6rem] leading-[0.96] tracking-[-0.035em] text-white italic mb-10"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+              initial={reduce ? undefined : { opacity: 0, y: 40 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
+              Fund workforce pathways designed to deliver and report outcomes.
+            </motion.h1>
+
+            <motion.div
+              className="flex flex-wrap items-center gap-x-0 gap-y-3"
+              initial={reduce ? undefined : { opacity: 0, y: 14 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.4, ease: EASE }}>
+              {(['Fixed-fee', 'Institutions', 'New Jersey', 'Year 1 launch'] as const).map((item, i) => (
+                <span
+                  key={item}
+                  className="text-[13px] text-white/65 tracking-[-0.01em]"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  {item}
+                  {i < 3 && <span className="mx-4 text-white/20" aria-hidden="true">·</span>}
+                </span>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
@@ -193,7 +224,7 @@ export function Launch() {
                   {type}
                 </h3>
                 <p
-                  className="text-[14.5px] text-anthracite/60 leading-[1.7]"
+                  className="text-[14.5px] text-anthracite/75 leading-[1.7]"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   {desc}
                 </p>
@@ -209,19 +240,21 @@ export function Launch() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="lg:grid lg:grid-cols-[1.15fr_1fr] lg:gap-14 xl:gap-20 lg:items-start">
 
-            {/* Left: photo zone + pull statement */}
+            {/* Left: photo + pull statement */}
             <div>
               <motion.div
-                className="h-[240px] lg:h-[310px] xl:h-[370px] bg-patina/10 border border-patina/18 flex items-end p-5 mb-10"
+                className="overflow-hidden mb-10"
                 initial={reduce ? undefined : { opacity: 0, y: 20 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
-                <span
-                  className="text-[10.5px] text-anthracite/30 tracking-[0.1em] uppercase leading-[1.5]"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  Photo: Program architecture<br />planning session
-                </span>
+                <img
+                  src="https://picsum.photos/seed/planning-session/700/370"
+                  alt=""
+                  className="w-full h-auto object-cover"
+                  style={{ filter: 'grayscale(20%) contrast(1.05)' }}
+                  loading="lazy"
+                />
               </motion.div>
 
               <motion.p
@@ -238,7 +271,7 @@ export function Launch() {
             {/* Right: explanation */}
             <div className="lg:pt-6 mt-10 lg:mt-0">
               <motion.p
-                className="text-[15.5px] text-anthracite/70 leading-[1.72] mb-7"
+                className="text-[15.5px] text-anthracite/75 leading-[1.72] mb-7"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 18 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -248,7 +281,7 @@ export function Launch() {
               </motion.p>
 
               <motion.p
-                className="text-[15.5px] text-anthracite/70 leading-[1.72] mb-10"
+                className="text-[15.5px] text-anthracite/75 leading-[1.72] mb-10"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 18 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -267,7 +300,7 @@ export function Launch() {
                   <li key={pt} className="flex gap-3.5 items-start">
                     <span className="flex-shrink-0 w-[4px] h-[4px] bg-patina mt-[8px]" aria-hidden="true" />
                     <span
-                      className="text-[14px] text-anthracite/65 leading-[1.65]"
+                      className="text-[14px] text-anthracite/75 leading-[1.65]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {pt}
                     </span>
@@ -286,17 +319,20 @@ export function Launch() {
         aria-labelledby="deliverables-h2">
 
         {/* Ghost word — bleeds bottom-right */}
-        <span
+        <motion.span
           className="pointer-events-none select-none absolute bottom-0 right-0 leading-[0.82] text-white translate-x-[6%] translate-y-[18%]"
+          initial={reduce ? undefined : { opacity: 0 }}
+          whileInView={reduce ? undefined : { opacity: 0.03 }}
+          viewport={reduce ? undefined : VIEWPORT}
+          transition={reduce ? undefined : { duration: 1.6, delay: 0.4, ease: EASE }}
           style={{
             fontFamily: 'var(--font-heading)',
             fontWeight: 300,
             fontSize: 'clamp(8rem, 16vw, 16rem)',
-            opacity: 0.03,
           }}
           aria-hidden="true">
           Launch
-        </span>
+        </motion.span>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
 
@@ -323,7 +359,7 @@ export function Launch() {
               </motion.h2>
             </div>
             <motion.p
-              className="text-[15px] text-white/45 leading-[1.72] lg:pt-14 xl:pt-16"
+              className="text-[15px] text-white/60 leading-[1.72] lg:pt-14 xl:pt-16"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 18 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -355,7 +391,7 @@ export function Launch() {
                     {name}
                   </h3>
                   <p
-                    className="text-[14px] text-white/50 leading-[1.7]"
+                    className="text-[14px] text-white/65 leading-[1.7]"
                     style={{ fontFamily: 'var(--font-body)' }}>
                     {body}
                   </p>
@@ -401,7 +437,7 @@ export function Launch() {
                 New Jersey is deploying significant workforce investment. Institutions that access it with credible program design will define the next generation of pathways.
               </motion.h2>
               <motion.p
-                className="text-[14.5px] text-anthracite/60 leading-[1.7]"
+                className="text-[14.5px] text-anthracite/75 leading-[1.7]"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 16 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -428,7 +464,7 @@ export function Launch() {
                       {name}
                     </p>
                     <p
-                      className="text-[12.5px] text-anthracite/45 leading-[1.5]"
+                      className="text-[12.5px] text-anthracite/60 leading-[1.5]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {note}
                     </p>
@@ -445,37 +481,48 @@ export function Launch() {
       <section className="bg-snow pt-10 lg:pt-16 pb-0" aria-label="Start a Launch engagement">
         <div className="max-w-[1100px] mx-auto px-6">
           <motion.div
-            className="bg-patina px-10 pt-16 pb-12 lg:px-16 lg:pt-20 lg:pb-14 text-center rounded-t-[2rem]"
+            className="relative px-10 pt-16 pb-12 lg:px-16 lg:pt-20 lg:pb-14 text-center rounded-t-[2rem] overflow-hidden"
             initial={reduce ? undefined : { opacity: 0, y: 28 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
 
-            <h2
-              className="text-[2rem] lg:text-[3rem] xl:text-[3.5rem] leading-[1.08] tracking-[-0.03em] text-white italic mb-6"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-              A funding opportunity review is the first step.
-            </h2>
+            <img
+              src="https://picsum.photos/seed/launch-grant/1400/700"
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ filter: 'grayscale(30%) contrast(1.1)' }}
+            />
+            <div className="absolute inset-0 bg-patina/88" aria-hidden="true" />
 
-            <p
-              className="text-[15.5px] text-white/70 leading-[1.7] max-w-[52ch] mx-auto mb-10"
-              style={{ fontFamily: 'var(--font-body)' }}>
-              Submit a funding opportunity for initial review. Aedifica will assess fit, eligibility, and timeline before any engagement begins. No commitment required.
-            </p>
+            <div className="relative z-10">
+              <h2
+                className="text-[2rem] lg:text-[3rem] xl:text-[3.5rem] leading-[1.08] tracking-[-0.03em] text-white italic mb-6"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+                A funding opportunity review is the first step.
+              </h2>
 
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link
-                to="/partner"
-                className="inline-flex items-center justify-center bg-white text-patina text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
+              <p
+                className="text-[15.5px] text-white/75 leading-[1.7] max-w-[52ch] mx-auto mb-10"
                 style={{ fontFamily: 'var(--font-body)' }}>
-                Discuss a Launch Engagement
-              </Link>
-              <Link
-                to="/partner"
-                className="inline-flex items-center justify-center bg-transparent text-white/80 border border-white/30 text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/8 hover:text-white"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                Submit an Opportunity for Review
-              </Link>
+                Submit a funding opportunity for initial review. Aedifica will assess fit, eligibility, and timeline before any engagement begins. No commitment required.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Link
+                  to="/partner"
+                  className="inline-flex items-center justify-center bg-white text-patina text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  Discuss a Launch Engagement
+                </Link>
+                <Link
+                  to="/partner"
+                  className="inline-flex items-center justify-center bg-transparent text-white/80 border border-white/30 text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/8 hover:text-white"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  Submit an Opportunity for Review
+                </Link>
+              </div>
             </div>
 
           </motion.div>

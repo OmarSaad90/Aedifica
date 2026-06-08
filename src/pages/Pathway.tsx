@@ -1,7 +1,33 @@
+import { SEO, SITE_URL } from '../components/SEO'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 
-const VIEWPORT = { once: true, margin: '-60px 0px' } as const
+const PATHWAY_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'EducationalOccupationalProgram',
+      name: 'Aedifica Pathway',
+      description:
+        'A planned high-school construction-management curriculum designed for career readiness and future articulation in New Jersey.',
+      provider: { '@id': `${SITE_URL}/#organization` },
+      educationalProgramMode: 'on-campus',
+      occupationalCategory: 'Construction Manager',
+      educationalLevel: 'High School',
+      areaServed: { '@type': 'State', name: 'New Jersey' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
+        { '@type': 'ListItem', position: 3, name: 'Pathway', item: `${SITE_URL}/services/pathway` },
+      ],
+    },
+  ],
+} as Record<string, unknown>
+
+const VIEWPORT = { once: true, margin: '100px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
@@ -19,6 +45,12 @@ export function Pathway() {
 
   return (
     <main>
+      <SEO
+        title="Pathway | High-School Construction-Management Curriculum · NJ"
+        description="Pathway is Aedifica's planned high-school construction-management curriculum designed for career readiness and future articulation in New Jersey."
+        path="/services/pathway"
+        schema={PATHWAY_SCHEMA}
+      />
 
       {/* ── Hero ── */}
       <section
@@ -37,7 +69,7 @@ export function Pathway() {
           </motion.span>
 
           <motion.p
-            className="text-[11px] text-white/35 tracking-[0.06em] mb-10"
+            className="text-[11px] text-white/50 tracking-[0.06em] mb-10"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 8 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -63,7 +95,7 @@ export function Pathway() {
             {(['Planned', 'High school', 'New Jersey', 'Year 2+'] as const).map((item, i) => (
               <span
                 key={item}
-                className="text-[13px] text-white/40 tracking-[-0.01em]"
+                className="text-[13px] text-white/60 tracking-[-0.01em]"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 {item}
                 {i < 3 && <span className="mx-4 text-white/15" aria-hidden="true">·</span>}
@@ -93,7 +125,7 @@ export function Pathway() {
               </motion.h2>
 
               <motion.p
-                className="text-[15px] text-anthracite/65 leading-[1.72] mb-6"
+                className="text-[15px] text-anthracite/75 leading-[1.72] mb-6"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 18 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -112,23 +144,24 @@ export function Pathway() {
                 Planned learning areas
               </motion.p>
 
-              <motion.ul
-                className="list-none space-y-3"
-                initial={reduce ? undefined : { opacity: 0, y: 14 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.5, delay: 0.16, ease: EASE }}>
-                {WHAT_IT_COVERS.map(item => (
-                  <li key={item} className="flex gap-3.5 items-start">
+              <ul className="list-none space-y-3">
+                {WHAT_IT_COVERS.map((item, i) => (
+                  <motion.li
+                    key={item}
+                    className="flex gap-3.5 items-start"
+                    initial={reduce ? undefined : { opacity: 0, x: -10 }}
+                    whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
+                    viewport={reduce ? undefined : VIEWPORT}
+                    transition={reduce ? undefined : { duration: 0.38, delay: 0.12 + i * 0.055, ease: EASE }}>
                     <span className="flex-shrink-0 w-[4px] h-[4px] bg-datum mt-[8px]" aria-hidden="true" />
                     <span
-                      className="text-[14px] text-anthracite/60 leading-[1.65]"
+                      className="text-[14px] text-anthracite/75 leading-[1.65]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {item}
                     </span>
-                  </li>
+                  </motion.li>
                 ))}
-              </motion.ul>
+              </ul>
             </div>
 
             {/* Right: Y2+ rationale + foundation note */}
@@ -146,7 +179,7 @@ export function Pathway() {
                   Why Year 2+
                 </p>
                 <p
-                  className="text-[14.5px] text-anthracite/70 leading-[1.7]"
+                  className="text-[14.5px] text-anthracite/75 leading-[1.7]"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   Pathway is intended to follow credible outcome evidence from Aedifica Rebuild. Expanding into secondary education before adult cohort outcomes are established would be a premature claim about what Aedifica has proven. The expansion is earned, not assumed.
                 </p>
@@ -164,12 +197,12 @@ export function Pathway() {
                   Delivery foundation
                 </p>
                 <p
-                  className="text-[14.5px] text-anthracite/70 leading-[1.7]"
+                  className="text-[14.5px] text-anthracite/75 leading-[1.7]"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   Pathway design is informed by Dr. Karam's prior pre-college engineering workshop delivery through Stevens Institute of Technology: multiple years of high-school student engagement that informs instructional approach and secondary curriculum readiness.
                 </p>
                 <p
-                  className="text-[12px] text-anthracite/40 leading-[1.6] mt-3"
+                  className="text-[12px] text-anthracite/55 leading-[1.6] mt-3"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   Prior educational delivery experience, not Aedifica workforce outcomes.
                 </p>

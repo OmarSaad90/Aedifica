@@ -1,7 +1,36 @@
+import { SEO, SITE_URL } from '../components/SEO'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 
-const VIEWPORT = { once: true, margin: '-60px 0px' } as const
+const INSIGHTS_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      url: `${SITE_URL}/insights`,
+      name: 'Insights & Research | Aedifica Workforce Pathway Strategy',
+      description:
+        'Research and perspectives on New Jersey construction-management workforce pathways, employer validation, accountability frameworks, and talent advancement.',
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      about: { '@id': `${SITE_URL}/#organization` },
+      specialty: 'Construction-management workforce development research and strategy in New Jersey',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Insights & Research',
+          item: `${SITE_URL}/insights`,
+        },
+      ],
+    },
+  ],
+} as Record<string, unknown>
+
+const VIEWPORT = { once: true, margin: '100px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
@@ -12,6 +41,7 @@ const ARTICLES = [
     category: 'WORKFORCE GAP',
     title: 'The Missing Construction-Management Workforce Channel in New Jersey',
     excerpt: 'New Jersey has strong CTE programs and four-year construction-management education. What it lacks is the practical, employer-validated bridge for capable adults seeking construction-management-track opportunity.',
+    image: 'nj-construction-site',
   },
   {
     number: '02',
@@ -19,6 +49,7 @@ const ARTICLES = [
     category: 'STUDENT PATHWAYS',
     title: 'From CTE to Construction Leadership: Building Measurable Student Pathways',
     excerpt: 'Career-technical education delivers real preparation. Measurable outcomes require clear articulation routes, employer engagement, and honest reporting.',
+    image: 'cte-classroom',
   },
   {
     number: '03',
@@ -26,6 +57,7 @@ const ARTICLES = [
     category: 'EMPLOYER ALIGNMENT',
     title: 'Why Employer-Validated Capstones Matter',
     excerpt: 'Capstones with real employer participation shift preparation from theory to demonstrated relevance.',
+    image: 'employer-review',
   },
   {
     number: '04',
@@ -33,6 +65,7 @@ const ARTICLES = [
     category: 'APPRENTICESHIP',
     title: 'Apprenticeship Alignment as Workforce Strategy, not Marketing Language',
     excerpt: 'Credible alignment requires a signed pathway before instruction begins, not a reference included after the fact.',
+    image: 'apprenticeship-site',
   },
   {
     number: '05',
@@ -40,6 +73,7 @@ const ARTICLES = [
     category: 'ACCOUNTABILITY',
     title: 'Publishing Outcomes: The Accountability Standard Workforce Programs Need',
     excerpt: 'Enrollment numbers are not outcomes. Credible programs distinguish completion, credential attainment, placement, and retention.',
+    image: 'accountability-report',
   },
   {
     number: '06',
@@ -47,6 +81,7 @@ const ARTICLES = [
     category: 'TECHNOLOGY',
     title: 'Digital Construction Literacy for Emerging Talent',
     excerpt: 'Bluebeam, Procore, BIM viewers, and digital documentation have become baseline expectations for entry-level CM roles.',
+    image: 'digital-construction-tools',
   },
   {
     number: '07',
@@ -54,6 +89,7 @@ const ARTICLES = [
     category: 'WORKFORCE GAP',
     title: 'The Hidden Supervisory Talent Gap in Infrastructure Delivery',
     excerpt: 'Project administration, scheduling coordination, and field leadership roles go unfilled not because talent is absent, but because accessible pathways have not been built.',
+    image: 'infrastructure-project',
   },
   {
     number: '08',
@@ -61,6 +97,7 @@ const ARTICLES = [
     category: 'PROGRAM DESIGN',
     title: 'Designing Workforce Programs Around Retention, Not Enrollment',
     excerpt: 'Programs optimized for enrollment produce placement statistics without retention evidence.',
+    image: 'workforce-retention',
   },
   {
     number: '09',
@@ -68,6 +105,7 @@ const ARTICLES = [
     category: 'AEDIFICA METHOD',
     title: 'Four Launch Gates for an Accountable Adult Bridge Cohort',
     excerpt: 'A credible adult bridge cohort requires committed partners in four categories: community support, funding alignment, employer participation, and articulation.',
+    image: 'program-planning',
   },
   {
     number: '10',
@@ -75,14 +113,21 @@ const ARTICLES = [
     category: 'AEDIFICA METHOD',
     title: 'The Role Ladder: Making Advancement Visible Without Overpromising It',
     excerpt: 'Workforce programs owe participants an honest map of initial roles, realistic progression timelines, and the conditions for advancement.',
+    image: 'career-advancement',
   },
-]
+] as const
 
 export function Insights() {
   const reduce = useReducedMotion()
 
   return (
     <main>
+      <SEO
+        title="Insights & Research | Aedifica Workforce Pathway Strategy"
+        description="Research and perspectives on New Jersey construction-management workforce pathways, employer validation, accountability frameworks, and talent advancement."
+        path="/insights"
+        schema={INSIGHTS_SCHEMA}
+      />
 
       {/* ── Hero ── */}
       <section
@@ -104,7 +149,7 @@ export function Insights() {
         <div className="max-w-7xl mx-auto px-6 w-full">
 
           <motion.span
-            className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/60 px-3 py-1 mb-6 select-none"
+            className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/70 px-3 py-1 mb-6 select-none"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 10 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -123,7 +168,7 @@ export function Insights() {
           </motion.h1>
 
           <motion.p
-            className="text-[14.5px] text-white/45 leading-[1.65] max-w-[58ch]"
+            className="text-[14.5px] text-white/60 leading-[1.65] max-w-[58ch]"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 14 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -171,14 +216,20 @@ export function Insights() {
 
                 {/* Photo zone */}
                 <div
-                  className={article.featured
-                    ? 'relative bg-quarry/18 w-full overflow-hidden h-[240px] lg:h-[300px]'
-                    : 'relative bg-quarry/18 w-full overflow-hidden h-[195px] lg:h-[220px]'}>
+                  className={`relative w-full overflow-hidden ${article.featured ? 'h-[240px] lg:h-[300px]' : 'h-[195px] lg:h-[220px]'}`}>
 
-                  {/* Ghost article number */}
+                  <img
+                    src={`https://picsum.photos/seed/${article.image}/800/400`}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover"
+                    style={{ filter: 'grayscale(18%) contrast(1.06)' }}
+                    loading="lazy"
+                  />
+
+                  {/* Ghost article number — overlaid on image */}
                   <span
                     aria-hidden="true"
-                    className={`absolute bottom-3 right-4 italic text-anthracite/10 leading-none select-none pointer-events-none ${article.featured ? 'text-[7rem] lg:text-[9rem]' : 'text-[4.5rem] lg:text-[6rem]'}`}
+                    className={`absolute bottom-3 right-4 italic text-white/15 leading-none select-none pointer-events-none relative z-10 ${article.featured ? 'text-[7rem] lg:text-[9rem]' : 'text-[4.5rem] lg:text-[6rem]'}`}
                     style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
                     {article.number}
                   </span>
@@ -202,7 +253,7 @@ export function Insights() {
 
                   {article.featured && (
                     <p
-                      className="text-[14px] text-anthracite/55 leading-[1.68] mb-5"
+                      className="text-[14px] text-anthracite/70 leading-[1.68] mb-5"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {article.excerpt}
                     </p>
@@ -241,7 +292,7 @@ export function Insights() {
             </h2>
 
             <p
-              className="text-[15px] text-white/65 leading-[1.7] max-w-[52ch] mx-auto mb-10"
+              className="text-[15px] text-white/75 leading-[1.7] max-w-[52ch] mx-auto mb-10"
               style={{ fontFamily: 'var(--font-body)' }}>
               More perspectives are in development as Aedifica programs launch. Speak with Aedifica about employer validation, accountability frameworks, or institutional partnerships.
             </p>

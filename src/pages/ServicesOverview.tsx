@@ -1,7 +1,30 @@
+import { SEO, SITE_URL } from '../components/SEO'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 
-const VIEWPORT = { once: true, margin: '-60px 0px' } as const
+const SERVICES_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
+      ],
+    },
+    {
+      '@type': 'WebPage',
+      url: `${SITE_URL}/services`,
+      name: 'Services | Aedifica Construction-Management Workforce Pathways',
+      description:
+        'Explore Aedifica Rebuild and Launch, the initial services building measurable construction-management pathways for New Jersey talent, institutions, and employers.',
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      provider: { '@id': `${SITE_URL}/#organization` },
+    },
+  ],
+} as Record<string, unknown>
+
+const VIEWPORT = { once: true, margin: '100px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
@@ -41,6 +64,12 @@ export function ServicesOverview() {
 
   return (
     <main>
+      <SEO
+        title="Services | Aedifica Construction-Management Workforce Pathways"
+        description="Explore Aedifica Rebuild and Launch, the initial services building measurable construction-management pathways for New Jersey talent, institutions, and employers."
+        path="/services"
+        schema={SERVICES_SCHEMA}
+      />
 
       {/* ── Hero ── */}
       <section
@@ -71,16 +100,16 @@ export function ServicesOverview() {
 
             <div className="mt-10 lg:mt-0 lg:pt-24 xl:pt-32">
               <motion.p
-                className="text-[15.5px] text-anthracite/65 leading-[1.72]"
+                className="text-[15.5px] text-anthracite/75 leading-[1.72]"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 20 }}
                 animate={reduce ? undefined : { opacity: 1, y: 0 }}
                 transition={reduce ? undefined : { duration: 0.6, delay: 0.32, ease: EASE }}>
                 Aedifica{' '}
-                <strong className="text-anthracite/85 font-medium">Rebuild</strong>, a 12-week
+                <strong className="text-anthracite/90 font-medium">Rebuild</strong>, a 12-week
                 adult bridge cohort designed for credible construction-management-track entry and
                 advancement; Aedifica{' '}
-                <strong className="text-anthracite/85 font-medium">Launch</strong>, support for
+                <strong className="text-anthracite/90 font-medium">Launch</strong>, support for
                 institutions pursuing workforce and apprenticeship-related funding.
               </motion.p>
             </div>
@@ -93,7 +122,7 @@ export function ServicesOverview() {
       <section aria-label="Year 1 services">
 
         {/* Rebuild — datum */}
-        <div className="bg-datum py-16 lg:py-24 xl:py-28">
+        <div className="relative bg-datum py-16 lg:py-24 xl:py-28">
           <div className="max-w-7xl mx-auto px-6">
             <div className="lg:grid lg:grid-cols-[1fr_0.48fr] lg:gap-16 xl:gap-24 lg:items-end">
 
@@ -119,7 +148,7 @@ export function ServicesOverview() {
                 </motion.h2>
 
                 <motion.p
-                  className="text-[15px] text-white/65 leading-[1.72] mb-8 max-w-[52ch]"
+                  className="text-[15px] text-white/75 leading-[1.72] mb-8 max-w-[52ch]"
                   style={{ fontFamily: 'var(--font-body)' }}
                   initial={reduce ? undefined : { opacity: 0, y: 18 }}
                   whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -145,9 +174,9 @@ export function ServicesOverview() {
                 </motion.div>
               </div>
 
-              {/* Key facts, bottom-aligned, desktop only */}
+              {/* Key facts, bottom-aligned */}
               <motion.div
-                className="hidden lg:block self-end"
+                className="mt-8 lg:mt-0 lg:self-end"
                 initial={reduce ? undefined : { opacity: 0 }}
                 whileInView={reduce ? undefined : { opacity: 1 }}
                 viewport={reduce ? undefined : VIEWPORT}
@@ -155,12 +184,12 @@ export function ServicesOverview() {
                 {REBUILD_FACTS.map(({ label, value }) => (
                   <div key={label} className="border-t border-white/15 py-4">
                     <p
-                      className="text-[10px] uppercase tracking-[0.14em] text-white/35 mb-1 select-none"
+                      className="text-[10px] uppercase tracking-[0.14em] text-white/45 mb-1 select-none"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {label}
                     </p>
                     <p
-                      className="text-[15px] text-white/60"
+                      className="text-[15px] text-white/70"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {value}
                     </p>
@@ -171,16 +200,22 @@ export function ServicesOverview() {
 
             </div>
           </div>
+          {/* Bottom fade — softens the lower edge toward the seam */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-40 lg:h-56 pointer-events-none"
+            style={{ background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.20))' }}
+            aria-hidden="true"
+          />
         </div>
 
         {/* Launch — patina, FLIPPED */}
-        <div className="bg-patina py-16 lg:py-24 xl:py-28">
+        <div className="relative bg-patina py-16 lg:py-24 xl:py-28">
           <div className="max-w-7xl mx-auto px-6">
             <div className="lg:grid lg:grid-cols-[0.48fr_1fr] lg:gap-16 xl:gap-24 lg:items-end">
 
-              {/* Key facts, bottom-aligned, desktop only — left side on Launch */}
+              {/* Key facts, bottom-aligned — left side on Launch */}
               <motion.div
-                className="hidden lg:block self-end"
+                className="mt-8 lg:mt-0 lg:self-end"
                 initial={reduce ? undefined : { opacity: 0 }}
                 whileInView={reduce ? undefined : { opacity: 1 }}
                 viewport={reduce ? undefined : VIEWPORT}
@@ -188,12 +223,12 @@ export function ServicesOverview() {
                 {LAUNCH_FACTS.map(({ label, value }) => (
                   <div key={label} className="border-t border-white/15 py-4">
                     <p
-                      className="text-[10px] uppercase tracking-[0.14em] text-white/35 mb-1 select-none"
+                      className="text-[10px] uppercase tracking-[0.14em] text-white/45 mb-1 select-none"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {label}
                     </p>
                     <p
-                      className="text-[15px] text-white/60"
+                      className="text-[15px] text-white/70"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {value}
                     </p>
@@ -201,6 +236,13 @@ export function ServicesOverview() {
                 ))}
                 <div className="border-t border-white/15" />
               </motion.div>
+
+              {/* Top fade — mirrors Rebuild bottom fade */}
+              <div
+                className="absolute top-0 left-0 right-0 h-40 lg:h-56 pointer-events-none"
+                style={{ background: 'linear-gradient(to top, transparent, rgba(255,255,255,0.20))' }}
+                aria-hidden="true"
+              />
 
               {/* Main content, right side */}
               <div>
@@ -225,7 +267,7 @@ export function ServicesOverview() {
                 </motion.h2>
 
                 <motion.p
-                  className="text-[15px] text-white/65 leading-[1.72] mb-8 max-w-[52ch]"
+                  className="text-[15px] text-white/75 leading-[1.72] mb-8 max-w-[52ch]"
                   style={{ fontFamily: 'var(--font-body)' }}
                   initial={reduce ? undefined : { opacity: 0, y: 18 }}
                   whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -286,7 +328,7 @@ export function ServicesOverview() {
                 Role relevance
               </h3>
               <p
-                className="text-[15px] text-anthracite/60 leading-[1.72] max-w-[54ch]"
+                className="text-[15px] text-anthracite/75 leading-[1.72] max-w-[54ch]"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Program components must connect to real construction-management work and realistic
                 progression opportunities.
@@ -305,7 +347,7 @@ export function ServicesOverview() {
                 Employer validation
               </h3>
               <p
-                className="text-[13.5px] text-anthracite/55 leading-[1.7]"
+                className="text-[13.5px] text-anthracite/70 leading-[1.7]"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Employers should inform expectations, interact with learners, and help verify the
                 relevance of preparation.
@@ -329,7 +371,7 @@ export function ServicesOverview() {
                 Institutional alignment
               </h3>
               <p
-                className="text-[13.5px] text-anthracite/55 leading-[1.7]"
+                className="text-[13.5px] text-anthracite/70 leading-[1.7]"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Delivery must be aligned to recruitment capacity, funding structures, support
                 services, and articulation opportunities.
@@ -347,7 +389,7 @@ export function ServicesOverview() {
                 Outcome accountability
               </h3>
               <p
-                className="text-[15px] text-anthracite/60 leading-[1.72] max-w-[54ch]"
+                className="text-[15px] text-anthracite/75 leading-[1.72] max-w-[54ch]"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Aedifica intends to report what happens after instruction: clearly, consistently,
                 and without substituting enrollment for impact.
@@ -376,7 +418,7 @@ export function ServicesOverview() {
               Expand after evidence, not before it.
             </motion.h2>
             <motion.p
-              className="text-[14px] text-anthracite/60 leading-[1.72]"
+              className="text-[14px] text-anthracite/70 leading-[1.72]"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 18 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -411,7 +453,7 @@ export function ServicesOverview() {
                     </h3>
                   </div>
                   <p
-                    className="text-[13.5px] text-anthracite/50 leading-[1.65] max-w-[65ch]"
+                    className="text-[13.5px] text-anthracite/65 leading-[1.65] max-w-[65ch]"
                     style={{ fontFamily: 'var(--font-body)' }}>
                     {desc}
                   </p>
@@ -435,49 +477,63 @@ export function ServicesOverview() {
         className="bg-snow pt-10 lg:pt-16 pb-0"
         aria-labelledby="services-cta-heading">
         <div className="max-w-[1000px] mx-auto px-6">
-          <div className="bg-datum px-10 pt-16 pb-12 lg:px-16 lg:pt-20 lg:pb-14 text-center rounded-t-[2rem]">
+          <div className="relative px-10 pt-16 pb-12 lg:px-16 lg:pt-20 lg:pb-14 text-center rounded-t-[2rem] overflow-hidden">
 
-            <motion.h2
-              id="services-cta-heading"
-              className="text-[2.25rem] lg:text-[3.5rem] xl:text-[4.25rem] leading-[1.07] tracking-[-0.03em] text-white italic mb-8"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-              initial={reduce ? undefined : { opacity: 0, y: 28 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.7, ease: SPRING }}>
-              A pathway is built with partners who are ready to be accountable.
-            </motion.h2>
+            {/* Background image — replace with real photo */}
+            <img
+              src="https://picsum.photos/seed/nj-workforce/1400/700"
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ filter: 'grayscale(30%) contrast(1.1)' }}
+            />
+            {/* Datum overlay */}
+            <div className="absolute inset-0 bg-datum/88" aria-hidden="true" />
 
-            <motion.p
-              className="text-[15px] text-white/65 leading-[1.72] mb-10 max-w-[50ch] mx-auto"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={reduce ? undefined : { opacity: 0, y: 20 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.55, delay: 0.12, ease: EASE }}>
-              Discuss a Rebuild cohort, a Launch engagement, or an institutional briefing. Year 1
-              partnerships are being formed now.
-            </motion.p>
+            {/* Content */}
+            <div className="relative z-10">
+              <motion.h2
+                id="services-cta-heading"
+                className="text-[2.25rem] lg:text-[3.5rem] xl:text-[4.25rem] leading-[1.07] tracking-[-0.03em] text-white italic mb-8"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+                initial={reduce ? undefined : { opacity: 0, y: 28 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.7, ease: SPRING }}>
+                A pathway is built with partners who are ready to be accountable.
+              </motion.h2>
 
-            <motion.div
-              className="flex flex-col sm:flex-row justify-center gap-4"
-              initial={reduce ? undefined : { opacity: 0, y: 16 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.5, delay: 0.22, ease: EASE }}>
-              <Link
-                to="/partner"
-                className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                Start a Partnership Conversation
-              </Link>
-              <a
-                href="#briefing"
-                className="inline-flex items-center justify-center border border-white/35 text-white text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/10"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                Request an Institutional Briefing
-              </a>
-            </motion.div>
+              <motion.p
+                className="text-[15px] text-white/75 leading-[1.72] mb-10 max-w-[50ch] mx-auto"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 20 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.55, delay: 0.12, ease: EASE }}>
+                Discuss a Rebuild cohort, a Launch engagement, or an institutional briefing. Year 1
+                partnerships are being formed now.
+              </motion.p>
+
+              <motion.div
+                className="flex flex-col sm:flex-row justify-center gap-4"
+                initial={reduce ? undefined : { opacity: 0, y: 16 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.22, ease: EASE }}>
+                <Link
+                  to="/partner"
+                  className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  Start a Partnership Conversation
+                </Link>
+                <a
+                  href="#briefing"
+                  className="inline-flex items-center justify-center border border-white/35 text-white text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/10"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  Request an Institutional Briefing
+                </a>
+              </motion.div>
+            </div>
 
           </div>
         </div>

@@ -45,12 +45,12 @@ export function RoleLadder() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-snow py-16 lg:py-24" aria-labelledby="roles-heading">
+    <section className="bg-anthracite py-16 lg:py-24" aria-labelledby="roles-heading">
       <div className="max-w-7xl mx-auto px-6">
 
         <motion.h2
           id="roles-heading"
-          className="text-[2.25rem] lg:text-[3.5rem] xl:text-[4rem] leading-[1.08] tracking-[-0.028em] text-anthracite italic mb-12 lg:mb-14 max-w-[26ch]"
+          className="text-[2.25rem] lg:text-[3.5rem] xl:text-[4rem] leading-[1.08] tracking-[-0.028em] text-white italic mb-12 lg:mb-14 max-w-[26ch]"
           style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
           initial={reduce ? undefined : { opacity: 0, y: 24 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -60,8 +60,8 @@ export function RoleLadder() {
         </motion.h2>
 
         {/* Three stages as horizontal columns at lg+ */}
-        <div className="border-t border-sediment/25">
-          <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-sediment/25">
+        <div className="border-t border-white/10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
             {STAGES.map(({ timing, stage, roles }, i) => (
               <motion.div
                 key={timing}
@@ -80,7 +80,7 @@ export function RoleLadder() {
                   {timing}
                 </p>
                 <p
-                  className="text-[10.5px] text-anthracite/45 uppercase tracking-[0.14em] mb-5"
+                  className="text-[10.5px] text-white/40 uppercase tracking-[0.14em] mb-5"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   {stage}
                 </p>
@@ -88,7 +88,7 @@ export function RoleLadder() {
                   {roles.map(role => (
                     <li
                       key={role}
-                      className="text-[13px] text-anthracite/60 leading-[1.6]"
+                      className="text-[13px] text-white/60 leading-[1.6]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {role}
                     </li>
@@ -100,7 +100,7 @@ export function RoleLadder() {
         </div>
 
         <motion.p
-          className="text-[12px] text-anthracite/40 leading-[1.65] mt-6"
+          className="text-[12px] text-white/35 leading-[1.65] mt-6"
           style={{ fontFamily: 'var(--font-body)' }}
           initial={reduce ? undefined : { opacity: 0 }}
           whileInView={reduce ? undefined : { opacity: 1 }}
