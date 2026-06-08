@@ -190,6 +190,7 @@ export function Partner() {
   const [selected, setSelected] = useState<AudienceId | null>(null)
   const [form, setForm] = useState<FormState>(EMPTY_FORM)
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
   function handleAudienceClick(id: AudienceId, orgValue: string) {
     setSelected(id)
@@ -204,11 +205,23 @@ export function Partner() {
       setForm(prev => ({ ...prev, [field]: e.target.value }))
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
     if (!form.firstName || !form.lastName || !emailOk || !form.organization || !form.orgType || !form.message || !form.consent) return
-    setSubmitted(true)
+    setSubmitting(true)
+    const body = new URLSearchParams({
+      'form-name': 'partner-inquiry',
+      ...Object.fromEntries(
+        Object.entries(form).filter(([, v]) => typeof v === 'string') as [string, string][]
+      ),
+    })
+    try {
+      await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
+    } finally {
+      setSubmitting(false)
+      setSubmitted(true)
+    }
   }
 
   const showEducation = form.orgType === 'education'
@@ -642,9 +655,10 @@ export function Partner() {
                       </p>
                       <button
                         type="submit"
-                        className="inline-flex items-center justify-center bg-datum text-white text-[13.5px] tracking-[-0.01em] px-8 py-3.5 hover:bg-datum/88 active:scale-[0.98] transition-all duration-150 flex-shrink-0"
+                        disabled={submitting}
+                        className="inline-flex items-center justify-center bg-datum text-white text-[13.5px] tracking-[-0.01em] px-8 py-3.5 hover:bg-datum/88 active:scale-[0.98] transition-all duration-150 flex-shrink-0 disabled:opacity-60 disabled:cursor-not-allowed"
                         style={{ fontFamily: 'var(--font-body)' }}>
-                        Submit
+                        {submitting ? 'Sending…' : 'Submit'}
                       </button>
                     </div>
                   </div>

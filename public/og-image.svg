@@ -3,49 +3,46 @@
   <!-- Background -->
   <rect width="1200" height="630" fill="#2D2D31"/>
 
-  <!-- Subtle margin guides (very low opacity) -->
-  <rect x="80" y="0" width="1040" height="630" fill="none"/>
-
-  <!-- Arch mark — centered, scaled 2.0× from 100×112 viewBox -->
-  <!-- translate: x = 600 - (100/2)*2 = 600-100 = 500, y = 112 -->
-  <g transform="translate(500, 112) scale(2)">
+  <!-- Arch mark — brand book Q-curve paths, centered, scale(2) -->
+  <!-- translate(490, 80): centers 110-unit-wide mark at x=600; arch bottom lands at y=320 -->
+  <g transform="translate(490, 80) scale(2)">
     <!-- Arch walls in snow -->
     <path
-      d="M 8 108 L 8 72 C 8 49 27 30 50 30 C 73 30 92 49 92 72 L 92 108 L 74 108 L 74 72 C 74 59 63 48 50 48 C 37 48 26 59 26 72 L 26 108 Z"
+      d="M 15 120 L 15 65 Q 15 12, 55 12 Q 95 12, 95 65 L 95 120 L 78 120 L 78 65 Q 78 28, 55 28 Q 32 28, 32 65 L 32 120 Z"
       fill="#FAF7F1"
     />
     <!-- Datum keystone -->
-    <path d="M 40 30 L 60 30 L 56 48 L 44 48 Z" fill="#6667AB"/>
-    <!-- Crossbar — background color cuts through arch opening -->
-    <rect x="26" y="82" width="48" height="6" fill="#2D2D31"/>
+    <path d="M 44 28 L 66 28 L 72 52 L 38 52 Z" fill="#6667AB"/>
+    <!-- Crossbar — snow bridge in hollow (the A reading) -->
+    <rect x="32" y="78" width="46" height="7" fill="#FAF7F1"/>
   </g>
 
-  <!-- AEDIFICA wordmark -->
+  <!-- Wordmark -->
   <text
     x="600"
-    y="408"
+    y="410"
     text-anchor="middle"
-    font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif"
-    font-size="60"
-    font-weight="600"
-    letter-spacing="18"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="58"
+    font-weight="400"
+    letter-spacing="-2"
     fill="#FAF7F1"
-  >AEDIFICA</text>
+  >Aedifica</text>
 
   <!-- Tagline -->
   <text
     x="600"
-    y="452"
+    y="454"
     text-anchor="middle"
     font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif"
-    font-size="19"
-    letter-spacing="1.5"
+    font-size="18"
+    letter-spacing="1"
     fill="#FAF7F1"
-    opacity="0.42"
+    opacity="0.48"
   >Construction-Management Workforce Pathways · New Jersey</text>
 
   <!-- Datum accent line -->
-  <rect x="80" y="510" width="1040" height="1" fill="#6667AB" opacity="0.55"/>
+  <rect x="80" y="514" width="1040" height="1" fill="#6667AB" opacity="0.55"/>
 
   <!-- Domain -->
   <text
@@ -53,7 +50,7 @@
     y="549"
     text-anchor="middle"
     font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif"
-    font-size="14"
+    font-size="13"
     letter-spacing="4"
     fill="#FAF7F1"
     opacity="0.28"

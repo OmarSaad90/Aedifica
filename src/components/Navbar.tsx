@@ -47,14 +47,14 @@ export function Navbar() {
           <LogoMark />
           <div className="flex items-baseline gap-1.5">
             <span
-              className="text-[14.5px] font-medium tracking-[0.07em] text-anthracite"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 500 }}>
-              AEDIFICA
+              className="text-[17px] tracking-[-0.03em] text-anthracite"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+              Aedifica
             </span>
             <span className="hidden xl:contents">
-              <span className="text-anthracite/30 text-[12px] select-none">·</span>
+              <span className="text-anthracite/30 text-[13px] select-none">·</span>
               <span
-                className="text-anthracite/55 text-[12px] italic"
+                className="text-anthracite/70 text-[13px] italic"
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
                 We build the builders.
               </span>
@@ -280,18 +280,20 @@ function LogoMark() {
     <svg
       width="20"
       height="24"
-      viewBox="0 0 100 112"
+      viewBox="0 0 110 130"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       className="flex-shrink-0"
     >
-      {/* Arch walls — smooth cubic bezier curves */}
+      {/* Arch walls — brand book Q-curve paths */}
       <path
-        d="M 8 108 L 8 72 C 8 49 27 30 50 30 C 73 30 92 49 92 72 L 92 108 L 74 108 L 74 72 C 74 59 63 48 50 48 C 37 48 26 59 26 72 L 26 108 Z"
+        d="M 15 120 L 15 65 Q 15 12, 55 12 Q 95 12, 95 65 L 95 120 L 78 120 L 78 65 Q 78 28, 55 28 Q 32 28, 32 65 L 32 120 Z"
         fill="#2D2D31"
       />
       {/* Datum keystone at arch crown */}
-      <path d="M 40 30 L 60 30 L 56 48 L 44 48 Z" fill="#6667AB" />
+      <path d="M 44 28 L 66 28 L 72 52 L 38 52 Z" fill="#6667AB" />
+      {/* Crossbar — the A reading */}
+      <rect x="32" y="78" width="46" height="7" fill="#2D2D31" />
     </svg>
   )
 }
