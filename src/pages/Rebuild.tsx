@@ -251,8 +251,8 @@ export function Rebuild() {
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.45, delay: i * 0.07, ease: EASE }}>
                 <p
-                  className="text-[1.125rem] lg:text-[1.25rem] text-anthracite italic leading-[1.2] tracking-[-0.02em] mb-3"
-                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                  className="text-[1rem] lg:text-[1.0625rem] text-anthracite leading-[1.25] tracking-[-0.01em] mb-3 font-medium"
+                  style={{ fontFamily: 'var(--font-body)' }}>
                   {label}
                 </p>
                 <p
@@ -410,8 +410,8 @@ export function Rebuild() {
                 </span>
                 <div>
                   <h3
-                    className="text-[1.25rem] lg:text-[1.375rem] text-white italic leading-[1.2] tracking-[-0.02em] mb-3"
-                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                    className="text-[1rem] lg:text-[1.0625rem] text-white leading-[1.25] tracking-[-0.01em] mb-3 font-medium"
+                    style={{ fontFamily: 'var(--font-body)' }}>
                     {title}
                   </h3>
                   <p

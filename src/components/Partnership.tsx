@@ -102,8 +102,8 @@ export function Partnership() {
 
                 <div className="flex flex-col lg:flex-row lg:items-baseline lg:justify-between gap-1.5 lg:gap-10 mb-3">
                   <h3
-                    className="text-[1.125rem] lg:text-[1.25rem] leading-[1.2] tracking-[-0.02em] text-anthracite italic"
-                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                    className="text-[1rem] lg:text-[1.0625rem] leading-[1.25] tracking-[-0.01em] text-anthracite font-medium"
+                    style={{ fontFamily: 'var(--font-body)' }}>
                     {name}
                   </h3>
                   <Link

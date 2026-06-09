@@ -342,7 +342,7 @@ export function ServicesOverview() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.5, delay: 0.12, ease: EASE }}>
               <h3
-                className="text-[1.375rem] lg:text-[1.75rem] xl:text-[2.25rem] leading-[1.15] tracking-[-0.02em] text-datum italic mb-3"
+                className="text-[1.25rem] lg:text-[1.625rem] xl:text-[2rem] leading-[1.15] tracking-[-0.015em] text-datum mb-3"
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
                 Employer validation
               </h3>
@@ -366,7 +366,7 @@ export function ServicesOverview() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
               <h3
-                className="text-[1.375rem] lg:text-[1.75rem] xl:text-[2.25rem] leading-[1.15] tracking-[-0.02em] text-datum italic mb-3"
+                className="text-[1.25rem] lg:text-[1.625rem] xl:text-[2rem] leading-[1.15] tracking-[-0.015em] text-datum mb-3"
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
                 Institutional alignment
               </h3>

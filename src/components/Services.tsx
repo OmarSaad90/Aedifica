@@ -95,8 +95,8 @@ export function Services() {
             transition={reduce ? undefined : { duration: 0.55, delay: 0.2, ease: SPRING }}>
             <div className="flex-1">
               <h3
-                className="text-[1.125rem] lg:text-[1.25rem] leading-[1.2] tracking-[-0.02em] text-anthracite italic mb-3"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                className="text-[1rem] lg:text-[1.0625rem] leading-[1.25] tracking-[-0.01em] text-anthracite font-medium mb-3"
+                style={{ fontFamily: 'var(--font-body)' }}>
                 Expansion Pathways
               </h3>
               <p

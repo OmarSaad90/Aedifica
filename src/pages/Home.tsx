@@ -47,8 +47,7 @@ import { TheGap } from '../components/TheGap'
 import { AedificaModel } from '../components/AedificaModel'
 import { FourGates } from '../components/FourGates'
 import { Services } from '../components/Services'
-import { RoleLadder } from '../components/RoleLadder'
-import { Outcomes } from '../components/Outcomes'
+import { CurriculumStrip } from '../components/CurriculumStrip'
 import { Partnership } from '../components/Partnership'
 import { PriorExperience } from '../components/PriorExperience'
 import { FinalCTA } from '../components/FinalCTA'
@@ -68,8 +67,7 @@ export function Home() {
       <AedificaModel />
       <FourGates />
       <Services />
-      <RoleLadder />
-      <Outcomes />
+      <CurriculumStrip />
       <Partnership />
       <PriorExperience />
       <FinalCTA />
