@@ -1,5 +1,4 @@
 import { SEO, SITE_URL } from '../components/SEO'
-import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import { PageCTA } from '../components/PageCTA'
 
