@@ -8,7 +8,7 @@ export function PriorExperience() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-bone py-16 lg:py-24" aria-labelledby="prior-heading">
+    <section className="bg-bone py-12 lg:py-18" aria-labelledby="prior-heading">
       <div className="max-w-7xl mx-auto px-6">
         <div className="lg:grid lg:grid-cols-2 lg:gap-16 xl:gap-20 lg:items-start">
 

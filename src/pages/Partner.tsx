@@ -176,13 +176,13 @@ const EMPTY_FORM: FormState = {
 }
 
 const inputCls =
-  'w-full px-4 py-3 bg-transparent border border-sediment/35 text-anthracite text-[14px] placeholder:text-anthracite/30 focus:border-datum focus:outline-none transition-colors duration-150'
+  'w-full px-4 py-3 bg-transparent border border-anthracite/22 text-anthracite text-[14px] placeholder:text-anthracite/45 focus:border-datum focus:outline-none transition-colors duration-150'
 
 const selectCls =
-  'w-full px-4 py-3 bg-snow border border-sediment/35 text-anthracite text-[14px] focus:border-datum focus:outline-none transition-colors duration-150 appearance-none cursor-pointer'
+  'w-full px-4 py-3 bg-snow border border-anthracite/22 text-anthracite text-[14px] focus:border-datum focus:outline-none transition-colors duration-150 appearance-none cursor-pointer'
 
 const labelCls =
-  'block text-[10.5px] text-anthracite/70 uppercase tracking-[0.16em] mb-1.5 select-none'
+  'block text-[11px] text-anthracite/80 uppercase tracking-[0.15em] mb-1.5 select-none'
 
 export function Partner() {
   const reduce = useReducedMotion()
@@ -209,6 +209,7 @@ export function Partner() {
     e.preventDefault()
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
     if (!form.firstName || !form.lastName || !emailOk || !form.organization || !form.orgType || !form.message || !form.consent) return
+    if ((e.currentTarget as HTMLFormElement).querySelector<HTMLInputElement>('[name="website"]')?.value) return
     setSubmitting(true)
     const body = new URLSearchParams(
       Object.fromEntries(
@@ -361,7 +362,7 @@ export function Partner() {
       {/* ── Contact Form ── */}
       <section
         ref={formRef}
-        className="bg-snow py-16 lg:py-24 scroll-mt-16"
+        className="bg-bone py-12 lg:py-18 scroll-mt-16"
         aria-labelledby="partner-form-h2">
         <div className="max-w-[1080px] mx-auto px-6">
 
@@ -388,7 +389,7 @@ export function Partner() {
                 : 'Tell us about your organization.'}
             </h2>
             <p
-              className="text-[14px] text-anthracite/65 leading-[1.7] max-w-[58ch]"
+              className="text-[14px] text-anthracite/75 leading-[1.7] max-w-[58ch]"
               style={{ fontFamily: 'var(--font-body)' }}>
               Aedifica reviews every inquiry. You will hear back within five business days.
             </p>
@@ -413,7 +414,7 @@ export function Partner() {
                   Your inquiry has been received. Aedifica will respond within five business days.
                 </p>
                 <p
-                  className="text-[14px] text-anthracite/65 leading-[1.7]"
+                  className="text-[14px] text-anthracite/75 leading-[1.7]"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   If your inquiry is time-sensitive due to a funding deadline, please note that in
                   your message.
@@ -424,10 +425,15 @@ export function Partner() {
                 key="form"
                 onSubmit={handleSubmit}
                 className="border-t border-sediment/20 pt-7"
+                aria-label="Partnership inquiry"
                 initial={reduce ? undefined : { opacity: 0 }}
                 animate={reduce ? undefined : { opacity: 1 }}
                 transition={reduce ? undefined : { duration: 0.4, ease: EASE }}
                 noValidate>
+
+                {/* Honeypot — hidden from humans, filled by bots */}
+                <input name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true"
+                  className="absolute opacity-0 pointer-events-none w-0 h-0 overflow-hidden" />
 
                 {/* Two-column layout: identity left, intent right */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-16">
@@ -503,7 +509,7 @@ export function Partner() {
                       </select>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
                         <label htmlFor="pf-interest" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
                           Partnership interest
@@ -543,7 +549,7 @@ export function Partner() {
                           </div>
                         )}
                         {showWorkforce && (
-                          <div className="grid grid-cols-2 gap-5">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             <div>
                               <label htmlFor="pf-target" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
                                 Target population
@@ -564,7 +570,7 @@ export function Partner() {
                           </div>
                         )}
                         {showEmployer && (
-                          <div className="grid grid-cols-2 gap-5">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             <div>
                               <label htmlFor="pf-roles" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
                                 Roles of interest
@@ -592,7 +598,7 @@ export function Partner() {
                           </div>
                         )}
                         {showFunding && (
-                          <div className="grid grid-cols-2 gap-5">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             <div>
                               <label htmlFor="pf-funder" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
                                 Funding opportunity / program
@@ -641,14 +647,14 @@ export function Partner() {
                         className="mt-[3px] flex-shrink-0 w-4 h-4 border border-sediment/40 accent-datum cursor-pointer"
                       />
                       <span
-                        className="text-[12.5px] text-anthracite/65 leading-[1.58]"
+                        className="text-[12.5px] text-anthracite/72 leading-[1.58]"
                         style={{ fontFamily: 'var(--font-body)' }}>
                         I understand this inquiry will be reviewed by Aedifica. No information will be shared with third parties.
                       </span>
                     </label>
                     <div className="flex items-center gap-5 flex-shrink-0">
                       <p
-                        className="text-[11.5px] text-anthracite/35 leading-[1.5] text-right"
+                        className="text-[11.5px] text-anthracite/50 leading-[1.5] text-right"
                         style={{ fontFamily: 'var(--font-body)' }}>
                         Fields marked <span className="text-datum">*</span> required.<br />5-day response.
                       </p>

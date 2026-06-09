@@ -21,7 +21,7 @@ export function CurriculumStrip() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-anthracite py-16 lg:py-24" aria-labelledby="curriculum-heading">
+    <section className="bg-anthracite py-10 lg:py-16" aria-labelledby="curriculum-heading">
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="lg:grid lg:grid-cols-[5fr_7fr] lg:gap-16 xl:gap-20 lg:items-start">
@@ -85,19 +85,19 @@ export function CurriculumStrip() {
             {AREAS.map((area, i) => (
               <motion.div
                 key={area}
-                className="flex gap-5 lg:gap-6 items-start border-b border-white/10 py-[0.95rem] lg:py-4"
+                className="flex gap-5 lg:gap-6 items-center border-b border-white/10 py-2.5 lg:py-3"
                 initial={reduce ? undefined : { opacity: 0, x: 14 }}
                 whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.35, delay: 0.04 + i * 0.035, ease: EASE }}>
                 <span
-                  className="flex-shrink-0 w-9 text-[1.625rem] lg:text-[2rem] text-datum/32 italic leading-none mt-0.5 select-none tabular-nums"
+                  className="flex-shrink-0 w-12 text-[2.25rem] lg:text-[3rem] text-datum/70 italic leading-none select-none tabular-nums"
                   style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
                   aria-hidden="true">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <span
-                  className="text-[13.5px] text-white/65 leading-[1.65] pt-1"
+                  className="text-[13.5px] text-white/65 leading-[1.65]"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   {area}
                 </span>

@@ -1,6 +1,7 @@
 import { SEO, SITE_URL } from '../components/SEO'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
+import { PageCTA } from '../components/PageCTA'
 
 const SERVICES_SCHEMA = {
   '@context': 'https://schema.org',
@@ -122,7 +123,7 @@ export function ServicesOverview() {
       <section aria-label="Year 1 services">
 
         {/* Rebuild — datum */}
-        <div className="relative bg-datum py-16 lg:py-24 xl:py-28">
+        <div className="relative bg-datum py-16 lg:py-24">
           <div className="max-w-7xl mx-auto px-6">
             <div className="lg:grid lg:grid-cols-[1fr_0.48fr] lg:gap-16 xl:gap-24 lg:items-end">
 
@@ -209,7 +210,7 @@ export function ServicesOverview() {
         </div>
 
         {/* Launch — patina, FLIPPED */}
-        <div className="relative bg-patina py-16 lg:py-24 xl:py-28">
+        <div className="relative bg-patina py-16 lg:py-24">
           <div className="max-w-7xl mx-auto px-6">
             <div className="lg:grid lg:grid-cols-[0.48fr_1fr] lg:gap-16 xl:gap-24 lg:items-end">
 
@@ -301,7 +302,7 @@ export function ServicesOverview() {
 
       {/* ── Shared Principles ── */}
       <section
-        className="bg-snow py-16 lg:py-24"
+        className="bg-snow py-12 lg:py-18"
         aria-labelledby="principles-heading">
         <div className="max-w-7xl mx-auto px-6">
 
@@ -316,7 +317,7 @@ export function ServicesOverview() {
           </motion.p>
 
           {/* Pair 1 — Role relevance (feature, left) + Employer validation (supporting, right) */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.7fr] lg:gap-16 xl:gap-24 pb-12 lg:pb-16 lg:items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.7fr] lg:gap-16 xl:gap-24 pb-8 lg:pb-12 lg:items-start">
             <motion.div
               initial={reduce ? undefined : { opacity: 0, y: 32 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -358,7 +359,7 @@ export function ServicesOverview() {
           <div className="border-t border-sediment/20" />
 
           {/* Pair 2 — Institutional alignment (supporting, left) + Outcome accountability (feature, right) */}
-          <div className="grid grid-cols-1 lg:grid-cols-[0.7fr_1fr] lg:gap-16 xl:gap-24 pt-12 lg:pt-16 lg:items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.7fr_1fr] lg:gap-16 xl:gap-24 pt-8 lg:pt-12 lg:items-start">
             <motion.div
               className="lg:mt-16"
               initial={reduce ? undefined : { opacity: 0, y: 20 }}
@@ -472,72 +473,13 @@ export function ServicesOverview() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section
-        className="bg-snow pt-10 lg:pt-16 pb-0"
-        aria-labelledby="services-cta-heading">
-        <div className="max-w-[1000px] mx-auto px-6">
-          <div className="relative px-10 pt-16 pb-12 lg:px-16 lg:pt-20 lg:pb-14 text-center rounded-t-[2rem] overflow-hidden">
-
-            {/* Background image — replace with real photo */}
-            <img
-              src="https://picsum.photos/seed/nj-workforce/1400/700"
-              alt=""
-              aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ filter: 'grayscale(30%) contrast(1.1)' }}
-            />
-            {/* Datum overlay */}
-            <div className="absolute inset-0 bg-datum/88" aria-hidden="true" />
-
-            {/* Content */}
-            <div className="relative z-10">
-              <motion.h2
-                id="services-cta-heading"
-                className="text-[2.25rem] lg:text-[3.5rem] xl:text-[4.25rem] leading-[1.07] tracking-[-0.03em] text-white italic mb-8"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-                initial={reduce ? undefined : { opacity: 0, y: 28 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.7, ease: SPRING }}>
-                A pathway is built with partners who are ready to be accountable.
-              </motion.h2>
-
-              <motion.p
-                className="text-[15px] text-white/75 leading-[1.72] mb-10 max-w-[50ch] mx-auto"
-                style={{ fontFamily: 'var(--font-body)' }}
-                initial={reduce ? undefined : { opacity: 0, y: 20 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.55, delay: 0.12, ease: EASE }}>
-                Discuss a Rebuild cohort, a Launch engagement, or an institutional briefing. Year 1
-                partnerships are being formed now.
-              </motion.p>
-
-              <motion.div
-                className="flex flex-col sm:flex-row justify-center gap-4"
-                initial={reduce ? undefined : { opacity: 0, y: 16 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.5, delay: 0.22, ease: EASE }}>
-                <Link
-                  to="/partner"
-                  className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  Start a Partnership Conversation
-                </Link>
-                <a
-                  href="#briefing"
-                  className="inline-flex items-center justify-center border border-white/35 text-white text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/10"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  Request an Institutional Briefing
-                </a>
-              </motion.div>
-            </div>
-
-          </div>
-        </div>
-      </section>
+      <PageCTA
+        id="services-cta"
+        heading="A pathway is built with partners who are ready to be accountable."
+        body="Discuss a Rebuild cohort, a Launch engagement, or an institutional briefing. Year 1 partnerships are being formed now."
+        primary={{ label: 'Start a Partnership Conversation', to: '/partner' }}
+        secondary={{ label: 'Request an Institutional Briefing', to: '/partner' }}
+      />
 
     </main>
   )

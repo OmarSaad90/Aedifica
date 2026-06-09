@@ -39,7 +39,7 @@ function PillarItem({ Icon: IconComp, label, subtext }: Pillar) {
         aria-hidden={true}
       />
       <p
-        className="text-[10.5px] uppercase tracking-[0.18em] text-datum font-medium mb-2.5 leading-none"
+        className="text-[14px] text-datum font-medium mb-2 leading-snug tracking-[-0.01em]"
         style={{ fontFamily: 'var(--font-body)' }}
       >
         {label}
@@ -61,7 +61,7 @@ export function CredibilityBar() {
 
         {/* Eyebrow */}
         <p
-          className="text-center text-[10px] uppercase tracking-[0.22em] text-quarry mb-10 leading-none"
+          className="text-center text-[11.5px] uppercase tracking-[0.18em] text-anthracite/55 mb-10 leading-none"
           style={{ fontFamily: 'var(--font-body)' }}
         >
           A Pathway Built Around Accountability

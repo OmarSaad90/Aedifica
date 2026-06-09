@@ -1,6 +1,7 @@
 import { SEO, SITE_URL } from '../components/SEO'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
+import { PageCTA } from '../components/PageCTA'
 
 const REBUILD_SCHEMA = {
   '@context': 'https://schema.org',
@@ -222,7 +223,7 @@ export function Rebuild() {
       </section>
 
       {/* ── Who It Serves ── */}
-      <section className="bg-snow pt-20 pb-0 lg:pt-28 overflow-hidden" aria-labelledby="who-h2">
+      <section className="bg-snow pt-14 pb-0 lg:pt-20 overflow-hidden" aria-labelledby="who-h2">
         <div className="max-w-7xl mx-auto px-6">
 
           <motion.h2
@@ -267,7 +268,7 @@ export function Rebuild() {
       </section>
 
       {/* ── Learning Areas ── */}
-      <section className="bg-bone py-16 lg:py-24" aria-labelledby="learn-h2">
+      <section className="bg-bone py-12 lg:py-18" aria-labelledby="learn-h2">
         <div className="max-w-7xl mx-auto px-6">
           <div className="lg:grid lg:grid-cols-[1fr_1.15fr] lg:gap-14 xl:gap-20 lg:items-start">
 
@@ -340,23 +341,9 @@ export function Rebuild() {
 
       {/* ── Four Gates ── */}
       <section
-        className="bg-anthracite relative overflow-hidden py-20 lg:py-28"
+        className="bg-anthracite relative overflow-hidden py-14 lg:py-20"
         aria-labelledby="gates-h2">
 
-        <motion.span
-          className="pointer-events-none select-none absolute bottom-0 right-0 leading-[0.8] text-white translate-x-[10%] translate-y-[18%]"
-          initial={reduce ? undefined : { opacity: 0 }}
-          whileInView={reduce ? undefined : { opacity: 0.035 }}
-          viewport={reduce ? undefined : VIEWPORT}
-          transition={reduce ? undefined : { duration: 1.6, delay: 0.4, ease: EASE }}
-          style={{
-            fontFamily: 'var(--font-heading)',
-            fontWeight: 300,
-            fontSize: 'clamp(8rem, 18vw, 18rem)',
-          }}
-          aria-hidden="true">
-          Gates
-        </motion.span>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
 
@@ -397,7 +384,7 @@ export function Rebuild() {
             {GATES.map(({ num, title, body, who }, i) => (
               <motion.div
                 key={num}
-                className="grid grid-cols-1 lg:grid-cols-[72px_1fr_0.7fr] lg:gap-10 xl:gap-14 border-b border-white/10 py-8 lg:py-10 lg:items-start"
+                className="grid grid-cols-1 lg:grid-cols-[72px_1fr_0.7fr] lg:gap-10 xl:gap-14 border-b border-white/10 py-6 lg:py-8 lg:items-start"
                 initial={reduce ? undefined : { opacity: 0, y: 18 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
@@ -440,7 +427,7 @@ export function Rebuild() {
       </section>
 
       {/* ── Role Ladder ── */}
-      <section className="bg-snow py-16 lg:py-24 overflow-hidden" aria-labelledby="ladder-h2">
+      <section className="bg-snow py-12 lg:py-18 overflow-hidden" aria-labelledby="ladder-h2">
         <div className="max-w-7xl mx-auto px-6">
 
           <div className="lg:grid lg:grid-cols-[1fr_1.8fr] lg:gap-16 xl:gap-20 lg:items-end mb-14 lg:mb-16">
@@ -526,7 +513,7 @@ export function Rebuild() {
       </section>
 
       {/* ── Two Audiences ── */}
-      <section className="bg-bone py-16 lg:py-24" aria-label="Partner and employer value">
+      <section className="bg-bone py-12 lg:py-18" aria-label="Partner and employer value">
         <div className="max-w-7xl mx-auto px-6">
 
           <motion.h2
@@ -620,7 +607,7 @@ export function Rebuild() {
       </section>
 
       {/* ── Reporting Commitment ── */}
-      <section className="bg-snow py-16 lg:py-24" aria-labelledby="reporting-h2">
+      <section className="bg-snow py-12 lg:py-18" aria-labelledby="reporting-h2">
         <div className="max-w-7xl mx-auto px-6">
           <div className="lg:grid lg:grid-cols-[1fr_1.1fr] lg:gap-16 xl:gap-24 lg:items-start">
 
@@ -679,66 +666,13 @@ export function Rebuild() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section className="bg-snow pt-10 lg:pt-16 pb-0" aria-labelledby="rebuild-cta-h2">
-        <div className="max-w-[1100px] mx-auto px-6">
-          <div className="relative px-10 pt-16 pb-12 lg:px-16 lg:pt-20 lg:pb-14 text-center rounded-t-[2rem] overflow-hidden">
-
-            <img
-              src="https://picsum.photos/seed/rebuild-site/1400/700"
-              alt=""
-              aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ filter: 'grayscale(30%) contrast(1.1)' }}
-            />
-            <div className="absolute inset-0 bg-datum/88" aria-hidden="true" />
-
-            <div className="relative z-10">
-              <motion.h2
-                id="rebuild-cta-h2"
-                className="text-[2.25rem] lg:text-[3.5rem] xl:text-[4.25rem] leading-[1.07] tracking-[-0.03em] text-white italic mb-8"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-                initial={reduce ? undefined : { opacity: 0, y: 28 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.7, ease: SPRING }}>
-                Year 1 partnerships are being formed now.
-              </motion.h2>
-
-              <motion.p
-                className="text-[15px] text-white/75 leading-[1.72] mb-10 max-w-[52ch] mx-auto"
-                style={{ fontFamily: 'var(--font-body)' }}
-                initial={reduce ? undefined : { opacity: 0, y: 18 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.55, delay: 0.12, ease: EASE }}>
-                Discuss a Rebuild cohort partnership, an employer participation role, or an institutional briefing on Aedifica's planned delivery model.
-              </motion.p>
-
-              <motion.div
-                className="flex flex-col sm:flex-row justify-center gap-4"
-                initial={reduce ? undefined : { opacity: 0, y: 16 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.5, delay: 0.22, ease: EASE }}>
-                <Link
-                  to="/partner"
-                  className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  Discuss a Rebuild Partnership
-                </Link>
-                <Link
-                  to="/partner"
-                  className="inline-flex items-center justify-center border border-white/35 text-white text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/10"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  Become an Employer Participant
-                </Link>
-              </motion.div>
-            </div>
-
-          </div>
-        </div>
-      </section>
+      <PageCTA
+        id="rebuild-cta"
+        heading="Year 1 partnerships are being formed now."
+        body="Discuss a Rebuild cohort partnership, an employer participation role, or an institutional briefing on Aedifica's planned delivery model."
+        primary={{ label: 'Discuss a Rebuild Partnership', to: '/partner' }}
+        secondary={{ label: 'Become an Employer Participant', to: '/partner' }}
+      />
 
     </main>
   )

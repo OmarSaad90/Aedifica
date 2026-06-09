@@ -158,7 +158,7 @@ export function About() {
       </section>
 
       {/* ── Origin / Brand Story ── bg-snow */}
-      <section className="bg-snow py-20 lg:py-28" aria-labelledby="about-origin-h2">
+      <section className="bg-snow py-14 lg:py-20" aria-labelledby="about-origin-h2">
         <div className="max-w-7xl mx-auto px-6">
           <div className="lg:grid lg:grid-cols-[1fr_0.72fr] lg:gap-16 xl:gap-24 lg:items-start">
 
@@ -256,7 +256,7 @@ export function About() {
       </section>
 
       {/* ── Mission + Values Intro ── bg-bone */}
-      <section className="bg-bone pt-16 lg:pt-24 pb-10 lg:pb-14" aria-labelledby="about-values-h2">
+      <section className="bg-bone pt-12 lg:pt-18 pb-8 lg:pb-12" aria-labelledby="about-values-h2">
         <div className="max-w-7xl mx-auto px-6">
 
           <motion.div
@@ -384,31 +384,36 @@ export function About() {
         </div>
       </section>
 
-      {/* ── Value 04: Built to Be Handed Over ── bg-quarry, stacked */}
+      {/* ── Value 04: Built to Be Handed Over ── bg-quarry */}
       <section className="bg-quarry py-14 lg:py-20" aria-label="Value 04">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
-            className="max-w-[56ch]"
+            className="lg:grid lg:grid-cols-[0.22fr_1fr_0.44fr] lg:gap-12 xl:gap-16 lg:items-start"
             initial={reduce ? undefined : { opacity: 0, y: 24 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-            <h3 className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] italic text-anthracite leading-[1.06] tracking-[-0.03em] mb-6" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-              {VALUES[3].name}
-            </h3>
-            <p className="text-[15px] text-anthracite/75 leading-[1.72] mb-8" style={{ fontFamily: 'var(--font-body)' }}>
-              {VALUES[3].description}
-            </p>
-            <p className="text-[10px] text-anthracite/60 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
-            <p className="text-[14px] text-anthracite/75 leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
-              {VALUES[3].practice}
-            </p>
+            <div className="hidden lg:block" aria-hidden="true" />
+            <div>
+              <h3 className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] italic text-anthracite leading-[1.06] tracking-[-0.03em] mb-6" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+                {VALUES[3].name}
+              </h3>
+              <p className="text-[15px] text-anthracite/75 leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
+                {VALUES[3].description}
+              </p>
+            </div>
+            <div className="mt-8 lg:mt-0 lg:pt-1">
+              <p className="text-[10px] text-anthracite/60 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
+              <p className="text-[14px] text-anthracite/75 leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
+                {VALUES[3].practice}
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* ── Team ── bg-snow */}
-      <section className="bg-snow py-14 lg:py-20" aria-labelledby="about-team-h2">
+      <section className="bg-snow pt-14 lg:pt-20 pb-8 lg:pb-10" aria-labelledby="about-team-h2">
         <div className="max-w-7xl mx-auto px-6">
 
           <div className="mb-10 lg:mb-14">
@@ -475,24 +480,15 @@ export function About() {
             </motion.div>
           ))}
 
-          <motion.p
-            className="text-[12px] text-anthracite/50 leading-[1.6] mt-6 italic"
-            style={{ fontFamily: 'var(--font-body)' }}
-            initial={reduce ? undefined : { opacity: 0 }}
-            whileInView={reduce ? undefined : { opacity: 1 }}
-            viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.4, delay: 0.1, ease: EASE }}>
-            Bios pending final founder review before publication.
-          </motion.p>
 
         </div>
       </section>
 
       {/* ── CTA Block ── */}
-      <section className="bg-snow pt-10 lg:pt-16 pb-0" aria-label="Partner with Aedifica">
+      <section className="bg-snow pt-4 lg:pt-6 pb-0" aria-label="Partner with Aedifica">
         <div className="max-w-[1100px] mx-auto px-6">
           <motion.div
-            className="bg-datum px-10 pt-16 pb-12 lg:px-16 lg:pt-20 lg:pb-14 text-center rounded-t-[2rem]"
+            className="bg-datum px-10 pt-10 pb-10 lg:px-16 lg:pt-14 lg:pb-12 text-center rounded-t-[2rem]"
             initial={reduce ? undefined : { opacity: 0, y: 28 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}

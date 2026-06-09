@@ -136,7 +136,7 @@ export function Impact() {
       </section>
 
       {/* ── The Distinction ── bg-snow */}
-      <section className="bg-snow py-16 lg:py-24 xl:py-32" aria-label="Accountability principle">
+      <section className="bg-snow py-12 lg:py-18" aria-label="Accountability principle">
         <div className="max-w-7xl mx-auto px-6">
           <div className="lg:grid lg:grid-cols-[1.1fr_1fr] lg:gap-16 xl:gap-28 lg:items-start">
 
@@ -180,7 +180,7 @@ export function Impact() {
         <div className="max-w-7xl mx-auto px-6">
 
           <motion.p
-            className="text-[10.5px] text-quarry uppercase tracking-[0.22em] mb-12 lg:mb-16 select-none"
+            className="text-[10.5px] text-quarry uppercase tracking-[0.22em] mb-8 lg:mb-10 select-none"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0 }}
             whileInView={reduce ? undefined : { opacity: 1 }}
@@ -329,23 +329,8 @@ export function Impact() {
       </section>
 
       {/* ── Future Reporting Framework ── bg-anthracite */}
-      <section className="bg-anthracite py-16 lg:py-24 relative overflow-hidden" aria-labelledby="framework-h2">
+      <section className="bg-anthracite py-14 lg:py-20 relative overflow-hidden" aria-labelledby="framework-h2">
 
-        {/* Ghost word */}
-        <motion.span
-          className="pointer-events-none select-none absolute bottom-0 right-0 leading-[0.82] text-white translate-x-[5%] translate-y-[20%]"
-          initial={reduce ? undefined : { opacity: 0 }}
-          whileInView={reduce ? undefined : { opacity: 0.03 }}
-          viewport={reduce ? undefined : VIEWPORT}
-          transition={reduce ? undefined : { duration: 1.6, delay: 0.4, ease: EASE }}
-          style={{
-            fontFamily: 'var(--font-heading)',
-            fontWeight: 300,
-            fontSize: 'clamp(7rem, 14vw, 14rem)',
-          }}
-          aria-hidden="true">
-          Report
-        </motion.span>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="lg:grid lg:grid-cols-[1fr_1.6fr] lg:gap-20 xl:gap-28 lg:items-start">
@@ -423,7 +408,7 @@ export function Impact() {
       <section className="bg-snow pt-10 lg:pt-16 pb-0" aria-label="Partner with Aedifica">
         <div className="max-w-[1100px] mx-auto px-6">
           <motion.div
-            className="bg-datum px-10 pt-16 pb-12 lg:px-16 lg:pt-20 lg:pb-14 text-center rounded-t-[2rem]"
+            className="bg-datum px-10 pt-10 pb-10 lg:px-16 lg:pt-14 lg:pb-12 text-center rounded-t-[2rem]"
             initial={reduce ? undefined : { opacity: 0, y: 28 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}

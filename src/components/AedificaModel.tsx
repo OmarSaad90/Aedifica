@@ -98,7 +98,7 @@ export function AedificaModel() {
                   {ITEMS.map(({ num, title, body }, i) => (
                     <motion.div
                       key={num}
-                      className="relative flex items-start gap-6 lg:gap-10 py-9 lg:py-11 border-t border-sediment/25"
+                      className="relative flex items-start gap-6 lg:gap-10 py-6 lg:py-8 border-t border-sediment/25"
                       initial={reduce ? undefined : { opacity: 0, x: -16 }}
                       whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
                       viewport={reduce ? undefined : VIEWPORT}

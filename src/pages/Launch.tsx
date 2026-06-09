@@ -1,6 +1,7 @@
 import { SEO, SITE_URL } from '../components/SEO'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
+import { PageCTA } from '../components/PageCTA'
 
 const LAUNCH_SCHEMA = {
   '@context': 'https://schema.org',
@@ -195,7 +196,7 @@ export function Launch() {
       </section>
 
       {/* ── Who It Serves ── bg-snow */}
-      <section className="bg-snow py-16 lg:py-24 xl:py-28" aria-labelledby="launch-serves-h2">
+      <section className="bg-snow py-12 lg:py-18" aria-labelledby="launch-serves-h2">
         <div className="max-w-7xl mx-auto px-6">
 
           <motion.h2
@@ -236,7 +237,7 @@ export function Launch() {
       </section>
 
       {/* ── Program Architecture First ── bg-bone */}
-      <section className="bg-bone py-16 lg:py-24 xl:py-28" aria-label="What makes Launch different">
+      <section className="bg-bone py-12 lg:py-18" aria-label="What makes Launch different">
         <div className="max-w-7xl mx-auto px-6">
           <div className="lg:grid lg:grid-cols-[1.15fr_1fr] lg:gap-14 xl:gap-20 lg:items-start">
 
@@ -315,24 +316,9 @@ export function Launch() {
 
       {/* ── Six Deliverables ── bg-anthracite */}
       <section
-        className="bg-anthracite py-16 lg:py-24 relative overflow-hidden"
+        className="bg-anthracite py-14 lg:py-20 relative overflow-hidden"
         aria-labelledby="deliverables-h2">
 
-        {/* Ghost word — bleeds bottom-right */}
-        <motion.span
-          className="pointer-events-none select-none absolute bottom-0 right-0 leading-[0.82] text-white translate-x-[6%] translate-y-[18%]"
-          initial={reduce ? undefined : { opacity: 0 }}
-          whileInView={reduce ? undefined : { opacity: 0.03 }}
-          viewport={reduce ? undefined : VIEWPORT}
-          transition={reduce ? undefined : { duration: 1.6, delay: 0.4, ease: EASE }}
-          style={{
-            fontFamily: 'var(--font-heading)',
-            fontWeight: 300,
-            fontSize: 'clamp(8rem, 16vw, 16rem)',
-          }}
-          aria-hidden="true">
-          Launch
-        </motion.span>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
 
@@ -373,7 +359,7 @@ export function Launch() {
             {DELIVERABLES.map(({ num, name, body, phase }, i) => (
               <motion.div
                 key={num}
-                className="grid grid-cols-1 lg:grid-cols-[72px_1fr_120px] lg:gap-10 xl:gap-14 border-b border-white/10 py-7 lg:py-9 lg:items-start"
+                className="grid grid-cols-1 lg:grid-cols-[72px_1fr_120px] lg:gap-10 xl:gap-14 border-b border-white/10 py-6 lg:py-8 lg:items-start"
                 initial={reduce ? undefined : { opacity: 0, y: 18 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
@@ -411,7 +397,7 @@ export function Launch() {
       </section>
 
       {/* ── Relevant Funding ── bg-snow */}
-      <section className="bg-snow py-16 lg:py-24 xl:py-28" aria-labelledby="funding-h2">
+      <section className="bg-snow py-12 lg:py-18" aria-labelledby="funding-h2">
         <div className="max-w-7xl mx-auto px-6">
           <div className="lg:grid lg:grid-cols-[1fr_1.3fr] lg:gap-16 xl:gap-24 lg:items-start">
 
@@ -477,57 +463,14 @@ export function Launch() {
         </div>
       </section>
 
-      {/* ── CTA ── bg-snow pb-0, contained patina block */}
-      <section className="bg-snow pt-10 lg:pt-16 pb-0" aria-label="Start a Launch engagement">
-        <div className="max-w-[1100px] mx-auto px-6">
-          <motion.div
-            className="relative px-10 pt-16 pb-12 lg:px-16 lg:pt-20 lg:pb-14 text-center rounded-t-[2rem] overflow-hidden"
-            initial={reduce ? undefined : { opacity: 0, y: 28 }}
-            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-            viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-
-            <img
-              src="https://picsum.photos/seed/launch-grant/1400/700"
-              alt=""
-              aria-hidden="true"
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ filter: 'grayscale(30%) contrast(1.1)' }}
-            />
-            <div className="absolute inset-0 bg-patina/88" aria-hidden="true" />
-
-            <div className="relative z-10">
-              <h2
-                className="text-[2rem] lg:text-[3rem] xl:text-[3.5rem] leading-[1.08] tracking-[-0.03em] text-white italic mb-6"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-                A funding opportunity review is the first step.
-              </h2>
-
-              <p
-                className="text-[15.5px] text-white/75 leading-[1.7] max-w-[52ch] mx-auto mb-10"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                Submit a funding opportunity for initial review. Aedifica will assess fit, eligibility, and timeline before any engagement begins. No commitment required.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Link
-                  to="/partner"
-                  className="inline-flex items-center justify-center bg-white text-patina text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  Discuss a Launch Engagement
-                </Link>
-                <Link
-                  to="/partner"
-                  className="inline-flex items-center justify-center bg-transparent text-white/80 border border-white/30 text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/8 hover:text-white"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  Submit an Opportunity for Review
-                </Link>
-              </div>
-            </div>
-
-          </motion.div>
-        </div>
-      </section>
+      <PageCTA
+        id="launch-cta"
+        heading="A funding opportunity review is the first step."
+        body="Submit a funding opportunity for initial review. Aedifica will assess fit, eligibility, and timeline before any engagement begins. No commitment required."
+        primary={{ label: 'Discuss a Launch Engagement', to: '/partner' }}
+        secondary={{ label: 'Submit an Opportunity for Review', to: '/partner' }}
+        color="patina"
+      />
 
     </main>
   )

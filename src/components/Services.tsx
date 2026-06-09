@@ -24,7 +24,7 @@ export function Services() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-bone py-16 lg:py-24" aria-labelledby="services-heading">
+    <section className="bg-bone py-12 lg:py-18" aria-labelledby="services-heading">
       <div className="max-w-7xl mx-auto px-6">
 
         <motion.div

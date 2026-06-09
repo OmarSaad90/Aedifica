@@ -41,7 +41,7 @@ const COLUMNS = [
 
 export function Footer() {
   return (
-    <footer className="bg-anthracite border-t-2 border-datum">
+    <footer className="bg-anthracite">
       <div className="max-w-7xl mx-auto px-6 pt-8 pb-5 lg:pt-9 lg:pb-6">
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2.6fr] gap-8 lg:gap-20 mb-4 lg:mb-5">

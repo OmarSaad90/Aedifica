@@ -78,7 +78,7 @@ export function FourGates() {
                   <div className="w-6 h-[2px] bg-datum mb-5" aria-hidden="true" />
 
                   <h3
-                    className="text-[1rem] lg:text-[1.0625rem] leading-[1.25] tracking-[-0.01em] text-anthracite mb-2.5 font-medium"
+                    className="text-[1.125rem] lg:text-[1.25rem] leading-[1.25] tracking-[-0.015em] text-anthracite mb-3 font-medium"
                     style={{ fontFamily: 'var(--font-body)' }}>
                     {title}
                   </h3>

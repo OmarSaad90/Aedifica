@@ -48,7 +48,7 @@ export function Partnership() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-snow py-16 lg:py-24" aria-labelledby="partnership-heading">
+    <section className="bg-snow py-12 lg:py-18" aria-labelledby="partnership-heading">
       <div className="max-w-7xl mx-auto px-6">
         <div className="lg:grid lg:grid-cols-[1fr_0.5fr] lg:gap-16 xl:gap-20 lg:items-start">
 
