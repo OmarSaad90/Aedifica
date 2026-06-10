@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 
 const N = 45
@@ -23,10 +22,6 @@ const PATHS = generatePaths()
 
 export function BackgroundPaths() {
   const reduce = useReducedMotion()
-
-  useEffect(() => {
-    console.log('[BackgroundPaths] mounted, paths:', PATHS.length)
-  }, [])
 
   return (
     <div

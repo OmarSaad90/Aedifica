@@ -663,7 +663,7 @@ export function Partner() {
                         disabled={submitting}
                         className="inline-flex items-center justify-center bg-datum text-white text-[13.5px] tracking-[-0.01em] px-8 py-3.5 hover:bg-datum/88 active:scale-[0.98] transition-all duration-150 flex-shrink-0 disabled:opacity-60 disabled:cursor-not-allowed"
                         style={{ fontFamily: 'var(--font-body)' }}>
-                        {submitting ? 'Sending…' : 'Submit'}
+                        {submitting ? 'Sending…' : 'Send Inquiry'}
                       </button>
                     </div>
                   </div>

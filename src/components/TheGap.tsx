@@ -26,7 +26,7 @@ export function TheGap() {
             </motion.h2>
 
             <motion.p
-              className="text-[15.5px] text-white/65 leading-[1.72]"
+              className="text-[15.5px] text-white/65 leading-[1.72] max-w-[68ch]"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 20 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}

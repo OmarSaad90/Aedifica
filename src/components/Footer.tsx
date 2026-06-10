@@ -33,8 +33,6 @@ const COLUMNS = [
     links: [
       { label: 'About', href: '/about' },
       { label: 'Contact', href: '/partner' },
-      { label: 'Privacy', href: '/privacy' },
-      { label: 'Accessibility', href: '/accessibility' },
     ],
   },
 ] as const
@@ -59,12 +57,12 @@ export function Footer() {
               </span>
             </Link>
             <p
-              className="text-[13px] text-white/40 leading-[1.65] max-w-[28ch]"
+              className="text-[13px] text-white/60 leading-[1.65] max-w-[28ch]"
               style={{ fontFamily: 'var(--font-body)' }}>
               We build the builders.
             </p>
             <p
-              className="text-[12.5px] text-white/30 leading-[1.7] max-w-[30ch] mt-3"
+              className="text-[12.5px] text-white/50 leading-[1.7] max-w-[30ch] mt-3"
               style={{ fontFamily: 'var(--font-body)' }}>
               Construction-management workforce pathways for New Jersey.
             </p>
@@ -75,7 +73,7 @@ export function Footer() {
             {COLUMNS.map(({ heading, links }) => (
               <div key={heading}>
                 <p
-                  className="text-[10px] text-white/35 uppercase tracking-[0.18em] mb-3 select-none"
+                  className="text-[10px] text-white/55 uppercase tracking-[0.18em] mb-3 select-none"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   {heading}
                 </p>
@@ -100,12 +98,12 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <p
-            className="text-[12px] text-white/25"
+            className="text-[12px] text-white/40"
             style={{ fontFamily: 'var(--font-body)' }}>
             &copy; {new Date().getFullYear()} Aedifica. All rights reserved.
           </p>
           <p
-            className="text-[12px] text-white/20"
+            className="text-[12px] text-white/35"
             style={{ fontFamily: 'var(--font-body)' }}>
             New Jersey · Construction-Management Workforce Pathways
           </p>

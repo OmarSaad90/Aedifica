@@ -29,7 +29,7 @@ export function CurriculumStrip() {
           {/* Left: label + heading + context + link */}
           <div className="mb-12 lg:mb-0">
             <motion.p
-              className="text-[10.5px] text-white/30 uppercase tracking-[0.22em] mb-7 select-none"
+              className="text-[10.5px] text-white/50 uppercase tracking-[0.22em] mb-7 select-none"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0 }}
               whileInView={reduce ? undefined : { opacity: 1 }}
@@ -40,7 +40,7 @@ export function CurriculumStrip() {
 
             <motion.h2
               id="curriculum-heading"
-              className="text-[2.25rem] lg:text-[3.25rem] xl:text-[4rem] leading-[1.07] tracking-[-0.03em] text-white mb-8"
+              className="text-[2.25rem] lg:text-[3.25rem] xl:text-[4rem] leading-[1.07] tracking-[-0.03em] text-white italic mb-8"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 24 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}

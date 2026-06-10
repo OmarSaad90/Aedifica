@@ -315,13 +315,13 @@ export function About() {
               <h3 className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] italic text-white leading-[1.06] tracking-[-0.03em] mb-6" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
                 {VALUES[0].name}
               </h3>
-              <p className="text-[15px] text-white/80 leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[15px] text-white leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[0].description}
               </p>
             </div>
             <div className="mt-8 lg:mt-0 lg:pt-1">
-              <p className="text-[10px] text-white/60 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
-              <p className="text-[14px] text-white/75 leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[10px] text-white/85 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
+              <p className="text-[14px] text-white leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[0].practice}
               </p>
             </div>
@@ -343,13 +343,13 @@ export function About() {
               <h3 className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] italic text-anthracite leading-[1.06] tracking-[-0.03em] mb-6" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
                 {VALUES[1].name}
               </h3>
-              <p className="text-[15px] text-anthracite/75 leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[15px] text-anthracite leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[1].description}
               </p>
             </div>
             <div className="mt-8 lg:mt-0 lg:pt-1">
-              <p className="text-[10px] text-anthracite/60 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
-              <p className="text-[14px] text-anthracite/75 leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[10px] text-anthracite/80 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
+              <p className="text-[14px] text-anthracite leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[1].practice}
               </p>
             </div>
@@ -370,13 +370,13 @@ export function About() {
               <h3 className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] italic text-white leading-[1.06] tracking-[-0.03em] mb-6" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
                 {VALUES[2].name}
               </h3>
-              <p className="text-[15px] text-white/80 leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[15px] text-white leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[2].description}
               </p>
             </div>
             <div className="mt-8 lg:mt-0 lg:pt-1">
-              <p className="text-[10px] text-white/60 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
-              <p className="text-[14px] text-white/75 leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[10px] text-white/85 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
+              <p className="text-[14px] text-white leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[2].practice}
               </p>
             </div>
@@ -398,13 +398,13 @@ export function About() {
               <h3 className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] italic text-anthracite leading-[1.06] tracking-[-0.03em] mb-6" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
                 {VALUES[3].name}
               </h3>
-              <p className="text-[15px] text-anthracite/75 leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[15px] text-anthracite leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[3].description}
               </p>
             </div>
             <div className="mt-8 lg:mt-0 lg:pt-1">
-              <p className="text-[10px] text-anthracite/60 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
-              <p className="text-[14px] text-anthracite/75 leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[10px] text-anthracite/80 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
+              <p className="text-[14px] text-anthracite leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[3].practice}
               </p>
             </div>
