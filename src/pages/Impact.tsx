@@ -87,7 +87,7 @@ export function Impact() {
           animate={reduce ? undefined : { opacity: 1 }}
           transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
           <img
-            src="https://picsum.photos/seed/impact-review/800/600"
+            src="/images/impact-event.jpg"
             alt=""
             className="w-full h-full object-cover"
             style={{ filter: 'grayscale(25%) contrast(1.08)' }}
@@ -246,7 +246,7 @@ export function Impact() {
               {/* Photo */}
               <div className="mt-6 lg:mt-0 overflow-hidden h-[220px] lg:h-[300px] xl:h-[380px]">
                 <img
-                  src="https://picsum.photos/seed/engineering-workshop/600/300"
+                  src="/images/stevens-program.jpg"
                   alt=""
                   className="w-full h-full object-cover"
                   style={{ filter: 'grayscale(20%) contrast(1.05)' }}
@@ -269,7 +269,7 @@ export function Impact() {
               {/* Photo — left (asymmetry) */}
               <div className="overflow-hidden h-[220px] lg:h-[300px] xl:h-[380px]">
                 <img
-                  src="https://picsum.photos/seed/stem-program/600/300"
+                  src="/images/bridge-test.jpg"
                   alt=""
                   className="w-full h-full object-cover"
                   style={{ filter: 'grayscale(20%) contrast(1.05)' }}
@@ -287,7 +287,7 @@ export function Impact() {
                 <p
                   className="text-[14.5px] text-anthracite/75 leading-[1.72] mb-5"
                   style={{ fontFamily: 'var(--font-body)' }}>
-                  Kimi Stephenson and Dr. Karim Karam co-delivered an intensive 8-week STEM program at Hillside Innovation Academy, serving 21 students. The program was recognized as highly successful, with a full post-project report available on request.
+                  Kimi Stephenson and Dr. Karim Karam co-delivered an intensive 10-week STEM program at Hillside Innovation Academy, serving 21 students across Grades 7 and 8. The program was recognized as highly successful, with a full post-project report available on request.
                 </p>
                 <p
                   className="text-[14.5px] text-anthracite/75 leading-[1.72] mb-8"
@@ -315,10 +315,10 @@ export function Impact() {
                   Students served
                 </p>
                 <div className="mt-5 space-y-1.5">
-                  <p className="text-[12.5px] text-anthracite/70 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>8-week intensive</p>
+                  <p className="text-[12.5px] text-anthracite/70 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>10-week intensive, Grades 7–8</p>
                   <p className="text-[12.5px] text-anthracite/70 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>Hillside Innovation Academy</p>
-                  <p className="text-[12.5px] text-anthracite/70 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>STEM curriculum</p>
-                  <p className="text-[12.5px] text-anthracite/70 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>Report available on request</p>
+                  <p className="text-[12.5px] text-anthracite/70 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>55% UCVTS acceptance (8th grade)</p>
+                  <p className="text-[12.5px] text-anthracite/70 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>EIF-funded · report on request</p>
                 </div>
               </div>
 

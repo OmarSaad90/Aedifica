@@ -73,7 +73,7 @@ export function Partnership() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.6, delay: 0.15, ease: EASE }}>
               <img
-                src="https://picsum.photos/seed/partnership-inst/600/420"
+                src="/images/partnership-event.jpg"
                 alt=""
                 className="w-full h-auto object-cover"
                 style={{ filter: 'grayscale(20%) contrast(1.05)' }}

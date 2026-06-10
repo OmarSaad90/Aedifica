@@ -54,10 +54,26 @@ export function Pathway() {
 
       {/* ── Hero ── */}
       <section
-        className="bg-anthracite min-h-[65vh] flex flex-col justify-end pb-16 lg:pb-24"
+        className="bg-anthracite min-h-[65vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="pathway-h1">
 
-        <div className="max-w-7xl mx-auto px-6 w-full">
+        {/* Full-bleed right-half photo — desktop only */}
+        <motion.div
+          className="hidden lg:block absolute inset-y-0 right-0 w-2/5"
+          initial={reduce ? undefined : { opacity: 0 }}
+          animate={reduce ? undefined : { opacity: 1 }}
+          transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
+          <img
+            src="/images/stevens-students.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+            style={{ filter: 'grayscale(25%) contrast(1.08)' }}
+            loading="eager"
+          />
+        </motion.div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+          <div className="lg:max-w-[60%] lg:pr-8 xl:pr-12">
 
           <motion.span
             className="inline-block text-[11px] uppercase tracking-[0.18em] bg-datum/20 text-datum px-3 py-1 mb-2 select-none"
@@ -102,6 +118,7 @@ export function Pathway() {
               </span>
             ))}
           </motion.div>
+          </div>
 
         </div>
       </section>

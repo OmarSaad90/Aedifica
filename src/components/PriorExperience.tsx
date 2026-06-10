@@ -20,7 +20,7 @@ export function PriorExperience() {
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, ease: EASE }}>
             <img
-              src="https://picsum.photos/seed/stem-workshop/600/440"
+              src="/images/stem-workshop.jpg"
               alt=""
               className="w-full h-auto object-cover"
               style={{ filter: 'grayscale(20%) contrast(1.05)' }}

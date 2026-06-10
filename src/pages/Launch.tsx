@@ -146,7 +146,7 @@ export function Launch() {
           animate={reduce ? undefined : { opacity: 1 }}
           transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
           <img
-            src="https://picsum.photos/seed/grant-meeting/800/600"
+            src="/images/planning-session.jpg"
             alt=""
             className="w-full h-full object-cover"
             style={{ filter: 'grayscale(25%) contrast(1.08)' }}
@@ -243,15 +243,15 @@ export function Launch() {
             {/* Left: photo + pull statement */}
             <div>
               <motion.div
-                className="overflow-hidden mb-10"
+                className="overflow-hidden mb-10 h-[220px] lg:h-[260px]"
                 initial={reduce ? undefined : { opacity: 0, y: 20 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
                 <img
-                  src="https://picsum.photos/seed/planning-session/700/370"
+                  src="/images/program-materials.jpg"
                   alt=""
-                  className="w-full h-auto object-cover"
+                  className="w-full h-full object-cover"
                   style={{ filter: 'grayscale(20%) contrast(1.05)' }}
                   loading="lazy"
                 />

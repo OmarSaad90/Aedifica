@@ -48,10 +48,10 @@ export function AedificaModel() {
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, ease: EASE }}>
             <img
-              src="https://picsum.photos/seed/construction-arch/600/720"
+              src="/images/site-tour.jpg"
               alt=""
               className="w-full h-auto object-cover"
-              style={{ filter: 'grayscale(20%) contrast(1.05)' }}
+              style={{ filter: 'grayscale(15%) contrast(1.08)' }}
               loading="lazy"
             />
           </motion.div>
@@ -125,7 +125,7 @@ export function AedificaModel() {
                           fontFamily: 'var(--font-heading)',
                           fontWeight: 300,
                           fontSize: 'clamp(3.5rem, 7vw, 6rem)',
-                          color: 'rgb(102 103 171 / 0.13)',
+                          color: 'rgb(102 103 171 / 0.32)',
                           lineHeight: '0.85',
                           marginTop: '2px',
                         }}

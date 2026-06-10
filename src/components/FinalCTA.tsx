@@ -15,14 +15,14 @@ export function FinalCTA() {
 
           {/* Background image — replace with real construction site photo */}
           <img
-            src="https://picsum.photos/seed/construction-nj/1400/700"
+            src="/images/site-tour.jpg"
             alt=""
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ filter: 'grayscale(30%) contrast(1.1)' }}
           />
           {/* Datum overlay — keeps brand color and text legibility */}
-          <div className="absolute inset-0 bg-datum/88" aria-hidden="true" />
+          <div className="absolute inset-0 bg-datum/55" aria-hidden="true" />
 
           {/* Content */}
           <div className="relative z-10">

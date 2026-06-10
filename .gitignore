@@ -25,6 +25,7 @@ dist-ssr
 
 # Client documents — keep off public repo
 info/
+client assets/
 
 # Claude Code internals
 skills-lock.json

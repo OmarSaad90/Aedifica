@@ -177,7 +177,7 @@ export function Rebuild() {
           animate={reduce ? undefined : { opacity: 1 }}
           transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
           <img
-            src="https://picsum.photos/seed/cohort-construction/800/600"
+            src="/images/presentation-day.jpg"
             alt=""
             className="w-full h-full object-cover"
             style={{ filter: 'grayscale(25%) contrast(1.08)' }}
@@ -301,7 +301,7 @@ export function Rebuild() {
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.55, delay: 0.18, ease: EASE }}>
                 <img
-                  src="https://picsum.photos/seed/digital-construction/700/420"
+                  src="/images/bridge-shelves.jpg"
                   alt=""
                   className="w-full h-auto object-cover"
                   style={{ filter: 'grayscale(20%) contrast(1.05)' }}
