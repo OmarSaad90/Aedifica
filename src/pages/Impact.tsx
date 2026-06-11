@@ -88,7 +88,7 @@ export function Impact() {
           transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
           <img
             src="/images/impact-event.jpg"
-            alt=""
+            alt="Bridging Brilliance program participants at Hillside Innovation Academy and Stevens Institute of Technology event, New Jersey"
             className="w-full h-full object-cover"
             style={{ filter: 'grayscale(25%) contrast(1.08)' }}
             loading="eager"
@@ -237,7 +237,7 @@ export function Impact() {
                   This experience informs Aedifica's secondary curriculum approach, instructional sequencing design, and student engagement methodology for the planned Pathway offering.
                 </p>
                 <p
-                  className="text-[11.5px] text-anthracite/55 leading-[1.6] italic"
+                  className="text-[11.5px] text-anthracite/68 leading-[1.6] italic"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   Prior educational delivery experience. Not Aedifica workforce placement outcomes.
                 </p>
@@ -247,7 +247,7 @@ export function Impact() {
               <div className="mt-6 lg:mt-0 overflow-hidden h-[220px] lg:h-[300px] xl:h-[380px]">
                 <img
                   src="/images/stevens-program.jpg"
-                  alt=""
+                  alt="Aedifica program participants at Stevens Institute of Technology, New Jersey"
                   className="w-full h-full object-cover"
                   style={{ filter: 'grayscale(20%) contrast(1.05)' }}
                   loading="lazy"
@@ -270,7 +270,7 @@ export function Impact() {
               <div className="overflow-hidden h-[220px] lg:h-[300px] xl:h-[380px]">
                 <img
                   src="/images/bridge-test.jpg"
-                  alt=""
+                  alt="Structural bridge model testing exercise"
                   className="w-full h-full object-cover"
                   style={{ filter: 'grayscale(20%) contrast(1.05)' }}
                   loading="lazy"
@@ -295,7 +295,7 @@ export function Impact() {
                   This delivery experience informs the design of Aedifica Explore, the planned middle- and high-school construction and infrastructure career exposure offering.
                 </p>
                 <p
-                  className="text-[11.5px] text-anthracite/55 leading-[1.6] italic"
+                  className="text-[11.5px] text-anthracite/68 leading-[1.6] italic"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   Prior educational delivery experience. Not Aedifica workforce placement outcomes.
                 </p>
@@ -338,7 +338,7 @@ export function Impact() {
             {/* Left: heading + context */}
             <div className="mb-12 lg:mb-0 lg:sticky lg:top-28">
               <motion.p
-                className="text-[10.5px] text-white/30 uppercase tracking-[0.22em] mb-6 select-none"
+                className="text-[10.5px] text-white/50 uppercase tracking-[0.22em] mb-6 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0 }}
                 whileInView={reduce ? undefined : { opacity: 1 }}
@@ -366,7 +366,7 @@ export function Impact() {
                 Following an initial Rebuild cohort, Aedifica intends to publish outcomes across eight categories. Each is reported separately: no blending, no substituting enrollment for placement, no combining employment and continuing education.
               </motion.p>
               <motion.p
-                className="text-[11.5px] text-white/45 leading-[1.65] italic"
+                className="text-[11.5px] text-white/62 leading-[1.65] italic"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0 }}
                 whileInView={reduce ? undefined : { opacity: 1 }}

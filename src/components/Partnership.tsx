@@ -74,7 +74,7 @@ export function Partnership() {
               transition={reduce ? undefined : { duration: 0.6, delay: 0.15, ease: EASE }}>
               <img
                 src="/images/partnership-event.jpg"
-                alt=""
+                alt="Aedifica partnership event with students and educators, New Jersey"
                 className="w-full h-auto object-cover"
                 style={{ filter: 'grayscale(20%) contrast(1.05)' }}
                 loading="lazy"

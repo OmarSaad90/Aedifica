@@ -133,7 +133,8 @@ const REPORTING = [
   'Enrollment, attendance, and completion',
   'Credential preparation and attainment, where applicable and authorized',
   'Employer capstone participation and interviews',
-  'Employment placement by role category and time period',
+  'Employment outcomes by role category and time period',
+  'CM-track outcomes reported separately from general placement figures',
   'Apprenticeship or articulation outcomes',
   'Retention at defined milestones',
   'Continuing education outcomes reported separately from employment',
@@ -177,8 +178,8 @@ export function Rebuild() {
           animate={reduce ? undefined : { opacity: 1 }}
           transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
           <img
-            src="/images/presentation-day.jpg"
-            alt=""
+            src="/images/site-tour.jpg"
+            alt="Construction management professionals on site tour at Kalikow building, New Jersey"
             className="w-full h-full object-cover"
             style={{ filter: 'grayscale(25%) contrast(1.08)' }}
             loading="eager"
@@ -302,7 +303,7 @@ export function Rebuild() {
                 transition={reduce ? undefined : { duration: 0.55, delay: 0.18, ease: EASE }}>
                 <img
                   src="/images/bridge-shelves.jpg"
-                  alt=""
+                  alt="Construction engineering models and textbooks"
                   className="w-full h-auto object-cover"
                   style={{ filter: 'grayscale(20%) contrast(1.05)' }}
                   loading="lazy"
@@ -350,7 +351,7 @@ export function Rebuild() {
           <div className="lg:grid lg:grid-cols-[1fr_1.6fr] lg:gap-20 xl:gap-28 lg:items-start mb-14 lg:mb-18">
             <div>
               <motion.p
-                className="text-[10.5px] text-white/35 uppercase tracking-[0.22em] mb-6 select-none"
+                className="text-[10.5px] text-white/55 uppercase tracking-[0.22em] mb-6 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0 }}
                 whileInView={reduce ? undefined : { opacity: 1 }}
@@ -390,7 +391,7 @@ export function Rebuild() {
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.45, delay: i * 0.06, ease: EASE }}>
                 <span
-                  className="text-[3rem] lg:text-[3.75rem] xl:text-[4.5rem] text-white/28 italic leading-none mb-4 lg:mb-0 block"
+                  className="text-[3rem] lg:text-[3.75rem] xl:text-[4.5rem] text-white/42 italic leading-none mb-4 lg:mb-0 block"
                   style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
                   aria-hidden="true">
                   {num}
@@ -409,12 +410,12 @@ export function Rebuild() {
                 </div>
                 <div className="mt-5 lg:mt-0 lg:pt-1">
                   <p
-                    className="text-[10px] text-white/30 uppercase tracking-[0.16em] mb-2"
+                    className="text-[10px] text-white/52 uppercase tracking-[0.16em] mb-2"
                     style={{ fontFamily: 'var(--font-body)' }}>
                     Provided by
                   </p>
                   <p
-                    className="text-[13.5px] text-white/60 leading-[1.6] italic"
+                    className="text-[13.5px] text-white/75 leading-[1.6] italic"
                     style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
                     {who}
                   </p>
@@ -501,7 +502,7 @@ export function Rebuild() {
           </div>
 
           <motion.p
-            className="text-[12px] text-anthracite/45 leading-[1.65] mt-8 max-w-[72ch]"
+            className="text-[12px] text-anthracite/65 leading-[1.65] mt-8 max-w-[72ch]"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0 }}
             whileInView={reduce ? undefined : { opacity: 1 }}
@@ -535,7 +536,7 @@ export function Rebuild() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
               <p
-                className="text-[10.5px] text-white/50 uppercase tracking-[0.18em] mb-5 select-none"
+                className="text-[10.5px] text-white/72 uppercase tracking-[0.18em] mb-5 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Community and institutional partners
               </p>
@@ -549,7 +550,7 @@ export function Rebuild() {
                   <li key={pt} className="flex gap-3.5 items-start">
                     <span className="flex-shrink-0 w-[4px] h-[4px] bg-white/40 mt-[7px]" aria-hidden="true" />
                     <span
-                      className="text-[13.5px] text-white/75 leading-[1.65]"
+                      className="text-[13.5px] text-white leading-[1.65]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {pt}
                     </span>
@@ -572,7 +573,7 @@ export function Rebuild() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, delay: 0.1, ease: SPRING }}>
               <p
-                className="text-[10.5px] text-white/50 uppercase tracking-[0.18em] mb-5 select-none"
+                className="text-[10.5px] text-white/72 uppercase tracking-[0.18em] mb-5 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Employers
               </p>
@@ -586,7 +587,7 @@ export function Rebuild() {
                   <li key={pt} className="flex gap-3.5 items-start">
                     <span className="flex-shrink-0 w-[4px] h-[4px] bg-white/40 mt-[7px]" aria-hidden="true" />
                     <span
-                      className="text-[13.5px] text-white/75 leading-[1.65]"
+                      className="text-[13.5px] text-white leading-[1.65]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {pt}
                     </span>
@@ -671,7 +672,7 @@ export function Rebuild() {
         heading="Year 1 partnerships are being formed now."
         body="Discuss a Rebuild cohort partnership, an employer participation role, or an institutional briefing on Aedifica's planned delivery model."
         primary={{ label: 'Discuss a Rebuild Partnership', to: '/partner' }}
-        secondary={{ label: 'Become an Employer Participant', to: '/partner' }}
+        secondary={{ label: 'Become an Employer Partner', to: '/partner' }}
       />
 
     </main>

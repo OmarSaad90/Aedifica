@@ -69,8 +69,8 @@ export function TalentPipeline() {
           animate={reduce ? undefined : { opacity: 1 }}
           transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
           <img
-            src="/images/manhattan-skyline.jpg"
-            alt=""
+            src="/images/campus-group.jpg"
+            alt="Construction-management students in program classroom at Stevens Institute of Technology, New Jersey"
             className="w-full h-full object-cover"
             style={{ filter: 'grayscale(25%) contrast(1.08)' }}
             loading="eager"
@@ -90,7 +90,7 @@ export function TalentPipeline() {
           </motion.span>
 
           <motion.p
-            className="text-[11px] text-white/50 tracking-[0.06em] mb-10"
+            className="text-[11px] text-white/65 tracking-[0.06em] mb-10"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 8 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}

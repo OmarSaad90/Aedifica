@@ -21,7 +21,7 @@ export function PriorExperience() {
             transition={reduce ? undefined : { duration: 0.65, ease: EASE }}>
             <img
               src="/images/stem-workshop.jpg"
-              alt=""
+              alt="Students in structured STEM and construction workshop, New Jersey"
               className="w-full h-auto object-cover"
               style={{ filter: 'grayscale(20%) contrast(1.05)' }}
               loading="lazy"

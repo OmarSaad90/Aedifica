@@ -147,7 +147,7 @@ export function Launch() {
           transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
           <img
             src="/images/planning-session.jpg"
-            alt=""
+            alt="Workforce development planning session with construction professionals, New Jersey"
             className="w-full h-full object-cover"
             style={{ filter: 'grayscale(25%) contrast(1.08)' }}
             loading="eager"
@@ -249,8 +249,8 @@ export function Launch() {
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
                 <img
-                  src="/images/program-materials.jpg"
-                  alt=""
+                  src="/images/stevens-students.jpg"
+                  alt="Program design students at Stevens Institute of Technology, New Jersey"
                   className="w-full h-full object-cover"
                   style={{ filter: 'grayscale(20%) contrast(1.05)' }}
                   loading="lazy"
@@ -324,7 +324,7 @@ export function Launch() {
           <div className="lg:grid lg:grid-cols-[1fr_1.5fr] lg:gap-20 xl:gap-28 lg:items-start mb-14 lg:mb-16">
             <div>
               <motion.p
-                className="text-[10.5px] text-white/30 uppercase tracking-[0.22em] mb-6 select-none"
+                className="text-[10.5px] text-white/50 uppercase tracking-[0.22em] mb-6 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0 }}
                 whileInView={reduce ? undefined : { opacity: 1 }}
@@ -449,7 +449,7 @@ export function Launch() {
                       {name}
                     </p>
                     <p
-                      className="text-[12.5px] text-anthracite/60 leading-[1.5]"
+                      className="text-[12.5px] text-anthracite/72 leading-[1.5]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {note}
                     </p>
@@ -467,7 +467,6 @@ export function Launch() {
         heading="A funding opportunity review is the first step."
         body="Submit a funding opportunity for initial review. Aedifica will assess fit, eligibility, and timeline before any engagement begins. No commitment required."
         primary={{ label: 'Discuss a Launch Engagement', to: '/partner' }}
-        secondary={{ label: 'Submit an Opportunity for Review', to: '/partner' }}
         color="patina"
       />
 

@@ -49,7 +49,7 @@ export function AedificaModel() {
             transition={reduce ? undefined : { duration: 0.65, ease: EASE }}>
             <img
               src="/images/site-tour.jpg"
-              alt=""
+              alt="Construction site tour, New Jersey"
               className="w-full h-auto object-cover"
               style={{ filter: 'grayscale(15%) contrast(1.08)' }}
               loading="lazy"

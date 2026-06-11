@@ -29,7 +29,7 @@ export function CurriculumStrip() {
           {/* Left: label + heading + context + link */}
           <div className="mb-12 lg:mb-0">
             <motion.p
-              className="text-[10.5px] text-white/50 uppercase tracking-[0.22em] mb-7 select-none"
+              className="text-[10.5px] text-white/65 uppercase tracking-[0.22em] mb-7 select-none"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0 }}
               whileInView={reduce ? undefined : { opacity: 1 }}

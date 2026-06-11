@@ -73,7 +73,7 @@ const ARTICLES = [
     category: 'ACCOUNTABILITY',
     title: 'Publishing Outcomes: The Accountability Standard Workforce Programs Need',
     excerpt: 'Enrollment numbers are not outcomes. Credible programs distinguish completion, credential attainment, placement, and retention.',
-    image: '/images/presentation-day.jpg',
+    image: '/images/stem-workshop.jpg',
   },
   {
     number: '06',
@@ -97,7 +97,7 @@ const ARTICLES = [
     category: 'PROGRAM DESIGN',
     title: 'Designing Workforce Programs Around Retention, Not Enrollment',
     excerpt: 'Programs optimized for enrollment produce placement statistics without retention evidence.',
-    image: '/images/program-materials.jpg',
+    image: '/images/stevens-students.jpg',
   },
   {
     number: '09',
@@ -220,7 +220,7 @@ export function Insights() {
 
                   <img
                     src={article.image}
-                    alt=""
+                    alt={article.title}
                     className="absolute inset-0 w-full h-full object-cover"
                     style={{ filter: 'grayscale(18%) contrast(1.06)' }}
                     loading="lazy"

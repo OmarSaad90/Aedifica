@@ -65,7 +65,7 @@ export function Explore() {
           transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
           <img
             src="/images/bb-students.jpg"
-            alt=""
+            alt="Middle school students in construction and engineering STEM program, Hillside Innovation Academy, New Jersey"
             className="w-full h-full object-cover"
             style={{ filter: 'grayscale(25%) contrast(1.08)' }}
             loading="eager"

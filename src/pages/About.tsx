@@ -102,7 +102,7 @@ const TEAM = [
   {
     name: 'Kimi Stephenson',
     role: 'Co-Founder & Community Program Lead',
-    bio: 'MS in Construction Engineering and Management, Stevens Institute of Technology. BA, Rutgers University-New Brunswick. Co-designed and co-delivered the Bridging Brilliance STEM program at Hillside Innovation Academy: eight weeks, 21 students, documented as an Aedifica delivery foundation.',
+    bio: 'MS in Construction Engineering and Management, Stevens Institute of Technology. BA, Rutgers University-New Brunswick. Co-designed and co-delivered the Bridging Brilliance STEM program at Hillside Innovation Academy: 10-week intensive, 21 students, documented as an Aedifica delivery foundation.',
     image: 'founder-kimi',
   },
 ] as const

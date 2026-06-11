@@ -48,8 +48,8 @@ const AUDIENCES: {
     label: 'Education Institutions',
     bg: 'bg-datum',
     textColor: 'text-white',
-    mutedText: 'text-white/82',
-    dimText: 'text-white/82',
+    mutedText: 'text-white',
+    dimText: 'text-white',
     borderFaint: 'border-white/20',
     orgValue: 'education',
     desc: 'Districts, charter networks, county colleges, and vocational institutions building student construction-management pathways.',
@@ -65,8 +65,8 @@ const AUDIENCES: {
     label: 'Workforce & Community',
     bg: 'bg-sediment',
     textColor: 'text-anthracite',
-    mutedText: 'text-anthracite/78',
-    dimText: 'text-anthracite/78',
+    mutedText: 'text-anthracite',
+    dimText: 'text-anthracite',
     borderFaint: 'border-anthracite/20',
     orgValue: 'workforce',
     desc: 'CBOs, workforce boards, and reentry organizations connecting adults to a practical construction-management bridge cohort.',
@@ -82,8 +82,8 @@ const AUDIENCES: {
     label: 'Employers',
     bg: 'bg-patina',
     textColor: 'text-white',
-    mutedText: 'text-white/82',
-    dimText: 'text-white/82',
+    mutedText: 'text-white',
+    dimText: 'text-white',
     borderFaint: 'border-white/20',
     orgValue: 'employer',
     desc: 'General contractors, specialty contractors, and developers validating roles and meeting prepared emerging talent through an accountable interview model.',
@@ -99,8 +99,8 @@ const AUDIENCES: {
     label: 'Funding & State Partners',
     bg: 'bg-quarry',
     textColor: 'text-anthracite',
-    mutedText: 'text-anthracite/78',
-    dimText: 'text-anthracite/78',
+    mutedText: 'text-anthracite',
+    dimText: 'text-anthracite',
     borderFaint: 'border-anthracite/20',
     orgValue: 'funding',
     desc: 'State agencies, workforce boards, and foundations supporting accountable construction-management workforce infrastructure.',
@@ -176,7 +176,7 @@ const EMPTY_FORM: FormState = {
 }
 
 const inputCls =
-  'w-full px-4 py-3 bg-transparent border border-anthracite/22 text-anthracite text-[14px] placeholder:text-anthracite/45 focus:border-datum focus:outline-none transition-colors duration-150'
+  'w-full px-4 py-3 bg-transparent border border-anthracite/22 text-anthracite text-[14px] placeholder:text-anthracite/75 focus:border-datum focus:outline-none transition-colors duration-150'
 
 const selectCls =
   'w-full px-4 py-3 bg-snow border border-anthracite/22 text-anthracite text-[14px] focus:border-datum focus:outline-none transition-colors duration-150 appearance-none cursor-pointer'

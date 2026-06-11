@@ -55,7 +55,7 @@ export function Outcomes() {
               transition={reduce ? undefined : { duration: 0.6, delay: 0.18, ease: EASE }}>
               <img
                 src="/images/campus-group.jpg"
-                alt=""
+                alt="Workforce program participants in classroom, New Jersey"
                 className="w-full h-auto object-cover"
                 style={{ filter: 'grayscale(20%) contrast(1.05)' }}
                 loading="lazy"

@@ -65,7 +65,7 @@ export function Pathway() {
           transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
           <img
             src="/images/stevens-students.jpg"
-            alt=""
+            alt="Construction-management pathway students at Stevens Institute of Technology, New Jersey"
             className="w-full h-full object-cover"
             style={{ filter: 'grayscale(25%) contrast(1.08)' }}
             loading="eager"
