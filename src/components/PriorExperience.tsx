@@ -14,7 +14,7 @@ export function PriorExperience() {
 
           {/* Left: placeholder image — replace with Stevens Institute / Bridging Brilliance photo */}
           <motion.div
-            className="hidden lg:block overflow-hidden"
+            className="mb-10 lg:mb-0 overflow-hidden"
             initial={reduce ? undefined : { opacity: 0, x: -20 }}
             whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
             viewport={reduce ? undefined : VIEWPORT}

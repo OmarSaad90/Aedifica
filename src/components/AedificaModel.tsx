@@ -40,9 +40,9 @@ export function AedificaModel() {
 
         <div className="lg:grid lg:grid-cols-[5fr_7fr] lg:gap-16 xl:gap-20 lg:items-start">
 
-          {/* Left: sticky image — desktop only */}
+          {/* Left: sticky image */}
           <motion.div
-            className="hidden lg:block lg:sticky lg:top-24 overflow-hidden"
+            className="mb-10 lg:mb-0 lg:sticky lg:top-24 overflow-hidden"
             initial={reduce ? undefined : { opacity: 0, x: -20 }}
             whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
             viewport={reduce ? undefined : VIEWPORT}

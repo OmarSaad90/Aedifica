@@ -67,7 +67,7 @@ export function Partnership() {
 
             {/* Placeholder image — replace with real photo */}
             <motion.div
-              className="hidden lg:block overflow-hidden"
+              className="mt-8 lg:mt-0 overflow-hidden"
               initial={reduce ? undefined : { opacity: 0, y: 16 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
