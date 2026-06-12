@@ -1,5 +1,5 @@
 // Update SITE_URL to the production domain before deploying
-export const SITE_URL = 'https://edfca.com'
+export const SITE_URL = 'https://edfca.netlify.app'
 const SITE_NAME = 'Aedifica'
 const OG_IMAGE = `${SITE_URL}/og-image.png`
 
@@ -25,8 +25,8 @@ export function SEO({ title, description, path, schema }: SEOProps) {
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:type" content="website" />
       <meta property="og:image" content={OG_IMAGE} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
+      <meta property="og:image:width" content="839" />
+      <meta property="og:image:height" content="436" />
       <meta property="og:image:alt" content={title} />
       <meta property="og:locale" content="en_US" />
 
