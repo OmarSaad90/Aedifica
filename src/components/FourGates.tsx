@@ -1,32 +1,39 @@
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
+import { UsersThree, CurrencyDollar, Handshake, Certificate, type Icon } from '@phosphor-icons/react'
 
 const VIEWPORT    = { once: true, margin: '-60px 0px' } as const
 const EASE        = [0.25, 0.1, 0.25, 1] as const
 const SPRING_EASE = [0.32, 0.72, 0, 1] as const
 
-const GATES = [
+type Gate = { num: string; title: string; body: string; Icon: Icon }
+
+const GATES: Gate[] = [
   {
     num:   '01',
     title: 'Recruitment and community support',
     body:  'A community or recruitment partner helps identify participants and define attendance support, case-management coordination, supportive services, and data responsibilities.',
+    Icon:  UsersThree,
   },
   {
     num:   '02',
     title: 'Funding and fiscal alignment',
     body:  'A funding or fiscal partner establishes how the cohort is supported, administered, and reported before delivery obligations begin.',
+    Icon:  CurrencyDollar,
   },
   {
     num:   '03',
     title: 'Employer commitment',
     body:  'Participating employers help validate role relevance, inform capstone expectations, and commit to a defined interview opportunity for qualified completers.',
+    Icon:  Handshake,
   },
   {
     num:   '04',
     title: 'Articulation or apprenticeship pathway',
     body:  'A signed progression route with an apprenticeship sponsor, union local, county college, or employer training program creates a credible next step beyond completion.',
+    Icon:  Certificate,
   },
-] as const
+]
 
 // Per-cell border rules for the 2×2 grid
 const CELL_BORDERS: Record<number, string> = {
@@ -59,7 +66,7 @@ export function FourGates() {
         {/* 2×2 grid — all cells on snow surface, sediment dividers */}
         <div className="max-w-[56rem] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            {GATES.map(({ title, body }, i) => {
+            {GATES.map(({ title, body, Icon: IconComp }, i) => {
               const isLeft = i % 2 === 0
               return (
                 <motion.div
@@ -74,8 +81,7 @@ export function FourGates() {
                   viewport={reduce ? undefined : VIEWPORT}
                   transition={reduce ? undefined : { duration: 0.55, delay: i * 0.08, ease: SPRING_EASE }}>
 
-                  {/* Datum accent rule — architectural marker, not a sequence number */}
-                  <div className="w-6 h-[2px] bg-datum mb-5" aria-hidden="true" />
+                  <IconComp size={22} weight="regular" className="text-datum mb-5" aria-hidden={true} />
 
                   <h3
                     className="text-[1.125rem] lg:text-[1.25rem] leading-[1.25] tracking-[-0.015em] text-anthracite mb-3 font-medium"

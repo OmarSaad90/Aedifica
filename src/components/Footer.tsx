@@ -98,12 +98,12 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <p
-            className="text-[12px] text-white/40"
+            className="text-[12px] text-white/50"
             style={{ fontFamily: 'var(--font-body)' }}>
             &copy; {new Date().getFullYear()} Aedifica. All rights reserved.
           </p>
           <p
-            className="text-[12px] text-white/35"
+            className="text-[12px] text-white/50"
             style={{ fontFamily: 'var(--font-body)' }}>
             New Jersey · Construction-Management Workforce Pathways
           </p>

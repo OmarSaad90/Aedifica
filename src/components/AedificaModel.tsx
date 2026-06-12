@@ -1,5 +1,4 @@
-import { useRef } from 'react'
-import { motion, useScroll, useSpring, useTransform, useReducedMotion } from 'motion/react'
+import { motion, useReducedMotion } from 'motion/react'
 
 const VIEWPORT    = { once: true, margin: '-70px 0px' } as const
 const EASE        = [0.25, 0.1, 0.25, 1] as const
@@ -24,18 +23,10 @@ const ITEMS = [
 ] as const
 
 export function AedificaModel() {
-  const reduce     = useReducedMotion()
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start 85%', 'end 65%'],
-  })
-  const springY     = useSpring(scrollYProgress, { stiffness: 120, damping: 24, restDelta: 0.001 })
-  const spineScaleY = useTransform(springY, [0, 1], [0, 1])
+  const reduce = useReducedMotion()
 
   return (
-    <section ref={sectionRef} className="bg-bone py-16 lg:py-24" aria-labelledby="model-heading">
+    <section className="bg-bone py-16 lg:py-24" aria-labelledby="model-heading">
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="lg:grid lg:grid-cols-[5fr_7fr] lg:gap-16 xl:gap-20 lg:items-start">
@@ -48,15 +39,15 @@ export function AedificaModel() {
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, ease: EASE }}>
             <img
-              src="/images/site-tour.jpg"
-              alt="Construction site tour, New Jersey"
+              src="/images/hia-students-bridge.jpg"
+              alt="Hillside Innovation Academy students presenting their bridge engineering project at Stevens Institute of Technology, New Jersey"
               className="w-full h-auto object-cover"
-              style={{ filter: 'grayscale(15%) contrast(1.08)' }}
+              style={{ filter: 'grayscale(15%) contrast(1.06)' }}
               loading="lazy"
             />
           </motion.div>
 
-          {/* Right: intro + spine + items */}
+          {/* Right: intro + items */}
           <div>
 
             {/* Section intro */}
@@ -77,83 +68,49 @@ export function AedificaModel() {
               </p>
             </div>
 
-            {/* Spine + item rows */}
+            {/* Items */}
             <div className="max-w-[52rem] mx-auto lg:max-w-none lg:mx-0">
-              <div className="relative">
-
-                {/* Scroll-driven vertical spine — desktop only */}
-                <div
-                  className="hidden lg:block absolute left-0 top-0 bottom-0 w-px overflow-hidden"
-                  aria-hidden="true"
+              {ITEMS.map(({ num, title, body }, i) => (
+                <motion.div
+                  key={num}
+                  className="flex items-start gap-6 lg:gap-10 py-8 lg:py-10 border-t border-sediment/25"
+                  initial={reduce ? undefined : { opacity: 0, x: -16 }}
+                  whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
+                  viewport={reduce ? undefined : VIEWPORT}
+                  transition={reduce ? undefined : { duration: 0.6, delay: i * 0.1, ease: SPRING_EASE }}
                 >
-                  <div className="absolute inset-0 bg-sediment/20" />
-                  <motion.div
-                    className="absolute inset-0 bg-datum origin-top"
-                    style={{ scaleY: reduce ? 1 : spineScaleY }}
-                  />
-                </div>
+                  <span
+                    className="flex-shrink-0 select-none"
+                    style={{
+                      fontFamily: 'var(--font-heading)',
+                      fontWeight: 300,
+                      fontSize: 'clamp(3.5rem, 7vw, 6rem)',
+                      color: 'rgb(102 103 171 / 0.32)',
+                      lineHeight: '0.85',
+                      marginTop: '2px',
+                    }}
+                    aria-hidden="true"
+                  >
+                    {num}
+                  </span>
 
-                {/* Items */}
-                <div className="lg:pl-12">
-                  {ITEMS.map(({ num, title, body }, i) => (
-                    <motion.div
-                      key={num}
-                      className="relative flex items-start gap-6 lg:gap-10 py-6 lg:py-8 border-t border-sediment/25"
-                      initial={reduce ? undefined : { opacity: 0, x: -16 }}
-                      whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
-                      viewport={reduce ? undefined : VIEWPORT}
-                      transition={reduce ? undefined : { duration: 0.6, delay: i * 0.1, ease: SPRING_EASE }}
+                  <div className="pt-1.5 min-w-0">
+                    <h3
+                      className="text-[1.0625rem] lg:text-[1.1875rem] font-semibold text-anthracite tracking-[-0.015em] mb-3 leading-snug"
+                      style={{ fontFamily: 'var(--font-body)' }}
                     >
-                      {/* Spine dot — activates as item enters viewport */}
-                      <motion.div
-                        className="hidden lg:block absolute w-2 h-2 bg-bone border border-sediment/40"
-                        style={{ left: 'calc(-3rem - 4px)', top: '50%', transform: 'translateY(-50%)' }}
-                        initial={reduce ? undefined : { borderColor: 'rgb(199 179 119 / 0.3)' }}
-                        whileInView={reduce ? undefined : {
-                          borderColor: 'var(--color-datum)',
-                          backgroundColor: 'rgb(102 103 171 / 0.15)',
-                        }}
-                        viewport={{ once: true, margin: '-40px 0px' }}
-                        transition={reduce ? undefined : { duration: 0.3, delay: 0.15 + i * 0.05, ease: EASE }}
-                        aria-hidden="true"
-                      />
-
-                      {/* Display number — watermark, not scaffold */}
-                      <span
-                        className="flex-shrink-0 select-none"
-                        style={{
-                          fontFamily: 'var(--font-heading)',
-                          fontWeight: 300,
-                          fontSize: 'clamp(3.5rem, 7vw, 6rem)',
-                          color: 'rgb(102 103 171 / 0.32)',
-                          lineHeight: '0.85',
-                          marginTop: '2px',
-                        }}
-                        aria-hidden="true"
-                      >
-                        {num}
-                      </span>
-
-                      <div className="pt-1.5 min-w-0">
-                        <h3
-                          className="text-[1.0625rem] lg:text-[1.1875rem] font-semibold text-anthracite tracking-[-0.015em] mb-3 leading-snug"
-                          style={{ fontFamily: 'var(--font-body)' }}
-                        >
-                          {title}
-                        </h3>
-                        <p
-                          className="text-[13.5px] text-anthracite/70 leading-[1.68] max-w-[55ch]"
-                          style={{ fontFamily: 'var(--font-body)' }}
-                        >
-                          {body}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
-                  <div className="border-t border-sediment/25" aria-hidden="true" />
-                </div>
-
-              </div>
+                      {title}
+                    </h3>
+                    <p
+                      className="text-[13.5px] text-anthracite/70 leading-[1.68] max-w-[55ch]"
+                      style={{ fontFamily: 'var(--font-body)' }}
+                    >
+                      {body}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+              <div className="border-t border-sediment/25" aria-hidden="true" />
             </div>
 
           </div>

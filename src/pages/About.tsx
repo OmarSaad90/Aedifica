@@ -1,6 +1,7 @@
 import { SEO, SITE_URL } from '../components/SEO'
 import { Link } from 'react-router-dom'
-import { motion, useReducedMotion } from 'motion/react'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
 
 const ABOUT_SCHEMA = {
   '@context': 'https://schema.org',
@@ -86,29 +87,109 @@ const VALUES = [
   },
 ] as const
 
-const TEAM = [
+type TeamMember = {
+  name: string
+  role: string
+  bio: string
+  fullBio?: string[]
+  image: string
+}
+
+const TEAM: TeamMember[] = [
   {
     name: 'Dr. Karim Karam',
     role: 'Co-Founder & CEO',
-    bio: 'Leads construction-management education at Stevens Institute of Technology, where he has delivered pre-college engineering workshops for New Jersey high-school students for over five years. Prior infrastructure and workforce leadership at Sarooj Construction Company across major infrastructure projects. Leads Aedifica\'s program architecture and institutional partner relationships.',
-    image: 'founder-karim',
+    bio: 'Dr. Karim Karam is Co-Founder & CEO of Aedifica, a construction-management educator, engineer, and workforce-builder committed to creating disciplined pathways that connect overlooked talent to credible advancement in the built environment.',
+    fullBio: [
+      'Dr. Karim Karam co-founded Aedifica because he understands education as both a personal inheritance and a public responsibility.',
+      'His belief in the power of learning began at home. Karim\'s father, born into a family from Ehden, Lebanon, became the first in his family to receive a university education, studying at Université Saint-Joseph in Lebanon and later at École Nationale des Ponts et Chaussées in France. His own father was illiterate, but his mother believed deeply enough in education to send him to boarding school from a small village. That conviction shaped the next generation. Karim\'s father did everything he could to give his children access to education, including selling personal assets when necessary. When Karim left for London to study civil engineering, his father told him that education is one of the few things no one can take away from you.',
+      'That lesson stayed with him.',
+      'Karim went on to pursue graduate study at MIT, where he served as a teaching assistant for probability and statistics at both the undergraduate and graduate levels and received the Best TA award for the course. He was also involved in MIT OpenCourseWare, an initiative built around the idea that high-quality knowledge should be accessible to those who seek it.',
+      'His career has continued to connect education, engineering, and opportunity. As a co-founder of Sarooj Construction Company, Karim helped build and lead a construction workforce across major infrastructure work, while seeing firsthand how focused training and upskilling can change confidence, performance, self-esteem, and financial mobility. Today, he is a Teaching Associate Professor at Stevens Institute of Technology, where he leads the graduate Construction Management program and prepares students for careers across the New York and New Jersey construction market.',
+      'Karim\'s commitment to earlier pathways is equally central to Aedifica. Through Stevens, he has delivered pre-college engineering workshops for high-school students, and he volunteered to help develop and deliver a STEM program at Hillside Innovation Academy. That experience became one of the most rewarding of his career: students began to speak the language of engineering, see themselves as problem-solvers, and imagine a future that could be respected, creative, and financially rewarding.',
+      'Aedifica is the institutional expression of that life\'s work. It is built on a simple conviction: talent is not missing. The pathway is. Aedifica exists to build disciplined, employer-informed construction-management pathways for overlooked learners, education institutions, workforce partners, and employers—so preparation can lead somewhere measurable, dignified, and real.',
+    ],
+    image: '/images/founder-karim.jpg',
   },
   {
     name: 'Dr. Nicole Silva',
     role: 'Co-Founder & Community Partnerships Lead',
     bio: 'Cross-sector workforce development and partnership experience across Union and Essex counties, New Jersey. Cultivated the partnership between Stevens Institute and Hillside Innovation Academy that became a foundation for Aedifica\'s community delivery model. Leads Aedifica\'s community organization and workforce agency relationships.',
-    image: 'founder-nicole',
+    image: '/images/founder-nicole.jpg',
   },
   {
     name: 'Kimi Stephenson',
     role: 'Co-Founder & Community Program Lead',
     bio: 'MS in Construction Engineering and Management, Stevens Institute of Technology. BA, Rutgers University-New Brunswick. Co-designed and co-delivered the Bridging Brilliance STEM program at Hillside Innovation Academy: 10-week intensive, 21 students, documented as an Aedifica delivery foundation.',
-    image: 'founder-kimi',
+    image: '/images/founder-kimi.jpg',
   },
-] as const
+]
+
+function TeamMemberCard({ member, index, reduce, onBioToggle, bioExpanded }: {
+  member: TeamMember; index: number; reduce: boolean | null
+  onBioToggle: () => void; bioExpanded: boolean
+}) {
+  return (
+    <motion.div
+      className="flex flex-col max-w-[260px] mx-auto w-full"
+      initial={reduce ? undefined : { opacity: 0, y: 24 }}
+      whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+      viewport={reduce ? undefined : VIEWPORT}
+      transition={reduce ? undefined : { duration: 0.55, delay: 0.1 * index, ease: EASE }}>
+
+      <div className="aspect-[3/4] overflow-hidden mb-5">
+        <img
+          src={member.image}
+          alt={`${member.name}, ${member.role}`}
+          className="w-full h-full object-cover object-top"
+          style={{ filter: 'grayscale(18%) contrast(1.05)' }}
+          loading="lazy"
+        />
+      </div>
+
+      <p
+        className="text-[10.5px] text-anthracite/70 uppercase tracking-[0.18em] mb-2.5 select-none min-h-[2rem]"
+        style={{ fontFamily: 'var(--font-body)' }}>
+        {member.role}
+      </p>
+      <h3
+        className="text-[1.625rem] lg:text-[2rem] italic text-anthracite leading-[1.08] tracking-[-0.022em] mb-4"
+        style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+        {member.name}
+      </h3>
+      <p
+        className="text-[13.5px] text-anthracite/75 leading-[1.65] flex-1"
+        style={{ fontFamily: 'var(--font-body)' }}>
+        {member.bio}
+      </p>
+
+      {member.fullBio && (
+        <button
+          onClick={onBioToggle}
+          aria-expanded={bioExpanded}
+          className="mt-4 self-start text-[13px] text-datum underline underline-offset-2 decoration-datum/40 hover:decoration-datum transition-colors duration-150 cursor-pointer bg-transparent border-none p-0"
+          style={{ fontFamily: 'var(--font-body)' }}>
+          Read full biography
+        </button>
+      )}
+    </motion.div>
+  )
+}
 
 export function About() {
   const reduce = useReducedMotion()
+  const [karimsExpanded, setKarimsExpanded] = useState(false)
+
+  useEffect(() => {
+    if (!karimsExpanded) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setKarimsExpanded(false) }
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [karimsExpanded])
 
   return (
     <main>
@@ -137,7 +218,7 @@ export function About() {
 
           <motion.h1
             id="about-h1"
-            className="text-[3.5rem] lg:text-[5.5rem] xl:text-[7.5rem] leading-[0.93] tracking-[-0.04em] text-white italic mb-10"
+            className="text-[3.5rem] lg:text-[5.5rem] xl:text-[6rem] leading-[0.93] tracking-[-0.04em] text-white italic mb-10"
             style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
             initial={reduce ? undefined : { opacity: 0, y: 40 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -165,7 +246,7 @@ export function About() {
             {/* Left */}
             <div>
               <motion.p
-                className="text-[10.5px] text-quarry uppercase tracking-[0.18em] mb-5 select-none"
+                className="text-[10.5px] text-anthracite/70 uppercase tracking-[0.18em] mb-5 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 12 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -226,7 +307,7 @@ export function About() {
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.5, delay: 0.18, ease: EASE }}>
                 <p
-                  className="text-[10px] text-quarry uppercase tracking-[0.18em] mb-4 select-none"
+                  className="text-[10px] text-anthracite/70 uppercase tracking-[0.18em] mb-4 select-none"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   Strategic Commitments
                 </p>
@@ -418,7 +499,7 @@ export function About() {
 
           <div className="mb-10 lg:mb-14">
             <motion.p
-              className="text-[12.5px] text-quarry uppercase tracking-[0.18em] mb-4 select-none font-medium"
+              className="text-[12.5px] text-anthracite/70 uppercase tracking-[0.18em] mb-4 select-none font-medium"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 10 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -438,47 +519,19 @@ export function About() {
             </motion.h2>
           </div>
 
-          {TEAM.map((member, i) => (
-            <motion.div
-              key={member.name}
-              className={`grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8 lg:gap-12 ${i === 0 ? 'border-t border-sediment/15 ' : ''}border-b border-sediment/15 py-8 lg:py-10 items-start`}
-              initial={reduce ? undefined : { opacity: 0, y: 24 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.55, delay: 0.08 * i, ease: EASE }}>
-
-              {/* Photo */}
-              <div className="w-full h-[220px] lg:w-[220px] lg:h-[280px] flex-shrink-0 overflow-hidden">
-                <img
-                  src={`https://picsum.photos/seed/${member.image}/440/560`}
-                  alt=""
-                  className="w-full h-full object-cover"
-                  style={{ filter: 'grayscale(15%) contrast(1.05)' }}
-                  loading="lazy"
-                />
-              </div>
-
-              {/* Bio */}
-              <div className="lg:pt-1">
-                <p
-                  className="text-[10.5px] text-quarry uppercase tracking-[0.18em] mb-3 select-none"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  {member.role}
-                </p>
-                <h3
-                  className="text-[1.75rem] lg:text-[2.25rem] xl:text-[2.75rem] italic text-anthracite leading-[1.08] tracking-[-0.025em] mb-5"
-                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-                  {member.name}
-                </h3>
-                <p
-                  className="text-[14.5px] text-anthracite/75 leading-[1.72] max-w-[56ch]"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  {member.bio}
-                </p>
-              </div>
-
-            </motion.div>
-          ))}
+          {/* Nicole · Karim (center) · Kimi — flanking cards drop sm:pt-8 for triptych elevation */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-10 xl:gap-12">
+            {[TEAM[1], TEAM[0], TEAM[2]].map((member, i) => (
+              <TeamMemberCard
+                key={member.name}
+                member={member}
+                index={i}
+                reduce={reduce}
+                onBioToggle={() => setKarimsExpanded(e => !e)}
+                bioExpanded={karimsExpanded}
+              />
+            ))}
+          </div>
 
 
         </div>
@@ -524,6 +577,66 @@ export function About() {
           </motion.div>
         </div>
       </section>
+
+      {/* ── Biography Modal ── */}
+      <AnimatePresence>
+        {karimsExpanded && TEAM[0].fullBio && (
+          <>
+            <motion.div
+              key="bio-backdrop"
+              className="fixed inset-0 bg-anthracite/55 z-[100] backdrop-blur-[2px]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.22 }}
+              onClick={() => setKarimsExpanded(false)}
+              aria-hidden="true"
+            />
+            <motion.div
+              key="bio-modal"
+              className="fixed inset-0 z-[101] flex items-center justify-center p-5 sm:p-10 pointer-events-none"
+              initial={reduce ? undefined : { opacity: 0, y: 14, scale: 0.98 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0, scale: 1 }}
+              exit={reduce ? undefined : { opacity: 0, y: 10, scale: 0.98 }}
+              transition={reduce ? undefined : { duration: 0.28, ease: EASE }}>
+              <div
+                role="dialog"
+                aria-modal="true"
+                aria-label="Dr. Karim Karam — Full Biography"
+                className="bg-snow max-w-[580px] w-full max-h-[78vh] overflow-y-auto pointer-events-auto relative">
+                <button
+                  onClick={() => setKarimsExpanded(false)}
+                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-anthracite/35 hover:text-anthracite transition-colors duration-150 cursor-pointer bg-transparent border-none text-[20px] leading-none"
+                  aria-label="Close biography">
+                  ×
+                </button>
+                <div className="px-8 pt-10 pb-10 sm:px-10">
+                  <p
+                    className="text-[10px] text-anthracite/50 uppercase tracking-[0.22em] mb-2 select-none"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    Full Biography
+                  </p>
+                  <h3
+                    className="text-[1.75rem] italic text-anthracite leading-[1.08] tracking-[-0.022em] mb-7"
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+                    Dr. Karim Karam
+                  </h3>
+                  <div className="space-y-5">
+                    {TEAM[0].fullBio.map((para, pi) => (
+                      <p
+                        key={pi}
+                        className="text-[14px] text-anthracite/75 leading-[1.72]"
+                        style={{ fontFamily: 'var(--font-body)' }}>
+                        {para}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
     </main>
   )

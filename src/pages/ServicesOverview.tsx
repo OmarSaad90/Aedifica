@@ -307,7 +307,7 @@ export function ServicesOverview() {
         <div className="max-w-7xl mx-auto px-6">
 
           <motion.p
-            className="text-[10.5px] text-quarry uppercase tracking-[0.22em] mb-12 lg:mb-16 select-none"
+            className="text-[10.5px] text-anthracite/70 uppercase tracking-[0.22em] mb-12 lg:mb-16 select-none"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 10 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}

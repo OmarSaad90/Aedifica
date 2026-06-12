@@ -28,6 +28,7 @@ export function Navbar() {
   const [servicesOpen, setServicesOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  const servicesLinkRef = useRef<HTMLAnchorElement>(null)
   const reduce = useReducedMotion()
 
   const openServices = () => {
@@ -45,21 +46,11 @@ export function Navbar() {
         {/* Logo + wordmark */}
         <Link to="/" className="flex items-center gap-2.5 flex-shrink-0">
           <LogoMark />
-          <div className="flex items-baseline gap-1.5">
-            <span
-              className="text-[17px] tracking-[-0.03em] text-anthracite"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-              Aedifica
-            </span>
-            <span className="hidden xl:contents">
-              <span className="text-anthracite/30 text-[13px] select-none">·</span>
-              <span
-                className="text-anthracite/70 text-[13px] italic"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                We build the builders.
-              </span>
-            </span>
-          </div>
+          <span
+            className="text-[17px] tracking-[-0.03em] text-anthracite"
+            style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+            Aedifica
+          </span>
         </Link>
 
         {/* Desktop nav */}
@@ -69,12 +60,25 @@ export function Navbar() {
           <div
             className="relative"
             onMouseEnter={openServices}
-            onMouseLeave={scheduleClose}>
+            onMouseLeave={scheduleClose}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') {
+                setServicesOpen(false)
+                servicesLinkRef.current?.focus()
+              }
+            }}>
             <Link
               to="/services"
+              ref={servicesLinkRef}
               className="flex items-center gap-1 text-[13px] text-anthracite/70 hover:text-anthracite transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap"
               aria-expanded={servicesOpen}
-              aria-haspopup="true">
+              aria-haspopup="true"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  setServicesOpen(prev => !prev)
+                }
+              }}>
               Services
               <CaretDown
                 size={11}

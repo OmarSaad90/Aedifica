@@ -78,29 +78,13 @@ const ARTICLES = [
   {
     number: '06',
     featured: false,
-    category: 'TECHNOLOGY',
-    title: 'Digital Construction Literacy for Emerging Talent',
-    excerpt: 'Bluebeam, Procore, BIM viewers, and digital documentation have become baseline expectations for entry-level CM roles.',
-    image: '/images/bridge-shelves.jpg',
-  },
-  {
-    number: '07',
-    featured: true,
     category: 'WORKFORCE GAP',
     title: 'The Hidden Supervisory Talent Gap in Infrastructure Delivery',
     excerpt: 'Project administration, scheduling coordination, and field leadership roles go unfilled not because talent is absent, but because accessible pathways have not been built.',
     image: '/images/campus-group.jpg',
   },
   {
-    number: '08',
-    featured: false,
-    category: 'PROGRAM DESIGN',
-    title: 'Designing Workforce Programs Around Retention, Not Enrollment',
-    excerpt: 'Programs optimized for enrollment produce placement statistics without retention evidence.',
-    image: '/images/stevens-students.jpg',
-  },
-  {
-    number: '09',
+    number: '07',
     featured: false,
     category: 'AEDIFICA METHOD',
     title: 'Four Launch Gates for an Accountable Adult Bridge Cohort',
@@ -108,7 +92,7 @@ const ARTICLES = [
     image: '/images/stevens-program.jpg',
   },
   {
-    number: '10',
+    number: '08',
     featured: false,
     category: 'AEDIFICA METHOD',
     title: 'The Role Ladder: Making Advancement Visible Without Overpromising It',
@@ -142,7 +126,7 @@ export function Insights() {
           <p
             className="text-[10px] text-white/18 uppercase tracking-[0.26em] text-right"
             style={{ fontFamily: 'var(--font-body)' }}>
-            10&nbsp;Perspectives
+            8&nbsp;Perspectives
           </p>
         </motion.div>
 
@@ -192,14 +176,14 @@ export function Insights() {
 
           <div className="flex items-baseline justify-between mb-8 lg:mb-10">
             <span
-              className="text-[10.5px] text-quarry uppercase tracking-[0.2em] select-none"
+              className="text-[10.5px] text-anthracite/70 uppercase tracking-[0.2em] select-none"
               style={{ fontFamily: 'var(--font-body)' }}>
               All Perspectives
             </span>
             <span
               className="text-[2.25rem] text-anthracite/10 italic leading-none select-none"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-              10
+              8
             </span>
           </div>
 
@@ -208,7 +192,7 @@ export function Insights() {
             {ARTICLES.map((article, i) => (
               <motion.article
                 key={article.number}
-                className={article.featured ? 'lg:col-span-2 group bg-snow' : 'lg:col-span-1 group bg-snow'}
+                className={article.featured ? 'lg:col-span-2 bg-snow' : 'lg:col-span-1 bg-snow'}
                 initial={reduce ? undefined : { opacity: 0, y: 28 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
@@ -240,31 +224,22 @@ export function Insights() {
                 <div className="px-5 pt-5 pb-7">
 
                   <p
-                    className="text-[9.5px] text-quarry uppercase tracking-[0.15em] mb-3 select-none"
+                    className="text-[9.5px] text-anthracite/70 uppercase tracking-[0.15em] mb-3 select-none"
                     style={{ fontFamily: 'var(--font-body)' }}>
                     {article.category}
                   </p>
 
                   <h2
-                    className={`italic text-anthracite group-hover:text-datum transition-colors duration-200 leading-[1.12] tracking-[-0.022em] mb-4 ${article.featured ? 'text-[1.625rem] lg:text-[2rem] xl:text-[2.25rem]' : 'text-[1.2rem] lg:text-[1.35rem] xl:text-[1.5rem]'}`}
+                    className={`italic text-anthracite leading-[1.12] tracking-[-0.022em] mb-4 ${article.featured ? 'text-[1.625rem] lg:text-[2rem] xl:text-[2.25rem]' : 'text-[1.2rem] lg:text-[1.35rem] xl:text-[1.5rem]'}`}
                     style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
                     {article.title}
                   </h2>
 
-                  {article.featured && (
-                    <p
-                      className="text-[14px] text-anthracite/70 leading-[1.68] mb-5"
-                      style={{ fontFamily: 'var(--font-body)' }}>
-                      {article.excerpt}
-                    </p>
-                  )}
-
-                  <Link
-                    to="#"
-                    className="inline-flex items-center gap-2 text-[11px] text-datum uppercase tracking-[0.12em] hover:text-datum/70 transition-colors"
+                  <p
+                    className="text-[13.5px] text-anthracite/65 leading-[1.68]"
                     style={{ fontFamily: 'var(--font-body)' }}>
-                    Read full perspective <span aria-hidden="true">&#8594;</span>
-                  </Link>
+                    {article.excerpt}
+                  </p>
 
                 </div>
 

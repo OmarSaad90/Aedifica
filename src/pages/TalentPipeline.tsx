@@ -64,7 +64,8 @@ export function TalentPipeline() {
 
         {/* Full-bleed right-half photo — desktop only */}
         <motion.div
-          className="hidden lg:block absolute inset-y-0 right-0 w-2/5"
+          className="hidden lg:block absolute inset-y-0 right-0 w-[40%]"
+          style={{ willChange: 'opacity, transform' }}
           initial={reduce ? undefined : { opacity: 0 }}
           animate={reduce ? undefined : { opacity: 1 }}
           transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
@@ -74,11 +75,12 @@ export function TalentPipeline() {
             className="w-full h-full object-cover"
             style={{ filter: 'grayscale(25%) contrast(1.08)' }}
             loading="eager"
+            fetchPriority="high"
           />
         </motion.div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="lg:max-w-[60%] lg:pr-8 xl:pr-12">
+          <div className="lg:max-w-[58%] lg:pr-8 xl:pr-12">
 
           <motion.span
             className="inline-block text-[11px] uppercase tracking-[0.18em] bg-datum/20 text-datum px-3 py-1 mb-2 select-none"
@@ -198,7 +200,7 @@ export function TalentPipeline() {
               </motion.p>
 
               <motion.p
-                className="text-[10.5px] text-quarry uppercase tracking-[0.2em] mb-5 select-none"
+                className="text-[10.5px] text-anthracite/70 uppercase tracking-[0.2em] mb-5 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0 }}
                 whileInView={reduce ? undefined : { opacity: 1 }}

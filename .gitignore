@@ -26,6 +26,13 @@ dist-ssr
 # Client documents — keep off public repo
 info/
 client assets/
+Stevenson*/
+
+# Root-level source photos (originals, not web assets)
+/*.jpg
+/*.jpeg
+/*.png
+/*.pdf
 
 # Claude Code internals
 skills-lock.json

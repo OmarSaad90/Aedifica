@@ -1,6 +1,7 @@
 import { SEO, SITE_URL } from '../components/SEO'
 import { motion, useReducedMotion } from 'motion/react'
 import { PageCTA } from '../components/PageCTA'
+import { UsersThree, GraduationCap, Buildings, Certificate, type Icon } from '@phosphor-icons/react'
 
 const LAUNCH_SCHEMA = {
   '@context': 'https://schema.org',
@@ -34,24 +35,30 @@ const VIEWPORT = { once: true, margin: '100px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
-const AUDIENCES = [
+type LaunchAudience = { type: string; desc: string; Icon: Icon }
+
+const AUDIENCES: LaunchAudience[] = [
   {
     type: 'Community-based organizations',
     desc: 'Developing employment or pre-apprenticeship programming with limited internal capacity to navigate complex workforce funding structures.',
+    Icon: UsersThree,
   },
   {
     type: 'County colleges',
     desc: 'Connecting available funding to credentials, articulation agreements, and employment pathways for adult and non-traditional learners.',
+    Icon: GraduationCap,
   },
   {
     type: 'Districts and vocational institutions',
     desc: 'Pursuing career-connected learning resources, CTE expansion, and workforce-aligned program development.',
+    Icon: Buildings,
   },
   {
     type: 'Training providers',
     desc: 'Refining an apprenticeship or construction workforce proposal with competitive program architecture and measurable outcomes.',
+    Icon: Certificate,
   },
-] as const
+]
 
 const DELIVERABLES = [
   {
@@ -136,12 +143,13 @@ export function Launch() {
 
       {/* ── Hero ── */}
       <section
-        className="bg-patina min-h-[68vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-patina min-h-[65vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="launch-h1">
 
         {/* Full-bleed right-half photo — desktop only */}
         <motion.div
-          className="hidden lg:block absolute inset-y-0 right-0 w-2/5"
+          className="hidden lg:block absolute inset-y-0 right-0 w-[40%]"
+          style={{ willChange: 'opacity, transform' }}
           initial={reduce ? undefined : { opacity: 0 }}
           animate={reduce ? undefined : { opacity: 1 }}
           transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
@@ -151,11 +159,12 @@ export function Launch() {
             className="w-full h-full object-cover"
             style={{ filter: 'grayscale(25%) contrast(1.08)' }}
             loading="eager"
+            fetchPriority="high"
           />
         </motion.div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="lg:max-w-[60%] lg:pr-8 xl:pr-12">
+          <div className="lg:max-w-[58%] lg:pr-8 xl:pr-12">
             <motion.span
               className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/15 text-white px-3 py-1 mb-10 select-none"
               style={{ fontFamily: 'var(--font-body)' }}
@@ -210,7 +219,7 @@ export function Launch() {
           </motion.h2>
 
           <div className="border-t border-sediment/25">
-            {AUDIENCES.map(({ type, desc }, i) => (
+            {AUDIENCES.map(({ type, desc, Icon: IconComp }, i) => (
               <motion.div
                 key={type}
                 className="grid grid-cols-1 lg:grid-cols-[0.4fr_1fr] lg:gap-16 xl:gap-24 border-b border-sediment/25 py-7 lg:py-8 lg:items-start"
@@ -218,11 +227,14 @@ export function Launch() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.45, delay: i * 0.07, ease: EASE }}>
-                <h3
-                  className="text-[1.125rem] lg:text-[1.375rem] xl:text-[1.875rem] text-anthracite italic leading-[1.2] tracking-[-0.02em] mb-2 lg:mb-0"
-                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                  {type}
-                </h3>
+                <div>
+                  <IconComp size={20} weight="regular" className="text-anthracite/45 mb-2.5" aria-hidden={true} />
+                  <h3
+                    className="text-[1.125rem] lg:text-[1.375rem] xl:text-[1.875rem] text-anthracite italic leading-[1.2] tracking-[-0.02em] mb-2 lg:mb-0"
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                    {type}
+                  </h3>
+                </div>
                 <p
                   className="text-[14.5px] text-anthracite/75 leading-[1.7]"
                   style={{ fontFamily: 'var(--font-body)' }}>
@@ -354,40 +366,38 @@ export function Launch() {
             </motion.p>
           </div>
 
-          <div className="border-t border-white/10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 border-t border-white/10">
             {DELIVERABLES.map(({ num, name, body, phase }, i) => (
               <motion.div
                 key={num}
-                className="grid grid-cols-1 lg:grid-cols-[72px_1fr_120px] lg:gap-10 xl:gap-14 border-b border-white/10 py-6 lg:py-8 lg:items-start"
-                initial={reduce ? undefined : { opacity: 0, y: 18 }}
+                className="border-b border-white/10 py-6 lg:py-7 lg:odd:pr-12 xl:odd:pr-16 lg:even:pl-12 xl:even:pl-16 lg:even:border-l lg:even:border-white/10"
+                initial={reduce ? undefined : { opacity: 0, y: 16 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.45, delay: i * 0.05, ease: EASE }}>
-                <span
-                  className="text-[3rem] lg:text-[3.75rem] xl:text-[4.5rem] text-white/28 italic leading-none mb-4 lg:mb-0 block"
-                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-                  aria-hidden="true">
-                  {num}
-                </span>
-                <div>
-                  <h3
-                    className="text-[1.125rem] lg:text-[1.25rem] text-white italic leading-[1.2] tracking-[-0.02em] mb-2.5"
-                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                    {name}
-                  </h3>
-                  <p
-                    className="text-[14px] text-white/65 leading-[1.7]"
-                    style={{ fontFamily: 'var(--font-body)' }}>
-                    {body}
-                  </p>
-                </div>
-                <div className="mt-4 lg:mt-0 lg:pt-1">
+                transition={reduce ? undefined : { duration: 0.45, delay: (i % 2) * 0.06, ease: EASE }}>
+                <div className="flex items-baseline justify-between mb-3.5">
                   <span
-                    className="inline-block text-[10px] text-white/65 uppercase tracking-[0.16em] bg-white/10 px-2.5 py-1"
+                    className="text-[1.875rem] lg:text-[2.25rem] text-white/22 italic leading-none"
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+                    aria-hidden="true">
+                    {num}
+                  </span>
+                  <span
+                    className="text-[9.5px] text-white/50 uppercase tracking-[0.16em] bg-white/8 px-2.5 py-1 select-none"
                     style={{ fontFamily: 'var(--font-body)' }}>
                     {phase}
                   </span>
                 </div>
+                <h3
+                  className="text-[1.0625rem] lg:text-[1.1875rem] text-white italic leading-[1.2] tracking-[-0.02em] mb-2"
+                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                  {name}
+                </h3>
+                <p
+                  className="text-[13.5px] text-white/60 leading-[1.68]"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  {body}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -403,7 +413,7 @@ export function Launch() {
             {/* Left: context + H2 */}
             <div>
               <motion.p
-                className="text-[10.5px] text-quarry uppercase tracking-[0.22em] mb-8 select-none"
+                className="text-[10.5px] text-anthracite/70 uppercase tracking-[0.22em] mb-8 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0 }}
                 whileInView={reduce ? undefined : { opacity: 1 }}

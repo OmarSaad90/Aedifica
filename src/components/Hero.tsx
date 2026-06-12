@@ -72,7 +72,7 @@ export function Hero() {
         </motion.div>
 
         <motion.p
-          className="text-[12px] text-anthracite/65 leading-relaxed max-w-[50ch]"
+          className="text-[12px] text-anthracite/70 leading-relaxed max-w-[50ch]"
           style={{ fontFamily: 'var(--font-body)' }}
           initial={reduce ? undefined : { opacity: 0 }}
           animate={reduce ? undefined : { opacity: 1 }}

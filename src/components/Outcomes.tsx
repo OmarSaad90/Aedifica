@@ -26,7 +26,7 @@ export function Outcomes() {
           {/* Left column: eyebrow + heading as the visual anchor */}
           <div>
             <motion.p
-              className="text-[10.5px] text-quarry uppercase tracking-[0.22em] mb-6 select-none"
+              className="text-[10.5px] text-anthracite/70 uppercase tracking-[0.22em] mb-6 select-none"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 12 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ export function Outcomes() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.6, delay: 0.2, ease: EASE }}>
               <p
-                className="text-[10.5px] text-quarry uppercase tracking-[0.18em] mb-4 select-none"
+                className="text-[10.5px] text-anthracite/70 uppercase tracking-[0.18em] mb-4 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Future reporting categories
               </p>

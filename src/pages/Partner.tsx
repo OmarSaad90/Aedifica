@@ -1,6 +1,7 @@
 import { SEO, SITE_URL } from '../components/SEO'
 import { useState, useRef } from 'react'
 import { motion, useReducedMotion, AnimatePresence } from 'motion/react'
+import { GraduationCap, UsersThree, Briefcase, Bank, CaretDown, type Icon } from '@phosphor-icons/react'
 
 const PARTNER_SCHEMA = {
   '@context': 'https://schema.org',
@@ -42,6 +43,7 @@ const AUDIENCES: {
   desc: string
   what: string[]
   cta: string
+  Icon: Icon
 }[] = [
   {
     id: 'education',
@@ -59,6 +61,7 @@ const AUDIENCES: {
       'Articulation and credential integration',
     ],
     cta: 'Discuss an education partnership',
+    Icon: GraduationCap,
   },
   {
     id: 'workforce',
@@ -76,6 +79,7 @@ const AUDIENCES: {
       'Outcome and reporting partnership',
     ],
     cta: 'Discuss a Rebuild cohort',
+    Icon: UsersThree,
   },
   {
     id: 'employer',
@@ -93,6 +97,7 @@ const AUDIENCES: {
       'Workforce pipeline development',
     ],
     cta: 'Become an employer partner',
+    Icon: Briefcase,
   },
   {
     id: 'funding',
@@ -110,6 +115,7 @@ const AUDIENCES: {
       'Responsible scale after credible evidence',
     ],
     cta: 'Request an institutional briefing',
+    Icon: Bank,
   },
 ]
 
@@ -179,7 +185,7 @@ const inputCls =
   'w-full px-4 py-3 bg-transparent border border-anthracite/22 text-anthracite text-[14px] placeholder:text-anthracite/75 focus:border-datum focus:outline-none transition-colors duration-150'
 
 const selectCls =
-  'w-full px-4 py-3 bg-snow border border-anthracite/22 text-anthracite text-[14px] focus:border-datum focus:outline-none transition-colors duration-150 appearance-none cursor-pointer'
+  'w-full pl-4 pr-10 py-3 bg-snow border border-anthracite/22 text-anthracite text-[14px] focus:border-datum focus:outline-none transition-colors duration-150 appearance-none cursor-pointer'
 
 const labelCls =
   'block text-[11px] text-anthracite/80 uppercase tracking-[0.15em] mb-1.5 select-none'
@@ -246,6 +252,7 @@ export function Partner() {
 
         <motion.div
           className="absolute top-8 right-6 lg:right-10 select-none pointer-events-none"
+          aria-hidden="true"
           initial={reduce ? undefined : { opacity: 0 }}
           animate={reduce ? undefined : { opacity: 1 }}
           transition={reduce ? undefined : { duration: 0.8, delay: 1.0, ease: EASE }}>
@@ -315,6 +322,7 @@ export function Partner() {
               )}
 
               <div>
+                <audience.Icon size={24} weight="regular" className={`${audience.textColor} opacity-80 mb-5`} aria-hidden={true} />
                 <h2
                   className="text-[1.625rem] lg:text-[1.875rem] xl:text-[2.125rem] italic leading-[1.08] tracking-[-0.025em] mb-5"
                   style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
@@ -373,7 +381,7 @@ export function Partner() {
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.6, ease: SPRING }}>
             <p
-              className="text-[10.5px] text-quarry uppercase tracking-[0.18em] mb-4 select-none font-medium"
+              className="text-[10.5px] text-anthracite/70 uppercase tracking-[0.18em] mb-4 select-none font-medium"
               style={{ fontFamily: 'var(--font-body)' }}>
               Start a conversation
             </p>
@@ -503,10 +511,14 @@ export function Partner() {
                       <label htmlFor="pf-orgtype" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
                         Organization type <span className="text-datum" aria-hidden="true">*</span>
                       </label>
-                      <select id="pf-orgtype" required value={form.orgType} onChange={set('orgType')}
-                        className={selectCls} style={{ fontFamily: 'var(--font-body)' }}>
-                        {ORG_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-                      </select>
+                      <div className="relative">
+                        <select id="pf-orgtype" required value={form.orgType} onChange={set('orgType')}
+                          className={selectCls} style={{ fontFamily: 'var(--font-body)' }}>
+                          {ORG_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+                        </select>
+                        <CaretDown size={13} weight="bold" aria-hidden={true}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-anthracite/40 pointer-events-none" />
+                      </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -514,19 +526,27 @@ export function Partner() {
                         <label htmlFor="pf-interest" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
                           Partnership interest
                         </label>
-                        <select id="pf-interest" value={form.interest} onChange={set('interest')}
-                          className={selectCls} style={{ fontFamily: 'var(--font-body)' }}>
-                          {INTEREST_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-                        </select>
+                        <div className="relative">
+                          <select id="pf-interest" value={form.interest} onChange={set('interest')}
+                            className={selectCls} style={{ fontFamily: 'var(--font-body)' }}>
+                            {INTEREST_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+                          </select>
+                          <CaretDown size={13} weight="bold" aria-hidden={true}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-anthracite/40 pointer-events-none" />
+                        </div>
                       </div>
                       <div>
                         <label htmlFor="pf-timeline" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
                           Timeline
                         </label>
-                        <select id="pf-timeline" value={form.timeline} onChange={set('timeline')}
-                          className={selectCls} style={{ fontFamily: 'var(--font-body)' }}>
-                          {TIMELINE_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-                        </select>
+                        <div className="relative">
+                          <select id="pf-timeline" value={form.timeline} onChange={set('timeline')}
+                            className={selectCls} style={{ fontFamily: 'var(--font-body)' }}>
+                            {TIMELINE_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+                          </select>
+                          <CaretDown size={13} weight="bold" aria-hidden={true}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-anthracite/40 pointer-events-none" />
+                        </div>
                       </div>
                     </div>
 
@@ -584,16 +604,20 @@ export function Partner() {
                               <label htmlFor="pf-participation" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
                                 Participation type
                               </label>
-                              <select id="pf-participation" value={form.employerParticipation}
-                                onChange={set('employerParticipation')}
-                                className={selectCls} style={{ fontFamily: 'var(--font-body)' }}>
-                                <option value="">Select type</option>
-                                <option value="capstone">Capstone only</option>
-                                <option value="interview">Interview access only</option>
-                                <option value="capstone-interview">Capstone + interview</option>
-                                <option value="pipeline">Pipeline development</option>
-                                <option value="all">All of the above</option>
-                              </select>
+                              <div className="relative">
+                                <select id="pf-participation" value={form.employerParticipation}
+                                  onChange={set('employerParticipation')}
+                                  className={selectCls} style={{ fontFamily: 'var(--font-body)' }}>
+                                  <option value="">Select type</option>
+                                  <option value="capstone">Capstone only</option>
+                                  <option value="interview">Interview access only</option>
+                                  <option value="capstone-interview">Capstone + interview</option>
+                                  <option value="pipeline">Pipeline development</option>
+                                  <option value="all">All of the above</option>
+                                </select>
+                                <CaretDown size={13} weight="bold" aria-hidden={true}
+                                  className="absolute right-3 top-1/2 -translate-y-1/2 text-anthracite/40 pointer-events-none" />
+                              </div>
                             </div>
                           </div>
                         )}

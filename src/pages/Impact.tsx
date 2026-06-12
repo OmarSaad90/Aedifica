@@ -77,12 +77,13 @@ export function Impact() {
 
       {/* ── Hero ── */}
       <section
-        className="bg-anthracite min-h-[72vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-anthracite min-h-[65vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="impact-h1">
 
         {/* Full-bleed right-half photo — desktop only */}
         <motion.div
-          className="hidden lg:block absolute inset-y-0 right-0 w-2/5"
+          className="hidden lg:block absolute inset-y-0 right-0 w-[40%]"
+          style={{ willChange: 'opacity, transform' }}
           initial={reduce ? undefined : { opacity: 0 }}
           animate={reduce ? undefined : { opacity: 1 }}
           transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
@@ -92,11 +93,12 @@ export function Impact() {
             className="w-full h-full object-cover"
             style={{ filter: 'grayscale(25%) contrast(1.08)' }}
             loading="eager"
+            fetchPriority="high"
           />
         </motion.div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="lg:max-w-[60%] lg:pr-8 xl:pr-12">
+          <div className="lg:max-w-[58%] lg:pr-8 xl:pr-12">
             <motion.span
               className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/70 px-3 py-1 mb-10 select-none"
               style={{ fontFamily: 'var(--font-body)' }}
@@ -180,7 +182,7 @@ export function Impact() {
         <div className="max-w-7xl mx-auto px-6">
 
           <motion.p
-            className="text-[10.5px] text-quarry uppercase tracking-[0.22em] mb-8 lg:mb-10 select-none"
+            className="text-[10.5px] text-anthracite/70 uppercase tracking-[0.22em] mb-8 lg:mb-10 select-none"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0 }}
             whileInView={reduce ? undefined : { opacity: 1 }}
