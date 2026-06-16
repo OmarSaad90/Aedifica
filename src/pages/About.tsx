@@ -438,8 +438,8 @@ export function About() {
         </div>
       </section>
 
-      {/* ── Value 03: Widened Doorways ── bg-patina */}
-      <section className="bg-patina py-14 lg:py-20" aria-label="Value 03">
+      {/* ── Value 03: Widened Doorways ── bg-quarry */}
+      <section className="bg-quarry py-14 lg:py-20" aria-label="Value 03">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             className="lg:grid lg:grid-cols-[1fr_0.44fr] lg:gap-16 xl:gap-24 lg:items-start"
@@ -448,16 +448,16 @@ export function About() {
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
             <div>
-              <h3 className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] italic text-white leading-[1.06] tracking-[-0.03em] mb-6" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+              <h3 className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] italic text-anthracite leading-[1.06] tracking-[-0.03em] mb-6" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
                 {VALUES[2].name}
               </h3>
-              <p className="text-[15px] text-white leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[15px] text-anthracite leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[2].description}
               </p>
             </div>
             <div className="mt-8 lg:mt-0 lg:pt-1">
-              <p className="text-[10px] text-white/85 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
-              <p className="text-[14px] text-white leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[10px] text-anthracite/80 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
+              <p className="text-[14px] text-anthracite leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[2].practice}
               </p>
             </div>
@@ -465,8 +465,8 @@ export function About() {
         </div>
       </section>
 
-      {/* ── Value 04: Built to Be Handed Over ── bg-quarry */}
-      <section className="bg-quarry py-14 lg:py-20" aria-label="Value 04">
+      {/* ── Value 04: Built to Be Handed Over ── bg-patina */}
+      <section className="bg-patina py-14 lg:py-20" aria-label="Value 04">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             className="lg:grid lg:grid-cols-[0.22fr_1fr_0.44fr] lg:gap-12 xl:gap-16 lg:items-start"
@@ -476,16 +476,16 @@ export function About() {
             transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
             <div className="hidden lg:block" aria-hidden="true" />
             <div>
-              <h3 className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] italic text-anthracite leading-[1.06] tracking-[-0.03em] mb-6" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+              <h3 className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] italic text-white leading-[1.06] tracking-[-0.03em] mb-6" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
                 {VALUES[3].name}
               </h3>
-              <p className="text-[15px] text-anthracite leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[15px] text-white leading-[1.72] max-w-[56ch]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[3].description}
               </p>
             </div>
             <div className="mt-8 lg:mt-0 lg:pt-1">
-              <p className="text-[10px] text-anthracite/80 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
-              <p className="text-[14px] text-anthracite leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
+              <p className="text-[10px] text-white/85 uppercase tracking-[0.2em] mb-3 select-none" style={{ fontFamily: 'var(--font-body)' }}>In Practice</p>
+              <p className="text-[14px] text-white leading-[1.68]" style={{ fontFamily: 'var(--font-body)' }}>
                 {VALUES[3].practice}
               </p>
             </div>

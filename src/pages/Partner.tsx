@@ -84,11 +84,11 @@ const AUDIENCES: {
   {
     id: 'employer',
     label: 'Employers',
-    bg: 'bg-patina',
-    textColor: 'text-white',
-    mutedText: 'text-white',
-    dimText: 'text-white',
-    borderFaint: 'border-white/20',
+    bg: 'bg-quarry',
+    textColor: 'text-anthracite',
+    mutedText: 'text-anthracite',
+    dimText: 'text-anthracite',
+    borderFaint: 'border-anthracite/20',
     orgValue: 'employer',
     desc: 'General contractors, specialty contractors, and developers validating roles and meeting prepared emerging talent through an accountable interview model.',
     what: [
@@ -102,11 +102,11 @@ const AUDIENCES: {
   {
     id: 'funding',
     label: 'Funding & State Partners',
-    bg: 'bg-quarry',
-    textColor: 'text-anthracite',
-    mutedText: 'text-anthracite',
-    dimText: 'text-anthracite',
-    borderFaint: 'border-anthracite/20',
+    bg: 'bg-patina',
+    textColor: 'text-white',
+    mutedText: 'text-white',
+    dimText: 'text-white',
+    borderFaint: 'border-white/20',
     orgValue: 'funding',
     desc: 'State agencies, workforce boards, and foundations supporting accountable construction-management workforce infrastructure.',
     what: [

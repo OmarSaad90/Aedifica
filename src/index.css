@@ -7,6 +7,8 @@
 @import "@fontsource/cormorant-garamond/500-italic.css";
 /* Space Grotesk — body: geometric grotesque with technical precision */
 @import "@fontsource-variable/space-grotesk";
+/* Cinzel — wordmark: classical Roman capitals, matches brand book identity */
+@import "@fontsource/cinzel/400.css";
 
 @theme {
   /* Brand colors — exact client values from brand book v4 */
@@ -19,8 +21,9 @@
   --color-anthracite: #2D2D31;   /* The line — primary text */
 
   /* Typefaces */
-  --font-heading: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --font-body:    'Space Grotesk Variable', 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-heading:   'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body:      'Space Grotesk Variable', 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-wordmark:  'Cinzel', 'Trajan Pro', Georgia, serif;
 }
 
 *,

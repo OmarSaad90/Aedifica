@@ -1,17 +1,14 @@
 import { useState, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { List, X, CaretDown } from '@phosphor-icons/react'
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
 
-const SERVICES_Y1 = [
-  { label: 'Rebuild',  to: '/services/rebuild', dot: 'bg-datum'  },
-  { label: 'Launch',   to: '/services/launch',  dot: 'bg-patina' },
-] as const
-
-const SERVICES_Y2 = [
-  { label: 'Pathway',         to: '/services/pathway'         },
-  { label: 'Talent Pipeline', to: '/services/talent-pipeline' },
-  { label: 'Explore',         to: '/services/explore'         },
+const SERVICES = [
+  { label: 'Rebuild',         to: '/services/rebuild',         dot: 'bg-datum'   },
+  { label: 'Launch',          to: '/services/launch',          dot: 'bg-patina'  },
+  { label: 'Pathway',         to: '/services/pathway',         dot: 'bg-quarry'  },
+  { label: 'Talent Pipeline', to: '/services/talent-pipeline', dot: 'bg-sediment'},
+  { label: 'Explore',         to: '/services/explore',         dot: 'bg-datum/50'},
 ] as const
 
 const otherLinks = [
@@ -23,6 +20,24 @@ const otherLinks = [
 
 const EASE = [0.25, 0.1, 0.25, 1] as const
 
+const SERVICE_LOGOS: Record<string, string> = {
+  '/services/rebuild':         '/images/logo-rebuild.png',
+  '/services/launch':          '/images/logo-launch.png',
+  '/services/pathway':         '/images/logo-pathway.png',
+  '/services/talent-pipeline': '/images/logo-talent.png',
+  '/services/explore':         '/images/logo-explore.png',
+}
+const DEFAULT_LOGO = '/images/logo-rebuild.png'
+
+// Each PNG has different whitespace padding around the frame — scale compensates
+const LOGO_SCALE: Record<string, number> = {
+  '/images/logo-rebuild.png':  1.18,
+  '/images/logo-launch.png':   1.15,
+  '/images/logo-pathway.png':  1.11,
+  '/images/logo-talent.png':   1.0,
+  '/images/logo-explore.png':  1.0,
+}
+
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
@@ -30,6 +45,8 @@ export function Navbar() {
   const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const servicesLinkRef = useRef<HTMLAnchorElement>(null)
   const reduce = useReducedMotion()
+  const { pathname } = useLocation()
+  const logoSrc = SERVICE_LOGOS[pathname] ?? DEFAULT_LOGO
 
   const openServices = () => {
     clearTimeout(closeTimer.current)
@@ -44,11 +61,22 @@ export function Navbar() {
       <div className="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between gap-6">
 
         {/* Logo + wordmark */}
-        <Link to="/" className="flex items-center gap-2.5 flex-shrink-0">
-          <LogoMark />
+        <Link to="/" className="flex items-center gap-3 flex-shrink-0">
+          <div className="h-9 w-[27px] flex-shrink-0 overflow-hidden flex items-center justify-center">
+            <img
+              src={logoSrc}
+              alt="Aedifica"
+              className="h-full w-auto"
+              style={{
+                mixBlendMode: 'multiply',
+                transform: `scale(${LOGO_SCALE[logoSrc] ?? 1})`,
+                transformOrigin: 'center',
+              }}
+            />
+          </div>
           <span
-            className="text-[17px] tracking-[-0.03em] text-anthracite"
-            style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+            className="text-[14px] tracking-[0.06em] text-anthracite uppercase"
+            style={{ fontFamily: 'var(--font-wordmark)', fontWeight: 400 }}>
             Aedifica
           </span>
         </Link>
@@ -98,13 +126,7 @@ export function Navbar() {
                   onMouseLeave={scheduleClose}
                   role="menu">
 
-                  {/* Year 1 */}
-                  <p
-                    className="px-4 pt-1.5 pb-1 text-[9.5px] text-anthracite/35 uppercase tracking-[0.16em] select-none"
-                    style={{ fontFamily: 'var(--font-body)' }}>
-                    Year 1
-                  </p>
-                  {SERVICES_Y1.map(({ label, to, dot }) => (
+                  {SERVICES.map(({ label, to, dot }) => (
                     <Link
                       key={to}
                       to={to}
@@ -113,27 +135,6 @@ export function Navbar() {
                       style={{ fontFamily: 'var(--font-body)' }}
                       onClick={() => setServicesOpen(false)}>
                       <span className={`flex-shrink-0 w-[5px] h-[5px] ${dot}`} aria-hidden="true" />
-                      {label}
-                    </Link>
-                  ))}
-
-                  <div className="my-1.5 border-t border-sediment/15" />
-
-                  {/* Year 2+ */}
-                  <p
-                    className="px-4 pb-1 text-[9.5px] text-anthracite/35 uppercase tracking-[0.16em] select-none"
-                    style={{ fontFamily: 'var(--font-body)' }}>
-                    Expansion · Year 2+
-                  </p>
-                  {SERVICES_Y2.map(({ label, to }) => (
-                    <Link
-                      key={to}
-                      to={to}
-                      role="menuitem"
-                      className="flex items-center gap-2.5 px-4 py-1.5 text-[13px] text-anthracite/45 hover:text-anthracite/70 hover:bg-bone transition-colors duration-100"
-                      style={{ fontFamily: 'var(--font-body)' }}
-                      onClick={() => setServicesOpen(false)}>
-                      <span className="flex-shrink-0 w-[5px] h-[5px] bg-sediment/60" aria-hidden="true" />
                       {label}
                     </Link>
                   ))}
@@ -212,12 +213,7 @@ export function Navbar() {
                   animate={reduce ? undefined : { opacity: 1, height: 'auto' }}
                   exit={reduce ? undefined : { opacity: 0, height: 0 }}
                   transition={reduce ? undefined : { duration: 0.2, ease: EASE }}>
-                  <p
-                    className="text-[10px] text-anthracite/35 uppercase tracking-[0.16em] pt-3 pb-1 select-none"
-                    style={{ fontFamily: 'var(--font-body)' }}>
-                    Year 1
-                  </p>
-                  {SERVICES_Y1.map(({ label, to, dot }) => (
+                  {SERVICES.map(({ label, to, dot }) => (
                     <Link
                       key={to}
                       to={to}
@@ -225,22 +221,6 @@ export function Navbar() {
                       style={{ fontFamily: 'var(--font-body)' }}
                       onClick={() => { setMobileOpen(false); setMobileServicesOpen(false) }}>
                       <span className={`flex-shrink-0 w-[5px] h-[5px] ${dot}`} aria-hidden="true" />
-                      {label}
-                    </Link>
-                  ))}
-                  <p
-                    className="text-[10px] text-anthracite/35 uppercase tracking-[0.16em] pt-3 pb-1 select-none"
-                    style={{ fontFamily: 'var(--font-body)' }}>
-                    Expansion · Year 2+
-                  </p>
-                  {SERVICES_Y2.map(({ label, to }) => (
-                    <Link
-                      key={to}
-                      to={to}
-                      className="flex items-center gap-2.5 py-2.5 text-[13.5px] text-anthracite/45"
-                      style={{ fontFamily: 'var(--font-body)' }}
-                      onClick={() => { setMobileOpen(false); setMobileServicesOpen(false) }}>
-                      <span className="flex-shrink-0 w-[5px] h-[5px] bg-sediment/60" aria-hidden="true" />
                       {label}
                     </Link>
                   ))}
@@ -276,28 +256,5 @@ export function Navbar() {
         )}
       </AnimatePresence>
     </header>
-  )
-}
-
-function LogoMark() {
-  return (
-    <svg
-      width="20"
-      height="24"
-      viewBox="0 0 110 130"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      className="flex-shrink-0"
-    >
-      {/* Arch walls — brand book Q-curve paths */}
-      <path
-        d="M 15 120 L 15 65 Q 15 12, 55 12 Q 95 12, 95 65 L 95 120 L 78 120 L 78 65 Q 78 28, 55 28 Q 32 28, 32 65 L 32 120 Z"
-        fill="#2D2D31"
-      />
-      {/* Datum keystone at arch crown */}
-      <path d="M 44 28 L 66 28 L 72 52 L 38 52 Z" fill="#6667AB" />
-      {/* Crossbar — the A reading */}
-      <rect x="32" y="78" width="46" height="7" fill="#2D2D31" />
-    </svg>
   )
 }
