@@ -29,11 +29,11 @@ type Story = {
   pill: string
 }
 
-const FILTERS: { key: StoryProgram; label: string }[] = [
-  { key: 'all',     label: 'All' },
-  { key: 'explore', label: 'Explore' },
-  { key: 'pathway', label: 'Pathway' },
-  { key: 'partner', label: 'Partner Stories' },
+const FILTERS: { key: StoryProgram; label: string; activeCls: string }[] = [
+  { key: 'all',     label: 'All',            activeCls: 'bg-anthracite border-anthracite text-white' },
+  { key: 'explore', label: 'Explore',        activeCls: 'bg-datum border-datum text-white'           },
+  { key: 'pathway', label: 'Pathway',        activeCls: 'bg-quarry border-quarry text-white'         },
+  { key: 'partner', label: 'Partner Stories',activeCls: 'bg-patina border-patina text-white'         },
 ]
 
 const STORIES: Story[] = [
@@ -119,7 +119,7 @@ const STATS = [
   { num: '21',    label: 'Learners served',           meaning: 'Seventh and eighth graders completed the 10-week Building Bridges program in Spring 2025.',       accent: 'text-datum'  },
   { num: '4',     label: 'Capstone projects',          meaning: 'Four team bridge prototypes built and defended before a panel of professional civil engineering judges.', accent: 'text-quarry' },
   { num: '55%',   label: 'Advanced STEM placements',   meaning: '6 of 11 eighth-grade participants accepted into selective Union County Vocational-Technical Schools for 2025-26.', accent: 'text-datum'  },
-  { num: 'â‰ˆ93',   label: 'Final-grade average',        meaning: 'Building Bridges participants\' average final grade across the 10-week program.',                accent: 'text-quarry' },
+  { num: '≈93',    label: 'Final-grade average',        meaning: 'Building Bridges participants\' average final grade across the 10-week program.',                accent: 'text-quarry' },
   { num: '2 + 1', label: 'Partners and funder',        meaning: 'Hillside Innovation Academy and Stevens Institute of Technology, funded by the Engineering Information Foundation.', accent: 'text-datum'  },
   { num: '100%',  label: 'Students presenting',        meaning: 'Every participant, across 4 teams, presented to judges, peers, faculty, and families at the closing showcase.', accent: 'text-quarry' },
 ] as const
@@ -439,14 +439,14 @@ export function Impact() {
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-            {FILTERS.map(({ key, label }) => (
+            {FILTERS.map(({ key, label, activeCls }) => (
               <button
                 key={key}
                 onClick={() => setActiveFilter(key)}
                 aria-pressed={activeFilter === key}
                 className={`text-[13px] px-4 py-2 border transition-colors duration-150 cursor-pointer ${
                   activeFilter === key
-                    ? 'bg-anthracite border-anthracite text-white'
+                    ? activeCls
                     : 'bg-transparent border-sediment/35 text-anthracite/75 hover:border-anthracite/40 hover:text-anthracite'
                 }`}
                 style={{ fontFamily: 'var(--font-body)' }}>
