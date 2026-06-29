@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aedifica Explore — Hands-On STEM Discovery for Younger Learners | Aedifica</title>
+  <meta name="description" content="Aedifica Explore is a hands-on introduction to engineering and the built environment for younger learners, after-school programs, summer camps, and community partners. Build, test, plan, and present.">
+
+  <meta property="og:title" content="Aedifica Explore — Hands-On STEM Discovery | Aedifica">
+  <meta property="og:description" content="An early awareness and discovery program where students build, test, plan, and present while discovering the people and decisions behind buildings and infrastructure.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ================================================
+       AEDIFICA — DESIGN TOKENS
+       Shared with the Bridging Brilliance page so the
+       two program pages form a consistent set.
+       ================================================ */
+    :root {
+      --color-charcoal: #1F2933;
+      --color-ink: #2C3E50;
+      --color-muted: #616E7C;
+      --color-rule: #9AA5B1;
+      --color-cream: #F5F4F0;
+      --color-white: #FFFFFF;
+      --color-accent: #6667AB;
+      --color-accent-soft: #E8E8F0;
+      --color-dark-surface: #1F2933;
+
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+      --space-1: 8px;
+      --space-2: 16px;
+      --space-3: 24px;
+      --space-4: 32px;
+      --space-5: 48px;
+      --space-6: 64px;
+      --space-7: 96px;
+      --space-8: 120px;
+
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+
+      --shadow-soft: 0 2px 8px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03);
+      --shadow-card: 0 4px 16px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-nav: 0 2px 8px rgba(0,0,0,0.06);
+
+      --transition: 250ms ease-in-out;
+    }
+
+    /* ================================================ RESET & BASE ================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--color-charcoal);
+      background-color: var(--color-white);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--color-accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    .skip-link {
+      position: absolute; top: -40px; left: 0;
+      background: var(--color-charcoal); color: var(--color-white);
+      padding: 8px 16px; z-index: 100;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ================================================ LAYOUT UTILITIES ================================================ */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 var(--space-3); }
+    .container-narrow { max-width: 720px; margin: 0 auto; padding: 0 var(--space-3); }
+    .container-medium { max-width: 880px; margin: 0 auto; padding: 0 var(--space-3); }
+    .container-wide { max-width: 920px; margin: 0 auto; padding: 0 var(--space-3); }
+
+    .section { padding: var(--space-7) 0; }
+    .section--cream { background-color: var(--color-cream); }
+    .section--dark { background-color: var(--color-dark-surface); color: var(--color-white); }
+    @media (max-width: 768px) { .section { padding: var(--space-6) 0; } }
+
+    /* ================================================ TYPOGRAPHY ================================================ */
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--color-charcoal);
+      letter-spacing: -0.01em;
+    }
+    h1 { font-size: clamp(2.25rem, 5vw, 3.75rem); font-weight: 700; }
+    h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); margin-bottom: var(--space-3); }
+    h3 { font-size: 1.375rem; margin-bottom: var(--space-2); }
+    h4 { font-size: 1.125rem; margin-bottom: var(--space-1); }
+    p { font-size: 1.0625rem; line-height: 1.7; color: var(--color-charcoal); margin-bottom: var(--space-2); }
+    p:last-child { margin-bottom: 0; }
+
+    .eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-2);
+      display: block;
+    }
+    .subhead {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: var(--color-muted);
+      max-width: 640px;
+      margin-bottom: var(--space-4);
+    }
+    .center { margin-left: auto; margin-right: auto; }
+
+    /* ================================================ HERO ================================================ */
+    .hero {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(180deg, rgba(31,41,51,0.2) 0%, rgba(31,41,51,0.7) 100%),
+        linear-gradient(135deg, #6667AB 0%, #2C3E50 100%);
+      color: var(--color-white);
+      padding: var(--space-7) 0;
+    }
+    .hero__content { max-width: 720px; }
+    .hero__eyebrow { color: rgba(255,255,255,0.85); margin-bottom: var(--space-3); }
+    .hero h1 { color: var(--color-white); margin-bottom: var(--space-3); }
+    .hero__subhead {
+      font-size: clamp(1.125rem, 2vw, 1.375rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.5;
+      max-width: 640px;
+      margin-bottom: var(--space-5);
+    }
+    .hero__cta-row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    @media (max-width: 768px) { .hero { min-height: 50vh; padding: var(--space-6) 0; } }
+
+    /* ================================================ STICKY SUB-NAV ================================================ */
+    .subnav {
+      position: sticky;
+      top: 0;
+      background: var(--color-white);
+      box-shadow: var(--shadow-nav);
+      z-index: 50;
+      height: 60px;
+      display: flex;
+      align-items: center;
+    }
+    .subnav__inner {
+      display: flex;
+      gap: var(--space-4);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .subnav__inner::-webkit-scrollbar { display: none; }
+    .subnav__link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-muted);
+      white-space: nowrap;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: color var(--transition), border-color var(--transition);
+      text-decoration: none;
+    }
+    .subnav__link:hover { color: var(--color-charcoal); text-decoration: none; }
+    .subnav__link.is-active { color: var(--color-accent); border-bottom-color: var(--color-accent); }
+    @media (max-width: 768px) {
+      .subnav { height: 50px; }
+      .subnav__inner { gap: var(--space-3); }
+    }
+
+    /* ================================================ SECTION HEADERS ================================================ */
+    .section-header { text-align: center; margin-bottom: var(--space-5); }
+    .section-header .subhead { margin-left: auto; margin-right: auto; }
+
+    /* ================================================ BUTTONS ================================================ */
+    .button-primary {
+      display: inline-block;
+      background: var(--color-accent);
+      color: var(--color-white);
+      padding: 16px 32px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .button-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(102,103,171,0.4);
+      text-decoration: none;
+    }
+    .button-outline {
+      display: inline-block;
+      background: transparent;
+      color: var(--color-white);
+      padding: 16px 32px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .button-outline:hover {
+      border-color: var(--color-white);
+      background: rgba(255,255,255,0.08);
+      text-decoration: none;
+    }
+
+    /* ================================================ GAIN CARDS ================================================ */
+    .gain-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-5) var(--space-5);
+    }
+    .gain-card__icon { width: 40px; height: 40px; color: var(--color-accent); margin-bottom: var(--space-2); }
+    .gain-card h3 { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: var(--space-1); }
+    .gain-card p { font-size: 1rem; color: var(--color-muted); line-height: 1.65; }
+    @media (max-width: 768px) { .gain-grid { grid-template-columns: 1fr; gap: var(--space-4); } }
+
+    /* ================================================ ACTIVITY CARDS ================================================ */
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-3);
+    }
+    .activity-card {
+      background: var(--color-white);
+      border: 1px solid rgba(154,165,177,0.25);
+      border-radius: var(--radius-md);
+      padding: var(--space-3);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .activity-card__icon { width: 30px; height: 30px; color: var(--color-accent); }
+    .activity-card h4 { font-family: var(--font-display); font-size: 1.0625rem; margin: 0; line-height: 1.3; }
+    .activity-card p { font-size: 0.9375rem; color: var(--color-muted); line-height: 1.6; margin: 0; }
+    @media (max-width: 900px) { .activity-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .activity-grid { grid-template-columns: 1fr; } }
+
+    /* ================================================ FORMATS ================================================ */
+    .formats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-3);
+    }
+    .format-card {
+      background: var(--color-white);
+      box-shadow: var(--shadow-card);
+      border-radius: var(--radius-md);
+      padding: var(--space-3);
+      text-align: center;
+    }
+    .format-card__icon { width: 32px; height: 32px; color: var(--color-accent); margin: 0 auto var(--space-2); }
+    .format-card h4 { font-family: var(--font-display); font-size: 1rem; margin-bottom: 4px; }
+    .format-card p { font-size: 0.875rem; color: var(--color-muted); line-height: 1.5; margin: 0; }
+    @media (max-width: 900px) { .formats-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .formats-grid { grid-template-columns: 1fr; } }
+
+    /* ================================================ CAMP MODELS (ACCORDION) ================================================ */
+    .camp {
+      background: var(--color-white);
+      border: 1px solid rgba(154,165,177,0.25);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-2);
+      overflow: hidden;
+    }
+    .camp__header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-3);
+      background: #FAFAF8;
+      text-align: left;
+      transition: background var(--transition);
+    }
+    .camp__header:hover { background: var(--color-cream); }
+    .camp[open] > .camp__header { background: var(--color-white); border-bottom: 1px solid rgba(154,165,177,0.25); }
+    .camp__meta-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .camp__title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-charcoal);
+      line-height: 1.3;
+    }
+    .camp__chevron {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      color: var(--color-muted);
+      transition: transform var(--transition);
+      margin-left: var(--space-2);
+    }
+    .camp[open] .camp__chevron { transform: rotate(180deg); }
+    .camp__body { padding: var(--space-4) var(--space-3); }
+    .camp__facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2) var(--space-4);
+      margin-bottom: var(--space-3);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid rgba(154,165,177,0.2);
+    }
+    .camp__fact { font-size: 0.875rem; }
+    .camp__fact-label { font-weight: 600; color: var(--color-charcoal); display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; }
+    .camp__fact-value { color: var(--color-muted); }
+    .camp__detail-row { display: flex; gap: var(--space-2); font-size: 0.9375rem; margin-bottom: var(--space-2); line-height: 1.6; }
+    .camp__detail-label { flex-shrink: 0; font-weight: 600; color: var(--color-charcoal); min-width: 130px; }
+    .camp__detail-text { color: var(--color-muted); }
+    @media (max-width: 600px) {
+      .camp__detail-row { flex-direction: column; gap: 2px; }
+      .camp__detail-label { min-width: 0; }
+    }
+
+    /* ================================================ DAY-BY-DAY TABLE ================================================ */
+    .schedule-toggle { margin-top: var(--space-3); }
+    .schedule-toggle > summary {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      padding: var(--space-1) 0;
+      display: inline-block;
+    }
+    .schedule {
+      margin-top: var(--space-2);
+      border: 1px solid rgba(154,165,177,0.25);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .schedule__row {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      border-bottom: 1px solid rgba(154,165,177,0.18);
+    }
+    .schedule__row:last-child { border-bottom: none; }
+    .schedule__row--head { background: var(--color-charcoal); }
+    .schedule__row--head .schedule__day,
+    .schedule__row--head .schedule__content { color: var(--color-white); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .schedule__day {
+      padding: var(--space-2);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      color: var(--color-accent);
+      border-right: 1px solid rgba(154,165,177,0.18);
+    }
+    .schedule__content { padding: var(--space-2); }
+    .schedule__theme { font-weight: 600; font-size: 0.9375rem; color: var(--color-charcoal); display: block; margin-bottom: 2px; }
+    .schedule__activity { font-size: 0.875rem; color: var(--color-muted); display: block; }
+    .schedule__deliverable { font-size: 0.8125rem; color: var(--color-accent); display: block; margin-top: 4px; font-style: italic; }
+
+    /* ================================================ OUTCOMES / GAIN LIST (reused) ================================================ */
+    .outcomes-list { list-style: none; }
+    .outcomes-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-2);
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid rgba(154,165,177,0.25);
+    }
+    .outcomes-list li:last-child { border-bottom: none; }
+    .outcomes-list .check { flex-shrink: 0; width: 22px; height: 22px; color: var(--color-accent); margin-top: 3px; }
+    .outcomes-list p { font-size: 1rem; margin: 0; }
+    .outcomes-list strong { color: var(--color-charcoal); }
+    .outcomes-list span { color: var(--color-muted); }
+
+    /* ================================================ FEATURED PROGRAM CARD ================================================ */
+    .featured {
+      background: var(--color-white);
+      border: 1px solid rgba(154,165,177,0.25);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+    .featured__banner {
+      background: linear-gradient(135deg, #6667AB 0%, #2C3E50 100%);
+      padding: var(--space-5);
+      color: var(--color-white);
+    }
+    .featured__tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      display: block;
+      margin-bottom: var(--space-2);
+    }
+    .featured__banner h3 { color: var(--color-white); font-size: 1.625rem; margin-bottom: var(--space-2); }
+    .featured__banner p { color: rgba(255,255,255,0.9); font-size: 1rem; margin: 0; max-width: 620px; }
+    .featured__body { padding: var(--space-5); }
+    .featured__facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+    .featured__fact-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 4px; }
+    .featured__fact-value { font-size: 0.9375rem; font-weight: 600; color: var(--color-charcoal); line-height: 1.4; }
+    .featured__cta { margin-top: var(--space-3); }
+    @media (max-width: 768px) {
+      .featured__facts { grid-template-columns: repeat(2, 1fr); }
+      .featured__banner, .featured__body { padding: var(--space-4); }
+    }
+    @media (max-width: 480px) { .featured__facts { grid-template-columns: 1fr; } }
+
+    /* ================================================ STORIES ================================================ */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3);
+    }
+    .story-card {
+      background: var(--color-white);
+      border: 1px solid rgba(154,165,177,0.25);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      display: flex;
+      flex-direction: column;
+    }
+    .story-card--featured { border-color: var(--color-accent); border-width: 1.5px; background: linear-gradient(180deg, #FBFBFE 0%, var(--color-white) 100%); }
+    .story-card__quote {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--color-charcoal);
+      margin-bottom: var(--space-2);
+    }
+    .story-card__quote::before { content: "\201C"; color: var(--color-accent); }
+    .story-card__quote::after { content: "\201D"; color: var(--color-accent); }
+    .story-card__attr { font-size: 0.8125rem; color: var(--color-muted); margin-top: auto; }
+    .story-card__star { color: var(--color-accent); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: var(--space-2); display: flex; align-items: center; gap: 4px; }
+    .story-card__star svg { width: 14px; height: 14px; }
+    @media (max-width: 768px) { .stories-grid { grid-template-columns: 1fr; } }
+
+    .stories-note {
+      margin-top: var(--space-4);
+      font-size: 0.875rem;
+      font-style: italic;
+      color: var(--color-muted);
+      text-align: center;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ================================================ CTA ================================================ */
+    .cta-section { background: var(--color-dark-surface); color: var(--color-white); padding: var(--space-8) 0; text-align: center; }
+    .cta-section .eyebrow { color: #B8B8E0; }
+    .cta-section h2 { color: var(--color-white); margin-bottom: var(--space-3); }
+    .cta-section p { color: rgba(255,255,255,0.85); font-size: 1.125rem; line-height: 1.6; max-width: 640px; margin: 0 auto var(--space-4); }
+    .cta-section__row { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
+    @media (max-width: 768px) { .cta-section { padding: var(--space-6) 0; } }
+
+    /* ================================================ FOOTER NOTE ================================================ */
+    .footer-note { background: var(--color-white); padding: var(--space-6) 0; text-align: center; }
+    .footer-note p { font-style: italic; font-size: 0.875rem; color: var(--color-muted); max-width: 640px; margin: 0 auto; line-height: 1.6; }
+
+    /* ================================================ FOCUS STATES ================================================ */
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+    summary { list-style: none; cursor: pointer; }
+    summary::-webkit-details-marker { display: none; }
+  </style>
+</head>
+<body>
+
+  <a href="#overview" class="skip-link">Skip to content</a>
+
+  <!-- =========================== SECTION 1: HERO =========================== -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero__content">
+        <span class="eyebrow hero__eyebrow">Aedifica Programs &middot; Early Discovery</span>
+        <h1 id="hero-title">Aedifica Explore</h1>
+        <p class="hero__subhead">A hands-on introduction to the built environment for younger learners, after-school programs, summer camps, and community partners. Students build, test, plan, and present &mdash; and discover the people and decisions behind the buildings and infrastructure around them.</p>
+        <div class="hero__cta-row">
+          <a href="#contact" class="button-primary">Host an Explore Workshop</a>
+          <a href="#formats" class="button-outline">Request Program Menu</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 2: STICKY SUB-NAV =========================== -->
+  <nav class="subnav" aria-label="Page sections">
+    <div class="container">
+      <div class="subnav__inner">
+        <a href="#overview" class="subnav__link">Overview</a>
+        <a href="#gain" class="subnav__link">What You Gain</a>
+        <a href="#activities" class="subnav__link">Activities</a>
+        <a href="#formats" class="subnav__link">Formats</a>
+        <a href="#camps" class="subnav__link">Summer Camps</a>
+        <a href="#featured" class="subnav__link">Featured Program</a>
+        <a href="#eligibility" class="subnav__link">Eligibility</a>
+        <a href="#stories" class="subnav__link">Stories</a>
+        <a href="#contact" class="subnav__link">Get in Touch</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =========================== SECTION 3: OVERVIEW / EXPERIENCE =========================== -->
+  <section id="overview" class="section" aria-labelledby="overview-title">
+    <div class="container-narrow">
+      <span class="eyebrow">The Experience</span>
+      <h2 id="overview-title">Where curiosity meets the built environment.</h2>
+      <p>Explore introduces students to construction, engineering, planning, teamwork, and project thinking through accessible, high-energy activities. Learners build, test, plan, and present while discovering the people and decisions behind buildings and infrastructure.</p>
+      <p>Explore is Aedifica's early awareness and discovery program. It is designed for younger learners and for the settings where curiosity is sparked &mdash; after-school programs, summer camps, community organizations, and school-day workshops. The goal is not to produce finished engineers. It is to open a door: to let a student see themselves, for the first time, as someone who can design, build, and improve the world around them.</p>
+      <p>Explore is also the on-ramp to Aedifica's deeper programming. Students who discover a spark here can continue into longer, more rigorous experiences such as our twelve-week middle school engineering capstone, <em>Bridging Brilliance: Engineering the Hudson</em>.</p>
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 4: WHAT YOU WILL GAIN =========================== -->
+  <section id="gain" class="section section--cream" aria-labelledby="gain-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">What You Will Gain</span>
+        <h2 id="gain-title">Discovery that builds real foundations.</h2>
+        <p class="subhead center">Explore is short and high-energy, but the gains are genuine. Students leave with new awareness, new confidence, and new skills they carry into everything that follows.</p>
+      </div>
+
+      <div class="gain-grid">
+
+        <div class="gain-card">
+          <svg class="gain-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <h3>Career awareness</h3>
+          <p>Students discover that engineering and construction management are real, reachable careers &mdash; and meet the range of roles that bring a building from idea to reality.</p>
+        </div>
+
+        <div class="gain-card">
+          <svg class="gain-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <h3>Design-build confidence</h3>
+          <p>Through making and testing, students gain confidence with design-build thinking &mdash; the idea that you can sketch something, build it, see it fail, and make it better.</p>
+        </div>
+
+        <div class="gain-card">
+          <svg class="gain-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h3>Teamwork and communication</h3>
+          <p>Students practice working in teams, sharing ideas, listening to feedback, and presenting their thinking to others &mdash; skills that matter in every field.</p>
+        </div>
+
+        <div class="gain-card">
+          <svg class="gain-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <h3>Real-world exposure</h3>
+          <p>Early exposure to engineering, planning, sustainability, and community impact &mdash; so students begin to see how the built world is shaped by choices, and how those choices affect people.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 5: SAMPLE ACTIVITIES =========================== -->
+  <section id="activities" class="section" aria-labelledby="activities-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Sample Activities</span>
+        <h2 id="activities-title">Hands-on from the first minute.</h2>
+        <p class="subhead center">Explore sessions are built around making and doing. These are the kinds of activities a workshop or series draws from &mdash; mixed and matched to fit the age group, setting, and time available.</p>
+      </div>
+
+      <div class="activity-grid">
+
+        <div class="activity-card">
+          <svg class="activity-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M2 20h20"/><path d="M4 20V8l8-4 8 4v12"/><path d="M9 20v-6h6v6"/></svg>
+          <h4>Bridge or tower design challenge</h4>
+          <p>Teams design, build, and test a structure against real constraints &mdash; then improve it when it doesn't hold.</p>
+        </div>
+
+        <div class="activity-card">
+          <svg class="activity-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M3 3v18h18"/><rect x="7" y="13" width="3" height="5"/><rect x="12" y="9" width="3" height="9"/><rect x="17" y="5" width="3" height="13"/></svg>
+          <h4>Mini site-planning activity</h4>
+          <p>Students lay out a small site, balancing space, access, and competing needs the way real planners do.</p>
+        </div>
+
+        <div class="activity-card">
+          <svg class="activity-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <h4>Materials and load-testing demo</h4>
+          <p>A hands-on demonstration of how different materials carry weight &mdash; and what happens at the breaking point.</p>
+        </div>
+
+        <div class="activity-card">
+          <svg class="activity-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <h4>Neighborhood infrastructure mapping</h4>
+          <p>Students map the roads, bridges, water, and power around them &mdash; and start to see infrastructure they'd never noticed.</p>
+        </div>
+
+        <div class="activity-card">
+          <svg class="activity-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+          <h4>Career role-play</h4>
+          <p>Students step into the roles that build a project: owner, designer, estimator, scheduler, and field manager.</p>
+        </div>
+
+        <div class="activity-card">
+          <svg class="activity-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          <h4>Present and share</h4>
+          <p>Teams present what they built and what they learned &mdash; practicing the communication every engineer needs.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 6: FORMATS =========================== -->
+  <section id="formats" class="section section--cream" aria-labelledby="formats-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Flexible Formats</span>
+        <h2 id="formats-title">One program, many ways to run it.</h2>
+        <p class="subhead center">Explore adapts to your setting and your calendar. Offer it as a single spark or a sustained series &mdash; whatever fits your students and your goals.</p>
+      </div>
+
+      <div class="formats-grid">
+
+        <div class="format-card">
+          <svg class="format-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <h4>Single workshop</h4>
+          <p>A one-session spark for an event, a club, or a class period.</p>
+        </div>
+
+        <div class="format-card">
+          <svg class="format-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <h4>Multi-session series</h4>
+          <p>A recurring after-school or in-school series that builds over weeks.</p>
+        </div>
+
+        <div class="format-card">
+          <svg class="format-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 2v6m0 0 3-3m-3 3L9 5"/><path d="M5 12H2m20 0h-3"/><circle cx="12" cy="14" r="6"/></svg>
+          <h4>Summer camp module</h4>
+          <p>A multi-day or multi-week camp model with a culminating showcase.</p>
+        </div>
+
+        <div class="format-card">
+          <svg class="format-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h4>Partner-funded enrichment</h4>
+          <p>A sponsored program delivered with a community or funding partner.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 7: SUMMER CAMP MODELS (ACCORDION) =========================== -->
+  <section id="camps" class="section" aria-labelledby="camps-title">
+    <div class="container-wide">
+      <div class="section-header">
+        <span class="eyebrow">Summer Camp Models</span>
+        <h2 id="camps-title">Three camp models, ready to run.</h2>
+        <p class="subhead center">Explore powers full summer camp experiences. Each model below is a complete, deliverable camp &mdash; built around a clear age band, a set of learning objectives, and a culminating project. Open any model to see the details, and open the day-by-day map to see how a camp actually runs.</p>
+      </div>
+
+      <!-- CAMP 1 -->
+      <details class="camp" open>
+        <summary class="camp__header">
+          <div>
+            <span class="camp__meta-label">Grades 6&ndash;8 &middot; 2 weeks</span>
+            <span class="camp__title">Middle School Engineering Explorers Camp</span>
+          </div>
+          <svg class="camp__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="camp__body">
+          <div class="camp__facts">
+            <div class="camp__fact"><span class="camp__fact-label">Target grade</span><span class="camp__fact-value">Grades 6&ndash;8</span></div>
+            <div class="camp__fact"><span class="camp__fact-label">Duration</span><span class="camp__fact-value">2 weeks</span></div>
+            <div class="camp__fact"><span class="camp__fact-label">Final project</span><span class="camp__fact-value">STEM Expo prototype, poster, and reflection</span></div>
+          </div>
+          <div class="camp__detail-row"><span class="camp__detail-label">Learning objectives</span><span class="camp__detail-text">Engineering identity, teamwork, design thinking, measurement, testing, and iteration.</span></div>
+          <div class="camp__detail-row"><span class="camp__detail-label">Major activities</span><span class="camp__detail-text">Rotating mini-challenges in structures, circuits, robotics, water, energy, and materials.</span></div>
+          <div class="camp__detail-row"><span class="camp__detail-label">Staffing</span><span class="camp__detail-text">STEM teacher, technology/engineering teacher, paraprofessional, high school mentors.</span></div>
+          <div class="camp__detail-row"><span class="camp__detail-label">Possible partners</span><span class="camp__detail-text">Rutgers TARGET, 4-H, PLTW, local engineers.</span></div>
+          <div class="camp__detail-row"><span class="camp__detail-label">Cost considerations</span><span class="camp__detail-text">Low to moderate; reuse robotics and sensor kits; consumables are mostly inexpensive.</span></div>
+
+          <details class="schedule-toggle">
+            <summary>View the 10-day camp map &rarr;</summary>
+            <div class="schedule">
+              <div class="schedule__row schedule__row--head"><div class="schedule__day">Day</div><div class="schedule__content">Theme, activities, and deliverable</div></div>
+              <div class="schedule__row"><div class="schedule__day">1</div><div class="schedule__content"><span class="schedule__theme">What Engineers Do</span><span class="schedule__activity">Team-building, the engineering design cycle, and a gallery of local NJ problems.</span><span class="schedule__deliverable">Deliverable: engineering notebook setup; team norms</span></div></div>
+              <div class="schedule__row"><div class="schedule__day">2</div><div class="schedule__content"><span class="schedule__theme">Structures and Forces</span><span class="schedule__activity">Bridge and tower design, load testing, and failure analysis.</span><span class="schedule__deliverable">Deliverable: load-test data table and sketch revision</span></div></div>
+              <div class="schedule__row"><div class="schedule__day">3</div><div class="schedule__content"><span class="schedule__theme">Materials Matter</span><span class="schedule__activity">Compare cardboard, wood, plastics, and recycled materials in a material-choice lab.</span><span class="schedule__deliverable">Deliverable: materials selection chart</span></div></div>
+              <div class="schedule__row"><div class="schedule__day">4</div><div class="schedule__content"><span class="schedule__theme">Circuits and Sensors</span><span class="schedule__activity">Build an LED circuit and use a sensor to collect data.</span><span class="schedule__deliverable">Deliverable: working circuit and troubleshooting log</span></div></div>
+              <div class="schedule__row"><div class="schedule__day">5</div><div class="schedule__content"><span class="schedule__theme">Robotics Basics</span><span class="schedule__activity">Build and code simple robot movement; complete an obstacle challenge.</span><span class="schedule__deliverable">Deliverable: robot movement demo</span></div></div>
+              <div class="schedule__row"><div class="schedule__day">6</div><div class="schedule__content"><span class="schedule__theme">Water, Flooding, and Stormwater</span><span class="schedule__activity">Model runoff and infiltration, test water quality, and map school drainage.</span><span class="schedule__deliverable">Deliverable: stormwater observation notes</span></div></div>
+              <div class="schedule__row"><div class="schedule__day">7</div><div class="schedule__content"><span class="schedule__theme">Renewable Energy and Efficiency</span><span class="schedule__activity">A solar or wind mini-challenge and a school energy-audit walk.</span><span class="schedule__deliverable">Deliverable: energy prototype or audit checklist</span></div></div>
+              <div class="schedule__row"><div class="schedule__day">8</div><div class="schedule__content"><span class="schedule__theme">Design Sprint Begins</span><span class="schedule__activity">Teams select a local problem and define criteria and constraints.</span><span class="schedule__deliverable">Deliverable: problem statement and prototype plan</span></div></div>
+              <div class="schedule__row"><div class="schedule__day">9</div><div class="schedule__content"><span class="schedule__theme">Build, Test, Revise</span><span class="schedule__activity">Prototype construction, testing, peer critique, and redesign.</span><span class="schedule__deliverable">Deliverable: prototype v2 and test results</span></div></div>
+              <div class="schedule__row"><div class="schedule__day">10</div><div class="schedule__content"><span class="schedule__theme">STEM Expo</span><span class="schedule__activity">Poster, pitch rehearsal, and public presentation.</span><span class="schedule__deliverable">Deliverable: prototype, poster, oral presentation, reflection</span></div></div>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- CAMP 2 -->
+      <details class="camp">
+        <summary class="camp__header">
+          <div>
+            <span class="camp__meta-label">Grades 7&ndash;12 &middot; 1&ndash;2 weeks</span>
+            <span class="camp__title">Construction, Architecture, and Built Environment Camp</span>
+          </div>
+          <svg class="camp__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="camp__body">
+          <div class="camp__facts">
+            <div class="camp__fact"><span class="camp__fact-label">Target grade</span><span class="camp__fact-value">Grades 7&ndash;12</span></div>
+            <div class="camp__fact"><span class="camp__fact-label">Duration</span><span class="camp__fact-value">1&ndash;2 weeks</span></div>
+            <div class="camp__fact"><span class="camp__fact-label">Final project</span><span class="camp__fact-value">Sustainable school addition or community facility proposal</span></div>
+          </div>
+          <div class="camp__detail-row"><span class="camp__detail-label">Learning objectives</span><span class="camp__detail-text">Design, estimating, scheduling, safety, sustainability, and construction logistics.</span></div>
+          <div class="camp__detail-row"><span class="camp__detail-label">Major activities</span><span class="camp__detail-text">Site logistics plan, quantity takeoff, model build, and a construction sequencing game.</span></div>
+          <div class="camp__detail-row"><span class="camp__detail-label">Staffing</span><span class="camp__detail-text">Engineering/technology teacher, art/architecture teacher, construction mentor.</span></div>
+          <div class="camp__detail-row"><span class="camp__detail-label">Possible partners</span><span class="camp__detail-text">Stevens, NJIT, local architects and contractors, municipal building departments.</span></div>
+          <div class="camp__detail-row"><span class="camp__detail-label">Cost considerations</span><span class="camp__detail-text">Low to moderate; an excellent target for industry sponsorship.</span></div>
+        </div>
+      </details>
+
+      <!-- CAMP 3 -->
+      <details class="camp">
+        <summary class="camp__header">
+          <div>
+            <span class="camp__meta-label">Grades 6&ndash;10 &middot; 1&ndash;2 weeks</span>
+            <span class="camp__title">Girls in Engineering and Technology Camp</span>
+          </div>
+          <svg class="camp__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="camp__body">
+          <div class="camp__facts">
+            <div class="camp__fact"><span class="camp__fact-label">Target grade</span><span class="camp__fact-value">Grades 6&ndash;10</span></div>
+            <div class="camp__fact"><span class="camp__fact-label">Duration</span><span class="camp__fact-value">1&ndash;2 weeks</span></div>
+            <div class="camp__fact"><span class="camp__fact-label">Final project</span><span class="camp__fact-value">Team prototype and personal STEM pathway plan</span></div>
+          </div>
+          <div class="camp__detail-row"><span class="camp__detail-label">Learning objectives</span><span class="camp__detail-text">STEM identity, leadership, confidence, coding and design skills, and mentoring networks.</span></div>
+          <div class="camp__detail-row"><span class="camp__detail-label">Major activities</span><span class="camp__detail-text">Mentor panels, a coding project, an engineering prototype, and leadership workshops.</span></div>
+          <div class="camp__detail-row"><span class="camp__detail-label">Staffing</span><span class="camp__detail-text">Female and nonbinary STEM educators, mentors, counselors, and near-peer leaders.</span></div>
+          <div class="camp__detail-row"><span class="camp__detail-label">Possible partners</span><span class="camp__detail-text">SWE SWENext, Girls Who Code, Black Girls Code, Rutgers, NJIT, Stevens.</span></div>
+          <div class="camp__detail-row"><span class="camp__detail-label">Cost considerations</span><span class="camp__detail-text">Should be free or heavily subsidized to maximize access.</span></div>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 8: FEATURED PROGRAM =========================== -->
+  <section id="featured" class="section section--cream" aria-labelledby="featured-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Where Explore Leads</span>
+        <h2 id="featured-title">From discovery to a full engineering capstone.</h2>
+        <p class="subhead center">When a student's curiosity catches, Explore hands off to deeper work. Our flagship middle school capstone takes the spark and turns it into a sustained, rigorous engineering experience.</p>
+      </div>
+
+      <div class="featured">
+        <div class="featured__banner">
+          <span class="featured__tag">Featured Program &middot; Middle School Capstone</span>
+          <h3>Bridging Brilliance: Engineering the Hudson</h3>
+          <p>A twelve-week program where students work as junior engineers to design, model, build, test, and present a sustainable bridge across the Hudson River &mdash; satisfying real criteria for span, cost, structural performance, sustainability, and community impact.</p>
+        </div>
+        <div class="featured__body">
+          <div class="featured__facts">
+            <div class="featured__fact"><div class="featured__fact-label">Grade band</div><div class="featured__fact-value">Middle school (6&ndash;8)</div></div>
+            <div class="featured__fact"><div class="featured__fact-label">Duration</div><div class="featured__fact-value">12 weeks</div></div>
+            <div class="featured__fact"><div class="featured__fact-label">Structure</div><div class="featured__fact-value">Three units, one capstone</div></div>
+            <div class="featured__fact"><div class="featured__fact-label">Standards</div><div class="featured__fact-value">NGSS &middot; Common Core &middot; NJ Life &amp; Careers</div></div>
+          </div>
+          <p>Bridging Brilliance integrates science, engineering, mathematics, communication, and career-readiness skills to mirror authentic engineering practice. It serves as a middle school STEM capstone and an on-ramp to high school pathways in engineering, computer science, and related fields.</p>
+          <div class="featured__cta">
+            <a href="/curriculum/bridging-brilliance" class="button-primary">View the full curriculum</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 9: ELIGIBILITY & SUPPORT =========================== -->
+  <section id="eligibility" class="section" aria-labelledby="eligibility-title">
+    <div class="container-medium">
+      <div class="section-header">
+        <span class="eyebrow">Eligibility &amp; Support</span>
+        <h2 id="eligibility-title">Built to fit your setting.</h2>
+      </div>
+
+      <ul class="outcomes-list">
+        <li>
+          <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <p><strong>Flexible grade range.</strong> <span>Explore can be adapted for grades 6 to 9, meeting students at the moment their interests are taking shape.</span></p>
+        </li>
+        <li>
+          <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <p><strong>Many settings.</strong> <span>After-school groups, summer camps, community-based organizations, enrichment programs, and school-day workshops all work for Explore.</span></p>
+        </li>
+        <li>
+          <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <p><strong>Offered your way.</strong> <span>Run Explore as a single workshop, a multi-session series, a summer camp module, or a partner-funded enrichment program.</span></p>
+        </li>
+        <li>
+          <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <p><strong>Partnership-friendly.</strong> <span>Explore is designed to work with community organizations and funders, including sponsorship models that keep programs free or low-cost for the families who need them most.</span></p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 10: STORIES =========================== -->
+  <section id="stories" class="section section--cream" aria-labelledby="stories-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">In Their Own Words</span>
+        <h2 id="stories-title">Ten weeks is enough to change how a student sees a bridge &mdash; and themselves.</h2>
+        <p class="subhead center">These are reflections from the 2025 Building Bridges cohort: seventh and eighth graders who arrived describing engineering as "fixing things" and left talking about prototypes, sustainability, and what to do when a design fails. Student quotes are anonymized to protect privacy.</p>
+      </div>
+
+      <div class="stories-grid">
+
+        <div class="story-card story-card--featured">
+          <div class="story-card__star"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Featured reflection</div>
+          <p class="story-card__quote">When we mess up, this only sets you up for a new door to open.</p>
+          <p class="story-card__attr">Student reflection, post-program survey. A twelve- or thirteen-year-old naming failure as a doorway, not a dead end &mdash; the heart of the engineering design process.</p>
+        </div>
+
+        <div class="story-card story-card--featured">
+          <div class="story-card__star"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Featured reflection</div>
+          <p class="story-card__quote">Engineering is designing, creating, testing, and improving solutions.</p>
+          <p class="story-card__attr">Student reflection, post-program survey. At the start, students said "designing a structure." By the end, they could describe the whole iterative process. That shift is the program working.</p>
+        </div>
+
+        <div class="story-card">
+          <p class="story-card__quote">It is as important to learn as to succeed.</p>
+          <p class="story-card__attr">Student reflection, post-program survey. Process over outcome &mdash; a growth mindset students built by testing prototypes that didn't always hold.</p>
+        </div>
+
+        <div class="story-card">
+          <p class="story-card__quote">Not everything will be easy.</p>
+          <p class="story-card__attr">Student reflection, post-program survey. Honest, unglamorous, and exactly what resilience sounds like at thirteen.</p>
+        </div>
+
+        <div class="story-card">
+          <p class="story-card__quote">Engineering means designing for sustainability and using serious critical thinking skills.</p>
+          <p class="story-card__attr">Student reflection, post-program survey. Students didn't just learn to build &mdash; they learned to weigh consequences and think rigorously.</p>
+        </div>
+
+        <div class="story-card">
+          <p class="story-card__quote">A failed test is not an ending, but useful data.</p>
+          <p class="story-card__attr">Program team observation, paraphrased from the program report. Captures the instructional design behind every build-test-revise cycle in Explore.</p>
+        </div>
+
+      </div>
+
+      <p class="stories-note">Families attended the final bridge presentations at Stevens Institute of Technology. As new programs run and families share their reflections, their words will appear here.</p>
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 11: CTA =========================== -->
+  <section id="contact" class="cta-section" aria-labelledby="cta-title">
+    <div class="container-narrow">
+      <span class="eyebrow">Get Started</span>
+      <h2 id="cta-title">Start with curiosity. Build toward opportunity.</h2>
+      <p>Aedifica Explore brings hands-on engineering and the built environment to younger learners in schools, camps, after-school programs, and community settings. Tell us about your students and your setting, and we'll help you design the right Explore experience &mdash; from a single workshop to a full summer camp.</p>
+      <div class="cta-section__row">
+        <a href="/contact" class="button-primary">Book Explore</a>
+        <a href="/contact?type=custom" class="button-outline">Design a Custom Session</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 12: FOOTER NOTE =========================== -->
+  <section class="footer-note">
+    <div class="container-narrow">
+      <p>Explore is part of Aedifica's connected pathway, from early discovery for younger learners through rigorous, standards-aligned capstone programming. Schools, districts, camps, and community partners interested in early access or custom program design can begin a conversation above.</p>
+    </div>
+  </section>
+
+  <!-- =========================== SCROLL-SPY FOR STICKY NAV =========================== -->
+  <script>
+    const navLinks = document.querySelectorAll('.subnav__link');
+    const sections = Array.from(navLinks).map(link => {
+      const id = link.getAttribute('href').substring(1);
+      return document.getElementById(id);
+    }).filter(Boolean);
+
+    function updateActiveNav() {
+      const scrollPos = window.scrollY + 120;
+      let currentSection = null;
+      for (const section of sections) {
+        if (section.offsetTop <= scrollPos) currentSection = section.id;
+      }
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href').substring(1);
+        link.classList.toggle('is-active', href === currentSection);
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
+  </script>
+
+</body>
+</html>

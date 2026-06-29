@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+﻿'use client'
+import Link from 'next/link'
 import { motion, useReducedMotion } from 'motion/react'
 
 const VIEWPORT = { once: true, margin: '-60px 0px' } as const
@@ -42,7 +43,7 @@ export function PageCTA({ id, heading, body, primary, secondary, color = 'datum'
           </motion.h2>
 
           <motion.p
-            className="text-[14px] text-white/85 leading-[1.68] mb-8 max-w-[52ch] mx-auto"
+            className="text-[14px] text-white/90 leading-[1.68] mb-8 max-w-[52ch] mx-auto"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 20 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -57,15 +58,13 @@ export function PageCTA({ id, heading, body, primary, secondary, color = 'datum'
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.5, delay: 0.22, ease: EASE }}>
-            <Link
-              to={primary.to}
+            <Link href={primary.to}
               className={`inline-flex items-center justify-center ${s.btn} text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-colors duration-100`}
               style={{ fontFamily: 'var(--font-body)' }}>
               {primary.label}
             </Link>
             {secondary && (
-              <Link
-                to={secondary.to}
+              <Link href={secondary.to}
                 className={`inline-flex items-center justify-center ${s.ghost} text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-colors duration-100`}
                 style={{ fontFamily: 'var(--font-body)' }}>
                 {secondary.label}

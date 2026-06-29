@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resilient Futures — Standards-Aligned STEM Engineering Curriculum</title>
+<meta name="description" content="The complete Resilient Futures STEM engineering curriculum for grades 6 to 12, with explicit alignment to NGSS, NJSLS Mathematics, NJSLS English Language Arts, Engineering Design and Technology, and Career Readiness standards.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16243F; --ink-2:#2C3E5C; --paper:#EEF1F0; --surface:#FFFFFF;
+    --line:#CAD4DC; --line-strong:#9DAAB8; --steel:#54657B;
+    --amber:#C2761C; --amber-soft:#F3E2CC; --teal:#1E7A72;
+    --c-sci:#16243F; --c-sci-bg:#E2E7EE;
+    --c-math:#B9701F; --c-math-bg:#F6E7D4;
+    --c-ela:#1A6A63; --c-ela-bg:#D9EAE7;
+    --c-des:#3E5C8A; --c-des-bg:#E0E7F1;
+    --c-car:#7A4E63; --c-car-bg:#EDE1E7;
+    --font-d:'Archivo',sans-serif; --font-b:'IBM Plex Sans',sans-serif; --font-m:'IBM Plex Mono',monospace;
+    --wrap:1140px; --r:4px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+  body{font-family:var(--font-b);color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  h1,h2,h3,h4{font-family:var(--font-d);line-height:1.06;letter-spacing:-0.02em}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+  .mono{font-family:var(--font-m)}
+  .eyebrow{font-family:var(--font-m);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--steel)}
+
+  /* ---- top nav ---- */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(238,241,240,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:62px;max-width:var(--wrap);margin:0 auto;padding:0 24px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--font-d);font-weight:800;font-size:1.02rem;letter-spacing:-0.01em}
+  .brand svg{display:block}
+  .navlinks{display:flex;gap:26px;align-items:center}
+  .navlinks a{font-family:var(--font-m);font-size:.76rem;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;color:var(--steel);transition:color .15s}
+  .navlinks a:hover{color:var(--ink)}
+  .navtoggle{display:none;background:none;border:1px solid var(--line-strong);border-radius:var(--r);padding:7px 10px;font-family:var(--font-m);font-size:.7rem;cursor:pointer;color:var(--ink)}
+  @media(max-width:820px){
+    .navlinks{position:fixed;inset:62px 0 auto 0;flex-direction:column;gap:0;background:var(--surface);border-bottom:1px solid var(--line);padding:8px 0;display:none}
+    .navlinks.open{display:flex}
+    .navlinks a{padding:13px 24px;border-top:1px solid var(--line)}
+    .navtoggle{display:block}
+  }
+
+  /* ---- hero ---- */
+  .hero{position:relative;overflow:hidden;background:var(--ink);color:#EEF2F6;border-bottom:3px solid var(--amber)}
+  .hero .struts{position:absolute;inset:0;opacity:.5;pointer-events:none}
+  .hero-in{position:relative;max-width:var(--wrap);margin:0 auto;padding:78px 24px 64px}
+  .hero .eyebrow{color:#9FB2C9}
+  .hero h1{font-size:clamp(2.7rem,6.6vw,5.2rem);font-weight:900;margin:.5rem 0 .1rem;color:#fff}
+  .hero h1 em{font-style:normal;color:var(--amber)}
+  .hero .lede{font-size:clamp(1.05rem,2vw,1.3rem);max-width:42ch;color:#C9D6E4;margin-top:1.1rem}
+  .hero .facts{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .fact{border:1px solid #38516F;border-radius:var(--r);padding:13px 17px;background:rgba(255,255,255,.03)}
+  .fact b{font-family:var(--font-d);font-size:1.5rem;font-weight:800;color:#fff;display:block;line-height:1}
+  .fact span{font-family:var(--font-m);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#92A6BD}
+
+  /* ---- section frame ---- */
+  section.band{padding:66px 0}
+  .band-head{max-width:62ch;margin-bottom:34px}
+  .band-head h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;margin:.45rem 0 .55rem}
+  .band-head p{color:var(--ink-2);font-size:1.04rem}
+
+  /* ---- legend ---- */
+  .legend{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .legend-in{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;max-width:var(--wrap);margin:0 auto;padding:18px 24px}
+  .legend-in .lbl{font-family:var(--font-m);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);margin-right:4px}
+  .legkey{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-m);font-size:.74rem;border:1px solid var(--line);background:var(--surface);padding:6px 11px;border-radius:30px;cursor:pointer;transition:.15s;user-select:none}
+  .legkey .dot{width:11px;height:11px;border-radius:3px;flex:none}
+  .legkey[aria-pressed="true"]{box-shadow:inset 0 0 0 1.5px currentColor}
+  .legkey:hover{border-color:var(--line-strong)}
+  body.filtering .chip{opacity:.16}
+  body.filtering .chip.hot{opacity:1}
+
+  /* ---- pathways ---- */
+  .pathway{border-top:1px solid var(--line)}
+  .pw-head{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;padding-top:8px}
+  .pw-num{font-family:var(--font-d);font-weight:900;font-size:clamp(2.4rem,5vw,3.6rem);color:var(--line-strong);line-height:.8;letter-spacing:-0.04em}
+  .pw-title{font-size:clamp(1.55rem,3.4vw,2.2rem);font-weight:800}
+  .pw-grade{display:inline-block;font-family:var(--font-m);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber);border-radius:30px;padding:4px 12px;margin-bottom:10px}
+  .pw-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin:26px 0 8px}
+  .pw-meta div{background:var(--surface);padding:15px 17px}
+  .pw-meta .k{font-family:var(--font-m);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--steel);margin-bottom:5px}
+  .pw-meta .v{font-size:.95rem;color:var(--ink)}
+
+  /* ---- unit/week cards ---- */
+  .units{margin-top:30px;display:flex;flex-direction:column;gap:11px}
+  .unit{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);display:grid;grid-template-columns:64px 1fr;overflow:hidden;transition:border-color .15s}
+  .unit:hover{border-color:var(--line-strong)}
+  .unit .idx{background:var(--ink);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:14px 6px}
+  .unit .idx .n{font-family:var(--font-d);font-weight:800;font-size:1.4rem;line-height:1}
+  .unit .idx .u{font-family:var(--font-m);font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;color:#8FA3BA}
+  .unit .body{padding:16px 18px}
+  .unit .q{font-family:var(--font-d);font-weight:700;font-size:1.06rem;letter-spacing:-0.01em;margin-bottom:5px}
+  .unit .desc{font-size:.92rem;color:var(--ink-2);margin-bottom:12px}
+  .unit .desc b{color:var(--ink);font-weight:600}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-family:var(--font-m);font-size:.71rem;font-weight:500;padding:3px 8px;border-radius:3px;white-space:nowrap;cursor:help;transition:opacity .15s;border:1px solid transparent}
+  .chip.sci{color:var(--c-sci);background:var(--c-sci-bg);border-color:#CCD6E2}
+  .chip.math{color:var(--c-math);background:var(--c-math-bg);border-color:#E9D2B4}
+  .chip.ela{color:var(--c-ela);background:var(--c-ela-bg);border-color:#BFDCD7}
+  .chip.des{color:var(--c-des);background:var(--c-des-bg);border-color:#C9D5E6}
+  .chip.car{color:var(--c-car);background:var(--c-car-bg);border-color:#DDC9D3}
+
+  /* ---- standards matrix ---- */
+  .matrix{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .mcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  .mcard .top{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--line)}
+  .mcard .top .sw{width:14px;height:14px;border-radius:3px;flex:none}
+  .mcard .top h3{font-size:1rem;font-weight:700}
+  .mcard .top .sub{font-family:var(--font-m);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--steel)}
+  .mcard ul{list-style:none;padding:12px 16px;display:flex;flex-direction:column;gap:9px}
+  .mcard li{display:grid;grid-template-columns:auto 1fr;gap:11px;font-size:.86rem;color:var(--ink-2)}
+  .mcard li code{font-family:var(--font-m);font-size:.74rem;font-weight:600;color:var(--ink);white-space:nowrap}
+
+  /* ---- 21cclc map ---- */
+  .compmap{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+  .compmap .cell{background:var(--surface);padding:18px 19px}
+  .compmap .cell .tag{font-family:var(--font-m);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:7px}
+  .compmap .cell h4{font-size:1.02rem;font-weight:700;margin-bottom:6px}
+  .compmap .cell p{font-size:.88rem;color:var(--ink-2)}
+
+  /* ---- footer ---- */
+  footer{background:var(--ink);color:#C9D6E4;padding:54px 0 40px;margin-top:10px}
+  footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+  footer h4{color:#fff;font-size:1.05rem;margin-bottom:12px}
+  footer .partners{font-family:var(--font-m);font-size:.82rem;line-height:2;color:#9FB2C9}
+  footer .note{font-size:.82rem;color:#8499AF;max-width:42ch}
+  footer a{color:#fff;text-decoration:none;border-bottom:1px solid var(--amber)}
+  .foot-rule{border:0;border-top:1px solid #2C405C;margin:32px 0 18px}
+  .foot-fine{font-family:var(--font-m);font-size:.68rem;letter-spacing:.04em;color:#728499}
+  @media(max-width:720px){footer .cols{grid-template-columns:1fr;gap:26px}.pw-head{grid-template-columns:1fr}.pw-num{display:none}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <div class="brand">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
+        <path d="M1 20 L13 5 L25 20" fill="none" stroke="#C2761C" stroke-width="2"/>
+        <path d="M1 20 L25 20 M13 5 L13 20 M7 12.5 L13 20 L19 12.5" fill="none" stroke="#16243F" stroke-width="1.5"/>
+      </svg>
+      Resilient&nbsp;Futures
+    </div>
+    <nav class="navlinks" id="nav">
+      <a href="#bridge">Bridge Builders</a>
+      <a href="#infra">Infrastructure Fellows</a>
+      <a href="#research">Research Scholars</a>
+      <a href="#standards">Standards Matrix</a>
+      <a href="#cclc">21st CCLC Map</a>
+    </nav>
+    <button class="navtoggle" aria-expanded="false" aria-controls="nav" onclick="var n=document.getElementById('nav');var o=n.classList.toggle('open');this.setAttribute('aria-expanded',o)">Menu</button>
+  </div>
+</header>
+
+<section class="hero">
+  <svg class="struts" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g stroke="#33506F" stroke-width="1" fill="none">
+      <path d="M0 360 L1200 360"/>
+      <path d="M60 360 L180 120 L300 360 L420 120 L540 360 L660 120 L780 360 L900 120 L1020 360 L1140 120"/>
+      <path d="M180 120 L420 120 L660 120 L900 120 L1140 120"/>
+      <path d="M60 360 L300 360 L540 360 L780 360 L1020 360"/>
+    </g>
+    <g stroke="#C2761C" stroke-width="1" fill="none" opacity="0.55">
+      <path d="M0 60 Q300 150 600 60 T1200 60"/>
+      <path d="M0 60 L0 360 M150 96 L150 360 M300 105 L300 360 M450 96 L450 360 M600 60 L600 360 M750 96 L750 360 M900 105 L900 360 M1050 96 L1050 360 M1200 60 L1200 360"/>
+    </g>
+  </svg>
+  <div class="hero-in">
+    <p class="eyebrow">Grades 6–12 · Engineering Design · Out-of-School-Time STEM</p>
+    <h1>We build the<br><em>builders.</em></h1>
+    <p class="lede">The complete Resilient Futures curriculum — a three-pathway engineering program where students design real New Jersey infrastructure, from a first paper tower in grade 6 to a mentored capstone defended at a public STEM Expo.</p>
+    <div class="facts">
+      <div class="fact"><b>3</b><span>Grade-band pathways</span></div>
+      <div class="fact"><b>6–12</b><span>Students served</span></div>
+      <div class="fact"><b>5</b><span>Standards frameworks</span></div>
+      <div class="fact"><b>40+</b><span>Aligned standards</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- standards legend / filter -->
+<div class="legend" id="legend">
+  <div class="legend-in">
+    <span class="lbl">Standards key — tap to filter</span>
+    <button class="legkey" data-cat="sci" aria-pressed="false" style="color:var(--c-sci)"><span class="dot" style="background:var(--c-sci)"></span>NGSS / Science</button>
+    <button class="legkey" data-cat="math" aria-pressed="false" style="color:var(--c-math)"><span class="dot" style="background:var(--c-math)"></span>NJSLS Math</button>
+    <button class="legkey" data-cat="ela" aria-pressed="false" style="color:var(--c-ela)"><span class="dot" style="background:var(--c-ela)"></span>NJSLS ELA</button>
+    <button class="legkey" data-cat="des" aria-pressed="false" style="color:var(--c-des)"><span class="dot" style="background:var(--c-des)"></span>Design &amp; Tech</button>
+    <button class="legkey" data-cat="car" aria-pressed="false" style="color:var(--c-car)"><span class="dot" style="background:var(--c-car)"></span>Career Readiness</button>
+  </div>
+</div>
+
+<div class="wrap" style="padding-top:54px">
+  <div class="band-head">
+    <p class="eyebrow">How to read this curriculum</p>
+    <h2>Every unit names the standards it teaches</h2>
+    <p>Each week or unit below carries the exact standards it addresses, color-coded by framework and shown in the engineering shorthand teachers and reviewers use. Hover any code for its full description. The master matrix at the end consolidates the complete alignment across all three pathways.</p>
+  </div>
+</div>
+
+<!-- ===================== PATHWAY 01 ===================== -->
+<section class="band pathway" id="bridge">
+  <div class="wrap">
+    <div class="pw-head">
+      <div class="pw-num">01</div>
+      <div>
+        <span class="pw-grade">Grades 6–8 · Middle School</span>
+        <div class="pw-title">Bridge Builders</div>
+        <p style="max-width:64ch;margin-top:10px;color:var(--ink-2)">A twelve-week engineering studio built on the proven Hillside–Stevens bridge program. Students run a full engineering design cycle on an authentic Hudson River crossing challenge — defining the problem, modeling and costing designs, weighing risk and sustainability, building and load-testing prototypes, and defending their work at a public showcase.</p>
+        <div class="pw-meta">
+          <div><div class="k">Essential question</div><div class="v">How can young engineers design a bridge that is strong, affordable, sustainable, and useful to the community?</div></div>
+          <div><div class="k">NJ anchor challenge</div><div class="v">Hudson River crossing · aging bridges · flooding &amp; transportation resilience</div></div>
+          <div><div class="k">Student deliverables</div><div class="v">Engineering notebook · scaled &amp; digital model · cost estimate · risk/sustainability matrix · tested prototype · final presentation</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="units">
+      <div class="unit"><div class="idx"><span class="n">1</span><span class="u">Week</span></div><div class="body">
+        <div class="q">What is STEM, and how do engineers think?</div>
+        <div class="desc">Program norms and the final-competition overview; how math, science, and engineering work together; the <b>engineering design process</b> through a quick paper-tower challenge; students open their engineering notebooks.</div>
+        <div class="chips"><span class="chip sci" title="Define the criteria and constraints of a design problem with sufficient precision to ensure a successful solution.">MS-ETS1-1</span><span class="chip math" title="Make sense of problems and persevere; reason abstractly and quantitatively.">MP1 · MP2</span><span class="chip ela" title="Engage effectively in collaborative discussions.">SL.PE.7.1</span><span class="chip ela" title="Write informative/explanatory texts.">W.IW.7.2</span><span class="chip car" title="Career Readiness: generate ideas.">9.4.8.CI.2</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">2</span><span class="u">Week</span></div><div class="body">
+        <div class="q">Why do we need sustainable infrastructure?</div>
+        <div class="desc">Global challenges and the UN Sustainable Development Goals; a case study of aging and collapsing bridges; students map how a new Hudson crossing could advance specific SDGs. Quick-write: <b>why our community needs better bridges</b>.</div>
+        <div class="chips"><span class="chip sci" title="Apply scientific principles to design solutions that minimize human impact on the environment (extension).">MS-ESS3-3</span><span class="chip ela" title="Evaluate the argument and claims in a text.">RI.AA.7.7</span><span class="chip ela" title="Write informative/explanatory texts.">W.IW.7.2</span><span class="chip car" title="Identify a problem from multiple viewpoints.">9.4.8.CT.1</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">3</span><span class="u">Week</span></div><div class="body">
+        <div class="q">What exactly is the Hudson bridge problem?</div>
+        <div class="desc">Teams investigate the geographic and social setting of a Hudson crossing using maps, photos, and demographic data; <b>define criteria and constraints</b> (span, clearance, budget, environment, community need) and draft a formal problem statement.</div>
+        <div class="chips"><span class="chip sci" title="Define the criteria and constraints of a design problem.">MS-ETS1-1</span><span class="chip math" title="Analyze proportional relationships; scale and unit rates.">7.RP.A</span><span class="chip ela" title="Write arguments to support claims.">W.AW.7.1</span><span class="chip ela" title="Collaborative discussions.">SL.PE.7.1</span><span class="chip car" title="Evaluate digital sources.">9.4.8.IML.3</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">4</span><span class="u">Week</span></div><div class="body">
+        <div class="q">How do structure and geometry keep bridges standing?</div>
+        <div class="desc">Bridge types — beam, arch, truss, suspension, cable-stayed — and how form follows function; a mini-lab modeling forces in trusses and supports; students sketch two conceptual designs, labeling geometry and load paths.</div>
+        <div class="chips"><span class="chip sci" title="Evaluate competing design solutions.">MS-ETS1-2</span><span class="chip sci" title="Forces and motion (extension).">MS-PS2</span><span class="chip math" title="Draw, construct, and describe geometrical figures; angle relationships.">7.G</span><span class="chip math" title="Understand congruence and similarity (truss units).">8.G</span><span class="chip ela" title="Explain design choices in writing.">W.IW.7.2</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">5</span><span class="u">Week</span></div><div class="body">
+        <div class="q">How can we design and model our bridges digitally?</div>
+        <div class="desc">Students create a scaled drawing and a <b>digital model</b> (Tinkercad, SketchUp, or similar); a mini-lesson on scale factor, ratios, and proportional reasoning; basic quantity calculations from their designs.</div>
+        <div class="chips"><span class="chip sci" title="Develop a model to generate data for iterative testing and modification.">MS-ETS1-4</span><span class="chip math" title="Scale and unit rates.">7.RP.A</span><span class="chip math" title="Solve multi-step real-life problems.">7.EE.3</span><span class="chip math" title="Model with mathematics.">MP4</span><span class="chip des" title="Engineering design with technology tools.">8.2.8.ED</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">6</span><span class="u">Week</span></div><div class="body">
+        <div class="q">Is our bridge financially sustainable?</div>
+        <div class="desc">Cost estimating with materials sheets and unit costs (per meter of deck, per tower, per cable); simple payback and life-cycle thinking; students compute <b>cost per unit of load capacity</b> as an efficiency metric.</div>
+        <div class="chips"><span class="chip sci" title="Analyze data from tests to compare design solutions.">MS-ETS1-3</span><span class="chip math" title="Multi-step ratio and percent problems.">7.RP.A.3</span><span class="chip math" title="Use variables to represent quantities; cost equations.">7.EE</span><span class="chip ela" title="Informative writing — financial report section.">W.IW.7.2</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">7</span><span class="u">Week</span></div><div class="body">
+        <div class="q">How do social and environmental factors shape the “best” design?</div>
+        <div class="desc">Social sustainability and environmental justice — who benefits, who bears the costs; teams complete an <b>impact matrix</b> scoring designs on social, economic, and environmental dimensions. Debate: is the lowest-cost bridge always best?</div>
+        <div class="chips"><span class="chip sci" title="Criteria and constraints including social and environmental factors.">MS-ETS1-1/2</span><span class="chip sci" title="Minimize human environmental impact (extension).">MS-ESS3-3</span><span class="chip ela" title="Compare and evaluate authors' perspectives.">RI.CT.7.8</span><span class="chip ela" title="Write an argument on trade-offs.">W.AW.7.1</span><span class="chip ela" title="Evaluate a speaker's argument.">SL.ES.7.3</span><span class="chip car" title="Evaluate diverse solutions.">9.4.8.CT.2</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">8</span><span class="u">Week</span></div><div class="body">
+        <div class="q">What risks matter, and how do we choose among options?</div>
+        <div class="desc">Risk, probability, and risk management with age-appropriate examples (overloading, storms, budget overruns); teams build a weighted <b>decision matrix</b> across cost, strength, aesthetics, sustainability, and risk to compare alternatives.</div>
+        <div class="chips"><span class="chip sci" title="Systematic evaluation of competing solutions.">MS-ETS1-2</span><span class="chip sci" title="Analyze test data against criteria.">MS-ETS1-3</span><span class="chip math" title="Investigate chance processes; informal probability.">7.SP</span><span class="chip math" title="Multi-step calculations; weighted scores.">7.EE.3</span><span class="chip ela" title="Collaborative discussion.">SL.PE.7.1</span><span class="chip ela" title="Justify the chosen option in writing.">W.AW.7.1</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">9</span><span class="u">Week</span></div><div class="body">
+        <div class="q">How can we turn our design into a physical prototype?</div>
+        <div class="desc">Teams build scaled <b>prototypes</b> from final drawings under real constraints — limited materials budget, maximum length, minimum deck width — documenting issues and completing at least one redesign before the final build.</div>
+        <div class="chips"><span class="chip sci" title="Develop and refine models using testable prototypes.">MS-ETS1-2/3/4</span><span class="chip math" title="Measuring and adjusting geometry.">7.G · 8.G</span><span class="chip math" title="Use appropriate tools strategically.">MP5</span><span class="chip des" title="Use tools and follow the design process.">8.2.8.ED</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">10</span><span class="u">Week</span></div><div class="body">
+        <div class="q">How do we test, measure, and improve our bridges?</div>
+        <div class="desc">A <b>bridge testing day</b>: apply increasing load to failure, record maximum load and failure mode, collect deflection and cost data, graph results, and compare teams to identify the best design features across the cohort.</div>
+        <div class="chips"><span class="chip sci" title="Analyze test data to identify best characteristics.">MS-ETS1-3</span><span class="chip sci" title="Model for iterative testing.">MS-ETS1-4</span><span class="chip math" title="Analyze and compare data distributions.">7.SP</span><span class="chip math" title="Load-to-cost ratios.">7.RP · 7.EE</span><span class="chip ela" title="Lab report sections.">W.IW.7.2</span><span class="chip ela" title="Interpret data in charts and graphs.">SL.II.7.2</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">11</span><span class="u">Week</span></div><div class="body">
+        <div class="q">How do engineers communicate and justify their decisions?</div>
+        <div class="desc">Students build a slide deck and short report — problem statement, design description, data and trade-offs, and a final claim for why their design is best — with mini-lessons on argument writing, technical vocabulary, and clear visual design.</div>
+        <div class="chips"><span class="chip sci" title="Synthesize the entire design cycle.">MS-ETS1-1–3</span><span class="chip ela" title="Argument writing.">W.AW.7.1</span><span class="chip ela" title="Technical explanation.">W.IW.7.2</span><span class="chip ela" title="Gather and cite evidence.">W.SE.7.6</span><span class="chip ela" title="Present claims with multimedia.">SL.PI.7.4 · SL.UM.7.5</span><span class="chip car" title="Represent data clearly; use digital tools.">9.4.8.IML.3 · TL.3</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">12</span><span class="u">Week</span></div><div class="body">
+        <div class="q">Which bridge best meets our community's needs? What did we learn?</div>
+        <div class="desc">The capstone <b>Bridge Showcase &amp; Testing Competition</b> before families, teachers, and partners; audiences score designs with a decision matrix; each student writes a reflection on how their thinking as an engineer changed over twelve weeks.</div>
+        <div class="chips"><span class="chip sci" title="Capstone performance across the full design cycle.">MS-ETS1-1–4</span><span class="chip ela" title="Collaborative discussion.">SL.PE.7.1</span><span class="chip ela" title="Present findings with multimedia.">SL.PI.7.4/7.5</span><span class="chip ela" title="Extended reflective writing.">W.RW.7.7 · W.7.10</span><span class="chip car" title="Evaluate solutions; give feedback.">9.4.8.CI.3 · CT.3</span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PATHWAY 02 ===================== -->
+<section class="band pathway" id="infra" style="background:var(--surface)">
+  <div class="wrap">
+    <div class="pw-head">
+      <div class="pw-num">02</div>
+      <div>
+        <span class="pw-grade">Grades 9–12 · High School</span>
+        <div class="pw-title">Infrastructure Fellows</div>
+        <p style="max-width:64ch;margin-top:10px;color:var(--ink-2)">An applied civil-engineering pre-college studio. Fellows take a real local site — a bridge, intersection, stormwater system, water main, or coastline — through professional practice: site analysis, public datasets, CAD, cost and risk modeling, and a formal technical briefing. A companion Smart Cities studio adds sensors, data, and environmental monitoring.</p>
+        <div class="pw-meta">
+          <div><div class="k">Essential question</div><div class="v">How do civil engineers design infrastructure that is safe, durable, affordable, sustainable, equitable, and resilient under real constraints?</div></div>
+          <div><div class="k">NJ anchor challenge</div><div class="v">Local bridge · intersection &amp; transportation · stormwater &amp; flooding · water infrastructure · coastal resilience</div></div>
+          <div><div class="k">Core skills</div><div class="v">Site analysis · public datasets · surveying · CAD · traffic counts · cost &amp; risk · sensors &amp; dashboards · technical briefing</div></div>
+          <div><div class="k">Student deliverables</div><div class="v">Design brief · technical drawings · calculations · cost estimate · risk register · sustainability matrix · 15-minute briefing</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="units">
+      <div class="unit"><div class="idx"><span class="n">1</span><span class="u">Unit</span></div><div class="body">
+        <div class="q">Civil engineering &amp; New Jersey infrastructure</div>
+        <div class="desc">What civil engineers design and why infrastructure matters; mapping infrastructure systems; team roles and charters; a case-study gallery of NJ challenges and project-interest ranking.</div>
+        <div class="chips"><span class="chip sci" title="Analyze a major global challenge to specify criteria and constraints.">HS-ETS1-1</span><span class="chip math" title="Use units to understand problems and guide solutions.">N-Q</span><span class="chip ela" title="Initiate and participate in collaborative discussions.">SL.PE.9-10.1</span><span class="chip car" title="Career awareness, exploration, preparation, and planning.">9.2.12.CAP</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">2</span><span class="u">Unit</span></div><div class="body">
+        <div class="q">Site analysis &amp; defining the problem</div>
+        <div class="desc">Reading a real site with maps, public datasets, and field observation; specifying quantitative criteria and constraints; writing a defensible engineering problem statement.</div>
+        <div class="chips"><span class="chip sci" title="Specify qualitative and quantitative criteria and constraints.">HS-ETS1-1</span><span class="chip math" title="Create equations and inequalities to represent relationships.">A-CED</span><span class="chip math" title="Summarize and interpret data.">S-ID</span><span class="chip ela" title="Conduct short and sustained research.">W.RW.9-10.7</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">3</span><span class="u">Unit</span></div><div class="body">
+        <div class="q">Structures, forces &amp; geometry in practice</div>
+        <div class="desc">Load paths, member forces, and material behavior; applying geometry and modeling to evaluate structural options against the site's constraints.</div>
+        <div class="chips"><span class="chip sci" title="Break a complex problem into manageable engineering problems.">HS-ETS1-2</span><span class="chip math" title="Apply geometric concepts in modeling situations.">G-MG</span><span class="chip math" title="Model with mathematics.">MP4</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">4</span><span class="u">Unit</span></div><div class="body">
+        <div class="q">Digital design &amp; CAD</div>
+        <div class="desc">Translating concepts into scaled technical drawings and CAD models; producing the dimensioned documentation engineers use to communicate and build.</div>
+        <div class="chips"><span class="chip sci" title="Design a solution to a complex real-world problem.">HS-ETS1-2</span><span class="chip math" title="Apply geometric methods to solve design problems.">G-MG</span><span class="chip des" title="High-school engineering design and technological systems.">8.2.12.ED</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">5</span><span class="u">Unit</span></div><div class="body">
+        <div class="q">Cost, constraints &amp; project controls</div>
+        <div class="desc">Quantity take-offs and cost estimating; budgets, schedules, and trade-offs; building a risk register and weighing prioritized criteria the way practicing engineers do.</div>
+        <div class="chips"><span class="chip sci" title="Evaluate a solution based on prioritized criteria and trade-offs including cost, safety, reliability, and impacts.">HS-ETS1-3</span><span class="chip math" title="Reason quantitatively and use units.">N-Q</span><span class="chip math" title="Create equations to model constraints.">A-CED</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">6</span><span class="u">Unit</span></div><div class="body">
+        <div class="q">Stormwater &amp; water infrastructure</div>
+        <div class="desc">How communities manage water risk and protect public health; a stormwater walk and drainage sketch; green-infrastructure options and a lead-service-line case study.</div>
+        <div class="chips"><span class="chip sci" title="Evaluate solutions accounting for environmental and societal impacts.">HS-ETS1-3</span><span class="chip sci" title="Model the impact of proposed solutions on systems.">HS-ETS1-4</span><span class="chip math" title="Interpret data and patterns.">S-ID</span><span class="chip ela" title="Write informative/explanatory texts — memo section.">W.IW.9-10.2</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">7</span><span class="u">Unit</span></div><div class="body">
+        <div class="q">Coastal resilience &amp; environmental justice</div>
+        <div class="desc">Lessons from Hurricane Sandy; living-shoreline and protection options; an environmental-justice matrix and a resilience design charrette balancing protection, ecology, cost, and community.</div>
+        <div class="chips"><span class="chip sci" title="Evaluate solutions with social, cultural, and environmental impacts.">HS-ETS1-3</span><span class="chip sci" title="Use a computer simulation to model proposed solutions.">HS-ETS1-4</span><span class="chip ela" title="Evaluate arguments and competing perspectives.">RI.AA.9-10</span><span class="chip car" title="Evaluate diverse solutions and impacts.">9.4.12.CT</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">8</span><span class="u">Unit</span></div><div class="body">
+        <div class="q">Technical briefing &amp; public defense</div>
+        <div class="desc">Synthesizing the project into a professional design brief and a 15-minute technical briefing defended before engineers and community partners — the studio capstone.</div>
+        <div class="chips"><span class="chip sci" title="Synthesize and defend the full engineering solution.">HS-ETS1-1–4</span><span class="chip ela" title="Present information, findings, and supporting evidence.">SL.PI.9-10.4</span><span class="chip ela" title="Make strategic use of digital media.">SL.UM.9-10.5</span><span class="chip ela" title="Write arguments with valid reasoning and evidence.">W.AW.9-10.1</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx" style="background:var(--c-des)"><span class="n">+</span><span class="u">Studio</span></div><div class="body">
+        <div class="q">Companion studio — Smart Cities, Sensors &amp; Environmental Monitoring <span style="font-family:var(--font-m);font-size:.7rem;color:var(--steel);text-transform:uppercase;letter-spacing:.08em">· Grades 7–11</span></div>
+        <div class="desc">How sensors, data, and mapping help communities understand environmental conditions — sensor setup and calibration, data collection on flood-prone grounds, heat islands, air quality, and runoff, with dashboards and ethical data use. Deliverables: monitoring plan, dataset, dashboard, site map, recommendation memo.</div>
+        <div class="chips"><span class="chip sci" title="Model the impact of proposed solutions within and between systems.">HS-ETS1-4</span><span class="chip math" title="Interpret data; investigate patterns of association.">S-ID</span><span class="chip math" title="Make inferences and justify conclusions from data.">S-IC</span><span class="chip des" title="Computer science: data and analysis; networks.">8.1.12.DA</span><span class="chip car" title="Technology literacy and digital tools.">9.4.12.TL</span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PATHWAY 03 ===================== -->
+<section class="band pathway" id="research">
+  <div class="wrap">
+    <div class="pw-head">
+      <div class="pw-num">03</div>
+      <div>
+        <span class="pw-grade">Grades 11–12 · Advanced</span>
+        <div class="pw-title">STEM Research Scholars</div>
+        <p style="max-width:64ch;margin-top:10px;color:var(--ink-2)">A mentored research and design intensive for advanced students. Scholars work in teams with university and professional mentors to investigate a real New Jersey resilience question, run a methodology, analyze data, and produce a capstone defended at a public STEM Expo — a true on-ramp to college research and engineering pathways.</p>
+        <div class="pw-meta">
+          <div><div class="k">Essential question</div><div class="v">How can student researchers investigate a real resilience challenge and produce evidence-based recommendations?</div></div>
+          <div><div class="k">Mentoring model</div><div class="v">Near-peer college mentors and professional engineers via the Stevens partnership</div></div>
+          <div><div class="k">Student deliverables</div><div class="v">Research proposal · literature review · methodology · dataset &amp; analysis · capstone poster &amp; paper · oral defense at the STEM Expo</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="units">
+      <div class="unit"><div class="idx"><span class="n">1</span><span class="u">Phase</span></div><div class="body">
+        <div class="q">Framing the research question</div>
+        <div class="desc">Identifying a real New Jersey resilience problem; scoping a researchable question with measurable criteria and constraints; team charters and mentor matching.</div>
+        <div class="chips"><span class="chip sci" title="Analyze a major global challenge to specify criteria and constraints.">HS-ETS1-1</span><span class="chip ela" title="Conduct sustained research to answer a question.">W.RW.11-12.7</span><span class="chip car" title="Career awareness and planning.">9.2.12.CAP</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">2</span><span class="u">Phase</span></div><div class="body">
+        <div class="q">Literature &amp; precedent review</div>
+        <div class="desc">Locating and evaluating credible sources, prior solutions, and local precedents; synthesizing the state of knowledge into a written review with citations.</div>
+        <div class="chips"><span class="chip ela" title="Integrate and evaluate multiple sources of information.">RI.AA.11-12</span><span class="chip ela" title="Gather relevant information; assess source credibility; cite.">W.SE.11-12.6</span><span class="chip car" title="Evaluate the credibility of sources.">9.4.12.IML</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">3</span><span class="u">Phase</span></div><div class="body">
+        <div class="q">Methodology &amp; design</div>
+        <div class="desc">Designing a sound method — data collection, modeling, or prototyping — that can actually answer the question; planning for validity, sampling, and ethical data use.</div>
+        <div class="chips"><span class="chip sci" title="Break a complex problem into manageable, solvable problems.">HS-ETS1-2</span><span class="chip math" title="Understand and evaluate random processes; make inferences.">S-IC</span><span class="chip math" title="Reason quantitatively and use units.">N-Q</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">4</span><span class="u">Phase</span></div><div class="body">
+        <div class="q">Data collection &amp; analysis</div>
+        <div class="desc">Carrying out the method; managing and analyzing data; interpreting results against the criteria and acknowledging uncertainty and limitations.</div>
+        <div class="chips"><span class="chip sci" title="Use simulation/modeling to evaluate proposed solutions.">HS-ETS1-4</span><span class="chip math" title="Summarize, represent, and interpret data.">S-ID</span><span class="chip math" title="Make inferences and justify conclusions.">S-IC</span><span class="chip des" title="Data analysis and computational tools.">8.1.12.DA</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">5</span><span class="u">Phase</span></div><div class="body">
+        <div class="q">Recommendations &amp; trade-offs</div>
+        <div class="desc">Translating findings into evidence-based recommendations; weighing prioritized criteria, cost, equity, and environmental impact; building the capstone argument.</div>
+        <div class="chips"><span class="chip sci" title="Evaluate a solution based on prioritized criteria and trade-offs.">HS-ETS1-3</span><span class="chip ela" title="Write arguments with valid reasoning and sufficient evidence.">W.AW.11-12.1</span><span class="chip car" title="Evaluate diverse solutions.">9.4.12.CT</span></div>
+      </div></div>
+
+      <div class="unit"><div class="idx"><span class="n">6</span><span class="u">Phase</span></div><div class="body">
+        <div class="q">Capstone &amp; the public STEM Expo</div>
+        <div class="desc">Producing a research poster and paper and defending the work in an oral presentation at a public STEM Expo before families, partners, and professional engineers.</div>
+        <div class="chips"><span class="chip sci" title="Communicate and defend a complete engineering solution.">HS-ETS1-1–4</span><span class="chip ela" title="Present findings, evidence, and reasoning clearly.">SL.PI.11-12.4</span><span class="chip ela" title="Make strategic use of digital media.">SL.UM.11-12.5</span><span class="chip ela" title="Produce clear and coherent writing.">W.11-12.10</span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STANDARDS MATRIX ===================== -->
+<section class="band" id="standards" style="background:var(--surface);border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="band-head">
+      <p class="eyebrow">Consolidated alignment</p>
+      <h2>Standards alignment matrix</h2>
+      <p>The complete set of standards addressed across all three pathways, grouped by framework. Middle-grades codes follow the NJSLS 2023 revisions; high-school codes name the alignment targets carried across the Infrastructure Fellows and Research Scholars studios.</p>
+    </div>
+    <div class="matrix">
+      <div class="mcard">
+        <div class="top"><span class="sw" style="background:var(--c-sci)"></span><div><h3>NGSS / NJSLS-Science</h3><div class="sub">Engineering design</div></div></div>
+        <ul>
+          <li><code>MS-ETS1-1</code><span>Define criteria and constraints of a design problem.</span></li>
+          <li><code>MS-ETS1-2</code><span>Evaluate competing design solutions systematically.</span></li>
+          <li><code>MS-ETS1-3</code><span>Analyze test data to identify the best characteristics.</span></li>
+          <li><code>MS-ETS1-4</code><span>Develop a model for iterative testing and modification.</span></li>
+          <li><code>MS-ESS3-3</code><span>Minimize human environmental impact (extension).</span></li>
+          <li><code>MS-PS2</code><span>Forces and interactions (extension).</span></li>
+          <li><code>HS-ETS1-1→4</code><span>Define, design, evaluate, and model solutions to complex problems.</span></li>
+        </ul>
+      </div>
+      <div class="mcard">
+        <div class="top"><span class="sw" style="background:var(--c-math)"></span><div><h3>NJSLS-Mathematics</h3><div class="sub">Grades 7–8 &amp; high school</div></div></div>
+        <ul>
+          <li><code>7.RP.A.1–3</code><span>Scale drawings, unit rates, efficiency metrics.</span></li>
+          <li><code>7.EE.3–4</code><span>Multi-step calculations in cost and constraints.</span></li>
+          <li><code>7.G · 8.G</code><span>Geometry of trusses, scale, similarity.</span></li>
+          <li><code>7.SP · 8.SP</code><span>Analyze test data; scatter plots and association.</span></li>
+          <li><code>N-Q · A-CED</code><span>Quantities and modeling equations (HS).</span></li>
+          <li><code>G-MG · S-ID · S-IC</code><span>Geometric modeling and data analysis (HS).</span></li>
+          <li><code>MP1–MP6</code><span>Standards for Mathematical Practice throughout.</span></li>
+        </ul>
+      </div>
+      <div class="mcard">
+        <div class="top"><span class="sw" style="background:var(--c-ela)"></span><div><h3>NJSLS-English Language Arts</h3><div class="sub">Grades 7–12</div></div></div>
+        <ul>
+          <li><code>W.AW.1</code><span>Argument writing — defend the best design.</span></li>
+          <li><code>W.IW.2</code><span>Informative/explanatory technical writing.</span></li>
+          <li><code>W.RW.7 · W.SE.6</code><span>Short research; gather and cite evidence.</span></li>
+          <li><code>RI.AA · RI.CT · RL.CT</code><span>Evaluate arguments on infrastructure and justice.</span></li>
+          <li><code>SL.PE.1 · SL.II.2</code><span>Collaborative discussion; interpret data.</span></li>
+          <li><code>SL.PI.4 · SL.UM.5</code><span>Present findings with multimedia.</span></li>
+        </ul>
+      </div>
+      <div class="mcard">
+        <div class="top"><span class="sw" style="background:var(--c-des)"></span><div><h3>Design, Technology &amp; CS</h3><div class="sub">NJSLS 8.1 &amp; 8.2</div></div></div>
+        <ul>
+          <li><code>8.2.8.ED.1–7</code><span>Apply the engineering design process.</span></li>
+          <li><code>8.2.8.ITH · NT</code><span>Technology's effect on people and the environment.</span></li>
+          <li><code>8.2.8.ETW · EC</code><span>Ethics, environment, and effects of technology.</span></li>
+          <li><code>8.2.12.ED</code><span>High-school engineering design and systems.</span></li>
+          <li><code>8.1.12.DA</code><span>Data and analysis; computational tools.</span></li>
+        </ul>
+      </div>
+      <div class="mcard">
+        <div class="top"><span class="sw" style="background:var(--c-car)"></span><div><h3>Career Readiness</h3><div class="sub">NJSLS 9.2 &amp; 9.4</div></div></div>
+        <ul>
+          <li><code>9.2.8.CAP.1–20</code><span>Career awareness, exploration, and planning (Gr 8).</span></li>
+          <li><code>9.2.12.CAP</code><span>Career preparation and planning (HS).</span></li>
+          <li><code>9.4.8/12.CI</code><span>Creativity and innovation.</span></li>
+          <li><code>9.4.8/12.CT</code><span>Critical thinking and problem solving.</span></li>
+          <li><code>9.4.8/12.IML</code><span>Information and media literacy.</span></li>
+          <li><code>9.4.8/12.TL</code><span>Technology literacy.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 21st CCLC MAP ===================== -->
+<section class="band" id="cclc">
+  <div class="wrap">
+    <div class="band-head">
+      <p class="eyebrow">Out-of-school-time fit</p>
+      <h2>How the curriculum serves the six 21st CCLC components</h2>
+      <p>Resilient Futures runs as a STEM-themed program in which the engineering curriculum is the enrichment spine and the other required out-of-school-time components are built around it.</p>
+    </div>
+    <div class="compmap">
+      <div class="cell"><div class="tag">Component 01</div><h4>Academic remediation</h4><p>Daily certified-teacher tutoring in ELA and mathematics, tied to the same NJSLS standards the engineering units apply.</p></div>
+      <div class="cell"><div class="tag">Component 02</div><h4>Academic enrichment</h4><p>The three engineering pathways above — the project-based, standards-aligned core of the program.</p></div>
+      <div class="cell"><div class="tag">Component 03</div><h4>Positive youth development</h4><p>Authentic team roles, leadership through studio captains and the youth advisory board, and near-peer mentoring.</p></div>
+      <div class="cell"><div class="tag">Component 04</div><h4>Cultural &amp; arts</h4><p>Technical drawing, model-making, media documentation, and graphic communication of student work.</p></div>
+      <div class="cell"><div class="tag">Component 05</div><h4>Health, nutrition &amp; fitness</h4><p>Daily movement and wellness blocks plus nutrition education, connected where natural to public-health and built-environment themes.</p></div>
+      <div class="cell"><div class="tag">Component 06</div><h4>Parental involvement</h4><p>Monthly family engagement, family STEM nights, the Bridge Showcase, and the public STEM Expo.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>Resilient Futures</h4>
+        <p class="note">A standards-aligned STEM engineering program for grades 6–12, built on the proven Hillside–Stevens engineering model and designed for free, year-round out-of-school-time delivery.</p>
+      </div>
+      <div>
+        <h4>Program partners</h4>
+        <p class="partners">Aedifica — program operator<br>Hillside Public Schools — school collaboration<br>Stevens Institute of Technology — university partner</p>
+      </div>
+      <div>
+        <h4>Curriculum frameworks</h4>
+        <p class="partners">NGSS / NJSLS-Science<br>NJSLS-Mathematics<br>NJSLS-English Language Arts<br>Design, Technology &amp; CS (8.1 / 8.2)<br>Career Readiness (9.2 / 9.4)</p>
+      </div>
+    </div>
+    <hr class="foot-rule">
+    <p class="foot-fine">Curriculum derived from the Bridging Brilliance / Building Bridges program and the Resilient Futures studio designs. High-school standard codes indicate alignment targets and should be confirmed against the current NJSLS revisions before publication.</p>
+  </div>
+</footer>
+
+<script>
+  // standards legend filter
+  (function(){
+    var keys=document.querySelectorAll('.legkey'); var active=null; var body=document.body;
+    keys.forEach(function(k){
+      k.addEventListener('click',function(){
+        var cat=k.getAttribute('data-cat');
+        if(active===cat){ clear(); return; }
+        active=cat;
+        keys.forEach(function(x){x.setAttribute('aria-pressed', x===k ? 'true':'false')});
+        body.classList.add('filtering');
+        document.querySelectorAll('.chip').forEach(function(c){
+          c.classList.toggle('hot', c.classList.contains(cat));
+        });
+      });
+    });
+    function clear(){ active=null; body.classList.remove('filtering'); keys.forEach(function(x){x.setAttribute('aria-pressed','false')}); document.querySelectorAll('.chip.hot').forEach(function(c){c.classList.remove('hot')}); }
+  })();
+  // close mobile nav on link tap
+  document.querySelectorAll('#nav a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('nav').classList.remove('open');document.querySelector('.navtoggle').setAttribute('aria-expanded','false')})});
+</script>
+</body>
+</html>

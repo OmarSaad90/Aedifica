@@ -80,7 +80,7 @@ export function RoleLadder() {
                   {timing}
                 </p>
                 <p
-                  className="text-[10.5px] text-white/40 uppercase tracking-[0.14em] mb-5"
+                  className="text-[10.5px] text-white/60 uppercase tracking-[0.14em] mb-5"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   {stage}
                 </p>
@@ -100,7 +100,7 @@ export function RoleLadder() {
         </div>
 
         <motion.p
-          className="text-[12px] text-white/35 leading-[1.65] mt-6"
+          className="text-[12px] text-white/60 leading-[1.65] mt-6"
           style={{ fontFamily: 'var(--font-body)' }}
           initial={reduce ? undefined : { opacity: 0 }}
           whileInView={reduce ? undefined : { opacity: 1 }}

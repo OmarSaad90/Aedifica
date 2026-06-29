@@ -56,7 +56,7 @@ export function BackgroundPaths() {
                   of where the traveling segment is in its loop.             */}
               <motion.path
                 d={d}
-                stroke="#6667AB"
+                stroke="var(--color-datum)"
                 strokeWidth={strokeWidth}
                 strokeLinecap="round"
                 initial={{ opacity: 0 }}
@@ -69,7 +69,7 @@ export function BackgroundPaths() {
                   Brighter than the base, provides the moving highlight.     */}
               <motion.path
                 d={d}
-                stroke="#6667AB"
+                stroke="var(--color-datum)"
                 strokeWidth={strokeWidth}
                 strokeLinecap="round"
                 initial={{ pathLength: 0.45, pathOffset: 0, opacity: 0 }}

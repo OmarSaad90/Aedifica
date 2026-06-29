@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+﻿import Link from 'next/link'
 
 const COLUMNS = [
   {
@@ -15,6 +15,7 @@ const COLUMNS = [
     heading: 'Evidence & Accountability',
     links: [
       { label: 'Projects & Impact', href: '/impact' },
+      { label: 'Bridging Brilliance', href: '/curriculum/bridging-brilliance' },
       { label: 'Insights & Research', href: '/insights' },
       { label: 'Outcome Reporting Commitment', href: '/impact' },
     ],
@@ -31,7 +32,7 @@ const COLUMNS = [
   {
     heading: 'Organization',
     links: [
-      { label: 'About', href: '/about' },
+      { label: 'About Us', href: '/about' },
       { label: 'Contact', href: '/partner' },
     ],
   },
@@ -46,13 +47,12 @@ export function Footer() {
 
           {/* Brand */}
           <div>
-            <Link
-              to="/"
+            <Link href="/"
               className="inline-block mb-4"
               aria-label="Aedifica home">
               <span
-                className="text-[1.125rem] tracking-[0.12em] text-white uppercase"
-                style={{ fontFamily: 'var(--font-body)', fontWeight: 600 }}>
+                className="text-[14px] tracking-[0.06em] text-white uppercase"
+                style={{ fontFamily: 'var(--font-wordmark)', fontWeight: 400 }}>
                 Aedifica
               </span>
             </Link>
@@ -80,8 +80,7 @@ export function Footer() {
                 <ul className="space-y-2 list-none">
                   {links.map(({ label, href }) => (
                     <li key={label}>
-                      <Link
-                        to={href}
+                      <Link href={href}
                         className="text-[13px] text-white/55 hover:text-white/90 transition-colors duration-150 leading-none"
                         style={{ fontFamily: 'var(--font-body)' }}>
                         {label}

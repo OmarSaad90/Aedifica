@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ============================================================
+       STUDENT STORIES / IMPACT — Aedifica
+       Matches the Explore / Pathway / Launch / Bridging Brilliance
+       design system (charcoal / cream / Fraunces + Inter).
+
+       CONTENT NOTE: Every quote, statistic, and outcome on this page
+       is drawn from the verified source material. Per the source's
+       fact-check flags:
+         - No family quote is invented (none on record).
+         - No credential claim is made (not a credentialing program).
+         - Employer touchpoints are framed as EXPOSURE, not placement.
+         - UCVTS acceptances are framed as advanced-STEM-school
+           next steps, NOT workforce placement.
+         - Instructor names are omitted pending permission.
+         - Student names are never used.
+       ============================================================ -->
+  <title>Student Stories &amp; Impact — Pathways in Motion | Aedifica</title>
+  <meta name="description" content="The human and measurable outcomes of the Aedifica pathway model — learners, schools, and partners building something better. Real stories and verified results from the Building Bridges and Civil Engineering &amp; Design cohorts.">
+
+  <meta property="og:title" content="Student Stories &amp; Impact — Aedifica">
+  <meta property="og:description" content="Pathways in motion: how learners moved from curiosity to confidence, and what the data shows.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — shared with the Aedifica program pages
+       ============================================================ */
+    :root {
+      --color-charcoal: #1F2933;
+      --color-ink: #2C3E50;
+      --color-muted: #616E7C;
+      --color-rule: #9AA5B1;
+      --color-cream: #F5F4F0;
+      --color-white: #FFFFFF;
+      --color-accent: #6667AB;
+      --color-accent-soft: #E8E8F0;
+      --color-dark-surface: #1F2933;
+
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+      --space-1: 8px;  --space-2: 16px; --space-3: 24px; --space-4: 32px;
+      --space-5: 48px; --space-6: 64px; --space-7: 96px; --space-8: 120px;
+
+      --radius-sm: 6px; --radius-md: 8px; --radius-lg: 12px;
+      --shadow-soft: 0 2px 8px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03);
+      --shadow-card: 0 4px 16px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-nav: 0 2px 8px rgba(0,0,0,0.06);
+      --transition: 250ms ease-in-out;
+    }
+
+    /* ============================================================ RESET ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+      color: var(--color-charcoal); background: var(--color-white);
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--color-accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    .skip-link { position: absolute; top: -40px; left: 0; background: var(--color-charcoal); color: #fff; padding: 8px 16px; z-index: 100; }
+    .skip-link:focus { top: 0; }
+
+    /* ============================================================ LAYOUT ============================================================ */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 var(--space-3); }
+    .container-narrow { max-width: 760px; margin: 0 auto; padding: 0 var(--space-3); }
+    .section { padding: var(--space-7) 0; }
+    .section--cream { background: var(--color-cream); }
+    .section--dark { background: var(--color-dark-surface); color: #fff; }
+    @media (max-width: 768px) { .section { padding: var(--space-6) 0; } }
+
+    /* ============================================================ TYPE ============================================================ */
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height: 1.2; color: var(--color-charcoal); letter-spacing: -0.01em; }
+    h1 { font-size: clamp(2.5rem, 5.5vw, 4rem); font-weight: 700; }
+    h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); margin-bottom: var(--space-3); }
+    h3 { font-size: 1.375rem; margin-bottom: var(--space-2); }
+    p { font-size: 1.0625rem; line-height: 1.7; color: var(--color-charcoal); margin-bottom: var(--space-2); }
+    p:last-child { margin-bottom: 0; }
+    .eyebrow { font-family: var(--font-body); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); margin-bottom: var(--space-2); display: block; }
+    .subhead { font-size: 1.125rem; line-height: 1.6; color: var(--color-muted); max-width: 660px; margin-bottom: var(--space-4); }
+    .center { margin-left: auto; margin-right: auto; }
+    .section-header { text-align: center; margin-bottom: var(--space-5); }
+    .section-header .subhead { margin-left: auto; margin-right: auto; }
+
+    /* ============================================================ BUTTONS ============================================================ */
+    .btn-primary { display: inline-block; background: var(--color-accent); color: #fff; padding: 16px 32px; border-radius: var(--radius-sm); font-weight: 600; font-size: 1rem; text-decoration: none; transition: transform var(--transition), box-shadow var(--transition); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(102,103,171,0.4); text-decoration: none; }
+    .btn-outline { display: inline-block; background: transparent; color: #fff; padding: 16px 32px; border-radius: var(--radius-sm); font-weight: 600; font-size: 1rem; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.5); transition: border-color var(--transition), background var(--transition); }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); text-decoration: none; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
+    /* ============================================================ STICKY NAV ============================================================ */
+    .nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.94); backdrop-filter: blur(8px); box-shadow: var(--shadow-nav); height: 60px; display: flex; align-items: center; }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .nav__brand { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--color-charcoal); }
+    .nav__links { display: flex; gap: 24px; overflow-x: auto; scrollbar-width: none; }
+    .nav__links::-webkit-scrollbar { display: none; }
+    .nav__link { font-size: 0.85rem; font-weight: 500; color: var(--color-muted); white-space: nowrap; transition: var(--transition); }
+    .nav__link:hover, .nav__link.is-active { color: var(--color-accent); }
+
+    /* ============================================================ HERO ============================================================ */
+    .hero { position: relative; background: linear-gradient(180deg, rgba(31,41,51,0.18) 0%, rgba(31,41,51,0.55) 100%), linear-gradient(135deg, #2C3E50 0%, #6667AB 100%); color: #fff; overflow: hidden; }
+    .hero__inner { padding: var(--space-8) 0; max-width: 760px; }
+    .hero .eyebrow { color: rgba(255,255,255,0.75); }
+    .hero h1 { color: #fff; margin-bottom: var(--space-3); }
+    .hero__lede { font-size: clamp(1.125rem, 2vw, 1.375rem); font-weight: 300; color: rgba(255,255,255,0.9); line-height: 1.55; margin-bottom: var(--space-5); }
+    @media (max-width: 768px) { .hero__inner { padding: var(--space-7) 0; } }
+
+    /* ============================================================ FEATURED STORY ============================================================ */
+    .featured { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); align-items: stretch; }
+    @media (max-width: 880px) { .featured { grid-template-columns: 1fr; gap: var(--space-4); } }
+    .featured__media {
+      border-radius: var(--radius-lg); overflow: hidden; min-height: 380px; position: relative;
+      background: linear-gradient(135deg, #2C3E50 0%, #6667AB 100%);
+      display: flex; align-items: flex-end; padding: var(--space-4);
+    }
+    /* faint truss motif on the media placeholder */
+    .featured__media svg.truss { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.25; }
+    .featured__media-caption { position: relative; font-size: 0.8125rem; color: rgba(255,255,255,0.85); font-style: italic; z-index: 1; }
+    .featured__tag { display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); background: var(--color-accent-soft); padding: 5px 12px; border-radius: 100px; margin-bottom: var(--space-3); }
+    .featured__body { display: flex; flex-direction: column; }
+    .featured__body h2 { margin-bottom: var(--space-3); }
+    .featured__quote { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; line-height: 1.4; color: var(--color-charcoal); margin: var(--space-3) 0; padding-left: var(--space-3); border-left: 3px solid var(--color-accent); }
+    .featured__quote-attr { font-size: 0.875rem; color: var(--color-muted); margin-bottom: var(--space-4); }
+    .outcomes-box { background: var(--color-cream); border-radius: var(--radius-md); padding: var(--space-3); margin-top: auto; }
+    .outcomes-box h4 { font-family: var(--font-body); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); margin-bottom: var(--space-2); }
+    .outcomes-box ol { list-style: none; counter-reset: oc; }
+    .outcomes-box li { counter-increment: oc; display: flex; gap: var(--space-2); padding: var(--space-1) 0; font-size: 0.9375rem; color: var(--color-ink); }
+    .outcomes-box li::before { content: counter(oc); flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--color-accent); color: #fff; font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+    .outcomes-box .footnote { font-size: 0.8125rem; color: var(--color-muted); font-style: italic; margin-top: var(--space-2); }
+
+    /* ============================================================ STORY GRID + FILTER ============================================================ */
+    .filter-row { display: flex; flex-wrap: wrap; gap: var(--space-1); justify-content: center; margin-bottom: var(--space-5); }
+    .filter-btn { font-size: 0.875rem; font-weight: 500; color: var(--color-muted); padding: 9px 18px; border-radius: 100px; border: 1px solid var(--color-rule); background: #fff; transition: var(--transition); }
+    .filter-btn:hover { border-color: var(--color-accent); color: var(--color-accent); }
+    .filter-btn.is-active { background: var(--color-charcoal); border-color: var(--color-charcoal); color: #fff; }
+
+    .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+    @media (max-width: 900px) { .story-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .story-grid { grid-template-columns: 1fr; } }
+
+    .story-card { background: #fff; border: 1px solid rgba(154,165,177,0.25); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; transition: var(--transition); }
+    .story-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); border-color: rgba(102,103,171,0.4); }
+    .story-card__top { padding: var(--space-3) var(--space-3) 0; }
+    .story-card__type { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent); margin-bottom: var(--space-1); }
+    .story-card__title { font-family: var(--font-display); font-size: 1.125rem; font-weight: 600; color: var(--color-charcoal); line-height: 1.3; margin-bottom: var(--space-2); }
+    .story-card__body { padding: 0 var(--space-3) var(--space-3); display: flex; flex-direction: column; flex: 1; }
+    .story-card__quote { font-size: 0.9375rem; color: var(--color-ink); line-height: 1.6; margin-bottom: var(--space-2); }
+    .story-card__quote em { font-style: italic; }
+    .story-card__text { font-size: 0.9rem; color: var(--color-muted); line-height: 1.6; margin-bottom: var(--space-3); }
+    .story-card__foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; padding-top: var(--space-2); border-top: 1px solid rgba(154,165,177,0.2); }
+    .story-card__pill { font-size: 0.72rem; font-weight: 600; color: var(--color-muted); }
+    .story-card__more { font-size: 0.8125rem; font-weight: 600; color: var(--color-accent); }
+    .story-card.is-hidden { display: none; }
+
+    /* ============================================================ IMPACT STATS ============================================================ */
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); }
+    @media (max-width: 900px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .stats-grid { grid-template-columns: 1fr; } }
+    .stat-card { background: #fff; border: 1px solid rgba(154,165,177,0.25); border-radius: var(--radius-lg); padding: var(--space-4) var(--space-3); }
+    .stat-card__num { font-family: var(--font-display); font-weight: 700; font-size: 2.5rem; color: var(--color-accent); line-height: 1; margin-bottom: var(--space-1); }
+    .stat-card__label { font-size: 0.9375rem; font-weight: 600; color: var(--color-charcoal); margin-bottom: 4px; }
+    .stat-card__meaning { font-size: 0.8125rem; color: var(--color-muted); line-height: 1.5; }
+    .stats-note { margin-top: var(--space-4); text-align: center; font-size: 0.8125rem; font-style: italic; color: var(--color-muted); max-width: 720px; margin-left: auto; margin-right: auto; }
+
+    /* ============================================================ WHAT CHANGED ============================================================ */
+    .changed-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+    @media (max-width: 768px) { .changed-grid { grid-template-columns: 1fr; } }
+    .changed-item { padding: var(--space-4); background: #fff; border-radius: var(--radius-md); border: 1px solid rgba(154,165,177,0.25); }
+    .changed-item__ico { width: 36px; height: 36px; color: var(--color-accent); margin-bottom: var(--space-2); }
+    .changed-item h3 { font-size: 1.1875rem; margin-bottom: var(--space-1); }
+    .changed-item p { font-size: 0.95rem; color: var(--color-muted); margin-bottom: var(--space-2); }
+    .changed-item__quote { font-size: 0.875rem; font-style: italic; color: var(--color-ink); padding-left: var(--space-2); border-left: 2px solid var(--color-accent); }
+
+    /* ============================================================ ALUMNI PATHWAYS ============================================================ */
+    .pathways-flow { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
+    .pathway-chip { display: inline-flex; align-items: center; gap: var(--space-1); font-size: 0.9rem; font-weight: 500; color: var(--color-charcoal); background: #fff; border: 1px solid rgba(154,165,177,0.4); padding: 10px 18px; border-radius: 100px; }
+    .pathway-chip svg { width: 15px; height: 15px; color: var(--color-accent); }
+
+    /* ============================================================ CTA ============================================================ */
+    .cta-section { background: var(--color-dark-surface); color: #fff; padding: var(--space-8) 0; text-align: center; }
+    .cta-section .eyebrow { color: #B8B8E0; }
+    .cta-section h2 { color: #fff; margin-bottom: var(--space-3); }
+    .cta-section p { color: rgba(255,255,255,0.85); font-size: 1.125rem; max-width: 600px; margin: 0 auto var(--space-4); }
+    .cta-section__row { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
+    @media (max-width: 768px) { .cta-section { padding: var(--space-6) 0; } }
+
+    /* ============================================================ FOOTER ============================================================ */
+    .footer { background: var(--color-white); padding: var(--space-6) 0; text-align: center; }
+    .footer p { font-style: italic; font-size: 0.8125rem; color: var(--color-muted); max-width: 720px; margin: 0 auto; line-height: 1.6; }
+
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 2px; }
+  </style>
+</head>
+<body>
+
+  <a href="#featured" class="skip-link">Skip to content</a>
+
+  <!-- ============================================================ STICKY NAV ============================================================ -->
+  <nav class="nav" aria-label="Page sections">
+    <div class="container nav__inner">
+      <span class="nav__brand">Aedifica</span>
+      <div class="nav__links">
+        <a href="#featured" class="nav__link">Featured</a>
+        <a href="#stories" class="nav__link">Stories</a>
+        <a href="#impact" class="nav__link">Impact</a>
+        <a href="#changed" class="nav__link">What Changed</a>
+        <a href="#pathways" class="nav__link">Alumni Pathways</a>
+        <a href="#contact" class="nav__link">Get Involved</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================ 1. HERO ============================================================ -->
+  <header class="hero">
+    <div class="container hero__inner">
+      <span class="eyebrow">Student Stories &amp; Impact</span>
+      <h1>Pathways in motion.</h1>
+      <p class="hero__lede">Behind every cohort is a learner, a school, a partner, or an employer trying to build something better. In the spring of 2025, twenty-one Hillside middle schoolers spent ten weeks as engineers &mdash; designing, building, testing, and defending a bridge across the Hudson River. This page makes those outcomes visible: the human ones and the measurable ones, together.</p>
+      <div class="btn-row">
+        <a href="#stories" class="btn-primary">Read Stories</a>
+        <a href="#contact" class="btn-outline">Support a Cohort</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================ 2. FEATURED STORY ============================================================ -->
+  <section id="featured" class="section">
+    <div class="container">
+      <div class="featured">
+        <!-- MEDIA PLACEHOLDER — replace with cleared photo/video of a team presenting at the Stevens showcase -->
+        <div class="featured__media">
+          <svg class="truss" viewBox="0 0 400 400" preserveAspectRatio="none" aria-hidden="true">
+            <g stroke="#fff" stroke-width="1" fill="none" opacity="0.5">
+              <path d="M0 200 L400 200"/>
+              <path d="M0 200 L80 130 L160 200 L240 130 L320 200 L400 130"/>
+              <path d="M0 200 L80 270 L160 200 L240 270 L320 200 L400 270"/>
+            </g>
+          </svg>
+          <span class="featured__media-caption">Photo placeholder &mdash; a student team presenting a bridge prototype at the Stevens showcase. Replace with a cleared image before publishing.</span>
+        </div>
+
+        <div class="featured__body">
+          <span class="featured__tag">Aedifica Explore &middot; Hillside Innovation Academy &middot; Building Bridges</span>
+          <h2>From &ldquo;fixing things&rdquo; to defending a design.</h2>
+          <p>A Hillside learner began the program describing engineering the way most middle schoolers do &mdash; as &ldquo;fixing things.&rdquo; Over ten weeks, that picture sharpened. Working on one of four teams, each member with an assigned leadership role, they took on a Hudson River bridge challenge: design a prototype, build it, and make the case for why it was the strongest &mdash; to a panel of professional civil engineering judges.</p>
+          <p>Along the way they learned the real vocabulary of structures: tension, compression, buckling, the strongest shapes. They learned that a prototype that fails a test isn't a failure &mdash; it's information. And they learned to stand up, explain a decision, and answer a hard question from an engineer who builds things for a living.</p>
+
+          <blockquote class="featured__quote">When we mess up, this only sets you up for a new door to open.</blockquote>
+          <p class="featured__quote-attr">&mdash; A Hillside learner, post-program reflection</p>
+
+          <div class="outcomes-box">
+            <h4>Three observable outcomes</h4>
+            <ol>
+              <li>Completed and defended a team bridge prototype before a panel of professional civil engineering judges.</li>
+              <li>Articulated a deeper view of engineering &mdash; pre/post surveys show the cohort moving from &ldquo;designing a structure&rdquo; to &ldquo;designing, creating, testing, and improving solutions.&rdquo;</li>
+              <li>Advanced STEM trajectory: 6 of the 11 eighth-grade participants (55%) earned acceptance into the selective Union County Vocational-Technical Schools for 2025&ndash;26.</li>
+            </ol>
+            <p class="footnote">Outcome 3 is a cohort-level result, not attributed to a single learner.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 3. STORY GRID ============================================================ -->
+  <section id="stories" class="section section--cream">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">The Stories</span>
+        <h2>Learners, schools, and partners.</h2>
+        <p class="subhead center">Every card is drawn from the program's own record &mdash; students' own words, the school's own implementation, the partnership's own structure. Filter by program to explore.</p>
+      </div>
+
+      <!-- FILTER -->
+      <div class="filter-row" role="group" aria-label="Filter stories by program">
+        <button class="filter-btn is-active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="explore">Explore</button>
+        <button class="filter-btn" data-filter="pathway">Pathway</button>
+        <button class="filter-btn" data-filter="partner">Partner Stories</button>
+      </div>
+
+      <div class="story-grid" id="storyGrid">
+
+        <!-- EXPLORE — learner -->
+        <article class="story-card" data-program="explore">
+          <div class="story-card__top">
+            <div class="story-card__type">Learner Story &middot; Curiosity to confidence</div>
+            <h3 class="story-card__title">Learning to value the process, not just the win</h3>
+          </div>
+          <div class="story-card__body">
+            <p class="story-card__quote"><em>&ldquo;It is as important to learn as to succeed.&rdquo;</em></p>
+            <p class="story-card__text">A learner who started seeing engineering in broad strokes finished able to explain the design process, the mechanics of a bridge, and the value of a failed test. Confidence grew most in the moment they had to defend their team's choices to real engineers.</p>
+            <div class="story-card__foot"><span class="story-card__pill">Explore</span><span class="story-card__more">Read more &rarr;</span></div>
+          </div>
+        </article>
+
+        <!-- EXPLORE — school -->
+        <article class="story-card" data-program="explore">
+          <div class="story-card__top">
+            <div class="story-card__type">School Story &middot; District implementation</div>
+            <h3 class="story-card__title">A 10-week elective inside the school day</h3>
+          </div>
+          <div class="story-card__body">
+            <p class="story-card__text">Building Bridges runs as a 10-week NGSS-aligned science elective inside the school day. Hillside Innovation Academy, a STEM-focused magnet middle school, embedded the program for grades 7&ndash;8, reaching about 22% of its enrollment in 2025. HIA's own STEM instructors carried the learning through the week between sessions.</p>
+            <div class="story-card__foot"><span class="story-card__pill">Explore</span><span class="story-card__more">Read more &rarr;</span></div>
+          </div>
+        </article>
+
+        <!-- EXPLORE — instructor -->
+        <article class="story-card" data-program="explore">
+          <div class="story-card__top">
+            <div class="story-card__type">Instructor Story &middot; Curriculum in action</div>
+            <h3 class="story-card__title">Built, tested, revised &mdash; not just watched</h3>
+          </div>
+          <div class="story-card__body">
+            <p class="story-card__text">Students understood tension, compression, and cost most deeply when they built, tested, and revised &mdash; not when they watched. Led by a Stevens assistant professor of civil engineering with a construction-engineering co-instructor, the curriculum traded lectures for two real design challenges: a sticker-design pitch and the Hudson River bridge competition. Mixed-grade teams and clear roles turned a rigorous course into a community.</p>
+            <div class="story-card__foot"><span class="story-card__pill">Explore</span><span class="story-card__more">Read more &rarr;</span></div>
+          </div>
+        </article>
+
+        <!-- PARTNER -->
+        <article class="story-card" data-program="partner">
+          <div class="story-card__top">
+            <div class="story-card__type">Partner Story &middot; Hillside + Stevens</div>
+            <h3 class="story-card__title">Two institutions, one support system</h3>
+          </div>
+          <div class="story-card__body">
+            <p class="story-card__text">Building Bridges is a Hillside Innovation Academy &times; Stevens Institute of Technology collaboration, funded by the Engineering Information Foundation, now in its second program year. The 2025 program's full investment &mdash; $10,340.29 &mdash; was independently reviewed and certified through Stevens' Office of Sponsored Accounting and Cost Analysis.</p>
+            <div class="story-card__foot"><span class="story-card__pill">Partner Stories</span><span class="story-card__more">Read more &rarr;</span></div>
+          </div>
+        </article>
+
+        <!-- EXPLORE — family/community -->
+        <article class="story-card" data-program="explore">
+          <div class="story-card__top">
+            <div class="story-card__type">Community Story &middot; Showcase and pride</div>
+            <h3 class="story-card__title">Families filled the room at Stevens</h3>
+          </div>
+          <div class="story-card__body">
+            <p class="story-card__text">The program closed with a showcase where students presented their prototypes to peers, faculty, judges, and families. That family presence connected student achievement to home and community support &mdash; a thread the program team named as central to its success.</p>
+            <div class="story-card__foot"><span class="story-card__pill">Explore</span><span class="story-card__more">Read more &rarr;</span></div>
+          </div>
+        </article>
+
+        <!-- PATHWAY — toward advanced STEM (Building Bridges 8th graders) -->
+        <article class="story-card" data-program="pathway">
+          <div class="story-card__top">
+            <div class="story-card__type">Pathway Story &middot; Toward advanced STEM</div>
+            <h3 class="story-card__title">On the on-ramp to selective STEM high schools</h3>
+          </div>
+          <div class="story-card__body">
+            <p class="story-card__text">For eighth graders at a high-school decision point, Building Bridges sits right on the on-ramp to selective STEM high schools. 6 of 11 eighth-grade participants (55%) were accepted into Union County Vocational-Technical Schools for 2025&ndash;26 &mdash; among the most competitive public high schools in the state.</p>
+            <div class="story-card__foot"><span class="story-card__pill">Pathway</span><span class="story-card__more">Read more &rarr;</span></div>
+          </div>
+        </article>
+
+        <!-- PATHWAY — featured learner (summer Civil Eng & Design) -->
+        <article class="story-card" data-program="pathway">
+          <div class="story-card__top">
+            <div class="story-card__type">Learner Story &middot; Apprehension to belonging</div>
+            <h3 class="story-card__title">&ldquo;The best class I've taken&rdquo;</h3>
+          </div>
+          <div class="story-card__body">
+            <p class="story-card__quote"><em>&ldquo;The class started off very slow but once it picked up, it became the most enjoyable class I've ever attended.&rdquo;</em></p>
+            <p class="story-card__text">A student arrived expecting to be out of their depth. Instead of pulling back, they stayed with it &mdash; through daily build challenges, a team research project, and a final presentation &mdash; and left with stronger engineering knowledge and a clearer sense of college readiness.</p>
+            <div class="story-card__foot"><span class="story-card__pill">Pathway</span><span class="story-card__more">Read more &rarr;</span></div>
+          </div>
+        </article>
+
+        <!-- PATHWAY — curiosity to confidence -->
+        <article class="story-card" data-program="pathway">
+          <div class="story-card__top">
+            <div class="story-card__type">Learner Story &middot; Curiosity to confidence</div>
+            <h3 class="story-card__title">From zero experience to accomplished</h3>
+          </div>
+          <div class="story-card__body">
+            <p class="story-card__quote"><em>&ldquo;I had absolutely zero experience prior to it, but now I feel much more accomplished and learned in the subject.&rdquo;</em></p>
+            <p class="story-card__text">A learner with no prior exposure finished the program feeling capable in a field they'd never touched &mdash; the kind of shift that reaches students who assume engineering &ldquo;isn't for them.&rdquo;</p>
+            <div class="story-card__foot"><span class="story-card__pill">Pathway</span><span class="story-card__more">Read more &rarr;</span></div>
+          </div>
+        </article>
+
+        <!-- PATHWAY — instructor -->
+        <article class="story-card" data-program="pathway">
+          <div class="story-card__top">
+            <div class="story-card__type">Instructor Story &middot; Curriculum in action</div>
+            <h3 class="story-card__title">Taught by a practicing civil engineer</h3>
+          </div>
+          <div class="story-card__body">
+            <p class="story-card__quote"><em>&ldquo;He made us all think on our feet and think outside the box while considering the needs and happiness of the client.&rdquo;</em></p>
+            <p class="story-card__text">The Pathway runs on a practicing civil engineer who teaches through real projects and first-hand industry stories &mdash; consistently the program's most-praised element, rated &ldquo;Excellent&rdquo; by 88&ndash;96% of students each summer.</p>
+            <div class="story-card__foot"><span class="story-card__pill">Pathway</span><span class="story-card__more">Read more &rarr;</span></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 4. IMPACT STATISTICS ============================================================ -->
+  <section id="impact" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Impact Statistics</span>
+        <h2>What the 2025 cohort shows.</h2>
+        <p class="subhead center">Documented results from the Spring 2025 Building Bridges cohort (Program Year 2). Every figure below is stated directly in an attached program report.</p>
+      </div>
+
+      <div class="stats-grid">
+        <!-- STAT CARD -->
+        <div class="stat-card">
+          <div class="stat-card__num">21</div>
+          <div class="stat-card__label">Learners served</div>
+          <div class="stat-card__meaning">Seventh and eighth graders completed the 10-week program.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__num">1</div>
+          <div class="stat-card__label">Cohort delivered &middot; Year 2</div>
+          <div class="stat-card__meaning">One documented 10-week cohort in Spring 2025 &mdash; the second year of the collaboration.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__num">2 + 1</div>
+          <div class="stat-card__label">Partners &amp; funder</div>
+          <div class="stat-card__meaning">Hillside Innovation Academy and Stevens Institute of Technology, funded by the Engineering Information Foundation.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__num">4</div>
+          <div class="stat-card__label">Capstone projects</div>
+          <div class="stat-card__meaning">Four team bridge prototypes built and defended, plus an earlier sticker-design pitch.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__num">21</div>
+          <div class="stat-card__label">Students presenting</div>
+          <div class="stat-card__meaning">Every participant, across 4 teams, presented to a panel of judges, peers, faculty, and families.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__num">55%</div>
+          <div class="stat-card__label">Next-step outcomes</div>
+          <div class="stat-card__meaning">6 of 11 eighth graders accepted into selective UCVTS STEM high schools for 2025&ndash;26 (advanced STEM, not workforce).</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__num">&asymp;93</div>
+          <div class="stat-card__label">Final-grade average</div>
+          <div class="stat-card__meaning">Building Bridges participants' average final grade across the program.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__num">Exposure</div>
+          <div class="stat-card__label">Employer touchpoints</div>
+          <div class="stat-card__meaning">Students met professional civil engineering judges and explored careers at Stevens' Innovation Expo &mdash; role-model exposure, not hiring or placement.</div>
+        </div>
+      </div>
+
+      <p class="stats-note">Supporting measures: 22% of HIA enrollment reached &middot; pre-survey response 100%, post-survey 85%. This is a middle-school STEM enrichment program, not a credentialing program &mdash; no credential claim is made, and employer touchpoints reflect career exposure rather than workforce placement. School-wide proficiency results exist but are not measured on these 21 participants and are not claimed as program outcomes.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ 5. WHAT CHANGED FOR STUDENTS ============================================================ -->
+  <section id="changed" class="section section--cream">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">What Changed for Students</span>
+        <h2>Five shifts, in students' own words.</h2>
+        <p class="subhead center">Drawn from student reflections and the program's Engineering Information Foundation report &mdash; the changes the program team and the data both named.</p>
+      </div>
+
+      <div class="changed-grid">
+        <!-- CHANGED ITEM -->
+        <div class="changed-item">
+          <svg class="changed-item__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <h3>Engineering became real</h3>
+          <p>Students moved from defining engineering as &ldquo;fixing things&rdquo; to &ldquo;designing, creating, testing, and improving solutions.&rdquo; A visit to Stevens' Innovation Expo showed them the range &mdash; and the genuine rewards &mdash; of the work.</p>
+          <p class="changed-item__quote">Engineering is &ldquo;building a prototype&rdquo; and &ldquo;using serious critical thinking skills.&rdquo; &mdash; Student reflection</p>
+        </div>
+
+        <div class="changed-item">
+          <svg class="changed-item__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          <h3>Confidence grew through presentation</h3>
+          <p>Preparing for the competition and answering judges' questions built real public-speaking and technical-communication skill. Instructors described it as an unexpected, standout development of the program.</p>
+          <p class="changed-item__quote">Students &ldquo;both reported and demonstrated increased confidence in public speaking.&rdquo; &mdash; EIF report</p>
+        </div>
+
+        <div class="changed-item">
+          <svg class="changed-item__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+          <h3>Failure became part of the design process</h3>
+          <p>Testing prototypes taught students that a failed test is data, not defeat. They came to embrace the messy, iterative nature of real engineering.</p>
+          <p class="changed-item__quote">&ldquo;When we mess up, this only sets you up for a new door to open.&rdquo; &mdash; Student reflection</p>
+        </div>
+
+        <div class="changed-item">
+          <svg class="changed-item__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h3>Teamwork and leadership were practiced</h3>
+          <p>Mixed-grade teams with assigned roles let students discover that leadership can mean listening, helping a teammate, organizing the work, or explaining an idea clearly.</p>
+          <p class="changed-item__quote">Teamwork, time management, and leadership were &ldquo;frequently cited&rdquo; outcomes. &mdash; EIF report</p>
+        </div>
+
+        <div class="changed-item" style="grid-column: 1 / -1;">
+          <svg class="changed-item__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <h3>Pathways became visible</h3>
+          <p>By working alongside undergraduates, graduate researchers, and faculty, students saw engineering as a reachable career with many roles. For the eighth-grade cohort, the next step became concrete: 55% were accepted into selective STEM high schools.</p>
+          <p class="changed-item__quote">&ldquo;It is as important to learn as to succeed.&rdquo; &mdash; Student reflection</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 6. ALUMNI PATHWAYS ============================================================ -->
+  <section id="pathways" class="section">
+    <div class="container-narrow">
+      <span class="eyebrow">Alumni Pathways</span>
+      <h2>An early experience, not an endpoint.</h2>
+      <p>Building Bridges helps a middle schooler see engineering as reachable &mdash; and gives them a first taste of a college campus, a real design challenge, and an engineer's questions. For the 2025 eighth-grade cohort, the next step is already visible: more than half earned acceptance into selective STEM high schools. For everyone else, the program planted something earlier and quieter &mdash; the sense that <em>I could be the person who builds this</em>.</p>
+      <p style="margin-top:var(--space-3); color:var(--color-muted);">After an early Aedifica experience, next steps may include:</p>
+
+      <div class="pathways-flow">
+        <span class="pathway-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Advanced high school STEM courses</span>
+        <span class="pathway-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>CTE pathways</span>
+        <span class="pathway-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Project Lead The Way</span>
+        <span class="pathway-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Selective STEM high schools (UCVTS)</span>
+        <span class="pathway-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Summer engineering experiences</span>
+        <span class="pathway-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Early college &amp; campus exposure</span>
+        <span class="pathway-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Future Aedifica Pathway programs</span>
+        <span class="pathway-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Long-term workforce-connected learning</span>
+      </div>
+
+      <p style="margin-top:var(--space-4); font-size:0.95rem; color:var(--color-muted); font-style:italic;">No outcomes are guaranteed; the work is in keeping the door open.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ 7. CTA ============================================================ -->
+  <section id="contact" class="cta-section">
+    <div class="container-narrow">
+      <span class="eyebrow">Get Involved</span>
+      <h2>Help the next learner find the pathway.</h2>
+      <p>Every cohort starts with a school, a partner, or a funder willing to open a door. If you want to bring an Aedifica program to your students, partner on the next cohort, or share an outcome of your own, we'd welcome the conversation.</p>
+      <div class="cta-section__row">
+        <a href="/contact" class="btn-primary">Partner With Us</a>
+        <a href="/contact?type=story" class="btn-outline">Share Your Story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ FOOTER / PROVENANCE ============================================================ -->
+  <footer class="footer">
+    <div class="container-narrow">
+      <p>Stories and figures are drawn from the 2025 Building Bridges cohort at Hillside Innovation Academy (a Hillside &times; Stevens Institute of Technology collaboration, funded by the Engineering Information Foundation) and from the Stevens Pre-College Civil Engineering &amp; Design summer surveys, 2022&ndash;2024. Student quotes are anonymized by cohort year and lightly edited only for readability. Student names, faces, and voices are published only with written permission, including parent or guardian consent for minors.</p>
+    </div>
+  </footer>
+
+  <!-- ============================================================ SCRIPT — filter + scroll-spy ============================================================ -->
+  <script>
+    // Story filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('#storyGrid .story-card');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        const f = btn.dataset.filter;
+        cards.forEach(c => {
+          c.classList.toggle('is-hidden', f !== 'all' && c.dataset.program !== f);
+        });
+      });
+    });
+
+    // Scroll-spy nav
+    const navLinks = document.querySelectorAll('.nav__link');
+    const sections = Array.from(navLinks).map(l => document.getElementById(l.getAttribute('href').slice(1))).filter(Boolean);
+    function spy() {
+      const y = window.scrollY + 120;
+      let cur = null;
+      for (const s of sections) { if (s.offsetTop <= y) cur = s.id; }
+      navLinks.forEach(l => l.classList.toggle('is-active', l.getAttribute('href').slice(1) === cur));
+    }
+    window.addEventListener('scroll', spy, { passive: true });
+    spy();
+  </script>
+
+</body>
+</html>

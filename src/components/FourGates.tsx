@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+﻿'use client'
+import Link from 'next/link'
 import { motion, useReducedMotion } from 'motion/react'
 import { UsersThree, CurrencyDollar, Handshake, Certificate, type Icon } from '@phosphor-icons/react'
 
@@ -111,8 +112,7 @@ export function FourGates() {
             style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
             Curriculum without these commitments is a class. Aedifica is designed to build a pathway.
           </p>
-          <Link
-            to="/partner"
+          <Link href="/partner"
             className="flex-shrink-0 inline-flex items-center justify-center bg-datum text-white text-[13px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-colors duration-150 hover:bg-datum/85"
             style={{ fontFamily: 'var(--font-body)' }}>
             Discuss a Founding Partnership

@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+﻿'use client'
+import Link from 'next/link'
 import { motion, useReducedMotion } from 'motion/react'
 
 const VIEWPORT = { once: true, margin: '-60px 0px' } as const
@@ -42,14 +43,12 @@ export function FinalCTA() {
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.5, delay: 0.22, ease: EASE }}>
-            <Link
-              to="/partner"
+            <Link href="/partner"
               className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
               style={{ fontFamily: 'var(--font-body)' }}>
               Start a Partnership Conversation
             </Link>
-            <Link
-              to="/partner"
+            <Link href="/partner"
               className="inline-flex items-center justify-center border border-white/65 text-white text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/10"
               style={{ fontFamily: 'var(--font-body)' }}>
               Request an Institutional Briefing

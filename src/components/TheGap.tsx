@@ -7,7 +7,7 @@ export function TheGap() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-anthracite py-16 lg:py-24" aria-labelledby="gap-heading">
+    <section className="bg-anthracite py-14 lg:py-20" aria-labelledby="gap-heading">
       <div className="max-w-7xl mx-auto px-6">
         <div className="lg:grid lg:grid-cols-[1fr_0.75fr] lg:gap-16 xl:gap-20 lg:items-start">
 
@@ -15,14 +15,14 @@ export function TheGap() {
           <div>
             <motion.h2
               id="gap-heading"
-              className="text-[2.25rem] lg:text-[3.75rem] xl:text-[5rem] leading-[1.05] tracking-[-0.03em] text-white italic mb-8"
+              className="text-[2rem] lg:text-[3.25rem] xl:text-[4.25rem] leading-[1.08] tracking-[-0.03em] text-white italic mb-8 [text-wrap:balance]"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 24 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, ease: EASE }}
             >
-              The talent exists. The structured route does not.
+              Between trade work and four-year programs, there is no standard route into construction management.
             </motion.h2>
 
             <motion.p
@@ -33,13 +33,13 @@ export function TheGap() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.5, delay: 0.07, ease: EASE }}
             >
-              New Jersey's construction workforce system has important entry
-              programs and strong four-year construction-management education.
-              Between them sits a missing channel: a practical, employer-facing
-              route for capable adults and students to prepare for
-              construction-management-track work such as project administration,
-              estimating support, project controls, BIM coordination, scheduling
-              support, safety documentation, and field leadership progression.
+              The construction industry needs managers, estimators, schedulers,
+              safety leaders, BIM coordinators, and field-ready professionals.
+              Yet most learners see two incomplete options: a four-year degree
+              or a trade route without a visible bridge into management-track
+              work. Between those two sits a missing channel: a practical,
+              employer-facing route for capable adults and students to prepare
+              for construction-management careers. Aedifica builds that route.
             </motion.p>
           </div>
 

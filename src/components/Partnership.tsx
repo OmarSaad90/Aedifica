@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+﻿'use client'
+import Link from 'next/link'
 import { motion, useReducedMotion } from 'motion/react'
 import { GraduationCap, UsersThree, Briefcase, Bank, type Icon } from '@phosphor-icons/react'
 
@@ -94,9 +95,9 @@ export function Partnership() {
                 transition={reduce ? undefined : { duration: 0.5, delay: i * 0.065, ease: EASE }}>
 
                 <IconComp
-                  size={20}
+                  size={36}
                   weight="regular"
-                  className="text-datum mb-3"
+                  className="text-datum mb-4"
                   aria-hidden={true}
                 />
 
@@ -106,8 +107,7 @@ export function Partnership() {
                     style={{ fontFamily: 'var(--font-body)' }}>
                     {name}
                   </h3>
-                  <Link
-                    to={to}
+                  <Link href={to}
                     className="flex-shrink-0 inline-flex items-center gap-2 text-[13px] text-datum tracking-[-0.01em] group self-start"
                     style={{ fontFamily: 'var(--font-body)' }}>
                     {cta}

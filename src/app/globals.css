@@ -1,0 +1,55 @@
+@import "tailwindcss";
+/* Cormorant Garamond — display/headings: old-style serif with exceptional italic */
+@import "@fontsource/cormorant-garamond/300-italic.css";
+@import "@fontsource/cormorant-garamond/400.css";
+@import "@fontsource/cormorant-garamond/400-italic.css";
+@import "@fontsource/cormorant-garamond/500.css";
+@import "@fontsource/cormorant-garamond/500-italic.css";
+/* Space Grotesk — body: geometric grotesque with technical precision */
+@import "@fontsource-variable/space-grotesk";
+/* Cinzel — wordmark: classical Roman capitals, matches brand book identity */
+@import "@fontsource/cinzel/400.css";
+
+@theme {
+  /* Brand colors — exact client values from brand book v4 */
+  --color-datum:      #6667AB;   /* Periwinkle — the anchor, only color that operates alone */
+  --color-quarry:     #8A9A93;   /* Sage-green — neutral wayfinding, considered space */
+  --color-patina:     #836479;   /* Mauve-aubergine — the mark, reserved for emphasis */
+  --color-snow:       #FAF7F1;   /* The light — page background */
+  --color-bone:       #F4EEE4;   /* The page — alternate sections */
+  --color-sediment:   #C7B377;   /* Yellow-olive dried moss — warmth, human-centred moments */
+  --color-anthracite: #2D2D31;   /* The line — primary text */
+
+  /* Typefaces */
+  --font-heading:   'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body:      'Space Grotesk Variable', 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --font-wordmark:  'Cinzel', 'Trajan Pro', Georgia, serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light only;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-datum);
+  outline-offset: 3px;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-snow);
+  color: var(--color-anthracite);
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  line-height: 1.6;
+  font-optical-sizing: auto;
+}

@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ============================================================
+       PRINCIPLES OF CIVIL ENGINEERING — Aedifica
+       District-facing program page.
+       Visual language modeled on the Resilient Futures curriculum.
+
+       EASY EDITS:
+       - Brand colors: see :root design tokens below
+       - Hero copy: SECTION 1
+       - Standards chips / colors: --c-ngss, --c-math, etc.
+       - Lesson cards: SECTION 5 (each <article class="lesson">)
+       - Standards matrix: SECTION 6
+       - Rubric weights: SECTION 9
+       - CTA links: search for href="#contact" / REQUEST-INFO-LINK
+       ============================================================ -->
+  <title>Principles of Civil Engineering — Standards-Aligned STEM Curriculum | Aedifica</title>
+  <meta name="description" content="A project-based civil engineering course for middle and high schools. Students design sustainable infrastructure, evaluate bridges, weigh costs and trade-offs, and defend real solutions. Aligned to NJ, NY, and NGSS.">
+
+  <meta property="og:title" content="Principles of Civil Engineering — Aedifica">
+  <meta property="og:description" content="Project-based civil engineering for grades 6–12. Standards-aligned, district-ready, portfolio-producing.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Display: Fraunces (engineering-serif feel). Body: Inter. Mono: IBM Plex Mono for the standards shorthand. -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS  — edit brand colors here
+       ============================================================ */
+    :root {
+      --navy:        #16243A;   /* hero + dark surfaces */
+      --navy-deep:   #0F1A2B;
+      --navy-soft:   #1E3050;
+      --orange:      #E2833C;   /* primary accent (headline highlight, CTAs) */
+      --orange-soft: #F5C99B;
+      --ink:         #1B2430;   /* body text on light */
+      --muted:       #5E6B7A;   /* secondary text */
+      --muted-2:     #5E6B7A;
+      --line:        #D9DEE5;
+      --paper:       #FFFFFF;
+      --paper-2:     #F4F6F8;   /* light section bg */
+      --paper-3:     #ECF0F4;
+
+      /* Standards framework colors (chips + dots) */
+      --c-ngss:  #16243A;   /* NGSS / Science  — navy */
+      --c-math:  #E2833C;   /* NJSLS Math      — orange */
+      --c-ela:   #1F7A6B;   /* NJSLS ELA       — teal */
+      --c-dt:    #3B5BA5;   /* Design & Tech   — blue */
+      --c-cr:    #9B4868;   /* Career Readiness— mauve */
+
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+      --maxw: 1140px;
+      --radius: 4px;
+      --radius-lg: 8px;
+      --transition: 200ms ease;
+    }
+    /* ============================================================ RESET ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: none; background: none; }
+
+    .skip-link { position: absolute; top: -48px; left: 0; background: var(--navy); color: #fff; padding: 10px 16px; z-index: 200; }
+    .skip-link:focus { top: 0; }
+
+    /* ============================================================ LAYOUT ============================================================ */
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+    .wrap-narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    section { scroll-margin-top: 72px; }
+    .pad { padding: 88px 0; }
+    .pad-sm { padding: 64px 0; }
+    @media (max-width: 700px) { .pad { padding: 60px 0; } .pad-sm { padding: 44px 0; } }
+
+    .bg-light { background: var(--paper-2); }
+    .bg-navy { background: var(--navy); color: #fff; }
+
+    /* ============================================================ TYPE ============================================================ */
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height: 1.12; letter-spacing: -0.015em; color: var(--navy); }
+    h1 { font-size: clamp(2.6rem, 6vw, 4.4rem); font-weight: 700; }
+    h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); }
+    h3 { font-size: 1.3rem; }
+    .bg-navy h1, .bg-navy h2, .bg-navy h3 { color: #fff; }
+
+    p { font-size: 1.0625rem; line-height: 1.72; color: var(--ink); }
+    .lede { font-size: 1.22rem; line-height: 1.6; color: var(--muted-2); }
+    .bg-navy p, .bg-navy .lede { color: rgba(255,255,255,0.82); }
+
+    /* eyebrow — monospaced uppercase, like the reference */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      display: block;
+      margin-bottom: 18px;
+    }
+    .bg-light .eyebrow { color: var(--muted-2); }
+    .section-head { margin-bottom: 44px; }
+    .section-head h2 { margin-bottom: 16px; }
+    .section-head .lede { max-width: 680px; }
+    .section-head--center { text-align: center; }
+    .section-head--center .lede { margin-left: auto; margin-right: auto; }
+
+    /* ============================================================ BUTTONS ============================================================ */
+    .btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-family: var(--font-body);
+      font-weight: 600; font-size: 0.96rem;
+      padding: 15px 28px;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      border: 1.5px solid transparent;
+    }
+    .btn-primary { background: var(--orange); color: #1a1206; }
+    .btn-primary:hover { background: #d2742f; transform: translateY(-1px); }
+    .btn-ghost { border-color: rgba(255,255,255,0.34); color: #fff; }
+    .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.07); }
+    .btn-dark { background: var(--navy); color: #fff; }
+    .btn-dark:hover { background: var(--navy-soft); transform: translateY(-1px); }
+    .btn-outline-dark { border-color: var(--line); color: var(--navy); background: #fff; }
+    .btn-outline-dark:hover { border-color: var(--navy); }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 14px; }
+
+    /* ============================================================ STICKY NAV ============================================================ */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+      height: 60px; display: flex; align-items: center;
+    }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .nav__brand { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--navy); letter-spacing: -0.02em; }
+    .nav__links { display: flex; gap: 26px; overflow-x: auto; scrollbar-width: none; }
+    .nav__links::-webkit-scrollbar { display: none; }
+    .nav__link { font-size: 0.83rem; font-weight: 500; color: var(--muted-2); white-space: nowrap; transition: var(--transition); }
+    .nav__link:hover, .nav__link.is-active { color: var(--orange); }
+    .nav__cta { display: none; }
+    @media (min-width: 1000px) { .nav__cta { display: inline-flex; } }
+    @media (max-width: 999px) { .nav__links { gap: 18px; } }
+
+    /* ============================================================ 1. HERO ============================================================ */
+    .hero { background: var(--navy); color: #fff; position: relative; overflow: hidden; }
+    /* faint truss line-art, echoing the reference hero */
+    .hero__art { position: absolute; inset: 0; opacity: 0.5; pointer-events: none; }
+    .hero__inner { position: relative; padding: 96px 0 88px; }
+    .hero .eyebrow { color: rgba(255,255,255,0.6); }
+    .hero h1 { margin-bottom: 26px; max-width: 16ch; }
+    .hero h1 .hl { color: var(--orange); display: block; }
+    .hero__lede { font-size: 1.24rem; line-height: 1.6; color: rgba(255,255,255,0.82); max-width: 560px; margin-bottom: 36px; }
+    .hero .btn-row { margin-bottom: 56px; }
+    @media (max-width: 700px) { .hero__inner { padding: 64px 0 56px; } }
+
+    /* stat cards */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .stat {
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      background: rgba(255,255,255,0.02);
+    }
+    .stat__num { font-family: var(--font-display); font-weight: 700; font-size: 2rem; color: #fff; line-height: 1; margin-bottom: 10px; }
+    .stat__label { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+    @media (max-width: 820px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ============================================================ STANDARDS KEY STRIP ============================================================ */
+    .key-strip { background: var(--paper-2); border-bottom: 1px solid var(--line); padding: 20px 0; }
+    .key-strip__inner { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
+    .key-strip__label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted-2); margin-right: 4px; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: 0.74rem; font-weight: 500;
+      padding: 7px 14px; border-radius: 100px;
+      border: 1px solid var(--line); background: #fff; color: var(--ink);
+    }
+    .chip__dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .dot-ngss { background: var(--c-ngss); } .dot-math { background: var(--c-math); }
+    .dot-ela { background: var(--c-ela); } .dot-dt { background: var(--c-dt); } .dot-cr { background: var(--c-cr); }
+
+    /* ============================================================ 2. OVERVIEW ============================================================ */
+    .overview__grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 56px; align-items: start; }
+    @media (max-width: 860px) { .overview__grid { grid-template-columns: 1fr; gap: 36px; } }
+    .overview__points { border-top: 1px solid var(--line); }
+    .ov-point { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .ov-point__ico { flex-shrink: 0; width: 26px; height: 26px; color: var(--orange); }
+    .ov-point h4 { font-family: var(--font-body); font-weight: 700; font-size: 0.98rem; color: var(--navy); margin-bottom: 2px; }
+    .ov-point p { font-size: 0.92rem; color: var(--muted-2); margin: 0; }
+
+    /* ============================================================ 3. WHY SCHOOLS ============================================================ */
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    @media (max-width: 860px) { .why-grid { grid-template-columns: 1fr; } }
+    .why-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 30px 26px; transition: var(--transition); }
+    .why-card:hover { border-color: var(--orange); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(22,36,58,0.08); }
+    .why-card__ico { width: 34px; height: 34px; color: var(--orange); margin-bottom: 18px; }
+    .why-card h3 { font-size: 1.12rem; margin-bottom: 9px; }
+    .why-card p { font-size: 0.95rem; color: var(--muted-2); margin: 0; }
+
+    /* ============================================================ 4. OUTCOMES ============================================================ */
+    .outcomes { columns: 2; column-gap: 48px; }
+    @media (max-width: 760px) { .outcomes { columns: 1; } }
+    .outcome { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); break-inside: avoid; }
+    .outcome__num { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--orange); flex-shrink: 0; padding-top: 3px; }
+    .outcome p { font-size: 0.98rem; margin: 0; color: var(--ink); }
+
+    /* ============================================================ 5. CURRICULUM (LESSON ACCORDION) ============================================================ */
+    .lesson {
+      background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg);
+      margin-bottom: 12px; overflow: hidden; transition: var(--transition);
+    }
+    .lesson[open] { border-color: var(--navy-soft); box-shadow: 0 10px 30px rgba(22,36,58,0.07); }
+    .lesson__head {
+      display: flex; align-items: center; gap: 20px; padding: 22px 26px;
+      list-style: none; cursor: pointer;
+    }
+    .lesson__head::-webkit-details-marker { display: none; }
+    .lesson__no {
+      flex-shrink: 0; font-family: var(--font-display); font-weight: 700;
+      font-size: 1.5rem; color: var(--orange); width: 54px; line-height: 1;
+    }
+    .lesson__no small { display: block; font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 0.12em; color: var(--muted-2); font-weight: 500; margin-top: 4px; }
+    .lesson__title { flex: 1; }
+    .lesson__title h3 { font-size: 1.18rem; margin: 0; }
+    .lesson__title .topics-mini { font-size: 0.85rem; color: var(--muted-2); margin-top: 3px; }
+    .lesson__chev { flex-shrink: 0; width: 20px; height: 20px; color: var(--muted-2); transition: var(--transition); }
+    .lesson[open] .lesson__chev { transform: rotate(180deg); }
+    .lesson__body { padding: 0 26px 26px 100px; }
+    @media (max-width: 600px) { .lesson__body { padding: 0 22px 24px; } .lesson__head { gap: 14px; padding: 18px 20px; } }
+    .lesson__body h4 { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-2); margin: 0 0 10px; font-weight: 600; }
+    .topic-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .topic-tag { font-size: 0.85rem; background: var(--paper-2); border: 1px solid var(--line); color: var(--ink); padding: 5px 13px; border-radius: 100px; }
+    /* standards shorthand row */
+    .std-row { display: flex; flex-wrap: wrap; gap: 7px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .std {
+      font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
+      padding: 4px 10px; border-radius: var(--radius); display: inline-flex; align-items: center; gap: 6px;
+      background: var(--paper-2); color: var(--ink);
+    }
+    .std::before { content: ""; width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .std.ngss::before { background: var(--c-ngss); } .std.math::before { background: var(--c-math); }
+    .std.ela::before { background: var(--c-ela); } .std.dt::before { background: var(--c-dt); } .std.cr::before { background: var(--c-cr); }
+
+    /* final project — highlighted card */
+    .final-project {
+      background: var(--navy); color: #fff; border-radius: var(--radius-lg);
+      padding: 40px 38px; margin-top: 22px;
+    }
+    .final-project .eyebrow { color: var(--orange-soft); }
+    .final-project h3 { color: #fff; font-size: 1.5rem; margin-bottom: 14px; }
+    .final-project p { color: rgba(255,255,255,0.82); margin-bottom: 22px; }
+    .fp-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    @media (max-width: 760px) { .fp-steps { grid-template-columns: 1fr; } }
+    .fp-step { border: 1px solid rgba(255,255,255,0.16); border-radius: var(--radius); padding: 16px 18px; }
+    .fp-step__n { font-family: var(--font-mono); font-size: 0.7rem; color: var(--orange-soft); margin-bottom: 6px; }
+    .fp-step p { font-size: 0.9rem; color: rgba(255,255,255,0.9); margin: 0; }
+
+    /* ============================================================ 6. STANDARDS ALIGNMENT ============================================================ */
+    .std-frameworks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 36px; }
+    @media (max-width: 900px) { .std-frameworks { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .std-frameworks { grid-template-columns: 1fr; } }
+    .fw-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 22px 20px; }
+    .fw-card__dot { width: 12px; height: 12px; border-radius: 50%; margin-bottom: 12px; }
+    .fw-card h4 { font-family: var(--font-body); font-weight: 700; font-size: 0.96rem; color: var(--navy); margin-bottom: 5px; line-height: 1.3; }
+    .fw-card p { font-size: 0.85rem; color: var(--muted-2); margin: 0; }
+
+    /* expandable matrix */
+    .matrix-toggle { border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; background: #fff; }
+    .matrix-toggle > summary {
+      list-style: none; cursor: pointer; padding: 22px 26px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      font-weight: 600; color: var(--navy); font-size: 1.05rem;
+    }
+    .matrix-toggle > summary::-webkit-details-marker { display: none; }
+    .matrix-toggle > summary .chev { width: 20px; height: 20px; color: var(--muted-2); transition: var(--transition); flex-shrink: 0; }
+    .matrix-toggle[open] > summary .chev { transform: rotate(180deg); }
+    .matrix-toggle[open] > summary { border-bottom: 1px solid var(--line); }
+    .matrix-scroll { overflow-x: auto; }
+    table.matrix { width: 100%; border-collapse: collapse; min-width: 720px; }
+    table.matrix th, table.matrix td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 0.88rem; }
+    table.matrix thead th { background: var(--navy); color: #fff; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; position: sticky; top: 0; }
+    table.matrix tbody tr:nth-child(even) { background: var(--paper-2); }
+    table.matrix td.lesson-cell { font-weight: 600; color: var(--navy); white-space: nowrap; }
+    table.matrix td .mono { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted-2); }
+
+    /* ============================================================ 8. DELIVERABLES + 9. RUBRIC ============================================================ */
+    .deliver-rubric { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 860px) { .deliver-rubric { grid-template-columns: 1fr; gap: 40px; } }
+    .deliverables-list { list-style: none; }
+    .deliverables-list li { display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 1.02rem; font-weight: 500; color: var(--navy); }
+    .deliverables-list .num { font-family: var(--font-mono); font-size: 0.78rem; color: var(--orange); font-weight: 600; }
+
+    .rubric-item { margin-bottom: 18px; }
+    .rubric-item__top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 7px; }
+    .rubric-item__label { font-weight: 600; font-size: 0.96rem; color: var(--navy); }
+    .rubric-item__pct { font-family: var(--font-mono); font-weight: 600; font-size: 0.92rem; color: var(--orange); }
+    .rubric-bar { height: 8px; background: var(--paper-3); border-radius: 100px; overflow: hidden; }
+    .rubric-bar__fill { height: 100%; background: linear-gradient(90deg, var(--orange), #efaa66); border-radius: 100px; }
+
+    /* ============================================================ 10. ADOPTION ============================================================ */
+    .adopt-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    @media (max-width: 980px) { .adopt-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .adopt-grid { grid-template-columns: 1fr; } }
+    .adopt-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.16); border-radius: var(--radius-lg); padding: 24px 20px; }
+    .adopt-card__ico { width: 30px; height: 30px; color: var(--orange); margin-bottom: 14px; }
+    .adopt-card h4 { font-family: var(--font-body); font-weight: 700; font-size: 0.98rem; color: #fff; margin-bottom: 7px; line-height: 1.3; }
+    .adopt-card p { font-size: 0.87rem; color: rgba(255,255,255,0.72); margin: 0; }
+
+    /* ============================================================ 11. CTA ============================================================ */
+    .cta { background: var(--navy); color: #fff; text-align: center; }
+    .cta__inner { padding: 96px 0; }
+    .cta h2 { margin-bottom: 18px; }
+    .cta p { color: rgba(255,255,255,0.82); font-size: 1.15rem; max-width: 600px; margin: 0 auto 34px; }
+    .cta .btn-row { justify-content: center; }
+
+    /* ============================================================ FOOTER ============================================================ */
+    .footer { background: var(--navy-deep); color: rgba(255,255,255,0.6); padding: 44px 0; font-size: 0.86rem; text-align: center; }
+    .footer strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    .footer p { color: inherit; font-size: inherit; }
+
+    /* ============================================================ A11Y ============================================================ */
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 2px; }
+  </style>
+</head>
+<body>
+
+  <a href="#overview" class="skip-link">Skip to content</a>
+
+  <!-- ============================================================ STICKY NAV ============================================================ -->
+  <nav class="nav" aria-label="Page sections">
+    <div class="wrap nav__inner">
+      <span class="nav__brand">Aedifica</span>
+      <div class="nav__links">
+        <a href="#overview" class="nav__link">Overview</a>
+        <a href="#why" class="nav__link">Why Schools</a>
+        <a href="#outcomes" class="nav__link">Outcomes</a>
+        <a href="#curriculum" class="nav__link">Curriculum</a>
+        <a href="#standards" class="nav__link">Standards</a>
+        <a href="#deliverables" class="nav__link">Assessment</a>
+        <a href="#adoption" class="nav__link">Adoption</a>
+      </div>
+      <!-- REQUEST-INFO-LINK -->
+      <a href="#contact" class="btn btn-dark nav__cta" style="padding:10px 20px;">Request Information</a>
+    </div>
+  </nav>
+
+  <!-- ============================================================ 1. HERO ============================================================ -->
+  <header class="hero">
+    <!-- faint truss line-art -->
+    <svg class="hero__art" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g stroke="#E2833C" stroke-width="1" fill="none" opacity="0.22">
+        <path d="M0 150 L1200 150"/>
+        <path d="M0 150 L150 60 L300 150 L450 60 L600 150 L750 60 L900 150 L1050 60 L1200 150"/>
+        <path d="M150 60 L150 150 M300 150 L300 240 M450 60 L450 150 M600 150 L600 240 M750 60 L750 150 M900 150 L900 240 M1050 60 L1050 150"/>
+        <path d="M0 150 L150 240 L300 150 L450 240 L600 150 L750 240 L900 150 L1050 240 L1200 150"/>
+      </g>
+    </svg>
+    <div class="wrap hero__inner">
+      <!-- HERO COPY — edit here -->
+      <span class="eyebrow">Grades 6&ndash;12 &middot; Civil Engineering &middot; Project-Based STEM</span>
+      <h1>Students design the<span class="hl">world they'll inherit.</span></h1>
+      <p class="hero__lede">Principles of Civil Engineering takes students from sustainable infrastructure and bridge design through cost, risk, and real-world decision-making &mdash; and asks them to defend a solution of their own.</p>
+      <div class="btn-row">
+        <!-- REQUEST-INFO-LINK -->
+        <a href="#contact" class="btn btn-primary">Request Program Information</a>
+        <a href="#curriculum" class="btn btn-ghost">View Full Curriculum</a>
+      </div>
+
+      <!-- STAT CARDS — edit numbers/labels here -->
+      <div class="stats">
+        <div class="stat"><div class="stat__num">9</div><div class="stat__label">Sequenced Lessons</div></div>
+        <div class="stat"><div class="stat__num">6&ndash;12</div><div class="stat__label">Grade Adaptable</div></div>
+        <div class="stat"><div class="stat__num">8</div><div class="stat__label">Standards Frameworks</div></div>
+        <div class="stat"><div class="stat__num">1</div><div class="stat__label">Defended Capstone</div></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================ STANDARDS KEY STRIP ============================================================ -->
+  <div class="key-strip">
+    <div class="wrap key-strip__inner">
+      <span class="key-strip__label">Standards Frameworks</span>
+      <span class="chip"><span class="chip__dot dot-ngss"></span>NGSS / Science</span>
+      <span class="chip"><span class="chip__dot dot-math"></span>NJSLS Math</span>
+      <span class="chip"><span class="chip__dot dot-ela"></span>NJSLS ELA</span>
+      <span class="chip"><span class="chip__dot dot-dt"></span>Design &amp; Tech</span>
+      <span class="chip"><span class="chip__dot dot-cr"></span>Career Readiness</span>
+    </div>
+  </div>
+
+  <!-- ============================================================ 2. PROGRAM OVERVIEW ============================================================ -->
+  <section id="overview" class="pad">
+    <div class="wrap">
+      <div class="overview__grid">
+        <div>
+          <span class="eyebrow">The Course</span>
+          <h2 style="margin-bottom:22px;">Engineering, taught the way engineers actually work.</h2>
+          <p class="lede" style="margin-bottom:20px;">Principles of Civil Engineering introduces students to sustainable development, engineering design, infrastructure planning, bridge design, financial evaluation, and the environmental, social, and decision-making dimensions of real projects.</p>
+          <p style="color:var(--muted-2);">Through lectures, case studies, and project-based learning, students explore how engineers and planners develop solutions that balance technical performance, economic feasibility, environmental stewardship, and societal needs. The course moves from foundational thinking to a defended final project &mdash; the same arc a practicing engineer follows from brief to delivery.</p>
+        </div>
+        <div class="overview__points">
+          <div class="ov-point">
+            <svg class="ov-point__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M2 20h20"/><path d="M4 20V8l8-4 8 4v12"/><path d="M9 20v-6h6v6"/></svg>
+            <div><h4>Infrastructure as the context</h4><p>Bridges, water, transportation, and the built environment students see every day.</p></div>
+          </div>
+          <div class="ov-point">
+            <svg class="ov-point__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 2v6m0 0 3-3m-3 3L9 5"/><circle cx="12" cy="14" r="6"/></svg>
+            <div><h4>Sustainability throughout</h4><p>Climate, environment, and social impact are woven into every design decision.</p></div>
+          </div>
+          <div class="ov-point">
+            <svg class="ov-point__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+            <div><h4>Real financial reasoning</h4><p>Cost-benefit, life-cycle costing, and ROI &mdash; engineering meets economics.</p></div>
+          </div>
+          <div class="ov-point">
+            <svg class="ov-point__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            <div><h4>Defended in public</h4><p>Students present and defend a final engineering solution with professional communication.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 3. WHY SCHOOLS CHOOSE THIS ============================================================ -->
+  <section id="why" class="pad bg-light">
+    <div class="wrap">
+      <div class="section-head section-head--center">
+        <span class="eyebrow">Why Schools Choose This Program</span>
+        <h2>Rigorous, standards-aligned, and ready to adopt.</h2>
+        <p class="lede">Built for middle schools, high schools, and districts that want STEM learning connected to real infrastructure, sustainability, and career pathways.</p>
+      </div>
+      <div class="why-grid">
+        <!-- WHY CARD -->
+        <div class="why-card">
+          <svg class="why-card__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <h3>Project-based STEM learning</h3>
+          <p>Every lesson builds toward a real engineering solution &mdash; not worksheets, but design, analysis, and defense.</p>
+        </div>
+        <div class="why-card">
+          <svg class="why-card__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <h3>Career-connected education</h3>
+          <p>Students meet the engineering and planning professions through authentic work, building a clear line to college and careers.</p>
+        </div>
+        <div class="why-card">
+          <svg class="why-card__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <h3>Sustainability &amp; climate literacy</h3>
+          <p>Climate change, environmental impact, and the SDGs are core content &mdash; supporting climate-education mandates.</p>
+        </div>
+        <div class="why-card">
+          <svg class="why-card__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <h3>Community problem solving</h3>
+          <p>Students tackle infrastructure challenges rooted in real communities, weighing who benefits and who bears the cost.</p>
+        </div>
+        <div class="why-card">
+          <svg class="why-card__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <h3>Aligned for NJ, NY &amp; NGSS</h3>
+          <p>Mapped to New Jersey and New York standards and NGSS engineering connections, with a full alignment matrix for review.</p>
+        </div>
+        <div class="why-card">
+          <svg class="why-card__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h3>Middle &amp; high school adaptable</h3>
+          <p>The same rigorous arc scales across grade bands, with portfolio-ready deliverables and final student presentations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 4. LEARNING OUTCOMES ============================================================ -->
+  <section id="outcomes" class="pad">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Learning Outcomes</span>
+        <h2>What students can do by the end of the course.</h2>
+        <p class="lede">Outcomes are defined by what students can demonstrate &mdash; reasoning, analysis, and communication they carry into high school, college, and careers.</p>
+      </div>
+      <div class="outcomes">
+        <!-- OUTCOME -->
+        <div class="outcome"><span class="outcome__num">01</span><p>Explain the role of engineers and planners in society.</p></div>
+        <div class="outcome"><span class="outcome__num">02</span><p>Describe major global challenges and sustainability issues.</p></div>
+        <div class="outcome"><span class="outcome__num">03</span><p>Apply the engineering design process to solve real-world problems.</p></div>
+        <div class="outcome"><span class="outcome__num">04</span><p>Evaluate the relationship between design form and function.</p></div>
+        <div class="outcome"><span class="outcome__num">05</span><p>Analyze engineering and architectural solutions.</p></div>
+        <div class="outcome"><span class="outcome__num">06</span><p>Understand basic bridge design principles.</p></div>
+        <div class="outcome"><span class="outcome__num">07</span><p>Conduct financial evaluations of engineering projects.</p></div>
+        <div class="outcome"><span class="outcome__num">08</span><p>Assess environmental and social sustainability impacts.</p></div>
+        <div class="outcome"><span class="outcome__num">09</span><p>Recognize common decision-making biases and traps.</p></div>
+        <div class="outcome"><span class="outcome__num">10</span><p>Present and defend an engineering project using professional communication techniques.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 5. CURRICULUM STRUCTURE ============================================================ -->
+  <section id="curriculum" class="pad bg-light">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Full Curriculum at a Glance</span>
+        <h2>Nine lessons, one engineering arc.</h2>
+        <p class="lede">Each lesson pairs a core concept with applied work and names the standards it addresses. Open any lesson to see its topics and alignment shorthand &mdash; the same notation teachers and reviewers use.</p>
+      </div>
+
+      <!-- LESSON 1 -->
+      <details class="lesson" open>
+        <summary class="lesson__head">
+          <span class="lesson__no">01<small>Lesson</small></span>
+          <span class="lesson__title"><h3>Introduction: Engineering, Infrastructure, Society</h3><span class="topics-mini">Professions &middot; infrastructure &amp; society &middot; project requirements</span></span>
+          <svg class="lesson__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="lesson__body">
+          <h4>Topics</h4>
+          <div class="topic-tags"><span class="topic-tag">Course overview</span><span class="topic-tag">Engineering &amp; planning professions</span><span class="topic-tag">Infrastructure and society</span><span class="topic-tag">Expectations &amp; project requirements</span></div>
+          <div class="std-row"><span class="std cr">9.4 Career Readiness</span><span class="std ngss">Climate Education</span><span class="std ngss">Science &amp; Eng. Practices</span><span class="std cr">CDOS</span><span class="std ngss">ETS1.A</span></div>
+        </div>
+      </details>
+
+      <!-- LESSON 2 -->
+      <details class="lesson">
+        <summary class="lesson__head">
+          <span class="lesson__no">02<small>Lesson</small></span>
+          <span class="lesson__title"><h3>Sustainable Development</h3><span class="topics-mini">Global challenges &middot; SDGs &middot; climate change</span></span>
+          <svg class="lesson__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="lesson__body">
+          <h4>Topics</h4>
+          <div class="topic-tags"><span class="topic-tag">Global challenges</span><span class="topic-tag">Sustainable Development Goals</span><span class="topic-tag">Population growth</span><span class="topic-tag">Resource management</span><span class="topic-tag">Climate change</span></div>
+          <div class="std-row"><span class="std ngss">NJSLS-SCI ESS3</span><span class="std ngss">Climate Education</span><span class="std cr">9.4 Global Awareness</span><span class="std ngss">HS-ESS3-1</span><span class="std ngss">HS-ESS3-4</span><span class="std ngss">HS-ETS1-3</span></div>
+        </div>
+      </details>
+
+      <!-- LESSON 3 -->
+      <details class="lesson">
+        <summary class="lesson__head">
+          <span class="lesson__no">03<small>Lesson</small></span>
+          <span class="lesson__title"><h3>The Engineering Design Process</h3><span class="topics-mini">Problem solving &middot; design cycle &middot; prototyping</span></span>
+          <svg class="lesson__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="lesson__body">
+          <h4>Topics</h4>
+          <div class="topic-tags"><span class="topic-tag">Problem identification</span><span class="topic-tag">Research &amp; analysis</span><span class="topic-tag">Concept generation</span><span class="topic-tag">Prototyping</span><span class="topic-tag">Testing &amp; evaluation</span><span class="topic-tag">Iterative design</span></div>
+          <div class="std-row"><span class="std ngss">NJSLS-SCI ETS1</span><span class="std math">Math Modeling</span><span class="std ngss">HS-ETS1-1</span><span class="std ngss">HS-ETS1-2</span><span class="std ngss">HS-ETS1-3</span></div>
+        </div>
+      </details>
+
+      <!-- LESSON 4 -->
+      <details class="lesson">
+        <summary class="lesson__head">
+          <span class="lesson__no">04<small>Lesson</small></span>
+          <span class="lesson__title"><h3>Design: Form vs. Function</h3><span class="topics-mini">Constraints &middot; optimization &middot; trade-offs</span></span>
+          <svg class="lesson__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="lesson__body">
+          <h4>Topics</h4>
+          <div class="topic-tags"><span class="topic-tag">Aesthetics &amp; performance</span><span class="topic-tag">Functional requirements</span><span class="topic-tag">Design constraints</span><span class="topic-tag">Trade-offs</span></div>
+          <div class="std-row"><span class="std dt">Engineering Design</span><span class="std dt">Design Thinking</span><span class="std ngss">HS-ETS1-3</span><span class="std ngss">HS-ETS1-4</span></div>
+        </div>
+      </details>
+
+      <!-- LESSON 5 -->
+      <details class="lesson">
+        <summary class="lesson__head">
+          <span class="lesson__no">05<small>Lesson</small></span>
+          <span class="lesson__title"><h3>Engineering Design and Architecture</h3><span class="topics-mini">Structural systems &middot; built environment</span></span>
+          <svg class="lesson__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="lesson__body">
+          <h4>Topics</h4>
+          <div class="topic-tags"><span class="topic-tag">Engineering &amp; architecture collaboration</span><span class="topic-tag">Structural systems</span><span class="topic-tag">Innovative design solutions</span><span class="topic-tag">Landmark projects</span></div>
+          <div class="std-row"><span class="std dt">Engineering Design</span><span class="std cr">Career Readiness</span><span class="std cr">CDOS Career Exploration</span><span class="std ngss">HS-ETS1-2</span><span class="std ngss">HS-ETS1-4</span></div>
+        </div>
+      </details>
+
+      <!-- LESSON 6 -->
+      <details class="lesson">
+        <summary class="lesson__head">
+          <span class="lesson__no">06<small>Lesson</small></span>
+          <span class="lesson__title"><h3>Bridge Design</h3><span class="topics-mini">Structures &middot; loads &middot; materials</span></span>
+          <svg class="lesson__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="lesson__body">
+          <h4>Topics</h4>
+          <div class="topic-tags"><span class="topic-tag">Types of bridges</span><span class="topic-tag">Structural behavior</span><span class="topic-tag">Load paths</span><span class="topic-tag">Materials</span><span class="topic-tag">Design considerations</span></div>
+          <div class="std-row"><span class="std ngss">Physics / HS-PS2</span><span class="std dt">Engineering Design</span><span class="std math">Math Modeling</span><span class="std ngss">HS-ETS1-2</span><span class="std ngss">HS-ETS1-3</span></div>
+        </div>
+      </details>
+
+      <!-- LESSON 7 -->
+      <details class="lesson">
+        <summary class="lesson__head">
+          <span class="lesson__no">07<small>Lesson</small></span>
+          <span class="lesson__title"><h3>Financial Evaluation for Sustainable Projects</h3><span class="topics-mini">Cost analysis &middot; ROI &middot; life-cycle costing</span></span>
+          <svg class="lesson__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="lesson__body">
+          <h4>Topics</h4>
+          <div class="topic-tags"><span class="topic-tag">Project economics</span><span class="topic-tag">Cost-benefit analysis</span><span class="topic-tag">Life-cycle costing</span><span class="topic-tag">Return on investment</span><span class="topic-tag">Sustainable financial decisions</span></div>
+          <div class="std-row"><span class="std cr">9.1 Financial Literacy</span><span class="std cr">9.4 Career Readiness</span><span class="std math">Math Modeling</span><span class="std cr">CDOS</span><span class="std dt">Optimization &amp; Trade-offs</span></div>
+        </div>
+      </details>
+
+      <!-- LESSON 8 -->
+      <details class="lesson">
+        <summary class="lesson__head">
+          <span class="lesson__no">08<small>Lesson</small></span>
+          <span class="lesson__title"><h3>Environmental and Social Sustainability</h3><span class="topics-mini">Impact &middot; equity &middot; stakeholders</span></span>
+          <svg class="lesson__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="lesson__body">
+          <h4>Topics</h4>
+          <div class="topic-tags"><span class="topic-tag">Environmental impacts</span><span class="topic-tag">Social equity</span><span class="topic-tag">Stakeholder engagement</span><span class="topic-tag">Sustainable infrastructure</span></div>
+          <div class="std-row"><span class="std ngss">ESS3 Human Sustainability</span><span class="std ngss">Climate Education</span><span class="std cr">DEI Standards</span><span class="std ngss">HS-ESS3-4</span><span class="std ngss">HS-ESS3-6</span></div>
+        </div>
+      </details>
+
+      <!-- LESSON 9 -->
+      <details class="lesson">
+        <summary class="lesson__head">
+          <span class="lesson__no">09<small>Lesson</small></span>
+          <span class="lesson__title"><h3>Traps in Decision Making</h3><span class="topics-mini">Biases &middot; risk &middot; decision frameworks</span></span>
+          <svg class="lesson__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="lesson__body">
+          <h4>Topics</h4>
+          <div class="topic-tags"><span class="topic-tag">Cognitive biases</span><span class="topic-tag">Risk perception</span><span class="topic-tag">Anchoring</span><span class="topic-tag">Confirmation bias</span><span class="topic-tag">Groupthink</span><span class="topic-tag">Decision frameworks</span></div>
+          <div class="std-row"><span class="std cr">Career Readiness</span><span class="std cr">Critical Thinking</span><span class="std cr">9.4 Info Literacy</span><span class="std cr">CDOS</span><span class="std dt">Engineering Evaluation</span></div>
+        </div>
+      </details>
+
+      <!-- FINAL PROJECT -->
+      <div class="final-project">
+        <span class="eyebrow">Final Project</span>
+        <h3>Engineering Solution Development</h3>
+        <p>Students bring the full course together: identify a real-world engineering or infrastructure challenge, apply the engineering design process, evaluate sustainability impacts, conduct a financial assessment, develop and justify a proposed solution, and deliver a professional presentation.</p>
+        <div class="fp-steps">
+          <div class="fp-step"><div class="fp-step__n">STEP 01</div><p>Identify a real-world infrastructure challenge</p></div>
+          <div class="fp-step"><div class="fp-step__n">STEP 02</div><p>Apply the engineering design process</p></div>
+          <div class="fp-step"><div class="fp-step__n">STEP 03</div><p>Evaluate sustainability impacts</p></div>
+          <div class="fp-step"><div class="fp-step__n">STEP 04</div><p>Conduct a financial assessment</p></div>
+          <div class="fp-step"><div class="fp-step__n">STEP 05</div><p>Develop and justify a proposed solution</p></div>
+          <div class="fp-step"><div class="fp-step__n">STEP 06</div><p>Deliver a professional presentation</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 6. STANDARDS ALIGNMENT ============================================================ -->
+  <section id="standards" class="pad">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Standards Alignment</span>
+        <h2>Mapped to the frameworks districts review.</h2>
+        <p class="lede">Principles of Civil Engineering aligns to eight standards frameworks across New Jersey, New York, and NGSS. The plain-language summary is below; the complete lesson-by-lesson matrix is one click away.</p>
+      </div>
+
+      <div class="std-frameworks">
+        <div class="fw-card"><div class="fw-card__dot" style="background:var(--c-ngss);"></div><h4>NJ Student Learning Standards</h4><p>Science, engineering design (ETS1), and ESS3 human-impact strands.</p></div>
+        <div class="fw-card"><div class="fw-card__dot" style="background:var(--c-dt);"></div><h4>New York State Standards</h4><p>Science inquiry, engineering design, and environmental sustainability.</p></div>
+        <div class="fw-card"><div class="fw-card__dot" style="background:var(--c-ngss);"></div><h4>NGSS Engineering Design</h4><p>The HS-ETS1 define / design / evaluate / model progression.</p></div>
+        <div class="fw-card"><div class="fw-card__dot" style="background:var(--c-cr);"></div><h4>Career Readiness &amp; Life Literacies</h4><p>NJSLS 9.4 critical thinking, creativity, and global awareness.</p></div>
+        <div class="fw-card"><div class="fw-card__dot" style="background:var(--c-ela);"></div><h4>Climate Change Education</h4><p>Supports NJ's cross-curricular climate-education mandate.</p></div>
+        <div class="fw-card"><div class="fw-card__dot" style="background:var(--c-cr);"></div><h4>Financial Literacy</h4><p>NJSLS 9.1 cost-benefit, life-cycle costing, and ROI reasoning.</p></div>
+        <div class="fw-card"><div class="fw-card__dot" style="background:var(--c-ngss);"></div><h4>Science &amp; Engineering Practices</h4><p>Authentic SEP across every lesson and the final project.</p></div>
+        <div class="fw-card"><div class="fw-card__dot" style="background:var(--c-cr);"></div><h4>CDOS Career Development</h4><p>New York career-development and occupational-studies standards.</p></div>
+      </div>
+
+      <!-- EXPANDABLE MATRIX -->
+      <details class="matrix-toggle">
+        <summary>
+          <span>View the complete standards alignment matrix</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="matrix-scroll">
+          <table class="matrix">
+            <thead>
+              <tr>
+                <th>Lesson</th>
+                <th>Major Topics</th>
+                <th>NJ Student Learning Standards</th>
+                <th>New York State Standards</th>
+                <th>NGSS Engineering</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="lesson-cell">1 &middot; Introduction</td>
+                <td>Engineering, infrastructure, society; professions; project requirements</td>
+                <td>Career Readiness &amp; Life Literacies (9.4); Climate Change Education; NJSLS-SCI Science &amp; Engineering Practices</td>
+                <td>Career Development &amp; Occupational Studies (CDOS); Science Practices</td>
+                <td><span class="mono">ETS1.A</span> Defining Engineering Problems</td>
+              </tr>
+              <tr>
+                <td class="lesson-cell">2 &middot; Sustainable Development</td>
+                <td>Global challenges; SDGs; population growth; resource management; climate change</td>
+                <td>NJSLS-SCI ESS3 Human Impacts; Climate Change Education Mandate; 9.4 Global &amp; Cultural Awareness</td>
+                <td>Earth &amp; Space Science; Environmental Sustainability; CDOS 3a</td>
+                <td><span class="mono">HS-ESS3-1, HS-ESS3-4, HS-ETS1-3</span></td>
+              </tr>
+              <tr>
+                <td class="lesson-cell">3 &middot; Engineering Design Process</td>
+                <td>Problem identification; research; concept generation; prototyping; testing; iteration</td>
+                <td>NJSLS-SCI Engineering Design (ETS1); Mathematics Modeling Standards</td>
+                <td>Science Inquiry &amp; Engineering Design; Mathematical Practices</td>
+                <td><span class="mono">HS-ETS1-1, HS-ETS1-2, HS-ETS1-3</span></td>
+              </tr>
+              <tr>
+                <td class="lesson-cell">4 &middot; Form vs. Function</td>
+                <td>Aesthetics &amp; performance; functional requirements; constraints; trade-offs</td>
+                <td>Engineering Design Standards; Visual &amp; Performing Arts Design-Thinking Connections</td>
+                <td>Engineering Design Process; Arts &amp; Design Literacy</td>
+                <td><span class="mono">HS-ETS1-3, HS-ETS1-4</span></td>
+              </tr>
+              <tr>
+                <td class="lesson-cell">5 &middot; Design &amp; Architecture</td>
+                <td>Engineering-architecture collaboration; structural systems; landmark projects</td>
+                <td>Engineering Design; Career Readiness; STEM Applications</td>
+                <td>CDOS Career Exploration; Technology &amp; Engineering Design</td>
+                <td><span class="mono">HS-ETS1-2, HS-ETS1-4</span></td>
+              </tr>
+              <tr>
+                <td class="lesson-cell">6 &middot; Bridge Design</td>
+                <td>Bridge types; structural behavior; load paths; materials; design considerations</td>
+                <td>Physics Standards; Engineering Design; Mathematical Modeling</td>
+                <td>Physical Science Standards; Engineering Applications</td>
+                <td><span class="mono">HS-PS2, HS-ETS1-2, HS-ETS1-3</span></td>
+              </tr>
+              <tr>
+                <td class="lesson-cell">7 &middot; Financial Evaluation</td>
+                <td>Project economics; cost-benefit; life-cycle costing; ROI; sustainable finance</td>
+                <td>Financial Literacy (9.1); Career Readiness (9.4); Mathematical Modeling</td>
+                <td>Financial Literacy Standards; CDOS 3a</td>
+                <td><span class="mono">Engineering Optimization &amp; Trade-off Analysis</span></td>
+              </tr>
+              <tr>
+                <td class="lesson-cell">8 &middot; Environmental &amp; Social</td>
+                <td>Environmental impacts; social equity; stakeholder engagement; sustainable infrastructure</td>
+                <td>ESS3 Human Sustainability; Climate Change Education; Diversity, Equity &amp; Inclusion</td>
+                <td>Environmental Sustainability; Global Citizenship</td>
+                <td><span class="mono">HS-ESS3-4, HS-ESS3-6</span></td>
+              </tr>
+              <tr>
+                <td class="lesson-cell">9 &middot; Decision-Making Traps</td>
+                <td>Cognitive biases; risk perception; anchoring; confirmation bias; groupthink; frameworks</td>
+                <td>Career Readiness; Critical Thinking; Information Literacy (9.4)</td>
+                <td>CDOS; Critical Thinking &amp; Problem-Solving Frameworks</td>
+                <td><span class="mono">Engineering Evaluation Practices</span></td>
+              </tr>
+              <tr>
+                <td class="lesson-cell">Final Project</td>
+                <td>Engineering solution development: design, sustainability, finance, and defense</td>
+                <td>Integration of NJSLS-SCI, Mathematics, Career Readiness, Financial Literacy</td>
+                <td>Integration of Science, Mathematics, CDOS, Engineering Design</td>
+                <td><span class="mono">Complete Engineering Design Cycle (ETS1)</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============================================================ 8 + 9. DELIVERABLES & RUBRIC ============================================================ -->
+  <section id="deliverables" class="pad bg-light">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Final Deliverables &amp; Assessment</span>
+        <h2>Portfolio-ready work, transparently scored.</h2>
+        <p class="lede">Every student leaves with a portfolio of professional engineering artifacts, assessed against a clear, published rubric.</p>
+      </div>
+
+      <div class="deliver-rubric">
+        <!-- DELIVERABLES -->
+        <div>
+          <h3 style="margin-bottom:8px;">Final deliverables</h3>
+          <ul class="deliverables-list">
+            <li><span class="num">01</span> Project proposal</li>
+            <li><span class="num">02</span> Design analysis</li>
+            <li><span class="num">03</span> Sustainability assessment</li>
+            <li><span class="num">04</span> Financial evaluation</li>
+            <li><span class="num">05</span> Final presentation</li>
+          </ul>
+        </div>
+
+        <!-- RUBRIC -->
+        <div>
+          <h3 style="margin-bottom:20px;">Evaluation criteria</h3>
+          <!-- RUBRIC ITEM — edit label + width% together -->
+          <div class="rubric-item"><div class="rubric-item__top"><span class="rubric-item__label">Design Process</span><span class="rubric-item__pct">20%</span></div><div class="rubric-bar"><div class="rubric-bar__fill" style="width:100%;"></div></div></div>
+          <div class="rubric-item"><div class="rubric-item__top"><span class="rubric-item__label">Technical Analysis</span><span class="rubric-item__pct">20%</span></div><div class="rubric-bar"><div class="rubric-bar__fill" style="width:100%;"></div></div></div>
+          <div class="rubric-item"><div class="rubric-item__top"><span class="rubric-item__label">Problem Definition</span><span class="rubric-item__pct">15%</span></div><div class="rubric-bar"><div class="rubric-bar__fill" style="width:75%;"></div></div></div>
+          <div class="rubric-item"><div class="rubric-item__top"><span class="rubric-item__label">Sustainability Assessment</span><span class="rubric-item__pct">15%</span></div><div class="rubric-bar"><div class="rubric-bar__fill" style="width:75%;"></div></div></div>
+          <div class="rubric-item"><div class="rubric-item__top"><span class="rubric-item__label">Financial Evaluation</span><span class="rubric-item__pct">15%</span></div><div class="rubric-bar"><div class="rubric-bar__fill" style="width:75%;"></div></div></div>
+          <div class="rubric-item"><div class="rubric-item__top"><span class="rubric-item__label">Presentation Quality</span><span class="rubric-item__pct">15%</span></div><div class="rubric-bar"><div class="rubric-bar__fill" style="width:75%;"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 10. DISTRICT ADOPTION ============================================================ -->
+  <section id="adoption" class="pad bg-navy">
+    <div class="wrap">
+      <div class="section-head section-head--center">
+        <span class="eyebrow" style="color:var(--orange-soft);">District Adoption</span>
+        <h2>One curriculum, five ways to run it.</h2>
+        <p class="lede">Principles of Civil Engineering flexes to fit your schedule, your grade bands, and your goals &mdash; from a single elective to a district-wide pathway.</p>
+      </div>
+      <div class="adopt-grid">
+        <!-- ADOPTION CARD -->
+        <div class="adopt-card">
+          <svg class="adopt-card__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <h4>Middle School STEM Enrichment</h4>
+          <p>An engaging, hands-on enrichment program that sparks engineering interest early.</p>
+        </div>
+        <div class="adopt-card">
+          <svg class="adopt-card__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <h4>High School Engineering Elective</h4>
+          <p>A rigorous, standards-aligned elective that builds real college and career readiness.</p>
+        </div>
+        <div class="adopt-card">
+          <svg class="adopt-card__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 2v6m0 0 3-3m-3 3L9 5"/><circle cx="12" cy="14" r="6"/></svg>
+          <h4>Summer Bridge or Academy</h4>
+          <p>An intensive summer model with a culminating student showcase.</p>
+        </div>
+        <div class="adopt-card">
+          <svg class="adopt-card__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          <h4>Project-Based Learning Module</h4>
+          <p>A self-contained PBL unit that drops into an existing science or STEM course.</p>
+        </div>
+        <div class="adopt-card">
+          <svg class="adopt-card__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <h4>District-Wide STEM Pathway</h4>
+          <p>A keystone component in a coordinated K&ndash;12 engineering pathway.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 11. CLOSING CTA ============================================================ -->
+  <section id="contact" class="cta">
+    <div class="wrap cta__inner">
+      <span class="eyebrow" style="color:var(--orange-soft);">Bring It To Your Students</span>
+      <h2>Give students a reason to build the future.</h2>
+      <p>Principles of Civil Engineering helps students connect STEM learning to real infrastructure, sustainability, design, finance, and community impact &mdash; and graduate able to defend a solution of their own. Let's bring it to your school or district.</p>
+      <div class="btn-row">
+        <!-- CTA LINKS -->
+        <a href="#" class="btn btn-primary">Schedule a School Partnership Call</a>
+        <a href="#" class="btn btn-ghost">Request Program Information</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ FOOTER ============================================================ -->
+  <footer class="footer">
+    <div class="wrap-narrow">
+      <p><strong>Aedifica</strong> &middot; Principles of Civil Engineering</p>
+      <p style="margin-top:8px;">A standards-aligned, project-based civil engineering curriculum for grades 6&ndash;12. High-school standard codes indicate alignment targets and should be confirmed against the current NJSLS and NYS revisions before publication.</p>
+    </div>
+  </footer>
+
+  <!-- ============================================================ SCRIPT — scroll-spy nav ============================================================ -->
+  <script>
+    const navLinks = document.querySelectorAll('.nav__link');
+    const sections = Array.from(navLinks)
+      .map(l => document.getElementById(l.getAttribute('href').slice(1)))
+      .filter(Boolean);
+
+    function spy() {
+      const y = window.scrollY + 120;
+      let cur = null;
+      for (const s of sections) { if (s.offsetTop <= y) cur = s.id; }
+      navLinks.forEach(l => l.classList.toggle('is-active', l.getAttribute('href').slice(1) === cur));
+    }
+    window.addEventListener('scroll', spy, { passive: true });
+    spy();
+  </script>
+
+</body>
+</html>

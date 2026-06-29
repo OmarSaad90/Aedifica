@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bridging Brilliance: Engineering the Hudson — Sample Middle School STEM Curriculum | Aedifica</title>
+  <meta name="description" content="A twelve-week middle school engineering program where students design, build, test, and present a sustainable bridge across the Hudson River. NGSS, Common Core, and NJ Life and Careers aligned. A sample of Aedifica's customizable STEM curriculum.">
+
+  <meta property="og:title" content="Bridging Brilliance: Engineering the Hudson — Sample Curriculum | Aedifica">
+  <meta property="og:description" content="A twelve-week middle school engineering program: standards-aligned, hands-on, industry-grounded.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ================================================
+       AEDIFICA — DESIGN TOKENS
+       Adjust these to match final brand specifications.
+       Aedifica's existing palette (charcoal / cream /
+       lavender-purple) is preserved here so this page
+       drops cleanly into the existing site.
+       ================================================ */
+    :root {
+      --color-charcoal: #1F2933;
+      --color-ink: #2C3E50;
+      --color-muted: #616E7C;
+      --color-rule: #9AA5B1;
+      --color-cream: #F5F4F0;
+      --color-white: #FFFFFF;
+      --color-accent: #6667AB;
+      --color-accent-soft: #E8E8F0;
+      --color-dark-surface: #1F2933;
+
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+      --space-1: 8px;
+      --space-2: 16px;
+      --space-3: 24px;
+      --space-4: 32px;
+      --space-5: 48px;
+      --space-6: 64px;
+      --space-7: 96px;
+      --space-8: 120px;
+
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+
+      --shadow-soft: 0 2px 8px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.03);
+      --shadow-card: 0 4px 16px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-nav: 0 2px 8px rgba(0,0,0,0.06);
+
+      --transition: 250ms ease-in-out;
+    }
+
+    /* ================================================ RESET & BASE ================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--color-charcoal);
+      background-color: var(--color-white);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--color-accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    .skip-link {
+      position: absolute; top: -40px; left: 0;
+      background: var(--color-charcoal); color: var(--color-white);
+      padding: 8px 16px; z-index: 100;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ================================================ LAYOUT UTILITIES ================================================ */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 var(--space-3); }
+    .container-narrow { max-width: 720px; margin: 0 auto; padding: 0 var(--space-3); }
+    .container-medium { max-width: 880px; margin: 0 auto; padding: 0 var(--space-3); }
+    .container-wide { max-width: 920px; margin: 0 auto; padding: 0 var(--space-3); }
+
+    .section { padding: var(--space-7) 0; }
+    .section--cream { background-color: var(--color-cream); }
+    .section--dark { background-color: var(--color-dark-surface); color: var(--color-white); }
+
+    @media (max-width: 768px) {
+      .section { padding: var(--space-6) 0; }
+    }
+
+    /* ================================================ TYPOGRAPHY ================================================ */
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--color-charcoal);
+      letter-spacing: -0.01em;
+    }
+    h1 { font-size: clamp(2.25rem, 5vw, 3.75rem); font-weight: 700; }
+    h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); margin-bottom: var(--space-3); }
+    h3 { font-size: 1.375rem; margin-bottom: var(--space-2); }
+    h4 { font-size: 1.125rem; margin-bottom: var(--space-1); }
+
+    p { font-size: 1.0625rem; line-height: 1.7; color: var(--color-charcoal); margin-bottom: var(--space-2); }
+    p:last-child { margin-bottom: 0; }
+
+    .eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-2);
+      display: block;
+    }
+    .subhead {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: var(--color-muted);
+      max-width: 640px;
+      margin-bottom: var(--space-4);
+    }
+    .center { margin-left: auto; margin-right: auto; }
+
+    /* ================================================ HERO ================================================ */
+    .hero {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(180deg, rgba(31,41,51,0.2) 0%, rgba(31,41,51,0.7) 100%),
+        linear-gradient(135deg, #2C3E50 0%, #6667AB 100%);
+      color: var(--color-white);
+      padding: var(--space-7) 0;
+    }
+    .hero__content { max-width: 720px; }
+    .hero__eyebrow { color: rgba(255,255,255,0.85); margin-bottom: var(--space-3); }
+    .hero h1 { color: var(--color-white); margin-bottom: var(--space-3); }
+    .hero__subhead {
+      font-size: clamp(1.125rem, 2vw, 1.375rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.5;
+      max-width: 640px;
+    }
+    @media (max-width: 768px) {
+      .hero { min-height: 50vh; padding: var(--space-6) 0; }
+    }
+
+    /* ================================================ STICKY SUB-NAV ================================================ */
+    .subnav {
+      position: sticky;
+      top: 0;
+      background: var(--color-white);
+      box-shadow: var(--shadow-nav);
+      z-index: 50;
+      height: 60px;
+      display: flex;
+      align-items: center;
+    }
+    .subnav__inner {
+      display: flex;
+      gap: var(--space-4);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .subnav__inner::-webkit-scrollbar { display: none; }
+    .subnav__link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-muted);
+      white-space: nowrap;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: color var(--transition), border-color var(--transition);
+      text-decoration: none;
+    }
+    .subnav__link:hover { color: var(--color-charcoal); text-decoration: none; }
+    .subnav__link.is-active { color: var(--color-accent); border-bottom-color: var(--color-accent); }
+    @media (max-width: 768px) {
+      .subnav { height: 50px; }
+      .subnav__inner { gap: var(--space-3); }
+    }
+
+    /* ================================================ SECTION HEADERS ================================================ */
+    .section-header { text-align: center; margin-bottom: var(--space-5); }
+    .section-header .subhead { margin-left: auto; margin-right: auto; }
+
+    /* ================================================ SNAPSHOT CARDS ================================================ */
+    .snapshot-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-3);
+    }
+    .snapshot-card {
+      background: var(--color-white);
+      padding: var(--space-3);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-card);
+    }
+    .snapshot-card__icon {
+      width: 32px; height: 32px;
+      color: var(--color-accent);
+      margin-bottom: var(--space-2);
+    }
+    .snapshot-card__label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 6px;
+    }
+    .snapshot-card__value {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--color-charcoal);
+    }
+    @media (max-width: 1024px) { .snapshot-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .snapshot-grid { grid-template-columns: 1fr; } }
+
+    /* ================================================ EXPERIENCE CARDS ================================================ */
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-5) var(--space-5);
+    }
+    .experience-card__icon {
+      width: 40px; height: 40px;
+      color: var(--color-accent);
+      margin-bottom: var(--space-2);
+    }
+    .experience-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      margin-bottom: var(--space-1);
+    }
+    .experience-card p {
+      font-size: 1rem;
+      color: var(--color-muted);
+      line-height: 1.65;
+    }
+    @media (max-width: 768px) {
+      .experience-grid { grid-template-columns: 1fr; gap: var(--space-4); }
+    }
+
+    /* ================================================ OUTCOMES LIST ================================================ */
+    .outcomes-list { list-style: none; }
+    .outcomes-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-2);
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid rgba(154,165,177,0.25);
+    }
+    .outcomes-list li:last-child { border-bottom: none; }
+    .outcomes-list .check {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      color: var(--color-accent);
+      margin-top: 3px;
+    }
+    .outcomes-list p { font-size: 1rem; margin: 0; }
+    .outcomes-list strong { color: var(--color-charcoal); }
+    .outcomes-list span { color: var(--color-muted); }
+
+    /* ================================================ CURRICULUM ACCORDION ================================================ */
+    .unit {
+      background: var(--color-white);
+      border: 1px solid rgba(154,165,177,0.25);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-2);
+      overflow: hidden;
+    }
+    .unit__header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-3);
+      background: #FAFAF8;
+      text-align: left;
+      transition: background var(--transition);
+    }
+    .unit__header:hover { background: var(--color-cream); }
+    .unit[open] > .unit__header { background: var(--color-white); border-bottom: 1px solid rgba(154,165,177,0.25); }
+    .unit__label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .unit__title {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 600;
+      color: var(--color-charcoal);
+      line-height: 1.3;
+    }
+    .unit__chevron {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      color: var(--color-muted);
+      transition: transform var(--transition);
+      margin-left: var(--space-2);
+    }
+    .unit[open] .unit__chevron { transform: rotate(180deg); }
+    .unit__body { padding: var(--space-4) var(--space-3); }
+    .unit__summary {
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--color-charcoal);
+      margin-bottom: var(--space-3);
+    }
+    .callout {
+      background: var(--color-accent-soft);
+      border-left: 4px solid var(--color-accent);
+      padding: var(--space-3);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: var(--space-4);
+    }
+    .callout strong { color: var(--color-charcoal); }
+    .callout p { font-size: 0.9375rem; color: var(--color-charcoal); margin: 0; }
+    .weeks-heading {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: var(--space-2);
+    }
+    .week { border-bottom: 1px solid rgba(154,165,177,0.2); }
+    .week:last-child { border-bottom: none; }
+    .week__header {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-2);
+      padding: var(--space-2) 0;
+      text-align: left;
+    }
+    .week__number {
+      flex-shrink: 0;
+      width: 56px;
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      padding-top: 2px;
+    }
+    .week__question {
+      flex: 1;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--color-charcoal);
+      line-height: 1.5;
+    }
+    .week__toggle {
+      flex-shrink: 0;
+      width: 16px; height: 16px;
+      color: var(--color-muted);
+      transition: transform var(--transition);
+      margin-top: 4px;
+    }
+    .week[open] .week__toggle { transform: rotate(180deg); }
+    .week__body { padding: 0 0 var(--space-3) 64px; }
+    .week__body p { font-size: 0.9375rem; color: var(--color-muted); margin-bottom: var(--space-2); }
+    .week__meta { margin-top: var(--space-2); }
+    .week__meta-row {
+      display: flex;
+      gap: var(--space-2);
+      font-size: 0.875rem;
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+    .week__meta-label {
+      flex-shrink: 0;
+      font-weight: 600;
+      color: var(--color-charcoal);
+      min-width: 140px;
+    }
+    .week__meta-text { color: var(--color-muted); }
+    @media (max-width: 600px) {
+      .week__number { width: 42px; font-size: 0.8125rem; }
+      .week__body { padding-left: 42px; }
+      .week__meta-row { flex-direction: column; gap: 2px; }
+      .week__meta-label { min-width: 0; }
+    }
+
+    /* ================================================ STANDARDS CARDS ================================================ */
+    .standards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-3);
+      margin-bottom: var(--space-5);
+    }
+    .standards-card {
+      background: var(--color-white);
+      border: 1px solid rgba(154,165,177,0.25);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+    }
+    .standards-card__icon { width: 32px; height: 32px; color: var(--color-accent); margin-bottom: var(--space-2); }
+    .standards-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      margin-bottom: var(--space-2);
+      line-height: 1.3;
+    }
+    .standards-card p {
+      font-size: 0.9375rem;
+      color: var(--color-muted);
+      line-height: 1.65;
+      margin-bottom: var(--space-2);
+    }
+    .standards-card__footer {
+      font-size: 0.8125rem;
+      font-style: italic;
+      color: var(--color-accent);
+      margin: 0;
+    }
+    .downloads-block {
+      background: var(--color-cream);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+    }
+    .downloads-block h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      margin-bottom: var(--space-1);
+    }
+    .downloads-block > p {
+      font-size: 0.9375rem;
+      color: var(--color-muted);
+      margin-bottom: var(--space-3);
+    }
+    .downloads-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+    .download-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: 10px 16px;
+      background: var(--color-white);
+      border: 1px solid rgba(154,165,177,0.4);
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-charcoal);
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+    .download-link:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+    .download-link svg { width: 16px; height: 16px; }
+    @media (max-width: 900px) { .standards-grid { grid-template-columns: 1fr; } }
+
+    /* ================================================ ASSESSMENT ================================================ */
+    .assessment-subhead {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-3);
+      text-align: center;
+    }
+    .assessment-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3);
+      margin-bottom: var(--space-5);
+    }
+    .assessment-card {
+      background: var(--color-white);
+      border: 1px solid rgba(154,165,177,0.25);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+    }
+    .assessment-card__icon { width: 32px; height: 32px; color: var(--color-accent); margin-bottom: var(--space-2); }
+    .assessment-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.1875rem;
+      margin-bottom: var(--space-2);
+    }
+    .assessment-card p {
+      font-size: 0.9375rem;
+      color: var(--color-muted);
+      line-height: 1.65;
+    }
+    .measures-list { list-style: none; margin: var(--space-3) 0; }
+    .measures-list li {
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid rgba(154,165,177,0.25);
+      font-size: 0.9375rem;
+    }
+    .measures-list li:last-child { border-bottom: none; }
+    .measures-list strong { color: var(--color-charcoal); }
+    .measures-list span { color: var(--color-muted); }
+    @media (max-width: 768px) { .assessment-grid { grid-template-columns: 1fr; } }
+
+    /* ================================================ CTA ================================================ */
+    .cta-section {
+      background: var(--color-dark-surface);
+      color: var(--color-white);
+      padding: var(--space-8) 0;
+      text-align: center;
+    }
+    .cta-section .eyebrow { color: #B8B8E0; }
+    .cta-section h2 { color: var(--color-white); margin-bottom: var(--space-3); }
+    .cta-section p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.125rem;
+      line-height: 1.6;
+      max-width: 640px;
+      margin: 0 auto var(--space-3);
+    }
+    .cta-section__proof {
+      font-style: italic;
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: var(--space-3);
+    }
+    .button-primary {
+      display: inline-block;
+      background: var(--color-accent);
+      color: var(--color-white);
+      padding: 16px 32px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .button-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(102,103,171,0.4);
+      text-decoration: none;
+    }
+    .button-secondary {
+      display: inline-block;
+      margin-top: var(--space-3);
+      color: rgba(255,255,255,0.85);
+      text-decoration: underline;
+      font-size: 0.9375rem;
+    }
+    .button-secondary:hover { color: var(--color-white); }
+    @media (max-width: 768px) { .cta-section { padding: var(--space-6) 0; } }
+
+    /* ================================================ FOOTER NOTE ================================================ */
+    .footer-note { background: var(--color-white); padding: var(--space-6) 0; text-align: center; }
+    .footer-note p {
+      font-style: italic;
+      font-size: 0.875rem;
+      color: var(--color-muted);
+      max-width: 640px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ================================================ FOCUS STATES ================================================ */
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+    summary { list-style: none; cursor: pointer; }
+    summary::-webkit-details-marker { display: none; }
+  </style>
+</head>
+<body>
+
+  <a href="#overview" class="skip-link">Skip to content</a>
+
+  <!-- =========================== SECTION 1: HERO =========================== -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero__content">
+        <span class="eyebrow hero__eyebrow">Sample Curriculum &middot; Middle School</span>
+        <h1 id="hero-title">Bridging Brilliance: Engineering the Hudson</h1>
+        <p class="hero__subhead">A twelve-week middle school engineering program where students design, model, build, test, and present a sustainable bridge across the Hudson River. Standards-aligned. Industry-grounded. Built for the inflection point where STEM identity is made.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 2: STICKY SUB-NAV =========================== -->
+  <nav class="subnav" aria-label="Page sections">
+    <div class="container">
+      <div class="subnav__inner">
+        <a href="#overview" class="subnav__link">Overview</a>
+        <a href="#snapshot" class="subnav__link">Snapshot</a>
+        <a href="#experience" class="subnav__link">Experience</a>
+        <a href="#outcomes" class="subnav__link">Outcomes</a>
+        <a href="#curriculum" class="subnav__link">Curriculum</a>
+        <a href="#standards" class="subnav__link">Standards</a>
+        <a href="#assessment" class="subnav__link">Assessment</a>
+        <a href="#why" class="subnav__link">Why It Matters</a>
+        <a href="#contact" class="subnav__link">Get in Touch</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =========================== SECTION 3: OVERVIEW =========================== -->
+  <section id="overview" class="section" aria-labelledby="overview-title">
+    <div class="container-narrow">
+      <h2 id="overview-title">A program designed like real engineering work.</h2>
+      <p>Aedifica designs rigorous, project-based STEM programs that prepare middle and high school students for the real work of engineering, infrastructure, and the built environment. <em>Bridging Brilliance: Engineering the Hudson</em> is one example of how we do it.</p>
+      <p>In this twelve-week program, students step into the role of junior engineers tasked with designing a sustainable bridge across the Hudson River. They define the problem, study the typologies, model their solution digitally, build a physical prototype, test it under load, analyze their data, and present their final design to a public audience. By Week 12, every student has produced an engineering portfolio, contributed to a tested prototype, and delivered a public-facing presentation defended with evidence.</p>
+      <p>This page is a complete sample curriculum, shared as evidence of how Aedifica builds programs across grade bands. Schools and districts use this page to evaluate whether the program meets their academic standards, fits their schedule, and serves their students. Detailed standards crosswalks, assessment rubrics, and an instructor guide are available as downloadable companion documents.</p>
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 4: PROGRAM SNAPSHOT =========================== -->
+  <section id="snapshot" class="section section--cream" aria-labelledby="snapshot-title">
+    <div class="container">
+      <div class="section-header"><h2 id="snapshot-title">Program at a glance.</h2></div>
+      <div class="snapshot-grid">
+
+        <div class="snapshot-card">
+          <svg class="snapshot-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <div class="snapshot-card__label">Grade Band</div>
+          <div class="snapshot-card__value">Middle school, Grades 6&ndash;8 (optimized for Grade 7)</div>
+        </div>
+
+        <div class="snapshot-card">
+          <svg class="snapshot-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <div class="snapshot-card__label">Duration</div>
+          <div class="snapshot-card__value">12 weeks</div>
+        </div>
+
+        <div class="snapshot-card">
+          <svg class="snapshot-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div class="snapshot-card__label">Weekly Time</div>
+          <div class="snapshot-card__value">4&ndash;6 instructional hours per week</div>
+        </div>
+
+        <div class="snapshot-card">
+          <svg class="snapshot-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          <div class="snapshot-card__label">Structure</div>
+          <div class="snapshot-card__value">Three units, twelve weekly modules, one capstone</div>
+        </div>
+
+        <div class="snapshot-card">
+          <svg class="snapshot-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div class="snapshot-card__label">Cohort Size</div>
+          <div class="snapshot-card__value">20&ndash;28 students per cohort, recommended</div>
+        </div>
+
+        <div class="snapshot-card">
+          <svg class="snapshot-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+          <div class="snapshot-card__label">Deliverables</div>
+          <div class="snapshot-card__value">Engineering portfolio &middot; Tested prototype &middot; Team presentation &middot; Individual reflection</div>
+        </div>
+
+        <div class="snapshot-card">
+          <svg class="snapshot-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <div class="snapshot-card__label">Standards</div>
+          <div class="snapshot-card__value">NGSS &middot; Common Core Math &amp; ELA &middot; NJ 21st Century Life &amp; Careers</div>
+        </div>
+
+        <div class="snapshot-card">
+          <svg class="snapshot-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          <div class="snapshot-card__label">Capstone Event</div>
+          <div class="snapshot-card__value">Final Bridge Showcase and Testing Competition with public audience</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 5: EXPERIENCE =========================== -->
+  <section id="experience" class="section" aria-labelledby="experience-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Student Experience</span>
+        <h2 id="experience-title">Six ways students learn like engineers.</h2>
+        <p class="subhead center">Every week, students work the way professional engineering teams work &mdash; through structured collaboration, evidence-based decisions, and iterative design.</p>
+      </div>
+      <div class="experience-grid">
+
+        <div class="experience-card">
+          <svg class="experience-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <h3>Authentic engineering practice</h3>
+          <p>Students work through a complete engineering design cycle &mdash; define, model, build, test, refine, present. The cycle is not simulated; it is the same logic professional engineering teams use to deliver real infrastructure projects. Every decision is documented in an engineering notebook that students maintain from Week 1 through Week 12.</p>
+        </div>
+
+        <div class="experience-card">
+          <svg class="experience-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg>
+          <h3>Hands-on prototyping</h3>
+          <p>Students build physical bridge prototypes from K'Nex, balsa, or comparable construction systems. Each prototype is constructed under named constraints &mdash; maximum span, minimum deck width, material limits &mdash; and then load-tested to failure on a calibrated rig. Students document failure modes, complete at least one redesign, and re-test.</p>
+        </div>
+
+        <div class="experience-card">
+          <svg class="experience-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <h3>Digital modeling and visualization</h3>
+          <p>Students develop scaled digital models using Tinkercad, SketchUp, or Minecraft Education Edition. They produce scaled drawings on graph paper before building digitally, and they calculate span, deck area, tower height, and cable length using proportional reasoning. Models are reviewed by instructors and revised before prototype construction begins.</p>
+        </div>
+
+        <div class="experience-card">
+          <svg class="experience-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <h3>Real-world community context</h3>
+          <p>The Hudson River setting is not decorative. Students investigate the geographic, demographic, and environmental conditions of the actual crossing they are designing. They map stakeholders, analyze emissions and habitat impacts, examine environmental-justice considerations, and write a problem statement that names whose lives their bridge will affect and how.</p>
+        </div>
+
+        <div class="experience-card">
+          <svg class="experience-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h3>Structured engineering teams</h3>
+          <p>Students operate in defined engineering roles &mdash; project manager, structural designer, data analyst, communications lead &mdash; that rotate across units so every student practices every function. Teams hold weekly stand-ups, conduct internal design critiques, and meet documented role accountabilities. The structure mirrors how professional engineering firms actually staff projects.</p>
+        </div>
+
+        <div class="experience-card">
+          <svg class="experience-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          <h3>Public showcase and defense</h3>
+          <p>The program closes with a Final Bridge Showcase and Testing Competition. Teams present their design to a public audience of peers, families, educators, and STEM professionals. They defend their decisions with data, justify their trade-offs, and respond to audience questions. Every team is scored by an external rubric, and every student writes an individual reflection on their growth as a STEM learner.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 6: LEARNING OUTCOMES =========================== -->
+  <section id="outcomes" class="section section--cream" aria-labelledby="outcomes-title">
+    <div class="container-medium">
+      <div class="section-header">
+        <span class="eyebrow">Learning Outcomes</span>
+        <h2 id="outcomes-title">What students can do by Week 12.</h2>
+        <p class="subhead center">Aedifica defines outcomes in terms of what students can demonstrate &mdash; not what was covered. Each outcome below maps to a specific assessment artifact in the Assessment section.</p>
+      </div>
+      <ul class="outcomes-list">
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><p><strong>Define an engineering problem.</strong> <span>Students identify criteria, constraints, stakeholders, environmental considerations, and community needs for a real infrastructure scenario, and articulate them in a written problem statement.</span></p></li>
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><p><strong>Compare engineering solutions.</strong> <span>Students explain how beam, arch, truss, suspension, and cable-stayed bridges differ in structure, geometry, force distribution, and material requirements &mdash; and justify which typology fits their site.</span></p></li>
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><p><strong>Apply quantitative reasoning.</strong> <span>Students use ratios, scaled drawings, proportional reasoning, geometry, and unit-cost calculations to support every major design decision.</span></p></li>
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><p><strong>Develop digital and physical models.</strong> <span>Students produce scaled sketches, build digital models in a CAD-class tool, and construct physical prototypes that meet defined performance criteria.</span></p></li>
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><p><strong>Conduct fair tests and analyze data.</strong> <span>Students design and run load tests, collect performance data, document failure modes, graph results, and use evidence to drive design improvements.</span></p></li>
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><p><strong>Evaluate trade-offs systematically.</strong> <span>Students compare design options using decision matrices that weigh cost, strength, sustainability, social impact, and risk &mdash; and defend their final choice with documented reasoning.</span></p></li>
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><p><strong>Write technical arguments.</strong> <span>Students write engineering memos, design rationales, and a final design report that defend a claim with evidence drawn from research, calculations, and testing.</span></p></li>
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><p><strong>Collaborate in structured engineering roles.</strong> <span>Students practice professional team behavior &mdash; leadership, time management, peer feedback, role accountability, and structured critique &mdash; and reflect on their growth as collaborators.</span></p></li>
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><p><strong>Present and defend their work publicly.</strong> <span>Students deliver a team presentation with slides, visuals, data displays, and clear oral communication to a non-classroom audience.</span></p></li>
+        <li><svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><p><strong>Connect engineering to identity and future.</strong> <span>Students reflect on their growth as STEM learners and articulate how their work connects to high school STEM pathways, college options, and career possibilities in engineering, construction management, and the built environment.</span></p></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 7: CURRICULUM ACCORDION =========================== -->
+  <section id="curriculum" class="section" aria-labelledby="curriculum-title">
+    <div class="container-wide">
+      <div class="section-header">
+        <span class="eyebrow">The Program</span>
+        <h2 id="curriculum-title">Twelve weeks, three units, one capstone.</h2>
+        <p class="subhead center">Each unit builds on the last. Students don't move forward until the work behind them is sound. Click into any unit to see the week-by-week design. Click any week to see the guiding question, the activities, the student product, and the instructional strategies that frame the work.</p>
+      </div>
+
+      <!-- UNIT 1 -->
+      <details class="unit">
+        <summary class="unit__header">
+          <div>
+            <span class="unit__label">Unit 1 &middot; Weeks 1&ndash;3</span>
+            <span class="unit__title">Engineering and Sustainability Foundations</span>
+          </div>
+          <svg class="unit__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="unit__body">
+          <p class="unit__summary">Students learn how engineers think, why sustainable infrastructure matters, and what makes the Hudson crossing a problem worth solving. They build the vocabulary, the design mindset, and the project framing they will carry through the remaining nine weeks. The unit closes with a formal, team-authored problem statement that defines the scope of the design challenge.</p>
+          <div class="callout"><p><strong>Students leave Unit 1 with:</strong> an engineering notebook in active use, a team-authored problem statement, and a documented list of design criteria and constraints reviewed by their instructor.</p></div>
+          <div class="weeks-heading">Week by week</div>
+
+          <details class="week">
+            <summary class="week__header">
+              <span class="week__number">Week 1</span>
+              <span class="week__question">What is STEM and how do engineers think?</span>
+              <svg class="week__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="week__body">
+              <p>Students are introduced to the engineering design process, establish program norms, and meet the final challenge: design a sustainable bridge across the Hudson River. They complete a quick low-stakes design challenge &mdash; typically a paper tower or spaghetti structure &mdash; to surface their starting intuitions. Engineering notebooks are launched, and students begin a running vocabulary list of engineering and built-environment terms.</p>
+              <div class="week__meta">
+                <div class="week__meta-row"><span class="week__meta-label">Key activities</span><span class="week__meta-text">Engineering design process overview &middot; Program norms and team formation &middot; Quick design challenge &middot; Engineering notebook launch</span></div>
+                <div class="week__meta-row"><span class="week__meta-label">Student product</span><span class="week__meta-text">Engineering notebook with first entries &middot; Vocabulary list &middot; Written reflection on the design challenge</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="week">
+            <summary class="week__header">
+              <span class="week__number">Week 2</span>
+              <span class="week__question">Why do we need sustainable infrastructure?</span>
+              <svg class="week__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="week__body">
+              <p>Students examine global infrastructure challenges through the lens of the UN Sustainable Development Goals, with focus on infrastructure (SDG 9), climate (SDG 13), and equity (SDG 10&ndash;11). They study real cases of aging or failed bridges &mdash; including bridges in their own region &mdash; and the community consequences. They connect the Hudson crossing to the SDGs and to the lived experience of people who depend on river crossings every day.</p>
+              <div class="week__meta">
+                <div class="week__meta-row"><span class="week__meta-label">Key activities</span><span class="week__meta-text">SDG framework introduction &middot; Case studies of aging infrastructure &middot; Community-impact discussion &middot; Connection mapping between the Hudson crossing and SDGs</span></div>
+                <div class="week__meta-row"><span class="week__meta-label">Student product</span><span class="week__meta-text">Quick-write on community need &middot; SDG connection map</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="week">
+            <summary class="week__header">
+              <span class="week__number">Week 3</span>
+              <span class="week__question">What exactly is the Hudson bridge problem?</span>
+              <svg class="week__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="week__body">
+              <p>Students investigate the geographic, demographic, and social setting of the Hudson crossing using maps, Google Earth, photographs, and demographic data. They identify stakeholders, environmental considerations, and infrastructure constraints. Teams draft their first formal engineering problem statement and a structured list of criteria and constraints, which becomes the controlling document for the rest of the program.</p>
+              <div class="week__meta">
+                <div class="week__meta-row"><span class="week__meta-label">Key activities</span><span class="week__meta-text">Geographic and demographic investigation &middot; Stakeholder mapping &middot; Criteria and constraints workshop &middot; Problem statement drafting and peer review</span></div>
+                <div class="week__meta-row"><span class="week__meta-label">Student product</span><span class="week__meta-text">Team-authored problem statement &middot; Criteria and constraints document</span></div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- UNIT 2 -->
+      <details class="unit">
+        <summary class="unit__header">
+          <div>
+            <span class="unit__label">Unit 2 &middot; Weeks 4&ndash;7</span>
+            <span class="unit__title">Bridge Types, Geometry, and Digital Modeling</span>
+          </div>
+          <svg class="unit__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="unit__body">
+          <p class="unit__summary">Students investigate the major bridge typologies &mdash; beam, arch, truss, suspension, cable-stayed &mdash; and connect structural form to function. They produce scaled drawings, develop digital models, calculate costs, and weigh sustainability and community trade-offs. By the end of Unit 2, every team has converged on a design direction supported by mathematical analysis, cost estimation, and social-and-environmental impact reasoning.</p>
+          <div class="callout"><p><strong>Students leave Unit 2 with:</strong> two concept sketches per team, one scaled digital model, a cost estimate with efficiency metrics, and a social and environmental impact matrix.</p></div>
+          <div class="weeks-heading">Week by week</div>
+
+          <details class="week">
+            <summary class="week__header">
+              <span class="week__number">Week 4</span>
+              <span class="week__question">How do structure and geometry keep bridges standing?</span>
+              <svg class="week__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="week__body">
+              <p>Students study the five major bridge typologies and connect each form to the forces it handles. A short mini-lab investigates forces in trusses and supports using simple physical models. Students sketch two early concept designs and annotate them with load paths, key dimensions, and the typology they represent.</p>
+              <div class="week__meta">
+                <div class="week__meta-row"><span class="week__meta-label">Key activities</span><span class="week__meta-text">Bridge typology study &middot; Forces and load-path mini-lab &middot; Concept sketching &middot; Annotated geometry exercise</span></div>
+                <div class="week__meta-row"><span class="week__meta-label">Student product</span><span class="week__meta-text">Two concept sketches per team with labeled bridge typology, geometry, and load paths</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="week">
+            <summary class="week__header">
+              <span class="week__number">Week 5</span>
+              <span class="week__question">How can we design and model our bridges digitally?</span>
+              <svg class="week__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="week__body">
+              <p>Each team selects a concept to develop. Students produce a scaled drawing on graph paper, then build a digital model in Tinkercad, SketchUp, or Minecraft Education Edition. They calculate span, tower height, deck width, deck area, or cable length using proportional reasoning, and they document those calculations as part of the design package.</p>
+              <div class="week__meta">
+                <div class="week__meta-row"><span class="week__meta-label">Key activities</span><span class="week__meta-text">Concept selection &middot; Scaled drawing &middot; Digital modeling &middot; Dimensional calculations</span></div>
+                <div class="week__meta-row"><span class="week__meta-label">Student product</span><span class="week__meta-text">Scaled drawing &middot; Digital model &middot; Design calculation page</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="week">
+            <summary class="week__header">
+              <span class="week__number">Week 6</span>
+              <span class="week__question">Is our bridge financially sustainable?</span>
+              <svg class="week__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="week__body">
+              <p>Students estimate the cost of their design using a materials cost sheet with unit costs that approximate real construction economics. They are introduced to simple payback thinking and life-cycle cost concepts. They calculate cost per unit of load capacity as an efficiency metric, and they begin to understand why two structurally sound bridges can have very different economic profiles.</p>
+              <div class="week__meta">
+                <div class="week__meta-row"><span class="week__meta-label">Key activities</span><span class="week__meta-text">Materials cost estimation &middot; Unit-cost workshop &middot; Life-cycle thinking introduction &middot; Cost-efficiency calculation</span></div>
+                <div class="week__meta-row"><span class="week__meta-label">Student product</span><span class="week__meta-text">Cost estimate &middot; Efficiency calculation &middot; Financial section of the design report</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="week">
+            <summary class="week__header">
+              <span class="week__number">Week 7</span>
+              <span class="week__question">How do social and environmental factors shape best designs?</span>
+              <svg class="week__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="week__body">
+              <p>Students analyze the social and environmental dimensions of their design: environmental-justice considerations, habitat impacts, emissions, noise, views, and access. They complete an impact matrix that weighs these factors against cost and structural performance. Teams debate, in a structured format, whether the lowest-cost design is always the best design &mdash; and they write an argumentative paragraph defending their position with evidence.</p>
+              <div class="week__meta">
+                <div class="week__meta-row"><span class="week__meta-label">Key activities</span><span class="week__meta-text">Social and environmental impact analysis &middot; Impact matrix construction &middot; Structured debate on trade-offs &middot; Argumentative writing</span></div>
+                <div class="week__meta-row"><span class="week__meta-label">Student product</span><span class="week__meta-text">Impact matrix &middot; Argumentative paragraph on cost-vs-impact trade-offs</span></div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <!-- UNIT 3 -->
+      <details class="unit">
+        <summary class="unit__header">
+          <div>
+            <span class="unit__label">Unit 3 &middot; Weeks 8&ndash;12</span>
+            <span class="unit__title">Risk, Prototyping, Testing, and Communication</span>
+          </div>
+          <svg class="unit__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="unit__body">
+          <p class="unit__summary">Students learn to manage engineering risk, build physical prototypes, test them under increasing load, analyze failure modes, and present their work professionally. The unit closes with the Final Bridge Showcase and Testing Competition &mdash; a public-facing capstone event that brings families, educators, and STEM professionals into the classroom as audience and judges.</p>
+          <div class="callout"><p><strong>Students leave Unit 3 with:</strong> a tested prototype, a complete data analysis with graphs and failure-mode analysis, a written design report, a polished public presentation, and an individual written reflection on their growth as STEM learners.</p></div>
+          <div class="weeks-heading">Week by week</div>
+
+          <details class="week">
+            <summary class="week__header">
+              <span class="week__number">Week 8</span>
+              <span class="week__question">What risks matter in engineering, and how do we choose among options?</span>
+              <svg class="week__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="week__body">
+              <p>Students are introduced to engineering risk, probability, and risk management using age-appropriate examples. They identify the specific risks in their own design and propose mitigations. They then build a weighted decision matrix that compares small variants of their design &mdash; different deck materials, different tower heights, different cable configurations &mdash; to choose which version to prototype first.</p>
+              <div class="week__meta">
+                <div class="week__meta-row"><span class="week__meta-label">Key activities</span><span class="week__meta-text">Risk and probability mini-lesson &middot; Risk identification and mitigation &middot; Weighted decision matrix construction</span></div>
+                <div class="week__meta-row"><span class="week__meta-label">Student product</span><span class="week__meta-text">Risk list &middot; Mitigation plan &middot; Weighted decision matrix selecting prototype variant</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="week">
+            <summary class="week__header">
+              <span class="week__number">Week 9</span>
+              <span class="week__question">How can we turn our design into a physical prototype?</span>
+              <svg class="week__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="week__body">
+              <p>Teams build their first physical prototype to scale, using K'Nex or a comparable construction system. They work under named constraints: limited materials, maximum length, minimum deck width. They document construction issues, identify weak points, and complete at least one redesign before moving to testing.</p>
+              <div class="week__meta">
+                <div class="week__meta-row"><span class="week__meta-label">Key activities</span><span class="week__meta-text">Prototype construction &middot; Issue documentation &middot; Redesign cycle</span></div>
+                <div class="week__meta-row"><span class="week__meta-label">Student product</span><span class="week__meta-text">Prototype version 1 &middot; Redesign documentation &middot; Prototype version 2</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="week">
+            <summary class="week__header">
+              <span class="week__number">Week 10</span>
+              <span class="week__question">How do we test, measure, and improve our bridges?</span>
+              <svg class="week__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="week__body">
+              <p>Bridge testing day. Each prototype is loaded under controlled, progressively increasing force until failure. Students record maximum load, deflection, cost, efficiency (load capacity per dollar), and failure mode. They graph their team's data alongside other teams' data and identify the structural characteristics that produced the strongest performance.</p>
+              <div class="week__meta">
+                <div class="week__meta-row"><span class="week__meta-label">Key activities</span><span class="week__meta-text">Load testing &middot; Data collection and recording &middot; Graphing &middot; Failure-mode analysis &middot; Cross-team comparison</span></div>
+                <div class="week__meta-row"><span class="week__meta-label">Student product</span><span class="week__meta-text">Testing data table &middot; Performance graph &middot; Failure-mode analysis</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="week">
+            <summary class="week__header">
+              <span class="week__number">Week 11</span>
+              <span class="week__question">How do engineers communicate their designs and justify decisions?</span>
+              <svg class="week__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="week__body">
+              <p>Students develop the deliverables for the final showcase. Each team creates a presentation deck and a written design report that includes problem context, design description, calculations, test data, evaluation, trade-offs, and a defended final claim. Mini-lessons in argument writing and visual design support the work. Students rehearse and receive structured peer feedback before the public event.</p>
+              <div class="week__meta">
+                <div class="week__meta-row"><span class="week__meta-label">Key activities</span><span class="week__meta-text">Presentation development &middot; Written report drafting &middot; Visual data display design &middot; Rehearsal and peer feedback</span></div>
+                <div class="week__meta-row"><span class="week__meta-label">Student product</span><span class="week__meta-text">Draft slide deck &middot; Written report draft &middot; Visual data displays</span></div>
+              </div>
+            </div>
+          </details>
+
+          <details class="week">
+            <summary class="week__header">
+              <span class="week__number">Week 12</span>
+              <span class="week__question">Which bridge best meets the needs of our community? What did we learn as engineers?</span>
+              <svg class="week__toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="week__body">
+              <p>The Final Bridge Showcase and Testing Competition. Teams present their designs to a public audience that includes families, educators, and invited STEM professionals. They demonstrate or summarize their physical testing results, defend their decisions, and answer audience questions. Each team is scored on a published decision matrix. Every student writes an individual reflection on growth in engineering thinking, collaboration, and STEM identity.</p>
+              <div class="week__meta">
+                <div class="week__meta-row"><span class="week__meta-label">Key activities</span><span class="week__meta-text">Final team presentations &middot; Prototype demonstration or data review &middot; Public audience scoring &middot; Individual written reflection</span></div>
+                <div class="week__meta-row"><span class="week__meta-label">Student product</span><span class="week__meta-text">Final presentation &middot; Prototype demonstration &middot; Individual reflection on STEM growth and pathway</span></div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 8: STANDARDS =========================== -->
+  <section id="standards" class="section section--cream" aria-labelledby="standards-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Standards</span>
+        <h2 id="standards-title">Rigorous alignment, plainly explained.</h2>
+        <p class="subhead center"><em>Bridging Brilliance</em> is aligned with three major standards frameworks. The plain-language summary below is intended for school leaders evaluating fit. The full crosswalk with specific standard codes is available as a downloadable document for curriculum coordinators and grant writers.</p>
+      </div>
+
+      <div class="standards-grid">
+
+        <div class="standards-card">
+          <svg class="standards-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-4"/><path d="M9 11V4a3 3 0 1 1 6 0v7"/></svg>
+          <h3>NGSS &mdash; Next Generation Science Standards</h3>
+          <p>The program is built on the middle school engineering design strand (MS-ETS1). Students define problems, develop and evaluate solutions, analyze data, and optimize designs through iteration. Earth science extensions (MS-ESS3) appear in the sustainability and infrastructure-climate content. Physical science extensions (MS-PS2) appear in the forces and load-path work in Unit 2.</p>
+          <p class="standards-card__footer">Full NGSS crosswalk available below.</p>
+        </div>
+
+        <div class="standards-card">
+          <svg class="standards-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <h3>Common Core &mdash; Mathematics and English Language Arts</h3>
+          <p>Math content covers ratios and proportional reasoning (7.RP), expressions and equations (7.EE), geometry (7.G and 8.G), and statistics and probability (7.SP), with sustained attention to the Standards for Mathematical Practice. ELA content covers argument writing (W.AW), informative writing (W.IW), research-based writing (W.RW), collaborative speaking and listening (SL.PE, SL.PI), and the integration of evidence-based reasoning across reading and writing.</p>
+          <p class="standards-card__footer">Full Common Core crosswalk available below.</p>
+        </div>
+
+        <div class="standards-card">
+          <svg class="standards-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <h3>NJ 21st Century Life and Careers</h3>
+          <p>The program addresses Career Readiness, Life Literacies, and Key Skills strands including critical thinking (9.4.8.CT), creativity and innovation (9.4.8.CI), information and media literacy (9.4.8.IML), and technology literacy (9.4.8.TL). Career awareness and exploration (9.2.8.CAP) is embedded throughout, with explicit pathway connections to high school engineering, computer science, and construction-management programs.</p>
+          <p class="standards-card__footer">Full NJ Life and Careers crosswalk available below.</p>
+        </div>
+
+      </div>
+
+      <div class="downloads-block">
+        <h3>Download the full standards crosswalk and instructor guide.</h3>
+        <p>The companion documents include every standard code mapped to every week, every learning activity, and every student product &mdash; plus the full assessment rubric, the materials list, and the instructor preparation guide.</p>
+        <div class="downloads-list">
+          <a href="#" class="download-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Standards Crosswalk PDF
+          </a>
+          <a href="#" class="download-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Assessment Rubrics PDF
+          </a>
+          <a href="#" class="download-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Instructor Guide PDF
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 9: ASSESSMENT =========================== -->
+  <section id="assessment" class="section" aria-labelledby="assessment-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Assessment</span>
+        <h2 id="assessment-title">Evidence schools and funders can show.</h2>
+        <p class="subhead center">Aedifica programs produce visible, structured evidence of student growth &mdash; usable in parent communications, board reports, accreditation reviews, and grant applications. Assessment is built in from Week 1, not added in Week 12.</p>
+      </div>
+
+      <div class="assessment-subhead">What students produce</div>
+
+      <div class="assessment-grid">
+
+        <div class="assessment-card">
+          <svg class="assessment-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          <h3>Engineering Portfolio</h3>
+          <p>Every student maintains an engineering portfolio from Week 1 to Week 12. The portfolio includes their problem statement, criteria and constraints, sketches, scaled drawings, digital model output, cost calculations, impact analyses, risk matrix, testing data, and design reflections. The portfolio is the primary artifact for assessment and the primary deliverable parents and administrators review.</p>
+        </div>
+
+        <div class="assessment-card">
+          <svg class="assessment-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <h3>Prototype and Testing Performance</h3>
+          <p>Each team's physical bridge prototype is load-tested under controlled, repeatable conditions. Performance is documented with maximum load, deflection, cost-efficiency, and failure-mode analysis. Documented evidence of redesign and iteration is required &mdash; a prototype that performs well without showing iteration receives a lower assessment score than one that demonstrates engineering improvement.</p>
+        </div>
+
+        <div class="assessment-card">
+          <svg class="assessment-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          <h3>Presentation and Written Argument</h3>
+          <p>Each team delivers a public presentation and submits a written design report. Both are assessed against a published rubric covering technical accuracy, evidence quality, sustainability reasoning, visual communication, oral communication, and response to audience questions. The presentation is the primary public artifact of the program.</p>
+        </div>
+
+        <div class="assessment-card">
+          <svg class="assessment-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          <h3>Individual Reflection</h3>
+          <p>Every student writes an individual reflection at the close of the program covering their growth in engineering thinking, mathematical modeling, collaboration, communication, and STEM identity. The reflection is the artifact that captures the formative dimension of the program &mdash; what each student now believes they are capable of, and what they want to do next.</p>
+        </div>
+
+      </div>
+
+      <div class="assessment-subhead" style="margin-top: var(--space-5);">What programs produce</div>
+
+      <div class="container-narrow" style="padding: 0;">
+        <p>Aedifica also collects program-level evaluation data that schools and districts can use in board reports, accreditation submissions, and grant applications. The data is reported back to the school in a structured end-of-program report.</p>
+        <ul class="measures-list">
+          <li><strong>Rubric scores.</strong> <span>Engineering Design and Prototype rubric, Math and Quantitative Analysis rubric, Communication rubric &mdash; each scored across the design cycle and at the final showcase.</span></li>
+          <li><strong>Pre- and post-content assessments.</strong> <span>Short content assessments aligned with MS-ETS1 and targeted math standards administered in Week 1 and Week 12 to measure growth.</span></li>
+          <li><strong>Participation and engagement.</strong> <span>Attendance records, milestone-completion records, collaboration observation notes, and classroom participation logs.</span></li>
+          <li><strong>Student surveys and reflections.</strong> <span>STEM interest, confidence, and identity surveys administered pre- and post-program, plus written reflections from every student.</span></li>
+          <li><strong>Artifacts and observations.</strong> <span>Engineering notebooks, prototypes, presentation recordings, and structured classroom observation notes documenting implementation quality.</span></li>
+        </ul>
+        <p>The end-of-program report is delivered to the school within 30 days of program close, in a format suitable for direct inclusion in board materials, district reports, or funder communications.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 10: WHY THIS MATTERS =========================== -->
+  <section id="why" class="section section--cream" aria-labelledby="why-title">
+    <div class="container-narrow">
+      <div style="text-align: center; margin-bottom: var(--space-4);">
+        <span class="eyebrow">Why This Matters</span>
+        <h2 id="why-title">Middle school is where STEM identity is made.</h2>
+      </div>
+      <p>Middle school is where students decide whether STEM is for them. By Grade 8, the students who will enter high school engineering, computer science, and applied science pathways have largely self-selected. Students who have not yet seen themselves as engineers, scientists, or technologists by that point face an increasingly narrow path to those identities later.</p>
+      <p><em>Bridging Brilliance</em> is designed for that inflection point. It gives students three months of substantive engineering work &mdash; real problems, real prototypes, real data, real audiences &mdash; at exactly the moment they are forming their long-term sense of what they can become.</p>
+      <p>The program is also a model. It demonstrates how Aedifica designs STEM programs across grade bands and subject areas: rigorous, project-based, standards-aligned, hands-on, and built around real-world challenges that matter to the communities students live in. Aedifica works with schools, districts, enrichment providers, and community partners to design and deliver custom programs that fit their students, their schedules, and their pathways.</p>
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 11: CTA =========================== -->
+  <section id="contact" class="cta-section" aria-labelledby="cta-title">
+    <div class="container-narrow">
+      <span class="eyebrow">Partner with Aedifica</span>
+      <h2 id="cta-title">Bring Aedifica programs to your students.</h2>
+      <p>Aedifica designs STEM programs in partnership with schools, districts, enrichment providers, and community partners. <em>Bridging Brilliance: Engineering the Hudson</em> is one example of what we can build for your students. If you are a school leader, district administrator, STEM coordinator, enrichment director, or funder exploring rigorous middle school engineering programming, we would welcome a conversation.</p>
+      <p class="cta-section__proof"><em>Developed and delivered in partnership with the Hillside Innovation Academy.</em></p>
+      <a href="/contact" class="button-primary">Start a conversation</a>
+      <br>
+      <a href="#" class="button-secondary">Download the complete curriculum package (PDF)</a>
+    </div>
+  </section>
+
+  <!-- =========================== SECTION 12: FOOTER NOTE =========================== -->
+  <section class="footer-note">
+    <div class="container-narrow">
+      <p>Aedifica is developing additional sample curricula across grade bands and disciplines, including drone literacy and site documentation for Grades 9&ndash;12, residential construction estimating and project-controls for Grades 11&ndash;12, and an introductory built-environment exposure module for Grades 5&ndash;6. School leaders interested in early access or custom program design can begin a conversation above.</p>
+    </div>
+  </section>
+
+  <!-- =========================== SCROLL-SPY FOR STICKY NAV =========================== -->
+  <script>
+    const navLinks = document.querySelectorAll('.subnav__link');
+    const sections = Array.from(navLinks).map(link => {
+      const id = link.getAttribute('href').substring(1);
+      return document.getElementById(id);
+    }).filter(Boolean);
+
+    function updateActiveNav() {
+      const scrollPos = window.scrollY + 120;
+      let currentSection = null;
+      for (const section of sections) {
+        if (section.offsetTop <= scrollPos) currentSection = section.id;
+      }
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href').substring(1);
+        link.classList.toggle('is-active', href === currentSection);
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
+  </script>
+
+</body>
+</html>

@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+﻿'use client'
+import Link from 'next/link'
 import { motion, useReducedMotion } from 'motion/react'
 
 const VIEWPORT = { once: true, margin: '-60px 0px' } as const
@@ -35,7 +36,7 @@ export function CurriculumStrip() {
               whileInView={reduce ? undefined : { opacity: 1 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.45, ease: EASE }}>
-              Year 1 · Aedifica Rebuild
+              Aedifica Rebuild
             </motion.p>
 
             <motion.h2
@@ -56,7 +57,7 @@ export function CurriculumStrip() {
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.5, delay: 0.1, ease: EASE }}>
-              Nine planned learning areas, each connected to a real construction-management
+              Nine learning areas, each connected to a real construction-management
               function. Credential access is presented only in accordance with confirmed
               authorization and partner arrangements.
             </motion.p>
@@ -66,8 +67,7 @@ export function CurriculumStrip() {
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.45, delay: 0.2, ease: EASE }}>
-              <Link
-                to="/services/rebuild"
+              <Link href="/services/rebuild"
                 className="inline-flex items-center gap-2 text-[13.5px] text-datum tracking-[-0.01em] group"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Explore Aedifica Rebuild
