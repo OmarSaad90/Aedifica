@@ -64,8 +64,7 @@ export function PriorExperience() {
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, delay: 0.18, ease: EASE }}>
-              They are not presented as Aedifica workforce placement outcomes. Those results will
-              be measured and reported only after Aedifica programming is delivered.
+              They are not presented as Aedifica workforce placement outcomes.
             </motion.p>
 
             <motion.div

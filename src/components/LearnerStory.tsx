@@ -68,15 +68,6 @@ export function LearnerStory() {
               ))}
             </div>
 
-            <motion.p
-              className="text-[11.5px] text-white/50 mt-8 uppercase tracking-[0.1em]"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={reduce ? undefined : { opacity: 0 }}
-              whileInView={reduce ? undefined : { opacity: 1 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.4, delay: 0.3, ease: EASE }}>
-              More learner stories available once Rebuild cohort outcomes are published.
-            </motion.p>
           </div>
 
           {/* Right: photo + caption */}
