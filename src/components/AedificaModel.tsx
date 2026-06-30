@@ -31,20 +31,22 @@ export function AedificaModel() {
 
         <div className="lg:grid lg:grid-cols-[5fr_7fr] lg:gap-16 xl:gap-20 lg:items-start">
 
-          {/* Left: sticky image */}
+          {/* Left: sticky brand video */}
           <motion.div
             className="mb-10 lg:mb-0 lg:sticky lg:top-24 overflow-hidden"
             initial={reduce ? undefined : { opacity: 0, x: -20 }}
             whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, ease: EASE }}>
-            <img
-              src="/images/hia-students-bridge.jpg"
-              alt="Hillside Innovation Academy students presenting their bridge engineering project at Stevens Institute of Technology, New Jersey"
-              className="w-full h-auto object-cover"
-              style={{ filter: 'grayscale(15%) contrast(1.06)' }}
-              loading="lazy"
-            />
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full"
+              aria-label="Aedifica brand identity">
+              <source src="/videos/aedifica-brand.mp4" type="video/mp4" />
+            </video>
           </motion.div>
 
           {/* Right: intro + items */}
