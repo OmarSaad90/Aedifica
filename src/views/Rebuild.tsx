@@ -137,7 +137,7 @@ export function Rebuild() {
 
       {/* ── Hero ── */}
       <section
-        className="bg-rebuild min-h-[65vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-rebuild-deep min-h-[65vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="rebuild-h1">
 
         {/* Full-bleed right-half photo — desktop only */}
@@ -184,7 +184,7 @@ export function Rebuild() {
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={reduce ? undefined : { duration: 0.5, delay: 0.4, ease: EASE }}>
               {(['12 weeks', 'New Jersey', 'Adult learners'] as const).map((item, i) => (
-                <span key={item} className="text-[13px] text-white/65 tracking-[-0.01em]" style={{ fontFamily: 'var(--font-body)' }}>
+                <span key={item} className="text-[13px] text-white/90 tracking-[-0.01em]" style={{ fontFamily: 'var(--font-body)' }}>
                   {item}
                   {i < 2 && <span className="mx-4 text-white/25" aria-hidden="true">·</span>}
                 </span>
@@ -501,13 +501,13 @@ export function Rebuild() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-5">
 
             <motion.div
-              className="bg-rebuild px-8 py-10 lg:px-10 lg:py-12 flex flex-col"
+              className="bg-rebuild-deep px-8 py-10 lg:px-10 lg:py-12 flex flex-col"
               initial={reduce ? undefined : { opacity: 0, y: 20 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
               <p
-                className="text-[10.5px] text-white/72 uppercase tracking-[0.18em] mb-5 select-none"
+                className="text-[10.5px] text-white/90 uppercase tracking-[0.18em] mb-5 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Community and institutional partners
               </p>
@@ -529,7 +529,7 @@ export function Rebuild() {
                 ))}
               </ul>
               <Link href="/partner"
-                className="self-start inline-flex items-center gap-2 bg-white text-rebuild text-[13.5px] tracking-[-0.01em] px-6 py-3 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92 group"
+                className="self-start inline-flex items-center gap-2 bg-white text-rebuild-deep text-[13.5px] tracking-[-0.01em] px-6 py-3 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92 group"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Discuss a Rebuild Partnership
                 <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>

@@ -51,7 +51,7 @@ const PROGRAMS = [
     outcome: 'Construction-management-track entry with credentials and interview access',
     cta: 'Explore Rebuild',
     to: '/services/rebuild',
-    color: 'bg-rebuild',
+    color: 'bg-rebuild-deep',
     dark: false,
     placement: 'lg:col-span-2',
   },

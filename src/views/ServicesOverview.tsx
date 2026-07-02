@@ -60,7 +60,7 @@ const PROGRAMS = [
     desc: 'A 12-week bridge cohort for justice-impacted adults, returning caregivers, veterans, and career changers seeking credible entry into construction-management-track work.',
     cta: 'Explore Rebuild',
     to: '/services/rebuild',
-    color: 'bg-rebuild',
+    color: 'bg-rebuild-deep',
     dark: false,
     flip: true,
     facts: [

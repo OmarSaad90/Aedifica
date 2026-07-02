@@ -130,78 +130,200 @@ const DELIVERABLES = [
   },
 ] as const
 
+// ── Module standards: same badge system as Pathway, applied to Launch's own
+// credential and competency vocabulary (not code-numbered, since BUILD NJ
+// GREEN uses named credentials rather than NGSS/NJSLS codes). Terms and
+// guiding questions are pulled directly from the source curriculum, two
+// weeks per module.
+type StdCat = 'sci' | 'math' | 'ela' | 'des' | 'car'
+type StdChip = { code: string; cat: StdCat; desc: string }
+
+const STD_COLORS: Record<StdCat, string> = {
+  sci:  '#16243F',
+  math: '#9C5500',
+  ela:  '#1E7A72',
+  des:  '#3E5C8A',
+  car:  '#7A4E63',
+}
+
+function StdBadge({ chip }: { chip: StdChip }) {
+  return (
+    <span
+      title={chip.desc}
+      className="inline-block text-[9px] font-medium tracking-[0.03em] px-1.5 py-0.5 text-white leading-none cursor-help whitespace-nowrap"
+      style={{ backgroundColor: STD_COLORS[chip.cat], fontFamily: 'var(--font-body)' }}>
+      {chip.code}
+    </span>
+  )
+}
+
 const MODULES = [
   {
     num: 'Module 1',
     tier: 'Entry tier',
     title: 'Foundations of Green Construction',
     hours: '32 hrs · In-person',
+    questions: [
+      'What is a green Construction Manager, and why now?',
+      'What makes a building, and a jobsite, green?',
+    ],
     body: 'Green building principles, the LEED framework, NJ energy-code awareness, and the daily sustainable site practices that define green construction work.',
     handsOn: 'Green vocabulary workshop; sustainable site walk-through; sustainability opportunity scan; conventional-vs-green CM case discussion.',
     deliverables: 'Green jobsite checklist; sustainability reflection; core-terminology quiz.',
+    chips: [
+      { code: 'Green economy', cat: 'sci', desc: 'Clean energy, retrofits, offshore wind, and sustainable infrastructure demand.' },
+      { code: 'CM role', cat: 'math', desc: "The Construction Manager's coordination role across cost, schedule, quality, safety, and sustainability." },
+      { code: 'Capstone launch', cat: 'car', desc: 'Participants begin the green construction management portfolio.' },
+      { code: 'LEED framework', cat: 'sci', desc: 'LEED rating-system overview and the integrative, whole-building approach.' },
+      { code: 'Materials & carbon', cat: 'sci', desc: 'Sustainable materials, recycled and regional content, and embodied carbon.' },
+      { code: 'Waste reduction', cat: 'sci', desc: 'Construction waste reduction and diversion planning.' },
+    ] as StdChip[],
   },
   {
     num: 'Module 2',
     tier: 'Entry tier',
     title: 'Construction Management Essentials',
     hours: '40 hrs · In-person',
+    questions: [
+      'How does a construction project actually move?',
+      'How do managers control schedule and cost?',
+    ],
     body: 'The project lifecycle, CPM scheduling, cost control, subcontractor coordination, and scope management: the core mechanics of running construction work.',
     handsOn: 'Build a simple schedule; scope responsibility matrix; RFI/submittal review; delay scenario; coordination meeting role-play.',
     deliverables: 'Basic CPM schedule; cost-control worksheet; coordination memo; skills assessment.',
+    chips: [
+      { code: 'Project lifecycle', cat: 'math', desc: 'Project delivery methods, lifecycle phases, and stakeholder roles.' },
+      { code: 'Scope & WBS', cat: 'math', desc: 'Scope management and the work-breakdown structure.' },
+      { code: 'RFIs / submittals', cat: 'math', desc: 'RFIs, submittals, and coordination documentation.' },
+      { code: 'CPM schedule', cat: 'math', desc: 'Critical path method scheduling and look-ahead planning.' },
+      { code: 'Cost control', cat: 'math', desc: 'Cost estimating, tracking, and reporting.' },
+      { code: 'Change orders', cat: 'math', desc: 'Change-order review and impact analysis.' },
+    ] as StdChip[],
   },
   {
     num: 'Module 3',
     tier: 'Entry tier',
     title: 'OSHA 30-Hour Construction Safety',
     hours: '30 hrs · In-person',
+    questions: [
+      'How do supervisors keep a jobsite safe? (Part I)',
+      'What hazards must a manager control? (Part II)',
+    ],
     body: 'OSHA regulations, fall protection, hazard identification, and site safety planning: the baseline supervisory safety credential employers require.',
     handsOn: 'Job hazard analysis; PPE demonstration; site safety inspection; toolbox talk; safety plan review.',
     deliverables: 'OSHA 30 training completion; JHA; toolbox talk; safety quiz.',
+    chips: [
+      { code: 'OSHA 30', cat: 'ela', desc: 'Baseline supervisory safety outreach credential, covered across two weeks.' },
+      { code: 'Fall protection', cat: 'ela', desc: 'Fall protection systems and requirements.' },
+      { code: 'PPE / JHA', cat: 'ela', desc: 'Personal protective equipment and job hazard analysis.' },
+      { code: 'Electrical / excavation', cat: 'ela', desc: 'Electrical, excavation, trenching, and materials-handling hazards.' },
+      { code: 'Safety leadership', cat: 'ela', desc: 'Safety leadership, toolbox talks, and incident prevention.' },
+    ] as StdChip[],
   },
   {
     num: 'Module 4',
     tier: 'Advanced tier',
     title: 'Green Design, Specification & Technology',
     hours: '36 hrs · Hybrid',
+    questions: [
+      'How do managers read and enforce green specifications?',
+      'Which digital tools coordinate a green project?',
+    ],
     body: 'Green specification reading, BIM basics, energy-modeling coordination, and sustainable materials: the documentation and technology of green delivery.',
     handsOn: 'Green spec review; sustainable material submittal; BIM coordination demo; compliance gap analysis; documentation checklist.',
     deliverables: 'Green specification review worksheet; sustainable submittal log; technology reflection.',
+    chips: [
+      { code: 'Green specs', cat: 'sci', desc: 'Reading green specifications and sustainable material requirements.' },
+      { code: 'Low-VOC / recycled', cat: 'sci', desc: 'Low-VOC products, recycled and regional content.' },
+      { code: 'Submittals', cat: 'math', desc: 'Sustainable submittal review and compliance-gap analysis.' },
+      { code: 'BIM', cat: 'math', desc: 'Building Information Modeling basics and model review.' },
+      { code: 'Digital coordination', cat: 'math', desc: 'Digital coordination and documentation tools.' },
+      { code: 'Energy modeling', cat: 'des', desc: 'Energy-modeling coordination for performance targets.' },
+    ] as StdChip[],
   },
   {
     num: 'Module 5',
     tier: 'Advanced tier',
     title: 'Energy Efficiency & Building Systems',
     hours: '32 hrs · Hybrid',
+    questions: [
+      'How does the building envelope drive efficiency?',
+      'How are HVAC, solar, and commissioning coordinated?',
+    ],
     body: 'Building-envelope oversight, HVAC coordination, solar PV management, commissioning, and the EmPower NJ project context that frames retrofit work.',
     handsOn: 'Envelope checklist; HVAC coordination case; retrofit sequencing; commissioning document review; solar PV coordination discussion.',
     deliverables: 'Energy-efficiency coordination plan; commissioning checklist; retrofit sequence diagram.',
+    chips: [
+      { code: 'Building envelope', cat: 'des', desc: 'Envelope systems: insulation, air sealing, windows, thermal bridging.' },
+      { code: 'Air sealing', cat: 'des', desc: 'Air sealing and thermal-bridging control.' },
+      { code: 'Energy code', cat: 'des', desc: 'Energy-code awareness and envelope inspection.' },
+      { code: 'HVAC / MEP', cat: 'des', desc: 'Mechanical, electrical, and plumbing coordination.' },
+      { code: 'Solar PV', cat: 'des', desc: 'Solar PV project-management basics.' },
+      { code: 'Commissioning', cat: 'des', desc: 'Commissioning documentation and retrofit sequencing.' },
+    ] as StdChip[],
   },
   {
     num: 'Module 6',
     tier: 'Advanced tier',
     title: 'Environmental Compliance & Green Infrastructure',
     hours: '30 hrs · In-person',
+    questions: [
+      'What environmental rules must a manager meet?',
+      'How does green infrastructure get built and maintained?',
+    ],
     body: 'NJDEP stormwater concepts, green-infrastructure BMP oversight, permits, ESG documentation, and environmental site controls.',
     handsOn: 'Stormwater BMP inspection; site logistics plan; permit checklist; green-infrastructure case; environmental incident response.',
     deliverables: 'Environmental compliance checklist; site protection plan; BMP inspection summary.',
+    chips: [
+      { code: 'NJDEP stormwater', cat: 'des', desc: 'NJDEP stormwater concepts and erosion/sediment control.' },
+      { code: 'Permits / erosion', cat: 'des', desc: 'Erosion control, permits, and inspections.' },
+      { code: 'Site protection', cat: 'des', desc: 'Pollution prevention and site-protection planning.' },
+      { code: 'Green infrastructure', cat: 'des', desc: 'Green-infrastructure best management practices.' },
+      { code: 'Bioswales / BMPs', cat: 'des', desc: 'Bioswales, rain gardens, and permeable pavement.' },
+      { code: 'Detention', cat: 'des', desc: 'Detention systems and stormwater management.' },
+    ] as StdChip[],
   },
   {
     num: 'Module 7',
     tier: 'Advanced tier',
     title: 'LEED Certification Preparation & Exam',
     hours: '24 hrs · Hybrid + exam',
+    questions: [
+      'How do you earn the LEED Green Associate credential?',
+      'What does the LEED exam and capstone work involve?',
+    ],
     body: 'LEED credit categories, contractor responsibilities, documentation, and structured preparation for the LEED Green Associate exam.',
     handsOn: 'LEED category review; practice exam questions; documentation scenario; construction activities mapped to LEED credits.',
     deliverables: 'LEED GA practice test; LEED documentation checklist; LEED GA exam attempt.',
+    chips: [
+      { code: 'LEED GA', cat: 'sci', desc: 'LEED Green Associate, the USGBC green-building credential.' },
+      { code: 'Credit categories', cat: 'sci', desc: 'LEED credit categories and contractor responsibilities.' },
+      { code: 'Documentation', cat: 'sci', desc: 'LEED documentation strategy and practice exams.' },
+      { code: 'LEED GA exam', cat: 'sci', desc: 'LEED Green Associate exam attempt.' },
+      { code: 'Capstone', cat: 'car', desc: 'Green construction management simulation portfolio.' },
+      { code: 'Portfolio', cat: 'car', desc: 'Portfolio development and sustainability strategy.' },
+    ] as StdChip[],
   },
   {
     num: 'Module 8',
     tier: 'Advanced tier',
     title: 'PMI-CAPM Preparation & Exam',
     hours: '16 hrs · Hybrid + exam',
+    questions: [
+      'How do you manage a project like a PM? (CAPM prep)',
+      'What does the exam, portfolio, and employer-ready presentation involve?',
+    ],
     body: 'PMBOK process groups, knowledge areas, practice exams, and PMI application support, preparing participants for the CAPM credential.',
     handsOn: 'CAPM terminology drill; practice exam; project scenario exercises; risk register; stakeholder communication plan.',
     deliverables: 'CAPM practice exam; CAPM application checklist; CAPM exam attempt.',
+    chips: [
+      { code: 'CAPM', cat: 'car', desc: 'PMI Certified Associate in Project Management preparation.' },
+      { code: 'PMBOK', cat: 'car', desc: 'PMBOK process groups and knowledge areas.' },
+      { code: 'Risk register', cat: 'car', desc: 'Risk register and stakeholder communication plan.' },
+      { code: 'CAPM exam', cat: 'car', desc: 'PMI-CAPM exam attempt.' },
+      { code: 'Final capstone', cat: 'car', desc: 'Final capstone presentation to industry reviewers.' },
+      { code: 'Employer readiness', cat: 'car', desc: 'Resume, interview practice, and employer-readiness activities.' },
+    ] as StdChip[],
   },
 ] as const
 
@@ -442,7 +564,7 @@ export function Launch() {
                       {name}
                     </h3>
                     <p
-                      className="text-[13.5px] text-anthracite/70 leading-[1.68]"
+                      className="text-[13.5px] text-anthracite/78 leading-[1.68]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {body}
                     </p>
@@ -579,7 +701,7 @@ export function Launch() {
                 A structured path from intention to cohort.
               </motion.h2>
               <motion.p
-                className="text-[14.5px] text-anthracite/70 leading-[1.7] mb-8"
+                className="text-[14.5px] text-anthracite/78 leading-[1.7] mb-8"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 16 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -628,7 +750,7 @@ export function Launch() {
                       {heading}
                     </h3>
                     <p
-                      className="text-[13.5px] text-anthracite/70 leading-[1.65]"
+                      className="text-[13.5px] text-anthracite/78 leading-[1.65]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {body}
                     </p>
@@ -737,7 +859,7 @@ export function Launch() {
               An example program, fully designed.
             </motion.h2>
             <motion.p
-              className="text-[14.5px] text-anthracite/70 leading-[1.72] lg:pt-2"
+              className="text-[14.5px] text-anthracite/78 leading-[1.72] lg:pt-2"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 16 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -797,47 +919,54 @@ export function Launch() {
           <div className="bg-snow">
             <div className="px-8 lg:px-10 pt-5 pb-2">
               <p
-                className="text-[10px] uppercase tracking-[0.18em] text-anthracite/70"
+                className="text-[10px] uppercase tracking-[0.18em] text-anthracite/78"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 The eight modules
               </p>
             </div>
 
-            {MODULES.map(({ num, tier, title, hours, body, handsOn, deliverables }, i) => (
+            {MODULES.map(({ num, tier, title, hours, questions, body, handsOn, deliverables, chips }, i) => (
               <div key={num} className="border-t border-sediment/15">
                 <button
-                  className="w-full text-left px-8 lg:px-10 py-4 flex items-center gap-4 hover:bg-bone/50 transition-colors duration-150"
+                  className="w-full text-left px-8 lg:px-10 py-4 flex items-start gap-4 hover:bg-bone/50 transition-colors duration-150"
                   onClick={() => setOpenModule(openModule === i ? null : i)}
                   aria-expanded={openModule === i}
                   aria-controls={`module-body-${i}`}>
 
-                  <div className="flex-shrink-0 w-[76px]">
+                  <div className="flex-shrink-0 w-[76px] pt-0.5">
                     <span
                       className="text-[11.5px] text-datum font-medium block leading-none"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {num}
                     </span>
                     <span
-                      className="text-[9.5px] text-anthracite/55 uppercase tracking-[0.05em] block mt-1"
+                      className="text-[9.5px] text-anthracite/75 uppercase tracking-[0.05em] block mt-1"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {tier}
                     </span>
                   </div>
 
-                  <span
-                    className="flex-1 text-[14px] text-anthracite italic leading-[1.35] tracking-[-0.01em]"
-                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                    {title}
-                  </span>
+                  <div className="flex-1">
+                    <span
+                      className="block text-[14px] text-anthracite italic leading-[1.35] tracking-[-0.01em]"
+                      style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                      {title}
+                    </span>
+                    <span
+                      className="block text-[12px] text-anthracite/75 italic leading-[1.4] mt-1"
+                      style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                      {questions[0]}
+                    </span>
+                  </div>
 
                   <span
-                    className="hidden lg:block flex-shrink-0 text-[12px] text-anthracite/75 mr-3"
+                    className="hidden lg:block flex-shrink-0 text-[12px] text-anthracite/75 mr-3 pt-0.5"
                     style={{ fontFamily: 'var(--font-body)' }}>
                     {hours}
                   </span>
 
                   <motion.span
-                    className="flex-shrink-0 text-anthracite/35"
+                    className="flex-shrink-0 text-anthracite/35 pt-0.5"
                     animate={{ rotate: openModule === i ? 180 : 0 }}
                     transition={{ duration: 0.2, ease: EASE }}>
                     <CaretDown size={13} aria-hidden="true" />
@@ -855,12 +984,24 @@ export function Launch() {
                       transition={{ duration: 0.22, ease: EASE }}
                       style={{ overflow: 'hidden' }}>
                       <div className="px-8 lg:px-10 pb-5 lg:pl-[calc(2.5rem+76px)]">
+                        {questions.length > 1 && (
+                          <div className="space-y-1 mb-4">
+                            {questions.slice(1).map(q => (
+                              <p
+                                key={q}
+                                className="text-[13px] text-anthracite/85 italic leading-[1.5]"
+                                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                                {q}
+                              </p>
+                            ))}
+                          </div>
+                        )}
                         <p
-                          className="text-[13.5px] text-anthracite/70 leading-[1.68] mb-4"
+                          className="text-[13.5px] text-anthracite/75 leading-[1.68] mb-4"
                           style={{ fontFamily: 'var(--font-body)' }}>
                           {body}
                         </p>
-                        <div className="space-y-2.5">
+                        <div className="space-y-2.5 mb-4">
                           <div className="flex gap-3 items-start">
                             <span
                               className="text-[11.5px] font-medium text-anthracite/75 flex-shrink-0 min-w-[100px]"
@@ -885,6 +1026,9 @@ export function Launch() {
                               {deliverables}
                             </span>
                           </div>
+                        </div>
+                        <div className="flex flex-wrap gap-1.5">
+                          {chips.map(c => <StdBadge key={c.code} chip={c} />)}
                         </div>
                       </div>
                     </motion.div>
@@ -974,7 +1118,7 @@ export function Launch() {
                 The roles a Launch program prepares people for.
               </motion.h2>
               <motion.p
-                className="text-[14.5px] text-anthracite/70 leading-[1.7] mb-8"
+                className="text-[14.5px] text-anthracite/78 leading-[1.7] mb-8"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 16 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -1049,7 +1193,7 @@ export function Launch() {
                 New Jersey is deploying significant workforce investment.
               </motion.h2>
               <motion.p
-                className="text-[14.5px] text-anthracite/75 leading-[1.7]"
+                className="text-[14.5px] text-anthracite/78 leading-[1.7]"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 16 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -1075,7 +1219,7 @@ export function Launch() {
                       {name}
                     </p>
                     <p
-                      className="text-[12.5px] text-anthracite/72 leading-[1.5]"
+                      className="text-[12.5px] text-anthracite/78 leading-[1.5]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {note}
                     </p>

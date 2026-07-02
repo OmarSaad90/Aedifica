@@ -20,7 +20,7 @@ type PageCTAProps = {
 const STYLES = {
   datum:    { bg: 'bg-datum',    btn: 'bg-white text-datum hover:bg-white/92',           ghost: 'border border-white/30 text-white hover:bg-white/10',           heading: 'text-white',      body: 'text-white/90'      },
   patina:   { bg: 'bg-patina',   btn: 'bg-white text-patina hover:bg-white/92',          ghost: 'border border-white/30 text-white hover:bg-white/10',           heading: 'text-white',      body: 'text-white/90'      },
-  rebuild:  { bg: 'bg-rebuild',  btn: 'bg-white text-rebuild hover:bg-white/92',         ghost: 'border border-white/30 text-white hover:bg-white/10',           heading: 'text-white',      body: 'text-white/90'      },
+  rebuild:  { bg: 'bg-rebuild-deep', btn: 'bg-white text-rebuild-deep hover:bg-white/92',   ghost: 'border border-white/30 text-white hover:bg-white/10',           heading: 'text-white',      body: 'text-white/90'      },
   sediment: { bg: 'bg-sediment', btn: 'bg-anthracite text-white hover:bg-anthracite/85', ghost: 'border border-anthracite/25 text-anthracite hover:bg-anthracite/8', heading: 'text-anthracite', body: 'text-anthracite/85' },
 }
 

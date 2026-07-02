@@ -179,8 +179,8 @@ const CAMPS = [
 
 const QUOTES = [
   {
-    text: 'I was initially apprehensive about attending this class because of the knowledge it would require. However, it proved to be an amazing experience. By the end, the projects and lessons left me with much more knowledge about engineering and enlightened me on the fun of college life.',
-    year: '2023',
+    text: 'I became more interested in civil engineering and now have future support as I prepare for college.',
+    year: '2024',
     featured: true,
   },
   {
@@ -204,15 +204,189 @@ const QUOTES = [
     featured: false,
   },
   {
-    text: 'I became more interested in civil engineering and now have future support as I prepare for college.',
-    year: '2024',
+    text: 'I was initially apprehensive about attending this class because of the knowledge it would require. However, it proved to be an amazing experience. By the end, the projects and lessons left me with much more knowledge about engineering and enlightened me on the fun of college life.',
+    year: '2023',
     featured: false,
   },
 ] as const
 
+// ── Advanced tracks: standards-aligned chip system ──
+// Same five categories and colors as the Bridging Brilliance curriculum page,
+// so the code-color language stays consistent across the site. Client wants
+// the literal standard codes visible (not just category labels).
+type StdCat = 'sci' | 'math' | 'ela' | 'des' | 'car'
+type StdChip = { code: string; cat: StdCat; desc: string }
+type TrackUnit = { num: string; title: string; body: string; chips: StdChip[] }
+
+const STD_COLORS: Record<StdCat, string> = {
+  sci:  '#16243F',
+  math: '#9C5500',
+  ela:  '#1E7A72',
+  des:  '#3E5C8A',
+  car:  '#7A4E63',
+}
+
+function StdBadge({ chip }: { chip: StdChip }) {
+  return (
+    <span
+      title={chip.desc}
+      className="inline-block text-[9px] font-medium tracking-[0.03em] px-1.5 py-0.5 text-white leading-none cursor-help whitespace-nowrap"
+      style={{ backgroundColor: STD_COLORS[chip.cat], fontFamily: 'var(--font-body)' }}>
+      {chip.code}
+    </span>
+  )
+}
+
+const INFRASTRUCTURE_FELLOWS: TrackUnit[] = [
+  {
+    num: 'Unit 1',
+    title: 'Civil engineering & New Jersey infrastructure',
+    body: 'Fellows map what civil engineers actually design and why it matters, then rank real New Jersey infrastructure challenges by team interest before choosing a site to work on all semester.',
+    chips: [
+      { code: 'HS-ETS1-1', cat: 'sci', desc: 'Analyze a major global challenge to specify criteria and constraints.' },
+      { code: 'N-Q', cat: 'math', desc: 'Use units to understand problems and guide solutions.' },
+      { code: '9.2.12.CAP', cat: 'car', desc: 'Career awareness, exploration, preparation, and planning.' },
+    ],
+  },
+  {
+    num: 'Unit 2',
+    title: 'Site analysis & defining the problem',
+    body: 'Teams read a real site through maps, public datasets, and field observation, then write a defensible problem statement with measurable criteria and constraints.',
+    chips: [
+      { code: 'HS-ETS1-1', cat: 'sci', desc: 'Specify qualitative and quantitative criteria and constraints.' },
+      { code: 'A-CED', cat: 'math', desc: 'Create equations and inequalities to represent relationships.' },
+      { code: 'W.RW.9-10.7', cat: 'ela', desc: 'Conduct short and sustained research.' },
+    ],
+  },
+  {
+    num: 'Unit 3',
+    title: 'Structures, forces & geometry in practice',
+    body: 'Load paths, member forces, and material behavior get applied directly to the site\'s constraints to evaluate structural options against one another.',
+    chips: [
+      { code: 'HS-ETS1-2', cat: 'sci', desc: 'Break a complex problem into manageable engineering problems.' },
+      { code: 'G-MG', cat: 'math', desc: 'Apply geometric concepts in modeling situations.' },
+    ],
+  },
+  {
+    num: 'Unit 4',
+    title: 'Digital design & CAD',
+    body: 'Concepts become dimensioned technical drawings and CAD models: the documentation language engineers use to communicate and build.',
+    chips: [
+      { code: 'HS-ETS1-2', cat: 'sci', desc: 'Design a solution to a complex real-world problem.' },
+      { code: '8.2.12.ED', cat: 'des', desc: 'High-school engineering design and technological systems.' },
+    ],
+  },
+  {
+    num: 'Unit 5',
+    title: 'Cost, constraints & project controls',
+    body: 'Quantity take-offs, cost estimating, budgets, and a risk register teach fellows to weigh prioritized criteria the way practicing engineers do.',
+    chips: [
+      { code: 'HS-ETS1-3', cat: 'sci', desc: 'Evaluate a solution based on prioritized criteria and trade-offs.' },
+      { code: 'A-CED', cat: 'math', desc: 'Create equations to model constraints.' },
+    ],
+  },
+  {
+    num: 'Unit 6',
+    title: 'Stormwater & water infrastructure',
+    body: 'A stormwater walk and drainage sketch connect green-infrastructure options and a lead-service-line case study to how communities manage water risk.',
+    chips: [
+      { code: 'HS-ETS1-4', cat: 'sci', desc: 'Model the impact of proposed solutions within and between systems.' },
+      { code: 'S-ID', cat: 'math', desc: 'Interpret data and patterns.' },
+      { code: 'W.IW.9-10.2', cat: 'ela', desc: 'Write informative and explanatory texts.' },
+    ],
+  },
+  {
+    num: 'Unit 7',
+    title: 'Coastal resilience & environmental justice',
+    body: 'Lessons from Hurricane Sandy and living-shoreline options ground a resilience design charrette that balances protection, ecology, cost, and community.',
+    chips: [
+      { code: 'HS-ETS1-3', cat: 'sci', desc: 'Evaluate solutions with social, cultural, and environmental impacts.' },
+      { code: 'RI.AA.9-10', cat: 'ela', desc: 'Evaluate arguments and competing perspectives.' },
+      { code: '9.4.12.CT', cat: 'car', desc: 'Evaluate diverse solutions and impacts.' },
+    ],
+  },
+  {
+    num: 'Unit 8',
+    title: 'Technical briefing & public defense',
+    body: 'The studio capstone: a professional design brief and a fifteen-minute technical briefing defended before engineers and community partners.',
+    chips: [
+      { code: 'HS-ETS1-1–4', cat: 'sci', desc: 'Synthesize and defend the full engineering solution.' },
+      { code: 'SL.PI.9-10.4', cat: 'ela', desc: 'Present information, findings, and supporting evidence.' },
+    ],
+  },
+  {
+    num: 'Companion',
+    title: 'Smart Cities, sensors & environmental monitoring',
+    body: 'A companion studio (grades 7–11) in sensor setup, flood and heat-island data collection, and ethical data use, producing a monitoring plan, dataset, dashboard, and recommendation memo.',
+    chips: [
+      { code: 'HS-ETS1-4', cat: 'sci', desc: 'Model the impact of proposed solutions within and between systems.' },
+      { code: 'S-IC', cat: 'math', desc: 'Make inferences and justify conclusions from data.' },
+      { code: '8.1.12.DA', cat: 'des', desc: 'Computer science: data and analysis.' },
+    ],
+  },
+]
+
+const RESEARCH_SCHOLARS: TrackUnit[] = [
+  {
+    num: 'Phase 1',
+    title: 'Framing the research question',
+    body: 'Scholars identify a real New Jersey resilience problem and scope a researchable question with measurable criteria, then get matched with a mentor.',
+    chips: [
+      { code: 'HS-ETS1-1', cat: 'sci', desc: 'Analyze a major global challenge to specify criteria and constraints.' },
+      { code: 'W.RW.11-12.7', cat: 'ela', desc: 'Conduct sustained research to answer a question.' },
+    ],
+  },
+  {
+    num: 'Phase 2',
+    title: 'Literature & precedent review',
+    body: 'Locating and evaluating credible sources and prior solutions, synthesized into a written review with citations.',
+    chips: [
+      { code: 'RI.AA.11-12', cat: 'ela', desc: 'Integrate and evaluate multiple sources of information.' },
+      { code: '9.4.12.IML', cat: 'car', desc: 'Evaluate the credibility of sources.' },
+    ],
+  },
+  {
+    num: 'Phase 3',
+    title: 'Methodology & design',
+    body: 'Designing a sound method, whether data collection, modeling, or prototyping, that can actually answer the question, with attention to validity and ethical data use.',
+    chips: [
+      { code: 'HS-ETS1-2', cat: 'sci', desc: 'Break a complex problem into manageable, solvable problems.' },
+      { code: 'S-IC', cat: 'math', desc: 'Understand and evaluate random processes; make inferences.' },
+    ],
+  },
+  {
+    num: 'Phase 4',
+    title: 'Data collection & analysis',
+    body: 'Carrying out the method, analyzing results against the criteria, and naming uncertainty and limitations honestly.',
+    chips: [
+      { code: 'HS-ETS1-4', cat: 'sci', desc: 'Use simulation or modeling to evaluate proposed solutions.' },
+      { code: 'S-ID', cat: 'math', desc: 'Summarize, represent, and interpret data.' },
+    ],
+  },
+  {
+    num: 'Phase 5',
+    title: 'Recommendations & trade-offs',
+    body: 'Findings become evidence-based recommendations, weighed against cost, equity, and environmental impact to build the capstone argument.',
+    chips: [
+      { code: 'HS-ETS1-3', cat: 'sci', desc: 'Evaluate a solution based on prioritized criteria and trade-offs.' },
+      { code: 'W.AW.11-12.1', cat: 'ela', desc: 'Write arguments with valid reasoning and sufficient evidence.' },
+    ],
+  },
+  {
+    num: 'Phase 6',
+    title: 'Capstone & the public STEM Expo',
+    body: 'A research poster and paper defended in an oral presentation at a public STEM Expo before families, partners, and professional engineers.',
+    chips: [
+      { code: 'HS-ETS1-1–4', cat: 'sci', desc: 'Communicate and defend a complete engineering solution.' },
+      { code: 'SL.PI.11-12.4', cat: 'ela', desc: 'Present findings, evidence, and reasoning clearly.' },
+    ],
+  },
+]
+
 export function Pathway() {
   const reduce = useReducedMotion()
   const [openCamp, setOpenCamp] = useState<number | null>(null)
+  const [openTrackUnit, setOpenTrackUnit] = useState<string | null>(null)
 
   return (
     <main>
@@ -276,6 +450,185 @@ export function Pathway() {
               ))}
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* ── Advanced Tracks ── bg-bone (Hero is quarry, next section down is snow) */}
+      <section className="bg-bone py-12 lg:py-18" aria-labelledby="tracks-h2">
+        <div className="max-w-7xl mx-auto px-6">
+
+          <div className="lg:grid lg:grid-cols-[1fr_1.5fr] lg:gap-16 xl:gap-24 lg:items-start mb-10 lg:mb-12">
+            <div>
+              <motion.h2
+                id="tracks-h2"
+                className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.06] tracking-[-0.03em] text-anthracite italic mb-4 [text-wrap:balance]"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+                initial={reduce ? undefined : { opacity: 0, y: 24 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
+                From a semester survey to a mentored capstone.
+              </motion.h2>
+            </div>
+            <motion.p
+              className="text-[14.5px] text-anthracite/80 leading-[1.72] lg:pt-2"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 16 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.1, ease: EASE }}>
+              Most schools start with Principles of Civil Engineering, the full-semester core course below. For schools that want to go deeper, two more advanced options are available: Infrastructure Fellows applies the same design thinking to a real local site, and STEM Research Scholars pairs upper-classmen with mentors on original research. Both stay standards-aligned throughout, down to the individual code.
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 xl:gap-x-14 gap-y-10 lg:gap-y-0">
+
+            {/* Infrastructure Fellows */}
+            <div>
+              <div className="flex items-baseline justify-between mb-4 pb-4 border-b border-sediment/25">
+                <div>
+                  <p
+                    className="text-[19px] text-anthracite italic leading-[1.2] tracking-[-0.015em]"
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                    Infrastructure Fellows
+                  </p>
+                  <p
+                    className="text-[10.5px] text-anthracite/80 uppercase tracking-[0.1em] mt-1"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    Grades 9–12 · Applied studio
+                  </p>
+                </div>
+              </div>
+
+              <div className="divide-y divide-sediment/12">
+                {INFRASTRUCTURE_FELLOWS.map((unit) => {
+                  const key = `if-${unit.num}`
+                  const isOpen = openTrackUnit === key
+                  return (
+                    <div key={key}>
+                      <button
+                        className="w-full flex items-start gap-4 py-3.5 text-left cursor-pointer group"
+                        onClick={() => setOpenTrackUnit(isOpen ? null : key)}
+                        aria-expanded={isOpen}>
+                        <span
+                          className="flex-shrink-0 w-[64px] text-[12px] uppercase tracking-[0.06em] pt-1"
+                          style={{ fontFamily: 'var(--font-body)', color: '#5C5D9C' }}>
+                          {unit.num}
+                        </span>
+                        <span
+                          className="flex-1 text-[13.5px] text-anthracite/85 leading-[1.5] group-hover:text-anthracite transition-colors"
+                          style={{ fontFamily: 'var(--font-body)' }}>
+                          {unit.title}
+                        </span>
+                        <div className="flex-shrink-0 flex items-start gap-1.5 pt-0.5">
+                          <CaretDown
+                            size={13}
+                            weight="bold"
+                            className={`text-anthracite/30 transition-transform duration-150 ${isOpen ? 'rotate-180' : ''}`}
+                          />
+                        </div>
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {isOpen && (
+                          <motion.div
+                            initial={reduce ? undefined : { height: 0, opacity: 0 }}
+                            animate={reduce ? undefined : { height: 'auto', opacity: 1 }}
+                            exit={reduce ? undefined : { height: 0, opacity: 0 }}
+                            transition={reduce ? undefined : { duration: 0.22, ease: EASE }}
+                            style={{ overflow: 'hidden' }}>
+                            <div className="pl-[76px] pb-4 pr-2">
+                              <p
+                                className="text-[13px] text-anthracite/80 leading-[1.65] mb-3"
+                                style={{ fontFamily: 'var(--font-body)' }}>
+                                {unit.body}
+                              </p>
+                              <div className="flex flex-wrap gap-1.5">
+                                {unit.chips.map(c => <StdBadge key={c.code} chip={c} />)}
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* STEM Research Scholars */}
+            <div>
+              <div className="flex items-baseline justify-between mb-4 pb-4 border-b border-sediment/25">
+                <div>
+                  <p
+                    className="text-[19px] text-anthracite italic leading-[1.2] tracking-[-0.015em]"
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                    STEM Research Scholars
+                  </p>
+                  <p
+                    className="text-[10.5px] text-anthracite/80 uppercase tracking-[0.1em] mt-1"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    Grades 11–12 · Mentored research
+                  </p>
+                </div>
+              </div>
+
+              <div className="divide-y divide-sediment/12">
+                {RESEARCH_SCHOLARS.map((unit) => {
+                  const key = `rs-${unit.num}`
+                  const isOpen = openTrackUnit === key
+                  return (
+                    <div key={key}>
+                      <button
+                        className="w-full flex items-start gap-4 py-3.5 text-left cursor-pointer group"
+                        onClick={() => setOpenTrackUnit(isOpen ? null : key)}
+                        aria-expanded={isOpen}>
+                        <span
+                          className="flex-shrink-0 w-[64px] text-[12px] uppercase tracking-[0.06em] pt-1"
+                          style={{ fontFamily: 'var(--font-body)', color: '#5C5D9C' }}>
+                          {unit.num}
+                        </span>
+                        <span
+                          className="flex-1 text-[13.5px] text-anthracite/85 leading-[1.5] group-hover:text-anthracite transition-colors"
+                          style={{ fontFamily: 'var(--font-body)' }}>
+                          {unit.title}
+                        </span>
+                        <div className="flex-shrink-0 flex items-start gap-1.5 pt-0.5">
+                          <CaretDown
+                            size={13}
+                            weight="bold"
+                            className={`text-anthracite/30 transition-transform duration-150 ${isOpen ? 'rotate-180' : ''}`}
+                          />
+                        </div>
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {isOpen && (
+                          <motion.div
+                            initial={reduce ? undefined : { height: 0, opacity: 0 }}
+                            animate={reduce ? undefined : { height: 'auto', opacity: 1 }}
+                            exit={reduce ? undefined : { height: 0, opacity: 0 }}
+                            transition={reduce ? undefined : { duration: 0.22, ease: EASE }}
+                            style={{ overflow: 'hidden' }}>
+                            <div className="pl-[76px] pb-4 pr-2">
+                              <p
+                                className="text-[13px] text-anthracite/80 leading-[1.65] mb-3"
+                                style={{ fontFamily: 'var(--font-body)' }}>
+                                {unit.body}
+                              </p>
+                              <div className="flex flex-wrap gap-1.5">
+                                {unit.chips.map(c => <StdBadge key={c.code} chip={c} />)}
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </section>
 

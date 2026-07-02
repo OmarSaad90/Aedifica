@@ -74,6 +74,109 @@ const CAMPS = [
   },
 ] as const
 
+// ── Day-by-day map for the Engineering Explorers camp (CAMPS[0] only) —
+// pulled from the client's summer-camps curriculum doc. Same StdBadge system.
+type DayChip = { code: string; cat: StdCat; desc: string }
+type CampDay = { day: number; week: string; question: string; desc: string; chips: DayChip[] }
+
+const EXPLORERS_DAYS: CampDay[] = [
+  {
+    day: 1, week: 'Week 1 · Explore the domains',
+    question: 'What do engineers do?',
+    desc: 'Team-building, the engineering design cycle, and a local New Jersey problem gallery. Students set up engineering notebooks and agree on team norms.',
+    chips: [
+      { code: 'Engineering practices', cat: 'sci', desc: 'NJSLS-S science and engineering practices.' },
+      { code: 'STEM identity', cat: 'car', desc: 'Career awareness and STEM identity.' },
+      { code: 'Team norms', cat: 'ela', desc: 'Collaboration and team norms.' },
+    ],
+  },
+  {
+    day: 2, week: 'Week 1 · Explore the domains',
+    question: 'Structures and forces',
+    desc: 'Bridge and tower design, load testing, and failure analysis. Students record a load-test data table and revise their sketches based on evidence.',
+    chips: [
+      { code: 'MS-ETS1', cat: 'sci', desc: 'Engineering design; physical science of forces.' },
+      { code: 'Forces', cat: 'sci', desc: 'Structures, forces, and material performance.' },
+      { code: 'Data analysis', cat: 'math', desc: 'Collect and analyze load-test data.' },
+    ],
+  },
+  {
+    day: 3, week: 'Week 1 · Explore the domains',
+    question: 'Materials matter',
+    desc: 'Compare cardboard, wood, plastics, and recycled materials in a material-choice lab. Students build a materials selection chart and justify choices with evidence.',
+    chips: [
+      { code: 'Structure–property', cat: 'sci', desc: 'Structure–property relationships of materials.' },
+      { code: 'Argument from evidence', cat: 'ela', desc: 'Construct an argument from evidence.' },
+    ],
+  },
+  {
+    day: 4, week: 'Week 1 · Explore the domains',
+    question: 'Circuits and sensors',
+    desc: 'Build an LED circuit and use a sensor to collect data. Students keep a working circuit and a troubleshooting log as they debug.',
+    chips: [
+      { code: 'Energy systems', cat: 'sci', desc: 'Energy systems and energy transfer.' },
+      { code: 'CS / devices', cat: 'des', desc: 'Computer-science and device thinking.' },
+    ],
+  },
+  {
+    day: 5, week: 'Week 1 · Explore the domains',
+    question: 'Robotics basics',
+    desc: 'Build and code simple robot movement through an obstacle challenge. Students demonstrate controlled movement and iterate on their programs.',
+    chips: [
+      { code: 'Algorithms', cat: 'des', desc: 'Algorithms and sequencing.' },
+      { code: 'Debugging', cat: 'des', desc: 'Debugging and troubleshooting.' },
+      { code: 'Iteration', cat: 'des', desc: 'Iteration and refinement.' },
+    ],
+  },
+  {
+    day: 6, week: 'Week 1 · Explore the domains',
+    question: 'Water, flooding and stormwater',
+    desc: 'Model runoff and infiltration, test water quality, and map school drainage. Students record stormwater observations relevant to New Jersey flooding.',
+    chips: [
+      { code: 'Earth systems', cat: 'sci', desc: 'Earth systems and the water cycle.' },
+      { code: 'Human impact', cat: 'sci', desc: 'Human impact on natural systems; NJ flood relevance.' },
+    ],
+  },
+  {
+    day: 7, week: 'Week 1 · Explore the domains',
+    question: 'Renewable energy and efficiency',
+    desc: 'A solar or wind mini-challenge and a school energy-audit walk. Students produce an energy prototype or an audit checklist.',
+    chips: [
+      { code: 'Energy transfer', cat: 'sci', desc: 'Energy transfer and transformation.' },
+      { code: 'Sustainability', cat: 'sci', desc: 'Sustainability and efficiency.' },
+    ],
+  },
+  {
+    day: 8, week: 'Week 2 · Design sprint & STEM Expo',
+    question: 'Design sprint begins',
+    desc: 'Teams select a local problem and define criteria and constraints. They draft a problem statement and a prototype plan.',
+    chips: [
+      { code: 'Design thinking', cat: 'des', desc: 'Design thinking and framing.' },
+      { code: 'Define problems', cat: 'sci', desc: 'Defining engineering problems.' },
+    ],
+  },
+  {
+    day: 9, week: 'Week 2 · Design sprint & STEM Expo',
+    question: 'Build, test, revise',
+    desc: 'Prototype construction, testing, peer critique, and redesign. Students produce a prototype v2 and record their test results.',
+    chips: [
+      { code: 'Optimization', cat: 'sci', desc: 'Optimization of a design solution.' },
+      { code: 'Test data', cat: 'math', desc: 'Collect and interpret test data.' },
+      { code: 'Redesign', cat: 'des', desc: 'Evidence-based redesign.' },
+    ],
+  },
+  {
+    day: 10, week: 'Week 2 · Design sprint & STEM Expo',
+    question: 'STEM Expo',
+    desc: 'Poster, pitch rehearsal, and a public presentation. Students present the prototype and poster and write an individual reflection on their growth.',
+    chips: [
+      { code: 'Communication', cat: 'ela', desc: 'Technical communication and presentation.' },
+      { code: 'Evidence', cat: 'ela', desc: 'Support claims with evidence.' },
+      { code: 'Career readiness', cat: 'car', desc: 'Career readiness and pathway awareness.' },
+    ],
+  },
+]
+
 const QUOTES = [
   {
     text: 'When we mess up, this only sets you up for a new door to open.',
@@ -97,9 +200,88 @@ const QUOTES = [
   },
 ] as const
 
+// ── Standards snapshot: same badge system as Pathway and Launch. Codes are
+// pulled directly from the Bridging Brilliance curriculum (the full matrix
+// lives there) so this stays a real, condensed preview, not invented content.
+type StdCat = 'sci' | 'math' | 'ela' | 'des' | 'car'
+type StdChip = { code: string; desc: string }
+
+const STD_COLORS: Record<StdCat, string> = {
+  sci:  '#16243F',
+  math: '#9C5500',
+  ela:  '#1E7A72',
+  des:  '#3E5C8A',
+  car:  '#7A4E63',
+}
+
+const STD_FRAMEWORKS: { cat: StdCat; name: string; desc: string; chips: StdChip[] }[] = [
+  {
+    cat: 'sci',
+    name: 'NGSS / NJSLS-Science',
+    desc: 'Engineering design: defining problems, testing solutions, analyzing data.',
+    chips: [
+      { code: 'MS-ETS1-1', desc: 'Define criteria and constraints of a design problem.' },
+      { code: 'MS-ETS1-3', desc: 'Analyze test data to identify the best characteristics.' },
+    ],
+  },
+  {
+    cat: 'math',
+    name: 'NJSLS-Mathematics',
+    desc: 'Scale drawings, unit rates, and the geometry behind truss and bridge design.',
+    chips: [
+      { code: '7.RP.A', desc: 'Scale drawings, unit rates, and efficiency metrics.' },
+      { code: '7.G · 8.G', desc: 'Geometry of trusses, scale, and similarity.' },
+    ],
+  },
+  {
+    cat: 'ela',
+    name: 'NJSLS-English Language Arts',
+    desc: 'Argument writing and presenting findings with evidence.',
+    chips: [
+      { code: 'W.AW.7.1', desc: 'Write arguments to defend the best design.' },
+      { code: 'SL.PI.7.4', desc: 'Present findings with multimedia.' },
+    ],
+  },
+  {
+    cat: 'des',
+    name: 'Design, Technology & CS',
+    desc: 'The engineering design process and computational tools for data.',
+    chips: [
+      { code: '8.2.8.ED', desc: 'Apply the engineering design process.' },
+      { code: '8.1.8.DA', desc: 'Data and analysis with computational tools.' },
+    ],
+  },
+  {
+    cat: 'car',
+    name: 'Career Readiness',
+    desc: 'Career awareness and structured critical thinking.',
+    chips: [
+      { code: '9.2.8.CAP', desc: 'Career awareness, exploration, and planning.' },
+      { code: '9.4.8.CT', desc: 'Critical thinking and problem solving.' },
+    ],
+  },
+]
+
+function StdBadge({ cat, chip }: { cat: StdCat; chip: StdChip }) {
+  return (
+    <span
+      title={chip.desc}
+      className="inline-block text-[9px] font-medium tracking-[0.03em] px-1.5 py-0.5 text-white leading-none cursor-help whitespace-nowrap"
+      style={{ backgroundColor: STD_COLORS[cat], fontFamily: 'var(--font-body)' }}>
+      {chip.code}
+    </span>
+  )
+}
+
 export function Explore() {
   const reduce = useReducedMotion()
-  const [openCamp, setOpenCamp] = useState<number | null>(null)
+  const [openCamps, setOpenCamps] = useState<Set<number>>(new Set())
+  const toggleCamp = (i: number) =>
+    setOpenCamps(prev => {
+      const next = new Set(prev)
+      next.has(i) ? next.delete(i) : next.add(i)
+      return next
+    })
 
   return (
     <main>
@@ -262,8 +444,8 @@ export function Explore() {
               <div key={name} className="border-t border-sediment/15">
                 <button
                   className="w-full text-left px-7 lg:px-10 py-5 flex items-start gap-5 hover:bg-bone/50 transition-colors duration-150"
-                  onClick={() => setOpenCamp(openCamp === i ? null : i)}
-                  aria-expanded={openCamp === i}
+                  onClick={() => toggleCamp(i)}
+                  aria-expanded={openCamps.has(i)}
                   aria-controls={`camp-body-${i}`}>
 
                   <div className="flex-shrink-0 w-[104px] mt-0.5">
@@ -287,14 +469,14 @@ export function Explore() {
 
                   <motion.span
                     className="flex-shrink-0 text-anthracite/35 mt-1"
-                    animate={{ rotate: openCamp === i ? 180 : 0 }}
+                    animate={{ rotate: openCamps.has(i) ? 180 : 0 }}
                     transition={{ duration: 0.2, ease: EASE }}>
                     <CaretDown size={13} aria-hidden="true" />
                   </motion.span>
                 </button>
 
                 <AnimatePresence initial={false}>
-                  {openCamp === i && (
+                  {openCamps.has(i) && (
                     <motion.div
                       id={`camp-body-${i}`}
                       key="body"
@@ -305,7 +487,7 @@ export function Explore() {
                       style={{ overflow: 'hidden' }}>
                       <div className="px-7 lg:px-10 pb-7 lg:pl-[calc(2.5rem+104px)]">
                         <p
-                          className="text-[13.5px] text-anthracite/70 leading-[1.68] mb-5 italic"
+                          className="text-[13.5px] text-anthracite/75 leading-[1.68] mb-5 italic"
                           style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
                           {objectives}
                         </p>
@@ -321,7 +503,7 @@ export function Explore() {
                                 <li key={act} className="flex gap-2.5 items-start">
                                   <span className="w-[4px] h-[4px] bg-datum/50 rounded-full flex-shrink-0 mt-[7px]" aria-hidden="true" />
                                   <span
-                                    className="text-[13px] text-anthracite/70 leading-[1.6]"
+                                    className="text-[13px] text-anthracite/75 leading-[1.6]"
                                     style={{ fontFamily: 'var(--font-body)' }}>
                                     {act}
                                   </span>
@@ -342,6 +524,52 @@ export function Explore() {
                             </p>
                           </div>
                         </div>
+
+                        {/* Day-by-day map — Engineering Explorers camp only */}
+                        {i === 0 && (
+                          <div className="mt-8 pt-6 border-t border-sediment/15">
+                            <p
+                              className="text-[11px] uppercase tracking-[0.12em] text-anthracite/75 mb-4"
+                              style={{ fontFamily: 'var(--font-body)' }}>
+                              Day-by-day map
+                            </p>
+                            <div className="divide-y divide-sediment/12">
+                              {EXPLORERS_DAYS.map((d, di) => (
+                                <div key={d.day} className="py-3.5">
+                                  {(di === 0 || d.week !== EXPLORERS_DAYS[di - 1].week) && (
+                                    <p
+                                      className="text-[10px] text-datum uppercase tracking-[0.1em] mb-2.5"
+                                      style={{ fontFamily: 'var(--font-body)' }}>
+                                      {d.week}
+                                    </p>
+                                  )}
+                                  <div className="flex gap-4 items-start">
+                                    <span
+                                      className="flex-shrink-0 w-6 text-[10.5px] text-anthracite/55 uppercase tracking-[0.04em] pt-1"
+                                      style={{ fontFamily: 'var(--font-body)' }}>
+                                      D{d.day}
+                                    </span>
+                                    <div className="flex-1">
+                                      <p
+                                        className="text-[13px] text-anthracite italic leading-[1.4] mb-1"
+                                        style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                                        {d.question}
+                                      </p>
+                                      <p
+                                        className="text-[12px] text-anthracite/78 leading-[1.55] mb-2"
+                                        style={{ fontFamily: 'var(--font-body)' }}>
+                                        {d.desc}
+                                      </p>
+                                      <div className="flex flex-wrap gap-1.5">
+                                        {d.chips.map(c => <StdBadge key={c.code} cat={c.cat} chip={c} />)}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </motion.div>
                   )}
@@ -363,7 +591,7 @@ export function Explore() {
             {/* Left: content */}
             <div>
               <p
-                className="text-[10.5px] text-anthracite/55 uppercase tracking-[0.2em] mb-6 select-none"
+                className="text-[10.5px] text-anthracite/75 uppercase tracking-[0.2em] mb-6 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Model program
               </p>
@@ -398,19 +626,6 @@ export function Explore() {
                 transition={reduce ? undefined : { duration: 0.55, delay: 0.13, ease: EASE }}>
                 Six of the eleven eighth-grade participants earned acceptance to the selective Union County Vocational-Technical Schools for 2025–26. The full curriculum, standards alignment, assessment framework, and unit maps are on the Bridging Brilliance page.
               </motion.p>
-
-              <motion.div
-                initial={reduce ? undefined : { opacity: 0, y: 14 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.45, delay: 0.18, ease: EASE }}>
-                <Link href="/curriculum/bridging-brilliance"
-                  className="inline-flex items-center gap-2.5 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-6 py-3 active:scale-[0.98] transition-transform duration-100 hover:bg-anthracite/90 group"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  View the Bridging Brilliance curriculum
-                  <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
-                </Link>
-              </motion.div>
             </div>
 
             {/* Right: image placeholder */}
@@ -459,6 +674,58 @@ export function Explore() {
             </div>
 
           </div>
+
+          {/* Standards preview — full width, real codes from Bridging Brilliance */}
+          <div className="mt-4 lg:mt-5 border-t border-sediment/20 pt-6">
+            <p
+              className="text-[11px] uppercase tracking-[0.12em] text-anthracite/75 mb-4"
+              style={{ fontFamily: 'var(--font-body)' }}>
+              Standards this program addresses
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-x-6 gap-y-6">
+              {STD_FRAMEWORKS.map((fw, i) => (
+                <motion.div
+                  key={fw.name}
+                  initial={reduce ? undefined : { opacity: 0, y: 10 }}
+                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                  viewport={reduce ? undefined : VIEWPORT}
+                  transition={reduce ? undefined : { duration: 0.4, delay: i * 0.06, ease: EASE }}>
+                  <p
+                    className="text-[13px] text-anthracite/90 mb-1"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    {fw.name}
+                  </p>
+                  <p
+                    className="text-[12px] text-anthracite/70 leading-[1.5] mb-2 min-h-[3.375rem]"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    {fw.desc}
+                  </p>
+                  <div className="flex flex-nowrap gap-1.5">
+                    {fw.chips.map(c => <StdBadge key={c.code} cat={fw.cat} chip={c} />)}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            <p
+              className="text-[11.5px] text-anthracite/55 italic pt-5 mb-8"
+              style={{ fontFamily: 'var(--font-body)' }}>
+              Full alignment matrix, all twelve weeks, on the Bridging Brilliance page.
+            </p>
+          </div>
+
+          <motion.div
+            initial={reduce ? undefined : { opacity: 0, y: 14 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.45, delay: 0.18, ease: EASE }}>
+            <Link href="/curriculum/bridging-brilliance"
+              className="inline-flex items-center gap-2.5 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-6 py-3 active:scale-[0.98] transition-transform duration-100 hover:bg-anthracite/90 group"
+              style={{ fontFamily: 'var(--font-body)' }}>
+              View the Bridging Brilliance curriculum
+              <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
+            </Link>
+          </motion.div>
+
         </div>
       </section>
 
