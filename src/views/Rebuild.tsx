@@ -137,7 +137,7 @@ export function Rebuild() {
 
       {/* ── Hero ── */}
       <section
-        className="bg-datum min-h-[65vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-rebuild min-h-[65vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="rebuild-h1">
 
         {/* Full-bleed right-half photo — desktop only */}
@@ -293,7 +293,7 @@ export function Rebuild() {
                     viewport={reduce ? undefined : VIEWPORT}
                     transition={reduce ? undefined : { duration: 0.38, delay: 0.05 + i * 0.04, ease: EASE }}>
                     <span
-                      className="flex-shrink-0 w-12 text-[2rem] xl:text-[2.5rem] text-datum italic leading-none -mt-0.5 select-none"
+                      className="flex-shrink-0 w-12 text-[2rem] xl:text-[2.5rem] text-rebuild italic leading-none -mt-0.5 select-none"
                       style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
                       aria-hidden="true">
                       {String(i + 1).padStart(2, '0')}
@@ -449,7 +449,7 @@ export function Rebuild() {
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.45, delay: i * 0.07, ease: EASE }}>
                 <p
-                  className="text-[2rem] lg:text-[2.5rem] xl:text-[3rem] text-datum italic leading-[1.05] tracking-[-0.025em] mb-2"
+                  className="text-[2rem] lg:text-[2.5rem] xl:text-[3rem] text-rebuild italic leading-[1.05] tracking-[-0.025em] mb-2"
                   style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
                   {range}
                 </p>
@@ -501,7 +501,7 @@ export function Rebuild() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-5">
 
             <motion.div
-              className="bg-datum px-8 py-10 lg:px-10 lg:py-12 flex flex-col"
+              className="bg-rebuild px-8 py-10 lg:px-10 lg:py-12 flex flex-col"
               initial={reduce ? undefined : { opacity: 0, y: 20 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
@@ -529,7 +529,7 @@ export function Rebuild() {
                 ))}
               </ul>
               <Link href="/partner"
-                className="self-start inline-flex items-center gap-2 bg-white text-datum text-[13.5px] tracking-[-0.01em] px-6 py-3 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92 group"
+                className="self-start inline-flex items-center gap-2 bg-white text-rebuild text-[13.5px] tracking-[-0.01em] px-6 py-3 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92 group"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Discuss a Rebuild Partnership
                 <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
@@ -537,27 +537,27 @@ export function Rebuild() {
             </motion.div>
 
             <motion.div
-              className="bg-patina px-8 py-10 lg:px-10 lg:py-12 flex flex-col"
+              className="bg-quarry px-8 py-10 lg:px-10 lg:py-12 flex flex-col"
               initial={reduce ? undefined : { opacity: 0, y: 20 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, delay: 0.1, ease: SPRING }}>
               <p
-                className="text-[10.5px] text-white/72 uppercase tracking-[0.18em] mb-5 select-none"
+                className="text-[10.5px] text-anthracite/65 uppercase tracking-[0.18em] mb-5 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Employers
               </p>
               <h3
-                className="text-[1.5rem] lg:text-[1.875rem] text-white italic leading-[1.2] tracking-[-0.025em] mb-7"
+                className="text-[1.5rem] lg:text-[1.875rem] text-anthracite italic leading-[1.2] tracking-[-0.025em] mb-7"
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
                 Meet prepared emerging talent through an accountable interview model.
               </h3>
               <ul className="list-none space-y-3.5 mb-10 flex-1">
                 {EMPLOYER_POINTS.map(pt => (
                   <li key={pt} className="flex gap-3.5 items-start">
-                    <span className="flex-shrink-0 w-[4px] h-[4px] bg-white/40 mt-[7px]" aria-hidden="true" />
+                    <span className="flex-shrink-0 w-[4px] h-[4px] bg-anthracite/25 mt-[7px]" aria-hidden="true" />
                     <span
-                      className="text-[13.5px] text-white leading-[1.65]"
+                      className="text-[13.5px] text-anthracite/80 leading-[1.65]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {pt}
                     </span>
@@ -565,7 +565,7 @@ export function Rebuild() {
                 ))}
               </ul>
               <Link href="/partner"
-                className="self-start inline-flex items-center gap-2 bg-white text-patina text-[13.5px] tracking-[-0.01em] px-6 py-3 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92 group"
+                className="self-start inline-flex items-center gap-2 bg-white text-anthracite text-[13.5px] tracking-[-0.01em] px-6 py-3 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92 group"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Become an Employer Partner
                 <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
@@ -642,6 +642,7 @@ export function Rebuild() {
         body="Discuss a Rebuild cohort partnership, an employer participation role, or an institutional briefing on Aedifica's delivery model."
         primary={{ label: 'Discuss a Rebuild Partnership', to: '/partner' }}
         secondary={{ label: 'Become an Employer Partner', to: '/partner' }}
+        color="rebuild"
       />
 
     </main>

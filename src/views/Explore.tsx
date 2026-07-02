@@ -106,7 +106,7 @@ export function Explore() {
 
       {/* ── Hero ── */}
       <section
-        className="bg-anthracite min-h-[65vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-datum min-h-[65vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="explore-h1">
 
         <motion.div
@@ -129,7 +129,7 @@ export function Explore() {
           <div className="lg:max-w-[58%] lg:pr-8 xl:pr-12">
 
             <motion.span
-              className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/12 text-white/80 px-3 py-1 mb-10 select-none"
+              className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/15 text-white px-3 py-1 mb-10 select-none"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 10 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -155,7 +155,7 @@ export function Explore() {
               {(['Middle and high school', 'New Jersey', 'Camps and workshops'] as const).map((item, i) => (
                 <span
                   key={item}
-                  className="text-[13px] text-white/60 tracking-[-0.01em]"
+                  className="text-[13px] text-white/90 tracking-[-0.01em]"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   {item}
                   {i < 2 && <span className="mx-4 text-white/18" aria-hidden="true">·</span>}

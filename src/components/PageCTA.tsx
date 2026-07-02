@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'motion/react'
 
@@ -14,12 +14,14 @@ type PageCTAProps = {
   body: string
   primary: CTAButton
   secondary?: CTAButton
-  color?: 'datum' | 'patina'
+  color?: 'datum' | 'patina' | 'rebuild' | 'sediment'
 }
 
 const STYLES = {
-  datum:  { bg: 'bg-datum',  btn: 'bg-white text-datum hover:bg-white/92',  ghost: 'border border-white/30 text-white hover:bg-white/10' },
-  patina: { bg: 'bg-patina', btn: 'bg-white text-patina hover:bg-white/92', ghost: 'border border-white/30 text-white hover:bg-white/10' },
+  datum:    { bg: 'bg-datum',    btn: 'bg-white text-datum hover:bg-white/92',           ghost: 'border border-white/30 text-white hover:bg-white/10',           heading: 'text-white',      body: 'text-white/90'      },
+  patina:   { bg: 'bg-patina',   btn: 'bg-white text-patina hover:bg-white/92',          ghost: 'border border-white/30 text-white hover:bg-white/10',           heading: 'text-white',      body: 'text-white/90'      },
+  rebuild:  { bg: 'bg-rebuild',  btn: 'bg-white text-rebuild hover:bg-white/92',         ghost: 'border border-white/30 text-white hover:bg-white/10',           heading: 'text-white',      body: 'text-white/90'      },
+  sediment: { bg: 'bg-sediment', btn: 'bg-anthracite text-white hover:bg-anthracite/85', ghost: 'border border-anthracite/25 text-anthracite hover:bg-anthracite/8', heading: 'text-anthracite', body: 'text-anthracite/85' },
 }
 
 export function PageCTA({ id, heading, body, primary, secondary, color = 'datum' }: PageCTAProps) {
@@ -33,7 +35,7 @@ export function PageCTA({ id, heading, body, primary, secondary, color = 'datum'
 
           <motion.h2
             id={id}
-            className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.07] tracking-[-0.03em] text-white italic mb-6"
+            className={`text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.07] tracking-[-0.03em] ${s.heading} italic mb-6`}
             style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
             initial={reduce ? undefined : { opacity: 0, y: 28 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -43,7 +45,7 @@ export function PageCTA({ id, heading, body, primary, secondary, color = 'datum'
           </motion.h2>
 
           <motion.p
-            className="text-[14px] text-white/90 leading-[1.68] mb-8 max-w-[52ch] mx-auto"
+            className={`text-[14px] ${s.body} leading-[1.68] mb-8 max-w-[52ch] mx-auto`}
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 20 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}

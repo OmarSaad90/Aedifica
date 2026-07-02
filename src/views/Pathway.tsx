@@ -219,7 +219,7 @@ export function Pathway() {
 
       {/* ── Hero ── */}
       <section
-        className="bg-anthracite min-h-[65vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-quarry min-h-[65vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="pathway-h1">
 
         <motion.div
@@ -242,7 +242,7 @@ export function Pathway() {
           <div className="lg:max-w-[58%] lg:pr-8 xl:pr-12">
 
             <motion.span
-              className="inline-block text-[11px] uppercase tracking-[0.18em] bg-datum/20 text-datum px-3 py-1 mb-10 select-none"
+              className="inline-block text-[11px] uppercase tracking-[0.18em] bg-anthracite/10 text-anthracite px-3 py-1 mb-10 select-none"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 10 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -252,7 +252,7 @@ export function Pathway() {
 
             <motion.h1
               id="pathway-h1"
-              className="text-[2.75rem] lg:text-[4.5rem] xl:text-[5.5rem] leading-[0.97] tracking-[-0.035em] text-white italic mb-10 [text-wrap:balance]"
+              className="text-[2.75rem] lg:text-[4.5rem] xl:text-[5.5rem] leading-[0.97] tracking-[-0.035em] text-anthracite italic mb-10 [text-wrap:balance]"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 40 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -268,10 +268,10 @@ export function Pathway() {
               {(['High school', 'New Jersey', 'Civil engineering'] as const).map((item, i) => (
                 <span
                   key={item}
-                  className="text-[13px] text-white/60 tracking-[-0.01em]"
+                  className="text-[13px] text-anthracite tracking-[-0.01em]"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   {item}
-                  {i < 2 && <span className="mx-4 text-white/18" aria-hidden="true">·</span>}
+                  {i < 2 && <span className="mx-4 text-anthracite/20" aria-hidden="true">·</span>}
                 </span>
               ))}
             </motion.div>
@@ -685,30 +685,30 @@ export function Pathway() {
         </div>
       </section>
 
-      {/* ── CTA ── bg-snow pb-0, contained datum block */}
+      {/* ── CTA ── bg-snow pb-0, contained quarry block */}
       <section className="bg-snow pt-10 lg:pt-16 pb-0" aria-label="Register interest in Pathway">
         <div className="max-w-[1100px] mx-auto px-6">
           <motion.div
-            className="bg-datum px-10 pt-16 pb-12 lg:px-16 lg:pt-20 lg:pb-14 text-center rounded-t-[2rem]"
+            className="bg-quarry px-10 pt-16 pb-12 lg:px-16 lg:pt-20 lg:pb-14 text-center rounded-t-[2rem]"
             initial={reduce ? undefined : { opacity: 0, y: 28 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
 
             <h2
-              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.03em] text-white italic mb-6 [text-wrap:balance]"
+              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.03em] text-anthracite italic mb-6 [text-wrap:balance]"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
               Register interest before the program launches.
             </h2>
 
             <p
-              className="text-[15px] text-white/90 leading-[1.7] max-w-[52ch] mx-auto mb-10"
+              className="text-[15px] text-anthracite leading-[1.7] max-w-[52ch] mx-auto mb-10"
               style={{ fontFamily: 'var(--font-body)' }}>
               Aedifica is documenting interest from districts, vocational institutions, and education partners for Pathway before it launches. No commitment required.
             </p>
 
             <Link href="/partner"
-              className="inline-flex items-center justify-center gap-2 bg-white text-datum text-[13.5px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92 group"
+              className="inline-flex items-center justify-center gap-2 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-anthracite/85 group"
               style={{ fontFamily: 'var(--font-body)' }}>
               Register interest in Pathway
               <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>

@@ -1,4 +1,10 @@
+'use client'
+import { motion, useReducedMotion } from 'motion/react'
 import { Buildings, ArrowCircleUp, Eye, MapPin, type Icon } from '@phosphor-icons/react'
+
+const VIEWPORT = { once: true, margin: '-40px 0px' } as const
+const EASE     = [0.25, 0.1, 0.25, 1] as const
+const SPRING   = [0.32, 0.72, 0, 1]   as const
 
 type Pillar = {
   Icon: Icon
@@ -55,39 +61,56 @@ function PillarItem({ Icon: IconComp, label, subtext }: Pillar) {
 }
 
 export function CredibilityBar() {
+  const reduce = useReducedMotion()
+
   return (
     <section className="bg-bone py-14 relative z-10 -mt-10 lg:-mt-14 border-t border-datum/20" aria-label="Program commitments">
       <div className="max-w-[1400px] mx-auto px-6">
 
         {/* Eyebrow */}
-        <p
+        <motion.p
           className="text-center text-[11.5px] uppercase tracking-[0.18em] text-anthracite/55 mb-10 leading-none"
           style={{ fontFamily: 'var(--font-body)' }}
+          initial={reduce ? undefined : { opacity: 0, y: 8 }}
+          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+          viewport={reduce ? undefined : VIEWPORT}
+          transition={reduce ? undefined : { duration: 0.4, ease: EASE }}
         >
           A Pathway Built Around Accountability
-        </p>
+        </motion.p>
 
         {/* Desktop: single row, dividers via divide-x */}
         <div className="hidden lg:flex items-start divide-x divide-sediment/30">
           {PILLARS.map((pillar, i) => (
-            <div key={i} className="flex-1 px-8 first:pl-0 last:pr-0">
+            <motion.div
+              key={i}
+              className="flex-1 px-8 first:pl-0 last:pr-0"
+              initial={reduce ? undefined : { opacity: 0, y: 18 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, delay: i * 0.07, ease: SPRING }}
+            >
               <PillarItem {...pillar} />
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Mobile: 2×2 grid */}
         <div className="grid grid-cols-2 lg:hidden">
           {PILLARS.map((pillar, i) => (
-            <div
+            <motion.div
               key={i}
               className={[
                 i % 2 === 0 ? 'pr-5 border-r border-sediment/25' : 'pl-5',
                 i < 2       ? 'pb-8 border-b border-sediment/25' : 'pt-8',
               ].join(' ')}
+              initial={reduce ? undefined : { opacity: 0, y: 14 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.45, delay: i * 0.06, ease: SPRING }}
             >
               <PillarItem {...pillar} />
-            </div>
+            </motion.div>
           ))}
         </div>
 

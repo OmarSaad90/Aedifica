@@ -54,20 +54,28 @@ export function AedificaModel() {
 
             {/* Section intro */}
             <div className="max-w-[44rem] mx-auto text-center lg:text-left lg:max-w-none lg:mx-0 mb-14 lg:mb-12">
-              <h2
+              <motion.h2
                 id="model-heading"
                 className="text-[1.875rem] lg:text-[2.625rem] leading-[1.1] tracking-[-0.025em] text-anthracite italic mb-4"
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+                initial={reduce ? undefined : { opacity: 0, y: 22 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.55, ease: SPRING_EASE }}
               >
                 Workforce architecture, not isolated training.
-              </h2>
-              <p
+              </motion.h2>
+              <motion.p
                 className="text-[15.5px] text-anthracite/70 leading-[1.65]"
                 style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 14 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.45, delay: 0.09, ease: EASE }}
               >
                 Aedifica designs the connections a pathway requires.
                 Training matters. What surrounds training determines whether it leads somewhere.
-              </p>
+              </motion.p>
             </div>
 
             {/* Items */}

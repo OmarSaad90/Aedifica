@@ -98,8 +98,8 @@ export function TalentPipeline() {
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.55, ease: EASE }}>
                 <p
-                  className="text-[10.5px] text-datum uppercase tracking-[0.18em] mb-4 select-none"
-                  style={{ fontFamily: 'var(--font-body)' }}>
+                  className="text-[10.5px] uppercase tracking-[0.18em] mb-4 select-none"
+                  style={{ fontFamily: 'var(--font-body)', color: '#5C5D9C' }}>
                   How it works
                 </p>
                 <p
@@ -116,8 +116,8 @@ export function TalentPipeline() {
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.55, delay: 0.1, ease: EASE }}>
                 <p
-                  className="text-[10.5px] text-datum uppercase tracking-[0.18em] mb-4 select-none"
-                  style={{ fontFamily: 'var(--font-body)' }}>
+                  className="text-[10.5px] uppercase tracking-[0.18em] mb-4 select-none"
+                  style={{ fontFamily: 'var(--font-body)', color: '#5C5D9C' }}>
                   How it connects
                 </p>
                 <p

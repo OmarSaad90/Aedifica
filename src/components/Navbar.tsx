@@ -3,7 +3,7 @@ import { useState, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { List, X, CaretDown } from '@phosphor-icons/react'
-import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
+import { motion, AnimatePresence, useReducedMotion, useScroll, useMotionValueEvent } from 'motion/react'
 
 type NavChild = { label: string; to: string; dot?: string }
 type NavGroup = {
@@ -18,11 +18,11 @@ const NAV_GROUPS: NavGroup[] = [
     id: 'programs',
     label: 'Discover Aedifica',
     children: [
-      { label: 'Rebuild',         to: '/services/rebuild',         dot: 'bg-datum'    },
-      { label: 'Launch',          to: '/services/launch',          dot: 'bg-patina'   },
-      { label: 'Pathway',         to: '/services/pathway',         dot: 'bg-quarry'   },
-      { label: 'Talent Pipeline', to: '/services/talent-pipeline', dot: 'bg-sediment' },
-      { label: 'Explore',         to: '/services/explore',         dot: 'bg-datum/50' },
+      { label: 'Explore',         to: '/services/explore',         dot: 'bg-datum'         },
+      { label: 'Pathway',         to: '/services/pathway',         dot: 'bg-quarry'        },
+      { label: 'Launch',          to: '/services/launch',          dot: 'bg-sediment'      },
+      { label: 'Rebuild',         to: '/services/rebuild',         dot: 'bg-rebuild'       },
+      { label: 'Talent Pipeline', to: '/services/talent-pipeline', dot: 'bg-anthracite/30' },
     ],
     footer: { label: 'View all programs', to: '/services' },
   },
@@ -49,7 +49,7 @@ const EASE = [0.25, 0.1, 0.25, 1] as const
 
 const SERVICE_LOGOS: Record<string, string> = {
   '/services/rebuild':         '/images/logo-rebuild.png',
-  '/services/launch':          '/images/logo-launch.png',
+  '/services/launch':          '/images/logo-talent.png',
   '/services/pathway':         '/images/logo-pathway.png',
   '/services/talent-pipeline': '/images/logo-talent.png',
   '/services/explore':         '/images/logo-explore.png',
@@ -58,7 +58,7 @@ const DEFAULT_LOGO = '/images/logo-rebuild.png'
 
 // Each PNG has different whitespace padding around the frame — scale compensates
 const LOGO_SCALE: Record<string, number> = {
-  '/images/logo-rebuild.png':  1.18,
+  '/images/logo-rebuild.png':  1.0,
   '/images/logo-launch.png':   1.15,
   '/images/logo-pathway.png':  1.11,
   '/images/logo-talent.png':   1.0,
@@ -74,6 +74,9 @@ export function Navbar() {
   const reduce      = useReducedMotion()
   const pathname = usePathname()
   const logoSrc = SERVICE_LOGOS[pathname] ?? DEFAULT_LOGO
+  const { scrollY } = useScroll()
+  const [scrolled, setScrolled] = useState(false)
+  useMotionValueEvent(scrollY, 'change', (y) => setScrolled(y > 8))
 
   const openDesktop = (id: string) => {
     clearTimeout(closeTimer.current)
@@ -88,7 +91,7 @@ export function Navbar() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-snow border-b border-sediment/20">
+    <header className={`fixed top-0 left-0 right-0 z-50 bg-snow border-b border-sediment/20 transition-shadow duration-200 ${scrolled ? 'shadow-[0_2px_12px_rgba(45,45,49,0.07)]' : ''}`}>
       <div className="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between gap-6">
 
         {/* Logo + wordmark + tagline */}
@@ -167,7 +170,7 @@ export function Navbar() {
                         key={to}
                         href={to}
                         role="menuitem"
-                        className="flex items-center gap-2.5 px-4 py-1.5 text-[13px] text-anthracite/65 hover:text-anthracite hover:bg-bone transition-colors duration-100"
+                        className="flex items-center gap-2.5 px-4 py-1.5 text-[13px] text-anthracite/70 hover:text-anthracite hover:bg-bone transition-colors duration-100"
                         style={{ fontFamily: 'var(--font-body)' }}
                         onClick={() => setOpenGroup(null)}>
                         {dot && (

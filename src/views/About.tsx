@@ -1,6 +1,6 @@
 ﻿'use client'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
 
 const VIEWPORT = { once: true, margin: '100px 0px' } as const
@@ -104,7 +104,7 @@ const TEAM: TeamMember[] = [
     bio: 'Dr. Karim Karam is Co-Founder & CEO of Aedifica and a Teaching Associate Professor at Stevens Institute of Technology, where he leads the graduate Construction Management program. His work sits at the intersection of engineering, education, construction, and workforce mobility.',
     fullBio: [
       'Dr. Karim Karam co-founded Aedifica because he understands education as both a personal inheritance and a public responsibility.',
-      "His belief in the power of learning began at home. Karim's father, born into a family from Ehden, Lebanon, became the first in his family to receive a university education, studying at UniversitÃ© Saint-Joseph in Lebanon and later at Ã‰cole Nationale des Ponts et ChaussÃ©es in France. His own father was illiterate, but his mother believed deeply enough in education to send him to boarding school from a small village. That conviction shaped the next generation. Karim's father did everything he could to give his children access to education, including selling personal assets when necessary. When Karim left for London to study civil engineering, his father told him that education is one of the few things no one can take away.",
+      "His belief in the power of learning began at home. Karim's father, born into a family from Ehden, Lebanon, became the first in his family to receive a university education, studying at Université Saint-Joseph in Lebanon and later at École Nationale des Ponts et Chaussées in France. His own father was illiterate, but his mother believed deeply enough in education to send him to boarding school from a small village. That conviction shaped the next generation. Karim's father did everything he could to give his children access to education, including selling personal assets when necessary. When Karim left for London to study civil engineering, his father told him that education is one of the few things no one can take away.",
       'That lesson stayed with him.',
       'Karim went on to pursue graduate study at MIT, where he served as a teaching assistant for probability and statistics at both the undergraduate and graduate levels and received the Best TA award for the course. He was also involved in MIT OpenCourseWare, an initiative built around the idea that high-quality knowledge should be accessible to those who seek it.',
       'His career has continued to connect education, engineering, and opportunity. As a co-founder of Sarooj Construction Company, Karim helped build and lead a construction workforce across major infrastructure work, while seeing firsthand how focused training and upskilling can change confidence, performance, self-esteem, and financial mobility. Today, he is a Teaching Associate Professor at Stevens Institute of Technology, where he leads the graduate Construction Management program and prepares students for careers across the New York and New Jersey construction market.',
@@ -143,7 +143,7 @@ function TeamMemberCard({ member, index, reduce, onExpandBio, bioExpanded }: {
   member: TeamMember
   index: number
   reduce: boolean | null
-  onExpandBio: () => void
+  onExpandBio: (el: HTMLButtonElement) => void
   bioExpanded: boolean
 }) {
   return (
@@ -182,7 +182,7 @@ function TeamMemberCard({ member, index, reduce, onExpandBio, bioExpanded }: {
 
       {member.fullBio && (
         <button
-          onClick={onExpandBio}
+          onClick={(e) => onExpandBio(e.currentTarget as HTMLButtonElement)}
           aria-expanded={bioExpanded}
           className="mt-4 self-start text-[13px] text-datum underline underline-offset-2 decoration-datum/40 hover:decoration-datum transition-colors duration-150 cursor-pointer bg-transparent border-none p-0"
           style={{ fontFamily: 'var(--font-body)' }}>
@@ -196,12 +196,18 @@ function TeamMemberCard({ member, index, reduce, onExpandBio, bioExpanded }: {
 export function About() {
   const reduce = useReducedMotion()
   const [expandedMember, setExpandedMember] = useState<TeamMember | null>(null)
+  const lastTriggerRef = useRef<HTMLButtonElement | null>(null)
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null)
 
   useEffect(() => {
-    if (!expandedMember) return
+    if (!expandedMember) {
+      lastTriggerRef.current?.focus()
+      return
+    }
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setExpandedMember(null) }
     document.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
+    requestAnimationFrame(() => closeButtonRef.current?.focus())
     return () => {
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = ''
@@ -512,7 +518,7 @@ export function About() {
                 member={member}
                 index={i}
                 reduce={reduce}
-                onExpandBio={() => setExpandedMember(expandedMember?.name === member.name ? null : member)}
+                onExpandBio={(el) => { lastTriggerRef.current = el; setExpandedMember(expandedMember?.name === member.name ? null : member) }}
                 bioExpanded={expandedMember?.name === member.name}
               />
             ))}
@@ -585,8 +591,22 @@ export function About() {
                 role="dialog"
                 aria-modal="true"
                 aria-label={`${expandedMember.name} — Full Biography`}
-                className="bg-snow max-w-[580px] w-full max-h-[78vh] overflow-y-auto pointer-events-auto relative">
+                className="bg-snow max-w-[580px] w-full max-h-[78vh] overflow-y-auto pointer-events-auto relative"
+                onKeyDown={(e) => {
+                  if (e.key !== 'Tab') return
+                  const focusable = e.currentTarget.querySelectorAll<HTMLElement>(
+                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                  )
+                  if (!focusable.length) return
+                  const first = focusable[0]
+                  const last = focusable[focusable.length - 1]
+                  if (e.shiftKey ? document.activeElement === first : document.activeElement === last) {
+                    e.preventDefault()
+                    ;(e.shiftKey ? last : first).focus()
+                  }
+                }}>
                 <button
+                  ref={closeButtonRef}
                   onClick={() => setExpandedMember(null)}
                   className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-anthracite/35 hover:text-anthracite transition-colors duration-150 cursor-pointer bg-transparent border-none text-[20px] leading-none"
                   aria-label="Close biography">

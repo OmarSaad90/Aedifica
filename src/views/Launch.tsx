@@ -311,7 +311,7 @@ export function Launch() {
 
       {/* ── Hero ── */}
       <section
-        className="bg-patina min-h-[65vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-sediment min-h-[65vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="launch-h1">
 
         <motion.div
@@ -333,7 +333,7 @@ export function Launch() {
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
           <div className="lg:max-w-[58%] lg:pr-8 xl:pr-12">
             <motion.span
-              className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/15 text-white px-3 py-1 mb-10 select-none"
+              className="inline-block text-[11px] uppercase tracking-[0.18em] bg-anthracite/10 text-anthracite px-3 py-1 mb-10 select-none"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 10 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -343,7 +343,7 @@ export function Launch() {
 
             <motion.h1
               id="launch-h1"
-              className="text-[2.75rem] lg:text-[4.5rem] xl:text-[6rem] leading-[0.96] tracking-[-0.035em] text-white italic mb-10"
+              className="text-[2.75rem] lg:text-[4.5rem] xl:text-[6rem] leading-[0.96] tracking-[-0.035em] text-anthracite italic mb-10"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 40 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -359,10 +359,10 @@ export function Launch() {
               {(['Fixed-fee', 'Institutions', 'New Jersey'] as const).map((item, i) => (
                 <span
                   key={item}
-                  className="text-[13px] text-white/65 tracking-[-0.01em]"
+                  className="text-[13px] text-anthracite/85 tracking-[-0.01em]"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   {item}
-                  {i < 2 && <span className="mx-4 text-white/20" aria-hidden="true">·</span>}
+                  {i < 2 && <span className="mx-4 text-anthracite/20" aria-hidden="true">·</span>}
                 </span>
               ))}
             </motion.div>
@@ -546,7 +546,7 @@ export function Launch() {
                 transition={reduce ? undefined : { duration: 0.5, delay: 0.2, ease: EASE }}>
                 {DIFFERENTIATORS.map(pt => (
                   <li key={pt} className="flex gap-3.5 items-start">
-                    <span className="flex-shrink-0 w-[4px] h-[4px] bg-patina mt-[8px]" aria-hidden="true" />
+                    <span className="flex-shrink-0 w-[4px] h-[4px] bg-anthracite/30 mt-[8px]" aria-hidden="true" />
                     <span
                       className="text-[14px] text-anthracite/75 leading-[1.65]"
                       style={{ fontFamily: 'var(--font-body)' }}>
@@ -616,7 +616,7 @@ export function Launch() {
                   viewport={reduce ? undefined : VIEWPORT}
                   transition={reduce ? undefined : { duration: 0.4, delay: i * 0.055, ease: EASE }}>
                   <span
-                    className="flex-shrink-0 w-6 h-6 rounded-full bg-patina/12 text-patina flex items-center justify-center text-[11px] font-medium mt-0.5"
+                    className="flex-shrink-0 w-6 h-6 rounded-full bg-anthracite/10 text-anthracite/60 flex items-center justify-center text-[11px] font-medium mt-0.5"
                     style={{ fontFamily: 'var(--font-body)' }}
                     aria-hidden="true">
                     {i + 1}
@@ -1093,7 +1093,7 @@ export function Launch() {
         heading="A funding opportunity review is the first step."
         body="Submit a funding opportunity for initial review. Aedifica will assess fit, eligibility, and timeline before any engagement begins. No commitment required."
         primary={{ label: 'Discuss a Launch Engagement', to: '/partner' }}
-        color="patina"
+        color="sediment"
       />
 
     </main>

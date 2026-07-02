@@ -1,5 +1,5 @@
 ﻿'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
 import {
@@ -400,13 +400,19 @@ export function BridgingBrilliance() {
     setOpenLessons(prev => ({ ...prev, [i]: !prev[i] }))
 
   const [lessonModalOpen, setLessonModalOpen] = useState(false)
+  const modalTriggerRef = useRef<HTMLButtonElement | null>(null)
+  const closeButtonRef  = useRef<HTMLButtonElement | null>(null)
 
   useEffect(() => {
-    if (!lessonModalOpen) return
+    if (!lessonModalOpen) {
+      modalTriggerRef.current?.focus()
+      return
+    }
     const prev = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setLessonModalOpen(false) }
     document.addEventListener('keydown', onKey)
+    requestAnimationFrame(() => closeButtonRef.current?.focus())
     return () => {
       document.body.style.overflow = prev
       document.removeEventListener('keydown', onKey)
@@ -1136,7 +1142,7 @@ export function BridgingBrilliance() {
               </motion.p>
 
               <motion.button
-                onClick={() => setLessonModalOpen(true)}
+                onClick={(e) => { modalTriggerRef.current = e.currentTarget as HTMLButtonElement; setLessonModalOpen(true) }}
                 className="inline-flex items-center gap-2.5 text-[13.5px] text-datum tracking-[-0.01em] group cursor-pointer"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0 }}
@@ -1218,7 +1224,7 @@ export function BridgingBrilliance() {
           <>
             {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 bg-anthracite/70 z-[100]"
+              className="fixed inset-0 bg-anthracite/60 z-[100] backdrop-blur-[2px]"
               initial={reduce ? undefined : { opacity: 0 }}
               animate={reduce ? undefined : { opacity: 1 }}
               exit={reduce ? undefined : { opacity: 0 }}
@@ -1236,7 +1242,20 @@ export function BridgingBrilliance() {
               initial={reduce ? undefined : { opacity: 0, y: 24 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               exit={reduce ? undefined : { opacity: 0, y: 12 }}
-              transition={reduce ? undefined : { duration: 0.28, ease: SPRING }}>
+              transition={reduce ? undefined : { duration: 0.28, ease: SPRING }}
+              onKeyDown={(e) => {
+                if (e.key !== 'Tab') return
+                const focusable = e.currentTarget.querySelectorAll<HTMLElement>(
+                  'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                )
+                if (!focusable.length) return
+                const first = focusable[0]
+                const last = focusable[focusable.length - 1]
+                if (e.shiftKey ? document.activeElement === first : document.activeElement === last) {
+                  e.preventDefault()
+                  ;(e.shiftKey ? last : first).focus()
+                }
+              }}>
 
               {/* Sticky header */}
               <div className="flex-shrink-0 flex items-start justify-between gap-4 px-7 py-5 border-b border-sediment/15">
@@ -1254,6 +1273,7 @@ export function BridgingBrilliance() {
                   </h2>
                 </div>
                 <button
+                  ref={closeButtonRef}
                   onClick={() => setLessonModalOpen(false)}
                   className="flex-shrink-0 w-9 h-9 flex items-center justify-center text-anthracite/50 hover:text-anthracite transition-colors duration-150 cursor-pointer mt-0.5"
                   aria-label="Close reflection">
