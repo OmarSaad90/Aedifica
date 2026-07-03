@@ -42,52 +42,67 @@ export function MissingChannel() {
           </motion.h2>
         </div>
 
-        {/* The two options, and the gap between them */}
+        {/* The two options, and the broken line between them */}
         <motion.div
-          className="flex items-center max-w-3xl mx-auto mb-7 lg:mb-8"
+          className="max-w-3xl mx-auto mb-8 lg:mb-10"
           initial={reduce ? undefined : { opacity: 0, y: 16 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
           viewport={reduce ? undefined : VIEWPORT}
           transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}
         >
-          <div className="flex-1 border-t border-anthracite/20 pt-4 text-right">
+          {/* The route, interrupted: a line drawn from each side that stops short */}
+          <div className="flex items-center">
+            <div className="flex-1 relative border-t border-anthracite/25">
+              <span
+                className="absolute right-0 top-0 -translate-y-1/2 w-[9px] h-[9px] rotate-45 bg-datum"
+                aria-hidden="true"
+              />
+            </div>
             <p
-              className="text-[10.5px] uppercase tracking-[0.14em] text-anthracite/45 mb-2"
-              style={{ fontFamily: 'var(--font-body)' }}
-            >
-              Option one
-            </p>
-            <p
-              className="text-[1.25rem] lg:text-[1.5rem] italic text-anthracite leading-[1.1]"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
-            >
-              Four-year program
-            </p>
-          </div>
-
-          <div className="flex flex-col items-center flex-shrink-0 px-8 lg:px-12 pt-4">
-            <span className="w-[8px] h-[8px] rotate-45 bg-datum mb-2.5" aria-hidden="true" />
-            <p
-              className="text-[9.5px] uppercase tracking-[0.1em] text-datum whitespace-nowrap"
+              className="flex-shrink-0 px-5 lg:px-7 text-[11px] lg:text-[12px] uppercase tracking-[0.12em] text-datum whitespace-nowrap"
               style={{ fontFamily: 'var(--font-body)' }}
             >
               no bridge
             </p>
+            <div className="flex-1 relative border-t border-anthracite/25">
+              <span
+                className="absolute left-0 top-0 -translate-y-1/2 w-[9px] h-[9px] rotate-45 bg-datum"
+                aria-hidden="true"
+              />
+            </div>
           </div>
 
-          <div className="flex-1 border-t border-anthracite/20 pt-4">
-            <p
-              className="text-[10.5px] uppercase tracking-[0.14em] text-anthracite/45 mb-2"
-              style={{ fontFamily: 'var(--font-body)' }}
-            >
-              Option two
-            </p>
-            <p
-              className="text-[1.25rem] lg:text-[1.5rem] italic text-anthracite leading-[1.1]"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
-            >
-              Trade route
-            </p>
+          {/* The two options, converging toward the break */}
+          <div className="flex items-start mt-5 lg:mt-6">
+            <div className="flex-1 text-right">
+              <p
+                className="text-[10.5px] uppercase tracking-[0.14em] text-anthracite/45 mb-2"
+                style={{ fontFamily: 'var(--font-body)' }}
+              >
+                Option one
+              </p>
+              <p
+                className="text-[1.625rem] lg:text-[1.875rem] italic text-anthracite leading-[1.1]"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
+              >
+                Four-year program
+              </p>
+            </div>
+            <div className="flex-shrink-0 px-5 lg:px-7" aria-hidden="true" />
+            <div className="flex-1 text-left">
+              <p
+                className="text-[10.5px] uppercase tracking-[0.14em] text-anthracite/45 mb-2"
+                style={{ fontFamily: 'var(--font-body)' }}
+              >
+                Option two
+              </p>
+              <p
+                className="text-[1.625rem] lg:text-[1.875rem] italic text-anthracite leading-[1.1]"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
+              >
+                Trade route
+              </p>
+            </div>
           </div>
         </motion.div>
 
