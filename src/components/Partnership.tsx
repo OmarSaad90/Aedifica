@@ -76,6 +76,8 @@ export function Partnership() {
               <img
                 src="/images/partnership-event.jpg"
                 alt="Aedifica partnership event with students and educators, New Jersey"
+                width={2048}
+                height={1536}
                 className="w-full h-auto object-cover"
                 style={{ filter: 'grayscale(20%) contrast(1.05)' }}
                 loading="lazy"

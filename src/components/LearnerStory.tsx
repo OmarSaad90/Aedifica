@@ -8,7 +8,7 @@ export function LearnerStory() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-anthracite py-14 lg:py-20" aria-labelledby="story-heading">
+    <section className="bg-anthracite py-12 lg:py-18" aria-labelledby="story-heading">
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="lg:grid lg:grid-cols-[1.5fr_1fr] lg:gap-16 xl:gap-20 lg:items-start">
@@ -50,7 +50,7 @@ export function LearnerStory() {
                   viewport={reduce ? undefined : VIEWPORT}
                   transition={reduce ? undefined : { duration: 0.45, delay: i * 0.08, ease: EASE }}>
                   <span
-                    className="text-[10.5px] text-datum uppercase tracking-[0.12em] pt-px"
+                    className="text-[10.5px] text-datum-light uppercase tracking-[0.12em] pt-px"
                     style={{ fontFamily: 'var(--font-body)' }}>
                     {label}
                   </span>
@@ -81,7 +81,7 @@ export function LearnerStory() {
               <img
                 src="/images/learner-story.jpg"
                 alt="Aedifica program participant presenting bridge design at Stevens Institute of Technology"
-                className="w-full h-[420px] lg:h-[520px] object-cover object-top"
+                className="w-full h-[360px] lg:h-[440px] object-cover object-[50%_20%]"
                 style={{ filter: 'grayscale(25%) contrast(1.07)' }}
                 loading="lazy"
               />

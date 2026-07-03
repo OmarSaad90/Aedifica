@@ -8,12 +8,28 @@ export function TheGap() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-anthracite py-14 lg:py-20" aria-labelledby="gap-heading">
+    <section className="bg-anthracite py-12 lg:py-18" aria-labelledby="gap-heading">
       <div className="max-w-7xl mx-auto px-6">
         <div className="lg:grid lg:grid-cols-[1fr_0.75fr] lg:gap-16 xl:gap-20 lg:items-start">
 
           {/* Left column: heading + body */}
           <div>
+            <motion.div
+              className="flex items-center gap-3 mb-7"
+              initial={reduce ? undefined : { opacity: 0 }}
+              whileInView={reduce ? undefined : { opacity: 1 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.4, ease: EASE }}
+            >
+              <span className="w-7 h-[2px] bg-datum-light flex-shrink-0" aria-hidden="true" />
+              <p
+                className="text-[13.5px] uppercase tracking-[0.14em] text-datum-light font-medium leading-none"
+                style={{ fontFamily: 'var(--font-body)' }}
+              >
+                Why we exist
+              </p>
+            </motion.div>
+
             <motion.h2
               id="gap-heading"
               className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] leading-[1.12] tracking-[-0.03em] text-white italic mb-8 [text-wrap:balance]"
@@ -23,8 +39,35 @@ export function TheGap() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, ease: EASE }}
             >
-              A cleaner future needs people who can build it. That pathway is missing. We build it.
+              Construction shapes every community, but too many capable people never see a clear path into it.
             </motion.h2>
+
+            <motion.p
+              className="text-[15.5px] text-white/65 leading-[1.72] max-w-[68ch] mb-5"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 20 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.07, ease: EASE }}
+            >
+              Aedifica builds education-to-workforce pathways that move students, adult learners, and
+              institutions from exposure to skills, from skills to credentials, and from credentials to
+              opportunity.
+            </motion.p>
+
+            <motion.p
+              className="text-[15.5px] text-white/65 leading-[1.72] max-w-[68ch] mb-5"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 20 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.13, ease: EASE }}
+            >
+              New Jersey is investing in a cleaner, more resilient future: offshore wind,
+              energy-efficiency retrofits, transit, and the long-overdue upgrade of aging infrastructure.
+              Delivering all of it takes more than funding. It takes people who can plan, coordinate,
+              manage, and lead complex projects.
+            </motion.p>
 
             <motion.p
               className="text-[15.5px] text-white/65 leading-[1.72] max-w-[68ch]"
@@ -32,14 +75,12 @@ export function TheGap() {
               initial={reduce ? undefined : { opacity: 0, y: 20 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.5, delay: 0.07, ease: EASE }}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.19, ease: EASE }}
             >
-              New Jersey is investing in offshore wind, energy-efficiency retrofits, transit, and the
-              long-overdue upgrade of aging infrastructure. Delivering it takes people who can plan,
-              coordinate, manage, and lead complex projects: managers, estimators, schedulers, safety
-              leads, and field-ready professionals. Experienced managers are retiring, too few young
-              people see construction as a modern career, and the adults who could fill the gap rarely
-              get a credible way in.
+              That workforce is thinning. Experienced managers are retiring, too few young people see
+              construction as a modern, technology-driven career, and the adults who could fill the gap
+              are rarely given a credible way in. The result isn't a shortage of effort, it's a missing
+              pathway into supervisory-track roles.
             </motion.p>
           </div>
 
@@ -55,7 +96,7 @@ export function TheGap() {
               aria-hidden="true"
             />
             <motion.p
-              className="text-[1.75rem] lg:text-[2.125rem] xl:text-[2.5rem] text-white/85 leading-[1.25] italic mb-6"
+              className="text-[2rem] lg:text-[2.375rem] xl:text-[2.75rem] text-white/85 leading-[1.25] italic mb-6"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 20 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -63,7 +104,7 @@ export function TheGap() {
               transition={reduce ? undefined : { duration: 0.55, delay: 0.18, ease: EASE }}
             >
               Aedifica builds{' '}
-              <span className="text-datum">that pathway.</span>
+              <span className="text-datum-light">that pathway.</span>
             </motion.p>
             <motion.p
               className="text-[14px] text-white/65 leading-[1.72] max-w-[42ch]"

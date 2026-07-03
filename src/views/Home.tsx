@@ -2,6 +2,7 @@
 import { Hero } from '../components/Hero'
 import { CredibilityBar } from '../components/CredibilityBar'
 import { TheGap } from '../components/TheGap'
+import { MissingChannel } from '../components/MissingChannel'
 import { AedificaModel } from '../components/AedificaModel'
 import { FourGates } from '../components/FourGates'
 import { Services } from '../components/Services'
@@ -10,6 +11,7 @@ import { Partnership } from '../components/Partnership'
 import { CostCallout } from '../components/CostCallout'
 import { LearnerStory } from '../components/LearnerStory'
 import { PriorExperience } from '../components/PriorExperience'
+import { WhoWeServe } from '../components/WhoWeServe'
 import { FinalCTA } from '../components/FinalCTA'
 
 export function Home() {
@@ -18,6 +20,7 @@ export function Home() {
       <Hero />
       <CredibilityBar />
       <TheGap />
+      <MissingChannel />
       <AedificaModel />
       <LearnerStory />
       <FourGates />
@@ -25,6 +28,7 @@ export function Home() {
       <CurriculumStrip />
       <Partnership />
       <CostCallout />
+      <WhoWeServe />
       <PriorExperience />
       <FinalCTA />
     </main>

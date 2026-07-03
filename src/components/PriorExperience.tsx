@@ -23,6 +23,8 @@ export function PriorExperience() {
             <img
               src="/images/stem-workshop.jpg"
               alt="Students in structured STEM and construction workshop, New Jersey"
+              width={2048}
+              height={1536}
               className="w-full h-auto object-cover"
               style={{ filter: 'grayscale(20%) contrast(1.05)' }}
               loading="lazy"
@@ -82,6 +84,7 @@ export function PriorExperience() {
           </div>
 
         </div>
+
       </div>
     </section>
   )

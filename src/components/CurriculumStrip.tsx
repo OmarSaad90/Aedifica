@@ -68,7 +68,7 @@ export function CurriculumStrip() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.45, delay: 0.2, ease: EASE }}>
               <Link href="/services/rebuild"
-                className="inline-flex items-center gap-2 text-[13.5px] text-datum tracking-[-0.01em] group"
+                className="inline-flex items-center gap-2 text-[13.5px] text-datum-light tracking-[-0.01em] group"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Explore Aedifica Rebuild
                 <span

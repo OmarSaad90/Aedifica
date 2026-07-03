@@ -25,18 +25,18 @@ export function Hero() {
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
           transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}
         >
-          Construction-Management Workforce Architecture · New Jersey
+          Earth · Engineers · Education
         </motion.p>
 
         <motion.h1
           id="hero-heading"
-          className="text-[2.75rem] lg:text-[3.5rem] xl:text-[4.75rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic pb-1 mb-7 max-w-[24ch] [text-wrap:balance]"
+          className="text-[2.75rem] lg:text-[3.5rem] xl:text-[4.75rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic pb-1 mb-7 max-w-[15ch] [text-wrap:balance]"
           style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
           initial={reduce ? undefined : { opacity: 0, y: 28 }}
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
           transition={reduce ? undefined : { duration: 0.7, delay: 0.22, ease: SPRING }}
         >
-          Construction shapes every community. Too many capable people never see a clear path into it.
+          We build the builders New Jersey is <span className="text-datum">counting on.</span>
         </motion.h1>
 
         <motion.p
@@ -46,7 +46,7 @@ export function Hero() {
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
           transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}
         >
-          Aedifica builds education-to-workforce pathways that help students, adult learners, and institutions move from exposure to skills, from skills to credentials, and from credentials to opportunity.
+          New Jersey is building a cleaner, more resilient future, but the workforce that plans, manages, and delivers those projects isn't strong enough yet. Aedifica builds that pathway, from early exposure to credentialed, employer-connected careers in construction management.
         </motion.p>
 
         <motion.div
@@ -72,6 +72,35 @@ export function Hero() {
         <HeroPathway />
 
         </div>
+
+        <motion.div
+          className="flex flex-col sm:flex-row sm:divide-x divide-anthracite/12 border-t border-anthracite/12 mt-14 lg:mt-16 pt-8 gap-6 sm:gap-0"
+          initial={reduce ? undefined : { opacity: 0, y: 16 }}
+          animate={reduce ? undefined : { opacity: 1, y: 0 }}
+          transition={reduce ? undefined : { duration: 0.5, delay: 0.56, ease: EASE }}
+        >
+          {[
+            { n: '$1B+', l: 'delivered infrastructure behind our leadership' },
+            { n: 'Employer-validated', l: 'capstone behind every credential' },
+            { n: 'NJ-funded', l: 'green and apprenticeship priorities' },
+          ].map(({ n, l }) => (
+            <div key={n} className="sm:flex-1 sm:px-8 first:pl-0 first:sm:pl-0 last:pr-0">
+              <p
+                className="text-[1.375rem] lg:text-[1.625rem] text-anthracite italic leading-none mb-2"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
+              >
+                {n}
+              </p>
+              <p
+                className="text-[12.5px] text-anthracite/65 uppercase tracking-[0.08em] leading-[1.5] max-w-[24ch]"
+                style={{ fontFamily: 'var(--font-body)' }}
+              >
+                {l}
+              </p>
+            </div>
+          ))}
+        </motion.div>
+
       </div>
     </section>
   )
