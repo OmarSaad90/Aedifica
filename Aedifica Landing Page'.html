@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aedifica — We build the builders.</title>
+<meta name="description" content="Aedifica builds construction-management education-to-workforce pathways for the NJ/NY metro — moving students, adult learners, and institutions from exposure to skills, skills to credentials, and credentials to opportunity. Earth. Engineers. Education." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  :root{
+    /* neutrals — supporting palette */
+    --bg:#F1EDE9; --surface:#FFFFFF; --ink:#444041; --ink-soft:#625C60; --rule:#DBD3CF; --clay:#7D6461; --band-dark:#23211F;
+    /* program colour-coding (consistent) */
+    --explore:#6667AB; --explore-deep:#4B4C86; --explore-tint:#ECEAF2; --explore-on:#FFFFFF;   /* purple */
+    --pathway:#859F94; --pathway-deep:#566B5E; --pathway-tint:#E9ECE6; --pathway-on:#23211F;   /* green */
+    --launch:#CDB97D;  --launch-deep:#6E5A22;  --launch-tint:#F3ECDA;  --launch-on:#23211F;    /* yellow */
+    --rebuild:#A0838F; --rebuild-deep:#674B57; --rebuild-tint:#F0E9EC; --rebuild-on:#23211F;   /* light burgundy */
+    /* accent — auxiliary rose palette */
+    --wine:#894B5D; --terracotta:#D3927D; --dmauve:#C6AAAF; --blush:#E2C1BE;
+    --maxw:1180px;
+    --serif:"Fraunces",Georgia,serif; --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; --mono:"Space Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  h1,h2,h3{font-family:var(--serif); font-weight:500; line-height:1.06; margin:0; letter-spacing:-0.01em;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  .tag{font-family:var(--mono); font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-soft);}
+  .sectionmark{font-family:var(--mono); font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-soft); display:flex; align-items:center; gap:12px; margin-bottom:22px;}
+  .sectionmark::after{content:""; height:1px; flex:1; background:var(--rule);}
+  .spec-strip{display:flex; height:6px; width:100%;}
+  .spec-strip span{flex:1;}
+  .spec-strip .s1{background:var(--explore);} .spec-strip .s2{background:var(--pathway);}
+  .spec-strip .s3{background:var(--launch);}  .spec-strip .s4{background:var(--rebuild);}
+
+  header.site{position:sticky; top:0; z-index:50; background:rgba(241,237,233,0.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--rule);}
+  .nav{display:flex; align-items:center; justify-content:space-between; height:70px;}
+  .brand{font-family:var(--serif); font-size:25px; font-weight:600; letter-spacing:-0.02em; text-decoration:none; color:var(--ink);}
+  .navlinks{display:flex; gap:26px; align-items:center;}
+  .navlinks a{font-family:var(--mono); font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; color:var(--ink-soft); transition:color .2s;}
+  .navlinks a:hover{color:var(--ink);}
+  .btn{font-family:var(--mono); font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; display:inline-block; padding:12px 20px; border-radius:2px; background:var(--ink); color:var(--bg); border:1px solid var(--ink); transition:transform .15s, background .2s, color .2s; cursor:pointer;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn.ghost{background:transparent; color:var(--ink);}
+  .btn.ghost:hover{background:var(--ink); color:var(--bg);}
+  .btn.cream{background:var(--bg); color:var(--ink); border-color:var(--bg);}
+  .btn.cream:hover{background:transparent; color:var(--bg); border-color:var(--bg);}
+  .menu-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px; color:var(--ink);}
+  .menu-toggle svg{width:26px;height:26px;}
+
+  /* hero */
+  .hero{position:relative; overflow:hidden; padding:84px 0 64px;}
+  .hero::before{content:""; position:absolute; inset:0; pointer-events:none; opacity:.5; background-image:linear-gradient(to right, rgba(68,64,65,.04) 1px, transparent 1px),linear-gradient(to bottom, rgba(68,64,65,.04) 1px, transparent 1px); background-size:44px 44px; -webkit-mask-image:linear-gradient(to bottom,#000 0%,transparent 78%); mask-image:linear-gradient(to bottom,#000 0%,transparent 78%);}
+  .hero .wrap{position:relative;}
+  .hero-top{display:grid; grid-template-columns:1.28fr 0.72fr; gap:54px; align-items:center;}
+  .hero .eyebrow{margin-bottom:26px;}
+  .hero h1{font-size:clamp(2.6rem,6.2vw,4.7rem); max-width:14ch;}
+  .hero h1 em{font-style:normal; color:var(--wine);}
+  .hero .sub{font-size:clamp(1.05rem,1.7vw,1.32rem); color:var(--ink); max-width:52ch; margin:28px 0 0; line-height:1.5;}
+  .hero .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-top:34px;}
+
+  .hero-index{background:var(--surface); border:1px solid var(--rule); border-radius:5px; padding:8px 24px 14px; box-shadow:0 24px 50px -34px rgba(68,64,65,.4);}
+  .hero-index .ix-head{font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-soft); padding:16px 0 14px; border-bottom:1px solid var(--rule); display:flex; justify-content:space-between;}
+  .ix-row{display:flex; align-items:center; gap:16px; padding:16px 0; border-bottom:1px solid var(--rule); text-decoration:none; color:var(--ink);}
+  .ix-row:last-child{border-bottom:none;}
+  .ix-chip{width:30px; height:30px; border-radius:3px; flex:none;}
+  .ix-name{font-family:var(--serif); font-size:1.18rem; flex:1; transition:color .18s;}
+  .ix-meta{font-family:var(--mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft);}
+  .ix-row:hover .ix-name{color:var(--cd);}
+  .ix-row.explore{--cd:var(--explore-deep);} .ix-row.explore .ix-chip{background:var(--explore);}
+  .ix-row.pathway{--cd:var(--pathway-deep);} .ix-row.pathway .ix-chip{background:var(--pathway);}
+  .ix-row.launch{--cd:var(--launch-deep);}   .ix-row.launch .ix-chip{background:var(--launch);}
+  .ix-row.rebuild{--cd:var(--rebuild-deep);} .ix-row.rebuild .ix-chip{background:var(--rebuild);}
+
+  .proof{display:flex; flex-wrap:wrap; gap:0; margin-top:54px; border-top:1px solid var(--rule);}
+  .proof div{flex:1 1 220px; padding:20px 26px 4px 0; border-right:1px solid var(--rule);}
+  .proof div:last-child{border-right:none;}
+  .proof .n{font-family:var(--serif); font-size:1.18rem; color:var(--ink); display:block; margin-bottom:4px;}
+  .proof .l{font-family:var(--mono); font-size:11.5px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft);}
+
+  section{padding:82px 0;}
+  .lead{font-family:var(--serif); font-size:clamp(1.5rem,3vw,2.15rem); line-height:1.22; max-width:20ch; color:var(--ink);}
+  .why-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:start;}
+  .why-body p{font-size:1.12rem; margin:0 0 20px; max-width:60ch;}
+  .why-body p:last-child{margin-bottom:0;}
+  .why-body strong{color:var(--wine);}
+  .pull{border-left:3px solid var(--pathway); padding-left:20px; margin-top:26px;}
+  .pull .tag{display:block; margin-bottom:10px;}
+  .pull p{margin:0; font-size:1.02rem; color:var(--ink-soft);}
+
+  /* exposure -> opportunity progression */
+  .flow{display:flex; flex-wrap:wrap; gap:0; border:1px solid var(--rule); border-radius:4px; overflow:hidden; margin-top:34px; background:var(--surface);}
+  .flow > div{flex:1 1 190px; padding:20px 22px; border-right:1px solid var(--rule);}
+  .flow > div:last-child{border-right:none;}
+  .flow .s{font-family:var(--mono); font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-soft); display:flex; align-items:center; gap:8px; margin-bottom:9px;}
+  .flow .dot{width:9px; height:9px; border-radius:2px; display:inline-block;}
+  .flow .t{font-family:var(--serif); font-size:1.28rem; color:var(--ink);}
+
+  /* 3-part / credibility grid */
+  .trio{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:40px;}
+  .cred{padding-top:22px; border-top:2px solid var(--ink);}
+  .cred .tag{display:block; margin-bottom:14px;}
+  .cred h3{font-size:1.34rem; margin-bottom:12px;}
+  .cred p{margin:0; font-size:1rem; color:var(--ink-soft);}
+  .cred.c1{border-color:var(--explore);} .cred.c1 .tag{color:var(--explore-deep);}
+  .cred.c2{border-color:var(--launch);}  .cred.c2 .tag{color:var(--launch-deep);}
+  .cred.c3{border-color:var(--pathway);} .cred.c3 .tag{color:var(--pathway-deep);}
+
+  #programs{background:var(--surface); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);}
+  .prog-head{display:flex; justify-content:space-between; align-items:flex-end; gap:30px; flex-wrap:wrap; margin-bottom:46px;}
+  .prog-head h2{font-size:clamp(2rem,4vw,3rem); max-width:16ch;}
+  .prog-head p{font-family:var(--mono); font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); max-width:34ch; line-height:1.7; margin:0;}
+  .cards{display:grid; grid-template-columns:repeat(2,1fr); gap:24px;}
+  .card{background:var(--bg); border:1px solid var(--rule); border-radius:4px; overflow:hidden; display:flex; flex-direction:column; transition:transform .22s ease, box-shadow .22s ease;}
+  .card:hover{transform:translateY(-4px); box-shadow:0 18px 40px -24px rgba(68,64,65,.45);}
+  .card .band{background:var(--c); color:var(--on); padding:18px 24px; display:flex; justify-content:space-between; align-items:center; gap:14px;}
+  .card .band .code{font-family:var(--mono); font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase; opacity:.95;}
+  .card .band .aud{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; opacity:.8;}
+  .card .body{padding:26px 24px 12px; flex:1; display:flex; flex-direction:column;}
+  .card h3{font-size:1.7rem; color:var(--cd); margin-bottom:4px;}
+  .card .pos{font-weight:600; font-size:1.02rem; color:var(--ink); margin:0 0 14px;}
+  .card .why{font-size:0.98rem; color:var(--ink); margin:0 0 16px; line-height:1.55;}
+  .card .what{font-family:var(--mono); font-size:11.5px; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-soft); line-height:1.7; border-top:1px solid var(--rule); padding-top:14px; margin:auto 0 0;}
+  .card .more{display:inline-flex; align-items:center; gap:8px; padding:16px 24px 22px; font-family:var(--mono); font-size:12px; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; color:var(--cd); font-weight:700;}
+  .card .more .arrow{transition:transform .2s;}
+  .card:hover .more .arrow{transform:translateX(5px);}
+  .card.explore{--c:var(--explore);--cd:var(--explore-deep);--on:var(--explore-on);}
+  .card.pathway{--c:var(--pathway);--cd:var(--pathway-deep);--on:var(--pathway-on);}
+  .card.launch{--c:var(--launch);--cd:var(--launch-deep);--on:var(--launch-on);}
+  .card.rebuild{--c:var(--rebuild);--cd:var(--rebuild-deep);--on:var(--rebuild-on);}
+
+  /* program comparison table */
+  .cmp-intro{margin-top:56px; padding-top:44px; border-top:1px solid var(--rule);}
+  .cmp-intro h3{font-size:clamp(1.6rem,3vw,2.2rem); max-width:22ch; margin:10px 0 12px; color:var(--ink);}
+  .cmp-intro p{max-width:64ch; color:var(--ink-soft); font-size:1.05rem;}
+  .cmp-wrap{overflow-x:auto; margin-top:28px;}
+  .cmp{width:100%; border-collapse:collapse; background:var(--bg); border:1px solid var(--rule); border-radius:6px; overflow:hidden;}
+  .cmp thead th{font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft); text-align:left; padding:16px 20px; border-bottom:1px solid var(--rule); background:var(--surface); font-weight:700;}
+  .cmp td{padding:22px 20px; border-bottom:1px solid var(--rule); vertical-align:top; font-size:0.96rem;}
+  .cmp tr:last-child td{border-bottom:none;}
+  .cmp .offer{border-left:5px solid var(--c); position:relative;}
+  .cmp .offer .oname{font-family:var(--serif); font-size:1.28rem; color:var(--cd); line-height:1.1;}
+  .cmp .offer .ocode{font-family:var(--mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft); margin-top:6px; display:block;}
+  .cmp .purpose{color:var(--ink);}
+  .cmp .fmt{color:var(--ink-soft);}
+  .cmp .cta-cell .btn{background:var(--c); border-color:var(--c); color:var(--on); white-space:normal; text-align:center; line-height:1.3;}
+  .cmp .cta-cell .btn:hover{filter:brightness(0.94); transform:none;}
+  .cmp tr.explore{--c:var(--explore);--cd:var(--explore-deep);--on:var(--explore-on);}
+  .cmp tr.pathway{--c:var(--pathway);--cd:var(--pathway-deep);--on:var(--pathway-on);}
+  .cmp tr.launch{--c:var(--launch);--cd:var(--launch-deep);--on:var(--launch-on);}
+  .cmp tr.rebuild{--c:var(--rebuild);--cd:var(--rebuild-deep);--on:var(--rebuild-on);}
+  .btn.sm{padding:9px 14px; font-size:11px;}
+
+  /* four commitments */
+  .commit-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px;}
+  .commit{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:26px 28px;}
+  .commit .num{font-family:var(--mono); font-size:12px; letter-spacing:0.14em; font-weight:700; display:inline-block; margin-bottom:12px;}
+  .commit h3{font-size:1.28rem; margin-bottom:8px;}
+  .commit p{font-size:0.98rem; color:var(--ink-soft); margin:0;}
+  .commit.k1 .num{color:var(--explore-deep);}
+  .commit.k2 .num{color:var(--pathway-deep);}
+  .commit.k3 .num{color:var(--launch-deep);}
+  .commit.k4 .num{color:var(--rebuild-deep);}
+  .commit-note{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-top:22px; padding:20px 26px; background:var(--explore-tint); border:1px solid var(--rule); border-radius:4px;}
+  .commit-note p{margin:0; font-size:1.05rem;}
+  .commit-note p b{color:var(--wine);}
+  .commit-note .tag{white-space:nowrap;}
+
+  .serve-audiences{font-family:var(--mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:36px;}
+  .serve-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  .serve-col{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:34px 32px; position:relative;}
+  .serve-col::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px;}
+  .serve-col.partners::before{background:var(--launch);}
+  .serve-col.learners::before{background:var(--explore);}
+  .serve-col h3{font-size:1.5rem; margin-bottom:6px;}
+  .serve-col .tag{display:block; margin-bottom:18px;}
+  .serve-col ul{list-style:none; margin:0; padding:0; columns:2; column-gap:24px;}
+  .serve-col li{padding:7px 0; font-size:0.97rem; border-bottom:1px solid var(--rule); break-inside:avoid;}
+
+  #proof{background:var(--surface); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);}
+  .proof-note{max-width:60ch; margin:18px 0 0; color:var(--ink-soft); font-size:1.05rem;}
+  .proof-note b{color:var(--ink); font-weight:600;}
+
+  #partner{background:var(--ink); color:var(--bg);}
+  #partner .wrap{text-align:center; max-width:820px;}
+  #partner .sectionmark{justify-content:center; color:#A7A09B;}
+  #partner .sectionmark::after{display:none;}
+  #partner h2{color:var(--bg); font-size:clamp(2.1rem,4.6vw,3.3rem); margin:0 auto; max-width:18ch;}
+  #partner h2 em{font-style:normal; color:var(--blush);}
+  #partner p{color:#D8D2CE; font-size:1.12rem; max-width:54ch; margin:24px auto 0;}
+  #partner .cta-row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:34px;}
+
+  footer.site{background:var(--bg); padding:64px 0 0;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; padding-bottom:40px;}
+  .foot-brand .brand{font-size:30px; display:inline-block; margin-bottom:14px;}
+  .foot-brand .ee{font-family:var(--mono); font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 18px;}
+  .foot-brand .sig{font-family:var(--serif); font-size:1.5rem; color:var(--wine);}
+  .foot-col h4{font-family:var(--mono); font-size:11.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 16px; font-weight:700;}
+  .foot-col a{display:block; text-decoration:none; padding:6px 0; font-size:0.98rem; color:var(--ink); transition:color .2s;}
+  .foot-col a:hover{color:var(--wine);}
+
+  .palette{border-top:1px solid var(--rule); padding:26px 0 8px;}
+  .palette .plabel{font-family:var(--mono); font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:12px;}
+  .swrow{display:flex; flex-wrap:wrap; gap:10px;}
+  .sw{display:flex; flex-direction:column; gap:6px;}
+  .sw i{width:46px; height:34px; border-radius:3px; display:block; border:1px solid rgba(68,64,65,.12);}
+  .sw span{font-family:var(--mono); font-size:9px; letter-spacing:0.04em; color:var(--ink-soft);}
+  .swrow.sep{margin-left:6px; padding-left:16px; border-left:1px solid var(--rule);}
+
+  .foot-bottom{border-top:1px solid var(--rule); margin-top:22px; padding:20px 0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+  .foot-bottom span{font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft);}
+
+  @media (prefers-reduced-motion: no-preference){
+    .js .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+    .js .reveal.in{opacity:1; transform:none;}
+  }
+  :focus-visible{outline:2px solid var(--explore); outline-offset:3px;}
+
+  @media (max-width:880px){
+    .hero-top{grid-template-columns:1fr; gap:36px;}
+    .why-grid{grid-template-columns:1fr; gap:30px;}
+    .cards{grid-template-columns:1fr;}
+    .trio{grid-template-columns:1fr;}
+    .commit-grid{grid-template-columns:1fr;}
+    .serve-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr; gap:30px;}
+    .proof div{flex:1 1 100%; border-right:none; border-bottom:1px solid var(--rule); padding:16px 0;}
+    .flow > div{flex:1 1 100%; border-right:none; border-bottom:1px solid var(--rule);}
+    .flow > div:last-child{border-bottom:none;}
+  }
+  @media (max-width:820px){
+    .cmp thead{display:none;}
+    .cmp, .cmp tbody, .cmp tr, .cmp td{display:block; width:100%;}
+    .cmp{border:none; background:transparent;}
+    .cmp tr{background:var(--bg); border:1px solid var(--rule); border-radius:6px; margin-bottom:16px; overflow:hidden;}
+    .cmp td{border-bottom:1px solid var(--rule); padding:14px 18px;}
+    .cmp td::before{content:attr(data-label); display:block; font-family:var(--mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;}
+    .cmp .offer{border-left:none; border-top:6px solid var(--c);}
+    .cmp .offer::before{display:none;}
+    .cmp .cta-cell .btn{display:block;}
+  }
+  @media (max-width:720px){
+    .navlinks{position:fixed; inset:70px 0 auto 0; background:var(--bg); border-bottom:1px solid var(--rule); flex-direction:column; align-items:flex-start; gap:0; padding:8px 28px 22px; display:none;}
+    .navlinks.open{display:flex;}
+    .navlinks a{padding:14px 0; width:100%; border-bottom:1px solid var(--rule); font-size:14px;}
+    .navlinks .btn{margin-top:14px;}
+    .menu-toggle{display:block;}
+    section{padding:60px 0;}
+    .hero{padding:60px 0 48px;}
+    .serve-col ul{columns:1;}
+    .swrow.sep{margin-left:0; padding-left:0; border-left:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="spec-strip"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></div>
+  <div class="wrap nav">
+    <a href="#top" class="brand">Aedifica</a>
+    <nav class="navlinks" id="nav">
+      <a href="#why">Why we exist</a>
+      <a href="#approach">Approach</a>
+      <a href="#programs">Programs</a>
+      <a href="#proof">Track record</a>
+      <a href="#partner" class="btn">Partner with us</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-top">
+        <div class="hero-text">
+          <div class="tag eyebrow reveal">Earth · Engineers · Education</div>
+          <h1 class="reveal">We build the builders New&nbsp;Jersey is <em>counting on.</em></h1>
+          <p class="sub reveal">New Jersey is building a cleaner, more resilient future — but the workforce that plans, manages, and delivers those projects isn't strong enough yet. Aedifica builds that pathway, from early STEM exposure to credentialed, employer-connected careers in construction management.</p>
+          <div class="cta-row reveal">
+            <a href="#partner" class="btn">Partner with Aedifica</a>
+            <a href="#programs" class="btn ghost">Compare the programs</a>
+          </div>
+        </div>
+        <div class="hero-index reveal">
+          <div class="ix-head"><span>The pathway · Index</span><span>04</span></div>
+          <a href="#programs" class="ix-row explore"><span class="ix-chip"></span><span class="ix-name">Explore</span><span class="ix-meta">Students</span></a>
+          <a href="#programs" class="ix-row pathway"><span class="ix-chip"></span><span class="ix-name">Pathway</span><span class="ix-meta">High schools</span></a>
+          <a href="#programs" class="ix-row launch"><span class="ix-chip"></span><span class="ix-name">Launch</span><span class="ix-meta">Institutions</span></a>
+          <a href="#programs" class="ix-row rebuild"><span class="ix-chip"></span><span class="ix-name">Rebuild</span><span class="ix-meta">Adults</span></a>
+        </div>
+      </div>
+      <div class="proof reveal">
+        <div><span class="n">$1B+</span><span class="l">delivered infrastructure behind our leadership</span></div>
+        <div><span class="n">Employer-validated</span><span class="l">capstone behind every credential</span></div>
+        <div><span class="n">NJ-funded</span><span class="l">green &amp; apprenticeship priorities</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- § 01 — WHY WE EXIST -->
+  <section id="why">
+    <div class="wrap">
+      <div class="sectionmark reveal">§ 01 — Why we exist</div>
+      <div class="why-grid">
+        <div class="reveal">
+          <p class="lead">Construction shapes every community — but too many capable people never see a clear path into it.</p>
+          <div class="pull">
+            <span class="tag">The short version</span>
+            <p>New Jersey is building a cleaner, more resilient future — but the people who plan, manage, and lead those projects are in short supply, and too many capable students and adults never find a credible way in.</p>
+          </div>
+        </div>
+        <div class="why-body reveal">
+          <p>Aedifica builds education-to-workforce pathways that move students, adult learners, and institutions <strong>from exposure to skills, from skills to credentials, and from credentials to opportunity.</strong></p>
+          <p>New Jersey is investing in a cleaner, more resilient future — offshore wind, energy-efficiency retrofits, transit, and the long-overdue upgrade of aging infrastructure. Delivering all of it takes more than funding. It takes people who can plan, coordinate, manage, and lead complex projects.</p>
+          <p>That workforce is thinning. Experienced managers are retiring, too few young people see construction as a modern, technology-driven career, and the adults who could fill the gap are rarely given a credible way in. The result isn't a shortage of effort — it's a missing pathway into supervisory-track roles.</p>
+          <p>Aedifica builds that pathway. We introduce students to the built environment early, prepare high-school learners for construction-management opportunities, and help overlooked adults move into credentialed, employer-connected careers. We don't claim to solve the workforce challenge alone — we build the channel, and partner with schools, employers, and communities to prove it works, one placed graduate at a time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- § 02 — THE MISSING CHANNEL -->
+  <section id="channel" style="background:var(--surface); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);">
+    <div class="wrap">
+      <div class="sectionmark reveal">§ 02 — The missing channel</div>
+      <div class="why-grid">
+        <div class="reveal">
+          <p class="lead">Between trade work and four-year programs, there's no standard route into construction management.</p>
+          <div class="pull">
+            <span class="tag">The principle</span>
+            <p>A pathway is credible only when it connects preparation to employer relevance, articulation opportunities, and outcomes that can be reported honestly.</p>
+          </div>
+        </div>
+        <div class="why-body reveal">
+          <p>The construction industry needs managers, estimators, schedulers, safety leaders, BIM coordinators, and field-ready professionals. Yet most learners see only two incomplete options: a four-year degree, or a trade route with no visible bridge into management-track work.</p>
+          <p>Between those two sits a missing channel — a practical, employer-facing route for capable adults and students to prepare for construction-management careers. <strong>Aedifica builds that route.</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- § 03 — APPROACH -->
+  <section id="approach">
+    <div class="wrap">
+      <div class="sectionmark reveal">§ 03 — Our approach</div>
+      <p class="lead reveal" style="max-width:24ch;">Workforce architecture — not isolated training.</p>
+      <p class="reveal" style="max-width:60ch; color:var(--ink-soft); font-size:1.08rem; margin-top:16px;">Aedifica designs the connections a pathway requires. Training matters — but what surrounds training determines whether it leads somewhere. A learner should move cleanly from one stage to the next.</p>
+
+      <div class="flow reveal">
+        <div><span class="s"><span class="dot" style="background:var(--explore)"></span>Stage 01</span><span class="t">Exposure</span></div>
+        <div><span class="s"><span class="dot" style="background:var(--pathway)"></span>Stage 02</span><span class="t">Skills</span></div>
+        <div><span class="s"><span class="dot" style="background:var(--launch)"></span>Stage 03</span><span class="t">Credentials</span></div>
+        <div><span class="s"><span class="dot" style="background:var(--rebuild)"></span>Stage 04</span><span class="t">Opportunity</span></div>
+      </div>
+
+      <div class="trio">
+        <div class="cred c1 reveal"><span class="tag">Prepare learners</span><h3>Ready for relevant work</h3><p>Practical construction-management literacy: documentation, digital tools, estimating foundations, supervisory communication, capstone experience, and interview readiness.</p></div>
+        <div class="cred c2 reveal"><span class="tag">Align institutions</span><h3>Organized around delivery</h3><p>Launch helps organizations pursue workforce and apprenticeship-related funding with a credible program strategy and a measurable outcomes framework.</p></div>
+        <div class="cred c3 reveal"><span class="tag">Publish outcomes</span><h3>What happens next</h3><p>Cohort outcomes published clearly: credentials achieved, who interviewed, employment categories, retention, and apprenticeship progression.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- § 04 — THE PATHWAY (PROGRAMS) -->
+  <section id="programs">
+    <div class="wrap">
+      <div class="sectionmark reveal">§ 04 — The pathway</div>
+      <div class="prog-head">
+        <h2 class="reveal">Four programs. One connected pathway — live together.</h2>
+        <p class="reveal">From a student's first exposure to an adult's first credentialed role, each program closes a specific gap and points back to the whole.</p>
+      </div>
+      <div class="cards">
+
+        <article class="card explore reveal">
+          <div class="band"><span class="code">Explore · Purple</span><span class="aud">Students / districts</span></div>
+          <div class="body">
+            <h3>Aedifica Explore</h3>
+            <p class="pos">Spark the interest early.</p>
+            <p class="why">Too many young people write off construction before they understand it — picturing manual labor, not drones, digital design, and sustainable building. Explore exists to change that first impression, with hands-on discovery in the built environment.</p>
+            <p class="what">Workshops · short modules · holiday &amp; summer camps · school partner programs</p>
+          </div>
+          <a href="#partner" class="more">Explore the built environment <span class="arrow">→</span></a>
+        </article>
+
+        <article class="card pathway reveal">
+          <div class="band"><span class="code">Pathway · Green</span><span class="aud">High schools</span></div>
+          <div class="body">
+            <h3>Aedifica Pathway</h3>
+            <p class="pos">From classroom to construction management.</p>
+            <p class="why">Interest alone isn't enough. Most students drawn to construction have no structured route toward the management roles the industry needs. Pathway exists to build that route — a secondary-education overlay connecting learning to college, credentials, and employers.</p>
+            <p class="what">Semester / year modules · pathway curriculum · capstones · advisory alignment</p>
+          </div>
+          <a href="#partner" class="more">Build a school pathway <span class="arrow">→</span></a>
+        </article>
+
+        <article class="card launch reveal">
+          <div class="band"><span class="code">Launch · Yellow</span><span class="aud">Institutions</span></div>
+          <div class="body">
+            <h3>Aedifica Launch</h3>
+            <p class="pos">We help partners build programs that fund and last.</p>
+            <p class="why">Many schools, colleges, and community organizations want construction pathways of their own — but lack the grant strategy and program design to make them fundable and lasting. Launch exists to close that gap.</p>
+            <p class="what">Advisory · grant strategy · curriculum design · partner implementation</p>
+          </div>
+          <a href="#partner" class="more">Launch a workforce pathway <span class="arrow">→</span></a>
+        </article>
+
+        <article class="card rebuild reveal">
+          <div class="band"><span class="code">Rebuild · Light burgundy</span><span class="aud">Adults</span></div>
+          <div class="body">
+            <h3>Aedifica Rebuild</h3>
+            <p class="pos">A real way in, for the people the system overlooked.</p>
+            <p class="why">Plenty of capable adults are ready for a real career but never get a credible way in — returning adults, veterans, justice-impacted individuals, and returning mothers among them. Rebuild exists to open that door.</p>
+            <p class="what">Structured cohorts · credential-aligned training · portfolio · employer intros</p>
+          </div>
+          <a href="#partner" class="more">Start a Rebuild cohort <span class="arrow">→</span></a>
+        </article>
+
+      </div>
+
+      <!-- choose your on-ramp + program comparison -->
+      <div class="cmp-intro reveal">
+        <p class="tag">Choose your on-ramp</p>
+        <h3>Choose the pathway that fits your learner, school, or workforce goal.</h3>
+        <p>Aedifica programs are designed as connected on-ramps into construction management — start with exposure, build structured learning, bridge adult talent, or launch a full workforce pathway with partners. Use this comparison to identify the best starting point; final formats, calendars, costs, and credentials are customized by partner and cohort.</p>
+      </div>
+      <div class="cmp-wrap reveal">
+        <table class="cmp">
+          <thead>
+            <tr><th>Offering</th><th>Primary audience</th><th>Purpose</th><th>Format</th><th>Start here</th></tr>
+          </thead>
+          <tbody>
+            <tr class="explore">
+              <td class="offer" data-label="Offering"><span class="oname">Aedifica Explore</span><span class="ocode">Purple · 102 103 171</span></td>
+              <td data-label="Primary audience">Middle-school districts, after-school, summer, or early-exposure learners</td>
+              <td class="purpose" data-label="Purpose">Career awareness and hands-on discovery in the built environment (STEM programs)</td>
+              <td class="fmt" data-label="Format">Workshops, short modules, holiday camps, summer camps, school / partner programs</td>
+              <td class="cta-cell" data-label="Start here"><a href="#partner" class="btn sm">Explore the built environment (STEM)</a></td>
+            </tr>
+            <tr class="pathway">
+              <td class="offer" data-label="Offering"><span class="oname">Aedifica Pathway</span><span class="ocode">Green · 133 159 148</span></td>
+              <td data-label="Primary audience">High schools, districts, after-school, summer, or exposure learners</td>
+              <td class="purpose" data-label="Purpose">A structured engineering and construction-management pathway overlay for secondary education</td>
+              <td class="fmt" data-label="Format">Semester / year modules, holiday &amp; summer camps, career-pathway curriculum, capstones, advisory alignment</td>
+              <td class="cta-cell" data-label="Start here"><a href="#partner" class="btn sm">Build a school pathway</a></td>
+            </tr>
+            <tr class="launch">
+              <td class="offer" data-label="Offering"><span class="oname">Aedifica Launch</span><span class="ocode">Yellow · 205 185 125</span></td>
+              <td data-label="Primary audience">Institutions, CTE / vocational partners, workforce boards, nonprofits, community colleges, employers</td>
+              <td class="purpose" data-label="Purpose">Design, fund, and implement construction-management workforce pathways</td>
+              <td class="fmt" data-label="Format">Advisory, grant strategy, curriculum design, partner implementation</td>
+              <td class="cta-cell" data-label="Start here"><a href="#partner" class="btn sm">Launch a workforce pathway</a></td>
+            </tr>
+            <tr class="rebuild">
+              <td class="offer" data-label="Offering"><span class="oname">Aedifica Rebuild</span><span class="ocode">Light burgundy · 160 131 143</span></td>
+              <td data-label="Primary audience">Adults, overlooked learners, career changers, veterans, returning citizens, caregivers</td>
+              <td class="purpose" data-label="Purpose">A bridge into construction-management careers and employer-connected advancement</td>
+              <td class="fmt" data-label="Format">Structured cohorts, credential-aligned training, portfolio, employer introductions</td>
+              <td class="cta-cell" data-label="Start here"><a href="#partner" class="btn sm">Start a Rebuild cohort</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- § 05 — FOUR COMMITMENTS -->
+  <section id="commitments" style="background:var(--surface); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);">
+    <div class="wrap">
+      <div class="sectionmark reveal">§ 05 — Before we begin</div>
+      <p class="lead reveal" style="max-width:26ch; margin-bottom:34px;">A disciplined pathway requires four commitments before instruction begins.</p>
+      <div class="commit-grid">
+        <div class="commit k1 reveal"><span class="num">01 — Recruitment</span><h3>Recruitment &amp; community support</h3><p>A community or recruitment partner helps identify participants and defines attendance support, case-management coordination, supportive services, and data responsibilities.</p></div>
+        <div class="commit k2 reveal"><span class="num">02 — Funding</span><h3>Funding &amp; fiscal alignment</h3><p>A funding or fiscal partner establishes how the cohort is supported, administered, and reported before delivery obligations begin.</p></div>
+        <div class="commit k3 reveal"><span class="num">03 — Employer</span><h3>Employer commitment</h3><p>Participating employers validate role relevance, inform capstone expectations, and commit to a defined interview opportunity for qualified completers.</p></div>
+        <div class="commit k4 reveal"><span class="num">04 — Articulation</span><h3>Articulation or apprenticeship pathway</h3><p>A signed progression route with an apprenticeship sponsor, union local, county college, or employer training program creates a credible next step beyond completion.</p></div>
+      </div>
+      <div class="commit-note reveal">
+        <p>Curriculum without these commitments is a class. <b>Aedifica is designed to build a pathway.</b></p>
+        <span class="tag">Founding Partnership</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- § 06 — TRACK RECORD / TRUST -->
+  <section id="proof">
+    <div class="wrap">
+      <div class="sectionmark reveal">§ 06 — Track record</div>
+      <h2 class="reveal" style="font-size:clamp(2rem,4vw,3rem); max-width:22ch;">Built on relevant delivery experience. Designed to prove future outcomes.</h2>
+      <p class="proof-note reveal">Aedifica's pathway design is informed by prior educational delivery — pre-college engineering workshops for high-school students through <b>Stevens Institute of Technology</b>, and the <b>Hillside Innovation Academy / Bridging Brilliance</b> STEM implementation. These experiences shape our instructional design, student engagement, and community-partnership readiness. They are offered as evidence of delivery capability — not as Aedifica workforce-placement outcomes, which future cohorts will publish on the record.</p>
+      <div class="trio">
+        <div class="cred c1 reveal"><span class="tag">Practitioner-led</span><h3>Built by people who've delivered</h3><p>Led by construction-management practitioners with $1B+ of delivered infrastructure behind them and a teaching home at Stevens Institute of Technology.</p></div>
+        <div class="cred c2 reveal"><span class="tag">Employer-connected</span><h3>Wired to real jobs</h3><p>Every credential is backed by an employer-validated capstone — Aedifica doesn't start a cohort until an employer has committed to interview its completers.</p></div>
+        <div class="cred c3 reveal"><span class="tag">Funded demand</span><h3>Aligned to NJ's priorities</h3><p>Built around New Jersey's green building, apprenticeship, and digital-construction investments — anchored in real, funded demand, not hypotheticals.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- § 07 — WHO WE SERVE -->
+  <section id="serve">
+    <div class="wrap">
+      <div class="sectionmark reveal">§ 07 — Who we serve</div>
+      <p class="lead reveal" style="margin-bottom:14px;">Built for two audiences — the institutions that fund the pathway, and the people who walk it.</p>
+      <p class="serve-audiences reveal">Students &amp; learners · Schools &amp; districts · Workforce partners · Employers</p>
+      <div class="serve-grid">
+        <div class="serve-col partners reveal">
+          <span class="tag">For partners</span>
+          <h3>Institutions building the workforce</h3>
+          <ul>
+            <li>School districts</li><li>Workforce boards</li><li>Community organizations</li>
+            <li>County colleges</li><li>Employers &amp; general contractors</li><li>Public &amp; philanthropic funders</li>
+          </ul>
+        </div>
+        <div class="serve-col learners reveal">
+          <span class="tag">For learners</span>
+          <h3>People ready for a real career</h3>
+          <ul>
+            <li>Middle &amp; high-school students</li><li>Parents</li><li>Adult learners</li>
+            <li>Veterans</li><li>Returning adults &amp; mothers</li><li>Justice-impacted individuals</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- § 08 — FINAL CTA -->
+  <section id="partner">
+    <div class="wrap">
+      <div class="sectionmark">§ 08 — Build with us</div>
+      <h2>New Jersey is building. Let's build the people who <em>lead it.</em></h2>
+      <p>Schools, employers, funders, and community partners — Aedifica builds the pathway with you. Tell us who you serve and what outcome you need, and we'll show you where to start.</p>
+      <div class="cta-row">
+        <a href="#" class="btn cream">Start a partnership conversation</a>
+        <a href="#" class="btn ghost" style="color:var(--bg);border-color:var(--bg);">Request an institutional brief</a>
+        <a href="#programs" class="btn ghost" style="color:var(--bg);border-color:var(--bg);">Review projects &amp; impact</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="brand">Aedifica</a>
+        <p class="ee">Earth · Engineers · Education</p>
+        <p class="sig">We build the builders.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Programs</h4>
+        <a href="#programs">Aedifica Explore</a>
+        <a href="#programs">Aedifica Pathway</a>
+        <a href="#programs">Aedifica Launch</a>
+        <a href="#programs">Aedifica Rebuild</a>
+      </div>
+      <div class="foot-col">
+        <h4>Aedifica</h4>
+        <a href="#why">Why we exist</a>
+        <a href="#approach">Our approach</a>
+        <a href="#proof">Track record</a>
+        <a href="#partner">Partner with us</a>
+      </div>
+    </div>
+
+    <div class="palette">
+      <div class="plabel">Brand system — program colour-coding · accent · neutrals</div>
+      <div style="display:flex; flex-wrap:wrap; gap:0;">
+        <div class="swrow">
+          <div class="sw"><i style="background:#6667AB"></i><span>Explore</span></div>
+          <div class="sw"><i style="background:#859F94"></i><span>Pathway</span></div>
+          <div class="sw"><i style="background:#CDB97D"></i><span>Launch</span></div>
+          <div class="sw"><i style="background:#A0838F"></i><span>Rebuild</span></div>
+        </div>
+        <div class="swrow sep">
+          <div class="sw"><i style="background:#894B5D"></i><span>#894B5D</span></div>
+          <div class="sw"><i style="background:#D3927D"></i><span>#D3927D</span></div>
+          <div class="sw"><i style="background:#C6AAAF"></i><span>#C6AAAF</span></div>
+          <div class="sw"><i style="background:#E2C1BE"></i><span>#E2C1BE</span></div>
+        </div>
+        <div class="swrow sep">
+          <div class="sw"><i style="background:#444041"></i><span>#444041</span></div>
+          <div class="sw"><i style="background:#625C60"></i><span>#625C60</span></div>
+          <div class="sw"><i style="background:#7D6461"></i><span>#7D6461</span></div>
+          <div class="sw"><i style="background:#DBD3CF"></i><span>#DBD3CF</span></div>
+          <div class="sw"><i style="background:#F1EDE9"></i><span>#F1EDE9</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© 2026 Aedifica — NJ / NY Metro</span>
+      <span>Construction-management workforce, built from overlooked talent.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var t=document.getElementById('menuToggle'), n=document.getElementById('nav');
+  t.addEventListener('click',function(){var o=n.classList.toggle('open'); t.setAttribute('aria-expanded',o?'true':'false');});
+  n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('open'); t.setAttribute('aria-expanded','false');});});
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce && 'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}});},{threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  } else { document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');}); }
+</script>
+</body>
+</html>

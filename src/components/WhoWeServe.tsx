@@ -80,6 +80,20 @@ export function WhoWeServe() {
 
         {/* Centered intro */}
         <div className="max-w-[44rem] mx-auto text-center mb-14 lg:mb-16">
+          <motion.div
+            className="flex items-center justify-center gap-3 mb-5"
+            initial={reduce ? undefined : { opacity: 0 }}
+            whileInView={reduce ? undefined : { opacity: 1 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+            <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
+            <p
+              className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium leading-none"
+              style={{ fontFamily: 'var(--font-body)' }}>
+              Who we serve
+            </p>
+          </motion.div>
+
           <motion.h2
             id="serve-heading"
             className="text-[1.875rem] lg:text-[2.5rem] leading-[1.15] tracking-[-0.025em] text-anthracite italic mb-5 [text-wrap:balance]"

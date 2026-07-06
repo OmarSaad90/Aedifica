@@ -22,14 +22,14 @@ export function Home() {
       <TheGap />
       <MissingChannel />
       <AedificaModel />
-      <LearnerStory />
-      <FourGates />
       <Services />
+      <FourGates />
+      <PriorExperience />
+      <WhoWeServe />
+      <LearnerStory />
       <CurriculumStrip />
       <Partnership />
       <CostCallout />
-      <WhoWeServe />
-      <PriorExperience />
       <FinalCTA />
     </main>
   )

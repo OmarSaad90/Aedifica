@@ -9,51 +9,63 @@ const SPRING = [0.32, 0.72, 0, 1] as const
 const PROGRAMS = [
   {
     name: 'Explore',
+    fullName: 'Aedifica Explore',
     tag: 'Hands-On STEM',
-    audience: 'Middle and high school students',
-    format: 'Workshops, summer camps, and after-school programs',
-    outcome: 'Career awareness and hands-on engineering identity',
-    cta: 'View Explore',
+    pos: 'Spark the interest early.',
+    why: 'Too many young people write off construction before they understand it, picturing manual labor, not drones, digital design, and sustainable building. Explore exists to change that first impression, with hands-on discovery in the built environment.',
+    what: 'Workshops · short modules · holiday & summer camps · school partner programs',
+    audience: 'Middle-school districts, after-school, summer, and early-exposure learners',
+    format: 'Workshops, short modules, holiday camps, summer camps, and school partner programs',
+    purpose: 'Career awareness and hands-on discovery in the built environment',
+    cta: 'Explore the built environment',
     to: '/services/explore',
     color: 'bg-datum',
     dark: false,
-    placement: 'lg:col-span-2',
   },
   {
     name: 'Pathway',
+    fullName: 'Aedifica Pathway',
     tag: 'School Curriculum',
-    audience: 'High school students and CTE programs',
-    format: 'Semester course and summer programs',
-    outcome: 'Civil engineering pathway readiness',
-    cta: 'View Pathway',
+    pos: 'From classroom to construction management.',
+    why: "Interest alone isn't enough. Most students drawn to construction have no structured route toward the management roles the industry needs. Pathway exists to build that route: a secondary-education overlay connecting learning to college, credentials, and employers.",
+    what: 'Semester / year modules · holiday & summer camps · career-pathway curriculum · capstones · advisory alignment',
+    audience: 'High schools, districts, after-school, summer, and exposure learners',
+    format: 'Semester and year modules, holiday and summer camps, career-pathway curriculum, capstones, and advisory alignment',
+    purpose: 'A structured engineering and construction-management pathway overlay for secondary education',
+    cta: 'Build a school pathway',
     to: '/services/pathway',
     color: 'bg-quarry',
     dark: true,
-    placement: '',
   },
   {
     name: 'Aedifica Launch',
+    fullName: 'Aedifica Launch',
     tag: 'Grant Strategy',
-    audience: 'Schools, workforce programs, and community-based organizations',
-    format: 'Grant strategy and curriculum design services',
-    outcome: 'Funded, reportable workforce program delivery',
-    cta: 'Explore Launch',
+    pos: 'We help partners build programs that fund and last.',
+    why: 'Many schools, colleges, and community organizations want construction pathways of their own, but lack the grant strategy and program design to make them fundable and lasting. Launch exists to close that gap.',
+    what: 'Advisory · grant strategy · curriculum design · partner implementation',
+    audience: 'Institutions, CTE and vocational partners, workforce boards, nonprofits, community colleges, and employers',
+    format: 'Advisory, grant strategy, curriculum design, and partner implementation',
+    purpose: 'Design, fund, and implement construction-management workforce pathways',
+    cta: 'Launch a workforce pathway',
     to: '/services/launch',
     color: 'bg-sediment',
     dark: true,
-    placement: '',
   },
   {
     name: 'Aedifica Rebuild',
+    fullName: 'Aedifica Rebuild',
     tag: 'Adult Cohort',
-    audience: 'Adults ready for a career change into construction management',
-    format: '12-week adult bridge cohort',
-    outcome: 'Construction-management-track entry with credentials and interview access',
-    cta: 'Explore Rebuild',
+    pos: 'A real way in, for the people the system overlooked.',
+    why: 'Plenty of capable adults are ready for a real career but never get a credible way in: returning adults, veterans, justice-impacted individuals, and returning mothers among them. Rebuild exists to open that door.',
+    what: 'Structured cohorts · credential-aligned training · portfolio · employer intros',
+    audience: 'Adults, overlooked learners, career changers, veterans, returning citizens, and caregivers',
+    format: 'Structured cohorts, credential-aligned training, portfolio, and employer introductions',
+    purpose: 'A bridge into construction-management careers and employer-connected advancement',
+    cta: 'Start a Rebuild cohort',
     to: '/services/rebuild',
     color: 'bg-rebuild-deep',
     dark: false,
-    placement: 'lg:col-span-2',
   },
 ] as const
 
@@ -61,18 +73,21 @@ export function Services() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-bone py-12 lg:py-18" aria-labelledby="services-heading">
+    <section className="bg-bone border-t border-sediment/25 py-12 lg:py-18" aria-labelledby="services-heading">
       <div className="max-w-7xl mx-auto px-6">
 
         <motion.div
-          className="flex justify-center mb-6"
-          aria-hidden="true"
-          initial={reduce ? undefined : { opacity: 0, scaleX: 0 }}
-          whileInView={reduce ? undefined : { opacity: 1, scaleX: 1 }}
+          className="flex items-center justify-center gap-3 mb-6"
+          initial={reduce ? undefined : { opacity: 0 }}
+          whileInView={reduce ? undefined : { opacity: 1 }}
           viewport={reduce ? undefined : VIEWPORT}
-          transition={reduce ? undefined : { duration: 0.5, ease: EASE }}
-          style={{ originX: '50%' }}>
-          <div className="w-8 h-[2px] bg-datum" />
+          transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+          <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
+          <p
+            className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium leading-none"
+            style={{ fontFamily: 'var(--font-body)' }}>
+            The pathway
+          </p>
         </motion.div>
 
         <motion.h2
@@ -83,60 +98,67 @@ export function Services() {
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
           viewport={reduce ? undefined : VIEWPORT}
           transition={reduce ? undefined : { duration: 0.65, ease: EASE }}>
-          Focused first. Scalable after proof.
+          Four programs. One connected pathway, live together.
         </motion.h2>
 
-        {/* 4-program mosaic: asymmetric 3-col grid on desktop */}
-        <div className="grid grid-cols-1 gap-4 lg:gap-5 lg:grid-cols-3 mb-4 lg:mb-5">
-          {PROGRAMS.map(({ name, tag, audience, format, outcome, cta, to, color, dark, placement }, i) => (
+        <motion.p
+          className="text-[14.5px] text-anthracite/70 leading-[1.65] text-center max-w-[52ch] mx-auto -mt-8 mb-12 lg:-mt-10 lg:mb-16"
+          style={{ fontFamily: 'var(--font-body)' }}
+          initial={reduce ? undefined : { opacity: 0, y: 16 }}
+          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+          viewport={reduce ? undefined : VIEWPORT}
+          transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
+          From a student's first exposure to an adult's first credentialed role, each program closes
+          a specific gap and points back to the whole.
+        </motion.p>
+
+        {/* 4-program mosaic: uniform grid, each tile its own program color */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 mb-4 lg:mb-5">
+          {PROGRAMS.map(({ name, tag, pos, why, what, cta, to, color, dark }, i) => (
             <motion.div
               key={name}
-              className={`px-8 py-8 lg:px-10 lg:py-9 flex flex-col justify-between gap-8 ${color} ${placement}`}
+              className={`px-7 py-8 lg:px-8 lg:py-9 flex flex-col justify-between gap-7 ${color}`}
               initial={reduce ? undefined : { opacity: 0, y: 24 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.6, delay: i * 0.08, ease: SPRING }}>
               <div>
-                <div className="flex items-start justify-between gap-4 mb-6">
+                <div className="mb-5">
                   <h3
-                    className={`text-[2rem] lg:text-[2.5rem] leading-[1.1] tracking-[-0.03em] italic ${dark ? 'text-anthracite' : 'text-white'}`}
+                    className={`text-[1.625rem] lg:text-[1.875rem] leading-[1.15] tracking-[-0.02em] italic mb-2 [text-wrap:balance] ${dark ? 'text-anthracite' : 'text-white'}`}
                     style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
                     {name}
                   </h3>
                   <span
-                    className={`flex-shrink-0 text-[10px] uppercase tracking-[0.12em] mt-2 ${dark ? 'text-anthracite' : 'text-white/95'}`}
+                    className={`text-[10px] uppercase tracking-[0.12em] ${dark ? 'text-anthracite/75' : 'text-white/80'}`}
                     style={{ fontFamily: 'var(--font-body)' }}>
                     {tag}
                   </span>
                 </div>
 
-                <div className={`space-y-4 border-t pt-5 ${dark ? 'border-anthracite/15' : 'border-white/15'}`}>
-                  {([
-                    { label: 'Audience', value: audience },
-                    { label: 'Format',   value: format   },
-                    { label: 'Outcome',  value: outcome  },
-                  ] as const).map(({ label, value }) => (
-                    <div key={label} className="grid grid-cols-[80px_1fr] gap-3">
-                      <p
-                        className={`text-[10.5px] uppercase tracking-[0.1em] pt-px ${dark ? 'text-anthracite' : 'text-white/95'}`}
-                        style={{ fontFamily: 'var(--font-body)' }}>
-                        {label}
-                      </p>
-                      <p
-                        className={`text-[13.5px] leading-[1.55] ${dark ? 'text-anthracite' : 'text-white/95'}`}
-                        style={{ fontFamily: 'var(--font-body)' }}>
-                        {value}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+                <p
+                  className={`text-[1rem] font-medium leading-snug mb-3 ${dark ? 'text-anthracite' : 'text-white'}`}
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  {pos}
+                </p>
+                <p
+                  className={`text-[13.5px] leading-[1.6] mb-5 ${dark ? 'text-anthracite/85' : 'text-white/90'}`}
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  {why}
+                </p>
+
+                <p
+                  className={`text-[10.5px] uppercase tracking-[0.04em] leading-[1.7] pt-4 border-t ${dark ? 'text-anthracite/60 border-anthracite/15' : 'text-white/65 border-white/15'}`}
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  {what}
+                </p>
               </div>
 
               <Link href={to}
-                className={`inline-flex items-center gap-2 text-[13px] tracking-[-0.01em] group self-start ${dark ? 'text-anthracite' : 'text-white'}`}
+                className={`inline-flex items-center gap-2 text-[13px] font-semibold tracking-[-0.01em] underline underline-offset-4 group self-start ${dark ? 'text-anthracite decoration-anthracite/35 hover:decoration-anthracite' : 'text-white decoration-white/45 hover:decoration-white'} transition-[text-decoration-color] duration-150`}
                 style={{ fontFamily: 'var(--font-body)' }}>
                 {cta}
-                <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
+                <span className="transition-transform duration-150 group-hover:translate-x-1 flex-shrink-0" aria-hidden="true">→</span>
               </Link>
             </motion.div>
           ))}
@@ -168,6 +190,156 @@ export function Services() {
             <span className="transition-transform duration-150 group-hover:translate-x-0.5" aria-hidden="true">→</span>
           </Link>
         </motion.div>
+
+        {/* Choose your on-ramp — full program comparison */}
+        <div className="mt-16 lg:mt-20 border-t border-sediment/25 pt-14 lg:pt-16">
+          <motion.div
+            className="flex items-center gap-3 mb-5"
+            initial={reduce ? undefined : { opacity: 0 }}
+            whileInView={reduce ? undefined : { opacity: 1 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+            <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
+            <p
+              className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium leading-none"
+              style={{ fontFamily: 'var(--font-body)' }}>
+              Choose your on-ramp
+            </p>
+          </motion.div>
+
+          <motion.h3
+            className="text-[1.75rem] lg:text-[2.25rem] leading-[1.15] tracking-[-0.025em] text-anthracite italic mb-5 max-w-[26ch] [text-wrap:balance]"
+            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+            initial={reduce ? undefined : { opacity: 0, y: 20 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
+            Choose the pathway that fits your learner, school, or workforce goal.
+          </motion.h3>
+
+          <motion.p
+            className="text-[14.5px] text-anthracite/70 leading-[1.65] max-w-[64ch] mb-10"
+            style={{ fontFamily: 'var(--font-body)' }}
+            initial={reduce ? undefined : { opacity: 0, y: 16 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
+            Aedifica programs are designed as connected on-ramps into construction management. Start
+            with exposure, build structured learning, bridge adult talent, or launch a full workforce
+            pathway with partners. Use this comparison to identify the best starting point. Final
+            formats, calendars, costs, and credentials are customized by partner and cohort.
+          </motion.p>
+
+          {/* Desktop: full comparison table */}
+          <motion.div
+            className="hidden lg:block overflow-hidden border border-sediment/25"
+            initial={reduce ? undefined : { opacity: 0, y: 20 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.5, delay: 0.12, ease: EASE }}>
+            <table className="w-full border-collapse table-fixed">
+              <thead>
+                <tr className="bg-bone">
+                  {['Offering', 'Primary audience', 'Purpose', 'Format', ''].map((h) => (
+                    <th
+                      key={h}
+                      className={`text-left px-6 py-4 text-[10.5px] uppercase tracking-[0.12em] text-anthracite/60 font-medium border-b border-sediment/25 ${h === '' ? 'w-[200px]' : ''}`}
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {PROGRAMS.map(({ fullName, audience, purpose, format, cta, to, color, dark }, i) => (
+                  <tr key={fullName} className={i < PROGRAMS.length - 1 ? 'border-b border-sediment/20' : ''}>
+                    <td className="px-6 py-6 align-top">
+                      <div className="flex items-center gap-3">
+                        <span className={`flex-shrink-0 w-[9px] h-[9px] rotate-45 ${color}`} aria-hidden="true" />
+                        <span
+                          className="text-[1.1rem] italic text-anthracite leading-none"
+                          style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                          {fullName}
+                        </span>
+                      </div>
+                    </td>
+                    <td
+                      className="px-6 py-6 align-top text-[13.5px] text-anthracite/75 leading-[1.55]"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {audience}
+                    </td>
+                    <td
+                      className="px-6 py-6 align-top text-[13.5px] text-anthracite leading-[1.55]"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {purpose}
+                    </td>
+                    <td
+                      className="px-6 py-6 align-top text-[13.5px] text-anthracite/70 leading-[1.55]"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {format}
+                    </td>
+                    <td className="px-6 py-6 align-top">
+                      <Link href={to}
+                        className={`flex items-center justify-center gap-2 text-center text-[12px] font-medium leading-[1.3] tracking-[-0.01em] px-4 py-3.5 w-full transition-[filter] duration-150 hover:brightness-95 active:scale-[0.98] ${color} ${dark ? 'text-anthracite' : 'text-white'}`}
+                        style={{ fontFamily: 'var(--font-body)' }}>
+                        {cta}
+                        <span className="flex-shrink-0" aria-hidden="true">→</span>
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </motion.div>
+
+          {/* Mobile: stacked comparison rows */}
+          <div className="lg:hidden space-y-5">
+            {PROGRAMS.map(({ fullName, audience, purpose, format, cta, to, color, dark }, i) => (
+              <motion.div
+                key={fullName}
+                className="border border-sediment/25 px-6 py-6"
+                initial={reduce ? undefined : { opacity: 0, y: 16 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.45, delay: i * 0.06, ease: EASE }}>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className={`flex-shrink-0 w-[9px] h-[9px] rotate-45 ${color}`} aria-hidden="true" />
+                  <span
+                    className="text-[1.2rem] italic text-anthracite leading-none"
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                    {fullName}
+                  </span>
+                </div>
+                <dl className="space-y-3 mb-5">
+                  {([
+                    ['Primary audience', audience],
+                    ['Purpose', purpose],
+                    ['Format', format],
+                  ] as const).map(([label, value]) => (
+                    <div key={label}>
+                      <dt
+                        className="text-[10px] uppercase tracking-[0.12em] text-anthracite/50 mb-1"
+                        style={{ fontFamily: 'var(--font-body)' }}>
+                        {label}
+                      </dt>
+                      <dd
+                        className="text-[13.5px] text-anthracite/80 leading-[1.55]"
+                        style={{ fontFamily: 'var(--font-body)' }}>
+                        {value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+                <Link href={to}
+                  className={`flex items-center justify-center gap-2 text-[13px] font-medium tracking-[-0.01em] px-5 py-3.5 w-full transition-[filter] duration-150 hover:brightness-95 active:scale-[0.98] ${color} ${dark ? 'text-anthracite' : 'text-white'}`}
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  {cta}
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
 
       </div>
     </section>

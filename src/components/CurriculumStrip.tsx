@@ -22,7 +22,7 @@ export function CurriculumStrip() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-anthracite py-10 lg:py-16" aria-labelledby="curriculum-heading">
+    <section className="bg-anthracite border-t border-white/10 py-10 lg:py-16" aria-labelledby="curriculum-heading">
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="lg:grid lg:grid-cols-[5fr_7fr] lg:gap-16 xl:gap-20 lg:items-start">

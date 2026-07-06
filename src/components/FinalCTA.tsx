@@ -24,17 +24,33 @@ export function FinalCTA() {
           {/* Dark scrim top + bottom, transparent middle — faces show through */}
           <div className="absolute inset-0 bg-gradient-to-b from-anthracite/70 via-transparent to-anthracite/55" aria-hidden="true" />
 
-          {/* Title — top */}
-          <motion.h2
-            id="final-cta-heading"
-            className="relative z-10 text-[2.5rem] lg:text-[3.75rem] xl:text-[4.75rem] leading-[1.06] tracking-[-0.03em] text-white italic"
-            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-            initial={reduce ? undefined : { opacity: 0, y: 28 }}
-            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-            viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.7, ease: SPRING }}>
-            New Jersey's next construction leaders are already here.
-          </motion.h2>
+          {/* Eyebrow + title — top */}
+          <div className="relative z-10">
+            <motion.div
+              className="flex items-center justify-center gap-3 mb-6"
+              initial={reduce ? undefined : { opacity: 0 }}
+              whileInView={reduce ? undefined : { opacity: 1 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+              <span className="w-7 h-[2px] bg-white/70 flex-shrink-0" aria-hidden="true" />
+              <p
+                className="text-[13.5px] uppercase tracking-[0.14em] text-white/70 font-medium leading-none"
+                style={{ fontFamily: 'var(--font-body)' }}>
+                Build with us
+              </p>
+            </motion.div>
+
+            <motion.h2
+              id="final-cta-heading"
+              className="text-[2.5rem] lg:text-[3.75rem] xl:text-[4.75rem] leading-[1.06] tracking-[-0.03em] text-white italic"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+              initial={reduce ? undefined : { opacity: 0, y: 28 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.7, ease: SPRING }}>
+              New Jersey's next construction leaders are already here.
+            </motion.h2>
+          </div>
 
           {/* Buttons — bottom */}
           <motion.div

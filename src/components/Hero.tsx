@@ -46,7 +46,7 @@ export function Hero() {
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
           transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}
         >
-          New Jersey is building a cleaner, more resilient future, but the workforce that plans, manages, and delivers those projects isn't strong enough yet. Aedifica builds that pathway, from early exposure to credentialed, employer-connected careers in construction management.
+          New Jersey is building a cleaner, more resilient future, but the workforce that plans, manages, and delivers those projects isn't strong enough yet. Aedifica builds that pathway, from early STEM exposure to credentialed, employer-connected careers in construction management.
         </motion.p>
 
         <motion.div
@@ -63,7 +63,7 @@ export function Hero() {
           <Link href="/services"
             className="inline-flex items-center border border-datum text-datum text-[13px] font-medium px-6 py-3 tracking-[-0.01em] hover:bg-datum/6 transition-colors duration-150 active:scale-[0.98] whitespace-nowrap"
           >
-            See the programs
+            Compare the programs
           </Link>
         </motion.div>
 

@@ -51,6 +51,22 @@ export function FourGates() {
     <section className="bg-snow py-14 lg:py-20" aria-labelledby="gates-heading">
       <div className="max-w-7xl mx-auto px-6">
 
+        <motion.div
+          className="flex items-center gap-3 mb-5"
+          initial={reduce ? undefined : { opacity: 0 }}
+          whileInView={reduce ? undefined : { opacity: 1 }}
+          viewport={reduce ? undefined : VIEWPORT}
+          transition={reduce ? undefined : { duration: 0.4, ease: EASE }}
+        >
+          <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
+          <p
+            className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium leading-none"
+            style={{ fontFamily: 'var(--font-body)' }}
+          >
+            Before we begin
+          </p>
+        </motion.div>
+
         <motion.h2
           id="gates-heading"
           className="text-[2.25rem] lg:text-[3.25rem] xl:text-[3.875rem] leading-[1.08] tracking-[-0.028em] text-anthracite italic mb-10 lg:mb-14 max-w-[32ch]"

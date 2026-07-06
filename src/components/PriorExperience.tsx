@@ -1,9 +1,28 @@
 ﻿'use client'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'motion/react'
+import { HardHat, Handshake, MapPin, type Icon } from '@phosphor-icons/react'
 
 const VIEWPORT = { once: true, margin: '-60px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
+
+const TRACK_RECORD: { Icon: Icon; label: string; body: string }[] = [
+  {
+    Icon: HardHat,
+    label: 'Practitioner-led',
+    body: 'Led by construction-management practitioners with $1B+ of delivered infrastructure behind them and a teaching home at Stevens Institute of Technology.',
+  },
+  {
+    Icon: Handshake,
+    label: 'Employer-connected',
+    body: "Every credential is backed by an employer-validated capstone. Aedifica doesn't start a cohort until an employer has committed to interview its completers.",
+  },
+  {
+    Icon: MapPin,
+    label: 'Funded demand',
+    body: "Built around New Jersey's green building, apprenticeship, and digital-construction investments, anchored in real, funded demand, not hypotheticals.",
+  },
+]
 
 export function PriorExperience() {
   const reduce = useReducedMotion()
@@ -33,6 +52,20 @@ export function PriorExperience() {
 
           {/* Right: text (preserves right-side alignment) */}
           <div>
+            <motion.div
+              className="flex items-center gap-3 mb-5"
+              initial={reduce ? undefined : { opacity: 0 }}
+              whileInView={reduce ? undefined : { opacity: 1 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+              <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
+              <p
+                className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium leading-none"
+                style={{ fontFamily: 'var(--font-body)' }}>
+                Track record
+              </p>
+            </motion.div>
+
             <motion.h2
               id="prior-heading"
               className="text-[1.875rem] lg:text-[2.5rem] xl:text-[2.875rem] leading-[1.15] tracking-[-0.025em] text-anthracite italic mb-8 lg:mb-10"
@@ -83,6 +116,33 @@ export function PriorExperience() {
             </motion.div>
           </div>
 
+        </div>
+
+        {/* Track-record trio */}
+        <div className="mt-14 lg:mt-16 pt-10 lg:pt-12 border-t border-sediment/25">
+          <div className="grid grid-cols-1 sm:grid-cols-3 sm:divide-x divide-sediment/25 gap-8 sm:gap-0">
+            {TRACK_RECORD.map(({ Icon: IconComp, label, body }, i) => (
+              <motion.div
+                key={label}
+                className="sm:px-8 first:sm:pl-0 last:sm:pr-0"
+                initial={reduce ? undefined : { opacity: 0, y: 18 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: i * 0.08, ease: EASE }}>
+                <IconComp size={22} weight="regular" className="text-datum mb-4" aria-hidden={true} />
+                <h3
+                  className="text-[1rem] text-anthracite font-medium tracking-[-0.01em] mb-2.5"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  {label}
+                </h3>
+                <p
+                  className="text-[13.5px] text-anthracite/70 leading-[1.65]"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  {body}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
       </div>
