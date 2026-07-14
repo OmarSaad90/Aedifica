@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
-import { CaretDown } from '@phosphor-icons/react'
+import { CaretDown, BookOpenText, CompassTool, UsersThree, PaintBrush, Heartbeat, HouseLine } from '@phosphor-icons/react'
 
 const VIEWPORT = { once: true, margin: '100px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
@@ -453,7 +453,131 @@ export function Pathway() {
         </div>
       </section>
 
-      {/* ── Advanced Tracks ── bg-bone (Hero is quarry, next section down is snow) */}
+      {/* ── What Pathway Is ── bg-snow */}
+      <section className="bg-snow py-14 lg:py-20" aria-labelledby="pathway-intro-h2">
+        <div className="max-w-7xl mx-auto px-6">
+
+          <motion.h2
+            id="pathway-intro-h2"
+            className="text-[2.25rem] lg:text-[3.25rem] xl:text-[4rem] leading-[1.07] tracking-[-0.03em] text-anthracite italic mb-10 lg:mb-12 max-w-[26ch] [text-wrap:balance]"
+            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+            initial={reduce ? undefined : { opacity: 0, y: 28 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
+            From idea to design, design to estimate, estimate to the field.
+          </motion.h2>
+
+          <div className="lg:grid lg:grid-cols-2 lg:gap-16 xl:gap-24 mb-14 lg:mb-16">
+            <motion.p
+              className="text-[15.5px] text-anthracite/78 leading-[1.72] mb-6 lg:mb-0"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 18 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.55, ease: EASE }}>
+              A construction-management curriculum pathway for high schools that want students to see the
+              built environment as a serious career direction. Students learn how construction projects
+              move from idea to design through the engineering design process, from design to estimate to
+              schedule, and from schedule to the field, combining project-based learning, career
+              exploration, teamwork, presentations, and practical construction-management tools.
+            </motion.p>
+            <motion.p
+              className="text-[14px] text-anthracite/75 leading-[1.72]"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 18 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.55, delay: 0.08, ease: EASE }}>
+              Pathway is built for school and district implementation: it can be delivered through
+              curriculum licensing, school contracts, district partnerships, grants, teacher professional
+              development, or Aedifica-led instruction, and adapted for engineering courses, architecture
+              and construction programs, after-school academies, and summer bridge programs.
+            </motion.p>
+          </div>
+
+          {/* Sample activities left, program facts right — mirrored from Explore's layout */}
+          <div className="lg:grid lg:grid-cols-[1fr_1.2fr] lg:gap-14 xl:gap-20 lg:items-start">
+
+            <motion.div
+              className="bg-quarry px-8 py-9 lg:px-10 lg:py-10 mb-12 lg:mb-0"
+              initial={reduce ? undefined : { opacity: 0, y: 20 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
+              <h3
+                className="text-[1.375rem] lg:text-[1.5rem] text-anthracite italic leading-[1.2] tracking-[-0.02em] mb-7"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                Sample activities.
+              </h3>
+              <ul className="list-none space-y-3.5">
+                {([
+                  'Plan a small building or infrastructure project',
+                  'Compare design choices and cost impacts',
+                  'Build a simple project schedule',
+                  'Create a site logistics plan',
+                  'Present a final construction-management plan to peers or industry guests',
+                ] as const).map((act) => (
+                  <li key={act} className="flex gap-3.5 items-start">
+                    <span className="flex-shrink-0 w-[4px] h-[4px] bg-anthracite/40 mt-[8px]" aria-hidden="true" />
+                    <span
+                      className="text-[14px] text-anthracite leading-[1.6]"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {act}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            <div>
+              {([
+                ['Audience', 'Secondary-school students; high schools, districts, after-school academies, and summer bridge programs'],
+                ['Student outcomes', 'Career awareness in civil engineering, construction management, and related fields; foundational skills in scope, cost, schedule, safety, and communication; project artifacts for portfolios or presentations'],
+                ['Connections', 'College, credential, apprenticeship, and employer pathways, with advisory alignment wired in from the start'],
+                ['Capstone expectations', 'A defended capstone: design brief, technical drawings, calculations, cost estimate, risk register, sustainability matrix, and a public briefing or STEM Expo defense'],
+              ] as const).map(([label, value], i) => (
+                <motion.div
+                  key={label}
+                  className="grid grid-cols-1 sm:grid-cols-[190px_1fr] gap-2 sm:gap-8 py-5 border-t border-sediment/25 last:border-b last:border-sediment/25"
+                  initial={reduce ? undefined : { opacity: 0, y: 12 }}
+                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                  viewport={reduce ? undefined : VIEWPORT}
+                  transition={reduce ? undefined : { duration: 0.4, delay: i * 0.05, ease: EASE }}>
+                  <p
+                    className="text-[10.5px] uppercase tracking-[0.16em] pt-1 select-none"
+                    style={{ fontFamily: 'var(--font-body)', color: '#5C5D9C' }}>
+                    {label}
+                  </p>
+                  <p
+                    className="text-[14px] text-anthracite/78 leading-[1.68]"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    {value}
+                  </p>
+                </motion.div>
+              ))}
+
+              <motion.p
+                className="mt-7 text-[13px] text-anthracite/75 leading-[1.7]"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0 }}
+                whileInView={reduce ? undefined : { opacity: 1 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.45, delay: 0.15, ease: EASE }}>
+                Related summer intensives: the Construction &amp; Built Environment camp (grades 7–12) and
+                the Girls in Engineering &amp; Technology camp (grades 6–10), detailed under{' '}
+                <Link href="/services/explore" className="text-datum underline underline-offset-2 decoration-datum/40 hover:decoration-datum transition-colors duration-150">
+                  Explore's Summer STEM Camps
+                </Link>
+                , serve Pathway-age learners and connect directly into this curriculum.
+              </motion.p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── Advanced Tracks ── bg-bone */}
       <section className="bg-bone py-12 lg:py-18" aria-labelledby="tracks-h2">
         <div className="max-w-7xl mx-auto px-6">
 
@@ -629,6 +753,70 @@ export function Pathway() {
 
           </div>
 
+          {/* 21st CCLC out-of-school-time fit */}
+          <div className="mt-16 lg:mt-20 pt-12 lg:pt-14 border-t border-sediment/25">
+            <div className="lg:grid lg:grid-cols-[1fr_1.9fr] lg:gap-16 xl:gap-24 lg:items-start">
+              <div className="mb-10 lg:mb-0">
+                <motion.h3
+                  className="text-[1.625rem] lg:text-[2rem] leading-[1.15] tracking-[-0.022em] text-anthracite italic mb-5 [text-wrap:balance]"
+                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+                  initial={reduce ? undefined : { opacity: 0, y: 20 }}
+                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                  viewport={reduce ? undefined : VIEWPORT}
+                  transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
+                  How the curriculum serves the six 21st CCLC components.
+                </motion.h3>
+                <motion.p
+                  className="text-[13.5px] text-anthracite/78 leading-[1.7] max-w-[44ch]"
+                  style={{ fontFamily: 'var(--font-body)' }}
+                  initial={reduce ? undefined : { opacity: 0, y: 14 }}
+                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                  viewport={reduce ? undefined : VIEWPORT}
+                  transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
+                  Resilient Futures runs as a STEM-themed program in which the engineering curriculum is
+                  the enrichment spine and the other required out-of-school-time components are built
+                  around it.
+                </motion.p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 border-t border-sediment/25">
+                {([
+                  { Icon: BookOpenText, comp: 'Academic remediation', note: 'Daily certified-teacher tutoring in ELA and mathematics, tied to the same NJSLS standards the engineering units apply.' },
+                  { Icon: CompassTool, comp: 'Academic enrichment', note: 'The engineering pathways above: the project-based, standards-aligned core of the program.' },
+                  { Icon: UsersThree, comp: 'Positive youth development', note: 'Authentic team roles, leadership through studio captains and the youth advisory board, and near-peer mentoring.' },
+                  { Icon: PaintBrush, comp: 'Cultural & arts', note: 'Technical drawing, model-making, media documentation, and graphic communication of student work.' },
+                  { Icon: Heartbeat, comp: 'Health, nutrition & fitness', note: 'Daily movement and wellness blocks plus nutrition education, connected where natural to public-health and built-environment themes.' },
+                  { Icon: HouseLine, comp: 'Parental involvement', note: 'Monthly family engagement, family STEM nights, the Bridge Showcase, and the public STEM Expo.' },
+                ] as const).map(({ Icon: IconComp, comp, note }, i) => (
+                  <motion.div
+                    key={comp}
+                    className={[
+                      'py-5 lg:py-6 border-b border-sediment/25 flex items-start gap-4',
+                      i % 2 === 0 ? 'sm:pr-8 sm:border-r sm:border-sediment/25' : 'sm:pl-8',
+                    ].join(' ')}
+                    initial={reduce ? undefined : { opacity: 0, y: 12 }}
+                    whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                    viewport={reduce ? undefined : VIEWPORT}
+                    transition={reduce ? undefined : { duration: 0.4, delay: (i % 2) * 0.05, ease: EASE }}>
+                    <IconComp size={21} weight="regular" className="flex-shrink-0 mt-0.5" style={{ color: '#5C5D9C' }} aria-hidden={true} />
+                    <div>
+                      <p
+                        className="text-[14.5px] text-anthracite font-medium leading-[1.35] tracking-[-0.01em] mb-1.5"
+                        style={{ fontFamily: 'var(--font-body)' }}>
+                        {comp}
+                      </p>
+                      <p
+                        className="text-[12.5px] text-anthracite/72 leading-[1.65]"
+                        style={{ fontFamily: 'var(--font-body)' }}>
+                        {note}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -692,7 +880,7 @@ export function Pathway() {
                     <li key={topic} className="flex gap-2 items-start">
                       <span className="w-[3px] h-[3px] bg-datum/40 rounded-full flex-shrink-0 mt-[6px]" aria-hidden="true" />
                       <span
-                        className="text-[12.5px] text-anthracite/65 leading-[1.55]"
+                        className="text-[12.5px] text-anthracite/80 leading-[1.55]"
                         style={{ fontFamily: 'var(--font-body)' }}>
                         {topic}
                       </span>
@@ -734,7 +922,7 @@ export function Pathway() {
                     <div key={topic} className="flex gap-2 items-start">
                       <span className="w-[3px] h-[3px] bg-datum/40 rounded-full flex-shrink-0 mt-[6px]" aria-hidden="true" />
                       <span
-                        className="text-[12.5px] text-anthracite/65 leading-[1.55]"
+                        className="text-[12.5px] text-anthracite/80 leading-[1.55]"
                         style={{ fontFamily: 'var(--font-body)' }}>
                         {topic}
                       </span>
@@ -1061,7 +1249,7 @@ export function Pathway() {
             </p>
 
             <Link href="/partner"
-              className="inline-flex items-center justify-center gap-2 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-anthracite/85 group"
+              className="inline-flex items-center justify-center gap-2 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/85 group"
               style={{ fontFamily: 'var(--font-body)' }}>
               Register interest in Pathway
               <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>

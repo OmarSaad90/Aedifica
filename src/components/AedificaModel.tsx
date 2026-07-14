@@ -24,17 +24,38 @@ const ITEMS: { Icon: Icon; title: string; body: string }[] = [
 ]
 
 const FLOW_STAGES = [
-  { label: 'Exposure',    color: 'var(--color-datum)'        },
-  { label: 'Skills',      color: 'var(--color-quarry)'       },
-  { label: 'Credentials', color: 'var(--color-sediment)'     },
-  { label: 'Opportunity', color: 'var(--color-rebuild-deep)' },
+  {
+    label: 'Exposure',
+    color: 'var(--color-datum)',
+    desc: 'Aedifica Explore: early awareness and hands-on discovery for younger learners.',
+  },
+  {
+    label: 'Skills',
+    color: 'var(--color-quarry)',
+    desc: 'Aedifica Pathway: structured secondary-school construction-management learning.',
+  },
+  {
+    label: 'Credentials',
+    color: 'var(--color-sediment)',
+    desc: 'Aedifica Launch: institutional pathways designed for credential alignment; Aedifica Rebuild: the adult bridge toward them.',
+  },
+  {
+    label: 'Opportunity',
+    color: 'var(--color-rebuild-deep)',
+    desc: 'Employer introductions, interviews, articulation, and honest next-step reporting.',
+  },
+] as const
+
+const PROJECT_LOGIC = [
+  'Scope', 'Schedule', 'Cost', 'Safety', 'Quality',
+  'Sustainability', 'Technology', 'Communication', 'Documentation', 'Accountability',
 ] as const
 
 export function AedificaModel() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-bone py-16 lg:py-24" aria-labelledby="model-heading">
+    <section className="bg-bone py-14 lg:py-20" aria-labelledby="model-heading">
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="lg:grid lg:grid-cols-[5fr_7fr] lg:gap-16 xl:gap-20 lg:items-start">
@@ -63,7 +84,7 @@ export function AedificaModel() {
               {FLOW_STAGES.map((stage, i) => (
                 <motion.div
                   key={stage.label}
-                  className="py-6 border-b border-sediment/30"
+                  className="py-4 lg:py-5 border-b border-sediment/30"
                   initial={reduce ? undefined : { opacity: 0, y: 14 }}
                   whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                   viewport={reduce ? undefined : VIEWPORT}
@@ -76,17 +97,23 @@ export function AedificaModel() {
                       aria-hidden="true"
                     />
                     <span
-                      className="text-[11px] uppercase tracking-[0.16em] text-anthracite/55"
+                      className="text-[11px] uppercase tracking-[0.16em] text-anthracite/80"
                       style={{ fontFamily: 'var(--font-body)' }}
                     >
                       Stage {String(i + 1).padStart(2, '0')}
                     </span>
                   </div>
                   <p
-                    className="text-[1.625rem] lg:text-[1.875rem] italic text-anthracite leading-none"
+                    className="text-[1.625rem] lg:text-[1.875rem] italic text-anthracite leading-none mb-2.5"
                     style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
                   >
                     {stage.label}
+                  </p>
+                  <p
+                    className="text-[12.5px] text-anthracite/70 leading-[1.6] max-w-[46ch]"
+                    style={{ fontFamily: 'var(--font-body)' }}
+                  >
+                    {stage.desc}
                   </p>
                 </motion.div>
               ))}
@@ -143,7 +170,7 @@ export function AedificaModel() {
               {ITEMS.map(({ Icon: IconComp, title, body }, i) => (
                 <motion.div
                   key={title}
-                  className="flex items-start gap-6 lg:gap-10 py-8 lg:py-10 border-t border-sediment/25"
+                  className="flex items-start gap-6 lg:gap-10 py-6 lg:py-8 border-t border-sediment/25"
                   initial={reduce ? undefined : { opacity: 0, x: -16 }}
                   whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
                   viewport={reduce ? undefined : VIEWPORT}
@@ -173,10 +200,54 @@ export function AedificaModel() {
                 </motion.div>
               ))}
               <div className="border-t border-sediment/25" aria-hidden="true" />
+
+              <motion.p
+                className="mt-7 text-[12.5px] text-anthracite/70 leading-[1.65] max-w-[52ch]"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0 }}
+                whileInView={reduce ? undefined : { opacity: 1 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.3, ease: EASE }}
+              >
+                Talent Pipeline runs across every stage: it is Aedifica's cross-cutting employer connector
+                (capstone reviewers, interview commitments, and placement support), not a fifth
+                color-coded program.
+              </motion.p>
             </div>
 
           </div>
         </div>
+
+        {/* Full-width footer strip: the project logic every pathway connects to */}
+        <motion.div
+          className="mt-10 lg:mt-12 pt-7 border-t border-sediment/25 lg:flex lg:items-baseline lg:gap-10"
+          initial={reduce ? undefined : { opacity: 0, y: 16 }}
+          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+          viewport={reduce ? undefined : VIEWPORT}
+          transition={reduce ? undefined : { duration: 0.55, ease: EASE }}
+        >
+          <p
+            className="text-[13.5px] text-anthracite/75 italic leading-[1.5] mb-5 lg:mb-0 lg:max-w-[26ch] flex-shrink-0"
+            style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
+          >
+            Every pathway connects learning to the real logic of construction projects.
+          </p>
+          <ul className="list-none flex flex-wrap gap-x-5 gap-y-2.5">
+            {PROJECT_LOGIC.map((term, i) => (
+              <li key={term} className="flex items-center gap-5">
+                <span
+                  className="text-[12px] uppercase tracking-[0.1em] text-anthracite/70 leading-none"
+                  style={{ fontFamily: 'var(--font-body)' }}
+                >
+                  {term}
+                </span>
+                {i < PROJECT_LOGIC.length - 1 && (
+                  <span className="w-[4px] h-[4px] rotate-45 bg-datum/50 flex-shrink-0" aria-hidden="true" />
+                )}
+              </li>
+            ))}
+          </ul>
+        </motion.div>
 
       </div>
     </section>

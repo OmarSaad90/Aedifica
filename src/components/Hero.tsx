@@ -74,7 +74,7 @@ export function Hero() {
         </div>
 
         <motion.div
-          className="flex flex-col sm:flex-row sm:divide-x divide-anthracite/12 border-t border-anthracite/12 mt-14 lg:mt-16 pt-8 gap-6 sm:gap-0"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:divide-x divide-anthracite/12 border-t border-anthracite/12 mt-14 lg:mt-16 pt-8 gap-6 lg:gap-0"
           initial={reduce ? undefined : { opacity: 0, y: 16 }}
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
           transition={reduce ? undefined : { duration: 0.5, delay: 0.56, ease: EASE }}
@@ -83,16 +83,17 @@ export function Hero() {
             { n: '$1B+', l: 'delivered infrastructure behind our leadership' },
             { n: 'Employer-validated', l: 'capstone behind every credential' },
             { n: 'NJ-funded', l: 'green and apprenticeship priorities' },
+            { n: 'No cost to learners', l: 'programs funded through institutional partners' },
           ].map(({ n, l }) => (
-            <div key={n} className="sm:flex-1 sm:px-8 first:pl-0 first:sm:pl-0 last:pr-0">
+            <div key={n} className="lg:flex-1 lg:px-7 first:lg:pl-0 last:lg:pr-0">
               <p
-                className="text-[1.375rem] lg:text-[1.625rem] text-anthracite italic leading-none mb-2"
+                className="text-[1.375rem] lg:text-[1.5rem] xl:text-[1.625rem] text-anthracite italic leading-[1.08] mb-2"
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
               >
                 {n}
               </p>
               <p
-                className="text-[12.5px] text-anthracite/65 uppercase tracking-[0.08em] leading-[1.5] max-w-[24ch]"
+                className="text-[12.5px] text-anthracite/75 uppercase tracking-[0.08em] leading-[1.5] max-w-[24ch]"
                 style={{ fontFamily: 'var(--font-body)' }}
               >
                 {l}

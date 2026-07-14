@@ -27,16 +27,80 @@ const AUDIENCES = [
 ] as const
 
 const LEARN_AREAS = [
-  'OSHA-10 or OSHA-30 exposure and preparation',
-  'NCCER Core pathway preparation',
-  'Bluebeam and Procore Foundations',
-  'BIM viewer literacy and digital plan navigation',
-  'Technology, software, and AI tools used in construction management',
-  'Project documentation, submittal, RFI, and document-control fundamentals',
-  'Foundational estimating and scheduling concepts',
-  'Supervisory communication and professional jobsite coordination',
-  'Employer-informed capstone activity',
-  'Structured interview-readiness and interview week',
+  {
+    title: 'OSHA-10 / OSHA-30 preparation',
+    desc: 'Hazard recognition, PPE, fall protection, and the supervisory safety responsibilities employers expect on day one. Credential attempt and coverage are confirmed per cohort.',
+  },
+  {
+    title: 'NCCER Core',
+    desc: 'The industry’s foundational curriculum: basic safety, construction math, hand and power tools, construction drawings, communication, and employability skills.',
+  },
+  {
+    title: 'Bluebeam & Procore foundations',
+    desc: 'The two platforms most New Jersey general contractors actually run on: markup, takeoff, and document workflows in Bluebeam; project, daily log, and RFI workflows in Procore.',
+  },
+  {
+    title: 'BIM viewer literacy',
+    desc: 'Navigating a coordinated model, understanding clashes, and using model views to read a project a set of 2D drawings cannot fully explain.',
+  },
+  {
+    title: 'Submittal, RFI & document-control fundamentals',
+    desc: 'The paperwork backbone of a project: logs, transmittals, approvals, and the discipline that keeps a jobsite accountable and a schedule defensible.',
+  },
+  {
+    title: 'Estimating & scheduling',
+    desc: 'Quantity take-offs, unit costs, and a basic estimate; sequencing logic, milestones, and a simple project schedule the learner can explain and defend.',
+  },
+  {
+    title: 'Supervisory communication',
+    desc: 'Toolbox talks, coordination meetings, written field reports, and the professional, employer-facing communication that separates a coordinator from a candidate.',
+  },
+  {
+    title: 'Employer-informed capstone',
+    desc: 'A project artifact scoped with participating employers and presented to them: the evidence a learner carries into the interview.',
+  },
+  {
+    title: 'Interview week',
+    desc: 'Resume development, mock interviews, employer expectations, and the defined interview opportunity participating employers commit to for qualified completers.',
+  },
+] as const
+
+const GAINS = [
+  'Construction-management vocabulary and confidence',
+  'Cost and schedule development and awareness',
+  'Technology, software, and AI used in construction',
+  'A portfolio artifact or capstone project',
+  'Resume and interview preparation',
+  'Exposure to employer expectations',
+  'Understanding of next steps into credentials, college programs, apprenticeships, or entry-level roles',
+] as const
+
+const SAMPLE_ACTIVITIES = [
+  'Read a simplified set of construction drawings',
+  'Build a basic estimate and schedule',
+  'Plan a site logistics scenario',
+  'Practice a safety or quality-control walkthrough',
+  'Present a capstone project to instructors, partners, or employers',
+] as const
+
+const JOURNEY = [
+  { stage: 'Starting point',                    note: 'Where each learner begins: experience, goals, and readiness, honestly assessed.' },
+  { stage: 'Construction-management vocabulary', note: 'The shared language of scope, schedule, cost, safety, and quality.' },
+  { stage: 'Project lifecycle',                 note: 'How a project moves from idea to design to delivery to closeout.' },
+  { stage: 'Reading drawings',                  note: 'Plans, specifications, and the documents the jobsite runs on.' },
+  { stage: 'Estimating',                        note: 'Quantities, unit costs, and building a basic estimate.' },
+  { stage: 'Scheduling',                        note: 'Sequencing work and building a simple project schedule.' },
+  { stage: 'Site logistics',                    note: 'Planning access, staging, deliveries, and coordination on a working site.' },
+  { stage: 'Safety',                            note: 'Hazard awareness and the safety habits supervisors are responsible for.' },
+  { stage: 'Quality',                           note: 'Quality-control thinking and inspection walkthroughs.' },
+  { stage: 'Documentation',                     note: 'Logs, records, and the paperwork that keeps projects accountable.' },
+  { stage: 'Technology & AI tools',             note: 'The software and AI-assisted tools used on modern construction projects.' },
+  { stage: 'Communication',                     note: 'Professional, employer-facing communication in meetings and in writing.' },
+  { stage: 'Resume development',                note: 'Translating experience into a resume that speaks to construction employers.' },
+  { stage: 'Interview preparation',             note: 'Mock interviews and practice answering the questions employers ask.' },
+  { stage: 'Portfolio / capstone presentation', note: 'A capstone artifact presented to instructors, partners, or employers.' },
+  { stage: 'Employer expectations',             note: 'What jobsites expect on day one: professionalism, reliability, and judgment.' },
+  { stage: 'Next-step planning',                note: 'A documented plan toward credentials, college programs, apprenticeships, or entry-level roles.' },
 ] as const
 
 const GATES = [
@@ -116,7 +180,7 @@ const REPORTING = [
 ] as const
 
 const PARTNER_POINTS = [
-  'Structured 12-week cohort aligned to your recruitment and case-management infrastructure',
+  'Structured 12- or 24-week cohort aligned to your recruitment and case-management infrastructure',
   'Outcome reporting designed for grant compliance and stakeholder accountability',
   'Employer interaction built into the model, not added after delivery',
   'Articulation and apprenticeship integration defined before instruction begins',
@@ -183,7 +247,7 @@ export function Rebuild() {
               initial={reduce ? undefined : { opacity: 0, y: 14 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={reduce ? undefined : { duration: 0.5, delay: 0.4, ease: EASE }}>
-              {(['12 weeks', 'New Jersey', 'Adult learners'] as const).map((item, i) => (
+              {(['12 or 24 weeks', 'New Jersey', 'Adult learners'] as const).map((item, i) => (
                 <span key={item} className="text-[13px] text-white/90 tracking-[-0.01em]" style={{ fontFamily: 'var(--font-body)' }}>
                   {item}
                   {i < 2 && <span className="mx-4 text-white/25" aria-hidden="true">·</span>}
@@ -208,6 +272,36 @@ export function Rebuild() {
             transition={reduce ? undefined : { duration: 0.7, ease: SPRING }}>
             Talent that has been outside the usual recruiting channel. Not outside the opportunity.
           </motion.h2>
+
+          <div className="lg:grid lg:grid-cols-2 lg:gap-16 xl:gap-24 mb-14 lg:mb-16">
+            <motion.p
+              className="text-[15.5px] text-anthracite/80 leading-[1.72] mb-6 lg:mb-0"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 18 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.55, ease: EASE }}>
+              A custom 12- or 24-week adult bridge cohort for learners ready to move into
+              construction-management opportunity with structure, support, and employer relevance.
+              Participants move through a practical sequence of construction-management learning: project
+              lifecycle, drawings, estimating, scheduling, site logistics, safety, quality, documentation,
+              communication, and career readiness.
+            </motion.p>
+            <motion.p
+              className="text-[14px] text-anthracite/75 leading-[1.72]"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 18 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.55, delay: 0.08, ease: EASE }}>
+              Ideal participants are adults who are motivated to enter or advance in the construction
+              industry: career changers, veterans, returning citizens, caregivers returning to work, and
+              workers who want a bridge from field experience into management. Rebuild may be delivered
+              through workforce partners, grants, employer sponsorships, or institution-funded cohorts;
+              each cohort publishes its final eligibility criteria, participant cost, stipend availability,
+              and support services before enrollment opens.
+            </motion.p>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-sediment/25">
             {AUDIENCES.map(({ label, desc }, i) => (
@@ -239,6 +333,130 @@ export function Rebuild() {
         </div>
       </section>
 
+      {/* ── What You Will Gain + Sample Activities ── */}
+      <section className="bg-bone py-12 lg:py-18" aria-labelledby="gain-h2">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="lg:grid lg:grid-cols-[1.25fr_1fr] lg:gap-16 xl:gap-24 lg:items-start">
+
+            <div>
+              <motion.h2
+                id="gain-h2"
+                className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.028em] text-anthracite italic mb-9"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+                initial={reduce ? undefined : { opacity: 0, y: 24 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
+                What you will gain.
+              </motion.h2>
+              <ul className="list-none border-t border-sediment/25">
+                {GAINS.map((gain, i) => (
+                  <motion.li
+                    key={gain}
+                    className="flex gap-4 items-start border-b border-sediment/25 py-3.5 lg:py-4"
+                    initial={reduce ? undefined : { opacity: 0, x: 14 }}
+                    whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
+                    viewport={reduce ? undefined : VIEWPORT}
+                    transition={reduce ? undefined : { duration: 0.38, delay: 0.04 + i * 0.04, ease: EASE }}>
+                    <span className="flex-shrink-0 w-[7px] h-[7px] rotate-45 bg-rebuild mt-[7px]" aria-hidden="true" />
+                    <span
+                      className="text-[14.5px] text-anthracite/80 leading-[1.6]"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {gain}
+                    </span>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+
+            <motion.div
+              className="mt-12 lg:mt-0 bg-rebuild-deep px-8 py-9 lg:px-10 lg:py-11"
+              initial={reduce ? undefined : { opacity: 0, y: 24 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.6, delay: 0.12, ease: SPRING }}>
+              <h3
+                className="text-[1.375rem] lg:text-[1.625rem] text-white italic leading-[1.15] tracking-[-0.02em] mb-7"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                Sample activities.
+              </h3>
+              <ul className="list-none space-y-4">
+                {SAMPLE_ACTIVITIES.map((act) => (
+                  <li key={act} className="flex gap-3.5 items-start">
+                    <span className="flex-shrink-0 w-[4px] h-[4px] bg-white/50 mt-[8px]" aria-hidden="true" />
+                    <span
+                      className="text-[14px] text-white/90 leading-[1.65]"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {act}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── The Rebuild Learner Journey ── */}
+      <section className="bg-snow py-12 lg:py-18" aria-labelledby="journey-h2">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.h2
+            id="journey-h2"
+            className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.028em] text-anthracite italic mb-4 max-w-[28ch]"
+            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+            initial={reduce ? undefined : { opacity: 0, y: 24 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
+            The Rebuild learner journey, starting point to next step.
+          </motion.h2>
+          <motion.p
+            className="text-[14px] text-anthracite/75 leading-[1.7] max-w-[62ch] mb-12 lg:mb-14"
+            style={{ fontFamily: 'var(--font-body)' }}
+            initial={reduce ? undefined : { opacity: 0, y: 14 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
+            Seventeen stages, in the order a cohort moves through them: vocabulary and lifecycle first,
+            then the tools and documents of the work, then the judgment and communication a supervisor is
+            hired for.
+          </motion.p>
+
+          {/* Real sequence — numbering earns its place here */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 xl:gap-x-14 border-t border-sediment/25">
+            {JOURNEY.map(({ stage, note }, i) => (
+              <motion.div
+                key={stage}
+                className="group flex gap-4 items-start border-b border-sediment/25 py-4 lg:py-5 transition-colors duration-200 hover:border-rebuild/50"
+                initial={reduce ? undefined : { opacity: 0, y: 12 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.35, delay: Math.min((i % 3) * 0.05, 0.15), ease: EASE }}>
+                <span
+                  className="flex-shrink-0 w-8 text-[1.25rem] text-rebuild/55 italic leading-none pt-0.5 select-none tabular-nums transition-colors duration-200 group-hover:text-rebuild"
+                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
+                  aria-hidden="true">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div>
+                  <p
+                    className="text-[14.5px] text-anthracite font-medium leading-[1.35] tracking-[-0.01em] mb-1"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    {stage}
+                  </p>
+                  <p
+                    className="text-[12.5px] text-anthracite/70 leading-[1.6] transition-colors duration-200 group-hover:text-anthracite/85"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    {note}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Learning Areas ── */}
       <section className="bg-bone py-12 lg:py-18" aria-labelledby="learn-h2">
         <div className="max-w-7xl mx-auto px-6">
@@ -247,23 +465,26 @@ export function Rebuild() {
             <div>
               <motion.h2
                 id="learn-h2"
-                className="text-[2.25rem] lg:text-[3.25rem] xl:text-[4.25rem] leading-[1.07] tracking-[-0.03em] text-anthracite italic mb-7"
+                className="text-[2.25rem] lg:text-[3.25rem] xl:text-[4rem] leading-[1.07] tracking-[-0.03em] text-anthracite italic mb-7 [text-wrap:balance]"
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
                 initial={reduce ? undefined : { opacity: 0, y: 24 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-                Preparation grounded in the work.
+                Nine learning areas, one employer-facing portfolio.
               </motion.h2>
 
               <motion.p
-                className="text-[15px] text-anthracite/75 leading-[1.72] mb-10"
+                className="text-[15px] text-anthracite/78 leading-[1.72] mb-10"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 18 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.55, delay: 0.1, ease: EASE }}>
-                Each learning area connects to a real function in construction-management-track work. Credential availability will be presented only in accordance with confirmed authorization, partner arrangements, and actual participant attainment.
+                These are the published learning areas Rebuild cohorts are built from. They map onto the
+                seventeen-stage learner journey above: vocabulary and lifecycle first, then the tools and
+                documents of the work, then the judgment and communication a supervisor is hired for, and
+                finally the capstone and interview week that turn the cohort into a next step.
               </motion.p>
 
               <motion.div
@@ -280,14 +501,27 @@ export function Rebuild() {
                   loading="lazy"
                 />
               </motion.div>
+
+              <motion.p
+                className="text-[12.5px] text-anthracite/72 leading-[1.7] mt-7"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0 }}
+                whileInView={reduce ? undefined : { opacity: 1 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.45, ease: EASE }}>
+                Learning areas are published as the curriculum spine of every Rebuild cohort. Week-by-week
+                syllabi, credential inclusion, and cohort calendars are developed with each funding or
+                delivery partner before launch, because the sequence is set by the cohort's employer
+                partners, credential targets, and calendar. Credential attainment is never guaranteed.
+              </motion.p>
             </div>
 
             <div className="mt-12 lg:mt-0">
               <ul className="list-none border-t border-sediment/25">
-                {LEARN_AREAS.map((area, i) => (
+                {LEARN_AREAS.map(({ title, desc }, i) => (
                   <motion.li
-                    key={area}
-                    className="flex gap-6 items-start border-b border-sediment/25 py-3 lg:py-4"
+                    key={title}
+                    className="flex gap-6 items-start border-b border-sediment/25 py-4 lg:py-5"
                     initial={reduce ? undefined : { opacity: 0, x: 14 }}
                     whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
                     viewport={reduce ? undefined : VIEWPORT}
@@ -298,11 +532,18 @@ export function Rebuild() {
                       aria-hidden="true">
                       {String(i + 1).padStart(2, '0')}
                     </span>
-                    <span
-                      className="text-[14px] text-anthracite/75 leading-[1.6] pt-1"
-                      style={{ fontFamily: 'var(--font-body)' }}>
-                      {area}
-                    </span>
+                    <div className="pt-1">
+                      <p
+                        className="text-[14.5px] text-anthracite font-medium leading-[1.4] tracking-[-0.01em] mb-1.5"
+                        style={{ fontFamily: 'var(--font-body)' }}>
+                        {title}
+                      </p>
+                      <p
+                        className="text-[13px] text-anthracite/72 leading-[1.65]"
+                        style={{ fontFamily: 'var(--font-body)' }}>
+                        {desc}
+                      </p>
+                    </div>
                   </motion.li>
                 ))}
               </ul>
@@ -529,7 +770,7 @@ export function Rebuild() {
                 ))}
               </ul>
               <Link href="/partner"
-                className="self-start inline-flex items-center gap-2 bg-white text-rebuild-deep text-[13.5px] tracking-[-0.01em] px-6 py-3 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92 group"
+                className="self-start inline-flex items-center gap-2 bg-white text-rebuild-deep text-[13.5px] tracking-[-0.01em] px-6 py-3 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/92 group"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Discuss a Rebuild Partnership
                 <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
@@ -543,7 +784,7 @@ export function Rebuild() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, delay: 0.1, ease: SPRING }}>
               <p
-                className="text-[10.5px] text-anthracite/65 uppercase tracking-[0.18em] mb-5 select-none"
+                className="text-[10.5px] text-anthracite uppercase tracking-[0.18em] mb-5 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Employers
               </p>
@@ -565,7 +806,7 @@ export function Rebuild() {
                 ))}
               </ul>
               <Link href="/partner"
-                className="self-start inline-flex items-center gap-2 bg-white text-anthracite text-[13.5px] tracking-[-0.01em] px-6 py-3 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92 group"
+                className="self-start inline-flex items-center gap-2 bg-white text-anthracite text-[13.5px] tracking-[-0.01em] px-6 py-3 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/92 group"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Become an Employer Partner
                 <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
@@ -638,10 +879,10 @@ export function Rebuild() {
 
       <PageCTA
         id="rebuild-cta"
-        heading="Rebuild partnerships are open now."
-        body="Discuss a Rebuild cohort partnership, an employer participation role, or an institutional briefing on Aedifica's delivery model."
-        primary={{ label: 'Discuss a Rebuild Partnership', to: '/partner' }}
-        secondary={{ label: 'Become an Employer Partner', to: '/partner' }}
+        heading="A real way in, for the people the system overlooked."
+        body="Apply as a learner, refer a learner, or sponsor a cohort through a workforce, employer, or institutional partnership."
+        primary={{ label: 'Apply to Rebuild', to: '/apply' }}
+        secondary={{ label: 'Refer a Learner', to: '/partner' }}
         color="rebuild"
       />
 

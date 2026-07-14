@@ -89,6 +89,28 @@ const VALUES: Value[] = [
   },
 ]
 
+// Dr. Karam's founder letter — teaser shows the first entries inline;
+// the full letter opens in a modal. `pull: true` renders as a serif pull-line.
+const FOUNDER_LETTER: { text: string; pull?: boolean }[] = [
+  { text: 'Ever since I can remember, I have believed that education can change the direction of a life.', pull: true },
+  { text: 'That belief began at home. My father was the first in his family to receive a university education, studying at Saint Joseph University in Lebanon and later at the École Nationale des Ponts et Chaussées in France. He came from a small village, Ehden, and from a family where opportunity was not guaranteed. His own father could not read or write, but my grandmother understood that education could open a door that poverty and instability tried to keep closed.' },
+  { text: 'My father carried that lesson with him everywhere. He gave my siblings and me the best education he could, even when it required sacrifice. When I left for London to study civil engineering, he told me something I have never forgotten: "Your education is one of the few things that no one can ever take away from you." Years later, when I was accepted to MIT for graduate study, he was overjoyed, and he once again made sacrifices so I could continue learning.' },
+  { text: 'That gift shaped my life. It also shaped my responsibility.' },
+  { text: 'At MIT, I had the privilege of serving as a teaching assistant for graduate and undergraduate probability and statistics courses, where I received the first Best Teaching Assistant award ever given for that class. I was also part of the early MIT OpenCourseWare effort, whose mission was to make high-quality education freely available to people around the world. Those experiences confirmed something I had always felt: knowledge should not belong only to those who already have access. It should be transferred, shared, and used to create opportunity.' },
+  { text: 'My career has always lived at the intersection of earth, engineers, and education.', pull: true },
+  { text: 'The earth is the foundation: the communities we live in, the infrastructure we depend on, and the environment we have a responsibility to protect and improve. Engineers are the builders of possibility: the people who turn ideas into roads, bridges, schools, hospitals, resilient coastlines, transit systems, and the physical systems that allow society to function. Education is the bridge: the force that allows people to enter that world, understand it, shape it, and build a better future for themselves and others.' },
+  { text: 'That belief has guided me through academia, construction, entrepreneurship, and workforce development. I helped build and lead the workforce at Sarooj Construction Company, contributing to more than 200 infrastructure projects with over $1 billion in value. In that environment, I saw what happens when people are given the right skills, expectations, confidence, and support. A few practical capabilities can change how someone sees themselves. They can open the door to better work, greater dignity, and a more financially secure future.' },
+  { text: 'Today, I serve as a Teaching Associate Professor at Stevens Institute of Technology in the Department of Civil, Environmental, and Ocean Engineering, where I lead the graduate Construction Management program. I have also delivered pre-college engineering programs for high-school students through Stevens and helped bring STEM learning to middle-school students through the Hillside Innovation Academy / Bridging Brilliance program. That work has been among the most rewarding of my life. I watched students begin to speak the language of engineering, understand how infrastructure shapes their communities, and imagine futures that felt respected, bright, and achievable.' },
+  { text: 'Aedifica was born from that same belief.' },
+  { text: 'The United States is entering a generational period of infrastructure investment. In New Jersey and the New York metropolitan region, major programs, from transportation and airport expansion to resiliency and public infrastructure, will require not only engineers and tradespeople, but also the next generation of construction managers, coordinators, estimators, schedulers, document-control professionals, safety leaders, and field supervisors.' },
+  { text: 'At the same time, too many capable people remain outside the traditional pathways into these careers. Some never had access to the right school, network, credential, mentor, or first opportunity. Traditional universities do many things well, but they have not built enough bridges for the people who are ready to contribute, grow, and lead.' },
+  { text: 'That is why we founded Aedifica.' },
+  { text: 'Aedifica is built on three words: we build the builders.', pull: true },
+  { text: 'We teach people to understand the built environment, prepare them to participate in it, and connect them to pathways where their talent can grow into respected, honorable, and financially rewarding careers. We work with education institutions, workforce partners, community organizations, employers, and funding partners to create construction-management pathways that are practical, measurable, and connected to real advancement.' },
+  { text: 'For me, this work is personal. I know what education did for my family. I know what it did for me. And I know that talent is everywhere, even when opportunity is not.' },
+  { text: 'Through Aedifica, my goal is simple: to help build the builders, to prepare people for honorable, respected, financially rewarding careers, and to help our communities develop the human talent needed to build their future and the future of our great country.' },
+]
+
 type TeamMember = {
   name: string
   role: string
@@ -126,15 +148,33 @@ const TEAM: TeamMember[] = [
     image: '/images/founder-evelyne.png',
   },
   {
-    name: 'Dr. Nicole Silva',
-    role: 'Co-Founder & Community Partnerships Lead',
-    bio: "Cross-sector workforce development and partnership experience across Union and Essex counties, New Jersey. Cultivated the partnership between Stevens Institute and Hillside Innovation Academy that became a foundation for Aedifica's community delivery model. Leads Aedifica's community organization and workforce agency relationships.",
+    name: 'Dr. Nicole Gilmore-Silva',
+    role: 'Co-Founder & Chief Education and Industry Partnerships Officer',
+    bio: 'Dr. Nicole Gilmore-Silva is Co-Founder & Chief Education and Industry Partnerships Officer of Aedifica. A former principal and district leader with more than two decades in public education, she builds the school, university, employer, and community partnerships that connect learners to the industries shaping the future.',
+    fullBio: [
+      'Where others see barriers to opportunity, Dr. Gilmore-Silva builds pathways that prepare learners for the future.',
+      'Aedifica is built on the belief that opportunity should never be determined by circumstance. As Co-Founder and Chief Education and Industry Partnerships Officer, Dr. Nicole Gilmore-Silva advances that mission by creating authentic partnerships, learning experiences, and workforce pathways that prepare students, educators, and communities for the industries shaping the future.',
+      'For more than two decades, Dr. Gilmore-Silva has dedicated her career to expanding opportunity through education. She began her career as a Teach For America corps member in the District of Columbia Public Schools before continuing her work in Newark Public Schools. Recognized for her instructional excellence, innovative pedagogy, and commitment to student achievement, she served as a teacher, instructional coach, and mentor before advancing to District Supervisor of Special Education, principal of a PreK-5 school, and ultimately founding principal of an innovation-focused middle school serving students in Grades 7 and 8.',
+      "It was through these experiences that Dr. Gilmore-Silva recognized a disconnect between classroom learning and the rapidly changing workforce. Rather than accepting that divide, she cultivated partnerships among schools, universities, industry, and community organizations to create authentic learning experiences that expanded students' understanding of what was possible.",
+      "Dr. Gilmore-Silva believes the future of education is not defined by a single discipline or career pathway. It is defined by a learner's ability to adapt, solve problems, and contribute in an ever-changing world. Engineering, artificial intelligence, aviation, construction management, health sciences, and emerging technologies are not the destination; they are the vehicles through which learners gain exposure, build confidence, and discover pathways to opportunity. She believes students cannot pursue careers they have never experienced, and that meaningful exposure is the foundation upon which preparation, aspiration, and economic mobility are built.",
+      "Under her leadership, students outperformed the State of New Jersey in science, exceeded 90% proficiency in English Language Arts, and achieved 100% proficiency among enrolled Grade 8 Algebra students after implementation of advanced mathematics pathways leading to Geometry before high school. Students have gone on to attend some of New Jersey's and the nation's most competitive secondary schools.",
+      'Recognizing that exposure shapes aspirations, Dr. Gilmore-Silva intentionally cultivated a cross-sector network of universities, industry leaders, nonprofit organizations, and community partners. Through partnerships with Stevens Institute of Technology, NJIT, Kean University, Drew University, the Organization of Black Aerospace Professionals (OBAP), Urban Aviation Group (UAG), and Ascent to Equality (ACE), students engaged in authentic experiences spanning engineering, aviation, coding, artificial intelligence, architecture, construction management, forensic science, genetics, biomedical sciences, and healthcare. Every partnership was intentionally cultivated around one purpose: exposing students to possibilities before asking them to choose a path.',
+      'At Aedifica, Dr. Gilmore-Silva continues that work by helping school districts, universities, employers, and community organizations rethink how opportunity is created. Her work extends beyond connecting education and industry; it is about building a movement that reimagines how students discover careers, how educators prepare learners, and how communities cultivate the workforce of tomorrow.',
+      "Grounded in a lifelong commitment to service, Dr. Gilmore-Silva's leadership reflects the values of Delta Sigma Theta Sorority, Incorporated. Her contributions have been recognized by the NAACP, former Congressman Donald M. Payne Jr., Tom Giblin, Essex County, the City of Newark, Irvington Township, the New Jersey PTA, and numerous civic and educational organizations.",
+      "Today, Dr. Gilmore-Silva's work extends beyond the K-12 landscape to include those already in the workforce, where she continues to build bridges between education, industry, and opportunity, preparing individuals, educators, and organizations for long-term economic success.",
+      'While her work continues to evolve, her purpose remains constant: Education is the vehicle. Exposure is the catalyst. Preparation is the journey. Opportunity is the destination.',
+    ],
     image: '/images/founder-nicole.jpg',
   },
   {
     name: 'Kimi Stephenson',
     role: 'Co-Founder & Community Program Lead',
-    bio: 'MS in Construction Engineering and Management, Stevens Institute of Technology. BA, Rutgers University-New Brunswick. Co-designed and co-delivered the Bridging Brilliance STEM program at Hillside Innovation Academy: 10-week intensive, 21 students, documented as an Aedifica delivery foundation.',
+    bio: 'Kimi Stephenson is Co-Founder & Community Program Lead of Aedifica, with over fifteen years at the intersection of construction, property, and education. She holds an M.S. in Construction Engineering and Management from Stevens Institute of Technology and co-designed the Bridging Brilliance STEM program at Hillside Innovation Academy.',
+    fullBio: [
+      "Kimi Stephenson has spent over fifteen years at the intersection of construction, property, and education: first coordinating affordable housing and mixed-use developments, then bringing hands-on engineering into the classroom. She holds a Master's in Construction Engineering and Management from Stevens Institute of Technology and a B.A. in Criminal Justice from Rutgers University.",
+      "As Co-Founder & Community Program Lead of Aedifica, she co-designed and co-delivered the Bridging Brilliance STEM program at Hillside Innovation Academy, a 10-week intensive now documented as one of Aedifica's founding delivery models. She partners with the Urban League of Union County to extend construction-management workforce pathways to justice-impacted adults, veterans, returning caregivers, and career changers across New Jersey.",
+      'Alongside Aedifica, Kimi is a Project Manager at Terry Developments LLC. She is OSHA-10 and BPI certified and holds an FAA Part 107 remote pilot license.',
+    ],
     image: '/images/founder-kimi.jpg',
   },
 ]
@@ -165,7 +205,7 @@ function TeamMemberCard({ member, index, reduce, onExpandBio, bioExpanded }: {
       </div>
 
       <p
-        className="text-[10.5px] text-anthracite/70 uppercase tracking-[0.18em] mb-2.5 select-none min-h-[2rem]"
+        className="text-[10.5px] text-anthracite/70 uppercase tracking-[0.18em] leading-[1.55] mb-2.5 select-none min-h-[3.1rem]"
         style={{ fontFamily: 'var(--font-body)' }}>
         {member.role}
       </p>
@@ -196,15 +236,21 @@ function TeamMemberCard({ member, index, reduce, onExpandBio, bioExpanded }: {
 export function About() {
   const reduce = useReducedMotion()
   const [expandedMember, setExpandedMember] = useState<TeamMember | null>(null)
+  const [letterOpen, setLetterOpen] = useState(false)
   const lastTriggerRef = useRef<HTMLButtonElement | null>(null)
   const closeButtonRef = useRef<HTMLButtonElement | null>(null)
 
   useEffect(() => {
-    if (!expandedMember) {
+    if (!expandedMember && !letterOpen) {
       lastTriggerRef.current?.focus()
       return
     }
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setExpandedMember(null) }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setExpandedMember(null)
+        setLetterOpen(false)
+      }
+    }
     document.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
     requestAnimationFrame(() => closeButtonRef.current?.focus())
@@ -212,7 +258,7 @@ export function About() {
       document.removeEventListener('keydown', onKey)
       document.body.style.overflow = ''
     }
-  }, [expandedMember])
+  }, [expandedMember, letterOpen])
 
   return (
     <main>
@@ -248,7 +294,9 @@ export function About() {
             initial={reduce ? undefined : { opacity: 0, y: 14 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}>
-            Aedifica designs and delivers construction-management career pathways for overlooked talent in New Jersey, with employer validation built into the model and outcomes reported on the record.
+            Aedifica is a New Jersey-based workforce architecture company building
+            construction-management pathways for the learners, schools, and employers shaping the built
+            environment and our future. From foundations to futures.
           </motion.p>
 
         </div>
@@ -293,6 +341,23 @@ export function About() {
                 <p className="text-[15px] text-anthracite/75 leading-[1.72]" style={{ fontFamily: 'var(--font-body)' }}>
                   Our founders came from both sides of that divide: licensed engineers and site experience on one hand, curriculum designers and educator-practitioners on the other. Aedifica exists because they refused to accept the polite fiction that these are separate problems for separate professions.
                 </p>
+                <div className="pt-4 border-t border-sediment/20">
+                  <p
+                    className="text-[10px] text-anthracite/75 uppercase tracking-[0.18em] mb-3 select-none"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    Organizational history
+                  </p>
+                  <p className="text-[13.5px] text-anthracite/72 leading-[1.72]" style={{ fontFamily: 'var(--font-body)' }}>
+                    Aedifica grew from years of construction-management practice in the field, teaching,
+                    pre-college engineering programming, STEM outreach, and workforce-pathway design. The
+                    model brings together classroom rigor, hands-on construction thinking, employer
+                    relevance, and measurable learner outcomes: a foundation in construction-management
+                    education; prior delivery through middle school (Hillside and community-based
+                    programming), high school (pre-college), and practical training and upskilling in
+                    industry; expansion into New Jersey-focused workforce pathway architecture; and
+                    Rebuild, Launch, Pathway, Explore, and Talent Pipeline as scalable offerings.
+                  </p>
+                </div>
               </motion.div>
             </div>
 
@@ -397,21 +462,88 @@ export function About() {
         <div className="max-w-7xl mx-auto px-6">
 
           <motion.div
-            className="mb-14 lg:mb-20 text-center"
+            className="mb-12 lg:mb-14 text-center"
             initial={reduce ? undefined : { opacity: 0, y: 28 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.7, ease: SPRING }}>
             <p
-              className="text-[12.5px] text-anthracite/75 uppercase tracking-[0.2em] mb-6 select-none font-medium"
+              className="text-[12.5px] text-anthracite/75 uppercase tracking-[0.2em] mb-5 select-none font-medium"
               style={{ fontFamily: 'var(--font-body)' }}>
               Mission
             </p>
             <p
-              className="text-[2rem] lg:text-[3.25rem] xl:text-[4.25rem] leading-[1.1] tracking-[-0.03em] text-anthracite italic mx-auto max-w-[26ch]"
+              className="text-[1.625rem] lg:text-[2.25rem] xl:text-[2.75rem] leading-[1.18] tracking-[-0.025em] text-anthracite italic mx-auto max-w-[36ch] [text-wrap:balance]"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-              Design, deliver, and evaluate the programs that turn overlooked learners into the construction-management workforce New Jersey actually needs.
+              Aedifica designs and delivers construction-management career pathways for schools, workforce partners, and employers, with a focus on learners who have talent but lack a clear route into the built environment.
             </p>
+          </motion.div>
+
+          {/* Signature: Earth. Engineers. Education. */}
+          <motion.div
+            className="mb-16 lg:mb-24"
+            initial={reduce ? undefined : { opacity: 0, y: 24 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
+            <p
+              className="text-[12.5px] text-anthracite/75 uppercase tracking-[0.2em] mb-8 select-none font-medium text-center"
+              style={{ fontFamily: 'var(--font-body)' }}>
+              Signature · We build the builders
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-x-12 xl:gap-x-16">
+              {([
+                {
+                  word: 'Earth.',
+                  // Raw quarry only clears ~2.7:1 on snow; darkened variant passes large-text 3:1
+                  color: 'text-[#5F6E67]',
+                  rule: 'border-quarry',
+                  def: 'The foundation: the communities we live in, the infrastructure we depend on, and the environment we have a responsibility to protect and improve. Connect infrastructure, sustainability, and place.',
+                },
+                {
+                  word: 'Engineers.',
+                  color: 'text-datum',
+                  rule: 'border-datum',
+                  def: 'The builders of possibility: the people who turn ideas into roads, bridges, schools, hospitals, resilient coastlines, and transit systems. Teach disciplined problem-solving and project-management thinking.',
+                },
+                {
+                  word: 'Education.',
+                  color: 'text-patina',
+                  rule: 'border-patina',
+                  def: 'The bridge: the force that allows people to enter that world, understand it, shape it, and build a better future. Create clear pathways, not isolated workshops.',
+                },
+              ] as const).map(({ word, color, rule, def }, i) => (
+                <motion.div
+                  key={word}
+                  className={`border-t-2 ${rule} pt-6`}
+                  initial={reduce ? undefined : { opacity: 0, y: 18 }}
+                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                  viewport={reduce ? undefined : VIEWPORT}
+                  transition={reduce ? undefined : { duration: 0.55, delay: i * 0.09, ease: EASE }}>
+                  <p
+                    className={`text-[2.25rem] lg:text-[2.75rem] italic leading-none mb-4 ${color}`}
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+                    {word}
+                  </p>
+                  <p
+                    className="text-[13.5px] text-anthracite/78 leading-[1.7]"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    {def}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+            <motion.p
+              className="text-[13px] text-anthracite/72 leading-[1.7] mt-10 max-w-[62ch] mx-auto text-center"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0 }}
+              whileInView={reduce ? undefined : { opacity: 1 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.25, ease: EASE }}>
+              Two further values complete the operating principles: <strong className="text-anthracite font-medium">Access</strong>, design
+              for people traditional systems often overlook, and <strong className="text-anthracite font-medium">Evidence</strong>, track
+              outcomes and improve the model over time.
+            </motion.p>
           </motion.div>
 
           <div className="lg:grid lg:grid-cols-[1fr_0.55fr] lg:gap-16 lg:items-end">
@@ -527,6 +659,77 @@ export function About() {
         </div>
       </section>
 
+      {/* ── The Founder Letter ── bg-bone */}
+      <section className="bg-bone py-14 lg:py-20 mt-8 lg:mt-10" aria-labelledby="founder-letter-h2">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="lg:grid lg:grid-cols-[1fr_1.6fr] lg:gap-16 xl:gap-24 lg:items-start">
+
+            {/* Left: sticky intro */}
+            <div className="mb-10 lg:mb-0 lg:sticky lg:top-28">
+              <motion.p
+                className="text-[10.5px] text-anthracite/75 uppercase tracking-[0.2em] mb-5 select-none"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0 }}
+                whileInView={reduce ? undefined : { opacity: 1 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.45, ease: EASE }}>
+                The founder story
+              </motion.p>
+              <motion.h2
+                id="founder-letter-h2"
+                className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.028em] text-anthracite italic mb-6"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+                initial={reduce ? undefined : { opacity: 0, y: 24 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.6, ease: SPRING }}>
+                In Dr. Karam's own words.
+              </motion.h2>
+              <motion.p
+                className="text-[14px] text-anthracite/75 leading-[1.72] max-w-[40ch]"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 14 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
+                Why Aedifica exists, from the person who founded it: a letter about family, education,
+                and the pathway from a small village in Lebanon to building the builders of New Jersey.
+              </motion.p>
+            </div>
+
+            {/* Right: the letter, opening visible, remainder behind a disclosure */}
+            <motion.div
+              initial={reduce ? undefined : { opacity: 0, y: 20 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.6, delay: 0.1, ease: EASE }}>
+
+              <p
+                className="text-[1.5rem] lg:text-[1.875rem] italic text-anthracite leading-[1.35] tracking-[-0.02em] mb-7"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+                {FOUNDER_LETTER[0].text}
+              </p>
+
+              <div className="space-y-5 text-[14.5px] text-anthracite/80 leading-[1.75] max-w-[68ch]" style={{ fontFamily: 'var(--font-body)' }}>
+                <p>{FOUNDER_LETTER[1].text}</p>
+                <p>{FOUNDER_LETTER[2].text}</p>
+                <p>{FOUNDER_LETTER[3].text}</p>
+              </div>
+
+              <button
+                onClick={(e) => { lastTriggerRef.current = e.currentTarget; setLetterOpen(true) }}
+                aria-haspopup="dialog"
+                className="mt-7 text-[13.5px] text-datum underline underline-offset-4 decoration-datum/40 hover:decoration-datum transition-colors duration-150 cursor-pointer bg-transparent border-none p-0"
+                style={{ fontFamily: 'var(--font-body)' }}>
+                Read the full letter
+              </button>
+
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA Block ── */}
       <section className="bg-snow pt-4 lg:pt-6 pb-0" aria-label="Partner with Aedifica">
         <div className="max-w-[1100px] mx-auto px-6">
@@ -551,12 +754,12 @@ export function About() {
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link href="/partner"
-                className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
+                className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/92"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Start a Partnership Conversation
               </Link>
               <Link href="/impact"
-                className="inline-flex items-center justify-center border border-white/30 text-white text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/8"
+                className="inline-flex items-center justify-center border border-white/30 text-white text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/8"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 View the Impact Framework
               </Link>
@@ -608,7 +811,7 @@ export function About() {
                 <button
                   ref={closeButtonRef}
                   onClick={() => setExpandedMember(null)}
-                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-anthracite/35 hover:text-anthracite transition-colors duration-150 cursor-pointer bg-transparent border-none text-[20px] leading-none"
+                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-anthracite/60 hover:text-anthracite transition-colors duration-150 cursor-pointer bg-transparent border-none text-[20px] leading-none"
                   aria-label="Close biography">
                   ×
                 </button>
@@ -632,6 +835,99 @@ export function About() {
                         {para}
                       </p>
                     ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* ── Founder Letter Modal ── */}
+      <AnimatePresence>
+        {letterOpen && (
+          <>
+            <motion.div
+              key="letter-backdrop"
+              className="fixed inset-0 bg-anthracite/55 z-[100] backdrop-blur-[2px]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.22 }}
+              onClick={() => setLetterOpen(false)}
+              aria-hidden="true"
+            />
+            <motion.div
+              key="letter-modal"
+              className="fixed inset-0 z-[101] flex items-center justify-center p-5 sm:p-10 pointer-events-none"
+              initial={reduce ? undefined : { opacity: 0, y: 14, scale: 0.98 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0, scale: 1 }}
+              exit={reduce ? undefined : { opacity: 0, y: 10, scale: 0.98 }}
+              transition={reduce ? undefined : { duration: 0.28, ease: EASE }}>
+              <div
+                role="dialog"
+                aria-modal="true"
+                aria-label="The founder story, in Dr. Karam's own words"
+                className="bg-snow max-w-[640px] w-full max-h-[82vh] overflow-y-auto pointer-events-auto relative"
+                onKeyDown={(e) => {
+                  if (e.key !== 'Tab') return
+                  const focusable = e.currentTarget.querySelectorAll<HTMLElement>(
+                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                  )
+                  if (!focusable.length) return
+                  const first = focusable[0]
+                  const last = focusable[focusable.length - 1]
+                  if (e.shiftKey ? document.activeElement === first : document.activeElement === last) {
+                    e.preventDefault()
+                    ;(e.shiftKey ? last : first).focus()
+                  }
+                }}>
+                <button
+                  ref={closeButtonRef}
+                  onClick={() => setLetterOpen(false)}
+                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-anthracite/60 hover:text-anthracite transition-colors duration-150 cursor-pointer bg-transparent border-none text-[20px] leading-none"
+                  aria-label="Close the founder letter">
+                  ×
+                </button>
+                <div className="px-8 pt-10 pb-10 sm:px-10">
+                  <p
+                    className="text-[10px] text-anthracite/75 uppercase tracking-[0.22em] mb-2 select-none"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    The founder story
+                  </p>
+                  <h3
+                    className="text-[1.75rem] italic text-anthracite leading-[1.08] tracking-[-0.022em] mb-7"
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+                    In Dr. Karam's own words
+                  </h3>
+                  <div className="space-y-5">
+                    {FOUNDER_LETTER.map((para, pi) =>
+                      para.pull ? (
+                        <p
+                          key={pi}
+                          className="text-[1.125rem] lg:text-[1.25rem] italic text-anthracite leading-[1.5]"
+                          style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                          {para.text}
+                        </p>
+                      ) : (
+                        <p
+                          key={pi}
+                          className="text-[14px] text-anthracite/75 leading-[1.72]"
+                          style={{ fontFamily: 'var(--font-body)' }}>
+                          {para.text}
+                        </p>
+                      )
+                    )}
+                    <div className="pt-4 border-t border-sediment/25">
+                      <p
+                        className="text-[1.125rem] italic text-anthracite leading-none mb-1.5"
+                        style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                        Dr. Karim Karam
+                      </p>
+                      <p className="text-[12px] text-anthracite/70" style={{ fontFamily: 'var(--font-body)' }}>
+                        Co-Founder &amp; CEO, Aedifica
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

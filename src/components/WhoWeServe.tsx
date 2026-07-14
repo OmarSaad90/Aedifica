@@ -10,18 +10,23 @@ const PARTNERS = [
   'School districts',
   'Workforce boards',
   'Community organizations',
-  'County colleges',
-  'Employers and general contractors',
-  'Public and philanthropic funders',
+  'Community colleges',
+  'Employers',
+  'Contractors',
+  'Public-sector partners',
+  'Philanthropic funders',
 ] as const
 
 const LEARNERS = [
-  'Middle and high school students',
-  'Parents',
+  'Middle-school students',
+  'High-school students',
   'Adult learners',
   'Veterans',
-  'Returning adults and mothers',
-  'Justice-impacted individuals',
+  'Returning adults',
+  'Caregivers returning to work',
+  'Career changers',
+  'Returning citizens',
+  'Workers seeking management advancement',
 ] as const
 
 function AudienceGroup({
@@ -45,10 +50,10 @@ function AudienceGroup({
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
       viewport={reduce ? undefined : VIEWPORT}
       transition={reduce ? undefined : { duration: 0.5, delay, ease: EASE }}>
-      <div className="flex items-center gap-3.5 mb-8">
-        <Icon size={32} weight="regular" className={color} aria-hidden={true} />
+      <div className="flex items-start gap-3.5 mb-8">
+        <Icon size={30} weight="regular" className={`${color} mt-1`} aria-hidden={true} />
         <h3
-          className={`text-[2rem] lg:text-[2.25rem] leading-none italic ${color}`}
+          className={`text-[1.625rem] lg:text-[1.875rem] leading-[1.12] italic ${color} [text-wrap:balance]`}
           style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
           {title}
         </h3>
@@ -118,10 +123,10 @@ export function WhoWeServe() {
         {/* Partners left, learners right — divided so the two territories don't blur together */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-0 lg:divide-x lg:divide-sediment/30">
           <div className="lg:pr-14 xl:pr-16">
-            <AudienceGroup Icon={Buildings} color="text-datum" title="For partners" items={PARTNERS} delay={0} />
+            <AudienceGroup Icon={Buildings} color="text-datum" title="Institutions building the workforce" items={PARTNERS} delay={0} />
           </div>
           <div className="lg:pl-14 xl:pl-16">
-            <AudienceGroup Icon={Users} color="text-patina" title="For learners" items={LEARNERS} delay={0.08} />
+            <AudienceGroup Icon={Users} color="text-patina" title="People ready for a real career" items={LEARNERS} delay={0.08} />
           </div>
         </div>
 

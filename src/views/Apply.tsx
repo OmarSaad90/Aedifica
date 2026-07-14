@@ -28,11 +28,11 @@ const PROGRAMS = [
   },
   {
     name: 'Aedifica Rebuild',
-    tag: 'Adult · 12 weeks',
+    tag: 'Adult · 12 or 24 weeks',
     to: '/services/rebuild',
-    description: 'A 12-week adult bridge cohort for career changers and overlooked workers entering construction-management roles. Includes OSHA 30, LEED GA, and PMI-CAPM preparation.',
+    description: 'A 12- or 24-week adult bridge cohort for career changers and overlooked workers entering construction-management roles, with credential-aligned training, a capstone portfolio, and employer introductions.',
     audience: 'Adults with no required prior construction experience',
-    format: 'Hybrid, 12-week cohort',
+    format: 'Hybrid, 12- or 24-week cohort',
     next: 'Rebuild cohorts open on a published schedule. Submit your interest below to be notified when the next cohort opens.',
   },
   {
@@ -476,6 +476,166 @@ export function Apply() {
         </div>
       </section>
 
+      {/* ── Access & Funding ── */}
+      <section className="bg-anthracite py-14 lg:py-20" aria-labelledby="funding-heading">
+        <div className="max-w-7xl mx-auto px-6">
+
+          <motion.h2
+            id="funding-heading"
+            className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.1] tracking-[-0.028em] text-white italic mb-6 max-w-[24ch] [text-wrap:balance]"
+            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+            initial={reduce ? undefined : { opacity: 0, y: 24 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
+            Cost should never be the thing that decides who gets to build.
+          </motion.h2>
+
+          <motion.p
+            className="text-[15px] text-white/75 leading-[1.72] max-w-[66ch] mb-14 lg:mb-16"
+            style={{ fontFamily: 'var(--font-body)' }}
+            initial={reduce ? undefined : { opacity: 0, y: 16 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.55, delay: 0.08, ease: EASE }}>
+            Aedifica is designed to work through schools, workforce systems, grants, employer
+            partnerships, and community-based organizations, so that the question of who can afford a
+            pathway never determines who gets access to one. Aedifica does not charge participants
+            directly. Programs are funded by the institutional partner that commissions them.
+          </motion.p>
+
+          <div className="lg:grid lg:grid-cols-[1.15fr_1fr] lg:gap-16 xl:gap-24">
+
+            {/* Where the funding comes from */}
+            <div className="mb-14 lg:mb-0">
+              <p
+                className="text-[10.5px] uppercase tracking-[0.2em] mb-7 select-none"
+                style={{ fontFamily: 'var(--font-body)', color: 'var(--color-datum-light)' }}>
+                Where the funding comes from
+              </p>
+              <div className="border-t border-white/12">
+                {([
+                  {
+                    src: 'Public workforce funding',
+                    note: 'WIOA-eligible training dollars and state workforce funding administered through county colleges, workforce boards, and one-stop partners.',
+                  },
+                  {
+                    src: 'Grants',
+                    note: 'State, federal, and foundation grants, including green-economy, apprenticeship, and out-of-school-time funding streams. Aedifica supports partners with grant narrative and budget development through Launch.',
+                  },
+                  {
+                    src: 'Employer contributions',
+                    note: 'Employers that need the talent help fund the cohort that produces it: through sponsorship, capstone support, or credential-fee coverage.',
+                  },
+                  {
+                    src: 'Philanthropy & school budgets',
+                    note: 'Philanthropic funders and district or school budgets underwrite youth programming. The Bridging Brilliance program’s 2025 delivery was funded by the Engineering Information Foundation.',
+                  },
+                ] as const).map(({ src, note }, i) => (
+                  <motion.div
+                    key={src}
+                    className="border-b border-white/12 py-6 lg:py-7"
+                    initial={reduce ? undefined : { opacity: 0, y: 14 }}
+                    whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                    viewport={reduce ? undefined : VIEWPORT}
+                    transition={reduce ? undefined : { duration: 0.45, delay: i * 0.06, ease: EASE }}>
+                    <h3
+                      className="text-[1.25rem] lg:text-[1.5rem] italic text-white leading-[1.15] mb-2.5"
+                      style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                      {src}
+                    </h3>
+                    <p
+                      className="text-[13.5px] text-white/70 leading-[1.7] max-w-[58ch]"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {note}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+              <motion.p
+                className="text-[12.5px] text-white/55 leading-[1.7] mt-6 max-w-[58ch]"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0 }}
+                whileInView={reduce ? undefined : { opacity: 1 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.45, ease: EASE }}>
+                Each cohort publishes its own terms. Because funding differs by partner, every cohort
+                states its participant cost, stipend availability, and whether credential fees are
+                included before enrollment opens.
+              </motion.p>
+            </div>
+
+            {/* Supports */}
+            <div>
+              <p
+                className="text-[10.5px] uppercase tracking-[0.2em] mb-7 select-none"
+                style={{ fontFamily: 'var(--font-body)', color: 'var(--color-datum-light)' }}>
+                Support that makes completion possible
+              </p>
+              <motion.p
+                className="text-[1.125rem] lg:text-[1.25rem] italic text-white/90 leading-[1.5] mb-8"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
+                initial={reduce ? undefined : { opacity: 0, y: 14 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
+                A tuition-free program that a learner cannot physically attend is not access.
+              </motion.p>
+              <ul className="list-none space-y-4">
+                {([
+                  ['Transportation assistance', 'travel to sites, campuses, and interviews'],
+                  ['Childcare coordination', 'arranged with community partners, not assumed away'],
+                  ['Technology access', 'devices and connectivity for hybrid coursework and credential study'],
+                  ['Language access', 'translation and interpretation where a cohort needs it'],
+                  ['Case management', 'carried by the community-based partner that owns recruitment'],
+                  ['Career coaching', 'resume, interview practice, and next-step planning'],
+                  ['Credential-fee coverage', 'under the proposed BUILD NJ GREEN model, OSHA 30, LEED Green Associate, and PMI-CAPM cost the participant nothing'],
+                ] as const).map(([label, note], i) => (
+                  <motion.li
+                    key={label}
+                    className="flex gap-3.5 items-start"
+                    initial={reduce ? undefined : { opacity: 0, x: 12 }}
+                    whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
+                    viewport={reduce ? undefined : VIEWPORT}
+                    transition={reduce ? undefined : { duration: 0.38, delay: i * 0.045, ease: EASE }}>
+                    <span
+                      className="flex-shrink-0 w-[7px] h-[7px] rotate-45 mt-[7px]"
+                      style={{ backgroundColor: 'var(--color-datum-light)' }}
+                      aria-hidden="true"
+                    />
+                    <p className="text-[13.5px] leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
+                      <span className="text-white font-medium">{label}</span>
+                      <span className="text-white/65">: {note}</span>
+                    </p>
+                  </motion.li>
+                ))}
+              </ul>
+
+              <motion.div
+                className="mt-10 border border-white/15 px-6 py-6"
+                initial={reduce ? undefined : { opacity: 0, y: 14 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.1, ease: EASE }}>
+                <p
+                  className="text-[10.5px] uppercase tracking-[0.18em] text-white/60 mb-3 select-none"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  What Aedifica will not do
+                </p>
+                <p
+                  className="text-[13px] text-white/75 leading-[1.7]"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  We will not promise stipends a funder has not committed, publish a support service a
+                  partner has not agreed to deliver, or describe a cohort as free before its funding is
+                  closed. Where a term is unsettled, it stays unpublished until it isn’t.
+                </p>
+              </motion.div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA ── */}
       <section className="bg-snow pt-10 lg:pt-14 pb-0" aria-label="Start application">
         <div className="max-w-[1100px] mx-auto px-6">
@@ -500,12 +660,12 @@ export function Apply() {
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link href="/partner"
-                className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
+                className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/92"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Contact Aedifica
               </Link>
               <Link href="/faq"
-                className="inline-flex items-center justify-center border border-white/30 text-white text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/8"
+                className="inline-flex items-center justify-center border border-white/30 text-white text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/8"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Read the FAQ
               </Link>

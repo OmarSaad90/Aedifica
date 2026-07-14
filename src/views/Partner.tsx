@@ -86,7 +86,7 @@ const AUDIENCES: {
     dimText: 'text-white',
     borderFaint: 'border-white/20',
     orgValue: 'funding',
-    desc: 'State agencies, workforce boards, and foundations supporting accountable construction-management workforce infrastructure.',
+    desc: 'State agencies, workforce boards, and foundations that underwrite a cohort and hold us to published outcomes: the same definitions every cohort, reported whether or not they flatter us.',
     what: [
       'Measurable outcomes framework',
       'Employer-linked delivery model',
@@ -104,6 +104,7 @@ const ORG_OPTIONS = [
   { value: 'employer', label: 'Employer (contractor, developer, GC)' },
   { value: 'funding', label: 'Funding or state partner' },
   { value: 'philanthropic', label: 'Philanthropic funder' },
+  { value: 'learner', label: 'Learner, parent, or family member' },
   { value: 'other', label: 'Other' },
 ]
 
@@ -116,7 +117,7 @@ const INTEREST_OPTIONS = [
   { value: 'explore', label: 'Explore (student exposure modules)' },
   { value: 'outcomes', label: 'Outcome reporting collaboration' },
   { value: 'briefing', label: 'Institutional briefing' },
-  { value: 'other', label: 'Other / not sure yet' },
+  { value: 'other', label: 'Not sure, help me find the right pathway' },
 ]
 
 const TIMELINE_OPTIONS = [
@@ -193,7 +194,7 @@ export function Partner() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
-    if (!form.firstName || !form.lastName || !emailOk || !form.organization || !form.orgType || !form.message || !form.consent) {
+    if (!form.firstName || !form.lastName || !emailOk || (!form.organization && form.orgType !== 'learner') || !form.orgType || !form.message || !form.consent) {
       setFormError(true)
       return
     }
@@ -248,7 +249,7 @@ export function Partner() {
             initial={reduce ? undefined : { opacity: 0, y: 10 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-            Partner With Aedifica
+            Partner with Aedifica
           </motion.span>
 
           <motion.h1
@@ -370,8 +371,8 @@ export function Partner() {
                 ? AUDIENCES.find(a => a.id === selected)?.cta
                     ? AUDIENCES.find(a => a.id === selected)!.cta.charAt(0).toUpperCase() +
                       AUDIENCES.find(a => a.id === selected)!.cta.slice(1) + '.'
-                    : 'Tell us about your organization.'
-                : 'Tell us about your organization.'}
+                    : 'Tell us who you are and what you are trying to build.'
+                : 'Tell us who you are and what you are trying to build.'}
             </h2>
             <p
               className="text-[14px] text-anthracite/80 leading-[1.7] max-w-[58ch]"
@@ -455,9 +456,9 @@ export function Partner() {
 
                     <div>
                       <label htmlFor="pf-org" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                        Organization <span className="text-datum" aria-hidden="true">*</span>
+                        Organization{form.orgType !== 'learner' && <> <span className="text-datum" aria-hidden="true">*</span></>}
                       </label>
-                      <input id="pf-org" type="text" required autoComplete="organization"
+                      <input id="pf-org" type="text" required={form.orgType !== 'learner'} autoComplete="organization"
                         value={form.organization} onChange={set('organization')}
                         className={inputCls} style={{ fontFamily: 'var(--font-body)' }} />
                     </div>

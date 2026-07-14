@@ -83,7 +83,7 @@ function SectionPair({ text, exhibit, flip = false }: { text: ReactNode; exhibit
 function Exhibit1({ reduce }: { reduce: boolean }) {
   const svgRef = useRef<SVGSVGElement>(null)
   const inView = useInView(svgRef, { once: true, margin: '0px 0px -60px 0px' })
-  const go = inView && !reduce
+  const go = inView
 
   // Scale: value * 0.52 = px height; baseline y = 300
   const groups = [
@@ -117,20 +117,20 @@ function Exhibit1({ reduce }: { reduce: boolean }) {
               <motion.rect x={g.x} width={120}
                 initial={{ height: 0, y: 300 }}
                 animate={go ? { height: g.replace.h, y: g.replace.y } : { height: 0, y: 300 }}
-                transition={{ duration: 0.65, delay: i * 0.14, ease: EASE }}
+                transition={{ duration: reduce ? 0 : 0.65, delay: i * 0.14, ease: EASE }}
                 fill={H.datum}/>
               {/* New-demand bar */}
               <motion.rect x={g.x} width={120}
                 initial={{ height: 0, y: g.replace.y }}
                 animate={go ? { height: g.newD.h, y: g.newD.y } : { height: 0, y: g.replace.y }}
-                transition={{ duration: 0.55, delay: i * 0.14 + 0.22, ease: EASE }}
+                transition={{ duration: reduce ? 0 : 0.55, delay: i * 0.14 + 0.22, ease: EASE }}
                 fill={H.quarry} fillOpacity="0.7"/>
               {/* Total label */}
               <motion.text x={g.x + 60} y={g.labelY} textAnchor="middle"
                 fontSize="15" fontWeight="700" fill={H.datum}
                 fontFamily="'Cormorant Garamond',Georgia,serif"
                 initial={{ opacity: 0 }} animate={go ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ duration: 0.3, delay: i * 0.14 + 0.55 }}>
+                transition={{ duration: reduce ? 0 : 0.3, delay: i * 0.14 + 0.55 }}>
                 {g.total}
               </motion.text>
               {/* Year label */}
@@ -142,7 +142,7 @@ function Exhibit1({ reduce }: { reduce: boolean }) {
           ))}
           {/* 2026 retirement-dominance annotation */}
           <motion.g initial={{ opacity: 0 }} animate={go ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.4, delay: 0.85 }}>
+            transition={{ duration: reduce ? 0 : 0.4, delay: 0.85 }}>
             <line x1="380" y1="152" x2="380" y2="121" stroke={H.sediment} strokeWidth="1.2"/>
             <circle cx="380" cy="121" r="3" fill={H.sediment}/>
             <text x="370" y="148" textAnchor="end" fontSize="11" fill={H.anthracite}
@@ -164,7 +164,7 @@ function Exhibit1({ reduce }: { reduce: boolean }) {
 function Exhibit2({ reduce }: { reduce: boolean }) {
   const svgRef = useRef<SVGSVGElement>(null)
   const inView = useInView(svgRef, { once: true, margin: '0px 0px -60px 0px' })
-  const go = inView && !reduce
+  const go = inView
 
   // Scale: 0–120000 over x 250–720 (width 470px)
   const bars = [
@@ -184,12 +184,12 @@ function Exhibit2({ reduce }: { reduce: boolean }) {
               <motion.rect x={250} y={b.y} height={34}
                 fill={b.color} fillOpacity={b.op}
                 initial={{ width: 0 }} animate={go ? { width: b.w } : { width: 0 }}
-                transition={{ duration: 0.7, delay: b.delay, ease: EASE }}/>
+                transition={{ duration: reduce ? 0 : 0.7, delay: b.delay, ease: EASE }}/>
               <motion.text x={250 + b.w + 8} y={b.y + 23}
                 fontSize={b.label === 'Construction manager' ? 15 : 13}
                 fontWeight="700" fill={b.tColor} fontFamily="'Cormorant Garamond',Georgia,serif"
                 initial={{ opacity: 0 }} animate={go ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ duration: 0.3, delay: b.delay + 0.42 }}>
+                transition={{ duration: reduce ? 0 : 0.3, delay: b.delay + 0.42 }}>
                 {b.val}
               </motion.text>
             </g>
@@ -214,7 +214,7 @@ function Exhibit2({ reduce }: { reduce: boolean }) {
 function Exhibit3({ reduce }: { reduce: boolean }) {
   const svgRef = useRef<SVGSVGElement>(null)
   const inView = useInView(svgRef, { once: true, margin: '0px 0px -60px 0px' })
-  const go = inView && !reduce
+  const go = inView
 
   const bubbles = [
     { cx: 470, cy: 320, r: 30, color: H.quarry, op: 0.85, label: 'Laborers',        dotX: 500, dotY: 320, lx: 506, ly: 324, anchor: 'start'  as const, delay: 0    },
@@ -255,10 +255,10 @@ function Exhibit3({ reduce }: { reduce: boolean }) {
                 initial={{ scale: 0 }}
                 animate={go ? { scale: 1 } : { scale: 0 }}
                 style={{ originX: `${b.cx}px`, originY: `${b.cy}px` }}
-                transition={{ duration: 0.5, delay: b.delay, ease: SPRING }}/>
+                transition={{ duration: reduce ? 0 : 0.5, delay: b.delay, ease: SPRING }}/>
               <motion.g
                 initial={{ opacity: 0 }} animate={go ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ duration: 0.25, delay: b.delay + 0.32 }}>
+                transition={{ duration: reduce ? 0 : 0.25, delay: b.delay + 0.32 }}>
                 <circle cx={b.dotX} cy={b.dotY} r={2} fill={H.anthracite} fillOpacity="0.4"/>
                 <text x={b.lx} y={b.ly} textAnchor={b.anchor}
                   fontSize="10.5" fill={H.anthracite}
@@ -274,17 +274,17 @@ function Exhibit3({ reduce }: { reduce: boolean }) {
             initial={{ scale: 0 }}
             animate={go ? { scale: 1 } : { scale: 0 }}
             style={{ originX: '588px', originY: '108px' }}
-            transition={{ duration: 0.65, delay: 0.68, ease: SPRING }}/>
+            transition={{ duration: reduce ? 0 : 0.65, delay: 0.68, ease: SPRING }}/>
           {/* Pulse ring */}
           <motion.circle cx={588} cy={108} r={42}
             fill="none" stroke={H.sediment} strokeWidth="1.5"
             initial={{ scale: 1, opacity: 0 }}
             animate={go ? { scale: [1, 1.45], opacity: [0, 0.5, 0] } : {}}
             style={{ originX: '588px', originY: '108px' }}
-            transition={{ duration: 1.1, delay: 1.42, ease: 'easeOut' }}/>
+            transition={{ duration: reduce ? 0 : 1.1, delay: 1.42, ease: 'easeOut' }}/>
           <motion.g
             initial={{ opacity: 0 }} animate={go ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.3, delay: 1.0 }}>
+            transition={{ duration: reduce ? 0 : 0.3, delay: 1.0 }}>
             <text x="588" y="100" textAnchor="middle" fontSize="12" fontWeight="700"
               fill={H.anthracite} fontFamily="'Space Grotesk Variable',sans-serif">Green</text>
             <text x="588" y="114" textAnchor="middle" fontSize="12" fontWeight="700"
@@ -302,7 +302,7 @@ function Exhibit3({ reduce }: { reduce: boolean }) {
 function Exhibit4({ reduce }: { reduce: boolean }) {
   const svgRef = useRef<SVGSVGElement>(null)
   const inView = useInView(svgRef, { once: true, margin: '0px 0px -60px 0px' })
-  const go = inView && !reduce
+  const go = inView
 
   // Y scale: y = 320 - (value/100) * 290; chart area y=30..320 (height 290)
   // Demand pts (indexed): 2026=14, 2027=34, 2028=57, 2029=80, 2030=100
@@ -322,7 +322,7 @@ function Exhibit4({ reduce }: { reduce: boolean }) {
               <motion.rect x={80} y={0} height={400}
                 initial={{ width: 0 }}
                 animate={go ? { width: 630 } : { width: 0 }}
-                transition={{ duration: 1.2, ease: EASE }}/>
+                transition={{ duration: reduce ? 0 : 1.2, ease: EASE }}/>
             </clipPath>
           </defs>
           {/* Axes */}
@@ -356,30 +356,30 @@ function Exhibit4({ reduce }: { reduce: boolean }) {
           <motion.path d={supplyD} fill="none" stroke={H.datum} strokeWidth="2.6"
             strokeLinecap="round"
             initial={{ pathLength: 0 }} animate={go ? { pathLength: 1 } : { pathLength: 0 }}
-            transition={{ duration: 0.9, delay: 0.9, ease: EASE }}/>
+            transition={{ duration: reduce ? 0 : 0.9, delay: 0.9, ease: EASE }}/>
           {/* Demand line — draws last */}
           <motion.path d={demandD} fill="none" stroke={H.sediment} strokeWidth="3"
             strokeLinecap="round"
             initial={{ pathLength: 0 }} animate={go ? { pathLength: 1 } : { pathLength: 0 }}
-            transition={{ duration: 1.1, delay: 1.3, ease: EASE }}/>
+            transition={{ duration: reduce ? 0 : 1.1, delay: 1.3, ease: EASE }}/>
           {/* End dots */}
           <motion.circle cx={710} cy={30} r={4.5} fill={H.sediment}
             initial={{ scale: 0 }} animate={go ? { scale: 1 } : { scale: 0 }}
             style={{ originX: '710px', originY: '30px' }}
-            transition={{ duration: 0.28, delay: 2.1 }}/>
+            transition={{ duration: reduce ? 0 : 0.28, delay: 2.1 }}/>
           <motion.circle cx={710} cy={215.6} r={4.5} fill={H.datum}
             initial={{ scale: 0 }} animate={go ? { scale: 1 } : { scale: 0 }}
             style={{ originX: '710px', originY: '215.6px' }}
-            transition={{ duration: 0.28, delay: 2.1 }}/>
+            transition={{ duration: reduce ? 0 : 0.28, delay: 2.1 }}/>
           {/* 2030 gap bracket */}
           <motion.line x1="730" y1="30" x2="730" y2="215.6"
             stroke={H.quarry} strokeWidth="1.2"
             initial={{ opacity: 0 }} animate={go ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.3, delay: 2.2 }}/>
+            transition={{ duration: reduce ? 0 : 0.3, delay: 2.2 }}/>
           {/* Callout box */}
           <motion.g
             initial={{ opacity: 0 }} animate={go ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.45, delay: 2.3 }}>
+            transition={{ duration: reduce ? 0 : 0.45, delay: 2.3 }}>
             <rect x="442" y="140" width="185" height="66" rx="3"
               fill={H.bone} stroke={H.datum} strokeOpacity="0.28" strokeWidth="1"/>
             <text x="452" y="161" fontSize="12" fontWeight="700" fill={H.anthracite}
@@ -491,7 +491,7 @@ export function Insights() {
             initial={reduce ? undefined : { opacity: 0 }}
             animate={reduce ? undefined : { opacity: 1 }}
             transition={reduce ? undefined : { duration: 0.4, delay: 0.52, ease: EASE }}>
-            Aedifica Research · June 2026
+            Aedifica Research · June 2026 · Version 1.0 · Catalogued as R-01
           </motion.p>
 
         </div>
@@ -780,6 +780,223 @@ export function Insights() {
 
       </section>
 
+      {/* ── Research & Publications Archive ── bg-anthracite */}
+      <section className="bg-anthracite py-12 lg:py-16" aria-labelledby="archive-heading">
+        <div className="max-w-7xl mx-auto px-6">
+
+          <div className="lg:grid lg:grid-cols-[1fr_1.6fr] lg:gap-16 xl:gap-24 mb-9 lg:mb-11">
+            <motion.h2
+              id="archive-heading"
+              className="text-[2rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-white italic mb-6 lg:mb-0 [text-wrap:balance]"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+              initial={reduce ? undefined : { opacity: 0, y: 24 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.6, ease: SPRING }}>
+              Everything Aedifica publishes, indexed, with its status stated.
+            </motion.h2>
+            <motion.p
+              className="text-[14.5px] text-white/70 leading-[1.72] max-w-[62ch] lg:pt-3"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 16 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
+              This is the complete archive of Aedifica research. Published work appears in full on this
+              page. Work that is under review, in development, or planned appears here too, labeled as
+              such, so that the shape of the evidence base is visible before it is finished. Nothing is
+              listed as published until it is, and no entry is quietly removed: corrections are published,
+              not edited away.
+            </motion.p>
+          </div>
+
+          {/* Archive entries — 2×2 aligned pairs, R-05 centered below */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-14 xl:gap-x-20 gap-y-9 items-start">
+            {([
+              {
+                id: 'R-01',
+                status: 'Published',
+                statusCls: 'bg-quarry text-anthracite',
+                kind: 'Workforce prediction · Original analysis',
+                title: 'The supervisor gap',
+                body: 'Why America’s construction shortage has shifted from a shortage of hands to a shortage of experience, and why New Jersey’s building-electrification mandates will require an estimated 2,000–3,000 green-fluent construction managers by 2030 against a credentialed supply near zero. Four exhibits; two are labeled Aedifica estimates.',
+                meta: 'Version 1.0 · Published June 2026',
+                action: { label: 'Read in full ↑', href: '#insights-h1' },
+              },
+              {
+                id: 'R-02',
+                status: 'In review',
+                statusCls: 'bg-sediment text-anthracite',
+                kind: 'Program evaluation · Delivery year 2',
+                title: 'Bridging Brilliance 2025, program evaluation',
+                body: 'The evaluation record behind the delivery experience reported on the Impact page: twenty-one learners across four teams, pre- and post-program surveys, instructor ratings, the UCVTS acceptance outcome, and the independently certified program spend of $10,340.29. Publication is pending clearance from the school, the university partner, and the funder.',
+                meta: 'Hillside Innovation Academy · Stevens Institute of Technology · Engineering Information Foundation',
+                action: { label: 'Available on request', href: '/partner' },
+              },
+              {
+                id: 'R-03',
+                status: 'In development',
+                statusCls: 'border border-white/30 text-white/75',
+                kind: 'Methodology note · Outcome reporting',
+                title: 'Outcome reporting definitions',
+                body: 'The definitions Aedifica commits to using in every cohort, unchanged: what counts as a placement, when completion is measured, how retention and wage at placement are recorded, and what an apprenticeship articulation must include to be reported as one. Published before the first workforce cohort reports, so the metric cannot be redefined after the result is known.',
+                meta: 'Governs all Aedifica outcome claims · Anchored in Principle 04, outcomes over activity, honestly reported',
+                action: null,
+              },
+              {
+                id: 'R-04',
+                status: 'In development',
+                statusCls: 'border border-white/30 text-white/75',
+                kind: 'Registry review · Supporting evidence',
+                title: 'New Jersey Eligible Training Provider registry, green construction management scan',
+                body: 'The underlying review cited in R-01: a search of the state’s approved training-provider registry for any program purpose-built for green construction management. The claim that none exists is the strongest and most perishable assertion in the supervisor gap, and it is dated for exactly that reason.',
+                meta: 'Supports R-01 · Re-checked before every grant submission',
+                action: { label: 'Available on request', href: '/partner' },
+              },
+              {
+                id: 'R-05',
+                status: 'Planned',
+                statusCls: 'border border-white/30 text-white/75',
+                kind: 'Employer study · Curriculum validation',
+                title: 'Employer validation study',
+                body: 'What mid-market New Jersey general contractors say the coordination and supervisory roles actually require, tested against what Aedifica teaches. Depends on the Talent Pipeline advisory group reaching a quorum of named validators; the study will not be published without them.',
+                meta: 'Not yet started',
+                action: null,
+              },
+            ] as const).map((entry, i) => (
+              <motion.article
+                key={entry.id}
+                className={`border-t border-white/15 pt-6 ${i === 4 ? 'lg:col-span-2 lg:max-w-[620px] lg:w-full lg:mx-auto' : ''}`}
+                initial={reduce ? undefined : { opacity: 0, y: 18 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: Math.min(i * 0.05, 0.2), ease: EASE }}>
+                <div className="flex items-center gap-4 mb-4">
+                  <p
+                    className="text-[1.5rem] italic leading-none"
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--color-datum-light)' }}>
+                    {entry.id}
+                  </p>
+                  <span
+                    className={`inline-block text-[10px] uppercase tracking-[0.14em] px-2.5 py-1 leading-none select-none ${entry.statusCls}`}
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    {entry.status}
+                  </span>
+                </div>
+                <div>
+                  <p
+                    className="text-[10.5px] uppercase tracking-[0.16em] text-white/60 mb-2.5"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    {entry.kind}
+                  </p>
+                  <h3
+                    className="text-[1.5rem] lg:text-[1.75rem] italic text-white leading-[1.12] tracking-[-0.02em] mb-3 [text-wrap:balance]"
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+                    {entry.title}
+                  </h3>
+                  <p
+                    className="text-[13.5px] text-white/72 leading-[1.68] max-w-[72ch] mb-3"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    {entry.body}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+                    <p
+                      className="text-[11.5px] text-white/55 leading-[1.6]"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {entry.meta}
+                    </p>
+                    {entry.action && (
+                      <a
+                        href={entry.action.href}
+                        className="text-[12.5px] underline underline-offset-4 transition-colors duration-150"
+                        style={{ fontFamily: 'var(--font-body)', color: 'var(--color-datum-light)' }}>
+                        {entry.action.label}
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+
+          <motion.p
+            className="text-[13.5px] text-white/65 leading-[1.7] max-w-[68ch] mt-6"
+            style={{ fontFamily: 'var(--font-body)' }}
+            initial={reduce ? undefined : { opacity: 0 }}
+            whileInView={reduce ? undefined : { opacity: 1 }}
+            viewport={VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
+            Read the status, not just the title. One entry is published. One is written but blocked on
+            partner clearance. Two are in development. One has not started. An evidence base that only
+            shows finished work is a marketing page, not an archive.
+          </motion.p>
+
+          {/* Citation + research standards */}
+          <div className="mt-10 lg:mt-12 lg:grid lg:grid-cols-[1fr_1.6fr] lg:gap-16 xl:gap-24">
+            <motion.div
+              className="mb-10 lg:mb-0"
+              initial={reduce ? undefined : { opacity: 0, y: 16 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
+              <h3
+                className="text-[1.25rem] lg:text-[1.375rem] italic text-white leading-[1.2] mb-5"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                How to cite R-01
+              </h3>
+              <p
+                className="text-[13px] text-white/75 leading-[1.75] mb-5 border border-white/15 px-5 py-4"
+                style={{ fontFamily: 'var(--font-body)' }}>
+                Aedifica Research. (2026). <em>The supervisor gap: the shortage of green-fluent
+                construction managers in New Jersey</em> (Version 1.0). Aedifica. edfca.com/insights
+              </p>
+              <p
+                className="text-[12px] text-white/55 leading-[1.7]"
+                style={{ fontFamily: 'var(--font-body)' }}>
+                Version history: 1.0, June 2026, first publication. Subsequent versions and any
+                corrections will be listed here with their dates. Contact: info@edfca.com
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={reduce ? undefined : { opacity: 0, y: 16 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
+              <h3
+                className="text-[1.25rem] lg:text-[1.375rem] italic text-white leading-[1.2] mb-5"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                Research standards
+              </h3>
+              <ul className="list-none grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-3.5">
+                {([
+                  'Estimates are labeled where they appear. Forward-looking figures and illustrative positions carry an on-chart marker and a source note, not a footnote three screens away.',
+                  'Third-party organizations are cited as data sources only. No named source is an author, affiliate, or endorser of Aedifica research.',
+                  'Program data is reported at the cohort level. Student names are withheld, quotes are anonymized by cohort year, and photos or named students require written permission, with parent or guardian consent for minors.',
+                  'Delivery experience is never presented as placement data. Prior teaching participation demonstrates capability; it does not demonstrate workforce outcomes.',
+                  'Definitions do not move. Cohort 1’s metric is Cohort 8’s metric. R-03 fixes them in writing before the first cohort reports.',
+                  'Corrections are published. When a number changes, the change and its reason are recorded, as with the learner count confirmed at 21 after an earlier draft table listed 20.',
+                ] as const).map((std) => (
+                  <li key={std.slice(0, 24)} className="flex gap-3 items-start">
+                    <span
+                      className="flex-shrink-0 w-[7px] h-[7px] rotate-45 mt-[7px]"
+                      style={{ backgroundColor: 'var(--color-datum-light)' }}
+                      aria-hidden="true"
+                    />
+                    <p
+                      className="text-[12.5px] text-white/72 leading-[1.68]"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {std}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+
+        </div>
+      </section>
+
       {/* ── Resource Hub ── bg-snow */}
       <section className="bg-snow py-12 lg:py-18" aria-labelledby="resources-heading">
         <div className="max-w-7xl mx-auto px-6">
@@ -880,6 +1097,15 @@ export function Insights() {
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={VIEWPORT}
               transition={reduce ? undefined : { duration: 0.42, ease: EASE }}>
+              <p
+                className="text-[13px] text-anthracite/75 leading-[1.7] max-w-[70ch] mb-6"
+                style={{ fontFamily: 'var(--font-body)' }}>
+                <strong className="text-anthracite font-medium">Also on the record:</strong> the published
+                research report, The supervisor gap, sits in the research archive above alongside the work
+                still in review, and every curriculum is listed in the homepage curriculum index. The
+                outcome reporting commitment explains the definitions Aedifica will use, cohort after
+                cohort, whether or not the numbers flatter us.
+              </p>
               <Link href="/partner"
                 className="inline-flex items-center gap-2 text-[13.5px] text-datum tracking-[-0.01em] group py-2 -my-2"
                 style={{ fontFamily: 'var(--font-body)' }}>
@@ -916,12 +1142,12 @@ export function Insights() {
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link href="/partner"
-                className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
+                className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/92"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Start a Partnership Conversation
               </Link>
               <Link href="/impact"
-                className="inline-flex items-center justify-center border border-white/30 text-white text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/8"
+                className="inline-flex items-center justify-center border border-white/30 text-white text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/8"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 View the Impact Framework
               </Link>

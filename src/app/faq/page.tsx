@@ -4,7 +4,7 @@ import { FAQ_SCHEMA } from '@/src/lib/schemas'
 import { SITE_URL } from '@/src/lib/config'
 
 export const metadata: Metadata = {
-  title: 'FAQ & Eligibility | Aedifica',
+  title: 'FAQ & Eligibility',
   description:
     'Answers to common questions about Aedifica construction-management pathway programs: eligibility, applications, cost, and participation.',
   alternates: { canonical: `${SITE_URL}/faq` },

@@ -113,6 +113,15 @@ const STORIES: Story[] = [
     body: "The Pathway runs on a practicing civil engineer who teaches through real projects and first-hand industry stories, consistently the program's most-praised element, rated \"Excellent\" by 88-96% of students each summer.",
     pill: 'Pathway',
   },
+  {
+    id: 's10',
+    program: 'pathway',
+    type: 'Instructor Story · Teaching in action',
+    title: 'A teacher who opened the field',
+    quote: 'He was able to give us a real world view about the structures and buildings all over the world, even showing his own personal experiences along the civil engineering industry. The teacher was one of the best teachers that I ever had; I wish to see him again in the future.',
+    body: 'Others echoed it across cohorts: "Professor Karam taught through his personal experiences and had created hands-on experiences where we had creative freedom but also maintained the ideas and concepts of civil engineering." (A 2025 Pathway student.) Quotes are reproduced from survey responses and lightly edited only for readability.',
+    pill: 'Pathway',
+  },
 ]
 
 const STATS = [
@@ -302,7 +311,7 @@ export function Impact() {
               initial={reduce ? undefined : { opacity: 0, y: 14 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}>
-              Behind every cohort is a learner, a school, a partner, or an employer trying to build something better. In the spring of 2025, twenty-one Hillside middle schoolers spent ten weeks as engineers, designing, building, testing, and defending a bridge across the Hudson River. This page makes those outcomes visible: the human ones and the measurable ones, together.
+              In the spring of 2025, twenty-one Hillside middle schoolers spent ten weeks as engineers, designing, building, testing, and defending a bridge across the Hudson River. They moved from seeing engineering as something distant to seeing it as something they could do, shape, and belong to. And across three summers, students in the Civil Engineering &amp; Design Pathway moved from curiosity to design thinking, from quiet rooms to defended presentations, and from "I have zero experience" to "I want to do this." This page makes those outcomes visible: the human ones and the measurable ones, together, in students' own words.
             </motion.p>
 
           </div>
@@ -395,6 +404,7 @@ export function Impact() {
               transition={reduce ? undefined : { duration: 0.7, delay: 0.15, ease: EASE }}>
               <img
                 src="/images/impact-story.png"
+                  loading="lazy"
                 alt="Stevens Institute students with Bridging Brilliance team at program showcase"
                 className="w-full h-full object-cover"
                 style={{ filter: 'grayscale(15%) contrast(1.05)' }}
@@ -461,6 +471,14 @@ export function Impact() {
               <StoryCard key={story.id} story={story} index={i} reduce={reduce} featured={i === 0} />
             ))}
           </div>
+          {filtered.length === 0 && (
+            <p
+              className="text-[14px] text-anthracite/75 leading-[1.7] border border-sediment/25 px-7 py-8 max-w-[62ch]"
+              style={{ fontFamily: 'var(--font-body)' }}>
+              No published stories for this program yet. Aedifica publishes only genuine,
+              permission-cleared learner stories; future cohorts will add theirs here, on the record.
+            </p>
+          )}
 
         </div>
       </section>
@@ -640,7 +658,7 @@ export function Impact() {
           </motion.div>
 
           <motion.p
-            className="text-[12px] italic text-anthracite/65 mt-8 leading-[1.6]"
+            className="text-[12px] italic text-anthracite/75 mt-8 leading-[1.6]"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0 }}
             whileInView={reduce ? undefined : { opacity: 1 }}
@@ -676,12 +694,12 @@ export function Impact() {
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link href="/partner"
-                className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
+                className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/92"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Start a Partnership Conversation
               </Link>
               <Link href="/curriculum/bridging-brilliance"
-                className="inline-flex items-center justify-center border border-white/30 text-white text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/8"
+                className="inline-flex items-center justify-center border border-white/30 text-white text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/8"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Explore the Bridging Brilliance curriculum
               </Link>

@@ -217,6 +217,14 @@ const EXPERIENCE = [
     body: 'Students operate in defined engineering roles (project manager, structural designer, data analyst, communications lead) that rotate across units so every student practices every function. Teams hold weekly stand-ups, conduct internal design critiques, and meet documented role accountabilities.',
   },
   {
+    title: 'Studio-style lessons',
+    body: 'The program runs as a studio: short science, math, and ELA mini-lessons followed by extended time to design, build, test, and revise. Direct instruction exists to serve the build, not the other way around, so every concept lands inside work students already own.',
+  },
+  {
+    title: 'Universal Design for Learning',
+    body: 'Graphic organizers, sentence frames, multilingual supports, vocabulary banks, and varied product options keep every middle-school learner engaged and supported. Students show what they know through drawings, models, data, and writing, not through a single assessment format.',
+  },
+  {
     title: 'Public showcase and defense',
     body: 'The program closes with a Final Bridge Showcase and Testing Competition. Teams present to a public audience of peers, families, educators, and STEM professionals. They defend their decisions with data, justify their trade-offs, and respond to audience questions.',
   },
@@ -237,19 +245,29 @@ const OUTCOMES = [
 
 const STANDARDS = [
   {
-    title: 'NGSS: Next Generation Science Standards',
-    body: 'The program is built on the middle school engineering design strand (MS-ETS1). Students define problems, develop and evaluate solutions, analyze data, and optimize designs through iteration. Earth science extensions (MS-ESS3) appear in the sustainability content. Physical science extensions (MS-PS2) appear in the forces and load-path work in Unit 2.',
-    footer: 'Full NGSS crosswalk available on request.',
+    title: 'NGSS / NJSLS-Science: Engineering design',
+    body: 'The program is built on the middle school engineering design strand (MS-ETS1-1 through MS-ETS1-4): define criteria and constraints of a design problem, evaluate competing design solutions systematically, analyze test data to identify the best characteristics, and develop a model for iterative testing and modification. Earth science extensions (MS-ESS3-3/5) appear in the sustainability content; physical science extensions (MS-PS2) appear in the forces and load-path work in Unit 2.',
+    footer: 'Full NGSS / NJSLS-Science crosswalk available on request.',
   },
   {
-    title: 'Common Core: Mathematics and English Language Arts',
-    body: 'Math content covers ratios and proportional reasoning (7.RP), expressions and equations (7.EE), geometry (7.G and 8.G), and statistics and probability (7.SP). ELA content covers argument writing, informative writing, research-based writing, collaborative speaking and listening, and the integration of evidence-based reasoning across reading and writing.',
-    footer: 'Full Common Core crosswalk available on request.',
+    title: 'NJSLS-Mathematics (Grades 7–8)',
+    body: 'Scale drawings, unit rates, and efficiency metrics (7.RP.A.1–3); multi-step calculations in cost and constraints (7.EE.3–4); geometry of trusses, scale, and similarity (7.G and 8.G); probability, risk, and comparing test data (7.SP); with the Standards for Mathematical Practice (MP1–MP6) applied throughout.',
+    footer: 'Full NJSLS-Mathematics crosswalk available on request.',
   },
   {
-    title: 'NJ 21st Century Life and Careers',
-    body: 'The program addresses Career Readiness, Life Literacies, and Key Skills strands including critical thinking (9.4.8.CT), creativity and innovation (9.4.8.CI), information and media literacy (9.4.8.IML), and technology literacy (9.4.8.TL). Career awareness and exploration (9.2.8.CAP) is embedded throughout.',
-    footer: 'Full NJ Life and Careers crosswalk available on request.',
+    title: 'NJSLS-English Language Arts (Grades 7–8)',
+    body: 'Argument writing to defend the best design (W.AW.7.1); informative and explanatory technical writing (W.IW.7.2); short research with gathered and cited evidence (W.RW.7.7, W.SE.7.6); evaluating arguments on infrastructure and justice (RI.AA, RI.CT); collaborative discussion and data interpretation (SL.PE.7.1, SL.II.7.2); and presenting findings with multimedia (SL.PI.7.4, SL.UM.7.5).',
+    footer: 'Full NJSLS-ELA crosswalk available on request.',
+  },
+  {
+    title: 'Design, Technology & CS (NJSLS 8.1 / 8.2)',
+    body: "Applying the engineering design process (8.2.8.ED.1–7); technology's effect on people and the environment (8.2.8.ITH, NT); ethics, environment, and effects of technology (8.2.8.ETW); and data and analysis with computational tools (8.1.8.DA).",
+    footer: 'Full Design, Technology & CS crosswalk available on request.',
+  },
+  {
+    title: 'Career Readiness (NJSLS 9.2 / 9.4)',
+    body: 'Career awareness, exploration, and planning (9.2.8.CAP); creativity and innovation (9.4.8.CI); critical thinking and problem solving (9.4.8.CT); information and media literacy (9.4.8.IML); and technology literacy (9.4.8.TL), embedded throughout the twelve weeks.',
+    footer: 'Full Career Readiness crosswalk available on request.',
   },
 ]
 
@@ -381,6 +399,16 @@ const EASE  = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 const VIEWPORT = { once: true, margin: '100px 0px' } as const
 
+// In-page wayfinding for the sticky section bar
+const SECTION_LINKS = [
+  { id: 'bb-overview',   label: 'Overview' },
+  { id: 'bb-approach',   label: 'How it’s taught' },
+  { id: 'bb-curriculum', label: 'The 12 weeks' },
+  { id: 'bb-standards',  label: 'Standards' },
+  { id: 'bb-assessment', label: 'Assessment' },
+  { id: 'bb-instructor', label: 'Instructor' },
+] as const
+
 export function BridgingBrilliance() {
   const [openUnit, setOpenUnit]   = useState<string | null>('unit1')
   const [openWeeks, setOpenWeeks] = useState<Record<string, boolean>>({})
@@ -402,6 +430,24 @@ export function BridgingBrilliance() {
   const [lessonModalOpen, setLessonModalOpen] = useState(false)
   const modalTriggerRef = useRef<HTMLButtonElement | null>(null)
   const closeButtonRef  = useRef<HTMLButtonElement | null>(null)
+
+  // Sticky section bar: light scroll-spy over the page's landmark sections
+  const [activeSection, setActiveSection] = useState('')
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveSection(entry.target.id)
+        }
+      },
+      { rootMargin: '-25% 0px -65% 0px' },
+    )
+    SECTION_LINKS.forEach(({ id }) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     if (!lessonModalOpen) {
@@ -480,8 +526,36 @@ export function BridgingBrilliance() {
         </div>
       </section>
 
+      {/* ── Sticky section bar ── sits under the fixed navbar (h-16) */}
+      <nav
+        className="sticky top-16 z-40 bg-snow border-b border-sediment/25"
+        aria-label="On this page">
+        <div className="max-w-7xl mx-auto px-6 flex items-center lg:justify-center gap-6 lg:gap-8 overflow-x-auto whitespace-nowrap py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {SECTION_LINKS.map(({ id, label }) => {
+            const isActive = activeSection === id
+            return (
+              <a
+                key={id}
+                href={`#${id}`}
+                aria-current={isActive ? 'true' : undefined}
+                className={[
+                  'flex items-center gap-2 py-3 -my-3 text-[11.5px] uppercase tracking-[0.12em] leading-none transition-colors duration-150',
+                  isActive ? 'text-datum' : 'text-anthracite/70 hover:text-anthracite',
+                ].join(' ')}
+                style={{ fontFamily: 'var(--font-body)' }}>
+                <span
+                  className={`w-[6px] h-[6px] rotate-45 flex-shrink-0 bg-datum transition-opacity duration-150 ${isActive ? 'opacity-100' : 'opacity-0'}`}
+                  aria-hidden="true"
+                />
+                {label}
+              </a>
+            )
+          })}
+        </div>
+      </nav>
+
       {/* ── OVERVIEW ── */}
-      <section className="bg-bone py-14 lg:py-20 px-6 overflow-hidden">
+      <section id="bb-overview" className="scroll-mt-28 bg-bone py-14 lg:py-20 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="lg:grid lg:grid-cols-[1.25fr_1fr] lg:gap-16 xl:gap-24 lg:items-start">
 
@@ -597,7 +671,7 @@ export function BridgingBrilliance() {
       </section>
 
       {/* ── EXPERIENCE ── */}
-      <section className="bg-bone py-14 lg:py-20 px-6 overflow-hidden">
+      <section id="bb-approach" className="scroll-mt-28 bg-bone py-14 lg:py-20 px-6 overflow-hidden">
         <div className="max-w-5xl mx-auto">
 
           <motion.h2
@@ -607,7 +681,7 @@ export function BridgingBrilliance() {
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-            Six ways students learn like engineers.
+            Eight ways students learn like engineers.
           </motion.h2>
           <motion.p
             className="text-anthracite/80 text-[15px] leading-[1.72] max-w-[60ch] mb-12"
@@ -695,7 +769,7 @@ export function BridgingBrilliance() {
       </section>
 
       {/* ── CURRICULUM ACCORDION ── */}
-      <section className="bg-bone py-14 lg:py-24 px-6">
+      <section id="bb-curriculum" className="scroll-mt-28 bg-bone py-14 lg:py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <h2
             className="text-[clamp(1.5rem,3.5vw,2.25rem)] leading-[1.15] tracking-[-0.025em] mb-3"
@@ -871,7 +945,7 @@ export function BridgingBrilliance() {
       </section>
 
       {/* ── STANDARDS ── */}
-      <section className="bg-snow py-16 lg:py-20 px-6">
+      <section id="bb-standards" className="scroll-mt-28 bg-snow py-16 lg:py-20 px-6">
         <div className="max-w-5xl mx-auto">
 
           <div className="lg:grid lg:grid-cols-[1fr_1.7fr] lg:gap-16 lg:items-end mb-12 lg:mb-16">
@@ -891,7 +965,7 @@ export function BridgingBrilliance() {
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
-              <em>Bridging Brilliance</em> is aligned with three major standards frameworks. The full crosswalk with specific standard codes is available on request for curriculum coordinators and grant writers.
+              <em>Bridging Brilliance</em> is aligned with five standards frameworks, with more than forty aligned standards across the twelve weeks. Codes follow the NJSLS 2023 revisions for grades 7–8 and the Next Generation Science Standards engineering-design expectations. The full crosswalk with specific standard codes is available on request for curriculum coordinators and grant writers.
             </motion.p>
           </div>
 
@@ -954,7 +1028,7 @@ export function BridgingBrilliance() {
       </section>
 
       {/* ── ASSESSMENT ── */}
-      <section className="bg-bone py-16 lg:py-20 px-6">
+      <section id="bb-assessment" className="scroll-mt-28 bg-bone py-16 lg:py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <motion.h2
             className="text-[1.75rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.03em] text-anthracite italic mb-3"
@@ -1083,6 +1157,7 @@ export function BridgingBrilliance() {
               aria-hidden="true">
               <img
                 src="/images/bb-why.png"
+                  loading="lazy"
                 alt="Bridging Brilliance 2025 program photo"
                 className="w-full h-full object-cover"
                 style={{ filter: 'grayscale(20%) contrast(1.08)' }}
@@ -1094,7 +1169,7 @@ export function BridgingBrilliance() {
       </section>
 
       {/* ── INSTRUCTOR REFLECTION ── */}
-      <section className="bg-bone py-16 lg:py-20 px-6" aria-labelledby="instructor-h2">
+      <section id="bb-instructor" className="scroll-mt-28 bg-bone py-16 lg:py-20 px-6" aria-labelledby="instructor-h2">
         <div className="max-w-5xl mx-auto">
           <div className="lg:grid lg:grid-cols-[1fr_300px] lg:gap-16 xl:gap-20 lg:items-center">
 
@@ -1171,7 +1246,7 @@ export function BridgingBrilliance() {
                   className="text-[12px] text-anthracite/80 leading-[1.5]"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   Dr. Karim Karam<br />
-                  <span className="text-anthracite/60">Bridging Brilliance 2025</span>
+                  <span className="text-anthracite/78">Bridging Brilliance 2025</span>
                 </p>
               </div>
             </motion.div>
@@ -1209,7 +1284,7 @@ export function BridgingBrilliance() {
             </p>
 
             <Link href="/partner"
-              className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
+              className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/92"
               style={{ fontFamily: 'var(--font-body)' }}>
               Start a conversation
             </Link>
@@ -1275,7 +1350,7 @@ export function BridgingBrilliance() {
                 <button
                   ref={closeButtonRef}
                   onClick={() => setLessonModalOpen(false)}
-                  className="flex-shrink-0 w-9 h-9 flex items-center justify-center text-anthracite/50 hover:text-anthracite transition-colors duration-150 cursor-pointer mt-0.5"
+                  className="flex-shrink-0 w-9 h-9 flex items-center justify-center text-anthracite/60 hover:text-anthracite transition-colors duration-150 cursor-pointer mt-0.5"
                   aria-label="Close reflection">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                     <path d="M1.5 1.5L14.5 14.5M14.5 1.5L1.5 14.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />

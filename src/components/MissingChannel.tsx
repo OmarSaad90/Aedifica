@@ -76,7 +76,7 @@ export function MissingChannel() {
           <div className="flex items-start mt-5 lg:mt-6">
             <div className="flex-1 text-right">
               <p
-                className="text-[10.5px] uppercase tracking-[0.14em] text-anthracite/45 mb-2"
+                className="text-[10.5px] uppercase tracking-[0.14em] text-anthracite/75 mb-2"
                 style={{ fontFamily: 'var(--font-body)' }}
               >
                 Option one
@@ -91,7 +91,7 @@ export function MissingChannel() {
             <div className="flex-shrink-0 px-5 lg:px-7" aria-hidden="true" />
             <div className="flex-1 text-left">
               <p
-                className="text-[10.5px] uppercase tracking-[0.14em] text-anthracite/45 mb-2"
+                className="text-[10.5px] uppercase tracking-[0.14em] text-anthracite/75 mb-2"
                 style={{ fontFamily: 'var(--font-body)' }}
               >
                 Option two

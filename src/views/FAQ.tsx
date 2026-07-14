@@ -13,6 +13,10 @@ const FAQS = [
     category: 'General',
     items: [
       {
+        q: 'Which program is right for me?',
+        a: 'Choose Explore if your goal is early awareness for younger learners. Choose Pathway if your goal is school-based curriculum for secondary students. Choose Rebuild if your goal is adult learner advancement into construction-management-track roles. Choose Launch if your organization needs to design, fund, and implement a workforce pathway. Employers seeking talent connection should ask about Talent Pipeline. If you are not sure, contact Aedifica and we will help identify the right model.',
+      },
+      {
         q: 'What is Aedifica?',
         a: 'Aedifica is a New Jersey-based curriculum and program design organization that builds construction-management career pathways for students, adult learners, schools, and employers. Programs span youth exploration, school-based sequences, adult bridge cohorts, and employer talent pipelines. Aedifica works through institutional partners rather than directly as a standalone school or training center.',
       },
@@ -110,7 +114,7 @@ const FAQS = [
     items: [
       {
         q: 'How long is the program?',
-        a: 'Length varies by program. Explore camps run 1-3 weeks. Pathway programs follow the school semester or year. Rebuild is 12 weeks at approximately 240 hours total. Launch and Talent Pipeline are designed with partners over a longer engagement cycle. Check the program page for the format you are interested in.',
+        a: 'It varies by offering. Explore workshops run from single sessions to multi-week series, with a featured 12-week Bridging Brilliance curriculum and 1-2-week summer camps. Pathway modules run by semester or year, with 12-week and multi-unit studio formats. Rebuild cohorts run 12 or 24 weeks. The featured BUILD NJ GREEN pathway design under Launch runs 16 weeks and 240 hours. Final calendars are set per cohort.',
       },
       {
         q: 'Is attendance required?',
@@ -126,7 +130,32 @@ const FAQS = [
       },
       {
         q: 'Will I receive a credential or certificate?',
-        a: 'Rebuild prepares participants for OSHA 30, LEED Green Associate, and PMI-CAPM credentials. Explore and Pathway participants receive program completion certificates. Credential attainment depends on individual exam performance; preparation and exam fee coverage depend on the cohort\'s funding arrangement.',
+        a: 'It depends on the program design. Youth programs (Explore, Pathway) are enrichment and pathway programs, not credentialing programs; participants receive completion certificates. Some adult and institutional pathway designs include credential preparation: the featured BUILD NJ GREEN design, for example, prepares participants for OSHA 30, LEED Green Associate, and PMI-CAPM. Credentials are never guaranteed; exam attempts and targets are published per program, and each cohort confirms its own credential coverage before enrollment.',
+      },
+    ],
+  },
+  {
+    category: 'Partners & Outcomes',
+    items: [
+      {
+        q: 'How can a school host a program?',
+        a: 'Schools and districts can host Explore workshops and camps or implement the Pathway curriculum through licensing, contracts, district partnerships, grants, teacher professional development, or Aedifica-led instruction. Start with a school planning call through the partner inquiry page.',
+      },
+      {
+        q: 'How can an employer participate?',
+        a: 'Employers participate through the Talent Pipeline: validating curriculum relevance, informing capstone expectations, serving as reviewers and guest speakers, and committing to defined interview opportunities for qualified completers. Aedifica does not start a workforce cohort until an employer has committed to interview its completers.',
+      },
+      {
+        q: 'How does Launch work?',
+        a: 'Launch is a proposal-based institutional service. It moves through partner discovery, learner and labor-market need definition, program architecture, curriculum mapping, credential alignment, budget and funding strategy, employer advisory setup, an implementation calendar and staffing plan, an evaluation framework, outcome reporting design, and pilot-cohort planning. The deliverable is a fundable, outcomes-ready pathway your organization can run.',
+      },
+      {
+        q: 'How are outcomes measured?',
+        a: 'Aedifica tracks participation, completion, skill growth, portfolio development, partner engagement, and post-program next steps, and, for workforce cohorts, placement rate, credential attainment, wage at placement, and apprenticeship articulation. Every program publishes outcome data using the same definitions every cohort; only verified numbers are published.',
+      },
+      {
+        q: 'How is student privacy protected?',
+        a: 'Student names are withheld on this site and quotes are anonymized by cohort year. Photos, named students, and video are published only with written permission, and parent or guardian consent for minors. Program data is reported at the cohort level, and outcome claims are limited to what source reports verify.',
       },
     ],
   },
@@ -198,75 +227,111 @@ export function FAQ() {
         </div>
       </section>
 
-      {/* ── FAQ accordion ── */}
+      {/* ── FAQ accordion ── paired grid: each row's two categories start level
+          (General|Cost, Eligibility|Participation, Application|Partners & Outcomes),
+          with Technical Support centered below. */}
       <section className="bg-snow py-14 lg:py-20" aria-label="Frequently asked questions">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
 
-          {FAQS.map(({ category, items }, ci) => (
-            <motion.div
-              key={category}
-              className={ci > 0 ? 'mt-14 lg:mt-18' : ''}
-              initial={reduce ? undefined : { opacity: 0, y: 20 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.5, delay: 0.05, ease: EASE }}>
+          {(() => {
+            // Explicit grid placement keeps the logical reading order in the DOM
+            // (mobile + screen readers) while pairing rows visually at lg.
+            const GRID_POS: Record<string, string> = {
+              'General':             'lg:col-start-1 lg:row-start-1',
+              'Eligibility':         'lg:col-start-1 lg:row-start-2',
+              'Application':         'lg:col-start-1 lg:row-start-3',
+              'Cost':                'lg:col-start-2 lg:row-start-1',
+              'Participation':       'lg:col-start-2 lg:row-start-2',
+              'Partners & Outcomes': 'lg:col-start-2 lg:row-start-3',
+            }
 
-              <h2
-                className="text-[1rem] lg:text-[1.125rem] italic text-anthracite tracking-[-0.02em] mb-6 pb-4 border-b border-sediment/25"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                {category}
-              </h2>
+            const renderCategory = (category: string, items: readonly { q: string; a: string }[], extraClass: string, centered: boolean) => {
+              const ci = FAQS.findIndex(g => g.category === category)
+              return (
+                <motion.div
+                  key={category}
+                  className={extraClass}
+                  initial={reduce ? undefined : { opacity: 0, y: 20 }}
+                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                  viewport={reduce ? undefined : VIEWPORT}
+                  transition={reduce ? undefined : { duration: 0.5, delay: 0.05, ease: EASE }}>
 
-              <div className="divide-y divide-sediment/18">
-                {items.map((item, qi) => {
-                  const key = `${ci}-${qi}`
-                  const isOpen = open === key
-                  return (
-                    <div key={qi}>
-                      <button
-                        onClick={() => toggle(key)}
-                        aria-expanded={isOpen}
-                        aria-controls={`faq-panel-${key}`}
-                        className="w-full flex items-start justify-between gap-6 py-5 text-left group">
-                        <span
-                          className="text-[15px] lg:text-[15.5px] text-anthracite leading-[1.45] tracking-[-0.01em] group-hover:text-anthracite/75 transition-colors duration-150"
-                          style={{ fontFamily: 'var(--font-body)' }}>
-                          {item.q}
-                        </span>
-                        <motion.span
-                          animate={reduce ? undefined : { rotate: isOpen ? 180 : 0 }}
-                          transition={reduce ? undefined : { duration: 0.25, ease: EASE }}
-                          className="flex-shrink-0 mt-0.5 text-anthracite/40"
-                          aria-hidden="true">
-                          <CaretDown size={16} weight="bold" />
-                        </motion.span>
-                      </button>
+                  <h2
+                    className={`text-[1.625rem] lg:text-[1.875rem] italic text-anthracite leading-[1.1] tracking-[-0.022em] mb-5 pb-4 border-b border-sediment/25 ${centered ? 'text-center' : ''}`}
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+                    {category}
+                  </h2>
 
-                      <AnimatePresence initial={false}>
-                        {isOpen && (
-                          <motion.div
-                            id={`faq-panel-${key}`}
-                            key="panel"
-                            initial={reduce ? undefined : { height: 0, opacity: 0 }}
-                            animate={reduce ? undefined : { height: 'auto', opacity: 1 }}
-                            exit={reduce ? undefined : { height: 0, opacity: 0 }}
-                            transition={reduce ? undefined : { duration: 0.3, ease: EASE }}
-                            style={{ overflow: 'hidden' }}>
-                            <p
-                              className="text-[14px] text-anthracite/80 leading-[1.75] pb-6 max-w-[70ch]"
+                  <div className="divide-y divide-sediment/18">
+                    {items.map((item, qi) => {
+                      const key = `${ci}-${qi}`
+                      const isOpen = open === key
+                      return (
+                        <div key={qi}>
+                          <button
+                            onClick={() => toggle(key)}
+                            aria-expanded={isOpen}
+                            aria-controls={`faq-panel-${key}`}
+                            className="w-full flex items-start justify-between gap-6 py-5 text-left group">
+                            <span
+                              className="text-[15px] lg:text-[15.5px] text-anthracite leading-[1.45] tracking-[-0.01em]"
                               style={{ fontFamily: 'var(--font-body)' }}>
-                              {item.a}
-                            </p>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  )
-                })}
-              </div>
+                              {item.q}
+                            </span>
+                            <motion.span
+                              animate={reduce ? undefined : { rotate: isOpen ? 180 : 0 }}
+                              transition={reduce ? undefined : { duration: 0.25, ease: EASE }}
+                              className="flex-shrink-0 mt-0.5 text-anthracite/40 transition-colors duration-150 group-hover:text-datum"
+                              aria-hidden="true">
+                              <CaretDown size={16} weight="bold" />
+                            </motion.span>
+                          </button>
 
-            </motion.div>
-          ))}
+                          <AnimatePresence initial={false}>
+                            {isOpen && (
+                              <motion.div
+                                id={`faq-panel-${key}`}
+                                key="panel"
+                                initial={reduce ? undefined : { height: 0, opacity: 0 }}
+                                animate={reduce ? undefined : { height: 'auto', opacity: 1 }}
+                                exit={reduce ? undefined : { height: 0, opacity: 0 }}
+                                transition={reduce ? undefined : { duration: 0.3, ease: EASE }}
+                                style={{ overflow: 'hidden' }}>
+                                <p
+                                  className="text-[14px] text-anthracite/80 leading-[1.75] pb-6 max-w-[70ch]"
+                                  style={{ fontFamily: 'var(--font-body)' }}>
+                                  {item.a}
+                                </p>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      )
+                    })}
+                  </div>
+
+                </motion.div>
+              )
+            }
+
+            const paired = FAQS.filter(g => g.category !== 'Technical Support')
+            const tech = FAQS.find(g => g.category === 'Technical Support')
+
+            return (
+              <>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-12 lg:gap-y-16 lg:gap-x-14 xl:gap-x-20 items-start">
+                  {paired.map(({ category, items }) =>
+                    renderCategory(category, items, GRID_POS[category] ?? '', false)
+                  )}
+                </div>
+                {tech && (
+                  <div className="mt-12 lg:mt-16 lg:max-w-3xl lg:mx-auto">
+                    {renderCategory(tech.category, tech.items, '', true)}
+                  </div>
+                )}
+              </>
+            )
+          })()}
 
         </div>
       </section>

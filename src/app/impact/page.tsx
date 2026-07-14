@@ -4,7 +4,7 @@ import { IMPACT_SCHEMA } from '@/src/lib/schemas'
 import { SITE_URL } from '@/src/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Student Stories & Impact | Aedifica',
+  title: 'Student Stories & Impact',
   description:
     'Real outcomes from Aedifica programs: student stories, verified impact data, and the measurable shifts the Building Bridges cohort showed in Spring 2025.',
   alternates: { canonical: `${SITE_URL}/impact` },

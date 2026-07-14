@@ -82,10 +82,49 @@ export function TheGap() {
               are rarely given a credible way in. The result isn't a shortage of effort, it's a missing
               pathway into supervisory-track roles.
             </motion.p>
+
+            <motion.p
+              className="text-[15.5px] text-white/65 leading-[1.72] max-w-[68ch] mt-5"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 20 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.25, ease: EASE }}
+            >
+              Early exposure matters because most students write off construction before they ever
+              understand it. Adult bridge pathways matter because plenty of capable adults are ready for
+              a real career but never get a credible route toward it. And neither works in isolation:
+              institutions and employers must work together so that preparation connects to articulation,
+              interviews, and honest outcomes.
+            </motion.p>
           </div>
 
-          {/* Right column: pull quote at display scale */}
-          <div className="mt-12 lg:mt-0 lg:pt-16 xl:pt-20">
+          {/* Right column: short version + pull quote. Top padding matches the
+              eyebrow's height + margin so the box aligns with the h2, not the eyebrow. */}
+          <div className="mt-12 lg:mt-0 lg:pt-[42px]">
+            <motion.div
+              className="border border-white/15 px-6 py-5 mb-9"
+              initial={reduce ? undefined : { opacity: 0, y: 18 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.05, ease: EASE }}
+            >
+              <p
+                className="text-[10.5px] uppercase tracking-[0.18em] text-datum-light mb-3 select-none leading-none"
+                style={{ fontFamily: 'var(--font-body)' }}
+              >
+                The short version
+              </p>
+              <p
+                className="text-[14.5px] text-white/80 leading-[1.68]"
+                style={{ fontFamily: 'var(--font-body)' }}
+              >
+                New Jersey is building a cleaner, more resilient future, but the people who plan, manage,
+                and lead those projects are in short supply, and too many capable students and adults
+                never find a credible way in.
+              </p>
+            </motion.div>
+
             <motion.div
               className="w-10 border-t-2 border-datum mb-7"
               initial={reduce ? undefined : { opacity: 0, scaleX: 0 }}

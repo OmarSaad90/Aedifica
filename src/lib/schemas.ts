@@ -71,7 +71,7 @@ export const REBUILD_SCHEMA = {
       '@type': 'EducationalOccupationalProgram',
       name: 'Aedifica Rebuild',
       description:
-        'A 12-week adult bridge cohort for credible entry and progression in construction-management careers in New Jersey.',
+        'A 12- or 24-week adult bridge cohort for credible entry and progression in construction-management careers in New Jersey.',
       provider: { '@id': `${SITE_URL}/#organization` },
       timeToComplete: 'P12W',
       educationalProgramMode: 'in-person',
@@ -297,7 +297,7 @@ export const BB_SCHEMA = {
       '@type': 'Course',
       name: 'Bridging Brilliance: Engineering the Hudson',
       description:
-        'A twelve-week middle school engineering program where students design, model, build, test, and present a sustainable bridge across the Hudson River. Aligned with NGSS, Common Core Math and ELA, and NJ 21st Century Life and Careers standards.',
+        'A twelve-week middle school engineering program where students design, model, build, test, and present a sustainable bridge across the Hudson River. Aligned with five standards frameworks: NGSS/NJSLS-Science, NJSLS Mathematics, NJSLS English Language Arts, Design, Technology & CS, and Career Readiness.',
       provider: { '@id': `${SITE_URL}/#organization` },
       educationalLevel: 'Middle School',
       teaches:

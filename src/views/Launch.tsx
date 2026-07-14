@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
 import { PageCTA } from '../components/PageCTA'
 import {
   UsersThree, GraduationCap, Buildings, Certificate,
-  CheckCircle, CaretDown, Camera, type Icon,
+  CheckCircle, CaretDown, type Icon,
 } from '@phosphor-icons/react'
 
 const VIEWPORT = { once: true, margin: '100px 0px' } as const
@@ -647,7 +647,20 @@ export function Launch() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.55, delay: 0.08, ease: EASE }}>
-                Most grant-writing services produce proposals. Launch produces program architecture first: a defined delivery model, a realistic outcomes framework, and a partner matrix that funders and reviewers can evaluate on its own merits.
+                Launch is an institutional pathway-design and implementation service, not a class
+                learners enroll in directly. Aedifica works with partners to define the target learner,
+                employer need, program model, curriculum map, budget, funding strategy, delivery plan,
+                and outcome measures.
+              </motion.p>
+
+              <motion.p
+                className="text-[15.5px] text-anthracite/75 leading-[1.72] mb-7"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 18 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.55, delay: 0.11, ease: EASE }}>
+                Most grant-writing services produce proposals. Launch produces program architecture first: a defined delivery model, a realistic outcomes framework, and a partner matrix that funders and reviewers can evaluate on its own merits. Ideal Launch partners have a target audience, a delivery setting, and a willingness to coordinate across education, workforce, and employer stakeholders.
               </motion.p>
 
               <motion.p
@@ -738,7 +751,7 @@ export function Launch() {
                   viewport={reduce ? undefined : VIEWPORT}
                   transition={reduce ? undefined : { duration: 0.4, delay: i * 0.055, ease: EASE }}>
                   <span
-                    className="flex-shrink-0 w-6 h-6 rounded-full bg-anthracite/10 text-anthracite/60 flex items-center justify-center text-[11px] font-medium mt-0.5"
+                    className="flex-shrink-0 w-6 h-6 rounded-full bg-anthracite/10 text-anthracite/80 flex items-center justify-center text-[11px] font-medium mt-0.5"
                     style={{ fontFamily: 'var(--font-body)' }}
                     aria-hidden="true">
                     {i + 1}
@@ -789,7 +802,7 @@ export function Launch() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-                Six stages. One fixed-fee engagement.
+                Six stages. One proposal-based engagement.
               </motion.h2>
             </div>
             <motion.p
@@ -799,7 +812,7 @@ export function Launch() {
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, delay: 0.1, ease: EASE }}>
-              Launch is scoped as a complete engagement: from identifying the right funding opportunity through final submission. The fixed-fee model ensures that program-design work is built in, not billed separately.
+              Launch is scoped as a complete engagement, from identifying the right funding opportunity through final submission. Pricing is scoped by project complexity, grant requirements, cohort size, curriculum customization, and implementation support: a proposal-based model, with program-design work built in, not billed separately.
             </motion.p>
           </div>
 
@@ -978,10 +991,10 @@ export function Launch() {
                     <motion.div
                       id={`module-body-${i}`}
                       key="body"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.22, ease: EASE }}
+                      initial={reduce ? undefined : { height: 0, opacity: 0 }}
+                      animate={reduce ? undefined : { height: 'auto', opacity: 1 }}
+                      exit={reduce ? undefined : { height: 0, opacity: 0 }}
+                      transition={reduce ? undefined : { duration: 0.22, ease: EASE }}
                       style={{ overflow: 'hidden' }}>
                       <div className="px-8 lg:px-10 pb-5 lg:pl-[calc(2.5rem+76px)]">
                         {questions.length > 1 && (
@@ -1095,7 +1108,7 @@ export function Launch() {
           <p
             className="text-[12px] text-anthracite/78 italic text-center mt-6 max-w-[68ch] mx-auto leading-[1.6]"
             style={{ fontFamily: 'var(--font-body)' }}>
-            BUILD NJ GREEN is a model program designed through Launch. Labor-market figures and training-provider registry findings are verified with the partner before any grant submission or public release.
+            A featured example, not a template guarantee: BUILD NJ GREEN is a partner-ready pathway that Launch can design and implement. Credential preparation (OSHA 30, LEED Green Associate, PMI-CAPM) is a feature of this specific program design; Launch partnerships are scoped individually, and not every Launch partner automatically receives these credentials. Labor-market figures and training-provider registry findings are verified with the partner before any grant submission or public release.
           </p>
 
         </div>

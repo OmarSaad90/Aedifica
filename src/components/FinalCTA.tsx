@@ -19,6 +19,7 @@ export function FinalCTA() {
             alt=""
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
             style={{ objectPosition: 'center 25%', filter: 'grayscale(15%) contrast(1.05) brightness(0.88)' }}
           />
           {/* Dark scrim top + bottom, transparent middle — faces show through */}
@@ -42,13 +43,13 @@ export function FinalCTA() {
 
             <motion.h2
               id="final-cta-heading"
-              className="text-[2.5rem] lg:text-[3.75rem] xl:text-[4.75rem] leading-[1.06] tracking-[-0.03em] text-white italic"
+              className="text-[2.25rem] lg:text-[3.5rem] xl:text-[4.25rem] leading-[1.06] tracking-[-0.03em] text-white italic max-w-[18ch] mx-auto [text-wrap:balance]"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 28 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.7, ease: SPRING }}>
-              New Jersey's next construction leaders are already here.
+              New Jersey is building. Let's build the people who lead it.
             </motion.h2>
           </div>
 
@@ -60,12 +61,12 @@ export function FinalCTA() {
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.5, delay: 0.22, ease: EASE }}>
             <Link href="/partner"
-              className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92"
+              className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/92"
               style={{ fontFamily: 'var(--font-body)' }}>
               Start a Partnership Conversation
             </Link>
             <Link href="/partner"
-              className="inline-flex items-center justify-center border border-white/65 text-white text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/10"
+              className="inline-flex items-center justify-center border border-white/65 text-white text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/10"
               style={{ fontFamily: 'var(--font-body)' }}>
               Request an Institutional Briefing
             </Link>

@@ -17,6 +17,7 @@ const PROGRAMS = [
     audience: 'Middle-school districts, after-school, summer, and early-exposure learners',
     format: 'Workshops, short modules, holiday camps, summer camps, and school partner programs',
     purpose: 'Career awareness and hands-on discovery in the built environment',
+    outcome: 'Engineering identity, prototype and notebook artifacts, and a visible next step toward STEM pathways',
     cta: 'Explore the built environment',
     to: '/services/explore',
     color: 'bg-datum',
@@ -32,6 +33,7 @@ const PROGRAMS = [
     audience: 'High schools, districts, after-school, summer, and exposure learners',
     format: 'Semester and year modules, holiday and summer camps, career-pathway curriculum, capstones, and advisory alignment',
     purpose: 'A structured engineering and construction-management pathway overlay for secondary education',
+    outcome: 'Capstone artifacts and connections to college, credential, apprenticeship, or employer pathways',
     cta: 'Build a school pathway',
     to: '/services/pathway',
     color: 'bg-quarry',
@@ -47,6 +49,7 @@ const PROGRAMS = [
     audience: 'Institutions, CTE and vocational partners, workforce boards, nonprofits, community colleges, and employers',
     format: 'Advisory, grant strategy, curriculum design, and partner implementation',
     purpose: 'Design, fund, and implement construction-management workforce pathways',
+    outcome: 'A fundable, outcomes-ready pathway with an implementation calendar, staffing plan, and evaluation framework',
     cta: 'Launch a workforce pathway',
     to: '/services/launch',
     color: 'bg-sediment',
@@ -60,8 +63,9 @@ const PROGRAMS = [
     why: 'Plenty of capable adults are ready for a real career but never get a credible way in: returning adults, veterans, justice-impacted individuals, and returning mothers among them. Rebuild exists to open that door.',
     what: 'Structured cohorts · credential-aligned training · portfolio · employer intros',
     audience: 'Adults, overlooked learners, career changers, veterans, returning citizens, and caregivers',
-    format: 'Structured cohorts, credential-aligned training, portfolio, and employer introductions',
+    format: 'Structured 12- or 24-week cohorts, credential-aligned training, portfolio, and employer introductions',
     purpose: 'A bridge into construction-management careers and employer-connected advancement',
+    outcome: 'A capstone artifact, interview readiness, and a documented next step into credentials, college, apprenticeship, or entry roles',
     cta: 'Start a Rebuild cohort',
     to: '/services/rebuild',
     color: 'bg-rebuild-deep',
@@ -69,11 +73,22 @@ const PROGRAMS = [
   },
 ] as const
 
+// Cross-cutting connector — final comparison row, deliberately without a program color
+const PIPELINE_ROW = {
+  fullName: 'Talent Pipeline',
+  audience: 'Employers, contractors, and the four programs above',
+  purpose: 'Validate curriculum, review capstones, and commit to interviewing qualified completers',
+  format: 'Advisory participation, capstone review, guest reviewers, and interview commitments',
+  outcome: 'A pathway that answers to real roles, and outcome data that returns to the next cohort',
+  cta: 'Join as an employer',
+  to: '/services/talent-pipeline',
+} as const
+
 export function Services() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-bone border-t border-sediment/25 py-12 lg:py-18" aria-labelledby="services-heading">
+    <section className="bg-snow py-12 lg:py-18" aria-labelledby="services-heading">
       <div className="max-w-7xl mx-auto px-6">
 
         <motion.div
@@ -102,7 +117,7 @@ export function Services() {
         </motion.h2>
 
         <motion.p
-          className="text-[14.5px] text-anthracite/70 leading-[1.65] text-center max-w-[52ch] mx-auto -mt-8 mb-12 lg:-mt-10 lg:mb-16"
+          className="text-[14.5px] text-anthracite/75 leading-[1.65] text-center max-w-[52ch] mx-auto -mt-8 mb-12 lg:-mt-10 lg:mb-16"
           style={{ fontFamily: 'var(--font-body)' }}
           initial={reduce ? undefined : { opacity: 0, y: 16 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -148,7 +163,7 @@ export function Services() {
                 </p>
 
                 <p
-                  className={`text-[10.5px] uppercase tracking-[0.04em] leading-[1.7] pt-4 border-t ${dark ? 'text-anthracite/60 border-anthracite/15' : 'text-white/65 border-white/15'}`}
+                  className={`text-[10.5px] uppercase tracking-[0.04em] leading-[1.7] pt-4 border-t ${dark ? 'text-anthracite/75 border-anthracite/15' : 'text-white/80 border-white/15'}`}
                   style={{ fontFamily: 'var(--font-body)' }}>
                   {what}
                 </p>
@@ -166,7 +181,7 @@ export function Services() {
 
         {/* Talent Pipeline — minimal strip; no program content yet */}
         <motion.div
-          className="bg-snow border border-sediment/25 px-8 py-5 lg:px-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+          className="bg-bone border border-sediment/25 px-8 py-5 lg:px-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
           initial={reduce ? undefined : { opacity: 0, y: 14 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
           viewport={reduce ? undefined : VIEWPORT}
@@ -178,9 +193,10 @@ export function Services() {
               Talent Pipeline
             </p>
             <p
-              className="text-[12.5px] text-anthracite/65 leading-[1.6] max-w-[52ch]"
+              className="text-[12.5px] text-anthracite/75 leading-[1.6] max-w-[52ch]"
               style={{ fontFamily: 'var(--font-body)' }}>
-              Employer membership and candidate placement, launching after the first cohort delivers outcomes.
+              The employer connector that runs across all four programs. It is not a fifth program and
+              carries no program color.
             </p>
           </div>
           <Link href="/services/talent-pipeline"
@@ -192,7 +208,7 @@ export function Services() {
         </motion.div>
 
         {/* Choose your on-ramp — full program comparison */}
-        <div className="mt-16 lg:mt-20 border-t border-sediment/25 pt-14 lg:pt-16">
+        <div className="mt-12 lg:mt-14 border-t border-sediment/25 pt-10 lg:pt-12">
           <motion.div
             className="flex items-center gap-3 mb-5"
             initial={reduce ? undefined : { opacity: 0 }}
@@ -218,7 +234,7 @@ export function Services() {
           </motion.h3>
 
           <motion.p
-            className="text-[14.5px] text-anthracite/70 leading-[1.65] max-w-[64ch] mb-10"
+            className="text-[14.5px] text-anthracite/75 leading-[1.6] max-w-[78ch] mb-8"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 16 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -226,7 +242,11 @@ export function Services() {
             transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
             Aedifica programs are designed as connected on-ramps into construction management. Start
             with exposure, build structured learning, bridge adult talent, or launch a full workforce
-            pathway with partners. Use this comparison to identify the best starting point. Final
+            pathway with partners. Choose Explore if your goal is awareness. Choose Pathway if your goal
+            is school-based curriculum. Choose Rebuild if your goal is adult learner advancement. Choose
+            Launch if your organization needs to design, fund, and implement a workforce pathway.
+            Employers seeking talent connection join through the Talent Pipeline, a cross-cutting
+            connector rather than a fifth program, shown in the final row without a program color. Final
             formats, calendars, costs, and credentials are customized by partner and cohort.
           </motion.p>
 
@@ -240,10 +260,10 @@ export function Services() {
             <table className="w-full border-collapse table-fixed">
               <thead>
                 <tr className="bg-bone">
-                  {['Offering', 'Primary audience', 'Purpose', 'Format', ''].map((h) => (
+                  {['Offering', 'Primary audience', 'Purpose', 'Format', 'Typical outcome', ''].map((h) => (
                     <th
                       key={h}
-                      className={`text-left px-6 py-4 text-[10.5px] uppercase tracking-[0.12em] text-anthracite/60 font-medium border-b border-sediment/25 ${h === '' ? 'w-[200px]' : ''}`}
+                      className={`text-left px-5 py-3 text-[10.5px] uppercase tracking-[0.12em] text-anthracite/78 font-medium border-b border-sediment/25 ${h === '' ? 'w-[200px]' : ''}`}
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {h}
                     </th>
@@ -251,9 +271,9 @@ export function Services() {
                 </tr>
               </thead>
               <tbody>
-                {PROGRAMS.map(({ fullName, audience, purpose, format, cta, to, color, dark }, i) => (
-                  <tr key={fullName} className={i < PROGRAMS.length - 1 ? 'border-b border-sediment/20' : ''}>
-                    <td className="px-6 py-6 align-top">
+                {PROGRAMS.map(({ fullName, audience, purpose, format, outcome, cta, to, color, dark }) => (
+                  <tr key={fullName} className="border-b border-sediment/20">
+                    <td className="px-5 py-4 align-top">
                       <div className="flex items-center gap-3">
                         <span className={`flex-shrink-0 w-[9px] h-[9px] rotate-45 ${color}`} aria-hidden="true" />
                         <span
@@ -264,23 +284,28 @@ export function Services() {
                       </div>
                     </td>
                     <td
-                      className="px-6 py-6 align-top text-[13.5px] text-anthracite/75 leading-[1.55]"
+                      className="px-5 py-4 align-top text-[13.5px] text-anthracite/75 leading-[1.5]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {audience}
                     </td>
                     <td
-                      className="px-6 py-6 align-top text-[13.5px] text-anthracite leading-[1.55]"
+                      className="px-5 py-4 align-top text-[13.5px] text-anthracite leading-[1.5]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {purpose}
                     </td>
                     <td
-                      className="px-6 py-6 align-top text-[13.5px] text-anthracite/70 leading-[1.55]"
+                      className="px-5 py-4 align-top text-[13.5px] text-anthracite/75 leading-[1.5]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {format}
                     </td>
-                    <td className="px-6 py-6 align-top">
+                    <td
+                      className="px-5 py-4 align-top text-[13.5px] text-anthracite/75 leading-[1.5]"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {outcome}
+                    </td>
+                    <td className="px-5 py-4 align-top">
                       <Link href={to}
-                        className={`flex items-center justify-center gap-2 text-center text-[12px] font-medium leading-[1.3] tracking-[-0.01em] px-4 py-3.5 w-full transition-[filter] duration-150 hover:brightness-95 active:scale-[0.98] ${color} ${dark ? 'text-anthracite' : 'text-white'}`}
+                        className={`flex items-center justify-center gap-2 text-center text-[12px] font-medium leading-[1.3] tracking-[-0.01em] px-4 py-3 w-full transition-[filter] duration-150 hover:brightness-95 active:scale-[0.98] ${color} ${dark ? 'text-anthracite' : 'text-white'}`}
                         style={{ fontFamily: 'var(--font-body)' }}>
                         {cta}
                         <span className="flex-shrink-0" aria-hidden="true">→</span>
@@ -288,13 +313,46 @@ export function Services() {
                     </td>
                   </tr>
                 ))}
+                {/* Final row: the connector, deliberately colorless */}
+                <tr>
+                  <td className="px-5 py-4 align-top">
+                    <div className="flex items-center gap-3">
+                      <span className="flex-shrink-0 w-[9px] h-[9px] rotate-45 border border-anthracite/45" aria-hidden="true" />
+                      <span
+                        className="text-[1.1rem] italic text-anthracite leading-none"
+                        style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                        {PIPELINE_ROW.fullName}
+                      </span>
+                    </div>
+                  </td>
+                  <td className="px-5 py-4 align-top text-[13.5px] text-anthracite/75 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>
+                    {PIPELINE_ROW.audience}
+                  </td>
+                  <td className="px-5 py-4 align-top text-[13.5px] text-anthracite leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>
+                    {PIPELINE_ROW.purpose}
+                  </td>
+                  <td className="px-5 py-4 align-top text-[13.5px] text-anthracite/75 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>
+                    {PIPELINE_ROW.format}
+                  </td>
+                  <td className="px-5 py-4 align-top text-[13.5px] text-anthracite/75 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>
+                    {PIPELINE_ROW.outcome}
+                  </td>
+                  <td className="px-5 py-4 align-top">
+                    <Link href={PIPELINE_ROW.to}
+                      className="flex items-center justify-center gap-2 text-center text-[12px] font-medium leading-[1.3] tracking-[-0.01em] px-4 py-3 w-full border border-anthracite/40 text-anthracite transition-colors duration-150 hover:bg-anthracite hover:text-white active:scale-[0.98]"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {PIPELINE_ROW.cta}
+                      <span className="flex-shrink-0" aria-hidden="true">→</span>
+                    </Link>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </motion.div>
 
           {/* Mobile: stacked comparison rows */}
           <div className="lg:hidden space-y-5">
-            {PROGRAMS.map(({ fullName, audience, purpose, format, cta, to, color, dark }, i) => (
+            {PROGRAMS.map(({ fullName, audience, purpose, format, outcome, cta, to, color, dark }, i) => (
               <motion.div
                 key={fullName}
                 className="border border-sediment/25 px-6 py-6"
@@ -315,15 +373,16 @@ export function Services() {
                     ['Primary audience', audience],
                     ['Purpose', purpose],
                     ['Format', format],
+                    ['Typical outcome', outcome],
                   ] as const).map(([label, value]) => (
                     <div key={label}>
                       <dt
-                        className="text-[10px] uppercase tracking-[0.12em] text-anthracite/50 mb-1"
+                        className="text-[10px] uppercase tracking-[0.12em] text-anthracite/75 mb-1"
                         style={{ fontFamily: 'var(--font-body)' }}>
                         {label}
                       </dt>
                       <dd
-                        className="text-[13.5px] text-anthracite/80 leading-[1.55]"
+                        className="text-[13.5px] text-anthracite/80 leading-[1.5]"
                         style={{ fontFamily: 'var(--font-body)' }}>
                         {value}
                       </dd>
@@ -338,6 +397,50 @@ export function Services() {
                 </Link>
               </motion.div>
             ))}
+
+            {/* Final entry: the connector, deliberately colorless */}
+            <motion.div
+              className="border border-sediment/25 px-6 py-6"
+              initial={reduce ? undefined : { opacity: 0, y: 16 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.45, delay: 0.24, ease: EASE }}>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="flex-shrink-0 w-[9px] h-[9px] rotate-45 border border-anthracite/45" aria-hidden="true" />
+                <span
+                  className="text-[1.2rem] italic text-anthracite leading-none"
+                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                  {PIPELINE_ROW.fullName}
+                </span>
+              </div>
+              <dl className="space-y-3 mb-5">
+                {([
+                  ['Primary audience', PIPELINE_ROW.audience],
+                  ['Purpose', PIPELINE_ROW.purpose],
+                  ['Format', PIPELINE_ROW.format],
+                  ['Typical outcome', PIPELINE_ROW.outcome],
+                ] as const).map(([label, value]) => (
+                  <div key={label}>
+                    <dt
+                      className="text-[10px] uppercase tracking-[0.12em] text-anthracite/75 mb-1"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {label}
+                    </dt>
+                    <dd
+                      className="text-[13.5px] text-anthracite/80 leading-[1.5]"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <Link href={PIPELINE_ROW.to}
+                className="flex items-center justify-center gap-2 text-[13px] font-medium tracking-[-0.01em] px-5 py-3.5 w-full border border-anthracite/40 text-anthracite transition-colors duration-150 hover:bg-anthracite hover:text-white active:scale-[0.98]"
+                style={{ fontFamily: 'var(--font-body)' }}>
+                {PIPELINE_ROW.cta}
+                <span aria-hidden="true">→</span>
+              </Link>
+            </motion.div>
           </div>
         </div>
 

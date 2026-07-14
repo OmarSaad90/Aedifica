@@ -373,6 +373,96 @@ export function Explore() {
             Explore introduces students to construction, engineering, planning, teamwork, and project thinking through accessible, hands-on activities. Learners build, test, plan, and present while discovering the people and decisions behind buildings and infrastructure, at the age when those discoveries still shape direction.
           </motion.p>
 
+          <motion.p
+            className="text-[14.5px] text-anthracite/72 leading-[1.72] max-w-[68ch] -mt-8 lg:-mt-12 mb-14 lg:mb-18"
+            style={{ fontFamily: 'var(--font-body)' }}
+            initial={reduce ? undefined : { opacity: 0, y: 16 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.5, delay: 0.12, ease: EASE }}>
+            Explore can be adapted for grades 6 to 9, after-school groups, camps, community-based
+            organizations, enrichment programs, and school-day workshops, offered as a single workshop,
+            multi-session series, summer camp module, or partner-funded enrichment program.
+          </motion.p>
+
+          {/* Program facts + sample activities — asymmetric pair */}
+          <div className="lg:grid lg:grid-cols-[1.2fr_1fr] lg:gap-14 xl:gap-20 mb-16 lg:mb-20 lg:items-start">
+            <div className="mb-12 lg:mb-0">
+              {([
+                ['Audience', 'Middle-school students, grades 6–9; after-school, camp, and community programs'],
+                ['Learning model', 'Studio-style, project-based learning in collaborative design teams with engineering notebooks and public showcases'],
+                ['What students gain', 'Awareness of engineering and construction-management careers, confidence with design-build thinking, teamwork and communication practice, and early exposure to engineering, planning, sustainability, and community impact'],
+                ['Career exposure', 'Career role-play (owner, designer, estimator, scheduler, field manager) plus professional judges and campus visits'],
+              ] as const).map(([label, value], i) => (
+                <motion.div
+                  key={label}
+                  className="grid grid-cols-1 sm:grid-cols-[170px_1fr] gap-2 sm:gap-8 py-5 border-t border-sediment/25 last:border-b last:border-sediment/25"
+                  initial={reduce ? undefined : { opacity: 0, y: 12 }}
+                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                  viewport={reduce ? undefined : VIEWPORT}
+                  transition={reduce ? undefined : { duration: 0.4, delay: i * 0.05, ease: EASE }}>
+                  <p
+                    className="text-[10.5px] uppercase tracking-[0.16em] text-datum pt-1 select-none"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    {label}
+                  </p>
+                  <p
+                    className="text-[14px] text-anthracite/78 leading-[1.68]"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    {value}
+                  </p>
+                </motion.div>
+              ))}
+
+              <motion.p
+                className="mt-8 text-[1.125rem] lg:text-[1.25rem] italic text-anthracite/85 leading-[1.5] max-w-[52ch]"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
+                initial={reduce ? undefined : { opacity: 0, y: 14 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.15, ease: EASE }}>
+                Built, tested, revised, not watched. Students understand tension, compression, and cost
+                most deeply when a prototype fails in front of them and they have to explain why.
+              </motion.p>
+            </div>
+
+            <motion.div
+              className="bg-datum px-8 py-9 lg:px-10 lg:py-10"
+              initial={reduce ? undefined : { opacity: 0, y: 20 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.55, delay: 0.1, ease: SPRING }}>
+              <h3
+                className="text-[1.375rem] lg:text-[1.5rem] text-white italic leading-[1.2] tracking-[-0.02em] mb-7"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                Sample activities and student deliverables.
+              </h3>
+              <ul className="list-none space-y-3.5 mb-7">
+                {([
+                  'Bridge or tower design challenge',
+                  'Mini site-planning activity',
+                  'Materials and load-testing demonstration',
+                  'Neighborhood infrastructure mapping',
+                  'Career role-play: owner, designer, estimator, scheduler, field manager',
+                ] as const).map((act) => (
+                  <li key={act} className="flex gap-3.5 items-start">
+                    <span className="flex-shrink-0 w-[4px] h-[4px] bg-white/55 mt-[8px]" aria-hidden="true" />
+                    <span
+                      className="text-[14px] text-white/95 leading-[1.6]"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {act}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p
+                className="text-[12px] text-white/90 uppercase tracking-[0.06em] leading-[1.7] border-t border-white/20 pt-5"
+                style={{ fontFamily: 'var(--font-body)' }}>
+                Deliverables: engineering notebook · tested prototype · STEM Expo poster · reflection
+              </p>
+            </motion.div>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-sediment/25">
             {GAINS.map(({ heading, body }, i) => (
               <motion.div
@@ -480,10 +570,10 @@ export function Explore() {
                     <motion.div
                       id={`camp-body-${i}`}
                       key="body"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.22, ease: EASE }}
+                      initial={reduce ? undefined : { height: 0, opacity: 0 }}
+                      animate={reduce ? undefined : { height: 'auto', opacity: 1 }}
+                      exit={reduce ? undefined : { height: 0, opacity: 0 }}
+                      transition={reduce ? undefined : { duration: 0.22, ease: EASE }}
                       style={{ overflow: 'hidden' }}>
                       <div className="px-7 lg:px-10 pb-7 lg:pl-[calc(2.5rem+104px)]">
                         <p
@@ -545,7 +635,7 @@ export function Explore() {
                                   )}
                                   <div className="flex gap-4 items-start">
                                     <span
-                                      className="flex-shrink-0 w-6 text-[10.5px] text-anthracite/55 uppercase tracking-[0.04em] pt-1"
+                                      className="flex-shrink-0 w-6 text-[10.5px] text-anthracite/78 uppercase tracking-[0.04em] pt-1"
                                       style={{ fontFamily: 'var(--font-body)' }}>
                                       D{d.day}
                                     </span>
@@ -664,7 +754,7 @@ export function Explore() {
                       {value}
                     </p>
                     <p
-                      className="text-[11px] text-anthracite/55 leading-[1.4]"
+                      className="text-[11px] text-anthracite/78 leading-[1.4]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {label}
                     </p>
@@ -707,7 +797,7 @@ export function Explore() {
               ))}
             </div>
             <p
-              className="text-[11.5px] text-anthracite/55 italic pt-5 mb-8"
+              className="text-[11.5px] text-anthracite/78 italic pt-5 mb-8"
               style={{ fontFamily: 'var(--font-body)' }}>
               Full alignment matrix, all twelve weeks, on the Bridging Brilliance page.
             </p>
@@ -719,7 +809,7 @@ export function Explore() {
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.45, delay: 0.18, ease: EASE }}>
             <Link href="/curriculum/bridging-brilliance"
-              className="inline-flex items-center gap-2.5 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-6 py-3 active:scale-[0.98] transition-transform duration-100 hover:bg-anthracite/90 group"
+              className="inline-flex items-center gap-2.5 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-6 py-3 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/90 group"
               style={{ fontFamily: 'var(--font-body)' }}>
               View the Bridging Brilliance curriculum
               <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
@@ -829,7 +919,7 @@ export function Explore() {
             </p>
 
             <Link href="/partner"
-              className="inline-flex items-center justify-center gap-2 bg-white text-datum text-[13.5px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-transform duration-100 hover:bg-white/92 group"
+              className="inline-flex items-center justify-center gap-2 bg-white text-datum text-[13.5px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/92 group"
               style={{ fontFamily: 'var(--font-body)' }}>
               Discuss an Explore partnership
               <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>

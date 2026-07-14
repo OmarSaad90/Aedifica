@@ -93,7 +93,7 @@ export function PriorExperience() {
             </motion.p>
 
             <motion.p
-              className="text-[13.5px] text-anthracite/60 leading-[1.7] mt-6"
+              className="text-[13.5px] text-anthracite/80 leading-[1.7] mt-6"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 16 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -109,7 +109,7 @@ export function PriorExperience() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.5, delay: 0.24, ease: EASE }}>
               <Link href="/impact"
-                className="inline-flex items-center justify-center bg-patina text-white text-[14px] tracking-[-0.01em] px-6 py-3 active:scale-[0.98] transition-transform duration-100 hover:bg-patina/85"
+                className="inline-flex items-center justify-center bg-patina text-white text-[14px] tracking-[-0.01em] px-6 py-3 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-patina/85"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Review Projects &amp; Impact
               </Link>

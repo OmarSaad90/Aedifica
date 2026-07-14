@@ -64,7 +64,7 @@ export function Footer() {
             <p
               className="text-[12.5px] text-white/50 leading-[1.7] max-w-[30ch] mt-3"
               style={{ fontFamily: 'var(--font-body)' }}>
-              Construction-management workforce pathways for New Jersey.
+              Earth. Engineers. Education.
             </p>
           </div>
 
@@ -104,7 +104,7 @@ export function Footer() {
           <p
             className="text-[12px] text-white/50"
             style={{ fontFamily: 'var(--font-body)' }}>
-            New Jersey · Construction-Management Workforce Pathways
+            New Jersey / New York metro · Construction-management workforce, built from overlooked talent.
           </p>
         </div>
 
