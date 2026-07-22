@@ -28,13 +28,14 @@ const NAV_GROUPS: NavGroup[] = [
   },
 ]
 
-// Flat, single-level links — matches his nav (Programs / Learner Experience / For Families / Impact / Research / About), Home skipped (logo does that job)
+// Flat, single-level links after Home + the Programs dropdown — matches his nav order
 const FLAT_LINKS: { label: string; to: string }[] = [
   { label: 'Learner Experience', to: '/experience' },
   { label: 'For Families',       to: '/families'   },
   { label: 'Impact',             to: '/impact'     },
   { label: 'Research',           to: '/research'   },
   { label: 'About Us',           to: '/about'      },
+  { label: 'Contact',            to: '/partner'    },
 ]
 
 const EASE = [0.25, 0.1, 0.25, 1] as const
@@ -84,7 +85,15 @@ export function Navbar() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 bg-snow border-b border-sediment/20 transition-shadow duration-200 ${scrolled ? 'shadow-[0_2px_12px_rgba(45,45,49,0.07)]' : ''}`}>
-      <div className="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between gap-6">
+      {/* Program spec strip — five channels, Explore→Pathway→Launch→Rebuild→Pipeline, house signature */}
+      <div className="flex h-1.5 w-full" aria-hidden="true">
+        <span className="flex-1 bg-datum" />
+        <span className="flex-1 bg-quarry" />
+        <span className="flex-1 bg-sediment" />
+        <span className="flex-1 bg-rebuild" />
+        <span className="flex-1 bg-pipeline" />
+      </div>
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
 
         {/* Logo + wordmark + tagline */}
         <div className="flex items-center gap-3 flex-shrink-0">
@@ -117,6 +126,11 @@ export function Navbar() {
 
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-5 xl:gap-6" aria-label="Primary">
+
+          <Link href="/"
+            className="text-[13px] text-anthracite/70 hover:text-anthracite hover:underline hover:underline-offset-4 hover:decoration-anthracite/25 transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap">
+            Home
+          </Link>
 
           {NAV_GROUPS.map((group) => (
             <div
@@ -199,12 +213,6 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* Desktop CTA */}
-        <Link href="/partner"
-          className="hidden lg:inline-flex items-center flex-shrink-0 bg-patina text-white text-[12.5px] font-medium px-4 py-2 tracking-[-0.005em] hover:bg-patina/85 transition-colors duration-150 whitespace-nowrap">
-          Start a Partnership Conversation
-        </Link>
-
         {/* Mobile toggle */}
         <button
           className="lg:hidden -mr-3 p-3 text-anthracite ml-auto cursor-pointer"
@@ -226,6 +234,13 @@ export function Navbar() {
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             exit={reduce ? undefined : { opacity: 0, y: -6 }}
             transition={reduce ? undefined : { duration: 0.18, ease: EASE }}>
+
+            <Link href="/"
+              className="text-[14px] text-anthracite/70 py-3 border-b border-sediment/10"
+              style={{ fontFamily: 'var(--font-body)' }}
+              onClick={closeMobile}>
+              Home
+            </Link>
 
             {NAV_GROUPS.map((group) => (
               <div key={group.id}>
@@ -285,12 +300,6 @@ export function Navbar() {
                 {label}
               </Link>
             ))}
-
-            <Link href="/partner"
-              className="mt-4 bg-patina text-white text-[13.5px] font-medium px-4 py-3 text-center hover:bg-patina/85 transition-colors duration-150"
-              onClick={closeMobile}>
-              Start a Partnership Conversation
-            </Link>
           </motion.div>
         )}
       </AnimatePresence>

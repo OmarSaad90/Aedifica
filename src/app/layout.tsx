@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <LenisProvider>
           <Navbar />
-          <div className="pt-16">
+          <div className="pt-[70px]">
             {children}
           </div>
           <Footer />
