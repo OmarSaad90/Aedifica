@@ -16,43 +16,35 @@ type NavGroup = {
 const NAV_GROUPS: NavGroup[] = [
   {
     id: 'programs',
-    label: 'Discover Aedifica',
+    label: 'Programs',
     children: [
-      { label: 'Explore',         to: '/services/explore',         dot: 'bg-datum'         },
-      { label: 'Pathway',         to: '/services/pathway',         dot: 'bg-quarry'        },
-      { label: 'Launch',          to: '/services/launch',          dot: 'bg-sediment'      },
-      { label: 'Rebuild',         to: '/services/rebuild',         dot: 'bg-rebuild'       },
-      { label: 'Talent Pipeline', to: '/services/talent-pipeline', dot: 'bg-anthracite/30' },
+      { label: 'Explore',         to: '/programs/explore',         dot: 'bg-datum'         },
+      { label: 'Pathway',         to: '/programs/pathway',         dot: 'bg-quarry'        },
+      { label: 'Launch',          to: '/programs/launch',          dot: 'bg-sediment'      },
+      { label: 'Rebuild',         to: '/programs/rebuild',         dot: 'bg-rebuild'       },
+      { label: 'Talent Pipeline', to: '/programs/talent-pipeline', dot: 'bg-anthracite/30' },
     ],
-    footer: { label: 'View all programs', to: '/services' },
+    footer: { label: 'View all programs', to: '/programs' },
   },
-  {
-    id: 'impact',
-    label: 'Our Impact',
-    children: [
-      { label: 'Student Stories',     to: '/impact'                         },
-      { label: 'Bridging Brilliance', to: '/curriculum/bridging-brilliance'  },
-    ],
-  },
-  {
-    id: 'resources',
-    label: 'Resources',
-    children: [
-      { label: 'Apply',             to: '/apply'    },
-      { label: 'FAQ & Eligibility', to: '/faq'      },
-      { label: 'Insights',          to: '/insights' },
-    ],
-  },
+]
+
+// Flat, single-level links — matches his nav (Programs / Learner Experience / For Families / Impact / Research / About), Home skipped (logo does that job)
+const FLAT_LINKS: { label: string; to: string }[] = [
+  { label: 'Learner Experience', to: '/experience' },
+  { label: 'For Families',       to: '/families'   },
+  { label: 'Impact',             to: '/impact'     },
+  { label: 'Research',           to: '/research'   },
+  { label: 'About Us',           to: '/about'      },
 ]
 
 const EASE = [0.25, 0.1, 0.25, 1] as const
 
 const SERVICE_LOGOS: Record<string, string> = {
-  '/services/rebuild':         '/images/logo-rebuild.png',
-  '/services/launch':          '/images/logo-talent.png',
-  '/services/pathway':         '/images/logo-pathway.png',
-  '/services/talent-pipeline': '/images/logo-talent.png',
-  '/services/explore':         '/images/logo-explore.png',
+  '/programs/rebuild':         '/images/logo-rebuild.png',
+  '/programs/launch':          '/images/logo-talent.png',
+  '/programs/pathway':         '/images/logo-pathway.png',
+  '/programs/talent-pipeline': '/images/logo-talent.png',
+  '/programs/explore':         '/images/logo-explore.png',
 }
 const DEFAULT_LOGO = '/images/logo-rebuild.png'
 
@@ -198,11 +190,13 @@ export function Navbar() {
             </div>
           ))}
 
-          {/* About — flat link, no dropdown */}
-          <Link href="/about"
-            className="text-[13px] text-anthracite/70 hover:text-anthracite hover:underline hover:underline-offset-4 hover:decoration-anthracite/25 transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap">
-            About Us
-          </Link>
+          {/* Flat links — no dropdown */}
+          {FLAT_LINKS.map(({ label, to }) => (
+            <Link key={to} href={to}
+              className="text-[13px] text-anthracite/70 hover:text-anthracite hover:underline hover:underline-offset-4 hover:decoration-anthracite/25 transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap">
+              {label}
+            </Link>
+          ))}
         </nav>
 
         {/* Desktop CTA */}
@@ -213,7 +207,7 @@ export function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="lg:hidden text-anthracite ml-auto cursor-pointer"
+          className="lg:hidden -mr-3 p-3 text-anthracite ml-auto cursor-pointer"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={mobileOpen}>
@@ -282,13 +276,15 @@ export function Navbar() {
               </div>
             ))}
 
-            {/* About — flat mobile link */}
-            <Link href="/about"
-              className="text-[14px] text-anthracite/70 py-3 border-b border-sediment/10"
-              style={{ fontFamily: 'var(--font-body)' }}
-              onClick={closeMobile}>
-              About Us
-            </Link>
+            {/* Flat mobile links */}
+            {FLAT_LINKS.map(({ label, to }) => (
+              <Link key={to} href={to}
+                className="text-[14px] text-anthracite/70 py-3 border-b border-sediment/10"
+                style={{ fontFamily: 'var(--font-body)' }}
+                onClick={closeMobile}>
+                {label}
+              </Link>
+            ))}
 
             <Link href="/partner"
               className="mt-4 bg-patina text-white text-[13.5px] font-medium px-4 py-3 text-center hover:bg-patina/85 transition-colors duration-150"

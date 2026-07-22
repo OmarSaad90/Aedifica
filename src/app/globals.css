@@ -17,6 +17,8 @@
   --color-patina:     #836479;   /* Mauve-aubergine — the mark, reserved for emphasis */
   --color-rebuild:      #A0838F;  /* Rebuild program identity — brand-updated 2026-07-02 */
   --color-rebuild-deep: #7E6973;  /* Rebuild, darkened (70% rebuild / 30% anthracite) — solid-fill sections carrying white body text; raw rebuild is too light for white text to pass WCAG AA below large-text size */
+  --color-pipeline:      #C6AAAF;  /* Talent Pipeline program identity (Program 05) — client value, placeholder pending final brand book update */
+  --color-pipeline-deep: #988589;  /* Pipeline, darkened (70% pipeline / 30% anthracite, same formula as rebuild-deep) — solid-fill use with white text; recompute if the client changes the pipeline color */
   --color-datum-light:  #9C9CC8;  /* Datum, lightened toward white (~35%) — small labels/text on bg-anthracite; raw datum is only ~2.7:1 on anthracite and fails WCAG AA below large-text size */
   --color-snow:       #FAF7F1;   /* The light — page background */
   --color-bone:       #F4EEE4;   /* The page — alternate sections */

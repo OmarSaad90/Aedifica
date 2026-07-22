@@ -4,7 +4,8 @@ import { HOME_SCHEMA } from '@/src/lib/schemas'
 import { SITE_URL } from '@/src/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Aedifica | Construction-Management Workforce Pathways for New Jersey',
+  // No page-level title: inherits the layout's `title.default` verbatim (not run
+  // through the `%s | Aedifica` template), so the brand name isn't duplicated.
   description:
     'Aedifica builds disciplined, employer-informed construction-management workforce pathways for overlooked talent, institutions, and employers in New Jersey.',
   alternates: { canonical: SITE_URL },

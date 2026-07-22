@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: 'Explore | Hands-On STEM & Engineering Discovery · NJ',
   description:
     'Aedifica Explore brings engineering and construction-management career discovery to middle- and high-school students through workshops, summer camps, and school partnerships in New Jersey.',
-  alternates: { canonical: `${SITE_URL}/services/explore` },
+  alternates: { canonical: `${SITE_URL}/programs/explore` },
   openGraph: {
     title: 'Explore | Hands-On STEM & Engineering Discovery · NJ',
     description:
       'Aedifica Explore brings engineering and construction-management career discovery to middle- and high-school students through workshops, summer camps, and school partnerships in New Jersey.',
-    url: `${SITE_URL}/services/explore`,
+    url: `${SITE_URL}/programs/explore`,
   },
 }
 

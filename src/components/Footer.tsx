@@ -1,38 +1,41 @@
-﻿import Link from 'next/link'
+import Link from 'next/link'
 
 const COLUMNS = [
   {
-    heading: 'Build the Pathway',
+    heading: 'Programs',
     links: [
-      { label: 'Rebuild', href: '/services/rebuild' },
-      { label: 'Launch', href: '/services/launch' },
-      { label: 'Pathway', href: '/services/pathway' },
-      { label: 'Talent Pipeline', href: '/services/talent-pipeline' },
-      { label: 'Explore', href: '/services/explore' },
+      { label: 'Explore', href: '/programs/explore' },
+      { label: 'Pathway', href: '/programs/pathway' },
+      { label: 'Launch', href: '/programs/launch' },
+      { label: 'Rebuild', href: '/programs/rebuild' },
+      { label: 'Talent Pipeline', href: '/programs/talent-pipeline' },
+      { label: 'View all programs', href: '/programs' },
     ],
   },
   {
-    heading: 'Evidence & Accountability',
+    heading: 'Evidence',
     links: [
-      { label: 'Projects & Impact', href: '/impact' },
+      { label: 'Impact Framework', href: '/impact' },
+      { label: 'Aedifica Research', href: '/research' },
+      { label: 'Learner Experience', href: '/experience' },
       { label: 'Bridging Brilliance', href: '/curriculum/bridging-brilliance' },
-      { label: 'Insights & Research', href: '/insights' },
-      { label: 'Outcome Reporting Commitment', href: '/impact' },
     ],
   },
   {
-    heading: 'Partner',
-    links: [
-      { label: 'Education', href: '/partner' },
-      { label: 'Workforce & Community', href: '/partner' },
-      { label: 'Employers', href: '/partner' },
-      { label: 'Funding & State', href: '/partner' },
-    ],
-  },
-  {
-    heading: 'Organization',
+    heading: 'Aedifica',
     links: [
       { label: 'About Us', href: '/about' },
+      { label: 'Our Values', href: '/about#about-values-h2' },
+      { label: 'Who We Serve', href: '/#serve-h2' },
+      { label: 'Access & Funding', href: '/about#access-h2' },
+      { label: 'FAQ', href: '/about#faq-h2' },
+    ],
+  },
+  {
+    heading: 'Get Involved',
+    links: [
+      { label: 'For Families', href: '/families' },
+      { label: 'Partner With Us', href: '/partner' },
       { label: 'Contact', href: '/partner' },
     ],
   },
@@ -41,9 +44,9 @@ const COLUMNS = [
 export function Footer() {
   return (
     <footer className="bg-anthracite">
-      <div className="max-w-7xl mx-auto px-6 pt-8 pb-5 lg:pt-9 lg:pb-6">
+      <div className="max-w-7xl mx-auto px-6 pt-8 pb-4 lg:pt-11 lg:pb-5">
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2.6fr] gap-8 lg:gap-20 mb-4 lg:mb-5">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2.6fr] gap-10 lg:gap-20 mb-5 lg:mb-6">
 
           {/* Brand */}
           <div>
@@ -59,12 +62,12 @@ export function Footer() {
             <p
               className="text-[13px] text-white/60 leading-[1.65] max-w-[28ch]"
               style={{ fontFamily: 'var(--font-body)' }}>
-              We build the builders.
+              Earth. Engineers. Education.
             </p>
             <p
-              className="text-[12.5px] text-white/50 leading-[1.7] max-w-[30ch] mt-3"
-              style={{ fontFamily: 'var(--font-body)' }}>
-              Earth. Engineers. Education.
+              className="text-[13px] text-white/75 italic leading-[1.6] max-w-[28ch] mt-2"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+              From foundations to futures.
             </p>
           </div>
 
@@ -77,7 +80,7 @@ export function Footer() {
                   style={{ fontFamily: 'var(--font-body)' }}>
                   {heading}
                 </p>
-                <ul className="space-y-2 list-none">
+                <ul className="space-y-2.5 list-none">
                   {links.map(({ label, href }) => (
                     <li key={label}>
                       <Link href={href}
@@ -95,16 +98,16 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 pt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="border-t border-white/10 pt-2.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <p
             className="text-[12px] text-white/50"
             style={{ fontFamily: 'var(--font-body)' }}>
-            &copy; {new Date().getFullYear()} Aedifica. All rights reserved.
+            &copy; {new Date().getFullYear()} Aedifica &middot; New Jersey / New York metro service area
           </p>
           <p
             className="text-[12px] text-white/50"
             style={{ fontFamily: 'var(--font-body)' }}>
-            New Jersey / New York metro · Construction-management workforce, built from overlooked talent.
+            Construction-management workforce, built from overlooked talent.
           </p>
         </div>
 

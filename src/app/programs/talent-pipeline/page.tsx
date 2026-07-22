@@ -4,15 +4,15 @@ import { TALENT_PIPELINE_SCHEMA } from '@/src/lib/schemas'
 import { SITE_URL } from '@/src/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Talent Pipeline | Employer Engagement for Emerging CM Talent · NJ',
+  title: 'Talent Pipeline: Employer Engagement for CM Talent, NJ',
   description:
     "Aedifica's Talent Pipeline connects New Jersey construction employers with prepared emerging construction-management talent through employer-informed pathways.",
-  alternates: { canonical: `${SITE_URL}/services/talent-pipeline` },
+  alternates: { canonical: `${SITE_URL}/programs/talent-pipeline` },
   openGraph: {
     title: 'Talent Pipeline | Employer Engagement for Emerging CM Talent · NJ',
     description:
       "Aedifica's Talent Pipeline connects New Jersey construction employers with prepared emerging construction-management talent through employer-informed pathways.",
-    url: `${SITE_URL}/services/talent-pipeline`,
+    url: `${SITE_URL}/programs/talent-pipeline`,
   },
 }
 

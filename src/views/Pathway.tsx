@@ -1,399 +1,322 @@
-﻿'use client'
+'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
-import { CaretDown, BookOpenText, CompassTool, UsersThree, PaintBrush, Heartbeat, HouseLine } from '@phosphor-icons/react'
+import { motion, useReducedMotion } from 'motion/react'
+import { Certificate, MapPin, Atom, Lightbulb, type Icon } from '@phosphor-icons/react'
+import {
+  CurriculumShell,
+  Band,
+  StandardsMatrix,
+  InstructionalApproach,
+  CurriculumFooter,
+  type WeekRow,
+} from '../components/CurriculumShell'
 
-const VIEWPORT = { once: true, margin: '100px 0px' } as const
+const VIEWPORT = { once: true, margin: '-60px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
-const LESSONS = [
-  {
-    number: 'Lesson 1',
-    title: 'Introduction',
-    subtitle: 'Engineering, Infrastructure, Society',
-    topics: [
-      'Engineering and planning professions and their roles',
-      'Infrastructure and its relationship to society',
-      'Course overview and project requirements',
-      'Expectations and program structure',
-    ],
-  },
-  {
-    number: 'Lesson 2',
-    title: 'Sustainable Development',
-    subtitle: 'Global Challenges, SDGs, Climate Change',
-    topics: [
-      'Global challenges and the Sustainable Development Goals',
-      'Population growth and resource management',
-      'Climate change: causes, impacts, and responses',
-      'The engineer\'s role in a resource-constrained world',
-    ],
-  },
-  {
-    number: 'Lesson 3',
-    title: 'Engineering Design Process',
-    subtitle: 'Problem Solving, Design Cycle, Prototyping',
-    topics: [
-      'Problem identification and research',
-      'Concept generation and analysis',
-      'Prototyping and physical testing',
-      'Iterative design and evaluation cycles',
-    ],
-  },
-  {
-    number: 'Lesson 4',
-    title: 'Design Form vs. Function',
-    subtitle: 'Constraints, Optimization, Trade-offs',
-    topics: [
-      'The relationship between aesthetics and performance',
-      'Functional requirements and design constraints',
-      'Trade-off analysis in engineering decisions',
-      'Optimization within real-world limits',
-    ],
-  },
-  {
-    number: 'Lesson 5',
-    title: 'Engineering Design and Architecture',
-    subtitle: 'Structural Design, Built Environment',
-    topics: [
-      'Engineering and architectural collaboration',
-      'Structural systems and how buildings stand',
-      'Innovative design solutions and landmark projects',
-      'The built environment as a product of decisions',
-    ],
-  },
-  {
-    number: 'Lesson 6',
-    title: 'Bridge Design',
-    subtitle: 'Structures, Loads, Materials',
-    topics: [
-      'Types of bridges and their structural behavior',
-      'Load paths: how force travels through a structure',
-      'Materials selection and structural trade-offs',
-      'Bridge design considerations and constraints',
-    ],
-  },
-  {
-    number: 'Lesson 7',
-    title: 'Financial Evaluation',
-    subtitle: 'Cost Analysis, ROI, Life-Cycle Costing',
-    topics: [
-      'Project economics and cost-benefit analysis',
-      'Life-cycle costing and return on investment',
-      'Sustainable financial decision-making',
-      'How engineers communicate value to clients',
-    ],
-  },
-  {
-    number: 'Lesson 8',
-    title: 'Environmental and Social Sustainability',
-    subtitle: 'Environmental Impact, Stakeholders, Equity',
-    topics: [
-      'Environmental impacts of infrastructure projects',
-      'Social equity and community stakeholder engagement',
-      'Sustainable infrastructure approaches',
-      'How engineers balance competing community interests',
-    ],
-  },
-  {
-    number: 'Lesson 9',
-    title: 'Traps in Decision Making',
-    subtitle: 'Biases, Risk, Decision Analysis',
-    topics: [
-      'Cognitive biases engineers face: anchoring, groupthink, confirmation bias',
-      'Risk perception and decision frameworks',
-      'How to evaluate options under uncertainty',
-      'Applying structured reasoning to real engineering choices',
-    ],
-  },
-  {
-    number: 'Final Project',
-    title: 'Engineering Solution Development',
-    subtitle: 'Full Design Cycle, Presentation',
-    topics: [
-      'Identify a real-world engineering or infrastructure challenge',
-      'Apply the engineering design process end to end',
-      'Evaluate sustainability impacts and conduct a financial assessment',
-      'Develop a proposed solution and deliver a professional presentation',
-    ],
-  },
+const INFO_ROWS = [
+  ['Audience', 'High schools and districts, grades 9–12'],
+  ['Format', 'District-embedded curriculum · project-based'],
+  ['Alignment', 'NJ & NY standards · college articulation'],
+  ['Outcome', 'Credential line-of-sight and industry exposure'],
 ] as const
 
-const CAMPS = [
-  {
-    name: 'High School Infrastructure and Civil Engineering Camp',
-    grade: 'Grades 9–12',
-    duration: '2 weeks',
-    objectives: 'Infrastructure systems, resilience, structural behavior, water, transportation, and project delivery.',
-    activities: [
-      'Bridge testing and structural load analysis',
-      'Stormwater management model design and analysis',
-      'Traffic count and transportation data exercise',
-      'Cost and schedule simulation for a construction project',
-      'Local NJ site analysis and infrastructure planning',
-    ],
-    project: 'Resilient infrastructure proposal for a local New Jersey site.',
-  },
-  {
-    name: 'Climate, Sustainability and Resilient Cities Camp',
-    grade: 'Grades 7–12',
-    duration: '2 weeks',
-    objectives: 'Climate data, adaptation and mitigation strategies, green infrastructure, and environmental justice.',
-    activities: [
-      'Heat island mapping and urban temperature analysis',
-      'Water quality testing and watershed analysis',
-      'Solar audit and renewable energy modeling',
-      'Flood mitigation model design and testing',
-    ],
-    project: 'Resilient school or neighborhood redesign proposal.',
-  },
-  {
-    name: 'Smart Cities and Transportation Camp',
-    grade: 'Grades 8–12',
-    duration: '2 weeks',
-    objectives: 'Mobility systems, sensors, data science, GIS, optimization, and public transportation planning.',
-    activities: [
-      'Traffic counts and congestion pattern analysis',
-      'Bus route and transit network efficiency review',
-      'Pedestrian safety audit with field data collection',
-      'Sensor prototype and smart infrastructure design challenge',
-    ],
-    project: 'Smart mobility proposal with a data dashboard and policy memo.',
-  },
-  {
-    name: 'Research Methods and Innovation Bootcamp',
-    grade: 'Grades 10–12',
-    duration: '3 weeks + optional fall mentorship',
-    objectives: 'Research questions, literature review, methods, data collection, ethics, scientific writing, and presentation.',
-    activities: [
-      'Research proposal development and peer critique',
-      'Primary and secondary data collection and analysis',
-      'Research poster design and layout',
-      'Mentor feedback sessions throughout the three weeks',
-    ],
-    project: 'Research poster, abstract, and short oral defense.',
-  },
+const MINI_LIST = [
+  'Resilient-futures curriculum: infrastructure, sustainability, and place',
+  'Final projects presented for constructive peer and practitioner feedback',
+  'Direct hand-off toward Launch-built institutional pathways',
 ] as const
 
-const QUOTES = [
-  {
-    text: 'I became more interested in civil engineering and now have future support as I prepare for college.',
-    year: '2024',
-    featured: true,
-  },
-  {
-    text: 'I really enjoyed my teacher; he really opened up my mind and made me more confident in myself.',
-    year: '2022',
-    featured: false,
-  },
-  {
-    text: 'I learned how to think and design like an engineer, and to be aware of how I\'m impacting the environment around me.',
-    year: '2024',
-    featured: false,
-  },
-  {
-    text: 'I really enjoyed presenting our final project because everyone was able to ask questions and give constructive feedback.',
-    year: '2023',
-    featured: false,
-  },
-  {
-    text: 'I learned a lot of new vocabulary that my friends and I started using casually; we now look at the buildings and structures around us in a new light, as form or function.',
-    year: '2024',
-    featured: false,
-  },
-  {
-    text: 'I was initially apprehensive about attending this class because of the knowledge it would require. However, it proved to be an amazing experience. By the end, the projects and lessons left me with much more knowledge about engineering and enlightened me on the fun of college life.',
-    year: '2023',
-    featured: false,
-  },
+const DELIVERY_STATS = [
+  { value: '73–80%', label: 'rated the program Excellent each year, and 0% rated it Poor, all three years' },
+  { value: '88–96%', label: 'rated Professor Karam Excellent (2022–2024)' },
+  { value: '85–100%', label: 'rated the teaching above average on being motivating and approachable' },
+  { value: '3 summers', label: '2022, 2023, and 2024, same course, same instructor' },
 ] as const
 
-// ── Advanced tracks: standards-aligned chip system ──
-// Same five categories and colors as the Bridging Brilliance curriculum page,
-// so the code-color language stays consistent across the site. Client wants
-// the literal standard codes visible (not just category labels).
-type StdCat = 'sci' | 'math' | 'ela' | 'des' | 'car'
-type StdChip = { code: string; cat: StdCat; desc: string }
-type TrackUnit = { num: string; title: string; body: string; chips: StdChip[] }
+const STANDARDS_ROWS: { Icon: Icon; label: string; value: string }[] = [
+  { Icon: Certificate, label: 'New Jersey (NJSLS)', value: 'HS-ETS1-1 → HS-ETS1-4 engineering design · ESS3 & Climate Change Education · 9.1 / 9.2 / 9.4 Career Readiness, Life Literacies & Key Skills.' },
+  { Icon: MapPin, label: 'New York State', value: 'CDOS (Career Development & Occupational Studies) · Engineering Design · Earth Systems · Physical Science Applications · Sustainability.' },
+  { Icon: Atom, label: 'NGSS', value: 'HS-ETS1-1 → 4 · HS-ESS3-1 · HS-ESS3-4 · HS-ESS3-6.' },
+  { Icon: Lightbulb, label: '21st-century skills', value: 'Critical thinking · creativity · collaboration · communication · financial & global literacy.' },
+]
 
-const STD_COLORS: Record<StdCat, string> = {
-  sci:  '#16243F',
-  math: '#9C5500',
-  ela:  '#1E7A72',
-  des:  '#3E5C8A',
-  car:  '#7A4E63',
-}
+const NINE_LESSONS = [
+  'Engineering, infrastructure & society',
+  'Sustainable development, the UN SDGs & climate',
+  'The engineering design process',
+  'Design: form vs. function, constraints & trade-offs',
+  'Engineering design & architecture',
+  'Bridge design: structures, loads & materials',
+  'Financial evaluation: cost, ROI & life-cycle costing',
+  'Environmental & social sustainability',
+  'Traps in decision-making: bias, risk & analysis, into the final engineering project',
+] as const
 
-function StdBadge({ chip }: { chip: StdChip }) {
-  return (
-    <span
-      title={chip.desc}
-      className="inline-block text-[9px] font-medium tracking-[0.03em] px-1.5 py-0.5 text-white leading-none cursor-help whitespace-nowrap"
-      style={{ backgroundColor: STD_COLORS[chip.cat], fontFamily: 'var(--font-body)' }}>
-      {chip.code}
-    </span>
-  )
-}
+// The nine lessons run in a real progression: context and method, then design
+// practice, then evaluation and decision-making into the final project.
+const LESSON_GROUPS = [
+  { label: 'Foundations', lessons: NINE_LESSONS.slice(0, 3) },
+  { label: 'Design practice', lessons: NINE_LESSONS.slice(3, 6) },
+  { label: 'Evaluation & decisions', lessons: NINE_LESSONS.slice(6, 9) },
+] as const
 
-const INFRASTRUCTURE_FELLOWS: TrackUnit[] = [
-  {
-    num: 'Unit 1',
-    title: 'Civil engineering & New Jersey infrastructure',
-    body: 'Fellows map what civil engineers actually design and why it matters, then rank real New Jersey infrastructure challenges by team interest before choosing a site to work on all semester.',
+// ── Bridge Builders: 12 weeks ──
+const BRIDGE_BUILDERS_WEEKS: WeekRow[] = [
+  { num: 1, unit: 'Week', question: 'What is STEM, and how do engineers think?',
+    desc: <>Program norms and the final-competition overview; how math, science, and engineering work together; the <strong className="text-anthracite/90 font-medium">engineering design process</strong> through a quick paper-tower challenge; students open their engineering notebooks.</>,
+    chips: [
+      { code: 'MS-ETS1-1', cat: 'sci', desc: 'Define the criteria and constraints of a design problem with sufficient precision.' },
+      { code: 'MP1 · MP2', cat: 'math', desc: 'Make sense of problems and persevere; reason abstractly and quantitatively.' },
+      { code: 'SL.PE.7.1', cat: 'ela', desc: 'Engage effectively in collaborative discussions.' },
+      { code: 'W.IW.7.2', cat: 'ela', desc: 'Write informative/explanatory texts.' },
+      { code: '9.4.8.CI.2', cat: 'car', desc: 'Career Readiness: generate ideas.' },
+    ] },
+  { num: 2, unit: 'Week', question: 'Why do we need sustainable infrastructure?',
+    desc: <>Global challenges and the UN Sustainable Development Goals; a case study of aging and collapsing bridges; students map how a new Hudson crossing could advance specific SDGs. Quick-write: <strong className="text-anthracite/90 font-medium">why our community needs better bridges</strong>.</>,
+    chips: [
+      { code: 'MS-ESS3-3', cat: 'sci', desc: 'Apply scientific principles to design solutions that minimize human impact on the environment (extension).' },
+      { code: 'RI.AA.7.7', cat: 'ela', desc: 'Evaluate the argument and claims in a text.' },
+      { code: 'W.IW.7.2', cat: 'ela', desc: 'Write informative/explanatory texts.' },
+      { code: '9.4.8.CT.1', cat: 'car', desc: 'Identify a problem from multiple viewpoints.' },
+    ] },
+  { num: 3, unit: 'Week', question: 'What exactly is the Hudson bridge problem?',
+    desc: <>Teams investigate the geographic and social setting of a Hudson crossing using maps, photos, and demographic data; <strong className="text-anthracite/90 font-medium">define criteria and constraints</strong> (span, clearance, budget, environment, community need) and draft a formal problem statement.</>,
+    chips: [
+      { code: 'MS-ETS1-1', cat: 'sci', desc: 'Define the criteria and constraints of a design problem.' },
+      { code: '7.RP.A', cat: 'math', desc: 'Analyze proportional relationships; scale and unit rates.' },
+      { code: 'W.AW.7.1', cat: 'ela', desc: 'Write arguments to support claims.' },
+      { code: 'SL.PE.7.1', cat: 'ela', desc: 'Collaborative discussions.' },
+      { code: '9.4.8.IML.3', cat: 'car', desc: 'Evaluate digital sources.' },
+    ] },
+  { num: 4, unit: 'Week', question: 'How do structure and geometry keep bridges standing?',
+    desc: 'Bridge types, beam, arch, truss, suspension, cable-stayed, and how form follows function; a mini-lab modeling forces in trusses and supports; students sketch two conceptual designs, labeling geometry and load paths.',
+    chips: [
+      { code: 'MS-ETS1-2', cat: 'sci', desc: 'Evaluate competing design solutions.' },
+      { code: 'MS-PS2', cat: 'sci', desc: 'Forces and motion (extension).' },
+      { code: '7.G', cat: 'math', desc: 'Draw, construct, and describe geometrical figures; angle relationships.' },
+      { code: '8.G', cat: 'math', desc: 'Understand congruence and similarity (truss units).' },
+      { code: 'W.IW.7.2', cat: 'ela', desc: 'Explain design choices in writing.' },
+    ] },
+  { num: 5, unit: 'Week', question: 'How can we design and model our bridges digitally?',
+    desc: <>Students create a scaled drawing and a <strong className="text-anthracite/90 font-medium">digital model</strong> (Tinkercad, SketchUp, or similar); a mini-lesson on scale factor, ratios, and proportional reasoning; basic quantity calculations from their designs.</>,
+    chips: [
+      { code: 'MS-ETS1-4', cat: 'sci', desc: 'Develop a model to generate data for iterative testing and modification.' },
+      { code: '7.RP.A', cat: 'math', desc: 'Scale and unit rates.' },
+      { code: '7.EE.3', cat: 'math', desc: 'Solve multi-step real-life problems.' },
+      { code: 'MP4', cat: 'math', desc: 'Model with mathematics.' },
+      { code: '8.2.8.ED', cat: 'des', desc: 'Engineering design with technology tools.' },
+    ] },
+  { num: 6, unit: 'Week', question: 'Is our bridge financially sustainable?',
+    desc: <>Cost estimating with materials sheets and unit costs (per meter of deck, per tower, per cable); simple payback and life-cycle thinking; students compute <strong className="text-anthracite/90 font-medium">cost per unit of load capacity</strong> as an efficiency metric.</>,
+    chips: [
+      { code: 'MS-ETS1-3', cat: 'sci', desc: 'Analyze data from tests to compare design solutions.' },
+      { code: '7.RP.A.3', cat: 'math', desc: 'Multi-step ratio and percent problems.' },
+      { code: '7.EE', cat: 'math', desc: 'Use variables to represent quantities; cost equations.' },
+      { code: 'W.IW.7.2', cat: 'ela', desc: 'Informative writing, financial report section.' },
+    ] },
+  { num: 7, unit: 'Week', question: 'How do social and environmental factors shape the "best" design?',
+    desc: <>Social sustainability and environmental justice, who benefits, who bears the costs; teams complete an <strong className="text-anthracite/90 font-medium">impact matrix</strong> scoring designs on social, economic, and environmental dimensions. Debate: is the lowest-cost bridge always best?</>,
+    chips: [
+      { code: 'MS-ETS1-1/2', cat: 'sci', desc: 'Criteria and constraints including social and environmental factors.' },
+      { code: 'MS-ESS3-3', cat: 'sci', desc: 'Minimize human environmental impact (extension).' },
+      { code: 'RI.CT.7.8', cat: 'ela', desc: "Compare and evaluate authors' perspectives." },
+      { code: 'W.AW.7.1', cat: 'ela', desc: 'Write an argument on trade-offs.' },
+      { code: 'SL.ES.7.3', cat: 'ela', desc: "Evaluate a speaker's argument." },
+      { code: '9.4.8.CT.2', cat: 'car', desc: 'Evaluate diverse solutions.' },
+    ] },
+  { num: 8, unit: 'Week', question: 'What risks matter, and how do we choose among options?',
+    desc: <>Risk, probability, and risk management with age-appropriate examples (overloading, storms, budget overruns); teams build a weighted <strong className="text-anthracite/90 font-medium">decision matrix</strong> across cost, strength, aesthetics, sustainability, and risk to compare alternatives.</>,
+    chips: [
+      { code: 'MS-ETS1-2', cat: 'sci', desc: 'Systematic evaluation of competing solutions.' },
+      { code: 'MS-ETS1-3', cat: 'sci', desc: 'Analyze test data against criteria.' },
+      { code: '7.SP', cat: 'math', desc: 'Investigate chance processes; informal probability.' },
+      { code: '7.EE.3', cat: 'math', desc: 'Multi-step calculations; weighted scores.' },
+      { code: 'SL.PE.7.1', cat: 'ela', desc: 'Collaborative discussion.' },
+      { code: 'W.AW.7.1', cat: 'ela', desc: 'Justify the chosen option in writing.' },
+    ] },
+  { num: 9, unit: 'Week', question: 'How can we turn our design into a physical prototype?',
+    desc: <>Teams build scaled <strong className="text-anthracite/90 font-medium">prototypes</strong> from final drawings under real constraints, limited materials budget, maximum length, minimum deck width, documenting issues and completing at least one redesign before the final build.</>,
+    chips: [
+      { code: 'MS-ETS1-2/3/4', cat: 'sci', desc: 'Develop and refine models using testable prototypes.' },
+      { code: '7.G · 8.G', cat: 'math', desc: 'Measuring and adjusting geometry.' },
+      { code: 'MP5', cat: 'math', desc: 'Use appropriate tools strategically.' },
+      { code: '8.2.8.ED', cat: 'des', desc: 'Use tools and follow the design process.' },
+    ] },
+  { num: 10, unit: 'Week', question: 'How do we test, measure, and improve our bridges?',
+    desc: <>A <strong className="text-anthracite/90 font-medium">bridge testing day</strong>: apply increasing load to failure, record maximum load and failure mode, collect deflection and cost data, graph results, and compare teams to identify the best design features across the cohort.</>,
+    chips: [
+      { code: 'MS-ETS1-3', cat: 'sci', desc: 'Analyze test data to identify best characteristics.' },
+      { code: 'MS-ETS1-4', cat: 'sci', desc: 'Model for iterative testing.' },
+      { code: '7.SP', cat: 'math', desc: 'Analyze and compare data distributions.' },
+      { code: '7.RP · 7.EE', cat: 'math', desc: 'Load-to-cost ratios.' },
+      { code: 'W.IW.7.2', cat: 'ela', desc: 'Lab report sections.' },
+      { code: 'SL.II.7.2', cat: 'ela', desc: 'Interpret data in charts and graphs.' },
+    ] },
+  { num: 11, unit: 'Week', question: 'How do engineers communicate and justify their decisions?',
+    desc: 'Students build a slide deck and short report, problem statement, design description, data and trade-offs, and a final claim for why their design is best, with mini-lessons on argument writing, technical vocabulary, and clear visual design.',
+    chips: [
+      { code: 'MS-ETS1-1–3', cat: 'sci', desc: 'Synthesize the entire design cycle.' },
+      { code: 'W.AW.7.1', cat: 'ela', desc: 'Argument writing.' },
+      { code: 'W.IW.7.2', cat: 'ela', desc: 'Technical explanation.' },
+      { code: 'W.SE.7.6', cat: 'ela', desc: 'Gather and cite evidence.' },
+      { code: 'SL.PI.7.4 · SL.UM.7.5', cat: 'ela', desc: 'Present claims with multimedia.' },
+      { code: '9.4.8.IML.3 · TL.3', cat: 'car', desc: 'Represent data clearly; use digital tools.' },
+    ] },
+  { num: 12, unit: 'Week', question: "Which bridge best meets our community's needs? What did we learn?",
+    desc: <>The capstone <strong className="text-anthracite/90 font-medium">Bridge Showcase &amp; Testing Competition</strong> before families, teachers, and partners; audiences score designs with a decision matrix; each student writes a reflection on how their thinking as an engineer changed over twelve weeks.</>,
+    chips: [
+      { code: 'MS-ETS1-1–4', cat: 'sci', desc: 'Capstone performance across the full design cycle.' },
+      { code: 'SL.PE.7.1', cat: 'ela', desc: 'Collaborative discussion.' },
+      { code: 'SL.PI.7.4/7.5', cat: 'ela', desc: 'Present findings with multimedia.' },
+      { code: 'W.RW.7.7 · W.7.10', cat: 'ela', desc: 'Extended reflective writing.' },
+      { code: '9.4.8.CI.3 · CT.3', cat: 'car', desc: 'Evaluate solutions; give feedback.' },
+    ] },
+]
+
+// ── Infrastructure Fellows: 8 units + companion studio ──
+const INFRA_FELLOWS_UNITS: WeekRow[] = [
+  { num: 1, unit: 'Unit', question: 'Civil engineering & New Jersey infrastructure',
+    desc: 'What civil engineers design and why infrastructure matters; mapping infrastructure systems; team roles and charters; a case-study gallery of NJ challenges and project-interest ranking.',
     chips: [
       { code: 'HS-ETS1-1', cat: 'sci', desc: 'Analyze a major global challenge to specify criteria and constraints.' },
       { code: 'N-Q', cat: 'math', desc: 'Use units to understand problems and guide solutions.' },
+      { code: 'SL.PE.9-10.1', cat: 'ela', desc: 'Initiate and participate in collaborative discussions.' },
       { code: '9.2.12.CAP', cat: 'car', desc: 'Career awareness, exploration, preparation, and planning.' },
-    ],
-  },
-  {
-    num: 'Unit 2',
-    title: 'Site analysis & defining the problem',
-    body: 'Teams read a real site through maps, public datasets, and field observation, then write a defensible problem statement with measurable criteria and constraints.',
+    ] },
+  { num: 2, unit: 'Unit', question: 'Site analysis & defining the problem',
+    desc: 'Reading a real site with maps, public datasets, and field observation; specifying quantitative criteria and constraints; writing a defensible engineering problem statement.',
     chips: [
       { code: 'HS-ETS1-1', cat: 'sci', desc: 'Specify qualitative and quantitative criteria and constraints.' },
       { code: 'A-CED', cat: 'math', desc: 'Create equations and inequalities to represent relationships.' },
+      { code: 'S-ID', cat: 'math', desc: 'Summarize and interpret data.' },
       { code: 'W.RW.9-10.7', cat: 'ela', desc: 'Conduct short and sustained research.' },
-    ],
-  },
-  {
-    num: 'Unit 3',
-    title: 'Structures, forces & geometry in practice',
-    body: 'Load paths, member forces, and material behavior get applied directly to the site\'s constraints to evaluate structural options against one another.',
+    ] },
+  { num: 3, unit: 'Unit', question: 'Structures, forces & geometry in practice',
+    desc: "Load paths, member forces, and material behavior; applying geometry and modeling to evaluate structural options against the site's constraints.",
     chips: [
       { code: 'HS-ETS1-2', cat: 'sci', desc: 'Break a complex problem into manageable engineering problems.' },
       { code: 'G-MG', cat: 'math', desc: 'Apply geometric concepts in modeling situations.' },
-    ],
-  },
-  {
-    num: 'Unit 4',
-    title: 'Digital design & CAD',
-    body: 'Concepts become dimensioned technical drawings and CAD models: the documentation language engineers use to communicate and build.',
+      { code: 'MP4', cat: 'math', desc: 'Model with mathematics.' },
+    ] },
+  { num: 4, unit: 'Unit', question: 'Digital design & CAD',
+    desc: 'Translating concepts into scaled technical drawings and CAD models; producing the dimensioned documentation engineers use to communicate and build.',
     chips: [
       { code: 'HS-ETS1-2', cat: 'sci', desc: 'Design a solution to a complex real-world problem.' },
+      { code: 'G-MG', cat: 'math', desc: 'Apply geometric methods to solve design problems.' },
       { code: '8.2.12.ED', cat: 'des', desc: 'High-school engineering design and technological systems.' },
-    ],
-  },
-  {
-    num: 'Unit 5',
-    title: 'Cost, constraints & project controls',
-    body: 'Quantity take-offs, cost estimating, budgets, and a risk register teach fellows to weigh prioritized criteria the way practicing engineers do.',
+    ] },
+  { num: 5, unit: 'Unit', question: 'Cost, constraints & project controls',
+    desc: 'Quantity take-offs and cost estimating; budgets, schedules, and trade-offs; building a risk register and weighing prioritized criteria the way practicing engineers do.',
     chips: [
-      { code: 'HS-ETS1-3', cat: 'sci', desc: 'Evaluate a solution based on prioritized criteria and trade-offs.' },
+      { code: 'HS-ETS1-3', cat: 'sci', desc: 'Evaluate a solution based on prioritized criteria and trade-offs including cost, safety, reliability, and impacts.' },
+      { code: 'N-Q', cat: 'math', desc: 'Reason quantitatively and use units.' },
       { code: 'A-CED', cat: 'math', desc: 'Create equations to model constraints.' },
-    ],
-  },
-  {
-    num: 'Unit 6',
-    title: 'Stormwater & water infrastructure',
-    body: 'A stormwater walk and drainage sketch connect green-infrastructure options and a lead-service-line case study to how communities manage water risk.',
+    ] },
+  { num: 6, unit: 'Unit', question: 'Stormwater & water infrastructure',
+    desc: 'How communities manage water risk and protect public health; a stormwater walk and drainage sketch; green-infrastructure options and a lead-service-line case study.',
     chips: [
-      { code: 'HS-ETS1-4', cat: 'sci', desc: 'Model the impact of proposed solutions within and between systems.' },
+      { code: 'HS-ETS1-3', cat: 'sci', desc: 'Evaluate solutions accounting for environmental and societal impacts.' },
+      { code: 'HS-ETS1-4', cat: 'sci', desc: 'Model the impact of proposed solutions on systems.' },
       { code: 'S-ID', cat: 'math', desc: 'Interpret data and patterns.' },
-      { code: 'W.IW.9-10.2', cat: 'ela', desc: 'Write informative and explanatory texts.' },
-    ],
-  },
-  {
-    num: 'Unit 7',
-    title: 'Coastal resilience & environmental justice',
-    body: 'Lessons from Hurricane Sandy and living-shoreline options ground a resilience design charrette that balances protection, ecology, cost, and community.',
+      { code: 'W.IW.9-10.2', cat: 'ela', desc: 'Write informative/explanatory texts, memo section.' },
+    ] },
+  { num: 7, unit: 'Unit', question: 'Coastal resilience & environmental justice',
+    desc: 'Lessons from Hurricane Sandy; living-shoreline and protection options; an environmental-justice matrix and a resilience design charrette balancing protection, ecology, cost, and community.',
     chips: [
       { code: 'HS-ETS1-3', cat: 'sci', desc: 'Evaluate solutions with social, cultural, and environmental impacts.' },
+      { code: 'HS-ETS1-4', cat: 'sci', desc: 'Use a computer simulation to model proposed solutions.' },
       { code: 'RI.AA.9-10', cat: 'ela', desc: 'Evaluate arguments and competing perspectives.' },
       { code: '9.4.12.CT', cat: 'car', desc: 'Evaluate diverse solutions and impacts.' },
-    ],
-  },
-  {
-    num: 'Unit 8',
-    title: 'Technical briefing & public defense',
-    body: 'The studio capstone: a professional design brief and a fifteen-minute technical briefing defended before engineers and community partners.',
+    ] },
+  { num: 8, unit: 'Unit', question: 'Technical briefing & public defense',
+    desc: 'Synthesizing the project into a professional design brief and a 15-minute technical briefing defended before engineers and community partners, the studio capstone.',
     chips: [
       { code: 'HS-ETS1-1–4', cat: 'sci', desc: 'Synthesize and defend the full engineering solution.' },
       { code: 'SL.PI.9-10.4', cat: 'ela', desc: 'Present information, findings, and supporting evidence.' },
-    ],
-  },
-  {
-    num: 'Companion',
-    title: 'Smart Cities, sensors & environmental monitoring',
-    body: 'A companion studio (grades 7–11) in sensor setup, flood and heat-island data collection, and ethical data use, producing a monitoring plan, dataset, dashboard, and recommendation memo.',
+      { code: 'SL.UM.9-10.5', cat: 'ela', desc: 'Make strategic use of digital media.' },
+      { code: 'W.AW.9-10.1', cat: 'ela', desc: 'Write arguments with valid reasoning and evidence.' },
+    ] },
+  { num: '+', unit: 'Studio', question: 'Companion studio: Smart Cities, Sensors & Environmental Monitoring (Grades 7–11)',
+    desc: 'How sensors, data, and mapping help communities understand environmental conditions, sensor setup and calibration, data collection on flood-prone grounds, heat islands, air quality, and runoff, with dashboards and ethical data use. Deliverables: monitoring plan, dataset, dashboard, site map, recommendation memo.',
     chips: [
       { code: 'HS-ETS1-4', cat: 'sci', desc: 'Model the impact of proposed solutions within and between systems.' },
+      { code: 'S-ID', cat: 'math', desc: 'Interpret data; investigate patterns of association.' },
       { code: 'S-IC', cat: 'math', desc: 'Make inferences and justify conclusions from data.' },
-      { code: '8.1.12.DA', cat: 'des', desc: 'Computer science: data and analysis.' },
-    ],
-  },
+      { code: '8.1.12.DA', cat: 'des', desc: 'Computer science: data and analysis; networks.' },
+      { code: '9.4.12.TL', cat: 'car', desc: 'Technology literacy and digital tools.' },
+    ] },
 ]
 
-const RESEARCH_SCHOLARS: TrackUnit[] = [
-  {
-    num: 'Phase 1',
-    title: 'Framing the research question',
-    body: 'Scholars identify a real New Jersey resilience problem and scope a researchable question with measurable criteria, then get matched with a mentor.',
+// ── STEM Research Scholars: 6 phases ──
+const RESEARCH_SCHOLARS_PHASES: WeekRow[] = [
+  { num: 1, unit: 'Phase', question: 'Framing the research question',
+    desc: 'Identifying a real New Jersey resilience problem; scoping a researchable question with measurable criteria and constraints; team charters and mentor matching.',
     chips: [
       { code: 'HS-ETS1-1', cat: 'sci', desc: 'Analyze a major global challenge to specify criteria and constraints.' },
       { code: 'W.RW.11-12.7', cat: 'ela', desc: 'Conduct sustained research to answer a question.' },
-    ],
-  },
-  {
-    num: 'Phase 2',
-    title: 'Literature & precedent review',
-    body: 'Locating and evaluating credible sources and prior solutions, synthesized into a written review with citations.',
+      { code: '9.2.12.CAP', cat: 'car', desc: 'Career awareness and planning.' },
+    ] },
+  { num: 2, unit: 'Phase', question: 'Literature & precedent review',
+    desc: 'Locating and evaluating credible sources, prior solutions, and local precedents; synthesizing the state of knowledge into a written review with citations.',
     chips: [
       { code: 'RI.AA.11-12', cat: 'ela', desc: 'Integrate and evaluate multiple sources of information.' },
+      { code: 'W.SE.11-12.6', cat: 'ela', desc: 'Gather relevant information; assess source credibility; cite.' },
       { code: '9.4.12.IML', cat: 'car', desc: 'Evaluate the credibility of sources.' },
-    ],
-  },
-  {
-    num: 'Phase 3',
-    title: 'Methodology & design',
-    body: 'Designing a sound method, whether data collection, modeling, or prototyping, that can actually answer the question, with attention to validity and ethical data use.',
+    ] },
+  { num: 3, unit: 'Phase', question: 'Methodology & design',
+    desc: 'Designing a sound method, data collection, modeling, or prototyping, that can actually answer the question; planning for validity, sampling, and ethical data use.',
     chips: [
       { code: 'HS-ETS1-2', cat: 'sci', desc: 'Break a complex problem into manageable, solvable problems.' },
       { code: 'S-IC', cat: 'math', desc: 'Understand and evaluate random processes; make inferences.' },
-    ],
-  },
-  {
-    num: 'Phase 4',
-    title: 'Data collection & analysis',
-    body: 'Carrying out the method, analyzing results against the criteria, and naming uncertainty and limitations honestly.',
+      { code: 'N-Q', cat: 'math', desc: 'Reason quantitatively and use units.' },
+    ] },
+  { num: 4, unit: 'Phase', question: 'Data collection & analysis',
+    desc: 'Carrying out the method; managing and analyzing data; interpreting results against the criteria and acknowledging uncertainty and limitations.',
     chips: [
-      { code: 'HS-ETS1-4', cat: 'sci', desc: 'Use simulation or modeling to evaluate proposed solutions.' },
+      { code: 'HS-ETS1-4', cat: 'sci', desc: 'Use simulation/modeling to evaluate proposed solutions.' },
       { code: 'S-ID', cat: 'math', desc: 'Summarize, represent, and interpret data.' },
-    ],
-  },
-  {
-    num: 'Phase 5',
-    title: 'Recommendations & trade-offs',
-    body: 'Findings become evidence-based recommendations, weighed against cost, equity, and environmental impact to build the capstone argument.',
+      { code: 'S-IC', cat: 'math', desc: 'Make inferences and justify conclusions.' },
+      { code: '8.1.12.DA', cat: 'des', desc: 'Data analysis and computational tools.' },
+    ] },
+  { num: 5, unit: 'Phase', question: 'Recommendations & trade-offs',
+    desc: 'Translating findings into evidence-based recommendations; weighing prioritized criteria, cost, equity, and environmental impact; building the capstone argument.',
     chips: [
       { code: 'HS-ETS1-3', cat: 'sci', desc: 'Evaluate a solution based on prioritized criteria and trade-offs.' },
       { code: 'W.AW.11-12.1', cat: 'ela', desc: 'Write arguments with valid reasoning and sufficient evidence.' },
-    ],
-  },
-  {
-    num: 'Phase 6',
-    title: 'Capstone & the public STEM Expo',
-    body: 'A research poster and paper defended in an oral presentation at a public STEM Expo before families, partners, and professional engineers.',
+      { code: '9.4.12.CT', cat: 'car', desc: 'Evaluate diverse solutions.' },
+    ] },
+  { num: 6, unit: 'Phase', question: 'Capstone & the public STEM Expo',
+    desc: 'Producing a research poster and paper and defending the work in an oral presentation at a public STEM Expo before families, partners, and professional engineers.',
     chips: [
       { code: 'HS-ETS1-1–4', cat: 'sci', desc: 'Communicate and defend a complete engineering solution.' },
       { code: 'SL.PI.11-12.4', cat: 'ela', desc: 'Present findings, evidence, and reasoning clearly.' },
-    ],
-  },
+      { code: 'SL.UM.11-12.5', cat: 'ela', desc: 'Make strategic use of digital media.' },
+      { code: 'W.11-12.10', cat: 'ela', desc: 'Produce clear and coherent writing.' },
+    ] },
+]
+
+const CCLC_COMPONENTS = [
+  { tag: 'Component 01', title: 'Academic remediation', desc: 'Daily certified-teacher tutoring in ELA and mathematics, tied to the same NJSLS standards the engineering units apply.' },
+  { tag: 'Component 02', title: 'Academic enrichment', desc: 'The three engineering pathways above, the project-based, standards-aligned core of the program.' },
+  { tag: 'Component 03', title: 'Positive youth development', desc: 'Authentic team roles, leadership through studio captains and the youth advisory board, and near-peer mentoring.' },
+  { tag: 'Component 04', title: 'Cultural & arts', desc: 'Technical drawing, model-making, media documentation, and graphic communication of student work.' },
+  { tag: 'Component 05', title: 'Health, nutrition & fitness', desc: 'Daily movement and wellness blocks plus nutrition education, connected where natural to public-health and built-environment themes.' },
+  { tag: 'Component 06', title: 'Parental involvement', desc: 'Monthly family engagement, family STEM nights, the Bridge Showcase, and the public STEM Expo.' },
 ]
 
 export function Pathway() {
   const reduce = useReducedMotion()
-  const [openCamp, setOpenCamp] = useState<number | null>(null)
-  const [openTrackUnit, setOpenTrackUnit] = useState<string | null>(null)
+  const [open, setOpen] = useState(false)
 
   return (
     <main>
 
-      {/* ── Hero ── */}
+      {/* ── Hero: color/picture split ── */}
       <section
-        className="bg-quarry min-h-[65vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-quarry min-h-[62vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="pathway-h1">
 
         <motion.div
@@ -413,25 +336,28 @@ export function Pathway() {
         </motion.div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="lg:max-w-[58%] lg:pr-8 xl:pr-12">
+          <div className="lg:max-w-[64%] lg:pr-8 xl:pr-12">
 
             <motion.span
-              className="inline-block text-[11px] uppercase tracking-[0.18em] bg-anthracite/10 text-anthracite px-3 py-1 mb-10 select-none"
+              className="inline-block text-[11px] uppercase tracking-[0.18em] bg-anthracite/10 text-anthracite px-3 py-1 mb-8 select-none"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 10 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-              School Curriculum
+              Program 02 · High schools
             </motion.span>
 
+            {/* A longer headline than the other program pages, so the scale steps down
+                a notch from the shared clamp to keep this hero from wrapping to twice
+                as many lines and ballooning past the others in height. */}
             <motion.h1
               id="pathway-h1"
-              className="text-[2.75rem] lg:text-[4.5rem] xl:text-[5.5rem] leading-[0.97] tracking-[-0.035em] text-anthracite italic mb-10 [text-wrap:balance]"
+              className="text-[2.25rem] lg:text-[3.25rem] xl:text-[3.875rem] leading-[1.08] tracking-[-0.03em] text-anthracite italic mb-8 [text-wrap:balance]"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 40 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
-              Built for the high-school classroom and the career beyond it.
+              Pathway brings a construction-management track into high schools and districts.
             </motion.h1>
 
             <motion.div
@@ -439,11 +365,8 @@ export function Pathway() {
               initial={reduce ? undefined : { opacity: 0, y: 14 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={reduce ? undefined : { duration: 0.5, delay: 0.38, ease: EASE }}>
-              {(['High school', 'New Jersey', 'Civil engineering'] as const).map((item, i) => (
-                <span
-                  key={item}
-                  className="text-[13px] text-anthracite tracking-[-0.01em]"
-                  style={{ fontFamily: 'var(--font-body)' }}>
+              {(['Grades 9–12', 'District-embedded', 'NJ & NY aligned'] as const).map((item, i) => (
+                <span key={item} className="text-[13px] text-anthracite tracking-[-0.01em]" style={{ fontFamily: 'var(--font-body)' }}>
                   {item}
                   {i < 2 && <span className="mx-4 text-anthracite/20" aria-hidden="true">·</span>}
                 </span>
@@ -453,807 +376,433 @@ export function Pathway() {
         </div>
       </section>
 
-      {/* ── What Pathway Is ── bg-snow */}
+      {/* ── Program intro + info rows ── bg-snow */}
       <section className="bg-snow py-14 lg:py-20" aria-labelledby="pathway-intro-h2">
         <div className="max-w-7xl mx-auto px-6">
-
-          <motion.h2
-            id="pathway-intro-h2"
-            className="text-[2.25rem] lg:text-[3.25rem] xl:text-[4rem] leading-[1.07] tracking-[-0.03em] text-anthracite italic mb-10 lg:mb-12 max-w-[26ch] [text-wrap:balance]"
-            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-            initial={reduce ? undefined : { opacity: 0, y: 28 }}
-            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-            viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-            From idea to design, design to estimate, estimate to the field.
-          </motion.h2>
-
-          <div className="lg:grid lg:grid-cols-2 lg:gap-16 xl:gap-24 mb-14 lg:mb-16">
-            <motion.p
-              className="text-[15.5px] text-anthracite/78 leading-[1.72] mb-6 lg:mb-0"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={reduce ? undefined : { opacity: 0, y: 18 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.55, ease: EASE }}>
-              A construction-management curriculum pathway for high schools that want students to see the
-              built environment as a serious career direction. Students learn how construction projects
-              move from idea to design through the engineering design process, from design to estimate to
-              schedule, and from schedule to the field, combining project-based learning, career
-              exploration, teamwork, presentations, and practical construction-management tools.
-            </motion.p>
-            <motion.p
-              className="text-[14px] text-anthracite/75 leading-[1.72]"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={reduce ? undefined : { opacity: 0, y: 18 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.55, delay: 0.08, ease: EASE }}>
-              Pathway is built for school and district implementation: it can be delivered through
-              curriculum licensing, school contracts, district partnerships, grants, teacher professional
-              development, or Aedifica-led instruction, and adapted for engineering courses, architecture
-              and construction programs, after-school academies, and summer bridge programs.
-            </motion.p>
-          </div>
-
-          {/* Sample activities left, program facts right — mirrored from Explore's layout */}
-          <div className="lg:grid lg:grid-cols-[1fr_1.2fr] lg:gap-14 xl:gap-20 lg:items-start">
-
-            <motion.div
-              className="bg-quarry px-8 py-9 lg:px-10 lg:py-10 mb-12 lg:mb-0"
-              initial={reduce ? undefined : { opacity: 0, y: 20 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
-              <h3
-                className="text-[1.375rem] lg:text-[1.5rem] text-anthracite italic leading-[1.2] tracking-[-0.02em] mb-7"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                Sample activities.
-              </h3>
-              <ul className="list-none space-y-3.5">
-                {([
-                  'Plan a small building or infrastructure project',
-                  'Compare design choices and cost impacts',
-                  'Build a simple project schedule',
-                  'Create a site logistics plan',
-                  'Present a final construction-management plan to peers or industry guests',
-                ] as const).map((act) => (
-                  <li key={act} className="flex gap-3.5 items-start">
-                    <span className="flex-shrink-0 w-[4px] h-[4px] bg-anthracite/40 mt-[8px]" aria-hidden="true" />
-                    <span
-                      className="text-[14px] text-anthracite leading-[1.6]"
-                      style={{ fontFamily: 'var(--font-body)' }}>
-                      {act}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+          <div className="lg:grid lg:grid-cols-[1.2fr_1fr] lg:gap-16 xl:gap-20 lg:items-start">
 
             <div>
-              {([
-                ['Audience', 'Secondary-school students; high schools, districts, after-school academies, and summer bridge programs'],
-                ['Student outcomes', 'Career awareness in civil engineering, construction management, and related fields; foundational skills in scope, cost, schedule, safety, and communication; project artifacts for portfolios or presentations'],
-                ['Connections', 'College, credential, apprenticeship, and employer pathways, with advisory alignment wired in from the start'],
-                ['Capstone expectations', 'A defended capstone: design brief, technical drawings, calculations, cost estimate, risk register, sustainability matrix, and a public briefing or STEM Expo defense'],
-              ] as const).map(([label, value], i) => (
+              <motion.p
+                className="text-[15.5px] text-anthracite/78 leading-[1.72] mb-6 max-w-[62ch]"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 18 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.55, ease: EASE }}>
+                Pathway brings a construction-management track into high schools and districts:
+                pre-college rigor, project-based learning, and a curriculum that treats industry as a
+                destination, not an afterthought. Students learn to read the built environment as form
+                and function, and to see themselves running the projects that shape it.
+              </motion.p>
+              <motion.p
+                className="text-[14.5px] text-anthracite/72 leading-[1.72] max-w-[62ch] mb-10"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 16 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
+                The model draws directly on Aedifica's pre-college engineering delivery through Stevens
+                Institute of Technology: students who finished those programs reported new vocabulary,
+                new confidence, and new futures in civil engineering and construction management.
+              </motion.p>
+
+              {INFO_ROWS.map(([label, value], i) => (
                 <motion.div
                   key={label}
-                  className="grid grid-cols-1 sm:grid-cols-[190px_1fr] gap-2 sm:gap-8 py-5 border-t border-sediment/25 last:border-b last:border-sediment/25"
+                  className="grid grid-cols-[150px_1fr] gap-4 py-4 border-t border-sediment/25 last:border-b"
                   initial={reduce ? undefined : { opacity: 0, y: 12 }}
                   whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                   viewport={reduce ? undefined : VIEWPORT}
                   transition={reduce ? undefined : { duration: 0.4, delay: i * 0.05, ease: EASE }}>
-                  <p
-                    className="text-[10.5px] uppercase tracking-[0.16em] pt-1 select-none"
-                    style={{ fontFamily: 'var(--font-body)', color: '#5C5D9C' }}>
-                    {label}
-                  </p>
-                  <p
-                    className="text-[14px] text-anthracite/78 leading-[1.68]"
-                    style={{ fontFamily: 'var(--font-body)' }}>
-                    {value}
-                  </p>
+                  <p className="text-[12.5px] uppercase tracking-[0.13em] text-datum pt-0.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
+                  <p className="text-[13.5px] text-anthracite/80 leading-[1.55]" style={{ fontFamily: 'var(--font-body)' }}>{value}</p>
                 </motion.div>
               ))}
+            </div>
 
-              <motion.p
-                className="mt-7 text-[13px] text-anthracite/75 leading-[1.7]"
-                style={{ fontFamily: 'var(--font-body)' }}
+            <div className="mt-12 lg:mt-0">
+              <motion.div
+                className="overflow-hidden mb-8"
+                initial={reduce ? undefined : { opacity: 0, y: 18 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
+                <img
+                  src="/images/stevens-program.jpg"
+                  alt="High-school students in the Aedifica Pathway civil engineering program at Stevens Institute of Technology"
+                  className="w-full h-[260px] lg:h-[320px] object-cover"
+                  style={{ filter: 'grayscale(20%) contrast(1.05)' }}
+                  loading="lazy"
+                />
+              </motion.div>
+              <ul className="list-none space-y-3">
+                {MINI_LIST.map(item => (
+                  <li key={item} className="flex gap-3 items-start">
+                    <span className="flex-shrink-0 w-[6px] h-[6px] rotate-45 bg-datum mt-[7px]" aria-hidden="true" />
+                    <span className="text-[13.5px] text-anthracite/78 leading-[1.55]" style={{ fontFamily: 'var(--font-body)' }}>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── Proven delivery: three summers ── bg-bone */}
+      <section className="bg-bone py-14 lg:py-20" aria-labelledby="delivery-h2">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="lg:grid lg:grid-cols-[1fr_1.4fr] lg:gap-16 xl:gap-20 lg:items-start mb-10 lg:mb-12">
+            <div>
+              <motion.div
+                className="flex items-center gap-3 mb-5"
                 initial={reduce ? undefined : { opacity: 0 }}
                 whileInView={reduce ? undefined : { opacity: 1 }}
                 viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.45, delay: 0.15, ease: EASE }}>
-                Related summer intensives: the Construction &amp; Built Environment camp (grades 7–12) and
-                the Girls in Engineering &amp; Technology camp (grades 6–10), detailed under{' '}
-                <Link href="/services/explore" className="text-datum underline underline-offset-2 decoration-datum/40 hover:decoration-datum transition-colors duration-150">
-                  Explore's Summer STEM Camps
-                </Link>
-                , serve Pathway-age learners and connect directly into this curriculum.
-              </motion.p>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ── Advanced Tracks ── bg-bone */}
-      <section className="bg-bone py-12 lg:py-18" aria-labelledby="tracks-h2">
-        <div className="max-w-7xl mx-auto px-6">
-
-          <div className="lg:grid lg:grid-cols-[1fr_1.5fr] lg:gap-16 xl:gap-24 lg:items-start mb-10 lg:mb-12">
-            <div>
+                transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+                <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
+                <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Proven delivery · Stevens pre-college</p>
+              </motion.div>
               <motion.h2
-                id="tracks-h2"
-                className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.06] tracking-[-0.03em] text-anthracite italic mb-4 [text-wrap:balance]"
+                id="delivery-h2"
+                className="text-[2rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic [text-wrap:balance]"
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-                initial={reduce ? undefined : { opacity: 0, y: 24 }}
+                initial={reduce ? undefined : { opacity: 0, y: 22 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-                From a semester survey to a mentored capstone.
+                transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
+                The Pathway model, taught for three summers.
               </motion.h2>
             </div>
             <motion.p
-              className="text-[14.5px] text-anthracite/80 leading-[1.72] lg:pt-2"
+              className="text-[14.5px] text-anthracite/72 leading-[1.7] mt-6 lg:mt-2 max-w-[60ch]"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 16 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.5, delay: 0.1, ease: EASE }}>
-              Most schools start with Principles of Civil Engineering, the full-semester core course below. For schools that want to go deeper, two more advanced options are available: Infrastructure Fellows applies the same design thinking to a real local site, and STEM Research Scholars pairs upper-classmen with mentors on original research. Both stay standards-aligned throughout, down to the individual code.
+              Aedifica's Pathway model is grounded in the Stevens Institute of Technology pre-college
+              Civil Engineering course, taught by co-founder Dr. Karim Karam. Across three summers,
+              students rated the course and instructor consistently high.
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 xl:gap-x-14 gap-y-10 lg:gap-y-0">
-
-            {/* Infrastructure Fellows */}
-            <div>
-              <div className="flex items-baseline justify-between mb-4 pb-4 border-b border-sediment/25">
-                <div>
-                  <p
-                    className="text-[19px] text-anthracite italic leading-[1.2] tracking-[-0.015em]"
-                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                    Infrastructure Fellows
-                  </p>
-                  <p
-                    className="text-[10.5px] text-anthracite/80 uppercase tracking-[0.1em] mt-1"
-                    style={{ fontFamily: 'var(--font-body)' }}>
-                    Grades 9–12 · Applied studio
-                  </p>
-                </div>
-              </div>
-
-              <div className="divide-y divide-sediment/12">
-                {INFRASTRUCTURE_FELLOWS.map((unit) => {
-                  const key = `if-${unit.num}`
-                  const isOpen = openTrackUnit === key
-                  return (
-                    <div key={key}>
-                      <button
-                        className="w-full flex items-start gap-4 py-3.5 text-left cursor-pointer group"
-                        onClick={() => setOpenTrackUnit(isOpen ? null : key)}
-                        aria-expanded={isOpen}>
-                        <span
-                          className="flex-shrink-0 w-[64px] text-[12px] uppercase tracking-[0.06em] pt-1"
-                          style={{ fontFamily: 'var(--font-body)', color: '#5C5D9C' }}>
-                          {unit.num}
-                        </span>
-                        <span
-                          className="flex-1 text-[13.5px] text-anthracite/85 leading-[1.5] group-hover:text-anthracite transition-colors"
-                          style={{ fontFamily: 'var(--font-body)' }}>
-                          {unit.title}
-                        </span>
-                        <div className="flex-shrink-0 flex items-start gap-1.5 pt-0.5">
-                          <CaretDown
-                            size={13}
-                            weight="bold"
-                            className={`text-anthracite/30 transition-transform duration-150 ${isOpen ? 'rotate-180' : ''}`}
-                          />
-                        </div>
-                      </button>
-                      <AnimatePresence initial={false}>
-                        {isOpen && (
-                          <motion.div
-                            initial={reduce ? undefined : { height: 0, opacity: 0 }}
-                            animate={reduce ? undefined : { height: 'auto', opacity: 1 }}
-                            exit={reduce ? undefined : { height: 0, opacity: 0 }}
-                            transition={reduce ? undefined : { duration: 0.22, ease: EASE }}
-                            style={{ overflow: 'hidden' }}>
-                            <div className="pl-[76px] pb-4 pr-2">
-                              <p
-                                className="text-[13px] text-anthracite/80 leading-[1.65] mb-3"
-                                style={{ fontFamily: 'var(--font-body)' }}>
-                                {unit.body}
-                              </p>
-                              <div className="flex flex-wrap gap-1.5">
-                                {unit.chips.map(c => <StdBadge key={c.code} chip={c} />)}
-                              </div>
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-
-            {/* STEM Research Scholars */}
-            <div>
-              <div className="flex items-baseline justify-between mb-4 pb-4 border-b border-sediment/25">
-                <div>
-                  <p
-                    className="text-[19px] text-anthracite italic leading-[1.2] tracking-[-0.015em]"
-                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                    STEM Research Scholars
-                  </p>
-                  <p
-                    className="text-[10.5px] text-anthracite/80 uppercase tracking-[0.1em] mt-1"
-                    style={{ fontFamily: 'var(--font-body)' }}>
-                    Grades 11–12 · Mentored research
-                  </p>
-                </div>
-              </div>
-
-              <div className="divide-y divide-sediment/12">
-                {RESEARCH_SCHOLARS.map((unit) => {
-                  const key = `rs-${unit.num}`
-                  const isOpen = openTrackUnit === key
-                  return (
-                    <div key={key}>
-                      <button
-                        className="w-full flex items-start gap-4 py-3.5 text-left cursor-pointer group"
-                        onClick={() => setOpenTrackUnit(isOpen ? null : key)}
-                        aria-expanded={isOpen}>
-                        <span
-                          className="flex-shrink-0 w-[64px] text-[12px] uppercase tracking-[0.06em] pt-1"
-                          style={{ fontFamily: 'var(--font-body)', color: '#5C5D9C' }}>
-                          {unit.num}
-                        </span>
-                        <span
-                          className="flex-1 text-[13.5px] text-anthracite/85 leading-[1.5] group-hover:text-anthracite transition-colors"
-                          style={{ fontFamily: 'var(--font-body)' }}>
-                          {unit.title}
-                        </span>
-                        <div className="flex-shrink-0 flex items-start gap-1.5 pt-0.5">
-                          <CaretDown
-                            size={13}
-                            weight="bold"
-                            className={`text-anthracite/30 transition-transform duration-150 ${isOpen ? 'rotate-180' : ''}`}
-                          />
-                        </div>
-                      </button>
-                      <AnimatePresence initial={false}>
-                        {isOpen && (
-                          <motion.div
-                            initial={reduce ? undefined : { height: 0, opacity: 0 }}
-                            animate={reduce ? undefined : { height: 'auto', opacity: 1 }}
-                            exit={reduce ? undefined : { height: 0, opacity: 0 }}
-                            transition={reduce ? undefined : { duration: 0.22, ease: EASE }}
-                            style={{ overflow: 'hidden' }}>
-                            <div className="pl-[76px] pb-4 pr-2">
-                              <p
-                                className="text-[13px] text-anthracite/80 leading-[1.65] mb-3"
-                                style={{ fontFamily: 'var(--font-body)' }}>
-                                {unit.body}
-                              </p>
-                              <div className="flex flex-wrap gap-1.5">
-                                {unit.chips.map(c => <StdBadge key={c.code} chip={c} />)}
-                              </div>
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-
-          </div>
-
-          {/* 21st CCLC out-of-school-time fit */}
-          <div className="mt-16 lg:mt-20 pt-12 lg:pt-14 border-t border-sediment/25">
-            <div className="lg:grid lg:grid-cols-[1fr_1.9fr] lg:gap-16 xl:gap-24 lg:items-start">
-              <div className="mb-10 lg:mb-0">
-                <motion.h3
-                  className="text-[1.625rem] lg:text-[2rem] leading-[1.15] tracking-[-0.022em] text-anthracite italic mb-5 [text-wrap:balance]"
-                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-                  initial={reduce ? undefined : { opacity: 0, y: 20 }}
-                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                  viewport={reduce ? undefined : VIEWPORT}
-                  transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
-                  How the curriculum serves the six 21st CCLC components.
-                </motion.h3>
-                <motion.p
-                  className="text-[13.5px] text-anthracite/78 leading-[1.7] max-w-[44ch]"
-                  style={{ fontFamily: 'var(--font-body)' }}
-                  initial={reduce ? undefined : { opacity: 0, y: 14 }}
-                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                  viewport={reduce ? undefined : VIEWPORT}
-                  transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
-                  Resilient Futures runs as a STEM-themed program in which the engineering curriculum is
-                  the enrichment spine and the other required out-of-school-time components are built
-                  around it.
-                </motion.p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 border-t border-sediment/25">
-                {([
-                  { Icon: BookOpenText, comp: 'Academic remediation', note: 'Daily certified-teacher tutoring in ELA and mathematics, tied to the same NJSLS standards the engineering units apply.' },
-                  { Icon: CompassTool, comp: 'Academic enrichment', note: 'The engineering pathways above: the project-based, standards-aligned core of the program.' },
-                  { Icon: UsersThree, comp: 'Positive youth development', note: 'Authentic team roles, leadership through studio captains and the youth advisory board, and near-peer mentoring.' },
-                  { Icon: PaintBrush, comp: 'Cultural & arts', note: 'Technical drawing, model-making, media documentation, and graphic communication of student work.' },
-                  { Icon: Heartbeat, comp: 'Health, nutrition & fitness', note: 'Daily movement and wellness blocks plus nutrition education, connected where natural to public-health and built-environment themes.' },
-                  { Icon: HouseLine, comp: 'Parental involvement', note: 'Monthly family engagement, family STEM nights, the Bridge Showcase, and the public STEM Expo.' },
-                ] as const).map(({ Icon: IconComp, comp, note }, i) => (
-                  <motion.div
-                    key={comp}
-                    className={[
-                      'py-5 lg:py-6 border-b border-sediment/25 flex items-start gap-4',
-                      i % 2 === 0 ? 'sm:pr-8 sm:border-r sm:border-sediment/25' : 'sm:pl-8',
-                    ].join(' ')}
-                    initial={reduce ? undefined : { opacity: 0, y: 12 }}
-                    whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                    viewport={reduce ? undefined : VIEWPORT}
-                    transition={reduce ? undefined : { duration: 0.4, delay: (i % 2) * 0.05, ease: EASE }}>
-                    <IconComp size={21} weight="regular" className="flex-shrink-0 mt-0.5" style={{ color: '#5C5D9C' }} aria-hidden={true} />
-                    <div>
-                      <p
-                        className="text-[14.5px] text-anthracite font-medium leading-[1.35] tracking-[-0.01em] mb-1.5"
-                        style={{ fontFamily: 'var(--font-body)' }}>
-                        {comp}
-                      </p>
-                      <p
-                        className="text-[12.5px] text-anthracite/72 leading-[1.65]"
-                        style={{ fontFamily: 'var(--font-body)' }}>
-                        {note}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ── The Curriculum ── bg-snow */}
-      <section className="bg-snow py-14 lg:py-22 overflow-hidden" aria-labelledby="curriculum-h2">
-        <div className="max-w-7xl mx-auto px-6">
-
-          <motion.h2
-            id="curriculum-h2"
-            className="text-[2.5rem] lg:text-[4rem] xl:text-[5rem] leading-[1.04] tracking-[-0.035em] text-anthracite italic mb-10 lg:mb-14 max-w-[24ch] [text-wrap:balance]"
-            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-            initial={reduce ? undefined : { opacity: 0, y: 32 }}
-            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-            viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.7, ease: SPRING }}>
-            Nine lessons. One design cycle. A course built around real engineering decisions.
-          </motion.h2>
-
-          <motion.p
-            className="text-[15.5px] text-anthracite/72 leading-[1.72] max-w-[68ch] mb-14 lg:mb-18"
-            style={{ fontFamily: 'var(--font-body)' }}
-            initial={reduce ? undefined : { opacity: 0, y: 18 }}
-            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-            viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.55, delay: 0.08, ease: EASE }}>
-            Principles of Civil Engineering is the Pathway core course: a full semester introducing students to sustainable development, infrastructure planning, structural design, financial evaluation, and the decision-making processes that connect them. Students work through case studies, project challenges, and a defended capstone from the first week to the last.
-          </motion.p>
-
-          {/* Lessons grid — 9 lessons in 3-col, final project full-width below */}
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 lg:gap-x-12 border-t border-sediment/20"
-            initial={reduce ? undefined : { opacity: 0, y: 16 }}
-            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-            viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
-            {LESSONS.slice(0, 9).map(({ number, title, subtitle, topics }, i) => (
+          <div className="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-sediment/25">
+            {DELIVERY_STATS.map(({ value, label }, i) => (
               <motion.div
-                key={title}
-                className="border-b border-sediment/15 py-6 lg:py-7"
-                initial={reduce ? undefined : { opacity: 0, y: 12 }}
+                key={label}
+                className="border-r border-b border-sediment/25 px-5 py-6"
+                initial={reduce ? undefined : { opacity: 0, y: 14 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.38, delay: (i % 3) * 0.05, ease: EASE }}>
-                <p
-                  className="text-[10.5px] text-datum uppercase tracking-[0.1em] mb-2"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  {number}
-                </p>
-                <p
-                  className="text-[15px] text-anthracite italic leading-[1.25] tracking-[-0.015em] mb-1"
-                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                  {title}
-                </p>
-                <p
-                  className="text-[12px] text-anthracite/75 leading-none mb-3.5"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  {subtitle}
-                </p>
-                <ul className="space-y-1.5">
-                  {topics.map(topic => (
-                    <li key={topic} className="flex gap-2 items-start">
-                      <span className="w-[3px] h-[3px] bg-datum/40 rounded-full flex-shrink-0 mt-[6px]" aria-hidden="true" />
-                      <span
-                        className="text-[12.5px] text-anthracite/80 leading-[1.55]"
-                        style={{ fontFamily: 'var(--font-body)' }}>
-                        {topic}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                transition={reduce ? undefined : { duration: 0.42, delay: i * 0.06, ease: EASE }}>
+                <p className="text-[1.625rem] lg:text-[1.875rem] text-anthracite italic leading-none tracking-[-0.025em] mb-2.5" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>{value}</p>
+                <p className="text-[12px] text-anthracite/72 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
               </motion.div>
             ))}
-          </motion.div>
-
-          {/* Final Project — full-width highlighted row */}
-          <motion.div
-            className="bg-bone/60 border-b border-sediment/15 py-7 lg:py-8"
-            initial={reduce ? undefined : { opacity: 0, y: 10 }}
-            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-            viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.4, delay: 0.12, ease: EASE }}>
-            <div className="sm:grid sm:grid-cols-[140px_1fr] sm:gap-8 lg:gap-12 sm:items-start">
-              <div className="mb-3 sm:mb-0">
-                <p
-                  className="text-[10.5px] text-datum uppercase tracking-[0.1em] mb-1"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  Final Project
-                </p>
-                <p
-                  className="text-[12px] text-anthracite/75 leading-none"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  Full design cycle
-                </p>
-              </div>
-              <div>
-                <p
-                  className="text-[15px] text-anthracite italic leading-[1.25] tracking-[-0.015em] mb-4"
-                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                  Engineering Solution Development
-                </p>
-                <div className="grid sm:grid-cols-2 gap-x-10 gap-y-1.5">
-                  {LESSONS[9].topics.map(topic => (
-                    <div key={topic} className="flex gap-2 items-start">
-                      <span className="w-[3px] h-[3px] bg-datum/40 rounded-full flex-shrink-0 mt-[6px]" aria-hidden="true" />
-                      <span
-                        className="text-[12.5px] text-anthracite/80 leading-[1.55]"
-                        style={{ fontFamily: 'var(--font-body)' }}>
-                        {topic}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
+          </div>
+          <p className="mt-6 text-[12px] text-anthracite/60 italic leading-[1.6] max-w-[70ch]" style={{ fontFamily: 'var(--font-body)' }}>
+            Student satisfaction surveys, Stevens Institute of Technology Office of Pre-College
+            Programs (2022–2024). These are participant ratings of the course and instructor, not
+            academic-outcome measures.
+          </p>
         </div>
       </section>
 
-      {/* ── Sample Summer Programs ── bg-bone */}
-      <section className="bg-bone py-12 lg:py-18" aria-labelledby="camps-h2">
+      {/* ── Principles of Civil Planning ── bg-snow */}
+      <section className="bg-snow py-14 lg:py-20" aria-labelledby="lessons-h2">
         <div className="max-w-7xl mx-auto px-6">
 
-          <div className="lg:grid lg:grid-cols-[1fr_1.5fr] lg:gap-16 xl:gap-24 lg:items-start mb-10 lg:mb-12">
-            <div>
-              <motion.h2
-                id="camps-h2"
-                className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.06] tracking-[-0.03em] text-anthracite italic mb-4 [text-wrap:balance]"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-                initial={reduce ? undefined : { opacity: 0, y: 24 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-                Four summer program models for high-school learners.
-              </motion.h2>
-            </div>
+          {/* Centered instead of pinned to either margin, so it doesn't repeat the
+              same left-column shape as the section above it. */}
+          <div className="mb-10 lg:mb-12 mx-auto max-w-[42rem] text-center">
+            <motion.div
+              className="flex items-center justify-center gap-3 mb-5"
+              initial={reduce ? undefined : { opacity: 0 }}
+              whileInView={reduce ? undefined : { opacity: 1 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+              <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
+              <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Standards-aligned · New Jersey & New York</p>
+            </motion.div>
+            <motion.h2
+              id="lessons-h2"
+              className="text-[2rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic mb-5 [text-wrap:balance]"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+              initial={reduce ? undefined : { opacity: 0, y: 22 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
+              Principles of Civil Planning, the pre-college curriculum.
+            </motion.h2>
             <motion.p
-              className="text-[14.5px] text-anthracite/70 leading-[1.72] lg:pt-2"
+              className="text-[14.5px] text-anthracite/72 leading-[1.7] mx-auto"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 16 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.5, delay: 0.1, ease: EASE }}>
-              Pathway summer programs extend the curriculum into immersive formats: infrastructure resilience, climate and sustainability, smart cities and transportation, and a three-week research bootcamp for upper-classmen. Each model targets a different depth of engagement, from two-week intensive experiences through independent research with mentor critique.
+              The high-school curriculum behind Pathway is a nine-lesson engineering-and-planning
+              sequence, explicitly aligned to both New Jersey and New York standards.
             </motion.p>
           </div>
 
-          {/* Camp accordion */}
-          <motion.div
-            className="bg-snow"
-            initial={reduce ? undefined : { opacity: 0, y: 16 }}
-            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-            viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.5, delay: 0.12, ease: EASE }}>
-
-            {CAMPS.map(({ name, grade, duration, objectives, activities, project }, i) => (
-              <div key={name} className="border-t border-sediment/15">
-                <button
-                  className="w-full text-left px-7 lg:px-10 py-5 flex items-start gap-5 hover:bg-bone/50 transition-colors duration-150"
-                  onClick={() => setOpenCamp(openCamp === i ? null : i)}
-                  aria-expanded={openCamp === i}
-                  aria-controls={`camp-body-${i}`}>
-
-                  <div className="flex-shrink-0 w-[104px] mt-0.5">
-                    <span
-                      className="text-[11px] font-medium text-datum block leading-none mb-1"
-                      style={{ fontFamily: 'var(--font-body)' }}>
-                      {grade}
-                    </span>
-                    <span
-                      className="text-[11.5px] text-anthracite/75 uppercase tracking-[0.05em] block"
-                      style={{ fontFamily: 'var(--font-body)' }}>
-                      {duration}
-                    </span>
-                  </div>
-
-                  <span
-                    className="flex-1 text-[15px] lg:text-[1.0625rem] text-anthracite italic leading-[1.3] tracking-[-0.015em]"
-                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                    {name}
-                  </span>
-
-                  <motion.span
-                    className="flex-shrink-0 text-anthracite/35 mt-1"
-                    animate={{ rotate: openCamp === i ? 180 : 0 }}
-                    transition={{ duration: 0.2, ease: EASE }}>
-                    <CaretDown size={13} aria-hidden="true" />
-                  </motion.span>
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {openCamp === i && (
-                    <motion.div
-                      id={`camp-body-${i}`}
-                      key="body"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.22, ease: EASE }}
-                      style={{ overflow: 'hidden' }}>
-                      <div className="px-7 lg:px-10 pb-7 lg:pl-[calc(2.5rem+104px)]">
-                        <p
-                          className="text-[13.5px] text-anthracite/70 leading-[1.68] mb-5 italic"
-                          style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                          {objectives}
-                        </p>
-                        <div className="lg:grid lg:grid-cols-[1.3fr_1fr] lg:gap-10">
-                          <div>
-                            <p
-                              className="text-[11px] uppercase tracking-[0.12em] text-anthracite/75 mb-3"
-                              style={{ fontFamily: 'var(--font-body)' }}>
-                              Major activities
-                            </p>
-                            <ul className="space-y-2">
-                              {activities.map(act => (
-                                <li key={act} className="flex gap-2.5 items-start">
-                                  <span className="w-[4px] h-[4px] bg-datum/50 rounded-full flex-shrink-0 mt-[7px]" aria-hidden="true" />
-                                  <span
-                                    className="text-[13px] text-anthracite/70 leading-[1.6]"
-                                    style={{ fontFamily: 'var(--font-body)' }}>
-                                    {act}
-                                  </span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div className="mt-6 lg:mt-0">
-                            <p
-                              className="text-[11px] uppercase tracking-[0.12em] text-anthracite/75 mb-3"
-                              style={{ fontFamily: 'var(--font-body)' }}>
-                              Final project
-                            </p>
-                            <p
-                              className="text-[13.5px] text-anthracite/75 leading-[1.6]"
-                              style={{ fontFamily: 'var(--font-body)' }}>
-                              {project}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-
-            <div className="border-t border-sediment/15" />
-          </motion.div>
-
-        </div>
-      </section>
-
-      {/* ── What Students Say ── bg-anthracite */}
-      <section className="bg-anthracite py-10 lg:py-16" aria-labelledby="pathway-quotes-h2">
-        <div className="max-w-7xl mx-auto px-6">
-
-          <div className="lg:grid lg:grid-cols-[1fr_1.8fr] lg:gap-20 xl:gap-28 lg:items-start mb-8 lg:mb-12">
-            <div>
-              <motion.h2
-                id="pathway-quotes-h2"
-                className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.07] tracking-[-0.03em] text-white italic [text-wrap:balance]"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-                initial={reduce ? undefined : { opacity: 0, y: 24 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-                What students say.
-              </motion.h2>
-            </div>
-            <motion.p
-              className="text-[15px] text-white/60 leading-[1.72] lg:pt-14 xl:pt-16"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={reduce ? undefined : { opacity: 0, y: 18 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.55, delay: 0.1, ease: EASE }}>
-              Three summers of the Civil Engineering and Design Pathway at Stevens Institute of Technology (2022, 2023, and 2024) produced consistent survey results: roughly three-quarters of students rated the program excellent, and near-zero rated it fair or poor. These are their words, anonymized by cohort year and reproduced from post-program surveys.
-            </motion.p>
-          </div>
-
-          {/* Featured quote */}
-          <motion.div
-            className="border-t border-white/12 pt-7 lg:pt-9 pb-7 lg:pb-9 border-b border-white/12"
-            initial={reduce ? undefined : { opacity: 0, y: 20 }}
-            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-            viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.6, ease: SPRING }}>
-            <p
-              className="text-[1.625rem] lg:text-[2.375rem] xl:text-[2.875rem] text-white italic leading-[1.12] tracking-[-0.03em] max-w-[30ch] [text-wrap:balance]"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-              "{QUOTES[0].text}"
-            </p>
-            <p
-              className="text-[12px] text-white/60 mt-5 uppercase tracking-[0.1em]"
-              style={{ fontFamily: 'var(--font-body)' }}>
-              Student reflection · {QUOTES[0].year} Civil Engineering and Design Pathway
-            </p>
-          </motion.div>
-
-          {/* Remaining quotes */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 divide-white/10">
-            {QUOTES.slice(1).map(({ text, year }, i) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-sediment/20 mb-14 lg:mb-16">
+            {STANDARDS_ROWS.map(({ Icon: IconComp, label, value }, i) => (
               <motion.div
-                key={text}
-                className={[
-                  'py-5 lg:py-7',
-                  i % 2 === 0 ? 'lg:pr-14 xl:pr-20 lg:border-r lg:border-white/10' : 'lg:pl-14 xl:pl-20',
-                ].join(' ')}
+                key={label}
+                className={`py-6 ${i > 0 ? 'lg:pl-8 xl:pl-10' : ''} ${i < 3 ? 'lg:pr-8 xl:pr-10 lg:border-r lg:border-sediment/20' : ''} border-b border-sediment/20 lg:border-b-0`}
                 initial={reduce ? undefined : { opacity: 0, y: 16 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.45, delay: (i % 2) * 0.07, ease: EASE }}>
-                <p
-                  className="text-[1.0625rem] lg:text-[1.25rem] xl:text-[1.4375rem] text-white/88 italic leading-[1.35] tracking-[-0.02em] mb-3 [text-wrap:balance]"
-                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-                  "{text}"
-                </p>
-                <p
-                  className="text-[11.5px] text-white/60 uppercase tracking-[0.1em]"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  Student reflection · {year} Civil Engineering and Design Pathway
-                </p>
+                transition={reduce ? undefined : { duration: 0.42, delay: i * 0.07, ease: EASE }}>
+                <IconComp size={22} weight="regular" className="text-datum mb-3.5" aria-hidden={true} />
+                <p className="text-[1rem] text-anthracite font-medium tracking-[-0.01em] mb-2.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
+                <p className="text-[13px] text-anthracite/70 leading-[1.6]" style={{ fontFamily: 'var(--font-body)' }}>{value}</p>
               </motion.div>
+            ))}
+          </div>
+
+          <motion.p
+            className="text-[10.5px] uppercase tracking-[0.14em] text-anthracite/55 mb-6"
+            style={{ fontFamily: 'var(--font-body)' }}
+            initial={reduce ? undefined : { opacity: 0 }}
+            whileInView={reduce ? undefined : { opacity: 1 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+            The nine lessons
+          </motion.p>
+
+          {/* Grouped into the three stages the lessons actually run in, instead of
+              one long single-file list, numbering stays continuous across groups. */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 lg:divide-x lg:divide-sediment/20">
+            {LESSON_GROUPS.map((group, gi) => (
+              <div key={group.label} className={`${gi > 0 ? 'mt-9 lg:mt-0 lg:pl-8 xl:pl-10' : ''} ${gi < 2 ? 'lg:pr-8 xl:pr-10' : ''}`}>
+                <p
+                  className="text-[11px] uppercase tracking-[0.12em] text-anthracite/60 pb-4 border-b-2 border-sediment/40 mb-1"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  {group.label}
+                </p>
+                <ol>
+                  {group.lessons.map((lesson, li) => {
+                    const i = gi * 3 + li
+                    return (
+                      <motion.li
+                        key={lesson}
+                        className="group flex items-baseline gap-4 py-4 border-b border-sediment/20"
+                        initial={reduce ? undefined : { opacity: 0, y: 10 }}
+                        whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                        viewport={reduce ? undefined : VIEWPORT}
+                        transition={reduce ? undefined : { duration: 0.35, delay: Math.min(i * 0.04, 0.3), ease: EASE }}>
+                        <span
+                          className="flex-shrink-0 w-6 text-[13px] text-anthracite/55 tabular-nums group-hover:text-datum transition-colors duration-150"
+                          style={{ fontFamily: 'var(--font-body)' }}>
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+                        <span className="text-[14px] text-anthracite/85 leading-[1.45]" style={{ fontFamily: 'var(--font-body)' }}>
+                          {lesson}
+                        </span>
+                      </motion.li>
+                    )
+                  })}
+                </ol>
+              </div>
             ))}
           </div>
 
         </div>
       </section>
 
-      {/* ── Program Rationale ── bg-snow */}
-      <section className="bg-snow py-14 lg:py-20" aria-labelledby="pathway-rationale-h2">
+      {/* ── Curriculum shell ── bg-bone */}
+      <section className="bg-bone py-14 lg:py-20 print:py-0" aria-labelledby="curriculum-h2" id="curriculum">
         <div className="max-w-7xl mx-auto px-6">
 
-          <motion.h2
-            id="pathway-rationale-h2"
-            className="text-[1.75rem] lg:text-[2.25rem] xl:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic mb-8 lg:mb-10 [text-wrap:balance]"
-            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-            initial={reduce ? undefined : { opacity: 0, y: 24 }}
-            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-            viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-            The curriculum foundation.
-          </motion.h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-4 lg:mb-6">
-            <motion.div
-              className="bg-bone px-7 py-8"
-              initial={reduce ? undefined : { opacity: 0, y: 20 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.55, delay: 0.1, ease: EASE }}>
-              <p
-                className="text-[10.5px] text-datum uppercase tracking-[0.18em] mb-4 select-none"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                Curriculum design
-              </p>
-              <p
-                className="text-[14.5px] text-anthracite/75 leading-[1.7]"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                Pathway is a structured civil engineering and construction-management course built for secondary education. Each lesson advances through real engineering decisions: infrastructure planning, structural analysis, financial evaluation, and a final defended design project, building portfolio evidence that aligns with what engineering programs and employers evaluate.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="bg-bone px-7 py-8"
-              initial={reduce ? undefined : { opacity: 0, y: 20 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.55, delay: 0.15, ease: EASE }}>
-              <p
-                className="text-[10.5px] text-datum uppercase tracking-[0.18em] mb-4 select-none"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                Delivery foundation
-              </p>
-              <p
-                className="text-[14.5px] text-anthracite/75 leading-[1.7]"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                Pathway design is informed by Dr. Karam's prior pre-college engineering workshop delivery through Stevens Institute of Technology: three summers of high-school student engagement in the Civil Engineering and Design Pathway, rated excellent by 73–80% of participants each year.
-              </p>
-              <p
-                className="text-[12px] text-anthracite/78 leading-[1.6] mt-3"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                Prior educational delivery experience, not Aedifica workforce outcomes.
-              </p>
-            </motion.div>
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10 lg:mb-12 print:hidden">
+            <div>
+              <motion.div
+                className="flex items-center gap-3 mb-5"
+                initial={reduce ? undefined : { opacity: 0 }}
+                whileInView={reduce ? undefined : { opacity: 1 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+                <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
+                <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Curriculum shell, open what you need</p>
+              </motion.div>
+              <motion.h2
+                id="curriculum-h2"
+                className="text-[2rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic [text-wrap:balance]"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+                initial={reduce ? undefined : { opacity: 0, y: 22 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
+                From a semester survey to a mentored capstone.
+              </motion.h2>
+            </div>
+            <div className="flex gap-2.5 flex-shrink-0">
+              <button type="button" onClick={() => setOpen(true)} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Expand</button>
+              <button type="button" onClick={() => setOpen(false)} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Collapse</button>
+              <button type="button" onClick={() => { setOpen(true); setTimeout(() => window.print(), 350) }} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Print</button>
+            </div>
           </div>
 
-          <div className="flex justify-center">
-            <motion.div
-              className="bg-bone px-7 py-8 w-full lg:max-w-[calc(50%-0.75rem)]"
-              initial={reduce ? undefined : { opacity: 0, y: 20 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.55, delay: 0.2, ease: EASE }}>
-              <p
-                className="text-[10.5px] text-datum uppercase tracking-[0.18em] mb-4 select-none"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                Who it fits
-              </p>
-              <p
-                className="text-[14.5px] text-anthracite/75 leading-[1.7]"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                Pathway can be adapted for grades 10–12 across engineering courses, architecture and construction programs, after-school academies, and summer bridge programs. Delivery options include curriculum licensing, school contracts, district partnerships, grants, and Aedifica-led instruction.
-              </p>
-            </motion.div>
-          </div>
+          <CurriculumShell
+            id="resilient"
+            color="var(--color-datum)"
+            open={open}
+            onToggle={() => setOpen(o => !o)}
+            meta="Grades 6–12 · three grade-band pathways · full curriculum"
+            collapsedTitle="Resilient Futures: Standards-Aligned STEM Engineering Curriculum"
+            eyebrow="Grades 6–12 · Engineering Design · Out-of-School-Time STEM"
+            title="We build the builders."
+            intro="The complete Resilient Futures curriculum, a three-pathway engineering program where students design real New Jersey infrastructure, from a first paper tower in grade 6 to a mentored capstone defended at a public STEM Expo."
+            facts={[
+              { value: '3', label: 'Grade-band pathways' },
+              { value: '6–12', label: 'Students served' },
+              { value: '5', label: 'Standards frameworks' },
+              { value: '40+', label: 'Aligned standards' },
+            ]}
+            toc={[
+              { label: 'Bridge Builders', href: '#pathway-bridge' },
+              { label: 'Infrastructure Fellows', href: '#pathway-infra' },
+              { label: 'Research Scholars', href: '#pathway-research' },
+              { label: 'Standards Matrix', href: '#pathway-standards' },
+              { label: '21st CCLC Map', href: '#pathway-cclc' },
+            ]}
+            frameworks={[
+              { cat: 'sci', name: 'NGSS / Science' },
+              { cat: 'math', name: 'NJSLS Math' },
+              { cat: 'ela', name: 'NJSLS ELA' },
+              { cat: 'des', name: 'Design & Tech' },
+              { cat: 'car', name: 'Career Readiness' },
+            ]}>
+
+            <Band id="pathway-bridge" numLabel="01" rangeLabel="Grades 6–8 · Middle School" title="Bridge Builders"
+              desc="A twelve-week engineering studio built on the proven Hillside-Stevens bridge program. Students run a full engineering design cycle on an authentic Hudson River crossing challenge: defining the problem, modeling and costing designs, weighing risk and sustainability, building and load-testing prototypes, and defending their work at a public showcase."
+              meta={[
+                { label: 'Essential question', value: 'How can young engineers design a bridge that is strong, affordable, sustainable, and useful to the community?' },
+                { label: 'NJ anchor challenge', value: 'Hudson River crossing · aging bridges · flooding & transportation resilience' },
+                { label: 'Student deliverables', value: 'Engineering notebook · scaled & digital model · cost estimate · risk/sustainability matrix · tested prototype · final presentation' },
+              ]}
+              weeks={BRIDGE_BUILDERS_WEEKS} />
+
+            <Band id="pathway-infra" numLabel="02" rangeLabel="Grades 9–12 · High School" title="Infrastructure Fellows"
+              desc="An applied civil-engineering pre-college studio. Fellows take a real local site, a bridge, intersection, stormwater system, water main, or coastline, through professional practice: site analysis, public datasets, CAD, cost and risk modeling, and a formal technical briefing. A companion Smart Cities studio adds sensors, data, and environmental monitoring."
+              meta={[
+                { label: 'Essential question', value: 'How do civil engineers design infrastructure that is safe, durable, affordable, sustainable, equitable, and resilient under real constraints?' },
+                { label: 'NJ anchor challenge', value: 'Local bridge · intersection & transportation · stormwater & flooding · water infrastructure · coastal resilience' },
+                { label: 'Core skills', value: 'Site analysis · public datasets · surveying · CAD · traffic counts · cost & risk · sensors & dashboards · technical briefing' },
+                { label: 'Student deliverables', value: 'Design brief · technical drawings · calculations · cost estimate · risk register · sustainability matrix · 15-minute briefing' },
+              ]}
+              weeks={INFRA_FELLOWS_UNITS} />
+
+            <Band id="pathway-research" numLabel="03" rangeLabel="Grades 11–12 · Advanced" title="STEM Research Scholars"
+              desc="A mentored research and design intensive for advanced students. Scholars work in teams with university and professional mentors to investigate a real New Jersey resilience question, run a methodology, analyze data, and produce a capstone defended at a public STEM Expo, a true on-ramp to college research and engineering pathways."
+              meta={[
+                { label: 'Essential question', value: 'How can student researchers investigate a real resilience challenge and produce evidence-based recommendations?' },
+                { label: 'Mentoring model', value: 'Near-peer college mentors and professional engineers via the Stevens partnership' },
+                { label: 'Student deliverables', value: 'Research proposal · literature review · methodology · dataset & analysis · capstone poster & paper · oral defense at the STEM Expo' },
+              ]}
+              weeks={RESEARCH_SCHOLARS_PHASES} />
+
+            <StandardsMatrix id="pathway-standards" eyebrow="Consolidated alignment" title="Standards alignment matrix"
+              desc="The complete set of standards addressed across all three pathways, grouped by framework. Middle-grades codes follow the NJSLS 2023 revisions; high-school codes name the alignment targets carried across the Infrastructure Fellows and Research Scholars studios."
+              cards={[
+                { cat: 'sci', name: 'NGSS / NJSLS-Science', sub: 'Engineering design', items: [
+                  { code: 'MS-ETS1-1', desc: 'Define criteria and constraints of a design problem.' },
+                  { code: 'MS-ETS1-2', desc: 'Evaluate competing design solutions systematically.' },
+                  { code: 'MS-ETS1-3', desc: 'Analyze test data to identify the best characteristics.' },
+                  { code: 'MS-ETS1-4', desc: 'Develop a model for iterative testing and modification.' },
+                  { code: 'MS-ESS3-3', desc: 'Minimize human environmental impact (extension).' },
+                  { code: 'MS-PS2', desc: 'Forces and interactions (extension).' },
+                  { code: 'HS-ETS1-1→4', desc: 'Define, design, evaluate, and model solutions to complex problems.' },
+                ] },
+                { cat: 'math', name: 'NJSLS-Mathematics', sub: 'Grades 7–8 & high school', items: [
+                  { code: '7.RP.A.1–3', desc: 'Scale drawings, unit rates, efficiency metrics.' },
+                  { code: '7.EE.3–4', desc: 'Multi-step calculations in cost and constraints.' },
+                  { code: '7.G · 8.G', desc: 'Geometry of trusses, scale, similarity.' },
+                  { code: '7.SP · 8.SP', desc: 'Analyze test data; scatter plots and association.' },
+                  { code: 'N-Q · A-CED', desc: 'Quantities and modeling equations (HS).' },
+                  { code: 'G-MG · S-ID · S-IC', desc: 'Geometric modeling and data analysis (HS).' },
+                  { code: 'MP1–MP6', desc: 'Standards for Mathematical Practice throughout.' },
+                ] },
+                { cat: 'ela', name: 'NJSLS-English Language Arts', sub: 'Grades 7–12', items: [
+                  { code: 'W.AW.1', desc: 'Argument writing, defend the best design.' },
+                  { code: 'W.IW.2', desc: 'Informative/explanatory technical writing.' },
+                  { code: 'W.RW.7 · W.SE.6', desc: 'Short research; gather and cite evidence.' },
+                  { code: 'RI.AA · RI.CT · RL.CT', desc: 'Evaluate arguments on infrastructure and justice.' },
+                  { code: 'SL.PE.1 · SL.II.2', desc: 'Collaborative discussion; interpret data.' },
+                  { code: 'SL.PI.4 · SL.UM.5', desc: 'Present findings with multimedia.' },
+                ] },
+                { cat: 'des', name: 'Design, Technology & CS', sub: 'NJSLS 8.1 & 8.2', items: [
+                  { code: '8.2.8.ED.1–7', desc: 'Apply the engineering design process.' },
+                  { code: '8.2.8.ITH · NT', desc: "Technology's effect on people and the environment." },
+                  { code: '8.2.8.ETW · EC', desc: 'Ethics, environment, and effects of technology.' },
+                  { code: '8.2.12.ED', desc: 'High-school engineering design and systems.' },
+                  { code: '8.1.12.DA', desc: 'Data and analysis; computational tools.' },
+                ] },
+                { cat: 'car', name: 'Career Readiness', sub: 'NJSLS 9.2 & 9.4', items: [
+                  { code: '9.2.8.CAP.1–20', desc: 'Career awareness, exploration, and planning (Gr 8).' },
+                  { code: '9.2.12.CAP', desc: 'Career preparation and planning (HS).' },
+                  { code: '9.4.8/12.CI', desc: 'Creativity and innovation.' },
+                  { code: '9.4.8/12.CT', desc: 'Critical thinking and problem solving.' },
+                  { code: '9.4.8/12.IML', desc: 'Information and media literacy.' },
+                  { code: '9.4.8/12.TL', desc: 'Technology literacy.' },
+                ] },
+              ]} />
+
+            <InstructionalApproach id="pathway-cclc" eyebrow="Out-of-school-time fit" title="How the curriculum serves the six 21st CCLC components"
+              desc="Resilient Futures runs as a STEM-themed program in which the engineering curriculum is the enrichment spine and the other required out-of-school-time components are built around it."
+              cells={CCLC_COMPONENTS} />
+
+            <CurriculumFooter
+              programTitle="Resilient Futures"
+              programDesc="A standards-aligned STEM engineering program for grades 6–12, built on the proven Hillside-Stevens engineering model and designed for free, year-round out-of-school-time delivery."
+              partners={['Aedifica, program operator', 'Hillside Public Schools, school collaboration', 'Stevens Institute of Technology, university partner']}
+              frameworks={['NGSS / NJSLS-Science', 'NJSLS-Mathematics', 'NJSLS-English Language Arts', 'Design, Technology & CS (8.1 / 8.2)', 'Career Readiness (9.2 / 9.4)']}
+              disclaimer="Curriculum derived from the Bridging Brilliance / Building Bridges program and the Resilient Futures studio designs. High-school standard codes indicate alignment targets and should be confirmed against the current NJSLS revisions before publication."
+            />
+          </CurriculumShell>
+
         </div>
       </section>
 
-      {/* ── CTA ── bg-snow pb-0, contained quarry block */}
-      <section className="bg-snow pt-10 lg:pt-16 pb-0" aria-label="Register interest in Pathway">
+      {/* ── CTA ── bg-snow wrapper, bg-quarry inner ── */}
+      <section className="bg-snow pt-10 lg:pt-16 pb-0 print:hidden" aria-label="Build a Pathway in your district">
         <div className="max-w-[1100px] mx-auto px-6">
           <motion.div
-            className="bg-quarry px-10 pt-16 pb-12 lg:px-16 lg:pt-20 lg:pb-14 text-center rounded-t-[2rem]"
+            className="bg-quarry px-10 pt-14 pb-12 lg:px-16 lg:pt-16 lg:pb-14 text-center rounded-t-[2rem]"
             initial={reduce ? undefined : { opacity: 0, y: 28 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
 
             <h2
-              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.03em] text-anthracite italic mb-6 [text-wrap:balance]"
+              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.03em] text-anthracite italic mb-8 [text-wrap:balance]"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-              Register interest before the program launches.
+              Co-authored with your educators.
             </h2>
 
-            <p
-              className="text-[15px] text-anthracite leading-[1.7] max-w-[52ch] mx-auto mb-10"
-              style={{ fontFamily: 'var(--font-body)' }}>
-              Aedifica is documenting interest from districts, vocational institutions, and education partners for Pathway before it launches. No commitment required.
-            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-10">
+              <Link href="/partner"
+                className="inline-flex items-center justify-center gap-2 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/85 group"
+                style={{ fontFamily: 'var(--font-body)' }}>
+                Build a Pathway in your district
+                <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
+              </Link>
+              <Link href="/research"
+                className="inline-flex items-center justify-center gap-2 border border-anthracite/40 text-anthracite text-[13.5px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-colors duration-150 hover:bg-anthracite/8 group"
+                style={{ fontFamily: 'var(--font-body)' }}>
+                See the evidence base
+                <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
+              </Link>
+            </div>
 
-            <Link href="/partner"
-              className="inline-flex items-center justify-center gap-2 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/85 group"
-              style={{ fontFamily: 'var(--font-body)' }}>
-              Register interest in Pathway
-              <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
-            </Link>
+            <p className="text-[12.5px] text-anthracite leading-[1.65] max-w-[58ch] mx-auto">
+              <strong className="font-medium">For districts:</strong> Pathway is co-authored with your
+              educators, designed with them, never at them, and implementable by the people who
+              inherit it.
+            </p>
 
           </motion.div>
         </div>

@@ -444,7 +444,7 @@ function SecHead({ num, text }: { num: string; text: string }) {
 }
 
 // ── Main view ───────────────────────────────────────────────────────────────
-export function Insights() {
+export function SupervisorGapFullReport() {
   const reduce = useReducedMotion()
 
   return (
@@ -825,13 +825,13 @@ export function Insights() {
               },
               {
                 id: 'R-02',
-                status: 'In review',
-                statusCls: 'bg-sediment text-anthracite',
-                kind: 'Program evaluation · Delivery year 2',
-                title: 'Bridging Brilliance 2025, program evaluation',
-                body: 'The evaluation record behind the delivery experience reported on the Impact page: twenty-one learners across four teams, pre- and post-program surveys, instructor ratings, the UCVTS acceptance outcome, and the independently certified program spend of $10,340.29. Publication is pending clearance from the school, the university partner, and the funder.',
-                meta: 'Hillside Innovation Academy · Stevens Institute of Technology · Engineering Information Foundation',
-                action: { label: 'Available on request', href: '/partner' },
+                status: 'Published',
+                statusCls: 'bg-quarry text-anthracite',
+                kind: 'Field notes · Delivery year 2',
+                title: 'Bridging Brilliance: lessons from the instructor',
+                body: 'Ten lessons on what actually made the delivery work, in the instructor’s own words: building trust early, giving students real responsibility, and the institutional habits that turn a strong curriculum into a strong program. Companion piece to the quantitative program evaluation, which remains pending clearance from the school, university partner, and funder.',
+                meta: 'Hillside Innovation Academy · Stevens Institute of Technology',
+                action: null,
               },
               {
                 id: 'R-03',
@@ -948,7 +948,7 @@ export function Insights() {
                 className="text-[13px] text-white/75 leading-[1.75] mb-5 border border-white/15 px-5 py-4"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Aedifica Research. (2026). <em>The supervisor gap: the shortage of green-fluent
-                construction managers in New Jersey</em> (Version 1.0). Aedifica. edfca.com/insights
+                construction managers in New Jersey</em> (Version 1.0). Aedifica. edfca.com/research/supervisor-gap
               </p>
               <p
                 className="text-[12px] text-white/55 leading-[1.7]"

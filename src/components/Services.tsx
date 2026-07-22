@@ -19,7 +19,7 @@ const PROGRAMS = [
     purpose: 'Career awareness and hands-on discovery in the built environment',
     outcome: 'Engineering identity, prototype and notebook artifacts, and a visible next step toward STEM pathways',
     cta: 'Explore the built environment',
-    to: '/services/explore',
+    to: '/programs/explore',
     color: 'bg-datum',
     dark: false,
   },
@@ -35,7 +35,7 @@ const PROGRAMS = [
     purpose: 'A structured engineering and construction-management pathway overlay for secondary education',
     outcome: 'Capstone artifacts and connections to college, credential, apprenticeship, or employer pathways',
     cta: 'Build a school pathway',
-    to: '/services/pathway',
+    to: '/programs/pathway',
     color: 'bg-quarry',
     dark: true,
   },
@@ -51,7 +51,7 @@ const PROGRAMS = [
     purpose: 'Design, fund, and implement construction-management workforce pathways',
     outcome: 'A fundable, outcomes-ready pathway with an implementation calendar, staffing plan, and evaluation framework',
     cta: 'Launch a workforce pathway',
-    to: '/services/launch',
+    to: '/programs/launch',
     color: 'bg-sediment',
     dark: true,
   },
@@ -67,7 +67,7 @@ const PROGRAMS = [
     purpose: 'A bridge into construction-management careers and employer-connected advancement',
     outcome: 'A capstone artifact, interview readiness, and a documented next step into credentials, college, apprenticeship, or entry roles',
     cta: 'Start a Rebuild cohort',
-    to: '/services/rebuild',
+    to: '/programs/rebuild',
     color: 'bg-rebuild-deep',
     dark: false,
   },
@@ -81,7 +81,7 @@ const PIPELINE_ROW = {
   format: 'Advisory participation, capstone review, guest reviewers, and interview commitments',
   outcome: 'A pathway that answers to real roles, and outcome data that returns to the next cohort',
   cta: 'Join as an employer',
-  to: '/services/talent-pipeline',
+  to: '/programs/talent-pipeline',
 } as const
 
 export function Services() {
@@ -199,7 +199,7 @@ export function Services() {
               carries no program color.
             </p>
           </div>
-          <Link href="/services/talent-pipeline"
+          <Link href="/programs/talent-pipeline"
             className="inline-flex items-center gap-1.5 text-[12px] text-datum tracking-[-0.01em] flex-shrink-0 group"
             style={{ fontFamily: 'var(--font-body)' }}>
             View Talent Pipeline

@@ -1,7 +1,8 @@
 ﻿'use client'
-import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
+import { AccessFunding } from '../components/AccessFunding'
+import { AboutFAQ } from '../components/AboutFAQ'
 
 const VIEWPORT = { once: true, margin: '100px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
@@ -33,7 +34,7 @@ type Value = {
   bg: string
   textMain: string
   textSub: string
-  offsetLeft: boolean
+  border: string
 }
 
 const VALUES: Value[] = [
@@ -45,7 +46,7 @@ const VALUES: Value[] = [
     bg: 'bg-datum',
     textMain: 'text-white',
     textSub: 'text-white/90',
-    offsetLeft: false,
+    border: 'border-white/20',
   },
   {
     name: 'Technology-fluent by default.',
@@ -55,7 +56,7 @@ const VALUES: Value[] = [
     bg: 'bg-sediment',
     textMain: 'text-anthracite',
     textSub: 'text-anthracite/85',
-    offsetLeft: true,
+    border: 'border-anthracite/15',
   },
   {
     name: 'Equity is the strategy.',
@@ -65,7 +66,7 @@ const VALUES: Value[] = [
     bg: 'bg-quarry',
     textMain: 'text-anthracite',
     textSub: 'text-anthracite',
-    offsetLeft: false,
+    border: 'border-anthracite/15',
   },
   {
     name: 'Outcomes over activity, honestly reported.',
@@ -75,7 +76,7 @@ const VALUES: Value[] = [
     bg: 'bg-patina',
     textMain: 'text-white',
     textSub: 'text-white/92',
-    offsetLeft: true,
+    border: 'border-white/20',
   },
   {
     name: 'Partner architecture over founder architecture.',
@@ -85,9 +86,54 @@ const VALUES: Value[] = [
     bg: 'bg-anthracite',
     textMain: 'text-white',
     textSub: 'text-white/75',
-    offsetLeft: false,
+    border: 'border-white/15',
   },
 ]
+
+function ValueTile({ value, index, reduce, anchor }: {
+  value: Value
+  index: number
+  reduce: boolean | null
+  anchor?: boolean
+}) {
+  return (
+    <motion.div
+      className={`${value.bg} px-7 py-8 lg:px-9 lg:py-9 flex flex-col ${
+        anchor ? 'lg:flex-row lg:items-center lg:gap-14 xl:gap-20 lg:px-12 lg:py-11' : 'justify-between h-full'
+      }`}
+      initial={reduce ? undefined : { opacity: 0, y: 22 }}
+      whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+      viewport={reduce ? undefined : VIEWPORT}
+      transition={reduce ? undefined : { duration: 0.5, delay: Math.min(index * 0.08, 0.32), ease: EASE }}>
+
+      <div className={anchor ? 'lg:flex-1' : ''}>
+        <h3
+          className={`italic ${value.textMain} leading-[1.14] tracking-[-0.022em] mb-3 [text-wrap:balance] ${
+            anchor
+              ? 'text-[1.75rem] lg:text-[2.25rem] xl:text-[2.625rem]'
+              : 'text-[1.375rem] lg:text-[1.625rem] xl:text-[1.875rem]'
+          }`}
+          style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+          {value.name}
+        </h3>
+        <p
+          className={`${value.textMain} leading-[1.6] ${anchor ? 'text-[14px] max-w-[62ch]' : 'text-[13px] max-w-[38ch]'}`}
+          style={{ fontFamily: 'var(--font-body)' }}>
+          {value.description}
+        </p>
+      </div>
+
+      <div className={anchor ? `mt-7 lg:mt-0 lg:flex-1 lg:pl-14 xl:pl-20 lg:border-l ${value.border}` : `mt-6 pt-5 border-t ${value.border}`}>
+        <p
+          className={`italic ${value.textSub} leading-[1.4] tracking-[-0.012em] ${anchor ? 'text-[1.125rem] lg:text-[1.3125rem] max-w-[34ch]' : 'text-[1rem]'}`}
+          style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+          {value.shortForm}
+        </p>
+      </div>
+
+    </motion.div>
+  )
+}
 
 // Dr. Karam's founder letter — teaser shows the first entries inline;
 // the full letter opens in a modal. `pull: true` renders as a serif pull-line.
@@ -125,6 +171,7 @@ const TEAM: TeamMember[] = [
     role: 'Co-Founder & CEO',
     bio: 'Dr. Karim Karam is Co-Founder & CEO of Aedifica and a Teaching Associate Professor at Stevens Institute of Technology, where he leads the graduate Construction Management program. His work sits at the intersection of engineering, education, construction, and workforce mobility.',
     fullBio: [
+      "The son of a Lebanese engineer who was the first in his family to attend university, Karim grew up with the belief that education is one of the few things no one can take away. At MIT he taught probability and statistics and was involved in OpenCourseWare's mission to expand access to knowledge. In industry, he helped build and train construction teams across major infrastructure work.",
       'Dr. Karim Karam co-founded Aedifica because he understands education as both a personal inheritance and a public responsibility.',
       "His belief in the power of learning began at home. Karim's father, born into a family from Ehden, Lebanon, became the first in his family to receive a university education, studying at Université Saint-Joseph in Lebanon and later at École Nationale des Ponts et Chaussées in France. His own father was illiterate, but his mother believed deeply enough in education to send him to boarding school from a small village. That conviction shaped the next generation. Karim's father did everything he could to give his children access to education, including selling personal assets when necessary. When Karim left for London to study civil engineering, his father told him that education is one of the few things no one can take away.",
       'That lesson stayed with him.',
@@ -140,6 +187,7 @@ const TEAM: TeamMember[] = [
     role: 'Co-Founder & Chief Education Strategy Officer',
     bio: 'Evelyne Karam is Co-Founder & Chief Education Strategy Officer of Aedifica. She brings expertise in education policy, curriculum design, evaluation, capacity building, and cross-sector reform, including USAID-, UNICEF-, and ministry-linked education initiatives.',
     fullBio: [
+      "Aedifica's moat is not generic curriculum but published placement, retention, wage progression, employer-signed pathways, articulation agreements, and disciplined outcomes reporting. That is precisely where her education-strategy and evaluation background strengthens the founding team.",
       "Evelyne Karam is Co-Founder & Chief Education Strategy Officer of Aedifica, where she leads the education, curriculum, evaluation, and public-sector strategy behind Aedifica's construction-management pathways. Her work strengthens Aedifica's ability to translate employer demand into rigorous learning experiences for overlooked learners, from school-based career exposure to adult bridge cohorts and credentialed workforce pipelines.",
       'Evelyne brings deep experience in education policy, national strategy development, curriculum design, capacity building, and program evaluation. She holds a Master of Education in International Education Policy from Harvard University and a Master of Education in International Educational Development from Boston University.',
       'Her consulting and program leadership work has supported USAID-funded education initiatives, UNICEF-linked youth programming, national career education and guidance strategy, non-formal education evaluation, teacher capacity building, and school-development reform. She has designed learning frameworks, evaluation tools, curriculum components, teacher workshops, and strategy processes across public-sector, nonprofit, and cross-sector education systems.',
@@ -152,6 +200,7 @@ const TEAM: TeamMember[] = [
     role: 'Co-Founder & Chief Education and Industry Partnerships Officer',
     bio: 'Dr. Nicole Gilmore-Silva is Co-Founder & Chief Education and Industry Partnerships Officer of Aedifica. A former principal and district leader with more than two decades in public education, she builds the school, university, employer, and community partnerships that connect learners to the industries shaping the future.',
     fullBio: [
+      'Her cross-sector workforce development and partnership experience spans Union and Essex counties, New Jersey. She cultivated the partnership between Stevens Institute of Technology and Hillside Innovation Academy that became a foundation for Aedifica\'s community delivery model, and leads the organization\'s community-organization and workforce-agency relationships.',
       'Where others see barriers to opportunity, Dr. Gilmore-Silva builds pathways that prepare learners for the future.',
       'Aedifica is built on the belief that opportunity should never be determined by circumstance. As Co-Founder and Chief Education and Industry Partnerships Officer, Dr. Nicole Gilmore-Silva advances that mission by creating authentic partnerships, learning experiences, and workforce pathways that prepare students, educators, and communities for the industries shaping the future.',
       'For more than two decades, Dr. Gilmore-Silva has dedicated her career to expanding opportunity through education. She began her career as a Teach For America corps member in the District of Columbia Public Schools before continuing her work in Newark Public Schools. Recognized for her instructional excellence, innovative pedagogy, and commitment to student achievement, she served as a teacher, instructional coach, and mentor before advancing to District Supervisor of Special Education, principal of a PreK-5 school, and ultimately founding principal of an innovation-focused middle school serving students in Grades 7 and 8.',
@@ -171,6 +220,7 @@ const TEAM: TeamMember[] = [
     role: 'Co-Founder & Community Program Lead',
     bio: 'Kimi Stephenson is Co-Founder & Community Program Lead of Aedifica, with over fifteen years at the intersection of construction, property, and education. She holds an M.S. in Construction Engineering and Management from Stevens Institute of Technology and co-designed the Bridging Brilliance STEM program at Hillside Innovation Academy.',
     fullBio: [
+      'She carries the program-delivery side of the model: what it actually takes to run a cohort inside a school week, with real students, real materials, and a real showcase at the end.',
       "Kimi Stephenson has spent over fifteen years at the intersection of construction, property, and education: first coordinating affordable housing and mixed-use developments, then bringing hands-on engineering into the classroom. She holds a Master's in Construction Engineering and Management from Stevens Institute of Technology and a B.A. in Criminal Justice from Rutgers University.",
       "As Co-Founder & Community Program Lead of Aedifica, she co-designed and co-delivered the Bridging Brilliance STEM program at Hillside Innovation Academy, a 10-week intensive now documented as one of Aedifica's founding delivery models. She partners with the Urban League of Union County to extend construction-management workforce pathways to justice-impacted adults, veterans, returning caregivers, and career changers across New Jersey.",
       'Alongside Aedifica, Kimi is a Project Manager at Terry Developments LLC. She is OSHA-10 and BPI certified and holds an FAA Part 107 remote pilot license.',
@@ -205,7 +255,7 @@ function TeamMemberCard({ member, index, reduce, onExpandBio, bioExpanded }: {
       </div>
 
       <p
-        className="text-[10.5px] text-anthracite/70 uppercase tracking-[0.18em] leading-[1.55] mb-2.5 select-none min-h-[3.1rem]"
+        className="text-[10.5px] text-anthracite/80 uppercase tracking-[0.18em] leading-[1.55] mb-2.5 select-none min-h-[3.1rem]"
         style={{ fontFamily: 'var(--font-body)' }}>
         {member.role}
       </p>
@@ -215,7 +265,7 @@ function TeamMemberCard({ member, index, reduce, onExpandBio, bioExpanded }: {
         {member.name}
       </h3>
       <p
-        className="text-[13px] text-anthracite/75 leading-[1.65] flex-1"
+        className="text-[13px] text-anthracite/78 leading-[1.65] flex-1"
         style={{ fontFamily: 'var(--font-body)' }}>
         {member.bio}
       </p>
@@ -224,12 +274,62 @@ function TeamMemberCard({ member, index, reduce, onExpandBio, bioExpanded }: {
         <button
           onClick={(e) => onExpandBio(e.currentTarget as HTMLButtonElement)}
           aria-expanded={bioExpanded}
-          className="mt-4 self-start text-[13px] text-datum underline underline-offset-2 decoration-datum/40 hover:decoration-datum transition-colors duration-150 cursor-pointer bg-transparent border-none p-0"
-          style={{ fontFamily: 'var(--font-body)' }}>
+          className="mt-4 self-start text-[13px] underline underline-offset-2 decoration-[#5C5D9C]/40 hover:decoration-[#5C5D9C] transition-colors duration-150 cursor-pointer bg-transparent border-none p-0"
+          style={{ fontFamily: 'var(--font-body)', color: '#5C5D9C' }}>
           Read full biography
         </button>
       )}
     </motion.div>
+  )
+}
+
+// Small hand-drawn line marks for the Earth / Engineers / Education signature.
+// Deliberately not the sitewide Phosphor icon set — same drawn-line language as
+// TheGap's skyline and WhoWeServe's truss, scaled down to a quiet, minimal glyph.
+type EEEVariant = 'earth' | 'engineers' | 'education'
+
+function EEEMark({ variant, colorClass, reduce }: { variant: EEEVariant; colorClass: string; reduce: boolean | null }) {
+  const stroke = { fill: 'none' as const, stroke: 'currentColor', strokeWidth: 1.4, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
+  const draw = (delay: number) => ({
+    initial: reduce ? undefined : { pathLength: 0 },
+    whileInView: reduce ? undefined : { pathLength: 1 },
+    viewport: reduce ? undefined : VIEWPORT,
+    transition: reduce ? undefined : { duration: 0.65, ease: EASE, delay },
+  })
+
+  if (variant === 'earth') {
+    return (
+      <svg width="52" height="30" viewBox="0 0 56 32" aria-hidden="true" className={`mb-4 opacity-80 ${colorClass}`}>
+        <motion.path d="M2,11 C12,5 20,15 30,8 C38,3 48,10 54,6" {...stroke} {...draw(0)} />
+        <motion.path d="M2,19 C12,13 20,23 30,16 C38,11 48,18 54,14" {...stroke} {...draw(0.12)} />
+        <motion.path d="M2,27 C12,21 20,30 30,24 C38,19 48,26 54,22" {...stroke} {...draw(0.24)} />
+        <motion.rect
+          x="27.5" y="13.5" width="5" height="5" fill="currentColor" stroke="none"
+          style={{ transformOrigin: '30px 16px', rotate: 45 }}
+          initial={reduce ? undefined : { opacity: 0, scale: 0 }}
+          whileInView={reduce ? undefined : { opacity: 1, scale: 1 }}
+          viewport={reduce ? undefined : VIEWPORT}
+          transition={reduce ? undefined : { duration: 0.3, ease: EASE, delay: 0.45 }}
+        />
+      </svg>
+    )
+  }
+
+  if (variant === 'engineers') {
+    return (
+      <svg width="52" height="30" viewBox="0 0 56 32" aria-hidden="true" className={`mb-4 opacity-80 ${colorClass}`}>
+        <motion.path d="M4,28 L4,10 L52,10 L52,28 Z" {...stroke} {...draw(0)} />
+        <motion.path d="M4,28 L52,10" {...stroke} {...draw(0.32)} />
+      </svg>
+    )
+  }
+
+  return (
+    <svg width="52" height="30" viewBox="0 0 56 32" aria-hidden="true" className={`mb-4 opacity-80 ${colorClass}`}>
+      <motion.path d="M4,28 C4,8 52,8 52,28" {...stroke} {...draw(0)} />
+      <motion.line x1="4" y1="28" x2="4" y2="31" {...stroke} {...draw(0.4)} />
+      <motion.line x1="52" y1="28" x2="52" y2="31" {...stroke} {...draw(0.44)} />
+    </svg>
   )
 }
 
@@ -289,14 +389,27 @@ export function About() {
           </motion.h1>
 
           <motion.p
-            className="text-[14.5px] text-white/60 leading-[1.65] max-w-[60ch]"
+            className="text-[14.5px] text-white/60 leading-[1.65] max-w-[60ch] mb-5"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 14 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}>
             Aedifica is a New Jersey-based workforce architecture company building
             construction-management pathways for the learners, schools, and employers shaping the built
-            environment and our future. From foundations to futures.
+            environment and our future.
+          </motion.p>
+
+          <motion.p
+            className="text-[13px] text-white/50 leading-[1.65] max-w-[62ch]"
+            style={{ fontFamily: 'var(--font-body)' }}
+            initial={reduce ? undefined : { opacity: 0, y: 14 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            transition={reduce ? undefined : { duration: 0.55, delay: 0.44, ease: EASE }}>
+            Our team brings both sides of the gap together: a Stevens Institute of Technology professor
+            who leads a graduate Construction Management program; a public-school principal and district
+            leader with more than two decades of experience; an international education-strategy and
+            evaluation specialist; and a construction-and-education practitioner with over fifteen years
+            delivering programs inside real school weeks.
           </motion.p>
 
         </div>
@@ -426,7 +539,7 @@ export function About() {
                 id="about-vision-h2"
                 className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] leading-[1.1] tracking-[-0.03em] text-anthracite italic mb-6"
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-                A New Jersey where every learner, at every age, from every background, can see, walk, and own a clear path into the careers that build the state.
+                We envision a New Jersey where every learner, at every age, from every background, can see, walk, and own a clear path into the careers that build the state.
               </h2>
               <p
                 className="text-[13.5px] text-anthracite/80 leading-[1.72] max-w-[52ch]"
@@ -458,7 +571,7 @@ export function About() {
       </section>
 
       {/* ── Mission + Values Intro ── bg-snow */}
-      <section className="bg-snow pt-12 lg:pt-18 pb-8 lg:pb-12" aria-labelledby="about-values-h2">
+      <section className="bg-snow pt-12 lg:pt-18 pb-10 lg:pb-14" aria-label="Mission and values">
         <div className="max-w-7xl mx-auto px-6">
 
           <motion.div
@@ -481,7 +594,7 @@ export function About() {
 
           {/* Signature: Earth. Engineers. Education. */}
           <motion.div
-            className="mb-16 lg:mb-24"
+            className="mb-10 lg:mb-14"
             initial={reduce ? undefined : { opacity: 0, y: 24 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
@@ -489,7 +602,7 @@ export function About() {
             <p
               className="text-[12.5px] text-anthracite/75 uppercase tracking-[0.2em] mb-8 select-none font-medium text-center"
               style={{ fontFamily: 'var(--font-body)' }}>
-              Signature · We build the builders
+              Signature · From foundations to futures. Earth. Engineers. Education.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-x-12 xl:gap-x-16">
               {([
@@ -498,21 +611,24 @@ export function About() {
                   // Raw quarry only clears ~2.7:1 on snow; darkened variant passes large-text 3:1
                   color: 'text-[#5F6E67]',
                   rule: 'border-quarry',
+                  mark: 'earth' as const,
                   def: 'The foundation: the communities we live in, the infrastructure we depend on, and the environment we have a responsibility to protect and improve. Connect infrastructure, sustainability, and place.',
                 },
                 {
                   word: 'Engineers.',
                   color: 'text-datum',
                   rule: 'border-datum',
+                  mark: 'engineers' as const,
                   def: 'The builders of possibility: the people who turn ideas into roads, bridges, schools, hospitals, resilient coastlines, and transit systems. Teach disciplined problem-solving and project-management thinking.',
                 },
                 {
                   word: 'Education.',
                   color: 'text-patina',
                   rule: 'border-patina',
+                  mark: 'education' as const,
                   def: 'The bridge: the force that allows people to enter that world, understand it, shape it, and build a better future. Create clear pathways, not isolated workshops.',
                 },
-              ] as const).map(({ word, color, rule, def }, i) => (
+              ] as const).map(({ word, color, rule, mark, def }, i) => (
                 <motion.div
                   key={word}
                   className={`border-t-2 ${rule} pt-6`}
@@ -520,6 +636,7 @@ export function About() {
                   whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                   viewport={reduce ? undefined : VIEWPORT}
                   transition={reduce ? undefined : { duration: 0.55, delay: i * 0.09, ease: EASE }}>
+                  <EEEMark variant={mark} colorClass={color} reduce={reduce} />
                   <p
                     className={`text-[2.25rem] lg:text-[2.75rem] italic leading-none mb-4 ${color}`}
                     style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
@@ -546,84 +663,16 @@ export function About() {
             </motion.p>
           </motion.div>
 
-          <div className="lg:grid lg:grid-cols-[1fr_0.55fr] lg:gap-16 lg:items-end">
-            <motion.h2
-              id="about-values-h2"
-              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.5rem] leading-[1.06] tracking-[-0.03em] text-anthracite italic"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-              initial={reduce ? undefined : { opacity: 0, y: 24 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-              Five principles. Each auditable.
-            </motion.h2>
-            <motion.p
-              className="text-[14px] text-anthracite/75 leading-[1.7] mt-4 lg:mt-0"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={reduce ? undefined : { opacity: 0, y: 14 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
-              These are commitments that can be tested in a deliverable, a meeting, or an email thread. Each one is paired with a specific, observable position.
-            </motion.p>
-          </div>
-
         </div>
       </section>
 
-      {/* ── Value Sections — one full-bleed band per value ── */}
-      {VALUES.map((value) => (
-        <section
-          key={value.name}
-          className={`${value.bg} py-14 lg:py-20`}
-          aria-label={`Principle: ${value.name}`}>
-          <div className="max-w-7xl mx-auto px-6">
-            <motion.div
-              className={`lg:grid lg:gap-12 xl:gap-16 lg:items-start ${
-                value.offsetLeft
-                  ? 'lg:grid-cols-[0.22fr_1fr_0.44fr]'
-                  : 'lg:grid-cols-[1fr_0.44fr]'
-              }`}
-              initial={reduce ? undefined : { opacity: 0, y: 24 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-
-              {value.offsetLeft && <div className="hidden lg:block" aria-hidden="true" />}
-
-              <div>
-                <h3
-                  className={`text-[2rem] lg:text-[3rem] xl:text-[3.75rem] italic ${value.textMain} leading-[1.06] tracking-[-0.03em] mb-6`}
-                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-                  {value.name}
-                </h3>
-                <p
-                  className={`text-[15px] ${value.textMain} leading-[1.72] max-w-[56ch]`}
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  {value.description}
-                </p>
-              </div>
-
-              <div className="mt-8 lg:mt-0 lg:pt-3">
-                <p
-                  className={`text-[1.125rem] lg:text-[1.375rem] italic ${value.textSub} leading-[1.45] tracking-[-0.018em]`}
-                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                  {value.shortForm}
-                </p>
-              </div>
-
-            </motion.div>
-          </div>
-        </section>
-      ))}
-
-      {/* ── Team ── bg-snow */}
-      <section className="bg-snow pt-14 lg:pt-20 pb-8 lg:pb-10" aria-labelledby="about-team-h2">
+      {/* ── Team ── bg-bone */}
+      <section className="bg-bone pt-14 lg:pt-20 pb-10 lg:pb-14" aria-labelledby="about-team-h2">
         <div className="max-w-7xl mx-auto px-6">
 
           <div className="mb-10 lg:mb-14">
             <motion.p
-              className="text-[12.5px] text-anthracite/75 uppercase tracking-[0.18em] mb-4 select-none font-medium"
+              className="text-[12.5px] text-anthracite/80 uppercase tracking-[0.18em] mb-4 select-none font-medium"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 10 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -643,7 +692,7 @@ export function About() {
             </motion.h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-10 mb-14 lg:mb-16">
             {TEAM.map((member, i) => (
               <TeamMemberCard
                 key={member.name}
@@ -656,6 +705,62 @@ export function About() {
             ))}
           </div>
 
+          {/* Founders group photo */}
+          <motion.figure
+            className="overflow-hidden"
+            initial={reduce ? undefined : { opacity: 0, y: 18 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
+            <img
+              src="/images/profs.JPG"
+              alt="Dr. Karim Karam, Evelyne Karam, Dr. Nicole Gilmore-Silva, and Kimi Stephenson, the founders of Aedifica"
+              className="w-full h-[340px] lg:h-[480px] object-cover object-top"
+              style={{ filter: 'grayscale(20%) contrast(1.05)' }}
+              loading="lazy"
+            />
+            <figcaption className="mt-4 text-[13px] text-anthracite/78 leading-[1.6] max-w-[60ch]" style={{ fontFamily: 'var(--font-body)' }}>
+              <strong className="text-anthracite font-medium">Built with partners, not around them.</strong> Recruitment,
+              fiscal capacity, and role definition belong to the partners who already do them well.
+            </figcaption>
+          </motion.figure>
+
+        </div>
+      </section>
+
+      {/* ── Value Mosaic — five principles as a color-block system, not a scroll of stripes ── */}
+      <section className="bg-snow pt-14 lg:pt-20 pb-14 lg:pb-20" aria-labelledby="about-values-h2">
+        <div className="max-w-7xl mx-auto px-6">
+
+          <div className="lg:grid lg:grid-cols-[1fr_0.55fr] lg:gap-16 lg:items-end mb-12 lg:mb-14">
+            <motion.h2
+              id="about-values-h2"
+              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.5rem] leading-[1.06] tracking-[-0.03em] text-anthracite italic scroll-mt-24"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+              initial={reduce ? undefined : { opacity: 0, y: 24 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
+              Five principles. Each auditable.
+            </motion.h2>
+            <motion.p
+              className="text-[14px] text-anthracite/75 leading-[1.7] mt-4 lg:mt-0"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 14 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
+              These are commitments that can be tested in a deliverable, a meeting, or an email thread. Each one is paired with a specific, observable position.
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-[3px]">
+            <div className="lg:col-span-3"><ValueTile value={VALUES[0]} index={0} reduce={reduce} /></div>
+            <div className="lg:col-span-2"><ValueTile value={VALUES[1]} index={1} reduce={reduce} /></div>
+            <div className="lg:col-span-2"><ValueTile value={VALUES[2]} index={2} reduce={reduce} /></div>
+            <div className="lg:col-span-3"><ValueTile value={VALUES[3]} index={3} reduce={reduce} /></div>
+            <div className="lg:col-span-5"><ValueTile value={VALUES[4]} index={4} reduce={reduce} anchor /></div>
+          </div>
         </div>
       </section>
 
@@ -730,44 +835,8 @@ export function About() {
         </div>
       </section>
 
-      {/* ── CTA Block ── */}
-      <section className="bg-snow pt-4 lg:pt-6 pb-0" aria-label="Partner with Aedifica">
-        <div className="max-w-[1100px] mx-auto px-6">
-          <motion.div
-            className="bg-datum px-10 pt-10 pb-10 lg:px-16 lg:pt-14 lg:pb-12 text-center rounded-t-[2rem]"
-            initial={reduce ? undefined : { opacity: 0, y: 28 }}
-            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-            viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-
-            <h2
-              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.03em] text-white italic mb-6"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-              Built on a commitment to deliver, report, and be accountable.
-            </h2>
-
-            <p
-              className="text-[15px] text-white/90 leading-[1.7] max-w-[52ch] mx-auto mb-10"
-              style={{ fontFamily: 'var(--font-body)' }}>
-              Speak with Aedifica about what a founding partnership, employer engagement, or institutional briefing looks like in practice.
-            </p>
-
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/partner"
-                className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/92"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                Start a Partnership Conversation
-              </Link>
-              <Link href="/impact"
-                className="inline-flex items-center justify-center border border-white/30 text-white text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/8"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                View the Impact Framework
-              </Link>
-            </div>
-
-          </motion.div>
-        </div>
-      </section>
+      <AccessFunding />
+      <AboutFAQ />
 
       {/* ── Biography Modal ── */}
       <AnimatePresence>
@@ -776,10 +845,10 @@ export function About() {
             <motion.div
               key="bio-backdrop"
               className="fixed inset-0 bg-anthracite/55 z-[100] backdrop-blur-[2px]"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.22 }}
+              initial={reduce ? undefined : { opacity: 0 }}
+              animate={reduce ? undefined : { opacity: 1 }}
+              exit={reduce ? undefined : { opacity: 0 }}
+              transition={reduce ? undefined : { duration: 0.22 }}
               onClick={() => setExpandedMember(null)}
               aria-hidden="true"
             />
@@ -811,7 +880,7 @@ export function About() {
                 <button
                   ref={closeButtonRef}
                   onClick={() => setExpandedMember(null)}
-                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-anthracite/60 hover:text-anthracite transition-colors duration-150 cursor-pointer bg-transparent border-none text-[20px] leading-none"
+                  className="absolute top-2 right-2 w-11 h-11 flex items-center justify-center text-anthracite/70 hover:text-anthracite transition-colors duration-150 cursor-pointer bg-transparent border-none text-[20px] leading-none"
                   aria-label="Close biography">
                   ×
                 </button>
@@ -850,10 +919,10 @@ export function About() {
             <motion.div
               key="letter-backdrop"
               className="fixed inset-0 bg-anthracite/55 z-[100] backdrop-blur-[2px]"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.22 }}
+              initial={reduce ? undefined : { opacity: 0 }}
+              animate={reduce ? undefined : { opacity: 1 }}
+              exit={reduce ? undefined : { opacity: 0 }}
+              transition={reduce ? undefined : { duration: 0.22 }}
               onClick={() => setLetterOpen(false)}
               aria-hidden="true"
             />
@@ -885,7 +954,7 @@ export function About() {
                 <button
                   ref={closeButtonRef}
                   onClick={() => setLetterOpen(false)}
-                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-anthracite/60 hover:text-anthracite transition-colors duration-150 cursor-pointer bg-transparent border-none text-[20px] leading-none"
+                  className="absolute top-2 right-2 w-11 h-11 flex items-center justify-center text-anthracite/70 hover:text-anthracite transition-colors duration-150 cursor-pointer bg-transparent border-none text-[20px] leading-none"
                   aria-label="Close the founder letter">
                   ×
                 </button>

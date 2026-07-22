@@ -1,190 +1,59 @@
 'use client'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { motion, useReducedMotion, AnimatePresence } from 'motion/react'
-import { GraduationCap, UsersThree, Briefcase, Bank, CaretDown, type Icon } from '@phosphor-icons/react'
+import { EnvelopeSimple, Phone, MapPin, UsersThree, ChatCircleText, CaretDown, type Icon } from '@phosphor-icons/react'
 
-const VIEWPORT = { once: true, margin: '100px 0px' } as const
+const VIEWPORT = { once: true, margin: '-60px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
-type AudienceId = 'education' | 'workforce' | 'employer' | 'funding'
-
-const AUDIENCES: {
-  id: AudienceId
-  label: string
-  bg: string
-  textColor: string
-  mutedText: string
-  dimText: string
-  borderFaint: string
-  orgValue: string
-  desc: string
-  what: string[]
-  cta: string
-  Icon: Icon
-}[] = [
-  {
-    id: 'education',
-    label: 'Education Institutions',
-    bg: 'bg-datum',
-    textColor: 'text-white',
-    mutedText: 'text-white',
-    dimText: 'text-white',
-    borderFaint: 'border-white/20',
-    orgValue: 'education',
-    desc: 'Districts, charter networks, county colleges, and vocational institutions building student construction-management pathways.',
-    what: [
-      'Curriculum-aligned student pathways',
-      'Grant strategy through Aedifica Launch',
-      'Articulation and credential integration',
-    ],
-    cta: 'Discuss an education partnership',
-    Icon: GraduationCap,
-  },
-  {
-    id: 'workforce',
-    label: 'Workforce & Community',
-    bg: 'bg-sediment',
-    textColor: 'text-anthracite',
-    mutedText: 'text-anthracite',
-    dimText: 'text-anthracite',
-    borderFaint: 'border-anthracite/20',
-    orgValue: 'workforce',
-    desc: 'CBOs, workforce boards, and reentry organizations connecting adults to a practical construction-management bridge cohort.',
-    what: [
-      'Rebuild adult bridge cohort delivery',
-      'Participant recruitment coordination',
-      'Outcome and reporting partnership',
-    ],
-    cta: 'Discuss a Rebuild cohort',
-    Icon: UsersThree,
-  },
-  {
-    id: 'employer',
-    label: 'Employers',
-    bg: 'bg-quarry',
-    textColor: 'text-anthracite',
-    mutedText: 'text-anthracite',
-    dimText: 'text-anthracite',
-    borderFaint: 'border-anthracite/20',
-    orgValue: 'employer',
-    desc: 'General contractors, specialty contractors, and developers validating roles and meeting prepared emerging talent through an accountable interview model.',
-    what: [
-      'Role validation and capstone participation',
-      'Interview access to qualified completers',
-      'Workforce pipeline development',
-    ],
-    cta: 'Become an employer partner',
-    Icon: Briefcase,
-  },
-  {
-    id: 'funding',
-    label: 'Funding & State Partners',
-    bg: 'bg-patina',
-    textColor: 'text-white',
-    mutedText: 'text-white',
-    dimText: 'text-white',
-    borderFaint: 'border-white/20',
-    orgValue: 'funding',
-    desc: 'State agencies, workforce boards, and foundations that underwrite a cohort and hold us to published outcomes: the same definitions every cohort, reported whether or not they flatter us.',
-    what: [
-      'Measurable outcomes framework',
-      'Employer-linked delivery model',
-      'Responsible scale after credible evidence',
-    ],
-    cta: 'Request an institutional briefing',
-    Icon: Bank,
-  },
-]
-
-const ORG_OPTIONS = [
-  { value: '', label: 'Select organization type' },
-  { value: 'education', label: 'Education institution (district, college, school)' },
-  { value: 'workforce', label: 'Workforce or community organization' },
-  { value: 'employer', label: 'Employer (contractor, developer, GC)' },
-  { value: 'funding', label: 'Funding or state partner' },
-  { value: 'philanthropic', label: 'Philanthropic funder' },
-  { value: 'learner', label: 'Learner, parent, or family member' },
-  { value: 'other', label: 'Other' },
+const CONTACT_FACTS: { Icon: Icon; label: string; value: string; pending?: boolean }[] = [
+  { Icon: EnvelopeSimple, label: 'Email', value: 'info@edfca.com' },
+  { Icon: Phone, label: 'Phone', value: 'Line coming soon, reach us by email for now', pending: true },
+  { Icon: MapPin, label: 'Service area', value: 'New Jersey / New York metro region' },
+  { Icon: UsersThree, label: 'Best for', value: 'Districts, workforce boards, county colleges, employers, agencies, and funders, and the families and learners they serve' },
+  { Icon: ChatCircleText, label: 'Response', value: 'Partnership inquiries receive a scoped reply, not a brochure' },
 ]
 
 const INTEREST_OPTIONS = [
-  { value: '', label: 'Select partnership interest' },
-  { value: 'rebuild', label: 'Aedifica Rebuild (adult bridge cohort)' },
-  { value: 'launch', label: 'Aedifica Launch (grant strategy)' },
-  { value: 'pathway', label: 'Aedifica Pathway (school curriculum)' },
-  { value: 'talent-pipeline', label: 'Talent Pipeline (employer pipeline)' },
-  { value: 'explore', label: 'Explore (student exposure modules)' },
-  { value: 'outcomes', label: 'Outcome reporting collaboration' },
-  { value: 'briefing', label: 'Institutional briefing' },
-  { value: 'other', label: 'Not sure, help me find the right pathway' },
-]
-
-const TIMELINE_OPTIONS = [
-  { value: '', label: 'Select timeline' },
-  { value: 'exploring', label: 'Exploring, no immediate timeline' },
-  { value: '3months', label: 'Within 3 months' },
-  { value: '6months', label: 'Within 6 months' },
-  { value: 'academic', label: 'Next academic year' },
-  { value: 'deadline', label: 'Funding deadline driving timeline' },
-  { value: 'other', label: 'Other' },
+  { value: '', label: "Select what you're interested in" },
+  { value: 'explore', label: 'Explore: middle school' },
+  { value: 'pathway', label: 'Pathway: high schools & districts' },
+  { value: 'launch', label: 'Launch: institutional pathway design' },
+  { value: 'rebuild', label: 'Rebuild: adult bridge cohorts' },
+  { value: 'talent-pipeline', label: 'Talent Pipeline: hiring & articulation' },
+  { value: 'research', label: 'Research: briefings & reports' },
+  { value: 'family', label: 'Parent or family: a program for my child' },
+  { value: 'adult-learner', label: 'Adult learner: Rebuild cohort' },
+  { value: 'other', label: 'Something else' },
 ]
 
 type FormState = {
-  firstName: string
-  lastName: string
+  name: string
   email: string
-  organization: string
-  title: string
-  orgType: string
+  org: string
   interest: string
-  geography: string
-  timeline: string
   message: string
   consent: boolean
-  gradePopulation: string
-  employerRoles: string
-  employerParticipation: string
-  targetPopulation: string
-  recruitmentCapacity: string
-  fundingOpportunity: string
-  fundingDueDate: string
 }
 
-const EMPTY_FORM: FormState = {
-  firstName: '', lastName: '', email: '', organization: '', title: '',
-  orgType: '', interest: '', geography: '', timeline: '', message: '',
-  consent: false,
-  gradePopulation: '', employerRoles: '', employerParticipation: '',
-  targetPopulation: '', recruitmentCapacity: '',
-  fundingOpportunity: '', fundingDueDate: '',
-}
+const EMPTY_FORM: FormState = { name: '', email: '', org: '', interest: '', message: '', consent: false }
 
 const inputCls =
-  'w-full px-4 py-3 bg-transparent border border-anthracite/22 text-anthracite text-[14px] placeholder:text-anthracite/80 focus:border-datum focus:outline-none transition-colors duration-150'
+  'w-full px-4 py-3 bg-transparent border border-anthracite/22 text-anthracite text-[14px] placeholder:text-anthracite/50 focus:border-datum focus:outline-none transition-colors duration-150'
 
 const selectCls =
-  'w-full pl-4 pr-10 py-3 bg-snow border border-anthracite/22 text-anthracite text-[14px] focus:border-datum focus:outline-none transition-colors duration-150 appearance-none cursor-pointer'
+  'w-full pl-4 pr-10 py-3 bg-bone border border-anthracite/22 text-anthracite text-[14px] focus:border-datum focus:outline-none transition-colors duration-150 appearance-none cursor-pointer'
 
 const labelCls =
-  'block text-[11px] text-anthracite/80 uppercase tracking-[0.15em] mb-1.5 select-none'
+  'block text-[11px] text-anthracite/70 uppercase tracking-[0.15em] mb-1.5 select-none'
 
 export function Partner() {
   const reduce = useReducedMotion()
-  const formRef = useRef<HTMLElement>(null)
-  const [selected, setSelected] = useState<AudienceId | null>(null)
   const [form, setForm] = useState<FormState>(EMPTY_FORM)
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [formError, setFormError] = useState(false)
-
-  function handleAudienceClick(id: AudienceId, orgValue: string) {
-    setSelected(id)
-    setForm(prev => ({ ...prev, orgType: orgValue }))
-    setTimeout(() => {
-      formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }, 60)
-  }
 
   function set(field: keyof FormState) {
     return (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
@@ -194,7 +63,7 @@ export function Partner() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
-    if (!form.firstName || !form.lastName || !emailOk || (!form.organization && form.orgType !== 'learner') || !form.orgType || !form.message || !form.consent) {
+    if (!form.name || !emailOk || !form.message || !form.consent) {
       setFormError(true)
       return
     }
@@ -214,33 +83,13 @@ export function Partner() {
     }
   }
 
-  const showEducation = form.orgType === 'education'
-  const showWorkforce = form.orgType === 'workforce'
-  const showEmployer = form.orgType === 'employer'
-  const showFunding =
-    form.orgType === 'funding' || form.orgType === 'philanthropic' || form.interest === 'launch'
-
   return (
     <main>
 
-      {/* ── Hero ── */}
+      {/* ── Hero: §17 Partner CTA ── */}
       <section
-        className="bg-anthracite min-h-[62vh] flex flex-col justify-end pb-16 lg:pb-22 relative overflow-hidden"
+        className="bg-anthracite min-h-[48vh] flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-20 relative overflow-hidden"
         aria-labelledby="partner-h1">
-
-        <motion.div
-          className="absolute top-8 right-6 lg:right-10 select-none pointer-events-none"
-          aria-hidden="true"
-          initial={reduce ? undefined : { opacity: 0 }}
-          animate={reduce ? undefined : { opacity: 1 }}
-          transition={reduce ? undefined : { duration: 0.8, delay: 1.0, ease: EASE }}>
-          <p
-            className="text-[10px] text-white/18 uppercase tracking-[0.26em] text-right"
-            style={{ fontFamily: 'var(--font-body)' }}>
-            Four routes
-          </p>
-        </motion.div>
-
         <div className="max-w-7xl mx-auto px-6 w-full">
 
           <motion.span
@@ -249,263 +98,155 @@ export function Partner() {
             initial={reduce ? undefined : { opacity: 0, y: 10 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-            Partner with Aedifica
+            From foundations to futures
           </motion.span>
 
           <motion.h1
             id="partner-h1"
-            className="text-[2.75rem] lg:text-[4.5rem] xl:text-[6rem] leading-[0.96] tracking-[-0.035em] text-white italic mb-8"
+            className="text-[2.5rem] lg:text-[3.75rem] xl:text-[4.5rem] leading-[1.02] tracking-[-0.032em] text-white italic mb-8 max-w-[20ch] [text-wrap:balance]"
             style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
             initial={reduce ? undefined : { opacity: 0, y: 40 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
-            The pathway starts<br className="hidden lg:block" /> with who you are.
+            Built on a commitment to deliver, report, and be accountable.
           </motion.h1>
 
           <motion.p
-            className="text-[14.5px] text-white/60 leading-[1.65] max-w-[58ch]"
+            className="text-[14.5px] text-white/65 leading-[1.65] max-w-[58ch]"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 14 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}>
-            Aedifica partners with education institutions, community organizations, employers, and
-            funding partners. Select the route that describes your organization to start a
-            conversation.
+            Speak with Aedifica about what a founding partnership, employer engagement, or
+            institutional briefing looks like in practice, for your district, your board, your
+            agency, or your firm.
           </motion.p>
 
         </div>
       </section>
 
-      {/* ── Audience Strips ── */}
-      <section aria-label="Partnership routes" className="grid grid-cols-1 lg:grid-cols-4">
-        {AUDIENCES.map((audience, i) => {
-          const isSelected = selected === audience.id
-          return (
-            <motion.button
-              key={audience.id}
-              onClick={() => handleAudienceClick(audience.id, audience.orgValue)}
-              className={`${audience.bg} ${audience.textColor} relative group text-left flex flex-col justify-between
-                px-8 py-10 lg:px-9 lg:py-12 min-h-[280px] lg:min-h-[400px] w-full
-                transition-opacity duration-200 ${!isSelected && selected !== null ? 'lg:opacity-72' : ''}`}
-              initial={reduce ? undefined : { opacity: 0, y: 20 }}
-              animate={reduce ? undefined : { opacity: !isSelected && selected !== null ? 0.72 : 1, y: 0 }}
-              transition={reduce ? undefined : { duration: 0.55, delay: 0.05 * i, ease: EASE }}
-              aria-pressed={isSelected}>
+      {/* ── §18 Contact ── */}
+      <section className="bg-bone py-14 lg:py-20" aria-labelledby="contact-h2">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="lg:grid lg:grid-cols-[1fr_1.35fr] lg:gap-16 xl:gap-20 lg:items-start">
 
-              {isSelected && (
-                <span
-                  className={`absolute top-4 right-4 w-2 h-2 ${audience.textColor === 'text-white' ? 'bg-white' : 'bg-anthracite'}`}
-                  aria-hidden="true"
-                />
-              )}
-
-              <div>
-                <audience.Icon size={24} weight="regular" className={`${audience.textColor} opacity-80 mb-5`} aria-hidden={true} />
-                <h2
-                  className="text-[1.625rem] lg:text-[1.875rem] xl:text-[2.125rem] italic leading-[1.08] tracking-[-0.025em] mb-5"
-                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-                  {audience.label}
-                </h2>
-                <p
-                  className={`text-[13.5px] ${audience.mutedText} leading-[1.65] max-w-[28ch]`}
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  {audience.desc}
-                </p>
-              </div>
-
-              <div className="mt-8">
-                <ul
-                  className={`border-t ${audience.borderFaint} pt-5 mb-6 space-y-2`}>
-                  {audience.what.map(item => (
-                    <li
-                      key={item}
-                      className={`flex gap-2.5 items-start text-[12.5px] ${audience.mutedText} leading-[1.55]`}
-                      style={{ fontFamily: 'var(--font-body)' }}>
-                      <span
-                        className={`flex-shrink-0 mt-[5px] w-[3px] h-[3px] ${audience.textColor === 'text-white' ? 'bg-white/70' : 'bg-anthracite/60'}`}
-                        aria-hidden="true"
-                      />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <span
-                  className={`inline-flex items-center gap-2.5 px-5 py-2.5 text-[11.5px] ${audience.textColor} border uppercase tracking-[0.1em] transition-all duration-200 group-hover:gap-3.5
-                    ${audience.textColor === 'text-white'
-                      ? 'border-white/38 hover:bg-white/14'
-                      : 'border-anthracite/32 hover:bg-anthracite/8'}`}
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  {audience.cta}
-                  <span aria-hidden="true">&#8594;</span>
-                </span>
-              </div>
-
-            </motion.button>
-          )
-        })}
-      </section>
-
-      {/* ── Contact Form ── */}
-      <section
-        ref={formRef}
-        className="bg-bone py-12 lg:py-18 scroll-mt-16"
-        aria-labelledby="partner-form-h2">
-        <div className="max-w-[1080px] mx-auto px-6">
-
-          <motion.div
-            className="mb-12 lg:mb-16"
-            initial={reduce ? undefined : { opacity: 0, y: 20 }}
-            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-            viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.6, ease: SPRING }}>
-            <p
-              className="text-[10.5px] text-anthracite/80 uppercase tracking-[0.18em] mb-4 select-none font-medium"
-              style={{ fontFamily: 'var(--font-body)' }}>
-              Start a conversation
-            </p>
-            <h2
-              id="partner-form-h2"
-              className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] leading-[1.06] tracking-[-0.03em] text-anthracite italic mb-4"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-              {selected
-                ? AUDIENCES.find(a => a.id === selected)?.cta
-                    ? AUDIENCES.find(a => a.id === selected)!.cta.charAt(0).toUpperCase() +
-                      AUDIENCES.find(a => a.id === selected)!.cta.slice(1) + '.'
-                    : 'Tell us who you are and what you are trying to build.'
-                : 'Tell us who you are and what you are trying to build.'}
-            </h2>
-            <p
-              className="text-[14px] text-anthracite/80 leading-[1.7] max-w-[58ch]"
-              style={{ fontFamily: 'var(--font-body)' }}>
-              Aedifica reviews every inquiry. You will hear back within five business days.
-            </p>
-          </motion.div>
-
-          <AnimatePresence mode="wait">
-            {submitted ? (
+            <div>
               <motion.div
-                key="success"
-                className="py-16 lg:py-20 border-t border-sediment/20"
-                initial={reduce ? undefined : { opacity: 0, y: 16 }}
-                animate={reduce ? undefined : { opacity: 1, y: 0 }}
-                transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
-                <span
-                  className="inline-block text-[11px] uppercase tracking-[0.18em] bg-datum/10 text-datum px-3 py-1 mb-6 select-none"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  Received
-                </span>
-                <p
-                  className="text-[1.875rem] lg:text-[2.5rem] italic text-anthracite leading-[1.14] tracking-[-0.025em] mb-5 max-w-[34ch]"
-                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-                  Your inquiry has been received. Aedifica will respond within five business days.
-                </p>
-                <p
-                  className="text-[14px] text-anthracite/75 leading-[1.7]"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  If your inquiry is time-sensitive due to a funding deadline, please note that in
-                  your message.
-                </p>
-              </motion.div>
-            ) : (
-              <motion.form
-                key="form"
-                onSubmit={handleSubmit}
-                className="border-t border-sediment/20 pt-7"
-                aria-label="Partnership inquiry"
+                className="flex items-center gap-3 mb-5"
                 initial={reduce ? undefined : { opacity: 0 }}
-                animate={reduce ? undefined : { opacity: 1 }}
-                transition={reduce ? undefined : { duration: 0.4, ease: EASE }}
-                noValidate>
+                whileInView={reduce ? undefined : { opacity: 1 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+                <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
+                <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Contact</p>
+              </motion.div>
+              <motion.h2
+                id="contact-h2"
+                className="text-[2rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic mb-10 max-w-[16ch] [text-wrap:balance]"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+                initial={reduce ? undefined : { opacity: 0, y: 22 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
+                Tell us which door is yours. We&rsquo;ll map the pathway.
+              </motion.h2>
 
-                {/* Honeypot — hidden from humans, filled by bots */}
-                <input name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true"
-                  className="absolute opacity-0 pointer-events-none w-0 h-0 overflow-hidden" />
-
-                {/* Two-column layout: identity left, intent right */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-16">
-
-                  {/* Left — who you are */}
-                  <div className="flex flex-col justify-between gap-6">
-                    <div className="grid grid-cols-2 gap-5">
-                      <div>
-                        <label htmlFor="pf-first" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                          First name <span className="text-datum" aria-hidden="true">*</span>
-                        </label>
-                        <input id="pf-first" type="text" required autoComplete="given-name"
-                          value={form.firstName} onChange={set('firstName')}
-                          className={inputCls} style={{ fontFamily: 'var(--font-body)' }} />
-                      </div>
-                      <div>
-                        <label htmlFor="pf-last" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                          Last name <span className="text-datum" aria-hidden="true">*</span>
-                        </label>
-                        <input id="pf-last" type="text" required autoComplete="family-name"
-                          value={form.lastName} onChange={set('lastName')}
-                          className={inputCls} style={{ fontFamily: 'var(--font-body)' }} />
-                      </div>
-                    </div>
-
+              <div className="border-t border-sediment/25">
+                {CONTACT_FACTS.map(({ Icon: IconComp, label, value, pending }, i) => (
+                  <motion.div
+                    key={label}
+                    className="flex items-start gap-4 py-5 border-b border-sediment/25"
+                    initial={reduce ? undefined : { opacity: 0, y: 12 }}
+                    whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                    viewport={reduce ? undefined : VIEWPORT}
+                    transition={reduce ? undefined : { duration: 0.4, delay: i * 0.06, ease: EASE }}>
+                    <IconComp size={18} weight="regular" className="text-datum flex-shrink-0 mt-0.5" aria-hidden={true} />
                     <div>
-                      <label htmlFor="pf-email" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                        Work email <span className="text-datum" aria-hidden="true">*</span>
-                      </label>
-                      <input id="pf-email" type="email" required autoComplete="email"
-                        value={form.email} onChange={set('email')}
-                        className={inputCls} style={{ fontFamily: 'var(--font-body)' }} />
+                      <p className="text-[10.5px] uppercase tracking-[0.14em] text-datum mb-1" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
+                      {label === 'Email'
+                        ? <a href={`mailto:${value}`} className="text-[14px] text-anthracite hover:text-datum transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>{value}</a>
+                        : <p className={`text-[13.5px] leading-[1.55] max-w-[46ch] ${pending ? 'text-anthracite/55 italic' : 'text-anthracite/80'}`} style={{ fontFamily: 'var(--font-body)' }}>{value}</p>}
                     </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
 
-                    <div>
-                      <label htmlFor="pf-org" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                        Organization{form.orgType !== 'learner' && <> <span className="text-datum" aria-hidden="true">*</span></>}
-                      </label>
-                      <input id="pf-org" type="text" required={form.orgType !== 'learner'} autoComplete="organization"
-                        value={form.organization} onChange={set('organization')}
-                        className={inputCls} style={{ fontFamily: 'var(--font-body)' }} />
-                    </div>
+            <div className="mt-12 lg:mt-0">
+              <AnimatePresence mode="wait">
+                {submitted ? (
+                  <motion.div
+                    key="success"
+                    className="bg-snow border border-sediment/25 px-8 py-12 lg:px-10 lg:py-14"
+                    initial={reduce ? undefined : { opacity: 0, y: 16 }}
+                    animate={reduce ? undefined : { opacity: 1, y: 0 }}
+                    transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
+                    <span
+                      className="inline-block text-[11px] uppercase tracking-[0.18em] bg-datum/10 text-datum px-3 py-1 mb-6 select-none"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      Received
+                    </span>
+                    <p
+                      className="text-[1.625rem] lg:text-[2rem] italic text-anthracite leading-[1.2] tracking-[-0.02em] mb-4 max-w-[30ch]"
+                      style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+                      Your inquiry has been received.
+                    </p>
+                    <p
+                      className="text-[13.5px] text-anthracite/75 leading-[1.65]"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      Partnership inquiries receive a scoped reply, not a brochure.
+                    </p>
+                  </motion.div>
+                ) : (
+                  <motion.form
+                    key="form"
+                    id="contact-form"
+                    onSubmit={handleSubmit}
+                    className="scroll-mt-24"
+                    aria-label="Contact Aedifica"
+                    initial={reduce ? undefined : { opacity: 0 }}
+                    animate={reduce ? undefined : { opacity: 1 }}
+                    transition={reduce ? undefined : { duration: 0.4, ease: EASE }}
+                    noValidate>
 
-                    <div className="grid grid-cols-2 gap-5">
+                    {/* Honeypot */}
+                    <input name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true"
+                      className="absolute opacity-0 pointer-events-none w-0 h-0 overflow-hidden" />
+
+                    <div className="space-y-5">
                       <div>
-                        <label htmlFor="pf-title" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                          Title / role
+                        <label htmlFor="cf-name" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
+                          Your name <span className="text-datum" aria-hidden="true">*</span>
                         </label>
-                        <input id="pf-title" type="text" autoComplete="organization-title"
-                          value={form.title} onChange={set('title')}
+                        <input id="cf-name" type="text" required autoComplete="name"
+                          value={form.name} onChange={set('name')}
                           className={inputCls} style={{ fontFamily: 'var(--font-body)' }} />
                       </div>
+
                       <div>
-                        <label htmlFor="pf-geo" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                          County / region
+                        <label htmlFor="cf-email" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
+                          Email <span className="text-datum" aria-hidden="true">*</span>
                         </label>
-                        <input id="pf-geo" type="text" placeholder="e.g. Union County, NJ"
-                          value={form.geography} onChange={set('geography')}
+                        <input id="cf-email" type="email" required autoComplete="email"
+                          value={form.email} onChange={set('email')}
                           className={inputCls} style={{ fontFamily: 'var(--font-body)' }} />
                       </div>
-                    </div>
-                  </div>
 
-                  {/* Right — what you want to discuss */}
-                  <div className="flex flex-col justify-between gap-6 mt-5 lg:mt-0">
-                    <div>
-                      <label htmlFor="pf-orgtype" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                        Organization type <span className="text-datum" aria-hidden="true">*</span>
-                      </label>
-                      <div className="relative">
-                        <select id="pf-orgtype" required value={form.orgType} onChange={set('orgType')}
-                          className={selectCls} style={{ fontFamily: 'var(--font-body)' }}>
-                          {ORG_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-                        </select>
-                        <CaretDown size={13} weight="bold" aria-hidden={true}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-anthracite/40 pointer-events-none" />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
-                        <label htmlFor="pf-interest" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                          Partnership interest
+                        <label htmlFor="cf-org" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
+                          Organization & role
+                        </label>
+                        <input id="cf-org" type="text" autoComplete="organization"
+                          value={form.org} onChange={set('org')}
+                          className={inputCls} style={{ fontFamily: 'var(--font-body)' }} />
+                      </div>
+
+                      <div>
+                        <label htmlFor="cf-interest" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
+                          I&rsquo;m interested in
                         </label>
                         <div className="relative">
-                          <select id="pf-interest" value={form.interest} onChange={set('interest')}
+                          <select id="cf-interest" value={form.interest} onChange={set('interest')}
                             className={selectCls} style={{ fontFamily: 'var(--font-body)' }}>
                             {INTEREST_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
                           </select>
@@ -513,176 +254,55 @@ export function Partner() {
                             className="absolute right-3 top-1/2 -translate-y-1/2 text-anthracite/40 pointer-events-none" />
                         </div>
                       </div>
+
                       <div>
-                        <label htmlFor="pf-timeline" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                          Timeline
+                        <label htmlFor="cf-message" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
+                          What are you trying to build? <span className="text-datum" aria-hidden="true">*</span>
                         </label>
-                        <div className="relative">
-                          <select id="pf-timeline" value={form.timeline} onChange={set('timeline')}
-                            className={selectCls} style={{ fontFamily: 'var(--font-body)' }}>
-                            {TIMELINE_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-                          </select>
-                          <CaretDown size={13} weight="bold" aria-hidden={true}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-anthracite/40 pointer-events-none" />
-                        </div>
+                        <textarea id="cf-message" required rows={4}
+                          value={form.message} onChange={set('message')}
+                          className={`${inputCls} resize-y`}
+                          style={{ fontFamily: 'var(--font-body)' }} />
                       </div>
                     </div>
 
-                    {/* Conditional fields — appear in right column */}
-                    {(showEducation || showWorkforce || showEmployer || showFunding) && (
-                      <motion.div
-                        className="space-y-5"
-                        initial={reduce ? undefined : { opacity: 0, y: 8 }}
-                        animate={reduce ? undefined : { opacity: 1, y: 0 }}
-                        transition={reduce ? undefined : { duration: 0.3, ease: EASE }}>
-                        {showEducation && (
-                          <div>
-                            <label htmlFor="pf-grade" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                              Grade bands / learner populations
-                            </label>
-                            <input id="pf-grade" type="text"
-                              placeholder="e.g. High school, adult learners, CTE"
-                              value={form.gradePopulation} onChange={set('gradePopulation')}
-                              className={inputCls} style={{ fontFamily: 'var(--font-body)' }} />
-                          </div>
-                        )}
-                        {showWorkforce && (
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                            <div>
-                              <label htmlFor="pf-target" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                                Target population
-                              </label>
-                              <input id="pf-target" type="text"
-                                placeholder="e.g. Justice-impacted adults"
-                                value={form.targetPopulation} onChange={set('targetPopulation')}
-                                className={inputCls} style={{ fontFamily: 'var(--font-body)' }} />
-                            </div>
-                            <div>
-                              <label htmlFor="pf-capacity" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                                Annual recruitment capacity
-                              </label>
-                              <input id="pf-capacity" type="text" placeholder="e.g. 20-40/year"
-                                value={form.recruitmentCapacity} onChange={set('recruitmentCapacity')}
-                                className={inputCls} style={{ fontFamily: 'var(--font-body)' }} />
-                            </div>
-                          </div>
-                        )}
-                        {showEmployer && (
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                            <div>
-                              <label htmlFor="pf-roles" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                                Roles of interest
-                              </label>
-                              <input id="pf-roles" type="text"
-                                placeholder="e.g. Project admin, estimating"
-                                value={form.employerRoles} onChange={set('employerRoles')}
-                                className={inputCls} style={{ fontFamily: 'var(--font-body)' }} />
-                            </div>
-                            <div>
-                              <label htmlFor="pf-participation" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                                Participation type
-                              </label>
-                              <div className="relative">
-                                <select id="pf-participation" value={form.employerParticipation}
-                                  onChange={set('employerParticipation')}
-                                  className={selectCls} style={{ fontFamily: 'var(--font-body)' }}>
-                                  <option value="">Select type</option>
-                                  <option value="capstone">Capstone only</option>
-                                  <option value="interview">Interview access only</option>
-                                  <option value="capstone-interview">Capstone + interview</option>
-                                  <option value="pipeline">Pipeline development</option>
-                                  <option value="all">All of the above</option>
-                                </select>
-                                <CaretDown size={13} weight="bold" aria-hidden={true}
-                                  className="absolute right-3 top-1/2 -translate-y-1/2 text-anthracite/40 pointer-events-none" />
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                        {showFunding && (
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                            <div>
-                              <label htmlFor="pf-funder" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                                Funding opportunity / program
-                              </label>
-                              <input id="pf-funder" type="text" placeholder="e.g. PACE, GAINS"
-                                value={form.fundingOpportunity} onChange={set('fundingOpportunity')}
-                                className={inputCls} style={{ fontFamily: 'var(--font-body)' }} />
-                            </div>
-                            <div>
-                              <label htmlFor="pf-duedate" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                                Due date
-                              </label>
-                              <input id="pf-duedate" type="text" placeholder="e.g. Sept 30, 2026"
-                                value={form.fundingDueDate} onChange={set('fundingDueDate')}
-                                className={inputCls} style={{ fontFamily: 'var(--font-body)' }} />
-                            </div>
-                          </div>
-                        )}
-                      </motion.div>
-                    )}
-
-                  </div>
-
-                </div>
-
-                {/* Message — full width below both columns */}
-                <div className="mt-8">
-                  <label htmlFor="pf-message" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                    What would you like to discuss? <span className="text-datum" aria-hidden="true">*</span>
-                  </label>
-                  <textarea id="pf-message" required rows={4}
-                    value={form.message} onChange={set('message')}
-                    className={`${inputCls} resize-y`}
-                    style={{ fontFamily: 'var(--font-body)' }} />
-                </div>
-
-                {/* Consent + submit — full width */}
-                <div className="mt-10 pt-8 border-t border-sediment/15">
-                  {formError && (
-                    <p
-                      role="alert"
-                      className="text-[12.5px] text-datum leading-[1.5] mb-5"
-                      style={{ fontFamily: 'var(--font-body)' }}>
-                      Please complete all required fields and accept the privacy statement.
-                    </p>
-                  )}
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-5">
-                    <label className="flex items-start gap-3 cursor-pointer max-w-[52ch]">
-                      <input
-                        type="checkbox"
-                        required
-                        checked={form.consent}
-                        onChange={e => setForm(prev => ({ ...prev, consent: e.target.checked }))}
-                        className="mt-[3px] flex-shrink-0 w-4 h-4 border border-sediment/40 accent-datum cursor-pointer"
-                      />
-                      <span
-                        className="text-[12.5px] text-anthracite/80 leading-[1.58]"
-                        style={{ fontFamily: 'var(--font-body)' }}>
-                        I understand this inquiry will be reviewed by Aedifica. No information will be shared with third parties.
-                      </span>
-                    </label>
-                    <div className="flex items-center gap-5 flex-shrink-0">
-                      <p
-                        className="text-[11.5px] text-anthracite/80 leading-[1.5] text-right"
-                        style={{ fontFamily: 'var(--font-body)' }}>
-                        Fields marked <span className="text-datum">*</span> required.<br />5-day response.
-                      </p>
+                    <div className="mt-8 pt-6 border-t border-sediment/20">
+                      {formError && (
+                        <p
+                          role="alert"
+                          className="text-[12.5px] text-datum leading-[1.5] mb-4"
+                          style={{ fontFamily: 'var(--font-body)' }}>
+                          Please fill in your name, a valid email, a message, and accept the consent statement.
+                        </p>
+                      )}
+                      <label className="flex items-start gap-3 cursor-pointer mb-6">
+                        <input
+                          type="checkbox"
+                          required
+                          checked={form.consent}
+                          onChange={e => setForm(prev => ({ ...prev, consent: e.target.checked }))}
+                          className="mt-[3px] flex-shrink-0 w-4 h-4 border border-sediment/40 accent-datum cursor-pointer"
+                        />
+                        <span
+                          className="text-[12.5px] text-anthracite/75 leading-[1.58]"
+                          style={{ fontFamily: 'var(--font-body)' }}>
+                          You may contact me about this inquiry.
+                        </span>
+                      </label>
                       <button
                         type="submit"
                         disabled={submitting}
-                        className="inline-flex items-center justify-center bg-datum text-white text-[13.5px] tracking-[-0.01em] px-8 py-3.5 hover:bg-datum/88 active:scale-[0.98] transition-all duration-150 flex-shrink-0 disabled:opacity-60 disabled:cursor-not-allowed"
+                        className="w-full sm:w-auto inline-flex items-center justify-center bg-datum text-white text-[13.5px] tracking-[-0.01em] px-8 py-3.5 hover:bg-datum/88 active:scale-[0.98] transition-all duration-150 disabled:opacity-60 disabled:cursor-not-allowed"
                         style={{ fontFamily: 'var(--font-body)' }}>
-                        {submitting ? 'Sending…' : 'Send Inquiry'}
+                        {submitting ? 'Sending…' : 'Send the inquiry'}
                       </button>
                     </div>
-                  </div>
-                </div>
+                  </motion.form>
+                )}
+              </AnimatePresence>
+            </div>
 
-              </motion.form>
-            )}
-          </AnimatePresence>
-
+          </div>
         </div>
       </section>
 

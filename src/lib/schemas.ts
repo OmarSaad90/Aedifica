@@ -42,22 +42,22 @@ export const HOME_SCHEMA = {
   ],
 }
 
-export const SERVICES_SCHEMA = {
+export const PROGRAMS_SCHEMA = {
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-        { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
+        { '@type': 'ListItem', position: 2, name: 'Programs', item: `${SITE_URL}/programs` },
       ],
     },
     {
       '@type': 'WebPage',
-      url: `${SITE_URL}/services`,
-      name: 'Services | Aedifica Construction-Management Workforce Pathways',
+      url: `${SITE_URL}/programs`,
+      name: 'Programs | Aedifica Construction-Management Workforce Pathways',
       description:
-        'All five Aedifica programs in one view: Rebuild for adults, Launch for institutions, Explore and Pathway for students and schools, and Talent Pipeline for employers. Construction-management pathways across New Jersey.',
+        'All five Aedifica programs in one view: Explore and Pathway for students and schools, Launch for institutions, Rebuild for adults, and Talent Pipeline for employers. Construction-management pathways across New Jersey.',
       isPartOf: { '@id': `${SITE_URL}/#website` },
       provider: { '@id': `${SITE_URL}/#organization` },
     },
@@ -83,8 +83,8 @@ export const REBUILD_SCHEMA = {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-        { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
-        { '@type': 'ListItem', position: 3, name: 'Rebuild', item: `${SITE_URL}/services/rebuild` },
+        { '@type': 'ListItem', position: 2, name: 'Programs', item: `${SITE_URL}/programs` },
+        { '@type': 'ListItem', position: 3, name: 'Rebuild', item: `${SITE_URL}/programs/rebuild` },
       ],
     },
   ],
@@ -97,22 +97,22 @@ export const LAUNCH_SCHEMA = {
       '@type': 'Service',
       name: 'Aedifica Launch',
       description:
-        'Fixed-fee workforce grant strategy and proposal-authoring support for New Jersey community organizations, education institutions, and training providers.',
+        'Institutional construction-management pathway architecture anchored by the 16-week BUILD NJ GREEN curriculum, for workforce boards, county colleges, agencies, and institutions in New Jersey.',
       provider: { '@id': `${SITE_URL}/#organization` },
-      serviceType: 'Workforce Grant Strategy and Proposal Authoring',
+      serviceType: 'Institutional Pathway Architecture',
       areaServed: { '@type': 'State', name: 'New Jersey' },
       audience: {
         '@type': 'Audience',
         audienceType:
-          'Community organizations, education institutions, and workforce training providers in New Jersey',
+          'Workforce boards, county colleges, agencies, and employers standing up institutional pathways in New Jersey',
       },
     },
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-        { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
-        { '@type': 'ListItem', position: 3, name: 'Launch', item: `${SITE_URL}/services/launch` },
+        { '@type': 'ListItem', position: 2, name: 'Programs', item: `${SITE_URL}/programs` },
+        { '@type': 'ListItem', position: 3, name: 'Launch', item: `${SITE_URL}/programs/launch` },
       ],
     },
   ],
@@ -136,8 +136,8 @@ export const PATHWAY_SCHEMA = {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-        { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
-        { '@type': 'ListItem', position: 3, name: 'Pathway', item: `${SITE_URL}/services/pathway` },
+        { '@type': 'ListItem', position: 2, name: 'Programs', item: `${SITE_URL}/programs` },
+        { '@type': 'ListItem', position: 3, name: 'Pathway', item: `${SITE_URL}/programs/pathway` },
       ],
     },
   ],
@@ -163,12 +163,12 @@ export const TALENT_PIPELINE_SCHEMA = {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-        { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
+        { '@type': 'ListItem', position: 2, name: 'Programs', item: `${SITE_URL}/programs` },
         {
           '@type': 'ListItem',
           position: 3,
           name: 'Talent Pipeline',
-          item: `${SITE_URL}/services/talent-pipeline`,
+          item: `${SITE_URL}/programs/talent-pipeline`,
         },
       ],
     },
@@ -194,8 +194,8 @@ export const EXPLORE_SCHEMA = {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-        { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
-        { '@type': 'ListItem', position: 3, name: 'Explore', item: `${SITE_URL}/services/explore` },
+        { '@type': 'ListItem', position: 2, name: 'Programs', item: `${SITE_URL}/programs` },
+        { '@type': 'ListItem', position: 3, name: 'Explore', item: `${SITE_URL}/programs/explore` },
       ],
     },
   ],
@@ -223,15 +223,15 @@ export const IMPACT_SCHEMA = {
   ],
 }
 
-export const INSIGHTS_SCHEMA = {
+export const RESEARCH_SCHEMA = {
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': 'CollectionPage',
-      url: `${SITE_URL}/insights`,
-      name: 'Insights & Research | Aedifica Workforce Pathway Strategy',
+      url: `${SITE_URL}/research`,
+      name: 'Aedifica Research',
       description:
-        'Research and perspectives on New Jersey construction-management workforce pathways, employer validation, accountability frameworks, and talent advancement.',
+        'Aedifica\'s research agenda: two investigations in progress (the supervisor gap in New Jersey\'s green-construction workforce, and the Bridging Brilliance case study) plus a five-publication research archive, R-01 through R-05.',
       isPartOf: { '@id': `${SITE_URL}/#website` },
       about: { '@id': `${SITE_URL}/#organization` },
       specialty: 'Construction-management workforce development research and strategy in New Jersey',
@@ -240,7 +240,108 @@ export const INSIGHTS_SCHEMA = {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-        { '@type': 'ListItem', position: 2, name: 'Insights & Research', item: `${SITE_URL}/insights` },
+        { '@type': 'ListItem', position: 2, name: 'Research', item: `${SITE_URL}/research` },
+      ],
+    },
+  ],
+}
+
+export const SUPERVISOR_GAP_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ScholarlyArticle',
+      url: `${SITE_URL}/research/supervisor-gap`,
+      name: 'The Supervisor Gap | Aedifica Research',
+      description:
+        'Why New Jersey\'s building-electrification mandates will require an estimated 2,000 to 3,000 green-fluent construction managers by 2030 against a credentialed supply near zero, and the pathway architecture required to close the distance.',
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      about: { '@id': `${SITE_URL}/#organization` },
+      specialty: 'Construction-management workforce development research and strategy in New Jersey',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Research', item: `${SITE_URL}/research` },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'The Supervisor Gap',
+          item: `${SITE_URL}/research/supervisor-gap`,
+        },
+      ],
+    },
+  ],
+}
+
+export const BB_RESEARCH_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      url: `${SITE_URL}/research/bridging-brilliance`,
+      name: 'Bridging Brilliance: Lessons from the Instructor',
+      description:
+        'Ten lessons on trust, ownership, and opportunity in STEM learning, from the instructor who delivered HIA Bridging Brilliance.',
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      about: { '@id': `${SITE_URL}/#organization` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Research', item: `${SITE_URL}/research` },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Bridging Brilliance',
+          item: `${SITE_URL}/research/bridging-brilliance`,
+        },
+      ],
+    },
+  ],
+}
+
+export const EXPERIENCE_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      url: `${SITE_URL}/experience`,
+      name: 'Learner Experience | Aedifica',
+      description:
+        "In their own words: reflections from Aedifica Explore's Building Bridges cohort and Aedifica Pathway's Civil Engineering & Design Pathway students at Stevens Institute of Technology.",
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      about: { '@id': `${SITE_URL}/#organization` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Learner Experience', item: `${SITE_URL}/experience` },
+      ],
+    },
+  ],
+}
+
+export const FAMILIES_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      url: `${SITE_URL}/families`,
+      name: 'For Families | Aedifica',
+      description:
+        'A real path into careers that build our communities, at no cost to your child. How Aedifica works for parents and families, from middle school through adult programs.',
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      about: { '@id': `${SITE_URL}/#organization` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'For Families', item: `${SITE_URL}/families` },
       ],
     },
   ],

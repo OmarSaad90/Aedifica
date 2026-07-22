@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-19T00:00:00Z",
+  "title": "Design System: Aedifica (v1, archived)",
+  "extensions": {
+    "colorMeta": {
+      "datum": { "role": "primary", "displayName": "Datum (Periwinkle)", "canonical": "#6667AB", "tonalRamp": ["#1b1b31", "#303057", "#44457d", "#595aa2", "#7e7fb8", "#a3a4cd", "#c9c9e1", "#efeff6"] },
+      "datum-light": { "role": "primary", "displayName": "Datum Light", "canonical": "#9C9CC8", "tonalRamp": ["#1b1b31", "#303057", "#45457c", "#5a5aa2", "#7e7eb7", "#a4a4cc", "#c9c9e1", "#efeff6"] },
+      "patina": { "role": "secondary", "displayName": "Patina (Mauve-Aubergine)", "canonical": "#836479", "tonalRamp": ["#2b2128", "#4c3a47", "#6d5465", "#8f6d84", "#a88da0", "#c1aebb", "#dbcfd7", "#f4f1f3"] },
+      "quarry": { "role": "secondary", "displayName": "Quarry (Sage)", "canonical": "#8A9A93", "tonalRamp": ["#232927", "#3e4844", "#596861", "#74877f", "#93a29c", "#b3bdb9", "#d2d8d5", "#f1f3f2"] },
+      "sediment": { "role": "secondary", "displayName": "Sediment (Yellow-Olive)", "canonical": "#C7B377", "tonalRamp": ["#362e16", "#5f5127", "#897538", "#b29849", "#c5b071", "#d6c79a", "#e7dec4", "#f8f5ed"] },
+      "rebuild": { "role": "tertiary", "displayName": "Rebuild", "canonical": "#A0838F", "tonalRamp": ["#2b2125", "#4c3a42", "#6d545e", "#8e6d7b", "#a88e99", "#c1afb6", "#dbd0d4", "#f4f1f2"] },
+      "rebuild-deep": { "role": "tertiary", "displayName": "Rebuild Deep (70/30 anthracite mix)", "canonical": "#7E6973", "tonalRamp": ["#2a2326", "#4a3d43", "#695860", "#89727d", "#a4929a", "#beb2b8", "#d9d1d5", "#f3f1f2"] },
+      "snow": { "role": "neutral", "displayName": "Snow", "canonical": "#FAF7F1", "tonalRamp": ["#382c14", "#634e23", "#8e7033", "#b99242", "#caab6b", "#dac396", "#e9dcc1", "#f8f4ec"] },
+      "bone": { "role": "neutral", "displayName": "Bone", "canonical": "#F4EEE4", "tonalRamp": ["#362a16", "#604a27", "#896b38", "#b38b49", "#c5a571", "#d6bf9a", "#e7dac3", "#f8f4ed"] },
+      "anthracite": { "role": "neutral", "displayName": "Anthracite", "canonical": "#2D2D31", "tonalRamp": ["#252528", "#414146", "#5c5c65", "#787883", "#97979f", "#b5b5bb", "#d3d3d7", "#f2f2f3"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display (Cormorant Garamond italic)", "purpose": "Page heroes only; italic serif carries all emotional register." },
+      "headline": { "displayName": "Headline", "purpose": "Section h2s, often italic with a colored emphasis span." },
+      "body": { "displayName": "Body (Space Grotesk)", "purpose": "All informational copy, 15.5px, anthracite/70-75 on light backgrounds." },
+      "label": { "displayName": "Label", "purpose": "Uppercase tracked eyebrows, table headers, stat captions. Short labels only." },
+      "wordmark": { "displayName": "Wordmark (Cinzel)", "purpose": "The AEDIFICA mark only." }
+    },
+    "shadows": [
+      { "name": "navbar-scroll", "value": "0 2px 12px rgba(45,45,49,0.07)", "purpose": "Navbar only, appears after scrollY > 8. Everything else is flat." }
+    ],
+    "motion": [
+      { "name": "ease-house", "value": "cubic-bezier(0.25, 0.1, 0.25, 1)", "purpose": "Default entrance easing (EASE constant)." },
+      { "name": "ease-spring", "value": "cubic-bezier(0.32, 0.72, 0, 1)", "purpose": "SPRING constant for larger moves." },
+      { "name": "duration-interaction", "value": "150ms", "purpose": "Button/hover color transitions." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Patina-filled CTA; sharp corners, verb-object label.",
+      "html": "<button class=\"ds-btn-primary\">Partner with Aedifica</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; background: #836479; color: #ffffff; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: -0.01em; padding: 12px 24px; border: none; border-radius: 0; cursor: pointer; transition: transform 0.15s, background-color 0.15s; } .ds-btn-primary:hover { background: #957a8b; } .ds-btn-primary:active { transform: scale(0.98); } .ds-btn-primary:focus-visible { outline: 2px solid #6667AB; outline-offset: 3px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Datum-outlined secondary action.",
+      "html": "<button class=\"ds-btn-outline\">See the programs</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; background: transparent; color: #6667AB; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: -0.01em; padding: 12px 24px; border: 1px solid #6667AB; border-radius: 0; cursor: pointer; transition: transform 0.15s, background-color 0.15s; } .ds-btn-outline:hover { background: rgba(102,103,171,0.06); } .ds-btn-outline:active { transform: scale(0.98); } .ds-btn-outline:focus-visible { outline: 2px solid #6667AB; outline-offset: 3px; }"
+    },
+    {
+      "name": "Eyebrow Label",
+      "kind": "custom",
+      "refersTo": "label",
+      "description": "Tracked uppercase micro-label above hero/section headings.",
+      "html": "<p class=\"ds-eyebrow\">Earth · Engineers · Education</p>",
+      "css": ".ds-eyebrow { font-family: 'Space Grotesk', sans-serif; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.22em; color: #6667AB; line-height: 1; margin: 0; }"
+    },
+    {
+      "name": "Diamond List Item",
+      "kind": "custom",
+      "refersTo": "body",
+      "description": "The house bullet: rotated-square marker in a program color.",
+      "html": "<div class=\"ds-diamond-item\"><span class=\"ds-diamond\"></span><span>Employer-validated curriculum</span></div>",
+      "css": ".ds-diamond-item { display: flex; align-items: center; gap: 12px; font-family: 'Space Grotesk', sans-serif; font-size: 15.5px; color: rgba(45,45,49,0.75); line-height: 1.6; } .ds-diamond { width: 6px; height: 6px; background: #6667AB; transform: rotate(45deg); flex: none; }"
+    },
+    {
+      "name": "Display Heading",
+      "kind": "custom",
+      "refersTo": "display",
+      "description": "Serif italic hero heading with datum emphasis span.",
+      "html": "<h1 class=\"ds-display\">We build the builders New Jersey is <span>counting on.</span></h1>",
+      "css": ".ds-display { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 400; font-size: 2.75rem; line-height: 1.05; letter-spacing: -0.03em; color: #2D2D31; margin: 0; max-width: 15ch; text-wrap: balance; } .ds-display span { color: #6667AB; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Architect's Datum",
+    "overview": "A datum is the reference line every measurement on a drawing comes back to. This system treats the page the same way: one periwinkle anchor color, sharp corners everywhere, serif italic display type doing the emotional work while a geometric grotesque body stays factual. It signals institutional seriousness, not marketing enthusiasm; credibility is carried by typography, spacing, and controlled color rather than decoration.",
+    "keyCharacteristics": [
+      "Sharp corners sitewide (single exception: PageCTA rounded-t-[2rem])",
+      "Cormorant Garamond italic for display, Space Grotesk for fact",
+      "Snow / bone / anthracite section alternation, no same-tone seams",
+      "The diamond is the house glyph",
+      "Light mode only; every animation gated on useReducedMotion()"
+    ],
+    "rules": [
+      { "name": "The Program Color Rule", "body": "Explore=datum, Pathway=quarry, Launch=sediment, Rebuild=rebuild(-deep); Services.tsx is the source of truth; Talent Pipeline gets no program color.", "section": "colors" },
+      { "name": "The Datum-Light Rule", "body": "On bg-anthracite, plain datum is forbidden for text/links/focus; swap to datum-light.", "section": "colors" },
+      { "name": "The Alternation Rule", "body": "Adjacent sections never share a background tone.", "section": "colors" },
+      { "name": "The Italic Carries the Voice Rule", "body": "Emphasis is a serif-italic (often colored) span, never bolded or enlarged body text.", "section": "typography" },
+      { "name": "The Hairline Rule", "body": "Structure is drawn with 1px rules at anthracite/12 (light) or white/12-15 (dark), never boxes or shadows.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do gate every animation behind useReducedMotion(); never gate content visibility on animation state.",
+      "Do use EASE [0.25,0.1,0.25,1], SPRING [0.32,0.72,0,1], VIEWPORT { once: true, margin: '100px 0px' } exactly.",
+      "Do hold WCAG AA: datum-light on anthracite, rebuild-deep under white body text, anthracite/70+ body on light backgrounds.",
+      "Do keep py-12 lg:py-18 section rhythm (py-14 lg:py-20 on anthracite).",
+      "Do use the diamond as the marker glyph."
+    ],
+    "donts": [
+      "Don't build SaaS landing pages with hero metrics and gradient text.",
+      "Don't use stock photography or rounded corners (PageCTA top arc excepted).",
+      "Don't build generic nonprofit homepages or consultancy services grids.",
+      "Don't re-add the hero audience selector, ghost watermarks, or ghost section numerals.",
+      "Don't use raw rebuild under white body text or raw datum on anthracite.",
+      "Don't put adjacent sections on the same background tone."
+    ]
+  }
+}

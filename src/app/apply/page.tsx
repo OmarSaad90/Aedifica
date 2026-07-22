@@ -4,7 +4,7 @@ import { APPLY_SCHEMA } from '@/src/lib/schemas'
 import { SITE_URL } from '@/src/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Apply to an Aedifica Program',
+  title: 'Apply to a Construction-Management Program',
   description:
     'Apply to Aedifica construction-management pathway programs. Eligibility overview, materials checklist, and next steps for learners, schools, and partners.',
   alternates: { canonical: `${SITE_URL}/apply` },

@@ -1350,7 +1350,7 @@ export function BridgingBrilliance() {
                 <button
                   ref={closeButtonRef}
                   onClick={() => setLessonModalOpen(false)}
-                  className="flex-shrink-0 w-9 h-9 flex items-center justify-center text-anthracite/60 hover:text-anthracite transition-colors duration-150 cursor-pointer mt-0.5"
+                  className="flex-shrink-0 w-11 h-11 flex items-center justify-center text-anthracite/70 hover:text-anthracite transition-colors duration-150 cursor-pointer -mt-1 -mr-1"
                   aria-label="Close reflection">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                     <path d="M1.5 1.5L14.5 14.5M14.5 1.5L1.5 14.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />

@@ -11,7 +11,7 @@ const PROGRAMS = [
   {
     name: 'Aedifica Explore',
     tag: 'Youth · Grades 6-12',
-    to: '/services/explore',
+    to: '/programs/explore',
     description: 'Camps and workshops that introduce middle and high school students to construction management through hands-on engineering challenges.',
     audience: 'Middle and high school students',
     format: '1-3 week camps; school-year workshops',
@@ -20,7 +20,7 @@ const PROGRAMS = [
   {
     name: 'Aedifica Pathway',
     tag: 'High School · Grades 7-12',
-    to: '/services/pathway',
+    to: '/programs/pathway',
     description: 'A school-based curriculum sequence with real construction-management content, employer exposure, and a capstone project.',
     audience: 'High school students, through a school or district partner',
     format: 'Semester or school-year sequence',
@@ -29,7 +29,7 @@ const PROGRAMS = [
   {
     name: 'Aedifica Rebuild',
     tag: 'Adult · 12 or 24 weeks',
-    to: '/services/rebuild',
+    to: '/programs/rebuild',
     description: 'A 12- or 24-week adult bridge cohort for career changers and overlooked workers entering construction-management roles, with credential-aligned training, a capstone portfolio, and employer introductions.',
     audience: 'Adults with no required prior construction experience',
     format: 'Hybrid, 12- or 24-week cohort',
@@ -38,7 +38,7 @@ const PROGRAMS = [
   {
     name: 'Aedifica Launch',
     tag: 'Institutional partners',
-    to: '/services/launch',
+    to: '/programs/launch',
     description: 'A design and implementation partnership for schools, community colleges, CTE programs, and workforce organizations that want to build a construction-management pathway.',
     audience: 'CTE directors, workforce program administrators, institutional leaders',
     format: 'Multi-month design engagement + pilot cohort',
@@ -47,7 +47,7 @@ const PROGRAMS = [
   {
     name: 'Talent Pipeline',
     tag: 'Employers',
-    to: '/services/talent-pipeline',
+    to: '/programs/talent-pipeline',
     description: 'A structured employer partnership to build, track, and develop a visible construction-management talent pipeline from education to employment.',
     audience: 'Employers, HR leaders, hiring managers in construction',
     format: 'Ongoing partnership; scope set by agreement',

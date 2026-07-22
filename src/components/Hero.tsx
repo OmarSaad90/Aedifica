@@ -15,8 +15,8 @@ export function Hero() {
       aria-labelledby="hero-heading"
     >
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 w-full py-16">
-        <div className="lg:flex lg:items-start lg:justify-between lg:gap-16 xl:gap-24">
-        <div className="max-w-[640px]">
+        <div className="lg:flex lg:items-start lg:gap-16 xl:gap-24">
+        <div className="lg:flex-1 lg:max-w-[820px]">
 
         <motion.p
           className="text-[10.5px] uppercase tracking-[0.22em] text-datum mb-7 leading-none"
@@ -30,7 +30,7 @@ export function Hero() {
 
         <motion.h1
           id="hero-heading"
-          className="text-[2.75rem] lg:text-[3.5rem] xl:text-[4.75rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic pb-1 mb-7 max-w-[15ch] [text-wrap:balance]"
+          className="text-[2.75rem] lg:text-[3.75rem] xl:text-[5.25rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic pb-1 mb-7 max-w-[24ch] [text-wrap:balance]"
           style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
           initial={reduce ? undefined : { opacity: 0, y: 28 }}
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ export function Hero() {
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
           transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}
         >
-          New Jersey is building a cleaner, more resilient future, but the workforce that plans, manages, and delivers those projects isn't strong enough yet. Aedifica builds that pathway, from early STEM exposure to credentialed, employer-connected careers in construction management.
+          New Jersey is funding a generation of clean, resilient infrastructure, and facing a shortage of the construction managers who deliver it. Aedifica builds that missing pathway: from early STEM exposure to credentialed, employer-connected careers. From foundations to futures.
         </motion.p>
 
         <motion.div
@@ -60,10 +60,10 @@ export function Hero() {
           >
             Partner with Aedifica
           </Link>
-          <Link href="/services"
+          <Link href="/programs#compare"
             className="inline-flex items-center border border-datum text-datum text-[13px] font-medium px-6 py-3 tracking-[-0.01em] hover:bg-datum/6 transition-colors duration-150 active:scale-[0.98] whitespace-nowrap"
           >
-            Compare the programs
+            Compare the Programs
           </Link>
         </motion.div>
 

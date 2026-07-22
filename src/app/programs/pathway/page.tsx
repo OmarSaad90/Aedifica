@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: 'Pathway | High-School Civil Engineering Curriculum · NJ',
   description:
     'Aedifica Pathway is a high-school construction-management and civil engineering curriculum designed for career readiness and articulation in New Jersey, informed by three summers of pre-college engineering delivery at Stevens Institute of Technology.',
-  alternates: { canonical: `${SITE_URL}/services/pathway` },
+  alternates: { canonical: `${SITE_URL}/programs/pathway` },
   openGraph: {
     title: 'Pathway | High-School Civil Engineering Curriculum · NJ',
     description:
       'Aedifica Pathway is a high-school construction-management and civil engineering curriculum designed for career readiness and articulation in New Jersey.',
-    url: `${SITE_URL}/services/pathway`,
+    url: `${SITE_URL}/programs/pathway`,
   },
 }
 

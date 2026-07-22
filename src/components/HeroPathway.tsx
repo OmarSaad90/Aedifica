@@ -5,24 +5,25 @@ import type { CSSProperties } from 'react'
 
 const EASE = [0.25, 0.1, 0.25, 1] as const
 
-type Program = { name: string; tag: string; audience: string; color: string; to: string }
+type Program = { name: string; audience: string; color: string; to: string }
 
 const PROGRAMS: Program[] = [
-  { name: 'Explore', tag: 'Hands-On STEM',    audience: 'Students',     color: 'var(--color-datum)',    to: '/services/explore' },
-  { name: 'Pathway', tag: 'School Curriculum', audience: 'High Schools', color: 'var(--color-quarry)',   to: '/services/pathway' },
-  { name: 'Launch',  tag: 'Grant Strategy',    audience: 'Partners',     color: 'var(--color-sediment)', to: '/services/launch'  },
-  { name: 'Rebuild', tag: 'Adult Cohort',      audience: 'Adults',       color: 'var(--color-rebuild)',  to: '/services/rebuild' },
+  { name: 'Explore',        audience: 'Middle school', color: 'var(--color-datum)',    to: '/programs/explore' },
+  { name: 'Pathway',        audience: 'High schools',  color: 'var(--color-quarry)',   to: '/programs/pathway' },
+  { name: 'Launch',         audience: 'Institutions',  color: 'var(--color-sediment)', to: '/programs/launch'  },
+  { name: 'Rebuild',        audience: 'Adults',        color: 'var(--color-rebuild)',  to: '/programs/rebuild' },
+  { name: 'Talent Pipeline', audience: 'Employers',    color: 'var(--color-pipeline)', to: '/programs/talent-pipeline' },
 ]
 
 const CURVE_W = 96
-const CURVE_H = 440
+const CURVE_H = 520
 
 // First/last markers sit level with their row's vertical center; the label
 // column uses justify-between, which flushes row 1 to the top edge and the
 // last row to the bottom edge (not quarter-centers) — this mirrors that.
 const NODE_Y_PAD = 26
 const NODES = PROGRAMS.map((_, i) => ({
-  x: [22, 66, 28, 62][i],
+  x: [24, 68, 26, 68, 24][i],
   y: NODE_Y_PAD + (i / (PROGRAMS.length - 1)) * (CURVE_H - NODE_Y_PAD * 2),
 }))
 
@@ -55,7 +56,7 @@ export function HeroPathway() {
         animate={reduce ? undefined : { opacity: 1 }}
         transition={reduce ? undefined : { duration: 0.5, delay: 0.5, ease: EASE }}
       >
-        The Pathway
+        The pathway · Index 05
       </motion.p>
 
       {/* ── Desktop: drawn curve with waypoints ── */}
@@ -116,25 +117,17 @@ export function HeroPathway() {
             >
               <Link
                 href={program.to}
-                className="group flex items-baseline justify-between gap-5"
+                className="group block"
                 style={{ '--pc': program.color } as CSSProperties}
               >
-                <span>
-                  <span
-                    className="block text-[1.625rem] xl:text-[1.75rem] text-anthracite italic leading-none group-hover:text-[var(--pc)] transition-colors duration-150"
-                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
-                  >
-                    {program.name}
-                  </span>
-                  <span
-                    className="block text-[9.5px] text-anthracite/78 uppercase tracking-[0.13em] mt-2"
-                    style={{ fontFamily: 'var(--font-body)' }}
-                  >
-                    {program.tag}
-                  </span>
+                <span
+                  className="block text-[1.5rem] xl:text-[1.625rem] text-anthracite italic leading-none group-hover:text-[var(--pc)] transition-colors duration-150 [text-wrap:balance]"
+                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
+                >
+                  {program.name}
                 </span>
                 <span
-                  className="text-[10px] text-anthracite/78 uppercase tracking-[0.13em] whitespace-nowrap group-hover:text-anthracite transition-colors duration-150"
+                  className="block text-[9.5px] text-anthracite/78 uppercase tracking-[0.13em] mt-2 group-hover:text-anthracite transition-colors duration-150"
                   style={{ fontFamily: 'var(--font-body)' }}
                 >
                   {program.audience}
