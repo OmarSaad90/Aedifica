@@ -11,6 +11,8 @@ import {
   Presentation,
   Lightning,
   ArrowsClockwise,
+  CalendarBlank,
+  Sun,
   Tent,
   Handshake,
   Notebook,
@@ -34,10 +36,12 @@ const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
 const INFO_ROWS = [
-  ['Audience', 'Middle-school learners, grades 6–8'],
+  ['Status', 'Delivered, two years, as Building Bridges'],
+  ['Audience', 'Middle-school scholars, grades 6–8'],
   ['Format', 'School-year modules · summer STEM camps'],
   ['Setting', 'Schools and community organizations'],
-  ['Cost to learners', 'None, funded through institutional partners'],
+  ['Safety', 'Background-checked staff and FERPA-aligned data practices; full policy published before launch'],
+  ['Cost to scholars', 'None, funded through institutional partners'],
 ] as const
 
 const MINI_LIST = [
@@ -58,6 +62,8 @@ const SESSION_ACTIVITIES: { Icon: Icon; title: string; body: string }[] = [
 const RUN_MODELS: { Icon: Icon; title: string; body: string }[] = [
   { Icon: Lightning, title: 'Single workshop', body: 'A one-session spark for an event, a club, or a class period.' },
   { Icon: ArrowsClockwise, title: 'Multi-session series', body: 'A recurring after-school or in-school series that builds over weeks.' },
+  { Icon: CalendarBlank, title: 'Semester course', body: 'A full-term course inside the school day, scoped to your master schedule.' },
+  { Icon: Sun, title: 'Vacation & holiday intensive', body: 'A concentrated build across a school break: winter, spring, or summer.' },
   { Icon: Tent, title: 'Summer camp module', body: 'A multi-day or multi-week camp model with a culminating showcase.' },
   { Icon: Handshake, title: 'Partner-funded enrichment', body: 'A sponsored program delivered with a community or funding partner, including models that keep it free or low-cost for the families who need it most.' },
 ]
@@ -417,7 +423,7 @@ export function Explore() {
               initial={reduce ? undefined : { opacity: 0, y: 14 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={reduce ? undefined : { duration: 0.5, delay: 0.38, ease: EASE }}>
-              {(['Grades 6–8', 'Schools & community organizations', 'No cost to learners'] as const).map((item, i) => (
+              {(['Grades 6–8', 'Schools & community organizations', 'No cost to scholars'] as const).map((item, i) => (
                 <span
                   key={item}
                   className="text-[13px] text-white/90 tracking-[-0.01em]"
@@ -445,9 +451,20 @@ export function Explore() {
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.55, ease: EASE }}>
                 Explore is where the pathway begins: career awareness and hands-on discovery in the built
-                environment for middle-school learners. Students meet the professionals who plan, manage,
+                environment for middle-school scholars. Students meet the professionals who plan, manage,
                 and deliver the places they live in, and discover that those careers are respected,
                 achievable, and theirs to claim.
+              </motion.p>
+              <motion.p
+                className="text-[14.5px] text-anthracite/72 leading-[1.72] max-w-[62ch] mb-6"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 16 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
+                Delivery is community-based and school-friendly, built on the model proven through the
+                Bridging Brilliance STEM program at Hillside Innovation Academy: a twelve-week intensive
+                with twenty-one students, documented as an Aedifica delivery foundation.
               </motion.p>
               <motion.p
                 className="text-[14.5px] text-anthracite/72 leading-[1.72] max-w-[62ch] mb-10"
@@ -455,10 +472,14 @@ export function Explore() {
                 initial={reduce ? undefined : { opacity: 0, y: 16 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
-                Delivery is community-based and school-friendly, built on the model proven through the
-                Bridging Brilliance STEM program at Hillside Innovation Academy: a ten-week intensive with
-                twenty-one students, documented as an Aedifica delivery foundation.
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.14, ease: EASE }}>
+                <strong className="text-anthracite font-medium">This is not a second STEM class.</strong> If
+                your school already has strong STEM, Explore adds the part that STEM programs rarely reach:
+                engineering and construction practice. That gap isn&rsquo;t a reflection on your teachers;
+                engineering practice sits outside most certification routes and teacher-preparation
+                programs, because it&rsquo;s learned on projects rather than in coursework. Aedifica
+                instructors are working construction-management and engineering professionals, so students
+                learn the work from people who do it.
               </motion.p>
 
               {INFO_ROWS.map(([label, value], i) => (
@@ -566,13 +587,19 @@ export function Explore() {
               so this header doesn't read as the same block reused down the page. */}
           <div className="lg:grid lg:grid-cols-[1.4fr_1fr] lg:gap-16 xl:gap-20 lg:items-start mb-10 lg:mb-12">
             <motion.p
-              className="text-[14.5px] text-anthracite/72 leading-[1.7] mt-6 lg:mt-2 max-w-[60ch] lg:order-1"
+              className="text-[14.5px] text-anthracite/72 leading-[1.7] mt-6 lg:mt-2 max-w-[62ch] lg:order-1"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 16 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.5, delay: 0.1, ease: EASE }}>
-              Explore adapts to your setting and your calendar, offered as a single spark or a sustained series.
+              Explore is scoped with you, not delivered off a shelf. Content, delivery mode, and calendar
+              are set by what your school actually has: a semester course, an add-on to an existing class,
+              an after-school block, or a vacation or holiday intensive. The two curricula below are the
+              same program in two shapes. Bridging Brilliance ran as a twelve-week in-school intensive, and
+              Summer STEM Camps carries the same engineering thread across a school break. Content is also
+              tuned to how a particular cohort learns: reading level, language supports, hands-on ratio,
+              and pacing all move without changing the standards the program hits.
             </motion.p>
             <div className="lg:order-2 lg:text-right">
               <motion.div
@@ -598,33 +625,34 @@ export function Explore() {
           </div>
 
           {/* Delivery models scale up in commitment left to right, so the marker grows
-              with them instead of four identical icon cards. */}
-          <div className="hidden lg:grid lg:grid-cols-4 lg:items-end gap-x-10 mb-3">
+              with them instead of six identical icon cards. Full single-row scale reads
+              cleanly only at xl; lg falls back to a plain 3-up grid. */}
+          <div className="hidden xl:grid xl:grid-cols-6 xl:items-end gap-x-8 mb-3">
             {RUN_MODELS.map(({ title }, i) => (
               <span
                 key={title}
-                className={`rotate-45 bg-datum ${['w-2 h-2', 'w-2.5 h-2.5', 'w-3 h-3', 'w-3.5 h-3.5'][i]}`}
+                className={`rotate-45 bg-datum ${['w-1.5 h-1.5', 'w-2 h-2', 'w-2.5 h-2.5', 'w-3 h-3', 'w-3.5 h-3.5', 'w-4 h-4'][i]}`}
                 aria-hidden="true"
               />
             ))}
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 divide-sediment/20 border-t border-sediment/20 pt-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-x-8 divide-y sm:divide-y-0 divide-sediment/20 border-t border-sediment/20 pt-1">
             {RUN_MODELS.map(({ title, body }, i) => (
               <motion.div
                 key={title}
-                className={`py-6 ${i > 0 ? 'lg:pl-8 xl:pl-10' : ''} ${i < 3 ? 'lg:pr-8 xl:pr-10 lg:border-r lg:border-sediment/20' : ''}`}
+                className="py-6"
                 initial={reduce ? undefined : { opacity: 0, y: 16 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.42, delay: i * 0.07, ease: EASE }}>
+                transition={reduce ? undefined : { duration: 0.42, delay: i * 0.06, ease: EASE }}>
                 <p className="text-[1rem] text-anthracite font-medium tracking-[-0.01em] mb-2.5" style={{ fontFamily: 'var(--font-body)' }}>{title}</p>
                 <p className="text-[13px] text-anthracite/70 leading-[1.6]" style={{ fontFamily: 'var(--font-body)' }}>{body}</p>
               </motion.div>
             ))}
           </div>
-          <div className="hidden lg:grid lg:grid-cols-4 gap-x-10 mt-3">
+          <div className="hidden xl:grid xl:grid-cols-6 gap-x-8 mt-3">
             <p className="text-[10.5px] uppercase tracking-[0.12em] text-anthracite/50" style={{ fontFamily: 'var(--font-body)' }}>Lightest touch</p>
-            <span aria-hidden="true" /><span aria-hidden="true" />
+            <span aria-hidden="true" /><span aria-hidden="true" /><span aria-hidden="true" /><span aria-hidden="true" />
             <p className="text-[10.5px] uppercase tracking-[0.12em] text-anthracite/50 text-right" style={{ fontFamily: 'var(--font-body)' }}>Deepest partnership</p>
           </div>
         </div>
@@ -724,6 +752,33 @@ export function Explore() {
       {/* ── Curriculum shells ── bg-snow */}
       <section className="bg-snow py-14 lg:py-20 print:py-0" aria-labelledby="curriculum-h2" id="curriculum">
         <div className="max-w-7xl mx-auto px-6">
+
+          <motion.div
+            className="border border-anthracite/15 px-6 py-6 lg:px-8 lg:py-7 mb-12 lg:mb-14 print:hidden"
+            initial={reduce ? undefined : { opacity: 0, y: 16 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
+            <p className="text-[10.5px] uppercase tracking-[0.16em] text-datum mb-4 select-none" style={{ fontFamily: 'var(--font-body)' }}>These are sample curricula</p>
+            <div className="space-y-3 max-w-[74ch]">
+              <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
+                <strong className="text-anthracite font-medium">What you see below are samples, not the catalogue.</strong> They
+                are complete, real curricula we have designed and can run, but they exist to show you how we build, not to define what you get.
+              </p>
+              <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
+                <strong className="text-anthracite font-medium">Where they come from.</strong> Bridging
+                Brilliance, Engineering the Hudson, was delivered at Hillside Innovation Academy with
+                twenty-one students, and is documented in{' '}
+                <Link href="/impact" className="text-datum hover:underline underline-offset-2">Impact &amp; accountability</Link>.
+                Summer STEM Camps is an Aedifica camp model designed for grades 6&ndash;12, designed and not yet delivered.
+              </p>
+              <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
+                <strong className="text-anthracite font-medium">We build to order.</strong> Content, sequence, delivery mode, and calendar
+                are scoped to a partner&rsquo;s requirements. If neither sample fits your school, we write the one that does, and the standards
+                alignment holds either way.
+              </p>
+            </div>
+          </motion.div>
 
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10 lg:mb-12 print:hidden">
             <div>
@@ -856,7 +911,7 @@ export function Explore() {
                 ]} />
 
               <InstructionalApproach id="bb-approach" eyebrow="Instructional model" title="How the program is taught"
-                desc="Bridging Brilliance runs as a studio: short science, math, and ELA mini-lessons followed by extended time to design, build, test, and revise, with structures that keep every middle-school learner engaged and supported."
+                desc="Bridging Brilliance runs as a studio: short science, math, and ELA mini-lessons followed by extended time to design, build, test, and revise, with structures that keep every middle-school scholar engaged and supported."
                 cells={BB_APPROACH} />
 
               <CurriculumFooter
@@ -976,8 +1031,65 @@ export function Explore() {
         </div>
       </section>
 
-      {/* ── CTA ── bg-bone wrapper, bg-datum inner ── */}
-      <section className="bg-bone pt-10 lg:pt-16 pb-0 print:hidden" aria-label="Bring Explore to your school">
+      {/* ── What it takes to run it ── bg-bone */}
+      <section className="bg-bone py-14 lg:py-20 print:hidden" aria-label="What it takes to run it">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-[46rem] mb-10 lg:mb-12">
+            <motion.div
+              className="flex items-center gap-3 mb-5"
+              initial={reduce ? undefined : { opacity: 0 }}
+              whileInView={reduce ? undefined : { opacity: 1 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+              <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
+              <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>What it takes to run it</p>
+            </motion.div>
+            <motion.h2
+              className="text-[1.875rem] lg:text-[2.5rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic mb-5 [text-wrap:balance]"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+              initial={reduce ? undefined : { opacity: 0, y: 22 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
+              What we need from you, stated plainly.
+            </motion.h2>
+            <motion.p
+              className="text-[14.5px] text-anthracite/72 leading-[1.7] max-w-[62ch]"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 16 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
+              Before anyone evaluates curriculum, they need to know what this costs in schedule, staff
+              time, and space. Here is the operating footprint.
+            </motion.p>
+          </div>
+
+          {[
+            ['Schedule footprint', 'Flexible, single workshop through semester course; see "Ways to run it" above. Bridging Brilliance ran twelve weeks inside the school week.'],
+            ['Who teaches', 'Aedifica instructors, working construction-management and engineering professionals, with your teacher of record present.'],
+            ['Cohort size', 'Minimum 10, maximum 25. Bridging Brilliance ran with twenty-one students.'],
+            ['Your staff commitment', 'Scoped with your team before the cohort starts, and published here once confirmed.'],
+            ['Room & materials', 'The partner provides the room. Aedifica brings all materials: kits, consumables, and testing equipment.'],
+            ['Lead time', 'Four weeks from signed agreement to first session. The programs are built and ready to run.'],
+            ['Pilot option', 'Single-cohort pilots are available for partners who want to test the model before a full commitment.'],
+          ].map(([label, value], i) => (
+            <motion.div
+              key={label}
+              className="grid grid-cols-1 sm:grid-cols-[220px_1fr] gap-2 sm:gap-8 py-4 border-t border-sediment/20 last:border-b"
+              initial={reduce ? undefined : { opacity: 0, y: 12 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.4, delay: Math.min(i * 0.05, 0.3), ease: EASE }}>
+              <p className="text-[12.5px] uppercase tracking-[0.13em] text-datum pt-0.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
+              <p className="text-[13.5px] text-anthracite/80 leading-[1.55] max-w-[58ch]" style={{ fontFamily: 'var(--font-body)' }}>{value}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── CTA ── bg-snow wrapper, bg-datum inner ── */}
+      <section className="bg-snow pt-10 lg:pt-16 pb-0 print:hidden" aria-label="Bring Explore to your school">
         <div className="max-w-[1100px] mx-auto px-6">
           <motion.div
             className="bg-datum px-10 pt-14 pb-12 lg:px-16 lg:pt-16 lg:pb-14 text-center rounded-t-[2rem]"
@@ -1008,7 +1120,9 @@ export function Explore() {
             </div>
 
             <p className="text-[12.5px] text-white leading-[1.65] max-w-[56ch] mx-auto">
-              Programs are delivered with appropriate supervision and student-privacy practices aligned to FERPA.
+              Explore is designed to run inside a real school week, with real students, real materials,
+              and a real showcase at the end. Programs are delivered by staff with appropriate supervision
+              and student-privacy practices aligned to FERPA.
             </p>
 
           </motion.div>

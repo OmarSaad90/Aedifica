@@ -39,7 +39,7 @@ export function TheGap() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, ease: EASE }}
             >
-              New Jersey has the projects. It doesn&rsquo;t yet have the people to run them.
+              We build the builders New Jersey is <span className="text-datum-light">counting on.</span>
             </motion.h2>
 
             <motion.p
@@ -50,38 +50,33 @@ export function TheGap() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.5, delay: 0.07, ease: EASE }}
             >
-              A generational wave of infrastructure investment is arriving: transportation, airport
-              expansion, resiliency, electrification, and public works across New Jersey and the New York
-              metro region. Those projects will need more than engineers and tradespeople. They will need{' '}
-              <span className="text-white/85">construction managers</span>: the coordinators, estimators,
-              schedulers, document-control professionals, safety leaders, and field supervisors who turn
-              funding into finished work.
+              The construction-management workforce is aging out faster than it is being replaced. The
+              curriculum pipeline still treats industry as an afterthought, and a growing population of
+              capable, non-traditional scholars remains outside pathways designed for eighteen-year-olds.
             </motion.p>
 
             <motion.p
-              className="text-[15.5px] text-white/65 leading-[1.72] max-w-[68ch] mb-5"
+              className="text-[15.5px] text-white/65 leading-[1.72] max-w-[68ch] mb-8"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 20 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.5, delay: 0.13, ease: EASE }}
             >
-              That supervisory workforce is aging out faster than it is being replaced, while the
-              curriculum pipeline too often treats industry as an afterthought, and a growing population
-              of capable, non-traditional learners remains outside pathways designed for eighteen-year-olds.
+              Aedifica closes that gap. We build the missing pathway: from early STEM exposure to
+              credentialed, employer-connected careers, designed from the jobsite backward, measured
+              honestly, and connected to real advancement.
             </motion.p>
 
             <motion.p
-              className="text-[15.5px] text-white/65 leading-[1.72] max-w-[68ch]"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={reduce ? undefined : { opacity: 0, y: 20 }}
+              className="text-[1.0625rem] text-white/80 italic leading-[1.4]"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
+              initial={reduce ? undefined : { opacity: 0, y: 14 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.5, delay: 0.19, ease: EASE }}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.24, ease: EASE }}
             >
-              Aedifica closes that gap. We design and deliver construction-management
-              education-to-workforce pathways for schools, workforce partners, and employers, built from
-              the jobsite backward, measured honestly, and connected to real advancement.
+              From foundations to futures.
             </motion.p>
           </div>
 

@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Aedifica — From Foundations to Futures. Construction-Management Workforce Pathways for New Jersey</title>
-<meta name="description" content="Aedifica designs and delivers construction-management education-to-workforce pathways for New Jersey and the New York metro — moving learners from exposure to skills, from skills to credentials, and from credentials to opportunity. Earth. Engineers. Education." />
+<meta name="description" content="Aedifica designs and delivers construction-management education-to-workforce pathways for New Jersey and the New York metro — moving scholars from exposure to skills, from skills to credentials, and from credentials to opportunity. Earth. Engineers. Education." />
 <link rel="canonical" href="https://edfca.com/" />
 <meta property="og:title" content="Aedifica — From foundations to futures." />
 <meta property="og:description" content="Construction-management workforce pathways for New Jersey: Explore, Pathway, Launch, Rebuild, and the Talent Pipeline — from early STEM exposure to credentialed, employer-connected careers." />
@@ -17,6 +17,9 @@
 <meta name="twitter:description" content="Construction-management workforce pathways for New Jersey: Explore, Pathway, Launch, Rebuild, and the Talent Pipeline." />
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#F1EDE9" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='10' fill='%23F1EDE9'/><path d='M32 13 L48 51 H40.5 L37 42.5 H27 L23.5 51 H16 Z M29.4 36.2 H34.6 L32 29.6 Z' fill='%23894B5D'/></svg>" />
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -25,7 +28,7 @@
   "alternateName": "EDFCA",
   "url": "https://edfca.com/",
   "slogan": "From foundations to futures.",
-  "description": "Aedifica designs and delivers construction-management career pathways for schools, workforce partners, employers, and overlooked learners across New Jersey and the New York metro region.",
+  "description": "Aedifica designs and delivers construction-management career pathways for schools, workforce partners, employers, and overlooked scholars across New Jersey and the New York metro region.",
   "areaServed": "New Jersey / New York metro region",
   "email": "info@edfca.com",
   "founder": [
@@ -38,11 +41,11 @@
     "@type": "OfferCatalog",
     "name": "Aedifica programs",
     "itemListElement": [
-      { "@type": "Course", "name": "Aedifica Explore", "description": "Career awareness and hands-on discovery in the built environment for middle-school learners.", "provider": { "@type": "EducationalOrganization", "name": "Aedifica" } },
+      { "@type": "Course", "name": "Aedifica Explore", "description": "Career awareness and hands-on discovery in the built environment for middle-school scholars.", "provider": { "@type": "EducationalOrganization", "name": "Aedifica" } },
       { "@type": "Course", "name": "Aedifica Pathway", "description": "A construction-management curriculum pathway for high schools and districts.", "provider": { "@type": "EducationalOrganization", "name": "Aedifica" } },
-      { "@type": "Course", "name": "Aedifica Rebuild", "description": "A 12- or 24-week adult bridge cohort into construction-management-track roles.", "provider": { "@type": "EducationalOrganization", "name": "Aedifica" } },
-      { "@type": "Service", "name": "Aedifica Launch", "description": "Institutional pathway design and implementation for workforce partners and employers.", "provider": { "@type": "EducationalOrganization", "name": "Aedifica" } },
-      { "@type": "Service", "name": "Aedifica Talent Pipeline", "description": "An employer-facing channel connecting credentialed program completers to interview commitments and apprenticeship articulation.", "provider": { "@type": "EducationalOrganization", "name": "Aedifica" } }
+      { "@type": "Course", "name": "Aedifica Rebuild", "description": "An adult bridge cohort into construction-management-track roles, scoped to partner capacity and funding cycle. Curriculum designed; first cohort not yet delivered.", "provider": { "@type": "EducationalOrganization", "name": "Aedifica" } },
+      { "@type": "Service", "name": "Aedifica Launch", "description": "Institutional pathway design and implementation for workforce partners and employers. Curriculum complete; no cohort delivered to date.", "provider": { "@type": "EducationalOrganization", "name": "Aedifica" } },
+      { "@type": "Service", "name": "Aedifica Talent Pipeline", "description": "An employer-facing referral channel designed to connect credentialed program completers to interview commitments and apprenticeship articulation. In formation; not yet operating.", "provider": { "@type": "EducationalOrganization", "name": "Aedifica" } }
     ]
   }
 }
@@ -75,12 +78,11 @@
   --pathway: rgb(133, 159, 148);            /* Pathway · green */
   --launch: rgb(205, 185, 125);             /* Launch · yellow */
   --rebuild: rgb(160, 131, 143);            /* Rebuild · light burgundy */
-  --pipeline: rgb(198, 170, 175);             /* Talent Pipeline · mauve */
+  --pipeline: rgb(198, 170, 175);             /* Talent Pipeline */
 
   /* Auxiliary palette — rose accent layer (second information layer) */
   --wine: rgb(137, 75, 93);                 /* wine */
   --terracotta: rgb(211, 146, 125);         /* terracotta */
-  --mauve: rgb(198, 170, 175);              /* mauve */
   --blush: rgb(226, 193, 190);              /* blush */
 
   /* Supporting palette — neutrals */
@@ -126,7 +128,7 @@ p{margin:0 0 18px;}
 .skip-link:focus{left:12px; top:12px;}
 
 /* focus */
-:focus-visible{outline:2px solid var(--explore); outline-offset:3px;}
+:focus-visible{outline:2px solid var(--wine); outline-offset:3px;}
 
 /* program spec strip — signature */
 .spec-strip{display:flex; height:6px; width:100%;}
@@ -159,8 +161,11 @@ header.site{position:sticky; top:0; z-index:80; background:rgba(241,237,233,0.88
 .hero .wrap{position:relative;}
 .hero-top{display:grid; grid-template-columns:1.28fr 0.72fr; gap:54px; align-items:center;}
 .hero .eyebrow{margin-bottom:26px; display:block;}
-.hero h1{font-size:clamp(2.6rem,6.2vw,4.7rem); max-width:15ch;}
+.hero h1{font-size:clamp(2.7rem,6.4vw,4.9rem); max-width:15ch;}
 .hero h1 em{font-style:normal; color:var(--wine);}
+.hero .sub strong{color:var(--wine); font-weight:600;}
+.lead em{font-style:normal; color:var(--wine);}
+.tagline{font-family:var(--font-mono); font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--wine); margin:26px 0 0;}
 .hero .sub{font-family:var(--font-text); font-size:clamp(1.05rem,1.7vw,1.3rem); color:var(--anthracite); max-width:52ch; margin:28px 0 0; line-height:1.5;}
 .hero .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-top:34px;}
 .hero-index{background:var(--surface); border:1px solid var(--rule); border-radius:5px; padding:8px 24px 14px; box-shadow:0 24px 50px -34px rgba(68,64,65,.4);}
@@ -188,17 +193,17 @@ section{padding:82px 0;}
 /* accent system — auxiliary palette as the second information layer */
 section{--acc:var(--terracotta);}
 #why{--acc:var(--wine);}
-#approach{--acc:var(--mauve);}
+#approach{--acc:var(--rule);}
 #programs{--acc:var(--blush);}
 #compare{--acc:var(--terracotta);}
 #experience{--acc:var(--wine);}
-#impact{--acc:var(--mauve);}
+#impact{--acc:var(--rule);}
 #research{--acc:var(--wine);}
 #about{--acc:var(--terracotta);}
-#principles{--acc:var(--mauve);}
+#principles{--acc:var(--rule);}
 #serve{--acc:var(--blush);}
 #access{--acc:var(--terracotta);}
-#faq{--acc:var(--mauve);}
+#faq{--acc:var(--rule);}
 #partner{--acc:var(--wine);}
 #contact{--acc:var(--terracotta);}
 
@@ -231,11 +236,11 @@ section{--acc:var(--terracotta);}
 .trio .cr p{margin:0; font-family:var(--font-accessible); font-size:.98rem; color:var(--anthracite);}
 .trio .cr.c1{border-color:var(--wine);}
 .trio .cr.c2{border-color:var(--terracotta);}
-.trio .cr.c3{border-color:var(--mauve);}
+.trio .cr.c3{border-color:var(--rule);}
 
 /* program cards */
 .cards{display:grid; grid-template-columns:repeat(2,1fr); gap:22px; margin-top:38px;}
-.card{--c:var(--explore); background:var(--surface); border:1px solid var(--rule); border-radius:5px; overflow:hidden; display:flex; flex-direction:column; transition:transform .18s, box-shadow .18s;}
+.card{--c:var(--rule); background:var(--surface); border:1px solid var(--rule); border-radius:5px; overflow:hidden; display:flex; flex-direction:column; transition:transform .18s, box-shadow .18s;}
 .card:hover{transform:translateY(-3px); box-shadow:0 26px 44px -32px rgba(68,64,65,.45);}
 .card .chead{background:var(--c); padding:22px 24px 18px;}
 .card .chead .ct{font-family:var(--font-mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; display:block; margin-bottom:8px; color:var(--on);}
@@ -272,6 +277,14 @@ section{--acc:var(--terracotta);}
 .cmp tr.launch{--c:var(--launch);}
 .cmp tr.rebuild{--c:var(--rebuild);}
 .cmp tr.pipeline{--c:var(--pipeline);}
+/* comparison-table CTA takes the program colour (--c is set per row above) */
+.cmp .btn{background:var(--c); border-color:var(--c); color:var(--on-c, var(--anthracite));}
+.cmp tr.explore .btn{--on-c:var(--paper);}
+.cmp tr.pathway .btn{--on-c:var(--anthracite);}
+.cmp tr.launch .btn{--on-c:var(--anthracite);}
+.cmp tr.rebuild .btn{--on-c:var(--anthracite);}
+.cmp tr.pipeline .btn{--on-c:var(--anthracite);}
+.cmp .btn:hover{background:var(--anthracite); border-color:var(--anthracite); color:var(--paper);}
 .cmp .cta-cell .btn{background:var(--blush); border-color:var(--blush); color:var(--anthracite);}
 .cmp .cta-cell .btn:hover{background:var(--wine); border-color:var(--wine); color:var(--paper);}
 
@@ -295,6 +308,10 @@ section{--acc:var(--terracotta);}
 .prog-note b{color:var(--anthracite);}
 
 /* curriculum shells (progressive disclosure) */
+.sample-note{border:1px solid var(--rule); border-left:4px solid var(--wine); background:var(--surface); padding:20px 22px; margin:44px 0 6px; border-radius:3px;}
+.sample-note .sn-k{font-family:var(--font-mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--wine); display:block; margin-bottom:8px;}
+.sample-note p{font-family:var(--font-accessible); font-size:.97rem; line-height:1.6; color:var(--anthracite); margin:0 0 10px; max-width:74ch;}
+.sample-note p:last-child{margin-bottom:0;}
 .cur-tools{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:44px 0 14px;}
 .cur-tools .tag{margin-right:auto;}
 .tool-btn{font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; background:var(--surface); border:1px solid var(--rule); border-radius:2px; color:var(--anthracite); padding:11px 14px; min-height:44px; cursor:pointer; transition:border-color .15s;}
@@ -365,10 +382,10 @@ details.cur-wrap[open] > summary .marker::after{content:"\2013";}
 .chip.sci{border-left-color:var(--wine); background:rgba(137,75,93,.09);}
 .chip.math{border-left-color:var(--terracotta); background:rgba(211,146,125,.14);}
 .chip.ela{border-left-color:var(--clay); background:rgba(125,100,97,.09);}
-.chip.des{border-left-color:var(--mauve); background:rgba(198,170,175,.18);}
+.chip.des{border-left-color:var(--rule); background:rgba(219,211,207,.30);}
 .chip.car{border-left-color:var(--blush); background:rgba(226,193,190,.22);}
 .legkey .dot.k-sci{background:var(--wine);} .legkey .dot.k-math{background:var(--terracotta);}
-.legkey .dot.k-ela{background:var(--clay);} .legkey .dot.k-des{background:var(--mauve);}
+.legkey .dot.k-ela{background:var(--clay);} .legkey .dot.k-des{background:var(--rule);}
 .legkey .dot.k-car{background:var(--blush);}
 
 /* matrices */
@@ -413,7 +430,7 @@ details.cur-wrap[open] > summary .marker::after{content:"\2013";}
 .journey .step .jt{font-family:var(--font-sans); font-weight:600; font-size:.99rem; color:var(--anthracite);}
 .journey .step p{font-family:var(--font-accessible); font-size:.86rem; color:var(--anthracite); margin:6px 0 0;}
 
-/* experience — learner voices */
+/* experience — scholar voices */
 .voices{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:38px;}
 .voice{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:26px 28px;}
 .voice blockquote{margin:0; font-family:var(--font-text); font-size:1.04rem; color:var(--anthracite); line-height:1.6;}
@@ -431,7 +448,7 @@ details.cur-wrap[open] > summary .marker::after{content:"\2013";}
 .metric-table .mname{font-family:var(--font-sans); font-weight:600; color:var(--anthracite); border-left:4px solid var(--ms);}
 .metric-table tr.m1{--ms:var(--wine);}
 .metric-table tr.m2{--ms:var(--terracotta);}
-.metric-table tr.m3{--ms:var(--mauve);}
+.metric-table tr.m3{--ms:var(--rule);}
 .metric-table tr.m4{--ms:var(--blush);}
 
 /* ===================== RESEARCH — flagship editorial section ===================== */
@@ -457,7 +474,7 @@ details.cur-wrap[open] > summary .marker::after{content:"\2013";}
 .bar-row .bv{font-family:var(--font-mono); font-size:11px; color:var(--anthracite);}
 .bar-row.demand{--bs:var(--wine);}
 .bar-row.pipeline-supply{--bs:var(--terracotta);}
-.bar-row.enrolled{--bs:var(--mauve);}
+.bar-row.enrolled{--bs:var(--rule);}
 .bar-row.credentialed{--bs:var(--blush);}
 .exhibit .ex-src{padding:12px 22px 16px; border-top:1px solid var(--rule); font-family:var(--font-accessible); font-size:.82rem; color:var(--ink-soft);}
 .exhibit .ex-src b{color:var(--anthracite);}
@@ -498,7 +515,7 @@ details.cur-wrap[open] > summary .marker::after{content:"\2013";}
 .founders .fp.f1{--fc:var(--wine);}
 .founders .fp.f2{--fc:var(--terracotta);}
 .founders .fp.f3{--fc:var(--clay);}
-.founders .fp.f4{--fc:var(--mauve);}
+.founders .fp.f4{--fc:var(--ink-soft);}
 .founders .fp h3{font-family:var(--font-sans); font-size:1.05rem; color:var(--anthracite); margin:0 0 6px;}
 .founders .fp .fcred{font-family:var(--font-mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); display:block; margin-bottom:12px;}
 .founders .fp p{font-family:var(--font-accessible); font-size:.88rem; line-height:1.62; color:var(--anthracite); margin:0 0 10px;}
@@ -545,8 +562,8 @@ figure.media figcaption b{color:var(--anthracite); font-weight:700;}
 .serve-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:36px;}
 .serve-col{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:34px 32px; position:relative;}
 .serve-col::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px;}
-.serve-col.partners::before{background:var(--launch);}
-.serve-col.learners::before{background:var(--explore);}
+.serve-col.partners::before{background:var(--wine);}
+.serve-col.learners::before{background:var(--terracotta);}
 .serve-col h3{font-size:1.4rem; margin-bottom:6px;}
 .serve-col .tag{display:block; margin-bottom:18px;}
 .serve-col ul{list-style:none; margin:0; padding:0; columns:2; column-gap:24px;}
@@ -586,7 +603,7 @@ form.contact input[type=text], form.contact input[type=email], form.contact sele
 form.contact textarea{min-height:130px; resize:vertical;}
 form.contact .consent{display:flex; gap:10px; align-items:flex-start; font-family:var(--font-accessible); font-size:.88rem; color:var(--ink-soft); margin:6px 0 18px;}
 form.contact .consent input{width:18px; height:18px; margin-top:2px;}
-.form-status{display:none; margin-top:14px; padding:14px 16px; border:1px solid var(--rule); border-left:4px solid var(--pathway); background:var(--paper); font-family:var(--font-accessible); font-size:.92rem;}
+.form-status{display:none; margin-top:14px; padding:14px 16px; border:1px solid var(--rule); border-left:4px solid var(--terracotta); background:var(--paper); font-family:var(--font-accessible); font-size:.92rem;}
 .form-status.show{display:block;}
 .form-status.err{border-left-color:var(--wine);}
 
@@ -756,8 +773,14 @@ html.js .vpage.active{display:block;}
           <a href="#pipeline" data-page="pipeline" role="menuitem">Talent Pipeline</a>
         </div>
       </div>
-      <a href="#experience" data-page="experience">Learner Experience</a>
-      <a href="#families" data-page="families">For Families</a>
+      <a href="#experience" data-page="experience">Scholar Experience</a>
+      <div class="nav-dropdown">
+        <a href="#families" class="nav-drop-toggle" data-page="families" aria-haspopup="true" aria-expanded="false">Who it's for <span class="caret" aria-hidden="true">&#9662;</span></a>
+        <div class="nav-drop-menu" role="menu" aria-label="Who it's for">
+          <a href="#families" data-page="families" role="menuitem">For Families</a>
+          <a href="#votech" data-page="votech" role="menuitem">For Vocational &amp; Trade Schools</a>
+        </div>
+      </div>
       <a href="#impact" data-page="impact">Impact</a>
       <a href="#research" data-page="research">Research</a>
       <a href="#about" data-page="about">About</a>
@@ -777,8 +800,8 @@ html.js .vpage.active{display:block;}
       <div class="hero-top">
         <div class="hero-text">
           <span class="tag eyebrow reveal">Earth. Engineers. Education.</span>
-          <h1 id="hero-h" class="reveal">We build the builders New&nbsp;Jersey is <em>counting on.</em></h1>
-          <p class="sub reveal">New Jersey is funding a generation of clean, resilient infrastructure — and facing a shortage of the construction managers who deliver it. Aedifica builds that missing pathway: from early STEM exposure to credentialed, employer-connected careers. From foundations to futures.</p>
+          <h1 id="hero-h" class="reveal">New&nbsp;Jersey is being rebuilt. <em>Its builders are not.</em></h1>
+          <p class="sub reveal">The rebuild is already funded: transportation, airport expansion, resiliency, electrification, and public works across New Jersey and the New York metro region. Those projects need more than engineers and tradespeople. They need <strong>construction managers</strong>: the coordinators, estimators, schedulers, document-control professionals, safety leaders, and field supervisors who turn funding into finished work.</p>
           <div class="cta-row reveal">
             <a href="#partner" class="btn">Partner with Aedifica</a>
             <a href="#compare" class="btn ghost">Compare the Programs</a>
@@ -795,14 +818,71 @@ html.js .vpage.active{display:block;}
       </div>
       <div class="proof reveal">
         <div><span class="n">$1B+</span><span class="l">delivered infrastructure behind our leadership</span></div>
-        <div><span class="n">Employer-validated</span><span class="l">capstone behind every credential</span></div>
+        <div><span class="n">Employer-validated</span><span class="l">capstone required before any credential</span></div>
         <div><span class="n">NJ-funded</span><span class="l">green &amp; apprenticeship priorities</span></div>
-        <div><span class="n">No cost to learners</span><span class="l">programs funded through institutional partners</span></div>
+        <div><span class="n">No cost to scholars</span><span class="l">programs funded through institutional partners</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ==================== § — The five programs (moved from Programs) ==================== -->
+  <!-- ===================== § 01 THE GAP ===================== -->
+  <section id="why" aria-labelledby="why-h">
+    <div class="wrap">
+      <div class="sectionmark reveal">§ 01 — Why Aedifica exists</div>
+      <div class="why-grid">
+        <h2 id="why-h" class="lead reveal">We build the builders New Jersey is <em>counting on.</em></h2>
+        <div class="why-body reveal">
+          <p>The construction-management workforce is aging out faster than it is being replaced. The curriculum pipeline still treats industry as an afterthought. And a growing population of capable, non-traditional scholars remains outside pathways designed for eighteen-year-olds.</p>
+          <p>Aedifica closes that gap. We build the missing pathway — from early STEM exposure to credentialed, employer-connected careers — designed from the jobsite backward, measured honestly, and connected to real advancement.</p>
+          <div class="pull">
+            <span class="tag">The premise</span>
+            <p>Talent is everywhere, even when opportunity is not. The durable workforce New Jersey needs will be built from the talent the system overlooked, not in spite of it.</p>
+          </div>
+          <p class="tagline">From foundations to futures.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== § 02 WHAT WE DO ===================== -->
+  <section id="whatwedo" aria-labelledby="whatwedo-h">
+    <div class="wrap">
+      <div class="sectionmark reveal">§ 02 — What we do</div>
+      <div class="why-grid">
+        <h2 id="whatwedo-h" class="lead reveal">Aedifica builds construction-management pathways — and <em>the people who walk them.</em></h2>
+        <div class="why-body reveal">
+          <p>We serve two sides of one gap, and both are first-class audiences: the institutions building the pathway, and the scholars walking it. We start with middle-school students discovering how the built world works, and continue through high-school tracks, institutional pathway design, and adult bridge cohorts for people re-entering the workforce. We work through four channels: school districts, workforce boards and county colleges, employers, and vocational and trade schools — where we add a construction-management layer to programs they already run.</p>
+          <p>We build it for people the traditional route never picked up: students from under-resourced schools, first-generation families, career changers, veterans, caregivers returning to work, and justice-impacted adults. Access is a design requirement here, not an outreach afterthought. Programs are free to scholars, funded through institutional partners, and taught by working professionals in construction management and engineering.</p>
+          <p>Scholars leave with the vocabulary of scope, schedule, cost, safety, and quality; a credential that articulates; and a capstone validated by people who run real projects. They also leave with something harder to report and just as deliberate: the confidence to hold their own in a room full of professionals, and a foothold in a field that has rarely made room for them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== § 03 OUR APPROACH ===================== -->
+  <section id="approach" class="band-surface" aria-labelledby="approach-h">
+    <div class="wrap">
+      <div class="sectionmark reveal">§ 03 — Our approach</div>
+      <h2 id="approach-h" class="lead reveal">One disciplined pathway: from exposure to opportunity.</h2>
+      <div class="flow reveal" role="img" aria-label="Pathway diagram: exposure leads to skills, skills to credentials, credentials to opportunity.">
+        <div><span class="s"><span class="dot" style="background:var(--explore)" aria-hidden="true"></span>Stage 01</span><span class="t">Exposure</span><p class="f">Career awareness and hands-on discovery in the built environment, beginning in middle school.</p></div>
+        <div><span class="s"><span class="dot" style="background:var(--pathway)" aria-hidden="true"></span>Stage 02</span><span class="t">Skills</span><p class="f">Construction-management thinking, technical fluency, and project literacy taught with classroom rigor.</p></div>
+        <div><span class="s"><span class="dot" style="background:var(--launch)" aria-hidden="true"></span>Stage 03</span><span class="t">Credentials</span><p class="f">Industry-recognized credentials anchored by an employer-validated capstone — every time.</p></div>
+        <div><span class="s"><span class="dot" style="background:var(--pipeline)" aria-hidden="true"></span>Stage 04</span><span class="t">Opportunity</span><p class="f">Interview commitments, apprenticeship articulation, and employer-connected placement.</p></div>
+      </div>
+      <div class="flow-note reveal">
+        <span class="dash" aria-hidden="true"></span>
+        <p>Each program serves one stage for one audience — and hands off to the next. Curriculum without that hand-off is a class. Aedifica is designed to build a pathway.</p>
+      </div>
+      <div class="trio">
+        <div class="cr c1 reveal"><span class="tag">Field-built</span><h3>Designed from the work, not the textbook</h3><p>Curriculum carries named employer validators who confirm what we teach matches the work New Jersey general contractors are doing today.</p></div>
+        <div class="cr c2 reveal"><span class="tag">Evidence-run</span><h3>Measured by outcomes, not hours</h3><p>Placement rate, credential attainment, wage at placement, and apprenticeship articulation — published with the same definitions, every cohort.</p></div>
+        <div class="cr c3 reveal"><span class="tag">Partner-shaped</span><h3>Built with institutions, not around them</h3><p>Recruitment, fiscal capacity, and role definition stay with the partners who already do them well. Aedifica owns curriculum, instruction, and measurement. Where a vocational or trade school already trains the craft, we add the construction-management layer above it rather than a competing program.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== § — Find your entry point ==================== -->
   <section id="home-programs" aria-labelledby="home-programs-h">
     <div class="wrap">
       <div class="sectionmark reveal">The five programs</div>
@@ -812,7 +892,7 @@ html.js .vpage.active{display:block;}
         <article class="card explore reveal">
           <div class="chead"><span class="ct">Program 01 · Middle school</span><h3>Aedifica Explore</h3></div>
           <div class="cbody">
-            <p>Career awareness and hands-on discovery in the built environment for middle-school learners — the earliest, widest door into the pathway. Students meet the professions that shape their communities and begin speaking the language of engineering.</p>
+            <p>Career awareness and hands-on discovery in the built environment for middle-school scholars — the earliest, widest door into the pathway. Students meet the professions that shape their communities and begin speaking the language of engineering.</p>
             <div class="cmeta"><span>Grades 6–8</span><span>School-year &amp; summer</span><span>Community-based delivery</span></div>
           </div>
           <a class="more" href="#explore">Explore the program <span class="arrow" aria-hidden="true">→</span></a>
@@ -834,10 +914,10 @@ html.js .vpage.active{display:block;}
           <a class="more" href="#launch">Explore the program <span class="arrow" aria-hidden="true">→</span></a>
         </article>
         <article class="card rebuild reveal">
-          <div class="chead"><span class="ct">Program 04 · Adult learners</span><h3>Aedifica Rebuild</h3></div>
+          <div class="chead"><span class="ct">Program 04 · Adult scholars</span><h3>Aedifica Rebuild</h3></div>
           <div class="cbody">
-            <p>A 12- or 24-week adult bridge cohort into construction-management-track roles — designed for overlooked talent: adults returning to work, changing industries, transitioning from military service, or rebuilding after justice involvement.</p>
-            <div class="cmeta"><span>12 or 24 weeks</span><span>Wraparound supports</span><span>Employer-validated capstone</span></div>
+            <p>An adult bridge cohort into construction-management-track roles, scoped to your calendar and funding cycle — designed for overlooked talent: adults returning to work, changing industries, transitioning from military service, or rebuilding after justice involvement.</p>
+            <div class="cmeta"><span>Flexible cohort length</span><span>Wraparound supports</span><span>Employer-validated capstone</span></div>
           </div>
           <a class="more" href="#rebuild">Explore the program <span class="arrow" aria-hidden="true">→</span></a>
         </article>
@@ -860,55 +940,12 @@ html.js .vpage.active{display:block;}
     </div>
   </section>
 
-  <!-- ===================== § 01 THE GAP ===================== -->
-  <section id="why" aria-labelledby="why-h">
-    <div class="wrap">
-      <div class="sectionmark reveal">§ 01 — Why Aedifica exists</div>
-      <div class="why-grid">
-        <h2 id="why-h" class="lead reveal">New Jersey has the projects. It doesn't yet have the people to run them.</h2>
-        <div class="why-body reveal">
-          <p>A generational wave of infrastructure investment is arriving — transportation, airport expansion, resiliency, electrification, and public works across New Jersey and the New York metro region. Those projects will need more than engineers and tradespeople. They will need <strong>construction managers</strong>: the coordinators, estimators, schedulers, document-control professionals, safety leaders, and field supervisors who turn funding into finished work.</p>
-          <p>That supervisory workforce is aging out faster than it is being replaced, while the curriculum pipeline too often treats industry as an afterthought — and a growing population of capable, non-traditional learners remains outside pathways designed for eighteen-year-olds.</p>
-          <p>Aedifica closes that gap. We design and deliver construction-management education-to-workforce pathways for schools, workforce partners, and employers — built from the jobsite backward, measured honestly, and connected to real advancement.</p>
-          <div class="pull">
-            <span class="tag">The premise</span>
-            <p>Talent is everywhere, even when opportunity is not. The durable workforce New Jersey needs will be built from the talent the system overlooked — not in spite of it.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== § 02 OUR APPROACH ===================== -->
-  <section id="approach" class="band-surface" aria-labelledby="approach-h">
-    <div class="wrap">
-      <div class="sectionmark reveal">§ 02 — Our approach</div>
-      <h2 id="approach-h" class="lead reveal">One disciplined pathway: from exposure to opportunity.</h2>
-      <div class="flow reveal" role="img" aria-label="Pathway diagram: exposure leads to skills, skills to credentials, credentials to opportunity.">
-        <div><span class="s"><span class="dot" style="background:var(--explore)" aria-hidden="true"></span>Stage 01</span><span class="t">Exposure</span><p class="f">Career awareness and hands-on discovery in the built environment, beginning in middle school.</p></div>
-        <div><span class="s"><span class="dot" style="background:var(--pathway)" aria-hidden="true"></span>Stage 02</span><span class="t">Skills</span><p class="f">Construction-management thinking, technical fluency, and project literacy taught with classroom rigor.</p></div>
-        <div><span class="s"><span class="dot" style="background:var(--launch)" aria-hidden="true"></span>Stage 03</span><span class="t">Credentials</span><p class="f">Industry-recognized credentials anchored by an employer-validated capstone — every time.</p></div>
-        <div><span class="s"><span class="dot" style="background:var(--pipeline)" aria-hidden="true"></span>Stage 04</span><span class="t">Opportunity</span><p class="f">Interview commitments, apprenticeship articulation, and employer-connected placement.</p></div>
-      </div>
-      <div class="flow-note reveal">
-        <span class="dash" aria-hidden="true"></span>
-        <p>Each program serves one stage for one audience — and hands off to the next. Curriculum without that hand-off is a class. Aedifica is designed to build a pathway.</p>
-      </div>
-      <div class="trio">
-        <div class="cr c1 reveal"><span class="tag">Field-built</span><h3>Designed from the jobsite backward</h3><p>Curriculum carries named employer validators who confirm what we teach matches the work New Jersey general contractors are doing today.</p></div>
-        <div class="cr c2 reveal"><span class="tag">Evidence-run</span><h3>Measured by outcomes, not hours</h3><p>Placement rate, credential attainment, wage at placement, and apprenticeship articulation — published with the same definitions, every cohort.</p></div>
-        <div class="cr c3 reveal"><span class="tag">Partner-shaped</span><h3>Built with institutions, not around them</h3><p>Recruitment, fiscal capacity, and role definition stay with the partners who already do them well. Aedifica owns curriculum, instruction, and measurement.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== § 03 PROGRAMS ===================== -->
   </div><!-- /page-home -->
 
   <div class="vpage" id="page-programs" data-page="programs" role="region" aria-label="Programs">
   <section id="programs" aria-labelledby="programs-h">
     <div class="wrap">
-      <div class="sectionmark reveal">§ 03 — Programs</div>
+      <div class="sectionmark reveal">§ 04 — Programs</div>
       <h2 id="programs-h" class="lead reveal">Five programs. One pathway.</h2>
       <div class="cmp-intro" id="compare">
         <span class="tag reveal">Side by side</span>
@@ -923,7 +960,7 @@ html.js .vpage.active{display:block;}
             <tbody>
               <tr class="explore">
                 <td class="offer" data-label="Program"><span class="oname">Explore</span><span class="ocode">EDF·01 · Purple channel</span></td>
-                <td data-label="Who it serves">Middle-school learners (grades 6–8) and the schools and community organizations that host them.</td>
+                <td data-label="Who it serves">Middle-school scholars (grades 6–8) and the schools and community organizations that host them.</td>
                 <td data-label="Format">School-year modules and summer intensives; hands-on, community-based.</td>
                 <td data-label="What it delivers">Career awareness, engineering vocabulary, and a documented spark — the first mile of the pathway.</td>
                 <td class="cta-cell" data-label="Next step"><a class="btn" href="#explore">See Explore</a></td>
@@ -944,8 +981,8 @@ html.js .vpage.active{display:block;}
               </tr>
               <tr class="rebuild">
                 <td class="offer" data-label="Program"><span class="oname">Rebuild</span><span class="ocode">EDF·04 · Light burgundy channel</span></td>
-                <td data-label="Who it serves">Adult learners — career changers, returning workers, veterans, and justice-impacted talent.</td>
-                <td data-label="Format">12- or 24-week bridge cohorts with wraparound supports and an employer-validated capstone.</td>
+                <td data-label="Who it serves">Adult scholars — career changers, returning workers, veterans, and justice-impacted talent.</td>
+                <td data-label="Format">Bridge cohorts scoped to partner capacity, with wraparound supports and an employer-validated capstone.</td>
                 <td data-label="What it delivers">Credentials, confidence, and a defined interview opportunity in a construction-management-track role.</td>
                 <td class="cta-cell" data-label="Next step"><a class="btn" href="#rebuild">See Rebuild</a></td>
               </tr>
@@ -969,23 +1006,25 @@ html.js .vpage.active{display:block;}
   <div class="vpage" id="page-explore" data-page="explore" role="region" aria-label="Aedifica Explore">
   <section id="explore" class="prog-section band-surface" style="--pc:var(--explore); --pon:var(--surface);" aria-labelledby="explore-h">
     <div class="wrap">
-      <div class="sectionmark reveal">§ 04 — Program · Explore</div>
+      <div class="sectionmark reveal">§ 05 — Program · Explore</div>
       <div class="prog-banner reveal">
         <span class="swatch" aria-hidden="true"></span>
         <div><div class="pname">Program 01 · Purple channel · rgb(102,103,171)</div><h2 id="explore-h">Aedifica Explore</h2></div>
       </div>
       <div class="prog-intro">
         <div class="col reveal">
-          <p>Explore is where the pathway begins: career awareness and hands-on discovery in the built environment for middle-school learners. Students meet the professionals who plan, manage, and deliver the places they live in — and discover that those careers are respected, achievable, and theirs to claim.</p>
-          <p>Delivery is community-based and school-friendly, built on the model proven through the Bridging Brilliance STEM program at Hillside Innovation Academy — a ten-week intensive with twenty-one students, documented as an Aedifica delivery foundation.</p>
+          <p>Explore is where the pathway begins: career awareness and hands-on discovery in the built environment for middle-school scholars. Students meet the professionals who plan, manage, and deliver the places they live in — and discover that those careers are respected, achievable, and theirs to claim.</p>
+          <p>Delivery is community-based and school-friendly, built on the model proven through the Bridging Brilliance STEM program at Hillside Innovation Academy — a twelve-week intensive with twenty-one students, documented as an Aedifica delivery foundation.</p>
+          <p><b>This is not a second STEM class.</b> If your school already has strong STEM, Explore adds the part that STEM programs rarely reach: engineering and construction practice. That gap isn't a reflection on your teachers — engineering practice sits outside most certification routes and teacher-preparation programs, because it's learned on projects rather than in coursework. Aedifica instructors are working construction-management and engineering professionals, so students learn the work from people who do it.</p>
         </div>
         <div class="col reveal">
           <div class="fieldlist">
-            <div><div class="k">Audience</div><div class="v">Middle-school learners, grades 6–8</div></div>
+            <div><div class="k">Status</div><div class="v"><b>Delivered</b> — two years, as Building Bridges</div></div>
+            <div><div class="k">Audience</div><div class="v">Middle-school scholars, grades 6–8</div></div>
             <div><div class="k">Format</div><div class="v">School-year modules · summer STEM camps</div></div>
             <div><div class="k">Setting</div><div class="v">Schools and community organizations</div></div>
             <div><div class="k">Safety</div><div class="v">[ADD: background-checked staff · supervision ratios · FERPA-aligned data practices]</div></div>
-            <div><div class="k">Cost to learners</div><div class="v">None — funded through institutional partners</div></div>
+            <div><div class="k">Cost to scholars</div><div class="v">None — funded through institutional partners</div></div>
           </div>
           <ul class="mini-list">
             <li>Hands-on builds, site thinking, and engineering vocabulary</li>
@@ -1011,10 +1050,12 @@ html.js .vpage.active{display:block;}
       <div class="reveal" style="margin-top:40px;">
         <span class="tag">Ways to run it</span>
         <h3 style="font-family:var(--font-display); font-weight:500; font-size:clamp(1.5rem,2.8vw,2rem); line-height:1.15; margin:10px 0 8px;">One program, many ways to run it.</h3>
-        <p style="font-family:var(--font-text); font-size:1.04rem; color:var(--anthracite); max-width:62ch;">Explore adapts to your setting and your calendar — offered as a single spark or a sustained series.</p>
+        <p style="font-family:var(--font-text); font-size:1.04rem; color:var(--anthracite); max-width:62ch;">Explore is scoped with you, not delivered off a shelf. Content, delivery mode, and calendar are set by what your school actually has — a semester course, an add-on to an existing class, an after-school block, or a vacation or holiday intensive. The two curricula below are the same program in two shapes: Bridging Brilliance ran as a twelve-week in-school intensive, and Summer STEM Camps carries the same engineering thread across a school break. Content is also tuned to how a particular cohort learns — reading level, language supports, hands-on ratio, and pacing all move without changing the standards the program hits.</p>
         <div class="fieldlist">
           <div><div class="k">Single workshop</div><div class="v">A one-session spark for an event, a club, or a class period.</div></div>
           <div><div class="k">Multi-session series</div><div class="v">A recurring after-school or in-school series that builds over weeks.</div></div>
+          <div><div class="k">Semester course</div><div class="v">A full-term course inside the school day, scoped to your master schedule.</div></div>
+          <div><div class="k">Vacation &amp; holiday intensive</div><div class="v">A concentrated build across a school break — winter, spring, or summer.</div></div>
           <div><div class="k">Summer camp module</div><div class="v">A multi-day or multi-week camp model with a culminating showcase.</div></div>
           <div><div class="k">Partner-funded enrichment</div><div class="v">A sponsored program delivered with a community or funding partner — including models that keep it free or low-cost for the families who need it most.</div></div>
         </div>
@@ -1031,8 +1072,14 @@ html.js .vpage.active{display:block;}
         </div>
         <p class="prog-note reveal" style="margin-top:22px;"><b>Board-ready reporting.</b> Aedifica delivers an end-of-program report — rubric scores, pre/post content assessments, participation, and survey data — to the school within 30 days of program close, formatted for direct inclusion in board materials, district reports, or funder communications.</p>
       </div>
+      <div class="sample-note reveal">
+        <span class="sn-k">These are sample curricula</span>
+        <p><b>What you see below are samples, not the catalogue.</b> They are complete, real curricula we have designed and can run &mdash; but they exist to show you how we build, not to define what you get.</p>
+        <p><b>Where they come from.</b> <i>Bridging Brilliance &mdash; Engineering the Hudson</i> was delivered at Hillside Innovation Academy with twenty-one students, and is documented in <a href="#impact">Impact &amp; accountability</a>. <i>Summer STEM Camps</i> is an Aedifica camp model designed for grades 6&ndash;12. [CONFIRM: which summer camps have run, where, and when &mdash; or mark as designed-not-yet-delivered.]</p>
+        <p><b>We build to order.</b> Content, sequence, delivery mode, and calendar are scoped to a partner's requirements. If neither sample fits your school, we write the one that does &mdash; and the standards alignment holds either way.</p>
+      </div>
       <div class="cur-tools reveal">
-        <span class="tag">Curriculum shells — open what you need</span>
+        <span class="tag">Sample curriculum shells — open what you need</span>
         <button class="tool-btn" type="button" data-expand="explore">Expand all</button>
         <button class="tool-btn" type="button" data-collapse="explore">Collapse all</button>
         <button class="tool-btn" type="button" data-print="explore">Print curriculum</button>
@@ -1236,7 +1283,7 @@ html.js .vpage.active{display:block;}
                   </ul>
                 </div>
                 <div class="mcard">
-                  <div class="top"><span class="sw" style="background:var(--mauve)"></span><div><h5>Design, Technology &amp; CS</h5><div class="sub">NJSLS 8.1 &amp; 8.2</div></div></div>
+                  <div class="top"><span class="sw" style="background:var(--ink-soft)"></span><div><h5>Design, Technology &amp; CS</h5><div class="sub">NJSLS 8.1 &amp; 8.2</div></div></div>
                   <ul>
                     <li><code>8.2.8.ED.1–7</code><span>Apply the engineering design process.</span></li>
                     <li><code>8.2.8.ITH · NT</code><span>Technology's effect on people and the environment.</span></li>
@@ -1262,7 +1309,7 @@ html.js .vpage.active{display:block;}
               <div class="band-head">
                 <p class="eyebrow">Instructional model</p>
                 <h4>How the program is taught</h4>
-                <p>Bridging Brilliance runs as a studio: short science, math, and ELA mini-lessons followed by extended time to design, build, test, and revise — with structures that keep every middle-school learner engaged and supported.</p>
+                <p>Bridging Brilliance runs as a studio: short science, math, and ELA mini-lessons followed by extended time to design, build, test, and revise — with structures that keep every middle-school scholar engaged and supported.</p>
               </div>
               <div class="compmap">
                 <div class="cell"><span class="tag">Approach 01</span><h5>Project-based learning</h5><p>Students work through a full engineering design cycle connected to an authentic infrastructure challenge.</p></div>
@@ -1343,7 +1390,7 @@ html.js .vpage.active{display:block;}
                   </ul>
                 </div>
                 <div class="mcard model">
-                  <div class="top"><span class="sw" style="background:var(--mauve)"></span><div><h5>Construction &amp; Built Environment</h5><div class="sub">Secondary</div></div></div>
+                  <div class="top"><span class="sw" style="background:var(--ink-soft)"></span><div><h5>Construction &amp; Built Environment</h5><div class="sub">Secondary</div></div></div>
                   <ul>
                     <li><code>Grades</code><span>7–12</span></li>
                     <li><code>Duration</code><span>1–2 weeks</span></li>
@@ -1493,7 +1540,7 @@ html.js .vpage.active{display:block;}
                   </ul>
                 </div>
                 <div class="mcard">
-                  <div class="top"><span class="sw" style="background:var(--mauve)"></span><div><h5>Design, Technology &amp; CS</h5><div class="sub">Build &amp; code</div></div></div>
+                  <div class="top"><span class="sw" style="background:var(--ink-soft)"></span><div><h5>Design, Technology &amp; CS</h5><div class="sub">Build &amp; code</div></div></div>
                   <ul>
                     <li><code>Design</code><span>Design thinking and the engineering process.</span></li>
                     <li><code>Circuits</code><span>Circuits, sensors, and device thinking.</span></li>
@@ -1525,6 +1572,20 @@ html.js .vpage.active{display:block;}
         <a href="#partner" class="btn">Bring Explore to your school</a>
         <a href="#contact" class="btn ghost">Ask about summer camps</a>
       </div>
+      <div class="reveal" style="margin-top:44px; border-top:1px solid var(--rule); padding-top:34px;">
+        <span class="tag">What it takes to run it</span>
+        <h3 style="font-family:var(--font-display); font-weight:500; font-size:clamp(1.5rem,2.8vw,2rem); line-height:1.15; margin:10px 0 8px;">What we need from you, stated plainly.</h3>
+        <p style="font-family:var(--font-text); font-size:1.04rem; color:var(--anthracite); max-width:64ch;">Before anyone evaluates curriculum, they need to know what this costs in schedule, staff time, and space. Here is the operating footprint.</p>
+        <div class="fieldlist">
+          <div><div class="k">Schedule footprint</div><div class="v">Flexible — single workshop through semester course; see &ldquo;Ways to run it&rdquo; above. Bridging Brilliance ran twelve weeks inside the school week.</div></div>
+          <div><div class="k">Who teaches</div><div class="v">Aedifica instructors — working construction-management and engineering professionals — with your teacher of record present.</div></div>
+          <div><div class="k">Cohort size</div><div class="v">Minimum 10, maximum 25. Bridging Brilliance ran with twenty-one students.</div></div>
+          <div><div class="k">Your staff commitment</div><div class="v">[ADD before launch: planning hours before the cohort, plus in-room hours per week for the teacher of record.]</div></div>
+          <div><div class="k">Room &amp; materials</div><div class="v">The partner provides the room. Aedifica brings all materials — kits, consumables, and testing equipment.</div></div>
+          <div><div class="k">Lead time</div><div class="v">Four weeks from signed agreement to first session. The programs are built and ready to run.</div></div>
+          <div><div class="k">Pilot option</div><div class="v">[CONFIRM: is a single-cohort pilot available, and on what terms?]</div></div>
+        </div>
+      </div>
       <p class="prog-note reveal"><b>For schools and community partners:</b> Explore is designed to run inside a real school week — with real students, real materials, and a real showcase at the end. Programs are delivered by [ADD: background-checked] staff with appropriate supervision and student-privacy practices aligned to FERPA.</p>
     </div>
   </section>
@@ -1535,7 +1596,7 @@ html.js .vpage.active{display:block;}
   <div class="vpage" id="page-pathway" data-page="pathway" role="region" aria-label="Aedifica Pathway">
   <section id="pathway" class="prog-section" style="--pc:var(--pathway); --pon:var(--anthracite);" aria-labelledby="pathway-h">
     <div class="wrap">
-      <div class="sectionmark reveal">§ 05 — Program · Pathway</div>
+      <div class="sectionmark reveal">§ 06 — Program · Pathway</div>
       <div class="prog-banner reveal">
         <span class="swatch" aria-hidden="true"></span>
         <div><div class="pname">Program 02 · Green channel · rgb(133,159,148)</div><h2 id="pathway-h">Aedifica Pathway</h2></div>
@@ -1544,9 +1605,11 @@ html.js .vpage.active{display:block;}
         <div class="col reveal">
           <p>Pathway brings a construction-management track into high schools and districts: pre-college rigor, project-based learning, and a curriculum that treats industry as a destination, not an afterthought. Students learn to read the built environment as form and function — and to see themselves running the projects that shape it.</p>
           <p>The model draws directly on Aedifica's pre-college engineering delivery through Stevens Institute of Technology: students who finished those programs reported new vocabulary, new confidence, and new futures in civil engineering and construction management.</p>
+          <p><b>Existing STEM is a foundation, not a substitute.</b> A strong STEM department teaches the science and math this work rests on. Engineering and construction management are a separate discipline — scope, schedule, cost, safety, sequencing — and one that sits outside most certification routes and teacher-preparation programs, because it is learned on projects rather than in coursework. Aedifica supplies instructors who practice it, and works alongside your educators rather than around them: they keep the classroom relationship, we bring the jobsite.</p>
         </div>
         <div class="col reveal">
           <div class="fieldlist">
+            <div><div class="k">Status</div><div class="v"><b>Delivered</b> — three summers (2022–2024), Stevens pre-college</div></div>
             <div><div class="k">Audience</div><div class="v">High schools and districts, grades 9–12</div></div>
             <div><div class="k">Format</div><div class="v">District-embedded curriculum · project-based</div></div>
             <div><div class="k">Alignment</div><div class="v">NJ &amp; NY standards · college articulation</div></div>
@@ -1559,19 +1622,7 @@ html.js .vpage.active{display:block;}
           </ul>
         </div>
       </div>
-      <!-- ADDED · Pathway: proven pre-college delivery, satisfaction, and NJ/NY standards -->
-      <div class="reveal" style="margin-top:46px; border-top:1px solid var(--rule); padding-top:34px;">
-        <div class="rpt-kicker">Proven delivery · Stevens pre-college</div>
-        <h3 style="font-family:var(--font-display); font-weight:500; font-size:clamp(1.5rem,2.8vw,2rem); line-height:1.15; margin:10px 0 8px;">The Pathway model, taught for three summers.</h3>
-        <p style="font-family:var(--font-text); font-size:1.04rem; color:var(--anthracite); max-width:64ch;">Aedifica's Pathway model is grounded in the Stevens Institute of Technology pre-college Civil Engineering course, taught by co-founder Dr. Karim Karam. Across three summers, students rated the course and instructor consistently high.</p>
-        <div class="rpt-stats">
-          <div class="rs reveal"><span class="n">73–80%</span><span class="l">rated the program Excellent each year — and 0% rated it Poor, all three years</span></div>
-          <div class="rs reveal"><span class="n">88–96%</span><span class="l">rated Professor Karam Excellent (2022–2024)</span></div>
-          <div class="rs reveal"><span class="n">85–100%</span><span class="l">rated the teaching above average on being motivating and approachable</span></div>
-          <div class="rs reveal"><span class="n">3 summers</span><span class="l">2022, 2023, and 2024 — same course, same instructor</span></div>
-        </div>
-        <p class="method-note">Student satisfaction surveys, Stevens Institute of Technology Office of Pre-College Programs (2022–2024). These are participant ratings of the course and instructor, not academic-outcome measures.</p>
-      </div>
+      <p class="prog-note reveal" style="margin-top:40px;"><b>Delivery record:</b> Pathway has been taught for three summers (2022–2024) in the Stevens Institute of Technology pre-college Civil Engineering course. Participant satisfaction data and sourcing are reported in <a href="#impact">Impact &amp; accountability</a>, alongside the Explore results.</p>
       <div class="reveal" style="margin-top:40px;">
         <span class="tag">Standards-aligned · New Jersey &amp; New York</span>
         <h3 style="font-family:var(--font-display); font-weight:500; font-size:clamp(1.5rem,2.8vw,2rem); line-height:1.15; margin:10px 0 8px;">Principles of Civil Planning — the pre-college curriculum.</h3>
@@ -1594,6 +1645,12 @@ html.js .vpage.active{display:block;}
           <li>Environmental &amp; social sustainability</li>
           <li>Traps in decision-making: bias, risk &amp; analysis — into the final engineering project</li>
         </ul>
+      </div>
+      <div class="sample-note reveal">
+        <span class="sn-k">This is a sample curriculum</span>
+        <p><b>What you see below is a sample, not the catalogue.</b> <i>Resilient Futures</i> is a complete, real curriculum we have designed and can run &mdash; it exists to show a district how we build, not to define what a district receives.</p>
+        <p><b>Where it comes from.</b> It is built on the Hillside&ndash;Stevens bridge programme and the Resilient Futures studio designs. Pathway&rsquo;s delivered record is three summers of pre-college engineering at Stevens Institute of Technology (2022&ndash;2024), reported in <a href="#impact">Impact &amp; accountability</a>. [CONFIRM: has <i>Resilient Futures</i> as written been delivered in a district, or is it a design built from delivered components?]</p>
+        <p><b>We build to order.</b> Content, sequence, delivery mode, and calendar are scoped with your district &mdash; see &ldquo;Ways to run it&rdquo; above. If this sample does not fit your schedule or your cohort, we write the one that does.</p>
       </div>
       <div class="cur-tools reveal">
         <span class="tag">Curriculum shells</span>
@@ -1778,7 +1835,7 @@ html.js .vpage.active{display:block;}
                   <div class="desc">Synthesizing the project into a professional design brief and a 15-minute technical briefing defended before engineers and community partners — the studio capstone.</div>
                   <div class="chips"><span class="chip sci" title="Synthesize and defend the full engineering solution.">HS-ETS1-1–4</span><span class="chip ela" title="Present information, findings, and supporting evidence.">SL.PI.9-10.4</span><span class="chip ela" title="Make strategic use of digital media.">SL.UM.9-10.5</span><span class="chip ela" title="Write arguments with valid reasoning and evidence.">W.AW.9-10.1</span></div>
                 </div></div>
-                <div class="unit"><div class="idx" style="background:var(--mauve); color:var(--anthracite);"><span class="n">+</span><span class="u">Studio</span></div><div class="body">
+                <div class="unit"><div class="idx" style="background:var(--blush); color:var(--anthracite);"><span class="n">+</span><span class="u">Studio</span></div><div class="body">
                   <div class="q">Companion studio — Smart Cities, Sensors &amp; Environmental Monitoring <span style="font-family:var(--font-mono);font-size:.7rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em">· Grades 7–11</span></div>
                   <div class="desc">How sensors, data, and mapping help communities understand environmental conditions — sensor setup and calibration, data collection on flood-prone grounds, heat islands, air quality, and runoff, with dashboards and ethical data use. Deliverables: monitoring plan, dataset, dashboard, site map, recommendation memo.</div>
                   <div class="chips"><span class="chip sci" title="Model the impact of proposed solutions within and between systems.">HS-ETS1-4</span><span class="chip math" title="Interpret data; investigate patterns of association.">S-ID</span><span class="chip math" title="Make inferences and justify conclusions from data.">S-IC</span><span class="chip des" title="Computer science: data and analysis; networks.">8.1.12.DA</span><span class="chip car" title="Technology literacy and digital tools.">9.4.12.TL</span></div>
@@ -1879,7 +1936,7 @@ html.js .vpage.active{display:block;}
                   </ul>
                 </div>
                 <div class="mcard">
-                  <div class="top"><span class="sw" style="background:var(--mauve)"></span><div><h5>Design, Technology &amp; CS</h5><div class="sub">NJSLS 8.1 &amp; 8.2</div></div></div>
+                  <div class="top"><span class="sw" style="background:var(--ink-soft)"></span><div><h5>Design, Technology &amp; CS</h5><div class="sub">NJSLS 8.1 &amp; 8.2</div></div></div>
                   <ul>
                     <li><code>8.2.8.ED.1–7</code><span>Apply the engineering design process.</span></li>
                     <li><code>8.2.8.ITH · NT</code><span>Technology's effect on people and the environment.</span></li>
@@ -1932,6 +1989,33 @@ html.js .vpage.active{display:block;}
         <a href="#partner" class="btn">Build a Pathway in your district</a>
         <a href="#research" class="btn ghost">See the evidence base</a>
       </div>
+      <div class="reveal" style="margin-top:44px; border-top:1px solid var(--rule); padding-top:34px;">
+        <span class="tag">Ways to run it</span>
+        <h3 style="font-family:var(--font-display); font-weight:500; font-size:clamp(1.5rem,2.8vw,2rem); line-height:1.15; margin:10px 0 8px;">Bespoke by design.</h3>
+        <p style="font-family:var(--font-text); font-size:1.04rem; color:var(--anthracite); max-width:64ch;">Pathway is built with your district rather than delivered to it. Content, delivery mode, and timeline are scoped with your team, and the content adapts to how your cohort learns &mdash; reading level, language supports, hands-on ratio, and pacing. The standards alignment holds regardless of the shape you choose. The Resilient Futures curriculum below is one instance, not the template.</p>
+        <div class="fieldlist">
+          <div><div class="k">Full-year course</div><div class="v">A year-long track inside the school day, scoped to your master schedule.</div></div>
+          <div><div class="k">Semester course</div><div class="v">A single-term version carrying the same standards in a compressed arc.</div></div>
+          <div><div class="k">Layered onto an existing course</div><div class="v">A construction-management track added to a CTE, STEM, or engineering offering you already run.</div></div>
+          <div><div class="k">After-school or dual-period block</div><div class="v">A recurring block for students who cannot fit a full course.</div></div>
+          <div><div class="k">Vacation &amp; summer intensive</div><div class="v">A concentrated build across a break — the model already delivered through Stevens pre-college.</div></div>
+          <div><div class="k">Cohort-tailored content</div><div class="v">Pacing, reading level, language supports, and hands-on ratio set to the cohort you actually have.</div></div>
+        </div>
+      </div>
+      <div class="reveal" style="margin-top:44px; border-top:1px solid var(--rule); padding-top:34px;">
+        <span class="tag">What it takes to run it</span>
+        <h3 style="font-family:var(--font-display); font-weight:500; font-size:clamp(1.5rem,2.8vw,2rem); line-height:1.15; margin:10px 0 8px;">What we need from you, stated plainly.</h3>
+        <p style="font-family:var(--font-text); font-size:1.04rem; color:var(--anthracite); max-width:64ch;">Before anyone evaluates curriculum, they need to know what this costs in schedule, staff time, and space. Here is the operating footprint.</p>
+        <div class="fieldlist">
+          <div><div class="k">Schedule footprint</div><div class="v">Flexible — full-year, semester, layered, block, or intensive; see &ldquo;Ways to run it&rdquo; above.</div></div>
+          <div><div class="k">Who teaches</div><div class="v">Aedifica supplies instructors who practice the work, alongside your educators — they keep the classroom relationship.</div></div>
+          <div><div class="k">Cohort size</div><div class="v">Minimum 10, maximum 25 per cohort.</div></div>
+          <div><div class="k">Your staff commitment</div><div class="v">[ADD before launch: planning hours before the cohort, plus in-room hours per week for the teacher of record.]</div></div>
+          <div><div class="k">Room &amp; materials</div><div class="v">The partner provides the room. Aedifica brings all materials — kits, consumables, and testing equipment.</div></div>
+          <div><div class="k">Lead time</div><div class="v">Four weeks from signed agreement to first session. The programs are built and ready to run.</div></div>
+          <div><div class="k">Pilot option</div><div class="v">[CONFIRM: is a single-cohort pilot available, and on what terms?]</div></div>
+        </div>
+      </div>
       <p class="prog-note reveal"><b>For districts:</b> Pathway is co-authored with your educators — designed <em>with</em> them, never at them — and implementable by the people who inherit it.</p>
     </div>
   </section>
@@ -1942,7 +2026,7 @@ html.js .vpage.active{display:block;}
   <div class="vpage" id="page-launch" data-page="launch" role="region" aria-label="Aedifica Launch">
   <section id="launch" class="prog-section band-surface" style="--pc:var(--launch); --pon:var(--anthracite);" aria-labelledby="launch-h">
     <div class="wrap">
-      <div class="sectionmark reveal">§ 06 — Program · Launch</div>
+      <div class="sectionmark reveal">§ 07 — Program · Launch</div>
       <div class="prog-banner reveal">
         <span class="swatch" aria-hidden="true"></span>
         <div><div class="pname">Program 03 · Yellow channel · rgb(205,185,125)</div><h2 id="launch-h">Aedifica Launch</h2></div>
@@ -1950,11 +2034,12 @@ html.js .vpage.active{display:block;}
       <div class="prog-intro">
         <div class="col reveal">
           <p>Launch is pathway architecture for institutions: workforce boards, county colleges, agencies, and employers who need a construction-management pathway that outlives its founders. Aedifica designs the curriculum, builds instructor capacity, defines the outcome framework, and supports implementation until the institution owns it.</p>
-          <p>The flagship Launch build is <b>BUILD NJ GREEN</b> — a green-fluent construction-management pathway aligned to New Jersey's building-electrification mandates and clean-infrastructure funding priorities.</p>
+          <p>The flagship Launch design is <b>BUILD NJ GREEN</b> — a green-fluent construction-management pathway aligned to New Jersey's building-electrification mandates and clean-infrastructure funding priorities. The curriculum below is complete and ready to deliver; it has not yet been run with a cohort.</p>
         </div>
         <div class="col reveal">
           <div class="fieldlist">
-            <div><div class="k">Audience</div><div class="v">Workforce boards · county colleges · agencies · employers</div></div>
+            <div><div class="k">Status</div><div class="v"><b>Designed</b> — CBO partners engaged, grant applications submitted; no cohort delivered</div></div>
+            <div><div class="k">Audience</div><div class="v">Workforce boards · county colleges · vocational and trade schools · agencies · employers</div></div>
             <div><div class="k">Format</div><div class="v">Design + build + implementation support</div></div>
             <div><div class="k">Deliverables</div><div class="v">Curriculum, instructor capacity, outcome framework</div></div>
             <div><div class="k">Duration</div><div class="v">Scoped to the institution — typically 2–4 terms to ownership</div></div>
@@ -1965,6 +2050,12 @@ html.js .vpage.active{display:block;}
             <li>Same-definition outcome reporting from cohort one</li>
           </ul>
         </div>
+      </div>
+      <div class="sample-note reveal">
+        <span class="sn-k">This is a sample curriculum</span>
+        <p><b>What you see below is a sample, not the catalogue.</b> <i>BUILD NJ GREEN</i> is a complete 16-week, 240-hour curriculum, designed in full and ready to deliver.</p>
+        <p><b>Delivery status.</b> It has <b>not yet been run with a cohort</b>. Community-based partners are engaged and grant applications are submitted; no Launch cohort has been delivered to date. The full status ledger is in <a href="#impact">Impact &amp; accountability</a>.</p>
+        <p><b>We build to order.</b> Launch is institutional pathway design &mdash; the curriculum is scoped to the partner, the funding stream, and the roles employers in your region are actually hiring for. BUILD NJ GREEN shows the depth of that work; it is not the only shape it takes.</p>
       </div>
       <div class="cur-tools reveal">
         <span class="tag">Curriculum shells</span>
@@ -2033,7 +2124,7 @@ html.js .vpage.active{display:block;}
               <div class="units">
                 <div class="unit"><div class="idx"><span class="n">1</span><span class="u">Week</span></div><div class="body">
                   <div class="q">What is a green Construction Manager, and why now?</div>
-                  <div class="desc">Program orientation and adult-learner expectations; New Jersey's <b>green economy context</b> and the Construction Manager role; the credential pathway; and the launch of the capstone project each participant builds across all sixteen weeks.</div>
+                  <div class="desc">Program orientation and adult-scholar expectations; New Jersey's <b>green economy context</b> and the Construction Manager role; the credential pathway; and the launch of the capstone project each participant builds across all sixteen weeks.</div>
                   <div class="chips"><span class="chip sci" title="Green economy overview: clean energy, retrofits, offshore wind, and sustainable infrastructure demand.">Green economy</span><span class="chip math" title="The Construction Manager's coordination role across cost, schedule, quality, safety, and sustainability.">CM role</span><span class="chip car" title="Capstone launch: participants begin the green construction management portfolio.">Capstone launch</span></div>
                 </div></div>
                 <div class="unit"><div class="idx"><span class="n">2</span><span class="u">Week</span></div><div class="body">
@@ -2248,7 +2339,7 @@ html.js .vpage.active{display:block;}
                   </ul>
                 </div>
                 <div class="mcard">
-                  <div class="top"><span class="sw" style="background:var(--mauve)"></span><div><h5>Energy &amp; Environment</h5><div class="sub">Systems &amp; compliance</div></div></div>
+                  <div class="top"><span class="sw" style="background:var(--ink-soft)"></span><div><h5>Energy &amp; Environment</h5><div class="sub">Systems &amp; compliance</div></div></div>
                   <ul>
                     <li><code>Envelope</code><span>Insulation, air sealing, windows, thermal bridging.</span></li>
                     <li><code>MEP · Solar</code><span>HVAC coordination, solar PV, and commissioning.</span></li>
@@ -2312,22 +2403,25 @@ html.js .vpage.active{display:block;}
   <div class="vpage" id="page-rebuild" data-page="rebuild" role="region" aria-label="Aedifica Rebuild">
   <section id="rebuild" class="prog-section" style="--pc:var(--rebuild); --pon:var(--anthracite);" aria-labelledby="rebuild-h">
     <div class="wrap">
-      <div class="sectionmark reveal">§ 07 — Program · Rebuild</div>
+      <div class="sectionmark reveal">§ 08 — Program · Rebuild</div>
       <div class="prog-banner reveal">
         <span class="swatch" aria-hidden="true"></span>
         <div><div class="pname">Program 04 · Light burgundy channel · rgb(160,131,143)</div><h2 id="rebuild-h">Aedifica Rebuild</h2></div>
       </div>
       <div class="prog-intro">
         <div class="col reveal">
-          <p>Rebuild is the adult bridge into construction-management-track roles: a 12- or 24-week cohort for people with enormous capacity who were poorly served by pathways designed for eighteen-year-olds. Adults returning to work after caregiving, transitioning from military service, changing industries, or rebuilding after justice involvement are not a beneficiary group here. They are the talent pipeline.</p>
-          <p>Every cohort ends in an employer-validated capstone and a defined interview opportunity — because a credential without a door is just a certificate.</p>
+          <p>Rebuild is the adult bridge into construction-management-track roles: a cohort for people with enormous capacity who were poorly served by pathways designed for eighteen-year-olds. Adults returning to work after caregiving, transitioning from military service, changing industries, or rebuilding after justice involvement are not a beneficiary group here. They are the talent pipeline.</p>
+          <p>Every cohort is designed to end in an employer-validated capstone and a defined interview opportunity, because a credential without a door is just a certificate. Rebuild is designed and not yet delivered; the first cohort runs when funding and employer commitments are in place.</p>
+          <p><b>Rebuild also runs as an overlay.</b> We partner with vocational and trade schools to strengthen programs they already deliver, rather than competing with them: their training builds the craft, and Rebuild adds the construction-management layer above it. The school keeps its program, its students, and its credential. <a href="#votech">See how the overlay works for vocational and trade schools</a>.</p>
         </div>
         <div class="col reveal">
           <div class="fieldlist">
-            <div><div class="k">Audience</div><div class="v">Adult learners · non-traditional talent</div></div>
-            <div><div class="k">Format</div><div class="v">12- or 24-week bridge cohorts</div></div>
+            <div><div class="k">Status</div><div class="v"><b>Designed</b> — curriculum complete; no cohort delivered</div></div>
+            <div><div class="k">Audience</div><div class="v">Adult scholars · non-traditional talent</div></div>
+            <div><div class="k">Delivery models</div><div class="v">Standalone cohort · or a construction-management overlay on an existing vocational or trade-school program</div></div>
+            <div><div class="k">Format</div><div class="v">Bridge cohorts, scoped to partner capacity and funding cycle</div></div>
             <div><div class="k">Supports</div><div class="v">Wraparound services via community partners</div></div>
-            <div><div class="k">Cost to learners</div><div class="v">None — funded through institutional partners</div></div>
+            <div><div class="k">Cost to scholars</div><div class="v">None — funded through institutional partners</div></div>
           </div>
           <ul class="mini-list">
             <li>Construction-management fundamentals in the platforms employers use</li>
@@ -2336,9 +2430,9 @@ html.js .vpage.active{display:block;}
           </ul>
         </div>
       </div>
-      <p class="tag reveal" style="margin-top:44px; display:block;">The Rebuild learner journey — starting point to next step</p>
-      <div class="journey reveal" role="list" aria-label="Rebuild learner journey stages">
-        <div class="step" role="listitem"><span class="jn">01</span><span class="jt">Starting point</span><p>Where each learner begins — experience, goals, and readiness, honestly assessed.</p></div>
+      <p class="tag reveal" style="margin-top:44px; display:block;">The Rebuild scholar journey — starting point to next step</p>
+      <div class="journey reveal" role="list" aria-label="Rebuild scholar journey stages">
+        <div class="step" role="listitem"><span class="jn">01</span><span class="jt">Starting point</span><p>Where each scholar begins — experience, goals, and readiness, honestly assessed.</p></div>
         <div class="step" role="listitem"><span class="jn">02</span><span class="jt">Construction-management vocabulary</span><p>The shared language of scope, schedule, cost, safety, and quality.</p></div>
         <div class="step" role="listitem"><span class="jn">03</span><span class="jt">Project lifecycle</span><p>How a project moves from idea to design to delivery to closeout.</p></div>
         <div class="step" role="listitem"><span class="jn">04</span><span class="jt">Reading drawings</span><p>Plans, specifications, and the documents the jobsite runs on.</p></div>
@@ -2367,7 +2461,7 @@ html.js .vpage.active{display:block;}
         <summary>
           <span class="st">
             <span class="cn">Rebuild — the curriculum behind the cohort</span>
-            <span class="cm">Adults · 12 or 24 weeks · nine learning areas · outline</span>
+            <span class="cm">Adults · flexible cohort length · nine learning areas · outline</span>
           </span>
           <span class="marker">Open outline</span>
         </summary>
@@ -2376,7 +2470,7 @@ html.js .vpage.active{display:block;}
             <div class="cur-lede">
               <p class="tag">Adult bridge cohort · Construction management · New Jersey</p>
               <h3>Nine learning areas, one employer-facing portfolio.</h3>
-              <p>These are the published learning areas Rebuild cohorts are built from. They map onto the seventeen-stage learner journey above: vocabulary and lifecycle first, then the tools and documents of the work, then the judgment and communication a supervisor is hired for, and finally the capstone and interview week that turn the cohort into a next step.</p>
+              <p>These are the published learning areas Rebuild cohorts are built from. They map onto the seventeen-stage scholar journey above: vocabulary and lifecycle first, then the tools and documents of the work, then the judgment and communication a supervisor is hired for, and finally the capstone and interview week that turn the cohort into a next step.</p>
             </div>
             <div class="rbcur">
               <div class="rb"><span class="rbn">Area 01</span><h4>OSHA-10 / OSHA-30 preparation</h4><p>Hazard recognition, PPE, fall protection, and the supervisory safety responsibilities employers expect on day one. Credential attempt and coverage are confirmed per cohort — see [Credential Confirmation].</p></div>
@@ -2384,10 +2478,10 @@ html.js .vpage.active{display:block;}
               <div class="rb"><span class="rbn">Area 03</span><h4>Bluebeam &amp; Procore foundations</h4><p>The two platforms most New Jersey general contractors actually run on — markup, takeoff, and document workflows in Bluebeam; project, daily log, and RFI workflows in Procore.</p></div>
               <div class="rb"><span class="rbn">Area 04</span><h4>BIM viewer literacy</h4><p>Navigating a coordinated model, understanding clashes, and using model views to read a project a set of 2D drawings cannot fully explain.</p></div>
               <div class="rb"><span class="rbn">Area 05</span><h4>Submittal, RFI &amp; document-control fundamentals</h4><p>The paperwork backbone of a project: logs, transmittals, approvals, and the discipline that keeps a jobsite accountable and a schedule defensible.</p></div>
-              <div class="rb"><span class="rbn">Area 06</span><h4>Estimating &amp; scheduling</h4><p>Quantity take-offs, unit costs, and a basic estimate; sequencing logic, milestones, and a simple project schedule the learner can explain and defend.</p></div>
+              <div class="rb"><span class="rbn">Area 06</span><h4>Estimating &amp; scheduling</h4><p>Quantity take-offs, unit costs, and a basic estimate; sequencing logic, milestones, and a simple project schedule the scholar can explain and defend.</p></div>
               <div class="rb"><span class="rbn">Area 07</span><h4>Supervisory communication</h4><p>Toolbox talks, coordination meetings, written field reports, and the professional, employer-facing communication that separates a coordinator from a candidate.</p></div>
-              <div class="rb"><span class="rbn">Area 08</span><h4>Employer-informed capstone</h4><p>A project artifact scoped with participating employers and presented to them — the evidence a learner carries into the interview.</p></div>
-              <div class="rb"><span class="rbn">Area 09</span><h4>Interview week</h4><p>Resume development, mock interviews, employer expectations, and the defined interview opportunity participating employers commit to for qualified completers.</p></div>
+              <div class="rb"><span class="rbn">Area 08</span><h4>Employer-informed capstone</h4><p>A project artifact scoped with participating employers and presented to them — the evidence a scholar carries into the interview.</p></div>
+              <div class="rb"><span class="rbn">Area 09</span><h4>Interview week</h4><p>Resume development, mock interviews, employer expectations, and the defined interview opportunity participating employers will commit to for qualified completers.</p></div>
             </div>
             <p class="cur-fine">Learning areas are published as the curriculum spine of every Rebuild cohort. Week-by-week syllabi, credential inclusion, and cohort calendars are developed with each funding or delivery partner before launch and are not published here. Credential attainment is never guaranteed.</p>
           </div>
@@ -2407,45 +2501,47 @@ html.js .vpage.active{display:block;}
   <div class="vpage" id="page-pipeline" data-page="pipeline" role="region" aria-label="Talent Pipeline">
   <section id="pipeline" class="prog-section band-surface" style="--pc:var(--pipeline); --pon:var(--surface);" aria-labelledby="pipeline-h">
     <div class="wrap">
-      <div class="sectionmark reveal">§ 08 — Program · Talent Pipeline</div>
+      <div class="sectionmark reveal">§ 09 — Program · Talent Pipeline</div>
       <div class="prog-banner reveal">
         <span class="swatch" aria-hidden="true"></span>
         <div><div class="pname">Program 05 · Mauve channel · rgb(198,170,175)</div><h2 id="pipeline-h">Aedifica Talent Pipeline</h2></div>
       </div>
       <div class="prog-intro">
         <div class="col reveal">
-          <p>The Talent Pipeline is where the pathway pays off — for everyone. Employers get capstone-vetted candidates whose training was validated against the work their own project executives do. Completers get defined interview commitments and apprenticeship articulation, not a handshake and a job board.</p>
-          <p>Every referral travels with the same outcome data we publish: placement rate, credential attainment, wage at placement, and apprenticeship articulation, defined identically every cohort. The metric is the moat.</p>
+          <p><b>Status: in formation.</b> The Talent Pipeline is the channel that completes the pathway, and it is the piece we are building now. Aedifica's founders have direct working relationships across New Jersey's general-contracting community; the structured referral channel described below is designed and not yet operating. No candidate has been referred, because no workforce-track cohort has yet completed.</p>
+          <p>When it runs, it is built to work like this. Employers receive capstone-vetted candidates whose training was validated against the work their own project executives do. Completers receive defined interview commitments and apprenticeship articulation, not a handshake and a job board.</p>
+          <p>Every referral will travel with the same outcome data we publish: placement rate, credential attainment, wage at placement, and apprenticeship articulation, defined identically every cohort. We are stating the standard before we have results to report against it — that order is deliberate, and it is how you will be able to check us.</p>
         </div>
         <div class="col reveal">
           <div class="fieldlist">
+            <div><div class="k">Status</div><div class="v">Designed · relationships available · channel not yet formed</div></div>
             <div><div class="k">Audience</div><div class="v">Employers · contractors · owners · agencies</div></div>
             <div><div class="k">Commitment</div><div class="v">Defined interview opportunities for qualified completers</div></div>
             <div><div class="k">Articulation</div><div class="v">Apprenticeship sponsors · union locals · county colleges</div></div>
             <div><div class="k">Evidence</div><div class="v">Same-definition outcome data with every referral</div></div>
           </div>
           <ul class="mini-list">
-            <li>Employer validators shape the capstone your candidates completed</li>
+            <li>Employer validators will shape the capstone every candidate completes</li>
             <li>Role definitions stay with you — Aedifica does not referee</li>
             <li>Pipeline reporting you can put in front of a board</li>
           </ul>
         </div>
       </div>
       <div class="prog-cta-row reveal">
-        <a href="#partner" class="btn">Join the Talent Pipeline</a>
+        <a href="#partner" class="btn">Talk to us about founding employer partnership</a>
         <a href="#impact" class="btn ghost">See how outcomes are defined</a>
       </div>
-      <p class="prog-note reveal"><b>For employers:</b> participating employers validate role relevance, inform capstone expectations, and commit to a defined interview opportunity for qualified completers.</p>
+      <p class="prog-note reveal"><b>For employers:</b> founding employers help define role relevance and capstone expectations before the first cohort runs, and commit to a defined interview opportunity for qualified completers. We are recruiting those employers now.</p>
     </div>
   </section>
 
   <!-- ===================== § 09 LEARNER EXPERIENCE ===================== -->
   </div><!-- /page-pipeline -->
 
-  <div class="vpage" id="page-experience" data-page="experience" role="region" aria-label="Learner Experience">
+  <div class="vpage" id="page-experience" data-page="experience" role="region" aria-label="Scholar Experience">
   <section id="experience" aria-labelledby="experience-h">
     <div class="wrap">
-      <div class="sectionmark reveal">§ 09 — Learner experience</div>
+      <div class="sectionmark reveal">§ 10 — Scholar experience</div>
       <h2 id="experience-h" class="lead reveal">In their own words: what the pathway feels like from inside.</h2>
       <div class="reveal" style="display:flex; align-items:center; gap:13px; flex-wrap:wrap; margin:14px 0 8px;">
         <span aria-hidden="true" style="width:18px; height:18px; border-radius:4px; background:var(--explore); flex:none;"></span>
@@ -2533,21 +2629,32 @@ html.js .vpage.active{display:block;}
   <section id="families" style="--pc:var(--explore); --pon:var(--surface);" aria-labelledby="families-h">
     <div class="wrap">
       <div class="sectionmark reveal">For families</div>
-      <h2 id="families-h" class="lead reveal">A real path into careers that build our communities — at no cost to your child.</h2>
+      <h2 id="families-h" class="lead reveal">A real path into careers that build our communities — <em>at no cost to your child.</em></h2>
       <p class="reveal" style="font-family:var(--font-text); font-size:1.06rem; max-width:62ch; margin-top:18px;">If your child is curious about how roads, bridges, schools, and neighborhoods get built, Aedifica helps them explore those careers with real professionals and hands-on projects — starting as early as middle school.</p>
+      <div class="why-body reveal" style="margin-top:26px; max-width:64ch;">
+        <p>Aedifica provides transformative experiences that bolster confidence, create lifelong community, and build an exciting, challenging foundation for a future in engineering and construction management. We build pathways that run from early exposure in middle school all the way to training programs for adults returning to the job market.</p>
+        <p>Our programs are designed to increase opportunity and access in construction management, with particular focus on scholars from underserved and under-resourced backgrounds. We create new pathways for our scholars, help them develop the skills they need and a genuine sense of belonging in the STEM fields, and empower them to use what they learn to address urgent issues facing their own communities.</p>
+        <p>Together, all of us at Aedifica — our staff, our instructors, and our scholars — are here to build something that outlasts us.</p>
+        <div class="pull">
+          <span class="tag">What we believe</span>
+          <p>Your child already has what this field needs. Our job is to make sure the door is open.</p>
+        </div>
+      </div>
       <div class="prog-intro" style="margin-top:30px;">
         <div class="col reveal">
           <ul class="mini-list">
             <li>Hands-on learning in the built environment, taught by working professionals</li>
             <li>Exposure to respected, well-paying careers in construction management and engineering</li>
+            <li>Mentors and classmates who stay in your child's corner well beyond the program</li>
             <li>For high-schoolers and adults, a path toward real credentials and real job connections</li>
           </ul>
         </div>
         <div class="col reveal">
           <div class="fieldlist">
             <div><div class="k">Ages &amp; stages</div><div class="v">Middle school · high school · adults</div></div>
-            <div><div class="k">Cost to your family</div><div class="v">None — programs are free to learners</div></div>
-            <div><div class="k">Safety</div><div class="v">[ADD: background-checked staff · supervision · FERPA-aligned data practices]</div></div>
+            <div><div class="k">Cost to your family</div><div class="v">None — programs are free to scholars</div></div>
+            <div><div class="k">Who teaches</div><div class="v">Working construction-management and engineering professionals</div></div>
+            <div><div class="k">Safety &amp; privacy</div><div class="v">[ADD — REQUIRED BEFORE LAUNCH: background-check policy · staff-to-scholar supervision ratios · FERPA-aligned data practices]</div></div>
             <div><div class="k">How to start</div><div class="v">Ask if Aedifica is partnering with your school</div></div>
           </div>
         </div>
@@ -2561,24 +2668,92 @@ html.js .vpage.active{display:block;}
   </section>
   </div><!-- /page-families -->
 
+  <div class="vpage" id="page-votech" data-page="votech" role="region" aria-label="For Vocational and Trade Schools">
+  <section id="votech" aria-labelledby="votech-h">
+    <div class="wrap">
+      <div class="sectionmark reveal">For vocational &amp; trade schools</div>
+      <h2 id="votech-h" class="lead reveal">We don't replace your program. <em>We add the layer above it.</em></h2>
+      <p class="reveal" style="font-family:var(--font-text); font-size:1.06rem; max-width:64ch; margin-top:18px;">Your training builds the craft. Aedifica adds the construction-management layer on top of it &mdash; scope, schedule, cost, safety, quality, and the supervisory skills that move a skilled tradesperson toward coordinator, estimator, scheduler, or field supervisor. You keep your program, your students, and your credential. We add the ceiling above it.</p>
+
+      <div class="why-body reveal" style="margin-top:26px; max-width:66ch;">
+        <p>We come to this conversation having already sent students the other way. Of the eighth-graders in our Building Bridges cohort, 55% &mdash; six of eleven &mdash; were accepted to the highly selective Union County Vocational-Technical Schools for 2025&ndash;26. We spend our early programs pointing capable students toward vocational education. The overlay is the same relationship continued upward, for the adults your programs have already trained. <a href="#impact">See the Building Bridges results</a>.</p>
+        <div class="pull">
+          <span class="tag">The position</span>
+          <p>A student who finishes your program can build. We help them run the job. Those are different skills, and the second one is where the supervisory shortage is.</p>
+        </div>
+      </div>
+
+      <div class="prog-intro" style="margin-top:34px;">
+        <div class="col reveal">
+          <ul class="mini-list">
+            <li>Delivered as an overlay on your existing program &mdash; not a competing cohort</li>
+            <li>Taught by working construction-management and engineering professionals</li>
+            <li>Employer-validated capstone required before any credential</li>
+            <li>Articulation toward county colleges, apprenticeship sponsors, and union locals</li>
+            <li>Outcome data reported with the same definitions we publish everywhere else</li>
+          </ul>
+        </div>
+        <div class="col reveal">
+          <div class="fieldlist">
+            <div><div class="k">Status</div><div class="v"><b>Designed</b> &mdash; overlay model complete; not yet delivered with a partner school</div></div>
+            <div><div class="k">Audience</div><div class="v">County vocational-technical schools &middot; trade schools &middot; adult trade programs</div></div>
+            <div><div class="k">Delivery</div><div class="v">Layered onto an existing program, scoped to your calendar and cohort</div></div>
+            <div><div class="k">Credentials</div><div class="v"><b>OSHA 30-Hour Construction Safety</b> — the outreach credential itself, issued on completion. Plus structured exam preparation for <b>LEED Green Associate</b> (USGBC) and <b>PMI CAPM</b>. Aedifica delivers the preparation and the capstone; the credentialing bodies issue the credential. These stack alongside your existing award rather than replacing it. [CONFIRM: whether PMP preparation is offered here — see note.]</div></div>
+            <div><div class="k">Program approval</div><div class="v">[CONFIRM before launch: whether the overlay is designed to sit inside a NJ DOE-approved CTE program without altering approval status. Do not publish this claim until it is verified.]</div></div>
+            <div><div class="k">Funding</div><div class="v">[CONFIRM with counsel: how Perkins V and CTE funds reach Aedifica LLC &mdash; procurement contract rather than grant &mdash; and state the route plainly here.]</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-top:44px; border-top:1px solid var(--rule); padding-top:34px;">
+        <span class="tag">What it takes to run it</span>
+        <h3 style="font-family:var(--font-display); font-weight:500; font-size:clamp(1.5rem,2.8vw,2rem); line-height:1.15; margin:10px 0 8px;">What we need from you, stated plainly.</h3>
+        <div class="fieldlist">
+          <div><div class="k">Schedule footprint</div><div class="v">Scoped to your existing program &mdash; a parallel block, an added module, or a capstone term. [CONFIRM: typical hours.]</div></div>
+          <div><div class="k">Who teaches</div><div class="v">Aedifica instructors, alongside your faculty &mdash; they keep the shop and the student relationship.</div></div>
+          <div><div class="k">Your staff commitment</div><div class="v">[ADD before launch: planning hours plus weekly faculty involvement.]</div></div>
+          <div><div class="k">Room &amp; materials</div><div class="v">The school provides the space. Aedifica brings all materials.</div></div>
+          <div><div class="k">Cohort size</div><div class="v">Minimum 10, maximum 25 per cohort.</div></div>
+          <div><div class="k">Lead time</div><div class="v">Four weeks from signed agreement to first session. The programs are built and ready to run.</div></div>
+          <div><div class="k">Pilot option</div><div class="v">[CONFIRM: is a single-cohort pilot available, and on what terms?]</div></div>
+        </div>
+      </div>
+
+      <div class="prog-cta-row reveal">
+        <a href="#partner" class="btn">Talk to us about an overlay partnership</a>
+        <a href="#rebuild" class="btn ghost">See the Rebuild curriculum</a>
+      </div>
+      <p class="prog-note reveal"><b>For CTE directors:</b> the overlay is built to strengthen a program you already run, not to recruit against it. If Aedifica cannot demonstrate that your enrollment and your credential stay yours, we should not be in the building.</p>
+    </div>
+  </section>
+  </div><!-- /page-votech -->
+
   <div class="vpage" id="page-impact" data-page="impact" role="region" aria-label="Impact">
   <section id="impact" class="band-surface" aria-labelledby="impact-h">
     <div class="wrap">
-      <div class="sectionmark reveal">§ 10 — Impact &amp; accountability</div>
+      <div class="sectionmark reveal">§ 11 — Impact &amp; accountability</div>
       <div class="impact-lead">
         <h2 id="impact-h" class="lead reveal">Outcomes over activity, honestly reported.</h2>
         <div class="reveal">
-          <p style="font-family:var(--font-text); font-size:1.08rem; max-width:58ch;">Our Explore model has already run in the field — the Building Bridges delivery documented below — and the workforce-track cohorts are next. For those, we publish <em style="font-style:normal; color:var(--wine);">how</em> we measure before we publish what we measured. We measure ourselves by placement rate, credential attainment, wage at placement, and apprenticeship articulation — not by hours delivered or seats filled. Every Aedifica program publishes outcome data using the same definitions, every cohort. Cohort 1's metric is also Cohort 8's metric. We do not redefine "placement" to inflate headlines.</p>
-          <p class="note-soft">Explore results are shown first, from the Building Bridges delivery. Workforce-track results (Rebuild, Launch) publish as those cohorts complete, using the definitions fixed below.</p>
+          <p style="font-family:var(--font-text); font-size:1.08rem; max-width:58ch;">Two of our five programs have run in the field. Explore has been delivered for two years, documented below as the Building Bridges program. Pathway has been delivered for three years through Stevens pre-college, documented with participant satisfaction data and scholar reflections rather than academic-outcome measures. The three workforce-track programs — Launch, Rebuild, and Talent Pipeline — are designed and not yet delivered. For those, we publish <em style="font-style:normal; color:var(--wine);">how</em> we measure before we publish what we measured. We measure ourselves by placement rate, credential attainment, wage at placement, and apprenticeship articulation — not by hours delivered or seats filled. Every Aedifica program publishes outcome data using the same definitions, every cohort. Cohort 1's metric is also Cohort 8's metric. We do not redefine "placement" to inflate headlines.</p>
+          <p class="note-soft">Where each program stands today — stated plainly, because a partner deciding whether to work with us deserves to know what we have done and what we have only designed.</p>
+          <div class="fieldlist reveal" style="margin:22px 0 8px;">
+            <div><div class="k">Explore</div><div class="v"><b>Delivered</b> — two years, Building Bridges. Quantitative results below.</div></div>
+            <div><div class="k">Pathway</div><div class="v"><b>Delivered</b> — three summers (2022–2024), Stevens pre-college, same course and instructor. Documented by participant satisfaction surveys from the Stevens Office of Pre-College Programs, reported below. These are course and instructor ratings, not academic-outcome measures; enrollment, completion, and articulation figures are not yet published.</div></div>
+            <div><div class="k">Launch</div><div class="v"><b>Designed</b> — community-based partners engaged, grant applications submitted. No cohort delivered.</div></div>
+            <div><div class="k">Rebuild</div><div class="v"><b>Designed</b> — curriculum and cohort model complete. No cohort delivered.</div></div>
+            <div><div class="k">Talent Pipeline</div><div class="v"><b>In formation</b> — contractor relationships available, referral channel not yet formed.</div></div>
+          </div>
+          <p class="note-soft">Workforce-track results (Launch, Rebuild, Talent Pipeline) publish as those cohorts complete, using the definitions fixed below. Those definitions are set now, before we have any results to report against them.</p>
         </div>
       </div>
       <div class="reveal" style="margin-top:46px; border-top:1px solid var(--rule); padding-top:38px;">
         <div class="rpt-kicker">First delivery · the Explore model in the field</div>
         <h3 style="font-family:var(--font-display); font-weight:500; font-size:clamp(1.6rem,3vw,2.2rem); line-height:1.12; letter-spacing:-0.01em; max-width:26ch; margin:0 0 16px;">Building Bridges: our Explore model, proven in Spring 2025.</h3>
-        <p style="font-family:var(--font-text); font-size:1.06rem; color:var(--anthracite); max-width:66ch;">Aedifica's Explore model was delivered as <b>Building Bridges: Strengthening STEM Pathways from Hillside to Hoboken</b> — a ten-week, project-based engineering program at Hillside Innovation Academy, in partnership with Stevens Institute of Technology and funded by the Engineering Information Foundation. It is aligned to the Next Generation Science Standards and was led by Aedifica co-founders Dr. Karim Karam and Kimi Stephenson.</p>
+        <p style="font-family:var(--font-text); font-size:1.06rem; color:var(--anthracite); max-width:66ch;">Aedifica's Explore model was delivered as <b>Building Bridges: Strengthening STEM Pathways from Hillside to Hoboken</b> — a twelve-week, project-based engineering program at Hillside Innovation Academy, in partnership with Stevens Institute of Technology and funded by the Engineering Information Foundation. It is aligned to the Next Generation Science Standards and was led by Aedifica co-founders Dr. Karim Karam and Kimi Stephenson.</p>
         <div class="rpt-stats">
           <div class="rs reveal"><span class="n">21</span><span class="l">middle-school students in the first cohort (grades 7–8) — about 22% of the school</span></div>
-          <div class="rs reveal"><span class="n">10 weeks</span><span class="l">hands-on, NGSS-aligned engineering, delivered at the school and on campus</span></div>
+          <div class="rs reveal"><span class="n">12 weeks</span><span class="l">hands-on, NGSS-aligned engineering, delivered at the school and on campus</span></div>
           <div class="rs reveal"><span class="n">55%</span><span class="l">of eighth-graders (6 of 11) accepted to the highly selective Union County Vocational-Technical Schools for 2025–26</span></div>
           <div class="rs reveal"><span class="n">≈ 93</span><span class="l">average final grade among participants</span></div>
           <div class="rs reveal"><span class="n">100% / 85%</span><span class="l">pre- and post-program survey response</span></div>
@@ -2592,7 +2767,19 @@ html.js .vpage.active{display:block;}
         </ul>
         <p class="method-note"><b>Sources &amp; scope.</b> Figures from the Engineering Information Foundation 2025 program report and the Hillside Innovation Academy Year-2 snapshot (July 2025). UCVTS includes Union County Magnet High School (ranked #1 in New Jersey). School-wide, HIA students far outpaced district proficiency on the Spring 2025 NJSLA — for example, 91% Grade 7 ELA proficiency against a 50% district average — a broader pattern to which Building Bridges is viewed as one contributing factor, not the sole cause.</p>
       </div>
-      <p class="tag" style="display:block; margin-top:44px;">The workforce pathway — how we measure it as Rebuild and Launch cohorts complete</p>
+      <div class="reveal" style="margin-top:46px; border-top:1px solid var(--rule); padding-top:38px;">
+        <div class="rpt-kicker">Second delivery · the Pathway model in the field</div>
+        <h3 style="font-family:var(--font-display); font-weight:500; font-size:clamp(1.6rem,3vw,2.2rem); line-height:1.12; letter-spacing:-0.01em; max-width:26ch; margin:0 0 16px;">The Pathway model, taught for three summers.</h3>
+        <p style="font-family:var(--font-text); font-size:1.06rem; color:var(--anthracite); max-width:66ch;">Aedifica's Pathway model is grounded in the Stevens Institute of Technology pre-college Civil Engineering course, taught by co-founder Dr. Karim Karam. Across three summers, students rated the course and instructor consistently high.</p>
+        <div class="rpt-stats">
+          <div class="rs reveal"><span class="n">73–80%</span><span class="l">rated the program Excellent each year — and 0% rated it Poor, all three years</span></div>
+          <div class="rs reveal"><span class="n">88–96%</span><span class="l">rated Professor Karam Excellent (2022–2024)</span></div>
+          <div class="rs reveal"><span class="n">85–100%</span><span class="l">rated the teaching above average on being motivating and approachable</span></div>
+          <div class="rs reveal"><span class="n">3 summers</span><span class="l">2022, 2023, and 2024 — same course, same instructor</span></div>
+        </div>
+        <p class="method-note"><b>Sources &amp; scope.</b> Student satisfaction surveys, Stevens Institute of Technology Office of Pre-College Programs (2022–2024). These are participant ratings of the course and instructor, not academic-outcome measures. Enrollment, completion, and articulation figures for Pathway are not yet published.</p>
+      </div>
+      <p class="tag" style="display:block; margin-top:44px;">The workforce pathway — how we measure it as Launch, Rebuild, and Talent Pipeline cohorts complete</p>
       <div class="table-scroll reveal"><table class="metric-table">
         <caption>The workforce-track outcome metrics — fixed definitions, every cohort</caption>
         <thead>
@@ -2614,7 +2801,7 @@ html.js .vpage.active{display:block;}
   <div class="vpage" id="page-research" data-page="research" role="region" aria-label="Research">
   <section id="research" aria-labelledby="research-h">
     <div class="wrap">
-      <div class="sectionmark reveal">§ 11 — Aedifica Research</div>
+      <div class="sectionmark reveal">§ 12 — Aedifica Research</div>
       <h2 id="research-h" class="lead reveal" style="max-width:26ch;">Research that de-risks the decision.</h2>
       <p class="reveal" style="font-family:var(--font-text); font-size:1.06rem; max-width:64ch; margin-top:18px;">Institutions do not adopt pathways on enthusiasm. They adopt them on evidence. Aedifica Research publishes the analysis behind the model — the demand data, the supply gaps, and the design lessons from our own deliveries — so partners can defend the decision to their boards before they defend it to anyone else.</p>
 
@@ -2658,7 +2845,7 @@ html.js .vpage.active{display:block;}
         </div>
         <div class="pub reveal">
           <span class="pno">R·02</span>
-          <div><div class="pt">Bridging Brilliance: a delivery case study</div><div class="pd">What a ten-week, twenty-one-student community STEM intensive taught us about running cohorts inside a real school week — materials, staffing, showcase, and what we would change.</div></div>
+          <div><div class="pt">Bridging Brilliance: a delivery case study</div><div class="pd">What a twelve-week, twenty-one-student community STEM intensive taught us about running cohorts inside a real school week — materials, staffing, showcase, and what we would change.</div></div>
           <span class="pstatus progress">In progress</span>
         </div>
         <div class="pub reveal">
@@ -2668,7 +2855,7 @@ html.js .vpage.active{display:block;}
         </div>
         <div class="pub reveal">
           <span class="pno">R·04</span>
-          <div><div class="pt">The non-traditional advantage</div><div class="pd">Evidence review: why adults returning to work, veterans, and justice-impacted learners out-persist traditional cohorts when wraparound design is done properly.</div></div>
+          <div><div class="pt">The non-traditional advantage</div><div class="pd">Evidence review: why adults returning to work, veterans, and justice-impacted scholars out-persist traditional cohorts when wraparound design is done properly.</div></div>
           <span class="pstatus planned">Planned</span>
         </div>
         <div class="pub reveal">
@@ -2687,64 +2874,65 @@ html.js .vpage.active{display:block;}
   <div class="vpage" id="page-about" data-page="about" role="region" aria-label="About">
   <section id="about" class="band-surface" aria-labelledby="about-h">
     <div class="wrap">
-      <div class="sectionmark reveal">§ 12 — About Aedifica</div>
-      <div class="about-grid">
+      <div class="sectionmark reveal">§ 13 — About Aedifica</div>
         <div class="reveal">
           <h2 id="about-h" style="font-size:clamp(2rem,4.4vw,3rem);">About Aedifica</h2>
-          <p style="font-family:var(--font-text); font-size:1.08rem; margin-top:18px; max-width:52ch;">Aedifica is a New Jersey-based workforce architecture company building construction-management pathways for the learners, schools, and employers shaping the built environment and our future.</p>
+          <p style="font-family:var(--font-text); font-size:1.08rem; margin-top:18px; max-width:52ch;"><b>Aedifica LLC</b> is a New Jersey-based workforce architecture company building construction-management pathways for the scholars, schools, and employers shaping the built environment and our future.</p>
           <p style="font-family:var(--font-accessible); font-size:.95rem; color:var(--anthracite); margin-top:14px; max-width:54ch;">Our team brings both sides of the gap together: a Stevens Institute of Technology professor who leads a graduate Construction Management program; a public-school principal and district leader with more than two decades of experience; an international education-strategy and evaluation specialist; and a construction-and-education practitioner with over fifteen years delivering programs inside real school weeks.</p>
           <div class="reveal" style="display:flex; align-items:center; gap:13px; flex-wrap:wrap; margin:36px 0 0; border-top:1px solid var(--rule); padding-top:28px;">
             <span aria-hidden="true" style="width:18px; height:18px; border-radius:4px; background:var(--wine); flex:none;"></span>
             <h3 style="font-family:var(--font-display); font-weight:500; font-size:clamp(1.4rem,2.6vw,1.9rem); margin:0; line-height:1.1;">Mission &amp; Vision</h3>
           </div>
           <div class="mv">
-            <div><div class="k">Mission</div><p>Aedifica designs and delivers construction-management career pathways for schools, workforce partners, and employers, with a focus on learners who have talent but lack a clear route into the built environment.</p></div>
-            <div><div class="k">Vision</div><p>We envision a New Jersey where every learner — at every age, from every background — can see, walk, and own a clear path into the careers that build the state.</p></div>
+            <div><div class="k">Mission</div><p>Aedifica designs and delivers construction-management career pathways for schools, workforce partners, and employers, with a focus on scholars who have talent but lack a clear route into the built environment.</p></div>
+            <div><div class="k">Vision</div><p>We envision a New Jersey where every scholar — at every age, from every background — can see, walk, and own a clear path into the careers that build the state.</p></div>
             <div><div class="k">Signature</div><p><em style="font-family:var(--font-display); font-style:normal; color:var(--wine);">From foundations to futures.</em> &nbsp;·&nbsp; Earth. Engineers. Education.</p></div>
           </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== § 14 VALUES ===================== -->
+  <section id="values" aria-labelledby="values-h">
+    <div class="wrap">
+      <div class="sectionmark reveal">§ 14 — Values</div>
+      <h2 id="values-h" class="lead reveal" style="max-width:30ch;">Earth. Engineers. Education. — and the two values that hold them together.</h2>
           <div class="eee reveal">
             <div class="e"><span class="ek">Earth</span><p>The foundation: the communities we live in, the infrastructure we depend on, and the environment we have a responsibility to protect and improve. Connect infrastructure, sustainability, and place.</p></div>
             <div class="e"><span class="ek">Engineers</span><p>The builders of possibility: the people who turn ideas into roads, bridges, schools, hospitals, resilient coastlines, and transit systems. Teach disciplined problem-solving and project-management thinking.</p></div>
             <div class="e"><span class="ek">Education</span><p>The bridge: the force that allows people to enter that world, understand it, shape it, and build a better future. Create clear pathways, not isolated workshops.</p></div>
           </div>
-          <p style="font-family:var(--font-accessible); font-size:.95rem; color:var(--anthracite); margin-top:22px;">Two further values complete the operating principles: <b>Access</b> — design for people traditional systems often overlook — and <b>Evidence</b> — track outcomes and improve the model over time.</p>
-        </div>
-        <div class="reveal">
-          <p class="tag" style="display:block;">Organizational history</p>
-          <p style="font-family:var(--font-text); font-size:1.02rem; margin-top:12px;">Aedifica grew from years of construction-management practice in the field, teaching, pre-college engineering programming, STEM outreach, and workforce-pathway design. The model brings together classroom rigor, hands-on construction thinking, employer relevance, and measurable learner outcomes: a foundation in construction-management education; prior delivery through middle school (Hillside / community-based programming), high school (pre-college), and practical training and upskilling in industry; expansion into New Jersey-focused workforce pathway architecture; and Rebuild, Launch, Pathway, Explore, and the Talent Pipeline as scalable offerings.</p>
+          <p style="font-family:var(--font-accessible); font-size:.95rem; color:var(--anthracite); margin-top:22px;">Two further values complete the set: <b>Access</b> — design for people traditional systems often overlook — and <b>Evidence</b> — track outcomes and improve the model over time.</p>
+    </div>
+  </section>
 
+  <!-- ===================== § 15 ORIGIN & HISTORY ===================== -->
+  <section id="history" class="band-surface" aria-labelledby="history-h">
+    <div class="wrap">
+      <div class="sectionmark reveal">§ 15 — Origin &amp; history</div>
+      <h2 id="history-h" class="lead reveal">How Aedifica came to exist.</h2>
+      <div class="reveal" style="margin-top:26px; max-width:70ch;">
+          <p class="tag" style="display:block;">Organizational history</p>
+          <p style="font-family:var(--font-text); font-size:1.02rem; margin-top:12px;">Aedifica grew from years of construction-management practice in the field, teaching, pre-college engineering programming, STEM outreach, and workforce-pathway design. The model brings together classroom rigor, hands-on construction thinking, employer relevance, and measurable scholar outcomes: a foundation in construction-management education; prior delivery through middle school (Hillside / community-based programming), high school (pre-college), and practical training and upskilling in industry; expansion into New Jersey-focused workforce pathway architecture; and the five programs — Explore, Pathway, Launch, Rebuild, and the Talent Pipeline — designed as a single scalable pathway. Delivery status for each is published in <a href="#impact">Impact &amp; accountability</a>.</p>
+      </div>
           <div class="origin">
             <p class="tag">Origin</p>
             <h3>Founded inside the problem, not above it.</h3>
-            <p>Aedifica was conceived at the intersection of three stubborn realities: a construction workforce aging out faster than it is being replaced; a curriculum pipeline that too often treats industry as an afterthought; and a growing population of non-traditional learners who possess enormous capacity but are poorly served by institutional pathways designed for eighteen-year-olds.</p>
+            <p>Aedifica was conceived at the intersection of three stubborn realities: a construction workforce aging out faster than it is being replaced; a curriculum pipeline that too often treats industry as an afterthought; and a growing population of non-traditional scholars who possess enormous capacity but are poorly served by institutional pathways designed for eighteen-year-olds.</p>
             <p>Its founders came from both sides of that divide — licensed engineers and site experience on one hand, curriculum designers and educator-practitioners on the other. Aedifica exists because they refused to accept the polite fiction that these are separate problems for separate professions.</p>
             <p>Between educator and employer, Aedifica does not referee. We translate — and when translation is insufficient, we rebuild the terms of the conversation itself.</p>
 
-            <p class="tag" style="display:block; margin-top:30px;">Strategic commitments</p>
-            <div class="sc-grid">
-              <div class="sc">
-                <span class="scn">Commitment 01</span>
-                <h4>Evidence over inertia</h4>
-                <p>Every recommendation is defensible against data, outcomes, and industry standards — not against how it has always been done.</p>
-              </div>
-              <div class="sc">
-                <span class="scn">Commitment 02</span>
-                <h4>Co-authorship as default</h4>
-                <p>Curriculum and programs are designed <em>with</em> educators and employers, never at them.</p>
-              </div>
-              <div class="sc">
-                <span class="scn">Commitment 03</span>
-                <h4>Radical legibility</h4>
-                <p>What we design must be implementable by the people inheriting it, not only by the consultants who wrote it.</p>
-              </div>
-              <div class="sc">
-                <span class="scn">Commitment 04</span>
-                <h4>Widened doorways</h4>
-                <p>Non-traditional learners are treated as first-class audiences, not accommodation cases.</p>
-              </div>
-            </div>
-          </div>
 
+          </div>
+    </div>
+  </section>
+
+  <!-- ===================== § 16 FOUNDERS ===================== -->
+  <section id="founders" aria-labelledby="founders-h">
+    <div class="wrap">
+      <div class="sectionmark reveal">§ 16 — The founders</div>
+      <h2 id="founders-h" class="lead reveal">Built by people on both sides of the gap.</h2>
+      <div class="reveal">
           <p class="tag" style="display:block; margin-top:44px;">The founders — built by people on both sides of the gap</p>
           <div class="founders">
             <div class="fp f1">
@@ -2780,12 +2968,16 @@ html.js .vpage.active{display:block;}
               <img src="images/founder-nicole.jpg" alt="Portrait of Dr. Nicole Gilmore-Silva, Co-Founder and Chief Education and Industry Partnerships Officer of Aedifica." width="600" height="600" loading="lazy" decoding="async" data-portrait />
               <span class="role">Co-Founder &amp; Chief Education and Industry Partnerships Officer</span>
               <h3>Dr. Nicole Gilmore-Silva</h3>
-              <span class="fcred">Public education leadership · Union &amp; Essex counties · Partnerships</span>
-              <p>Dr. Nicole Gilmore-Silva is Co-Founder &amp; Chief Education and Industry Partnerships Officer of Aedifica. A former principal and district leader with more than two decades in public education, she builds the school, university, employer, and community partnerships that connect learners to the industries shaping the future.</p>
+              <span class="fcred">Ed.D. · Teach For America · Founding middle-school principal</span>
+              <p>Dr. Nicole Gilmore-Silva is Co-Founder &amp; Chief Education and Industry Partnerships Officer of Aedifica. A Teach For America corps member who became a district supervisor, elementary principal, and founding principal of an innovation middle school, she has spent two decades building the partnerships that show students what is possible.</p>
               <details class="fbio">
                 <summary>Read full biography</summary>
                 <div class="fb">
-                  <p>Her cross-sector workforce development and partnership experience spans Union and Essex counties, New Jersey. She cultivated the partnership between Stevens Institute of Technology and Hillside Innovation Academy that became a foundation for Aedifica's community delivery model, and leads the organization's community-organization and workforce-agency relationships.</p>
+                  <p>She began as a Teach For America corps member in the District of Columbia Public Schools before continuing in Newark Public Schools, serving as teacher, instructional coach, and mentor before advancing to District Supervisor of Special Education, principal of a PreK–5 school, and founding principal of an innovation-focused middle school serving Grades 7 and 8.</p>
+<p>Under her leadership, students outperformed the State of New Jersey in science, exceeded 90% proficiency in English Language Arts, and reached 100% proficiency among enrolled Grade 8 Algebra students after she implemented advanced mathematics pathways leading to Geometry before high school. Her students have gone on to some of New Jersey's and the nation's most competitive secondary schools.</p>
+<p>She cultivated the cross-sector network behind that work — Stevens Institute of Technology, NJIT, Kean University, Drew University, the Organization of Black Aerospace Professionals, Urban Aviation Group, and Ascent to Equality — engaging students in engineering, aviation, coding, artificial intelligence, architecture, construction management, forensic science, genetics, biomedical sciences, and healthcare. Every partnership served one purpose: exposing students to possibilities before asking them to choose a path.</p>
+<p>Grounded in a lifelong commitment to service, her leadership reflects the values of Delta Sigma Theta Sorority, Incorporated. Her contributions have been recognized by the NAACP, former Congressman Donald M. Payne Jr., Tom Giblin, Essex County, the City of Newark, Irvington Township, and the New Jersey PTA.</p>
+<p class="short" style="margin-top:14px; color:var(--wine);">Education is the vehicle · Exposure is the catalyst · Preparation is the journey · Opportunity is the destination</p>
                 </div>
               </details>
             </div>
@@ -2794,12 +2986,13 @@ html.js .vpage.active{display:block;}
               <img src="images/founder-kimi.jpg" alt="Portrait of Kimi Stephenson, Co-Founder and Community Program Lead of Aedifica." width="600" height="600" loading="lazy" decoding="async" data-portrait />
               <span class="role">Co-Founder &amp; Community Program Lead</span>
               <h3>Kimi Stephenson</h3>
-              <span class="fcred">MS Construction Engineering &amp; Management, Stevens · BA, Rutgers–New Brunswick</span>
-              <p>Kimi Stephenson is Co-Founder &amp; Community Program Lead of Aedifica, with over fifteen years at the intersection of construction, property, and education. She co-designed and co-delivered the Bridging Brilliance STEM program at Hillside Innovation Academy — a ten-week intensive with twenty-one students, documented as an Aedifica delivery foundation.</p>
+              <span class="fcred">M.S. Construction Engineering &amp; Mgmt., Stevens · B.A. Criminal Justice, Rutgers · OSHA-10 · BPI</span>
+              <p>Kimi Stephenson is Co-Founder &amp; Community Program Lead of Aedifica and a project manager at Terry Developments LLC, with over fifteen years across construction, property, and education — first coordinating affordable-housing and mixed-use development, then bringing hands-on engineering into the classroom.</p>
               <details class="fbio">
                 <summary>Read full biography</summary>
                 <div class="fb">
-                  <p>She carries the program-delivery side of the model: what it actually takes to run a cohort inside a school week, with real students, real materials, and a real showcase at the end.</p>
+                  <p>She co-designed and co-delivered Bridging Brilliance at Hillside Innovation Academy — the twelve-week, twenty-one-student intensive documented as an Aedifica delivery foundation — and partners with the Urban League of Union County to extend construction-management pathways to justice-impacted adults, veterans, returning caregivers, and career changers across New Jersey.</p>
+<p>She carries the delivery side of the model: what it actually takes to run a cohort inside a school week, with real students, real materials, and a real showcase at the end.</p>
                 </div>
               </details>
             </div>
@@ -2833,7 +3026,6 @@ html.js .vpage.active{display:block;}
             </div>
           </details>
           <p class="note-soft" style="margin-top:18px;">Four co-founders are named above. [ADD before launch: additional team roles — Operations / Program Delivery Lead, Employer Advisory Lead, Curriculum / Instructor Team, and Advisory Board Members — publish as confirmed and remove this placeholder.]</p>
-        </div>
       </div>
     </div>
   </section>
@@ -2841,8 +3033,8 @@ html.js .vpage.active{display:block;}
   <!-- ===================== § 13 PRINCIPLES & COMMITMENTS ===================== -->
   <section id="principles" aria-labelledby="principles-h">
     <div class="wrap">
-      <div class="sectionmark reveal">§ 13 — Principles &amp; commitments</div>
-      <p class="lead reveal" id="principles-h" style="max-width:26ch;">Five operating principles. Four commitments before any cohort begins.</p>
+      <div class="sectionmark reveal">§ 17 — Operating principles</div>
+      <p class="lead reveal" id="principles-h" style="max-width:26ch;">Six operating principles, and what each one costs us.</p>
 
       <div class="principle-list" style="margin-top:34px;">
         <div class="principle reveal">
@@ -2865,7 +3057,7 @@ html.js .vpage.active{display:block;}
           <span class="pn">03</span>
           <div>
             <h3>Equity is the strategy.</h3>
-            <p>Overlooked adults — justice-impacted, returning to work after caregiving, transitioning from military service — are not a beneficiary group. They are the talent pipeline. We design wraparound supports, regulatory pathways, and credential articulation specifically for the population we currently serve, and we serve one population excellently before adding the next. The durable construction workforce New Jersey needs is built from the talent the system overlooked, not in spite of it.</p>
+            <p>Overlooked adults — justice-impacted, returning to work after caregiving, transitioning from military service — are not a beneficiary group. They are the talent pipeline. We design wraparound supports, regulatory pathways, and credential articulation specifically for the population we currently serve, and we serve one population excellently before adding the next. The durable construction workforce New Jersey needs will not be built from the people the system already served well.</p>
             <p class="short">Short form — The talent pipeline, not the side door.</p>
           </div>
         </div>
@@ -2885,57 +3077,13 @@ html.js .vpage.active{display:block;}
             <p class="short">Short form — The strength of the network is the strength of the program.</p>
           </div>
         </div>
-      </div>
-
-      <p class="lead reveal" style="max-width:28ch; margin-top:56px; font-size:clamp(1.3rem,2.4vw,1.8rem);">A disciplined pathway requires four commitments before instruction begins.</p>
-      <div class="commit-grid">
-        <div class="commit reveal"><span class="num">01 — Recruitment</span><h3>Recruitment &amp; community support</h3><p>A community or recruitment partner helps identify participants and defines attendance support, case-management coordination, supportive services, and data responsibilities.</p></div>
-        <div class="commit reveal"><span class="num">02 — Funding</span><h3>Funding &amp; fiscal alignment</h3><p>A funding or fiscal partner establishes how the cohort is supported, administered, and reported before delivery obligations begin.</p></div>
-        <div class="commit reveal"><span class="num">03 — Employer</span><h3>Employer commitment</h3><p>Participating employers validate role relevance, inform capstone expectations, and commit to a defined interview opportunity for qualified completers.</p></div>
-        <div class="commit reveal"><span class="num">04 — Articulation</span><h3>Articulation or apprenticeship pathway</h3><p>A signed progression route with an apprenticeship sponsor, union local, county college, or employer training program creates a credible next step beyond completion.</p></div>
-      </div>
-      <div class="commit-note reveal">
-        <p>Curriculum without these commitments is a class. <b>Aedifica is designed to build a pathway.</b></p>
-        <span class="tag">Founding partnership</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== § 14 WHO WE SERVE ===================== -->
-  <section id="serve" class="band-surface" aria-labelledby="serve-h">
-    <div class="wrap">
-      <div class="sectionmark reveal">§ 14 — Who we serve</div>
-      <h2 id="serve-h" class="lead reveal">Two sides of one gap — served as first-class audiences.</h2>
-      <div class="serve-grid">
-        <div class="serve-col partners reveal">
-          <span class="tag">Institutions &amp; employers</span>
-          <h3>The people building the pathway</h3>
-          <ul>
-            <li>School districts &amp; high schools</li>
-            <li>Middle schools &amp; community organizations</li>
-            <li>County colleges</li>
-            <li>Workforce development boards</li>
-            <li>State agencies &amp; funders</li>
-            <li>Municipalities &amp; youth or summer programs</li>
-            <li>General contractors &amp; owners</li>
-            <li>Apprenticeship sponsors &amp; union locals</li>
-            <li>Philanthropy &amp; mission-aligned capital</li>
-          </ul>
-        </div>
-        <div class="serve-col learners reveal">
-          <span class="tag">Learners</span>
-          <h3>The people walking the pathway</h3>
-          <ul>
-            <li>Middle-school students discovering the built world</li>
-            <li>High-school students seeking a real track</li>
-            <li>Adults returning to the workforce</li>
-            <li>Career changers entering construction</li>
-            <li>Veterans transitioning from service</li>
-            <li>Justice-impacted talent rebuilding</li>
-            <li>Caregivers re-entering employment</li>
-            <li>First-generation students and families</li>
-            <li>Parents and families exploring options for their child</li>
-          </ul>
+        <div class="principle reveal">
+          <span class="pn">06</span>
+          <div>
+            <h3>Radical legibility.</h3>
+            <p>What we design must be implementable by the people who inherit it, not only by the consultants who wrote it. Curriculum that requires its authors in the room is a dependency, not a pathway. Every Aedifica program is delivered with the instructor materials, documentation, and measurement definitions a partner needs to run it without us — because a program that collapses when we leave was never a pathway in the first place.</p>
+            <p class="short">Short form — If it needs us in the room, it isn't finished.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -2944,12 +3092,13 @@ html.js .vpage.active{display:block;}
   <!-- ===================== § 15 ACCESS & FUNDING ===================== -->
   <section id="access" aria-labelledby="access-h">
     <div class="wrap">
-      <div class="sectionmark reveal">§ 15 — Access &amp; funding</div>
+      <div class="sectionmark reveal">§ 18 — Access &amp; funding</div>
       <div class="fund-grid">
-        <h2 id="access-h" class="lead reveal">No cost to learners. Full cost transparency to partners.</h2>
+        <h2 id="access-h" class="lead reveal">No cost to scholars. Full cost transparency to partners.</h2>
         <div class="reveal">
-          <p style="font-family:var(--font-text); font-size:1.06rem; max-width:60ch;">Aedifica programs are funded through institutional partners — districts, workforce boards, agencies, employers, and philanthropy — and aligned to New Jersey's funded green and apprenticeship priorities. Learners never pay. Partners always know exactly what a cohort costs and what it returns.</p>
+          <p style="font-family:var(--font-text); font-size:1.06rem; max-width:60ch;">Aedifica programs are funded through institutional partners — districts, workforce boards, agencies, employers, and philanthropy — and aligned to New Jersey's funded green and apprenticeship priorities. Scholars never pay. Partners always know exactly what a cohort costs and what it returns.</p>
           <ul class="fund-list">
+            <li><span class="fk">Entity</span><p>Aedifica LLC — a New Jersey limited liability company. [CONFIRM with counsel: how Title, Perkins, WIOA, and philanthropic funds reach a for-profit entity — contract vs. grant — and align the routes below to match.]</p></li>
             <li><span class="fk">Districts</span><p>Pathway and Explore run on district, Title, and grant funding — scoped to the school year and budget cycle you actually have.</p></li>
             <li><span class="fk">Workforce</span><p>Rebuild and Launch align to WIOA, state apprenticeship, and clean-energy workforce funding streams.</p></li>
             <li><span class="fk">Employers</span><p>Talent Pipeline participation is structured as workforce investment — with outcome data that survives a board review.</p></li>
@@ -2964,16 +3113,16 @@ html.js .vpage.active{display:block;}
   <!-- ===================== § 16 FAQ ===================== -->
   <section id="faq" class="band-surface" aria-labelledby="faq-h">
     <div class="wrap">
-      <div class="sectionmark reveal">§ 16 — Frequently asked questions</div>
+      <div class="sectionmark reveal">§ 19 — Frequently asked questions</div>
       <h2 id="faq-h" class="lead reveal">The questions boards, superintendents, and families actually ask.</h2>
       <div style="margin-top:30px; max-width:860px;">
         <details class="faq reveal">
           <summary>Who pays for Aedifica programs?</summary>
-          <div class="fa">Institutional partners do — districts, workforce boards, agencies, employers, and philanthropy, aligned to New Jersey's funded green and apprenticeship priorities. Programs are provided at no cost to learners.</div>
+          <div class="fa">Institutional partners do — districts, workforce boards, agencies, employers, and philanthropy, aligned to New Jersey's funded green and apprenticeship priorities. Programs are provided at no cost to scholars.</div>
         </details>
         <details class="faq reveal">
           <summary>How is Aedifica different from a training vendor?</summary>
-          <div class="fa">A vendor sells a class. Aedifica builds a pathway: employer-validated curriculum, credential articulation, defined interview commitments, and same-definition outcome reporting installed before cohort one. Curriculum without those commitments is a class.</div>
+          <div class="fa">A vendor sells a class. Aedifica builds a pathway: employer-validated curriculum, credential articulation, defined interview commitments, and same-definition outcome reporting installed before cohort one. A class ends. A pathway keeps going.</div>
         </details>
         <details class="faq reveal">
           <summary>What outcomes do you report, and how?</summary>
@@ -2989,7 +3138,7 @@ html.js .vpage.active{display:block;}
         </details>
         <details class="faq reveal">
           <summary>Is there any cost to my child or family?</summary>
-          <div class="fa">No. Aedifica programs are funded through schools, workforce partners, employers, and philanthropy. Learners never pay.</div>
+          <div class="fa">No. Aedifica programs are funded through schools, workforce partners, employers, and philanthropy. Scholars never pay.</div>
         </details>
         <details class="faq reveal">
           <summary>What ages and stages is this for?</summary>
@@ -3007,17 +3156,31 @@ html.js .vpage.active{display:block;}
     </div>
   </section>
 
-  <!-- ===================== § 17 PARTNER CTA ===================== -->
   </div><!-- /page-about -->
 
   <div class="vpage" id="page-contact" data-page="contact" role="region" aria-label="Contact">
+  <!-- ===================== § 17 PARTNER ===================== -->
   <section id="partner" aria-labelledby="partner-h">
     <div class="wrap">
-      <div class="cta-band reveal">
+      <div class="sectionmark reveal">§ 20 — Partnership</div>
+      <h2 id="partner-h" class="lead reveal">A disciplined pathway requires four commitments before instruction begins.</h2>
+      <p class="reveal" style="font-family:var(--font-text); font-size:1.06rem; color:var(--anthracite); max-width:62ch; margin-top:16px;">These are preconditions, not preferences. Aedifica does not open a cohort until all four are in place, because every outcome we publish depends on them being real before day one. Naming them early is also the fastest way for a prospective partner to see whether the pieces are in reach.</p>
+      <div class="commit-grid">
+        <div class="commit reveal"><span class="num">01 — Recruitment</span><h3>Recruitment &amp; community support</h3><p>A community or recruitment partner helps identify participants and defines attendance support, case-management coordination, supportive services, and data responsibilities.</p></div>
+        <div class="commit reveal"><span class="num">02 — Funding</span><h3>Funding &amp; fiscal alignment</h3><p>A funding or fiscal partner establishes how the cohort is supported, administered, and reported before delivery obligations begin.</p></div>
+        <div class="commit reveal"><span class="num">03 — Employer</span><h3>Employer commitment</h3><p>Participating employers validate role relevance, inform capstone expectations, and commit to a defined interview opportunity for qualified completers.</p></div>
+        <div class="commit reveal"><span class="num">04 — Articulation</span><h3>Articulation or apprenticeship pathway</h3><p>A signed progression route with an apprenticeship sponsor, union local, county college, or employer training program creates a credible next step beyond completion.</p></div>
+      </div>
+      <div class="commit-note reveal">
+        <p>Curriculum without these commitments is a class. <b>Aedifica is designed to build a pathway.</b></p>
+        <span class="tag">Founding partnership</span>
+      </div>
+      <div class="cta-band reveal" style="margin-top:52px;">
         <div>
           <span class="tagline">From foundations to futures</span>
-          <h2 id="partner-h">Built on a commitment to deliver, report, and be accountable.</h2>
+          <h2 id="partner-cta-h">Built on a commitment to deliver, report, and be accountable.</h2>
           <p>Speak with Aedifica about what a founding partnership, employer engagement, or institutional briefing looks like in practice — for your district, your board, your agency, or your firm.</p>
+          <p>The talent the system overlooked is already in your district, your county, and your applicant pool. The pathway to it is what we build.</p>
         </div>
         <div class="cta-actions">
           <a href="#contact" class="btn cream">Start a Partnership Conversation</a>
@@ -3030,7 +3193,7 @@ html.js .vpage.active{display:block;}
   <!-- ===================== § 18 CONTACT ===================== -->
   <section id="contact" class="band-surface" aria-labelledby="contact-h">
     <div class="wrap">
-      <div class="sectionmark reveal">§ 18 — Contact</div>
+      <div class="sectionmark reveal">§ 21 — Contact</div>
       <div class="contact-grid">
         <div class="reveal">
           <h2 id="contact-h" class="lead">Tell us which door is yours. We'll map the pathway.</h2>
@@ -3039,7 +3202,7 @@ html.js .vpage.active{display:block;}
             <li><span class="k">Phone</span>[ADD: phone number]</li>
             <li><span class="k">Schedule</span>[ADD: consultation scheduling link]</li>
             <li><span class="k">Service area</span>New Jersey / New York metro region</li>
-            <li><span class="k">Best for</span>Districts, workforce boards, county colleges, employers, agencies, and funders — and the families and learners they serve</li>
+            <li><span class="k">Best for</span>Districts, workforce boards, county colleges, vocational and trade schools, employers, agencies, and funders — and the families and scholars they serve</li>
             <li><span class="k">Response</span>Partnership inquiries receive a scoped reply — not a brochure</li>
           </ul>
         </div>
@@ -3063,10 +3226,11 @@ html.js .vpage.active{display:block;}
               <option>Pathway — high schools &amp; districts</option>
               <option>Launch — institutional pathway design</option>
               <option>Rebuild — adult bridge cohorts</option>
+              <option>Vocational / trade school — construction-management overlay</option>
               <option>Talent Pipeline — hiring &amp; articulation</option>
               <option>Research — briefings &amp; reports</option>
               <option>Parent or family — a program for my child</option>
-              <option>Adult learner — Rebuild cohort</option>
+              <option>Adult scholar — Rebuild cohort</option>
               <option>Something else</option>
             </select>
           </div>
@@ -3084,6 +3248,48 @@ html.js .vpage.active{display:block;}
       </div>
     </div>
   </section>
+
+  <!-- ===================== WHO WE WORK WITH (moved from About) ===================== -->
+  <section id="serve" aria-labelledby="serve-h">
+    <div class="wrap">
+      <div class="sectionmark reveal">Who we work with</div>
+      <h2 id="serve-h" class="lead reveal">Two sides of one gap — served as first-class audiences.</h2>
+      <div class="serve-grid">
+        <div class="serve-col partners reveal">
+          <span class="tag">Institutions &amp; employers</span>
+          <h3>The people building the pathway</h3>
+          <ul>
+            <li>School districts &amp; high schools</li>
+            <li>Middle schools &amp; community organizations</li>
+            <li>County colleges</li>
+            <li>Vocational &amp; trade schools</li>
+            <li>Workforce development boards</li>
+            <li>State agencies &amp; funders</li>
+            <li>Municipalities &amp; youth or summer programs</li>
+            <li>General contractors &amp; owners</li>
+            <li>Apprenticeship sponsors &amp; union locals</li>
+            <li>Philanthropy &amp; mission-aligned capital</li>
+          </ul>
+        </div>
+        <div class="serve-col learners reveal">
+          <span class="tag">Scholars</span>
+          <h3>The people walking the pathway</h3>
+          <ul>
+            <li>Middle-school students discovering the built world</li>
+            <li>High-school students seeking a real track</li>
+            <li>Adults returning to the workforce</li>
+            <li>Career changers entering construction</li>
+            <li>Veterans transitioning from service</li>
+            <li>Justice-impacted talent rebuilding</li>
+            <li>Caregivers re-entering employment</li>
+            <li>First-generation students and families</li>
+            <li>Parents and families exploring options for their child</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   </div><!-- /page-contact -->
 
 </main>
@@ -3112,14 +3318,18 @@ html.js .vpage.active{display:block;}
         <a href="#explore-curriculum">Bridging Brilliance</a>
         <a href="#pathway-curriculum">Resilient Futures</a>
         <a href="#launch-curriculum">BUILD NJ GREEN</a>
-        <a href="#experience">Learner experience</a>
+        <a href="#experience">Scholar experience</a>
       </div>
       <div class="foot-col">
         <h4>Aedifica</h4>
         <a href="#about">About</a>
+        <a href="#values">Values</a>
+        <a href="#history">Origin &amp; history</a>
+        <a href="#founders">The founders</a>
         <a href="#principles">Principles</a>
-        <a href="#serve">Who we serve</a>
+        <a href="#serve">Who we work with</a>
         <a href="#families">For Families</a>
+        <a href="#votech">For Vocational &amp; Trade Schools</a>
         <a href="#access">Access &amp; funding</a>
         <a href="#faq">FAQ</a>
         <a href="#partner">Partner</a>
@@ -3141,7 +3351,6 @@ html.js .vpage.active{display:block;}
         <div class="swrow sep">
           <div class="sw"><i style="background:var(--wine)"></i><span>Wine</span></div>
           <div class="sw"><i style="background:var(--terracotta)"></i><span>Terracotta</span></div>
-          <div class="sw"><i style="background:var(--mauve)"></i><span>Mauve</span></div>
           <div class="sw"><i style="background:var(--blush)"></i><span>Blush</span></div>
         </div>
         <div class="swrow sep">
@@ -3193,15 +3402,23 @@ html.js .vpage.active{display:block;}
   }
 
   /* ---------- Programs dropdown (hover is CSS; this adds keyboard/touch) ---------- */
-  var dropdown = document.querySelector('.nav-dropdown');
-  var dropToggle = dropdown ? dropdown.querySelector('.nav-drop-toggle') : null;
+  var dropdowns = Array.prototype.slice.call(document.querySelectorAll('.nav-dropdown'));
   function closeDropdown() {
-    if (dropdown) { dropdown.classList.remove('open'); }
-    if (dropToggle) { dropToggle.setAttribute('aria-expanded', 'false'); }
+    dropdowns.forEach(function (d) {
+      d.classList.remove('open');
+      var t = d.querySelector('.nav-drop-toggle');
+      if (t) { t.setAttribute('aria-expanded', 'false'); }
+    });
   }
-  if (dropdown) {
+  if (dropdowns.length) {
     document.addEventListener('click', function (e) {
-      if (!dropdown.contains(e.target)) { closeDropdown(); }
+      dropdowns.forEach(function (d) {
+        if (!d.contains(e.target)) {
+          d.classList.remove('open');
+          var t = d.querySelector('.nav-drop-toggle');
+          if (t) { t.setAttribute('aria-expanded', 'false'); }
+        }
+      });
     });
   }
 
@@ -3247,25 +3464,26 @@ html.js .vpage.active{display:block;}
   var PAGE_TOP = {
     home: 'top', programs: 'programs', explore: 'explore', pathway: 'pathway',
     launch: 'launch', rebuild: 'rebuild', pipeline: 'pipeline', experience: 'experience',
-    impact: 'impact', research: 'research', about: 'about', contact: 'partner'
+    impact: 'impact', research: 'research', about: 'about', contact: 'partner',
+    families: 'families', votech: 'votech'
   };
 
   function pageEl(key) { return document.getElementById('page-' + key); }
 
   function setNavCurrent(key) {
     navPageLinks.forEach(function (a) { a.removeAttribute('aria-current'); });
-    if (dropdown) { dropdown.classList.remove('current'); }
-    if (PROGRAM_KEYS.indexOf(key) !== -1) {
-      if (dropdown) { dropdown.classList.add('current'); }
-      var item = document.querySelector('#site-nav .nav-drop-menu [data-page="' + key + '"]');
-      if (item) { item.setAttribute('aria-current', 'true'); }
-    } else if (key === 'programs') {
-      if (dropdown) { dropdown.classList.add('current'); }
-      if (dropToggle) { dropToggle.setAttribute('aria-current', 'true'); }
-    } else {
-      var link = document.querySelector('#site-nav > [data-page="' + key + '"]');
-      if (!link) { link = document.querySelector('#site-nav [data-page="' + key + '"]'); }
-      if (link) { link.setAttribute('aria-current', 'true'); }
+    dropdowns.forEach(function (d) { d.classList.remove('current'); });
+    var link = document.querySelector('#site-nav .nav-drop-menu [data-page="' + key + '"]')
+            || document.querySelector('#site-nav > [data-page="' + key + '"]')
+            || document.querySelector('#site-nav [data-page="' + key + '"]');
+    if (!link) { return; }
+    link.setAttribute('aria-current', 'true');
+    var node = link.parentNode;
+    while (node && node !== document) {
+      if (node.classList && node.classList.contains('nav-dropdown')) {
+        node.classList.add('current'); break;
+      }
+      node = node.parentNode;
     }
   }
 

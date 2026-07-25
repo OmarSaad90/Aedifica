@@ -10,7 +10,7 @@ const PROGRAMS = [
   {
     chip: 'Program 01 · Middle school',
     name: 'Aedifica Explore',
-    body: 'Career awareness and hands-on discovery in the built environment for middle-school learners: the earliest, widest door into the pathway. Students meet the professions that shape their communities and begin speaking the language of engineering.',
+    body: 'Career awareness and hands-on discovery in the built environment for middle-school scholars: the earliest, widest door into the pathway. Students meet the professions that shape their communities and begin speaking the language of engineering.',
     meta: ['Grades 6–8', 'School-year & summer', 'Community-based delivery'],
     cta: 'Explore the program',
     to: '/programs/explore',
@@ -38,10 +38,10 @@ const PROGRAMS = [
     dark: true,
   },
   {
-    chip: 'Program 04 · Adult learners',
+    chip: 'Program 04 · Adult scholars',
     name: 'Aedifica Rebuild',
-    body: 'A 12- or 24-week adult bridge cohort into construction-management-track roles, designed for overlooked talent: adults returning to work, changing industries, transitioning from military service, or rebuilding after justice involvement.',
-    meta: ['12 or 24 weeks', 'Wraparound supports', 'Employer-validated capstone'],
+    body: 'An adult bridge cohort into construction-management-track roles, scoped to your calendar and funding cycle, designed for overlooked talent: adults returning to work, changing industries, transitioning from military service, or rebuilding after justice involvement.',
+    meta: ['Flexible cohort length', 'Wraparound supports', 'Employer-validated capstone'],
     cta: 'Explore the program',
     to: '/programs/rebuild',
     color: 'bg-rebuild-deep',
@@ -80,7 +80,7 @@ export function HomePrograms() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-bone py-12 lg:py-18" aria-labelledby="programs-heading">
+    <section className="bg-snow py-12 lg:py-18" aria-labelledby="programs-heading">
       <div className="max-w-7xl mx-auto px-6">
 
         <motion.div
@@ -166,7 +166,7 @@ export function HomePrograms() {
             aria-hidden="true"
           >
             <div className="relative w-9 h-9 -translate-x-1/2 -translate-y-1/2">
-              <span className="absolute inset-0 rotate-45 bg-bone" />
+              <span className="absolute inset-0 rotate-45 bg-snow" />
               <span className="absolute inset-0 m-auto w-5 h-5 rotate-45 bg-anthracite" />
             </div>
           </div>

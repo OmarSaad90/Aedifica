@@ -17,16 +17,16 @@ const COLUMNS = [
     links: [
       { label: 'Impact Framework', href: '/impact' },
       { label: 'Aedifica Research', href: '/research' },
-      { label: 'Learner Experience', href: '/experience' },
+      { label: 'Scholar Experience', href: '/experience' },
       { label: 'Bridging Brilliance', href: '/curriculum/bridging-brilliance' },
     ],
   },
   {
     heading: 'Aedifica',
     links: [
-      { label: 'About Us', href: '/about' },
+      { label: 'About', href: '/about' },
       { label: 'Our Values', href: '/about#about-values-h2' },
-      { label: 'Who We Serve', href: '/#serve-h2' },
+      { label: 'Who We Serve', href: '/partner#serve-h2' },
       { label: 'Access & Funding', href: '/about#access-h2' },
       { label: 'FAQ', href: '/about#faq-h2' },
     ],
@@ -35,6 +35,7 @@ const COLUMNS = [
     heading: 'Get Involved',
     links: [
       { label: 'For Families', href: '/families' },
+      { label: 'For Vocational & Trade Schools', href: '/trade-schools' },
       { label: 'Partner With Us', href: '/partner' },
       { label: 'Contact', href: '/partner' },
     ],

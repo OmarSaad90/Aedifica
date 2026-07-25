@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'motion/react'
-import { CalendarBlank, HandCoins, ShieldCheck, DoorOpen, type Icon } from '@phosphor-icons/react'
+import { CalendarBlank, HandCoins, UsersFour, ShieldCheck, DoorOpen, type Icon } from '@phosphor-icons/react'
 
 const VIEWPORT = { once: true, margin: '-60px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
@@ -9,7 +9,8 @@ const SPRING = [0.32, 0.72, 0, 1] as const
 
 const FACTS: { Icon: Icon; label: string; value: string; emphasis?: boolean }[] = [
   { Icon: CalendarBlank, label: 'Ages & stages', value: 'Middle school, high school, and adults' },
-  { Icon: HandCoins, label: 'Cost to your family', value: 'None, programs are free to learners', emphasis: true },
+  { Icon: HandCoins, label: 'Cost to your family', value: 'None, programs are free to scholars', emphasis: true },
+  { Icon: UsersFour, label: 'Who teaches', value: 'Working construction-management and engineering professionals' },
   { Icon: ShieldCheck, label: 'Safety', value: 'Background-checked staff, on-site supervision, and FERPA-aligned data practices' },
   { Icon: DoorOpen, label: 'How to start', value: 'Ask if Aedifica is partnering with your school' },
 ]
@@ -17,6 +18,7 @@ const FACTS: { Icon: Icon; label: string; value: string; emphasis?: boolean }[] 
 const MINI_LIST = [
   'Hands-on learning in the built environment, taught by working professionals',
   'Exposure to respected, well-paying careers in construction management and engineering',
+  "Mentors and classmates who stay in your child's corner well beyond the program",
   'For high-schoolers and adults, a path toward real credentials and real job connections',
 ] as const
 
@@ -85,8 +87,64 @@ export function Families() {
         </div>
       </section>
 
-      {/* ── Facts + mini-list ── bg-snow */}
-      <section className="bg-snow py-14 lg:py-20" aria-label="What to expect">
+      {/* ── Why Aedifica for your family ── bg-snow */}
+      <section className="bg-snow py-14 lg:py-20" aria-label="Why Aedifica for your family">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="lg:grid lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 xl:gap-20 lg:items-start">
+            <div className="space-y-4 max-w-[64ch]">
+              <motion.p
+                className="text-[14.5px] text-anthracite/75 leading-[1.72]"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 16 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
+                Aedifica provides transformative experiences that bolster confidence, create lifelong
+                community, and build an exciting, challenging foundation for a future in engineering and
+                construction management. We build pathways that run from early exposure in middle school
+                all the way to training programs for adults returning to the job market.
+              </motion.p>
+              <motion.p
+                className="text-[14.5px] text-anthracite/75 leading-[1.72]"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 16 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.06, ease: EASE }}>
+                Our programs are designed to increase opportunity and access in construction management,
+                with particular focus on scholars from underserved and under-resourced backgrounds. We
+                create new pathways for our scholars, help them develop the skills they need and a genuine
+                sense of belonging in the STEM fields, and empower them to use what they learn to address
+                urgent issues facing their own communities.
+              </motion.p>
+              <motion.p
+                className="text-[14.5px] text-anthracite/75 leading-[1.72]"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 16 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.12, ease: EASE }}>
+                Together, all of us at Aedifica, our staff, our instructors, and our scholars, are here to
+                build something that outlasts us.
+              </motion.p>
+            </div>
+            <motion.div
+              className="mt-10 lg:mt-0 border border-anthracite/15 px-7 py-8"
+              initial={reduce ? undefined : { opacity: 0, y: 16 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.1, ease: EASE }}>
+              <p className="text-[10.5px] uppercase tracking-[0.18em] text-datum mb-4 select-none" style={{ fontFamily: 'var(--font-body)' }}>What we believe</p>
+              <p className="text-[1.5rem] lg:text-[1.75rem] text-anthracite leading-[1.3] italic" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+                Your child already has what this field needs. Our job is to make sure the door is open.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Facts + mini-list ── bg-bone */}
+      <section className="bg-bone py-14 lg:py-20" aria-label="What to expect">
         <div className="max-w-7xl mx-auto px-6">
           <div className="lg:grid lg:grid-cols-[1.1fr_1fr] lg:gap-16 xl:gap-20 lg:items-start">
 
@@ -140,8 +198,8 @@ export function Families() {
         </div>
       </section>
 
-      {/* ── CTA ── bg-bone wrapper, bg-datum card ── */}
-      <section className="bg-bone pt-10 lg:pt-16 pb-0" aria-label="Get your child started">
+      {/* ── CTA ── bg-snow wrapper, bg-datum card ── */}
+      <section className="bg-snow pt-10 lg:pt-16 pb-0" aria-label="Get your child started">
         <div className="max-w-[1100px] mx-auto px-6">
           <motion.div
             className="bg-datum px-10 pt-14 pb-12 lg:px-16 lg:pt-16 lg:pb-14 text-center rounded-t-[2rem]"

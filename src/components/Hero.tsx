@@ -25,28 +25,28 @@ export function Hero() {
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
           transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}
         >
-          Earth · Engineers · Education
+          Earth. Engineers. Education.
         </motion.p>
 
         <motion.h1
           id="hero-heading"
-          className="text-[2.75rem] lg:text-[3.75rem] xl:text-[5.25rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic pb-1 mb-7 max-w-[24ch] [text-wrap:balance]"
+          className="text-[2.75rem] lg:text-[3.75rem] xl:text-[5.25rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic pb-1 mb-7 max-w-[15ch] [text-wrap:balance]"
           style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
           initial={reduce ? undefined : { opacity: 0, y: 28 }}
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
           transition={reduce ? undefined : { duration: 0.7, delay: 0.22, ease: SPRING }}
         >
-          We build the builders New Jersey is <span className="text-datum">counting on.</span>
+          New Jersey is being rebuilt. <span className="text-datum">Its builders are not.</span>
         </motion.h1>
 
         <motion.p
-          className="text-[15.5px] text-anthracite/70 leading-[1.65] max-w-[54ch] mb-9"
+          className="text-[15.5px] text-anthracite/70 leading-[1.65] max-w-[62ch] mb-9"
           style={{ fontFamily: 'var(--font-body)' }}
           initial={reduce ? undefined : { opacity: 0, y: 18 }}
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
           transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}
         >
-          New Jersey is funding a generation of clean, resilient infrastructure, and facing a shortage of the construction managers who deliver it. Aedifica builds that missing pathway: from early STEM exposure to credentialed, employer-connected careers. From foundations to futures.
+          The rebuild is already funded: transportation, airport expansion, resiliency, electrification, and public works across New Jersey and the New York metro region. Those projects need more than engineers and tradespeople. They need <strong className="font-semibold text-anthracite">construction managers</strong>: the coordinators, estimators, schedulers, document-control professionals, safety leaders, and field supervisors who turn funding into finished work.
         </motion.p>
 
         <motion.div
@@ -81,9 +81,9 @@ export function Hero() {
         >
           {[
             { n: '$1B+', l: 'delivered infrastructure behind our leadership' },
-            { n: 'Employer-validated', l: 'capstone behind every credential' },
+            { n: 'Employer-validated', l: 'capstone required before any credential' },
             { n: 'NJ-funded', l: 'green and apprenticeship priorities' },
-            { n: 'No cost to learners', l: 'programs funded through institutional partners' },
+            { n: 'No cost to scholars', l: 'programs funded through institutional partners' },
           ].map(({ n, l }) => (
             <div key={n} className="lg:flex-1 lg:px-7 first:lg:pl-0 last:lg:pr-0">
               <p

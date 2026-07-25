@@ -43,7 +43,7 @@ export function Experience() {
               initial={reduce ? undefined : { opacity: 0, y: 10 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-              Learner Experience
+              Scholar Experience
             </motion.span>
 
             <motion.h1

@@ -309,7 +309,7 @@ export const EXPERIENCE_SCHEMA = {
     {
       '@type': 'WebPage',
       url: `${SITE_URL}/experience`,
-      name: 'Learner Experience | Aedifica',
+      name: 'Scholar Experience | Aedifica',
       description:
         "In their own words: reflections from Aedifica Explore's Building Bridges cohort and Aedifica Pathway's Civil Engineering & Design Pathway students at Stevens Institute of Technology.",
       isPartOf: { '@id': `${SITE_URL}/#website` },
@@ -319,7 +319,7 @@ export const EXPERIENCE_SCHEMA = {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-        { '@type': 'ListItem', position: 2, name: 'Learner Experience', item: `${SITE_URL}/experience` },
+        { '@type': 'ListItem', position: 2, name: 'Scholar Experience', item: `${SITE_URL}/experience` },
       ],
     },
   ],
@@ -342,6 +342,28 @@ export const FAMILIES_SCHEMA = {
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
         { '@type': 'ListItem', position: 2, name: 'For Families', item: `${SITE_URL}/families` },
+      ],
+    },
+  ],
+}
+
+export const VOTECH_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      url: `${SITE_URL}/trade-schools`,
+      name: 'For Vocational & Trade Schools | Aedifica',
+      description:
+        "We don't replace your program, we add the construction-management layer above it. How Aedifica's overlay works for county vocational-technical and trade schools.",
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      about: { '@id': `${SITE_URL}/#organization` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'For Vocational & Trade Schools', item: `${SITE_URL}/trade-schools` },
       ],
     },
   ],

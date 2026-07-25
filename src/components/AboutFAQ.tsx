@@ -9,14 +9,14 @@ const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
 const FAQS = [
-  { q: 'How is Aedifica different from a training vendor?', a: 'A vendor sells a class. Aedifica builds a pathway: employer-validated curriculum, credential articulation, defined interview commitments, and same-definition outcome reporting installed before cohort one. Curriculum without those commitments is a class.', group: 'partners' },
+  { q: 'How is Aedifica different from a training vendor?', a: 'A vendor sells a class. Aedifica builds a pathway: employer-validated curriculum, credential articulation, defined interview commitments, and same-definition outcome reporting installed before cohort one. A class ends. A pathway keeps going.', group: 'partners' },
   { q: 'What outcomes do you report, and how?', a: 'Placement rate, credential attainment, wage at placement, and apprenticeship articulation, defined identically every cohort and published as cohorts complete. We do not redefine "placement" to inflate headlines.', group: 'partners' },
   { q: 'Do you replace our staff or systems?', a: 'No. Community organizations own recruitment and case management; colleges and boards own fiscal capacity and reporting; employers own role definitions. Aedifica owns curriculum, instruction, capstone design, and measurement, and stays in that lane.', group: 'partners' },
   { q: 'What does a partnership start with?', a: 'A conversation, then a scoped brief: your audience, your funding stream, the four commitments (recruitment, funding, employer, articulation), and a delivery calendar. Most partners start with one program door and expand along the pathway.', group: 'partners' },
-  { q: 'Who pays for Aedifica programs?', a: "Institutional partners do: districts, workforce boards, agencies, employers, and philanthropy, aligned to New Jersey's funded green and apprenticeship priorities. Programs are provided at no cost to learners.", group: 'families' },
-  { q: 'Is there any cost to my child or family?', a: 'No. Aedifica programs are funded through schools, workforce partners, employers, and philanthropy. Learners never pay.', group: 'families' },
+  { q: 'Who pays for Aedifica programs?', a: "Institutional partners do: districts, workforce boards, agencies, employers, and philanthropy, aligned to New Jersey's funded green and apprenticeship priorities. Programs are provided at no cost to scholars.", group: 'families' },
+  { q: 'Is there any cost to my child or family?', a: 'No. Aedifica programs are funded through schools, workforce partners, employers, and philanthropy. Scholars never pay.', group: 'families' },
   { q: 'What ages and stages is this for?', a: 'Middle school (Explore), high school (Pathway), and adults (Rebuild). Each program is built for one stage of the same pathway.', group: 'families' },
-  { q: 'Is it safe and supervised?', a: 'Yes. Programs are delivered with appropriate supervision and student-data-privacy practices aligned to FERPA.', group: 'families' },
+  { q: 'Is it safe and supervised?', a: 'Yes. Programs are delivered by staff with appropriate supervision and student-data-privacy practices aligned to FERPA.', group: 'families' },
   { q: "How do I bring Aedifica to my child's school?", a: 'Tell us your school or community organization on the contact form and we will follow up. Many partnerships begin because a parent or an educator asked.', group: 'families' },
 ] as const
 

@@ -9,10 +9,12 @@ const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
 const INFO_ROWS = [
-  ['Audience', 'Adult learners · non-traditional talent'],
-  ['Format', '12- or 24-week bridge cohorts'],
+  ['Status', 'Designed, curriculum complete; no cohort delivered'],
+  ['Audience', 'Adult scholars · non-traditional talent'],
+  ['Delivery models', 'Standalone cohort, or a construction-management overlay on an existing vocational or trade-school program'],
+  ['Format', 'Bridge cohorts, scoped to partner capacity and funding cycle'],
   ['Supports', 'Wraparound services via community partners'],
-  ['Cost to learners', 'None, funded through institutional partners'],
+  ['Cost to scholars', 'None, funded through institutional partners'],
 ] as const
 
 const MINI_LIST = [
@@ -22,7 +24,7 @@ const MINI_LIST = [
 ] as const
 
 const JOURNEY = [
-  { stage: 'Starting point', note: 'Where each learner begins: experience, goals, and readiness, honestly assessed.' },
+  { stage: 'Starting point', note: 'Where each scholar begins: experience, goals, and readiness, honestly assessed.' },
   { stage: 'Construction-management vocabulary', note: 'The shared language of scope, schedule, cost, safety, and quality.' },
   { stage: 'Project lifecycle', note: 'How a project moves from idea to design to delivery to closeout.' },
   { stage: 'Reading drawings', note: 'Plans, specifications, and the documents the jobsite runs on.' },
@@ -47,10 +49,10 @@ const LEARN_AREAS = [
   { num: 'Area 03', title: 'Bluebeam & Procore foundations', desc: 'The two platforms most New Jersey general contractors actually run on: markup, takeoff, and document workflows in Bluebeam; project, daily log, and RFI workflows in Procore.' },
   { num: 'Area 04', title: 'BIM viewer literacy', desc: 'Navigating a coordinated model, understanding clashes, and using model views to read a project a set of 2D drawings cannot fully explain.' },
   { num: 'Area 05', title: 'Submittal, RFI & document-control fundamentals', desc: 'The paperwork backbone of a project: logs, transmittals, approvals, and the discipline that keeps a jobsite accountable and a schedule defensible.' },
-  { num: 'Area 06', title: 'Estimating & scheduling', desc: 'Quantity take-offs, unit costs, and a basic estimate; sequencing logic, milestones, and a simple project schedule the learner can explain and defend.' },
+  { num: 'Area 06', title: 'Estimating & scheduling', desc: 'Quantity take-offs, unit costs, and a basic estimate; sequencing logic, milestones, and a simple project schedule the scholar can explain and defend.' },
   { num: 'Area 07', title: 'Supervisory communication', desc: 'Toolbox talks, coordination meetings, written field reports, and the professional, employer-facing communication that separates a coordinator from a candidate.' },
-  { num: 'Area 08', title: 'Employer-informed capstone', desc: 'A project artifact scoped with participating employers and presented to them: the evidence a learner carries into the interview.' },
-  { num: 'Area 09', title: 'Interview week', desc: 'Resume development, mock interviews, employer expectations, and the defined interview opportunity participating employers commit to for qualified completers.' },
+  { num: 'Area 08', title: 'Employer-informed capstone', desc: 'A project artifact scoped with participating employers and presented to them: the evidence a scholar carries into the interview.' },
+  { num: 'Area 09', title: 'Interview week', desc: 'Resume development, mock interviews, employer expectations, and the defined interview opportunity participating employers will commit to for qualified completers.' },
 ] as const
 
 export function Rebuild() {
@@ -90,7 +92,7 @@ export function Rebuild() {
               initial={reduce ? undefined : { opacity: 0, y: 10 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-              Program 04 · Adult learners
+              Program 04 · Adult scholars
             </motion.span>
 
             <motion.h1
@@ -108,7 +110,7 @@ export function Rebuild() {
               initial={reduce ? undefined : { opacity: 0, y: 14 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={reduce ? undefined : { duration: 0.5, delay: 0.4, ease: EASE }}>
-              {(['12 or 24 weeks', 'New Jersey', 'Adult learners'] as const).map((item, i) => (
+              {(['Flexible cohort length', 'New Jersey', 'Adult scholars'] as const).map((item, i) => (
                 <span key={item} className="text-[13px] text-white/90 tracking-[-0.01em]" style={{ fontFamily: 'var(--font-body)' }}>
                   {item}
                   {i < 2 && <span className="mx-4 text-white/25" aria-hidden="true">·</span>}
@@ -132,11 +134,23 @@ export function Rebuild() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.55, ease: EASE }}>
-                Rebuild is the adult bridge into construction-management-track roles: a 12- or 24-week
-                cohort for people with enormous capacity who were poorly served by pathways designed for
-                eighteen-year-olds. Adults returning to work after caregiving, transitioning from
-                military service, changing industries, or rebuilding after justice involvement are not a
-                beneficiary group here. They are the talent pipeline.
+                Rebuild is the adult bridge into construction-management-track roles: a cohort for people
+                with enormous capacity who were poorly served by pathways designed for eighteen-year-olds.
+                Adults returning to work after caregiving, transitioning from military service, changing
+                industries, or rebuilding after justice involvement are not a beneficiary group here. They
+                are the talent pipeline.
+              </motion.p>
+              <motion.p
+                className="text-[14.5px] text-anthracite/72 leading-[1.72] max-w-[62ch] mb-6"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 16 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
+                Every cohort is designed to end in an employer-validated capstone and a defined interview
+                opportunity, because a credential without a door is just a certificate. Rebuild is
+                designed and not yet delivered; the first cohort runs when funding and employer
+                commitments are in place.
               </motion.p>
               <motion.p
                 className="text-[14.5px] text-anthracite/72 leading-[1.72] max-w-[62ch] mb-10"
@@ -144,9 +158,15 @@ export function Rebuild() {
                 initial={reduce ? undefined : { opacity: 0, y: 16 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
-                Every cohort ends in an employer-validated capstone and a defined interview opportunity,
-                because a credential without a door is just a certificate.
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.14, ease: EASE }}>
+                <strong className="text-anthracite font-medium">Rebuild also runs as an overlay.</strong> We
+                partner with vocational and trade schools to strengthen programs they already deliver,
+                rather than competing with them: their training builds the craft, and Rebuild adds the
+                construction-management layer above it. The school keeps its program, its students, and
+                its credential.{' '}
+                <Link href="/trade-schools" className="text-datum hover:underline underline-offset-2">
+                  See how the overlay works for vocational and trade schools
+                </Link>.
               </motion.p>
 
               {INFO_ROWS.map(([label, value], i) => (
@@ -192,7 +212,7 @@ export function Rebuild() {
         </div>
       </section>
 
-      {/* ── The Rebuild learner journey ── bg-bone */}
+      {/* ── The Rebuild scholar journey ── bg-bone */}
       <section className="bg-bone py-14 lg:py-20" aria-labelledby="journey-h2">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
@@ -202,7 +222,7 @@ export function Rebuild() {
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
             <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-            <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>The Rebuild learner journey, starting point to next step</p>
+            <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>The Rebuild scholar journey, starting point to next step</p>
           </motion.div>
           <motion.h2
             id="journey-h2"
@@ -285,11 +305,11 @@ export function Rebuild() {
             color="var(--color-datum)"
             open={open}
             onToggle={() => setOpen(o => !o)}
-            meta="Adults · 12 or 24 weeks · nine learning areas · outline"
+            meta="Adults · flexible cohort length · nine learning areas · outline"
             collapsedTitle="Rebuild: the curriculum behind the cohort"
             eyebrow="Adult bridge cohort · Construction management · New Jersey"
             title="Nine learning areas, one employer-facing portfolio."
-            intro="These are the published learning areas Rebuild cohorts are built from. They map onto the seventeen-stage learner journey above: vocabulary and lifecycle first, then the tools and documents of the work, then the judgment and communication a supervisor is hired for, and finally the capstone and interview week that turn the cohort into a next step."
+            intro="These are the published learning areas Rebuild cohorts are built from. They map onto the seventeen-stage scholar journey above: vocabulary and lifecycle first, then the tools and documents of the work, then the judgment and communication a supervisor is hired for, and finally the capstone and interview week that turn the cohort into a next step."
             facts={[]}
             frameworks={[]}>
 

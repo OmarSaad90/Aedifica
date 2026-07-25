@@ -405,6 +405,21 @@ export function Pathway() {
                 Institute of Technology: students who finished those programs reported new vocabulary,
                 new confidence, and new futures in civil engineering and construction management.
               </motion.p>
+              <motion.p
+                className="text-[14.5px] text-anthracite/72 leading-[1.72] max-w-[62ch] mb-10"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 16 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.14, ease: EASE }}>
+                <strong className="text-anthracite font-medium">Existing STEM is a foundation, not a
+                substitute.</strong> A strong STEM department teaches the science and math this work rests
+                on. Engineering and construction management are a separate discipline (scope, schedule,
+                cost, safety, sequencing) and one that sits outside most certification routes and
+                teacher-preparation programs, because it is learned on projects rather than in coursework.
+                Aedifica supplies instructors who practice it, and works alongside your educators rather
+                than around them: they keep the classroom relationship, we bring the jobsite.
+              </motion.p>
 
               {INFO_ROWS.map(([label, value], i) => (
                 <motion.div
@@ -610,6 +625,33 @@ export function Pathway() {
             ))}
           </div>
 
+          <motion.div
+            className="border border-anthracite/15 px-6 py-6 lg:px-8 lg:py-7 mt-12 lg:mt-14 print:hidden"
+            initial={reduce ? undefined : { opacity: 0, y: 16 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
+            <p className="text-[10.5px] uppercase tracking-[0.16em] text-datum mb-4 select-none" style={{ fontFamily: 'var(--font-body)' }}>This is a sample curriculum</p>
+            <div className="space-y-3 max-w-[74ch]">
+              <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
+                <strong className="text-anthracite font-medium">What you see below is a sample, not the catalogue.</strong> Resilient
+                Futures is a complete, real curriculum we have designed and can run; it exists to show a district how we build, not to
+                define what a district receives.
+              </p>
+              <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
+                <strong className="text-anthracite font-medium">Where it comes from.</strong> It is built on the Hillside-Stevens bridge
+                program and the Resilient Futures studio designs. Pathway&rsquo;s delivered record is three summers of pre-college
+                engineering at Stevens Institute of Technology (2022&ndash;2024), reported in{' '}
+                <Link href="/impact" className="text-datum hover:underline underline-offset-2">Impact &amp; accountability</Link>.
+              </p>
+              <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
+                <strong className="text-anthracite font-medium">We build to order.</strong> Content, sequence, delivery mode, and calendar
+                are scoped with your district, see &ldquo;Ways to run it&rdquo; below. If this sample does not fit your schedule or your
+                cohort, we write the one that does.
+              </p>
+            </div>
+          </motion.div>
+
         </div>
       </section>
 
@@ -764,6 +806,124 @@ export function Pathway() {
             />
           </CurriculumShell>
 
+        </div>
+      </section>
+
+      {/* ── Ways to run it ── bg-snow */}
+      <section className="bg-snow py-14 lg:py-20 print:hidden" aria-label="Ways to run it">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-[46rem] mb-10 lg:mb-12">
+            <motion.div
+              className="flex items-center gap-3 mb-5"
+              initial={reduce ? undefined : { opacity: 0 }}
+              whileInView={reduce ? undefined : { opacity: 1 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+              <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
+              <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Ways to run it</p>
+            </motion.div>
+            <motion.h2
+              className="text-[1.875rem] lg:text-[2.5rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic mb-5 [text-wrap:balance]"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+              initial={reduce ? undefined : { opacity: 0, y: 22 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
+              Bespoke by design.
+            </motion.h2>
+            <motion.p
+              className="text-[14.5px] text-anthracite/72 leading-[1.7] max-w-[64ch]"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 16 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
+              Pathway is built with your district rather than delivered to it. Content, delivery mode,
+              and timeline are scoped with your team, and the content adapts to how your cohort learns:
+              reading level, language supports, hands-on ratio, and pacing. The standards alignment
+              holds regardless of the shape you choose. The Resilient Futures curriculum above is one
+              instance, not the template.
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y sm:divide-y-0 divide-sediment/20 border-t border-sediment/20 pt-1">
+            {[
+              ['Full-year course', 'A year-long track inside the school day, scoped to your master schedule.'],
+              ['Semester course', 'A single-term version carrying the same standards in a compressed arc.'],
+              ['Layered onto an existing course', 'A construction-management track added to a CTE, STEM, or engineering offering you already run.'],
+              ['After-school or dual-period block', 'A recurring block for students who cannot fit a full course.'],
+              ['Vacation & summer intensive', 'A concentrated build across a break: the model already delivered through Stevens pre-college.'],
+              ['Cohort-tailored content', 'Pacing, reading level, language supports, and hands-on ratio set to the cohort you actually have.'],
+            ].map(([title, body], i) => (
+              <motion.div
+                key={title}
+                className="py-6 sm:pr-8 lg:pr-10"
+                initial={reduce ? undefined : { opacity: 0, y: 16 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.42, delay: Math.min(i * 0.06, 0.3), ease: EASE }}>
+                <p className="text-[1rem] text-anthracite font-medium tracking-[-0.01em] mb-2.5" style={{ fontFamily: 'var(--font-body)' }}>{title}</p>
+                <p className="text-[13px] text-anthracite/70 leading-[1.6]" style={{ fontFamily: 'var(--font-body)' }}>{body}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── What it takes to run it ── bg-bone */}
+      <section className="bg-bone py-14 lg:py-20 print:hidden" aria-label="What it takes to run it">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-[46rem] mb-10 lg:mb-12">
+            <motion.div
+              className="flex items-center gap-3 mb-5"
+              initial={reduce ? undefined : { opacity: 0 }}
+              whileInView={reduce ? undefined : { opacity: 1 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+              <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
+              <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>What it takes to run it</p>
+            </motion.div>
+            <motion.h2
+              className="text-[1.875rem] lg:text-[2.5rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic mb-5 [text-wrap:balance]"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+              initial={reduce ? undefined : { opacity: 0, y: 22 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
+              What we need from you, stated plainly.
+            </motion.h2>
+            <motion.p
+              className="text-[14.5px] text-anthracite/72 leading-[1.7] max-w-[62ch]"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 16 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
+              Before anyone evaluates curriculum, they need to know what this costs in schedule, staff
+              time, and space. Here is the operating footprint.
+            </motion.p>
+          </div>
+
+          {[
+            ['Schedule footprint', 'Flexible, full-year, semester, layered, block, or intensive; see "Ways to run it" above.'],
+            ['Who teaches', 'Aedifica supplies instructors who practice the work, alongside your educators; they keep the classroom relationship.'],
+            ['Cohort size', 'Minimum 10, maximum 25 per cohort.'],
+            ['Your staff commitment', 'Scoped with your team before the cohort starts, and published here once confirmed.'],
+            ['Room & materials', 'The partner provides the room. Aedifica brings all materials: kits, consumables, and testing equipment.'],
+            ['Lead time', 'Four weeks from signed agreement to first session. The programs are built and ready to run.'],
+            ['Pilot option', 'Single-cohort pilots are available for partners who want to test the model before a full commitment.'],
+          ].map(([label, value], i) => (
+            <motion.div
+              key={label}
+              className="grid grid-cols-1 sm:grid-cols-[220px_1fr] gap-2 sm:gap-8 py-4 border-t border-sediment/20 last:border-b"
+              initial={reduce ? undefined : { opacity: 0, y: 12 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.4, delay: Math.min(i * 0.05, 0.3), ease: EASE }}>
+              <p className="text-[12.5px] uppercase tracking-[0.13em] text-datum pt-0.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
+              <p className="text-[13.5px] text-anthracite/80 leading-[1.55] max-w-[58ch]" style={{ fontFamily: 'var(--font-body)' }}>{value}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 

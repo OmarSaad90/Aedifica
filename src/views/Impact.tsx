@@ -8,9 +8,9 @@ const SPRING = [0.32, 0.72, 0, 1] as const
 
 const STATS = [
   { num: '21', label: 'Students, first cohort', meaning: 'Middle-school students in grades 7-8, about 22% of the school.', accent: 'text-datum' },
-  { num: '10 weeks', label: 'Program length', meaning: 'Hands-on, NGSS-aligned engineering, delivered at the school and on campus.', accent: 'text-patina' },
+  { num: '12 weeks', label: 'Program length', meaning: 'Hands-on, NGSS-aligned engineering, delivered at the school and on campus.', accent: 'text-patina' },
   { num: '55%', label: 'Advanced STEM placements', meaning: 'Of eighth-graders (6 of 11) accepted to the highly selective Union County Vocational-Technical Schools for 2025-26.', accent: 'text-datum' },
-  { num: '≈ 93', label: 'Final-grade average', meaning: 'Average final grade among participants across the 10-week program.', accent: 'text-patina' },
+  { num: '≈ 93', label: 'Final-grade average', meaning: 'Average final grade among participants across the 12-week program.', accent: 'text-patina' },
   { num: '100% / 85%', label: 'Survey response', meaning: 'Pre- and post-program survey response rate.', accent: 'text-datum' },
   { num: '$10,340', label: 'Program investment', meaning: 'Independently reviewed and certified by Stevens (2025).', accent: 'text-patina' },
 ] as const
@@ -19,6 +19,21 @@ const GOALS = [
   'Expanded students’ view of engineering, from fixing things to designing, testing, and improving real solutions',
   'Demystified the path to engineering careers, through work alongside undergraduates, graduate researchers, and faculty',
   'Built confidence to pursue STEM, in public speaking, technical communication, and navigating a college campus',
+] as const
+
+const PROGRAM_STATUS = [
+  { name: 'Explore', status: 'Delivered', detail: 'Two years, Building Bridges. Quantitative results below.', color: 'bg-datum', dark: false },
+  { name: 'Pathway', status: 'Delivered', detail: 'Three summers (2022-2024), Stevens pre-college, same course and instructor. Documented by participant satisfaction surveys from the Stevens Office of Pre-College Programs, reported below. These are course and instructor ratings, not academic-outcome measures; enrollment, completion, and articulation figures are not yet published.', color: 'bg-quarry', dark: true },
+  { name: 'Launch', status: 'Designed', detail: 'Community-based partners engaged, grant applications submitted. No cohort delivered.', color: 'bg-sediment', dark: true },
+  { name: 'Rebuild', status: 'Designed', detail: 'Curriculum and cohort model complete. No cohort delivered.', color: 'bg-rebuild-deep', dark: false },
+  { name: 'Talent Pipeline', status: 'In formation', detail: 'Contractor relationships available, referral channel not yet formed.', color: 'bg-pipeline', dark: true },
+] as const
+
+const PATHWAY_STATS = [
+  { num: '73–80%', label: 'Rated the program Excellent', meaning: 'Each year, and 0% rated it Poor, all three years.', accent: 'text-quarry' },
+  { num: '88–96%', label: 'Rated Professor Karam Excellent', meaning: '2022 through 2024.', accent: 'text-patina' },
+  { num: '85–100%', label: 'Rated the teaching above average', meaning: 'On being motivating and approachable.', accent: 'text-quarry' },
+  { num: '3 summers', label: 'Same course, same instructor', meaning: '2022, 2023, and 2024.', accent: 'text-patina' },
 ] as const
 
 const METRICS = [
@@ -84,15 +99,86 @@ export function Impact() {
               initial={reduce ? undefined : { opacity: 0, y: 14 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}>
-              Our Explore model has already run in the field, the Building Bridges delivery
-              documented below, and the workforce-track cohorts are next. We measure ourselves by
-              placement rate, credential attainment, wage at placement, and apprenticeship
-              articulation, not by hours delivered or seats filled. Every Aedifica program publishes
-              outcome data using the same definitions, every cohort. Cohort 1&rsquo;s metric is also
-              Cohort 8&rsquo;s metric. We do not redefine placement to inflate headlines.
+              Two of our five programs have run in the field: Explore and Pathway. The three
+              workforce-track programs, Launch, Rebuild, and Talent Pipeline, are designed and not
+              yet delivered. We measure ourselves by placement rate, credential attainment, wage at
+              placement, and apprenticeship articulation, not by hours delivered or seats filled.
+              Every Aedifica program publishes outcome data using the same definitions, every cohort.
+              Cohort 1&rsquo;s metric is also Cohort 8&rsquo;s metric. We do not redefine placement to
+              inflate headlines.
             </motion.p>
 
           </div>
+        </div>
+      </section>
+
+      {/* ── Program status ledger ── bg-bone */}
+      <section className="bg-bone py-14 lg:py-20" aria-label="Where each program stands">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-[70ch]">
+            <motion.p
+              className="text-[15px] text-anthracite/80 leading-[1.72] mb-4"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 16 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
+              Explore has been delivered for two years, documented below as the Building Bridges
+              program. Pathway has been delivered for three years through Stevens pre-college,
+              documented with participant satisfaction data and scholar reflections rather than
+              academic-outcome measures.
+            </motion.p>
+            <motion.p
+              className="text-[13px] text-anthracite/60 italic leading-[1.6]"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0 }}
+              whileInView={reduce ? undefined : { opacity: 1 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
+              Where each program stands today, stated plainly, because a partner deciding whether to
+              work with us deserves to know what we have done and what we have only designed.
+            </motion.p>
+          </div>
+
+          <div className="border-t border-sediment/25 mt-8">
+            {PROGRAM_STATUS.map(({ name, status, detail, color, dark }, i) => (
+              <motion.div
+                key={name}
+                className="group grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-3 sm:gap-8 py-5 border-b border-sediment/25 items-start"
+                initial={reduce ? undefined : { opacity: 0, y: 12 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.4, delay: Math.min(i * 0.06, 0.3), ease: EASE }}>
+                <div className="flex items-center gap-3">
+                  <span
+                    className={`flex-shrink-0 w-3 h-3 rotate-45 ${color} opacity-70 transition-opacity duration-200 group-hover:opacity-100`}
+                    aria-hidden="true"
+                  />
+                  <div>
+                    <p className="text-[14.5px] text-anthracite italic leading-tight mb-1.5" style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>{name}</p>
+                    <span
+                      className={`inline-block text-[9.5px] uppercase tracking-[0.12em] px-2 py-0.5 ${color} ${dark ? 'text-anthracite/85' : 'text-white/95'}`}
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {status}
+                    </span>
+                  </div>
+                </div>
+                <p className="text-[13.5px] text-anthracite/78 leading-[1.6] max-w-[64ch]" style={{ fontFamily: 'var(--font-body)' }}>{detail}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.p
+            className="text-[13px] text-anthracite/60 italic leading-[1.6] max-w-[70ch] mt-6"
+            style={{ fontFamily: 'var(--font-body)' }}
+            initial={reduce ? undefined : { opacity: 0 }}
+            whileInView={reduce ? undefined : { opacity: 1 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+            Workforce-track results (Launch, Rebuild, Talent Pipeline) publish as those cohorts
+            complete, using the definitions fixed below. Those definitions are set now, before we
+            have any results to report against them.
+          </motion.p>
         </div>
       </section>
 
@@ -123,25 +209,13 @@ export function Impact() {
               </motion.h2>
 
               <motion.p
-                className="text-[13.5px] text-anthracite/65 italic leading-[1.65] mb-6 max-w-[58ch]"
-                style={{ fontFamily: 'var(--font-body)' }}
-                initial={reduce ? undefined : { opacity: 0, y: 14 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
-                Explore results are shown first, from the Building Bridges delivery. Workforce-track
-                results (Rebuild and Launch) publish as those cohorts complete, using the definitions
-                fixed below.
-              </motion.p>
-
-              <motion.p
                 className="text-[15px] text-anthracite/78 leading-[1.72] max-w-[60ch]"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 18 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.55, delay: 0.08, ease: EASE }}>
-                Aedifica&rsquo;s Explore model was delivered as <strong className="font-medium text-anthracite">Building Bridges: Strengthening STEM Pathways from Hillside to Hoboken</strong>, a ten-week, project-based engineering program at Hillside Innovation Academy, in partnership with Stevens Institute of Technology and funded by the Engineering Information Foundation. It is aligned to the Next Generation Science Standards and was led by Aedifica co-founders Dr. Karim Karam and Kimi Stephenson.
+                Aedifica&rsquo;s Explore model was delivered as <strong className="font-medium text-anthracite">Building Bridges: Strengthening STEM Pathways from Hillside to Hoboken</strong>, a twelve-week, project-based engineering program at Hillside Innovation Academy, in partnership with Stevens Institute of Technology and funded by the Engineering Information Foundation. It is aligned to the Next Generation Science Standards and was led by Aedifica co-founders Dr. Karim Karam and Kimi Stephenson.
               </motion.p>
             </div>
 
@@ -220,6 +294,83 @@ export function Impact() {
             factor, not the sole cause.
           </motion.p>
 
+          {/* ── Second delivery: the Pathway model in the field ── */}
+          <div className="mt-14 lg:mt-16 pt-12 lg:pt-14 border-t border-sediment/20">
+            <motion.div
+              className="flex items-center gap-3 mb-5"
+              initial={reduce ? undefined : { opacity: 0 }}
+              whileInView={reduce ? undefined : { opacity: 1 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+              <span className="w-7 h-[2px] bg-quarry flex-shrink-0" aria-hidden="true" />
+              <p className="text-[13.5px] uppercase tracking-[0.14em] text-quarry font-medium" style={{ fontFamily: 'var(--font-body)' }}>Second delivery · the Pathway model in the field</p>
+            </motion.div>
+            <motion.h2
+              className="text-[2rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic mb-6 max-w-[20ch] [text-wrap:balance]"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+              initial={reduce ? undefined : { opacity: 0, y: 22 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
+              The Pathway model, taught for three summers.
+            </motion.h2>
+            <motion.p
+              className="text-[15px] text-anthracite/78 leading-[1.72] max-w-[60ch] mb-10 lg:mb-12"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 18 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.55, delay: 0.08, ease: EASE }}>
+              Aedifica&rsquo;s Pathway model is grounded in the Stevens Institute of Technology
+              pre-college Civil Engineering course, taught by co-founder Dr. Karim Karam. Across
+              three summers, students rated the course and instructor consistently high.
+            </motion.p>
+
+            <div className="border-t border-sediment/20">
+              {PATHWAY_STATS.map(({ num, label, meaning, accent }, i) => (
+                <motion.div
+                  key={label}
+                  className="grid grid-cols-[4.5rem_1fr] lg:grid-cols-[6.5rem_13rem_1fr] gap-x-6 lg:gap-x-10 border-b border-sediment/15 py-3.5 lg:items-center"
+                  initial={reduce ? undefined : { opacity: 0, y: 10 }}
+                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                  viewport={reduce ? undefined : VIEWPORT}
+                  transition={reduce ? undefined : { duration: 0.35, delay: i * 0.04, ease: EASE }}>
+                  <p
+                    className={`text-[1.75rem] lg:text-[2rem] italic leading-[1] tracking-[-0.04em] ${accent} select-none`}
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+                    {num}
+                  </p>
+                  <div className="lg:contents">
+                    <p
+                      className="text-[14px] text-anthracite italic leading-[1.3] tracking-[-0.012em] mb-0.5 lg:mb-0 lg:self-center"
+                      style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                      {label}
+                    </p>
+                    <p
+                      className="text-[12.5px] text-anthracite/75 leading-[1.55] lg:self-center"
+                      style={{ fontFamily: 'var(--font-body)' }}>
+                      {meaning}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.p
+              className="text-[11.5px] italic text-anthracite/70 leading-[1.65] max-w-[80ch] mt-6"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0 }}
+              whileInView={reduce ? undefined : { opacity: 1 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+              <strong className="not-italic font-medium">Sources & scope.</strong> Student
+              satisfaction surveys, Stevens Institute of Technology Office of Pre-College Programs
+              (2022-2024). These are participant ratings of the course and instructor, not
+              academic-outcome measures. Enrollment, completion, and articulation figures for
+              Pathway are not yet published.
+            </motion.p>
+          </div>
+
         </div>
       </section>
 
@@ -238,13 +389,13 @@ export function Impact() {
           </motion.div>
           <motion.h2
             id="metrics-h2"
-            className="text-[1.875rem] lg:text-[2.5rem] leading-[1.12] tracking-[-0.026em] text-anthracite italic mb-4 max-w-[26ch] [text-wrap:balance]"
+            className="text-[1.875rem] lg:text-[2.5rem] leading-[1.12] tracking-[-0.026em] text-anthracite italic mb-4 max-w-[30ch] [text-wrap:balance]"
             style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
             initial={reduce ? undefined : { opacity: 0, y: 20 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
-            How we measure it as Rebuild and Launch cohorts complete.
+            How we measure it as Launch, Rebuild, and Talent Pipeline cohorts complete.
           </motion.h2>
           <motion.p
             className="text-[14px] text-anthracite/75 leading-[1.7] max-w-[62ch] mb-10 lg:mb-12"
@@ -343,7 +494,7 @@ export function Impact() {
             <h2
               className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.03em] text-white italic mb-6"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-              Help the next learner find the pathway.
+              Help the next scholar find the pathway.
             </h2>
 
             <p

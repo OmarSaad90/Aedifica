@@ -1,7 +1,9 @@
 'use client'
 import { useState } from 'react'
 import { motion, useReducedMotion, AnimatePresence } from 'motion/react'
-import { EnvelopeSimple, Phone, MapPin, UsersThree, ChatCircleText, CaretDown, type Icon } from '@phosphor-icons/react'
+import { EnvelopeSimple, Phone, MapPin, UsersThree, ChatCircleText, CalendarBlank, CaretDown, type Icon } from '@phosphor-icons/react'
+import { FourGates } from '../components/FourGates'
+import { WhoWeServe } from '../components/WhoWeServe'
 
 const VIEWPORT = { once: true, margin: '-60px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
@@ -10,8 +12,9 @@ const SPRING = [0.32, 0.72, 0, 1] as const
 const CONTACT_FACTS: { Icon: Icon; label: string; value: string; pending?: boolean }[] = [
   { Icon: EnvelopeSimple, label: 'Email', value: 'info@edfca.com' },
   { Icon: Phone, label: 'Phone', value: 'Line coming soon, reach us by email for now', pending: true },
+  { Icon: CalendarBlank, label: 'Schedule', value: 'Link coming soon, reach us by email for now', pending: true },
   { Icon: MapPin, label: 'Service area', value: 'New Jersey / New York metro region' },
-  { Icon: UsersThree, label: 'Best for', value: 'Districts, workforce boards, county colleges, employers, agencies, and funders, and the families and learners they serve' },
+  { Icon: UsersThree, label: 'Best for', value: 'Districts, workforce boards, county colleges, vocational and trade schools, employers, agencies, and funders, and the families and scholars they serve' },
   { Icon: ChatCircleText, label: 'Response', value: 'Partnership inquiries receive a scoped reply, not a brochure' },
 ]
 
@@ -21,10 +24,11 @@ const INTEREST_OPTIONS = [
   { value: 'pathway', label: 'Pathway: high schools & districts' },
   { value: 'launch', label: 'Launch: institutional pathway design' },
   { value: 'rebuild', label: 'Rebuild: adult bridge cohorts' },
+  { value: 'vocational', label: 'Vocational / trade school: construction-management overlay' },
   { value: 'talent-pipeline', label: 'Talent Pipeline: hiring & articulation' },
   { value: 'research', label: 'Research: briefings & reports' },
   { value: 'family', label: 'Parent or family: a program for my child' },
-  { value: 'adult-learner', label: 'Adult learner: Rebuild cohort' },
+  { value: 'adult-scholar', label: 'Adult scholar: Rebuild cohort' },
   { value: 'other', label: 'Something else' },
 ]
 
@@ -86,40 +90,57 @@ export function Partner() {
   return (
     <main>
 
-      {/* ── Hero: §17 Partner CTA ── */}
+      {/* ── §17 Partner: four commitments ── */}
+      <FourGates />
+
+      {/* ── §17 Partner: closing declaration ── */}
       <section
-        className="bg-anthracite min-h-[48vh] flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-20 relative overflow-hidden"
+        className="bg-patina py-16 lg:py-24 relative overflow-hidden"
         aria-labelledby="partner-h1">
         <div className="max-w-7xl mx-auto px-6 w-full">
 
           <motion.span
-            className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/70 px-3 py-1 mb-6 select-none"
+            className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/15 text-white/90 px-3 py-1 mb-6 select-none"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 10 }}
-            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
             From foundations to futures
           </motion.span>
 
           <motion.h1
             id="partner-h1"
-            className="text-[2.5rem] lg:text-[3.75rem] xl:text-[4.5rem] leading-[1.02] tracking-[-0.032em] text-white italic mb-8 max-w-[20ch] [text-wrap:balance]"
+            className="text-[2.25rem] lg:text-[3.25rem] xl:text-[3.75rem] leading-[1.05] tracking-[-0.03em] text-white italic mb-8 max-w-[22ch] [text-wrap:balance]"
             style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-            initial={reduce ? undefined : { opacity: 0, y: 40 }}
-            animate={reduce ? undefined : { opacity: 1, y: 0 }}
-            transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
+            initial={reduce ? undefined : { opacity: 0, y: 30 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.7, delay: 0.1, ease: SPRING }}>
             Built on a commitment to deliver, report, and be accountable.
           </motion.h1>
 
           <motion.p
-            className="text-[14.5px] text-white/65 leading-[1.65] max-w-[58ch]"
+            className="text-[14.5px] text-white/88 leading-[1.65] max-w-[58ch]"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 14 }}
-            animate={reduce ? undefined : { opacity: 1, y: 0 }}
-            transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}>
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.55, delay: 0.2, ease: EASE }}>
             Speak with Aedifica about what a founding partnership, employer engagement, or
             institutional briefing looks like in practice, for your district, your board, your
             agency, or your firm.
+          </motion.p>
+
+          <motion.p
+            className="text-[14.5px] text-white/88 leading-[1.65] max-w-[58ch] mt-4"
+            style={{ fontFamily: 'var(--font-body)' }}
+            initial={reduce ? undefined : { opacity: 0, y: 14 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.55, delay: 0.28, ease: EASE }}>
+            The talent the system overlooked is already in your district, your county, and your
+            applicant pool. The pathway to it is what we build.
           </motion.p>
 
         </div>
@@ -305,6 +326,9 @@ export function Partner() {
           </div>
         </div>
       </section>
+
+      {/* ── Who we work with (moved from About) ── */}
+      <WhoWeServe />
 
     </main>
   )

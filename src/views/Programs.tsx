@@ -11,7 +11,7 @@ const PROGRAMS = [
   {
     name: 'Explore',
     code: 'EDF·01 · Purple channel',
-    who: 'Middle-school learners (grades 6–8) and the schools and community organizations that host them.',
+    who: 'Middle-school scholars (grades 6–8) and the schools and community organizations that host them.',
     format: 'School-year modules and summer intensives; hands-on, community-based.',
     delivers: 'Career awareness, engineering vocabulary, and a documented spark, the first mile of the pathway.',
     cta: 'See Explore',
@@ -44,8 +44,8 @@ const PROGRAMS = [
   {
     name: 'Rebuild',
     code: 'EDF·04 · Light burgundy channel',
-    who: 'Adult learners, career changers, returning workers, veterans, and justice-impacted talent.',
-    format: '12- or 24-week bridge cohorts with wraparound supports and an employer-validated capstone.',
+    who: 'Adult scholars, career changers, returning workers, veterans, and justice-impacted talent.',
+    format: 'Bridge cohorts scoped to partner capacity and funding cycle, with wraparound supports and an employer-validated capstone.',
     delivers: 'Credentials, confidence, and a defined interview opportunity in a construction-management-track role.',
     cta: 'See Rebuild',
     to: '/programs/rebuild',

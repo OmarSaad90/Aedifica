@@ -10,6 +10,7 @@ const PARTNERS = [
   'School districts & high schools',
   'Middle schools & community organizations',
   'County colleges',
+  'Vocational & trade schools',
   'Workforce development boards',
   'State agencies & funders',
   'Municipalities & youth or summer programs',
@@ -88,7 +89,7 @@ export function WhoWeServe() {
   const reduce = useReducedMotion()
 
   return (
-    <section id="serve-h2" className="bg-bone py-12 lg:py-18 scroll-mt-24" aria-labelledby="serve-heading">
+    <section id="serve-h2" className="bg-snow py-12 lg:py-18 scroll-mt-24" aria-labelledby="serve-heading">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Centered intro */}
@@ -126,7 +127,7 @@ export function WhoWeServe() {
             <AudienceGroup Icon={Buildings} color="text-datum" tag="Institutions & employers" title="The people building the pathway" items={PARTNERS} delay={0} />
           </div>
           <div className="lg:pl-14 xl:pl-16">
-            <AudienceGroup Icon={Users} color="text-patina" tag="Learners" title="The people walking the pathway" items={LEARNERS} delay={0.08} />
+            <AudienceGroup Icon={Users} color="text-patina" tag="Scholars" title="The people walking the pathway" items={LEARNERS} delay={0.08} />
           </div>
 
           <div
@@ -173,7 +174,7 @@ export function WhoWeServe() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, ease: EASE, delay: 0.85 }}
             >
-              <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 block w-8 h-8 rotate-45 bg-bone" />
+              <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 block w-8 h-8 rotate-45 bg-snow" />
               <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 block w-4 h-4 rotate-45 bg-anthracite" />
             </motion.div>
           </div>

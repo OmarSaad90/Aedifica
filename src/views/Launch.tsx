@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'motion/react'
-import { UsersThree, Blueprint, Package, Clock, type Icon } from '@phosphor-icons/react'
+import { UsersThree, Blueprint, Package, Clock, ClipboardText, type Icon } from '@phosphor-icons/react'
 import {
   CurriculumShell,
   Band,
@@ -18,7 +18,8 @@ const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
 const INFO_ROWS: { Icon: Icon; label: string; value: string }[] = [
-  { Icon: UsersThree, label: 'Audience', value: 'Workforce boards · county colleges · agencies · employers' },
+  { Icon: ClipboardText, label: 'Status', value: 'Designed, CBO partners engaged, grant applications submitted; no cohort delivered' },
+  { Icon: UsersThree, label: 'Audience', value: 'Workforce boards · county colleges · vocational and trade schools · agencies · employers' },
   { Icon: Blueprint, label: 'Format', value: 'Design + build + implementation support' },
   { Icon: Package, label: 'Deliverables', value: 'Curriculum, instructor capacity, outcome framework' },
   { Icon: Clock, label: 'Duration', value: 'Scoped to the institution, typically 2–4 terms to ownership' },
@@ -64,7 +65,7 @@ const CAREER_ROLES = [
 // ── Phase 01: Foundations & Core CM, weeks 1–6 ──
 const PHASE1_WEEKS: WeekRow[] = [
   { num: 1, unit: 'Week', question: 'What is a green Construction Manager, and why now?',
-    desc: <>Program orientation and adult-learner expectations; New Jersey&rsquo;s <strong className="text-anthracite/90 font-medium">green economy context</strong> and the Construction Manager role; the credential pathway; and the launch of the capstone project each participant builds across all sixteen weeks.</>,
+    desc: <>Program orientation and adult-scholar expectations; New Jersey&rsquo;s <strong className="text-anthracite/90 font-medium">green economy context</strong> and the Construction Manager role; the credential pathway; and the launch of the capstone project each participant builds across all sixteen weeks.</>,
     chips: [
       { code: 'Green economy', cat: 'sci', desc: 'Green economy overview: clean energy, retrofits, offshore wind, and sustainable infrastructure demand.' },
       { code: 'CM role', cat: 'math', desc: "The Construction Manager's coordination role across cost, schedule, quality, safety, and sustainability." },
@@ -330,6 +331,32 @@ export function Launch() {
       {/* ── Curriculum shell ── bg-bone */}
       <section className="bg-bone py-14 lg:py-20 print:py-0" aria-labelledby="curriculum-h2" id="curriculum">
         <div className="max-w-7xl mx-auto px-6">
+
+          <motion.div
+            className="border border-anthracite/15 px-6 py-6 lg:px-8 lg:py-7 mb-12 lg:mb-14 print:hidden"
+            initial={reduce ? undefined : { opacity: 0, y: 16 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
+            <p className="text-[10.5px] uppercase tracking-[0.16em] text-datum mb-4 select-none" style={{ fontFamily: 'var(--font-body)' }}>This is a sample curriculum</p>
+            <div className="space-y-3 max-w-[74ch]">
+              <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
+                <strong className="text-anthracite font-medium">What you see below is a sample, not the catalogue.</strong> BUILD
+                NJ GREEN is a complete 16-week, 240-hour curriculum, designed in full and ready to deliver.
+              </p>
+              <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
+                <strong className="text-anthracite font-medium">Delivery status.</strong> It has not yet been run with a cohort.
+                Community-based partners are engaged and grant applications are submitted; no Launch cohort has been delivered to
+                date. The full status ledger is in{' '}
+                <Link href="/impact" className="text-datum hover:underline underline-offset-2">Impact &amp; accountability</Link>.
+              </p>
+              <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
+                <strong className="text-anthracite font-medium">We build to order.</strong> Launch is institutional pathway design:
+                the curriculum is scoped to the partner, the funding stream, and the roles employers in your region are actually
+                hiring for. BUILD NJ GREEN shows the depth of that work; it is not the only shape it takes.
+              </p>
+            </div>
+          </motion.div>
 
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10 lg:mb-12 print:hidden">
             <div>

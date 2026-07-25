@@ -322,3 +322,36 @@ Record every answer in this file (amend the relevant D-item / section spec), the
 - Verify `https://edfca.com` and `https://www.edfca.com` both load the site with a valid cert.
 - Then the already-planned post-DNS list: submit sitemap in Google Search Console, set up the Google Business Profile, add `sameAs` links to the Organization schema.
 - (Do the v2 route renames BEFORE the GSC sitemap submission so Google never indexes the old paths.)
+
+---
+
+## 11. Pass 2 — client "absolute final" draft sync (2026-07-24)
+
+**Source:** `aedifica-website-final-working-draft.html` (repo root) — a refinement of the `aedifica-website-reorganized.html` this whole plan was built from. Most of §§1–10 above already shipped (curriculum shells, route structure, nav groups). This pass is a word-by-word re-diff of that shipped state against the client's newer draft. Same ground rules as §0 apply: content/order from his file, design stays ours, `[ADD]`/`[CONFIRM]` placeholders skipped, no em dashes ever.
+
+### Cross-cutting (apply once, sitewide, not per-page)
+
+- **"Learner" → "Scholar"**: deliberate, consistent rename across every page in his draft. Sweep all copy, component prop defaults (e.g. `WhoWeServe` tag="Learners"), and the Navbar label "Learner Experience" → "Scholar Experience".
+- **New "Status" fieldlist row** on all 5 program pages (Delivered / Designed / In formation, honest not-yet-delivered language). Talent Pipeline's whole tone needs to shift from present-tense/operating to pre-launch/conditional to match.
+- **"Vocational & trade schools" as a named audience**, missing in 3 places we didn't have before: `WhoWeServe` partner list, Partner-page contact form's interest dropdown, and the "Best for" line in contact facts — all tied to the new Votech page.
+- Punctuation-only em-dash differences in his file: ignore, we never use em dashes.
+
+### Page checklist (proposed build order)
+
+- [ ] **Home** — swap Hero/Gap headlines back to his pairing (Hero: "New Jersey is being rebuilt. Its builders are not."; Gap keeps our current hero line); add new "What We Do" section (2 sides of the gap, 4 delivery channels, access list); remove `FourGates` + `WhoWeServe` from `Home.tsx`; fix Rebuild home-card off the 12/24-week figure.
+- [ ] **Partner/Contact** (`/partner`) — mount `FourGates` + `WhoWeServe` here; add CTA-band's second paragraph + 2 buttons; add votech option to interest dropdown, add "Schedule" contact-fact row, fix "Best for" line, add "Vocational & trade schools" to WhoWeServe list, tag="Scholars".
+- [ ] **About** — add founder credential taglines (4); reconcile Nicole/Kimi bio wording + the Bridging Brilliance 10-vs-12-week/21-student conflict in Kimi's bio; confirm with Omar whether the extra bio paragraphs (not in his draft) stay; expand Principles from 5 to 6 tiles (add full "Radical legibility" tile, retire the orphaned "Strategic Commitments" list); add Access & Funding "Entity" row; add Values section heading.
+- [ ] **FAQ** (compact, on About) — fix "different from a training vendor" closing line. Full `/faq` route: unscoped, needs its own pass later (client draft's FAQ content for that route wasn't in the read range).
+- [ ] **Explore** — add 3rd intro paragraph, "sample curriculum" disclaimer block, "what it takes to run it" section, 2 missing run-models (Semester course, Vacation & holiday intensive); fix "ten-week" → "twelve-week" in intro to match its own curriculum body.
+- [ ] **Pathway** — add 3rd intro paragraph, "sample curriculum" disclaimer block, full 2nd "Ways to run it" section (6 items), "what it takes to run it" section.
+- [ ] **Launch** — add "sample, not the catalogue" disclosure box + Status row; minor wording (design→build, learner→scholar).
+- [ ] **Rebuild** — drop the 12/24-week figure for "scoped to partner capacity and funding cycle"; add the vocational/trade-school overlay paragraph (links to Votech); add Status + Delivery-models rows.
+- [ ] **Talent Pipeline** — rewrite to pre-launch/conditional tone throughout (opening Status line, closing line, mini-list tense, CTA label, "founding employers" framing); add Status row.
+- [ ] **Programs index** (`/programs`) — minor: scholar/learner, Explore row wording.
+- [ ] **Scholar Experience** (`/experience`) — rename nav label + eyebrow; add subsection labels with color dots.
+- [ ] **For Families** — add missing mini-list item ("Mentors and classmates who stay in your child's corner..."); flag Safety line (we assert as fact, his draft downgrades to unconfirmed placeholder) to Omar before touching it.
+- [ ] **For Vocational & Trade Schools** (NEW page, route TBD e.g. `/families/vocational` or `/vocational-schools`, grouped with For Families under a new "Who it's for" nav dropdown) — build from full content brief already captured; 5 `[CONFIRM]`/`[ADD]` items stay as placeholders (credential scope, CTE program-approval status, Perkins funding legal language, staff-hours commitment, pilot terms) — do not invent answers.
+- [ ] **Impact** — add "Pathway delivery in the field" section (Stevens 2022–2024 stats, 4 numbers); add program-status ledger; add Talent Pipeline into the workforce-track framing (currently only names Rebuild/Launch); fix the recurring 10-vs-12-week Bridging Brilliance figure.
+- [ ] **Research** — fix supervisor-gap dek (add "and clean-infrastructure funding" clause) + add missing "$1B+" credibility stat; fix Bridging Brilliance teaser week count.
+
+Navbar/Footer follow-up once pages are done: add "Who it's for" dropdown (For Families + Votech), rename "Learner Experience" → "Scholar Experience", add Votech links to Footer's Get Involved column.

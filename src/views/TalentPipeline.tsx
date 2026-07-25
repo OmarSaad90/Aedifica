@@ -1,13 +1,14 @@
 'use client'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'motion/react'
-import { UsersThree, Handshake, GraduationCap, ChartLineUp, type Icon } from '@phosphor-icons/react'
+import { UsersThree, Handshake, GraduationCap, ChartLineUp, ClipboardText, type Icon } from '@phosphor-icons/react'
 
 const VIEWPORT = { once: true, margin: '-60px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
 const INFO_ROWS: { Icon: Icon; label: string; value: string }[] = [
+  { Icon: ClipboardText, label: 'Status', value: 'Designed · relationships available · channel not yet formed' },
   { Icon: UsersThree, label: 'Audience', value: 'Employers · contractors · owners · agencies' },
   { Icon: Handshake, label: 'Commitment', value: 'Defined interview opportunities for qualified completers' },
   { Icon: GraduationCap, label: 'Articulation', value: 'Apprenticeship sponsors · union locals · county colleges' },
@@ -15,7 +16,7 @@ const INFO_ROWS: { Icon: Icon; label: string; value: string }[] = [
 ]
 
 const MINI_LIST = [
-  'Employer validators shape the capstone your candidates completed',
+  'Employer validators will shape the capstone every candidate completes',
   'Role definitions stay with you, Aedifica does not referee',
   'Pipeline reporting you can put in front of a board',
 ] as const
@@ -98,10 +99,24 @@ export function TalentPipeline() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.55, ease: EASE }}>
-                The Talent Pipeline is where the pathway pays off, for everyone. Employers get
-                capstone-vetted candidates whose training was validated against the work their own
-                project executives do. Completers get defined interview commitments and apprenticeship
-                articulation, not a handshake and a job board.
+                <strong className="text-anthracite font-medium">Status: in formation.</strong> The Talent
+                Pipeline is the channel that completes the pathway, and it is the piece we are building
+                now. Aedifica&rsquo;s founders have direct working relationships across New Jersey&rsquo;s
+                general-contracting community; the structured referral channel described below is
+                designed and not yet operating. No candidate has been referred, because no workforce-track
+                cohort has yet completed.
+              </motion.p>
+              <motion.p
+                className="text-[14.5px] text-anthracite/72 leading-[1.72] max-w-[62ch] mb-6"
+                style={{ fontFamily: 'var(--font-body)' }}
+                initial={reduce ? undefined : { opacity: 0, y: 16 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
+                When it runs, it is built to work like this. Employers receive capstone-vetted candidates
+                whose training was validated against the work their own project executives do. Completers
+                receive defined interview commitments and apprenticeship articulation, not a handshake and
+                a job board.
               </motion.p>
               <motion.p
                 className="text-[14.5px] text-anthracite/72 leading-[1.72] max-w-[62ch] mb-10"
@@ -109,10 +124,11 @@ export function TalentPipeline() {
                 initial={reduce ? undefined : { opacity: 0, y: 16 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
-                Every referral travels with the same outcome data we publish: placement rate, credential
-                attainment, wage at placement, and apprenticeship articulation, defined identically every
-                cohort. The metric is the moat.
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.14, ease: EASE }}>
+                Every referral will travel with the same outcome data we publish: placement rate,
+                credential attainment, wage at placement, and apprenticeship articulation, defined
+                identically every cohort. We are stating the standard before we have results to report
+                against it; that order is deliberate, and it is how you will be able to check us.
               </motion.p>
 
               {INFO_ROWS.map(({ Icon: IconComp, label, value }, i) => (
@@ -181,7 +197,7 @@ export function TalentPipeline() {
               <Link href="/partner"
                 className="inline-flex items-center justify-center gap-2 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/85 group"
                 style={{ fontFamily: 'var(--font-body)' }}>
-                Join the Talent Pipeline
+                Talk to us about founding employer partnership
                 <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
               </Link>
               <Link href="/impact"
@@ -193,9 +209,9 @@ export function TalentPipeline() {
             </div>
 
             <p className="text-[12.5px] text-anthracite leading-[1.65] max-w-[58ch] mx-auto">
-              <strong className="font-medium">For employers:</strong> participating employers validate
-              role relevance, inform capstone expectations, and commit to a defined interview
-              opportunity for qualified completers.
+              <strong className="font-medium">For employers:</strong> founding employers help define role
+              relevance and capstone expectations before the first cohort runs, and commit to a defined
+              interview opportunity for qualified completers. We are recruiting those employers now.
             </p>
 
           </motion.div>

@@ -22,7 +22,7 @@ const ITEMS: { Icon: Icon; tag: string; title: string; body: string }[] = [
     Icon: Handshake,
     tag:   'Partner-shaped',
     title: 'Built with institutions, not around them',
-    body:  'Recruitment, fiscal capacity, and role definition stay with the partners who already do them well. Aedifica owns curriculum, instruction, and measurement.',
+    body:  'Recruitment, fiscal capacity, and role definition stay with the partners who already do them well. Aedifica owns curriculum, instruction, and measurement. Where a vocational or trade school already trains the craft, we add the construction-management layer above it rather than a competing program.',
   },
 ]
 

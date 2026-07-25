@@ -7,14 +7,20 @@ import { motion, AnimatePresence, useReducedMotion, useScroll, useMotionValueEve
 
 type NavChild = { label: string; to: string; dot?: string }
 type NavGroup = {
+  type: 'group'
   id: string
   label: string
   children: NavChild[]
   footer?: { label: string; to: string }
 }
+type NavLink = { type: 'link'; label: string; to: string }
+type NavItem = NavGroup | NavLink
 
-const NAV_GROUPS: NavGroup[] = [
+// Single ordered sequence, after Home — matches his nav order exactly:
+// Programs ▾, Scholar Experience, Who it's for ▾, Impact, Research, About, Contact.
+const NAV_ITEMS: NavItem[] = [
   {
+    type: 'group',
     id: 'programs',
     label: 'Programs',
     children: [
@@ -22,20 +28,24 @@ const NAV_GROUPS: NavGroup[] = [
       { label: 'Pathway',         to: '/programs/pathway',         dot: 'bg-quarry'        },
       { label: 'Launch',          to: '/programs/launch',          dot: 'bg-sediment'      },
       { label: 'Rebuild',         to: '/programs/rebuild',         dot: 'bg-rebuild'       },
-      { label: 'Talent Pipeline', to: '/programs/talent-pipeline', dot: 'bg-anthracite/30' },
+      { label: 'Talent Pipeline', to: '/programs/talent-pipeline', dot: 'bg-pipeline'       },
     ],
     footer: { label: 'View all programs', to: '/programs' },
   },
-]
-
-// Flat, single-level links after Home + the Programs dropdown — matches his nav order
-const FLAT_LINKS: { label: string; to: string }[] = [
-  { label: 'Learner Experience', to: '/experience' },
-  { label: 'For Families',       to: '/families'   },
-  { label: 'Impact',             to: '/impact'     },
-  { label: 'Research',           to: '/research'   },
-  { label: 'About Us',           to: '/about'      },
-  { label: 'Contact',            to: '/partner'    },
+  { type: 'link', label: 'Scholar Experience', to: '/experience' },
+  {
+    type: 'group',
+    id: 'who-its-for',
+    label: "Who it's for",
+    children: [
+      { label: 'For Families',                    to: '/families'      },
+      { label: 'For Vocational & Trade Schools',   to: '/trade-schools' },
+    ],
+  },
+  { type: 'link', label: 'Impact',   to: '/impact'  },
+  { type: 'link', label: 'Research', to: '/research' },
+  { type: 'link', label: 'About',    to: '/about'    },
+  { type: 'link', label: 'Contact',  to: '/partner'  },
 ]
 
 const EASE = [0.25, 0.1, 0.25, 1] as const
@@ -63,7 +73,7 @@ export function Navbar() {
   const [openGroup, setOpenGroup]               = useState<string | null>(null)
   const [mobileOpenGroup, setMobileOpenGroup]   = useState<string | null>(null)
   const closeTimer  = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
-  const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({})
+  const triggerRefs = useRef<Record<string, HTMLButtonElement | HTMLAnchorElement | null>>({})
   const reduce      = useReducedMotion()
   const pathname = usePathname()
   const logoSrc = SERVICE_LOGOS[pathname] ?? DEFAULT_LOGO
@@ -132,85 +142,108 @@ export function Navbar() {
             Home
           </Link>
 
-          {NAV_GROUPS.map((group) => (
-            <div
-              key={group.id}
-              className="relative"
-              onMouseEnter={() => openDesktop(group.id)}
-              onMouseLeave={scheduleClose}
-              onKeyDown={(e) => {
-                if (e.key === 'Escape') {
-                  setOpenGroup(null)
-                  triggerRefs.current[group.id]?.focus()
-                }
-              }}>
+          {NAV_ITEMS.map((item) => {
+            if (item.type === 'link') {
+              return (
+                <Link key={item.to} href={item.to}
+                  className="text-[13px] text-anthracite/70 hover:text-anthracite hover:underline hover:underline-offset-4 hover:decoration-anthracite/25 transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap">
+                  {item.label}
+                </Link>
+              )
+            }
+            const group = item
+            return (
+              <div
+                key={group.id}
+                className="relative"
+                onMouseEnter={() => openDesktop(group.id)}
+                onMouseLeave={scheduleClose}
+                onKeyDown={(e) => {
+                  if (e.key === 'Escape') {
+                    setOpenGroup(null)
+                    triggerRefs.current[group.id]?.focus()
+                  }
+                }}>
 
-              <button
-                ref={(el) => { triggerRefs.current[group.id] = el }}
-                className="flex items-center gap-1 text-[13px] text-anthracite/70 hover:text-anthracite transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap cursor-pointer"
-                aria-expanded={openGroup === group.id}
-                aria-haspopup="true"
-                style={{ fontFamily: 'var(--font-body)' }}
-                onClick={() => setOpenGroup(openGroup === group.id ? null : group.id)}>
-                {group.label}
-                <CaretDown
-                  size={11}
-                  weight="bold"
-                  className={`transition-transform duration-200 ${openGroup === group.id ? 'rotate-180' : ''}`} />
-              </button>
+                {group.footer ? (
+                  // Groups with a "view all" landing page: the label itself navigates there
+                  // (hover already opens the flyout for browsing, this is for clicking through).
+                  <Link
+                    ref={(el) => { triggerRefs.current[group.id] = el }}
+                    href={group.footer.to}
+                    className="flex items-center gap-1 text-[13px] text-anthracite/70 hover:text-anthracite transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap cursor-pointer"
+                    aria-expanded={openGroup === group.id}
+                    aria-haspopup="true"
+                    style={{ fontFamily: 'var(--font-body)' }}
+                    onFocus={() => openDesktop(group.id)}
+                    onClick={() => setOpenGroup(null)}>
+                    {group.label}
+                    <CaretDown
+                      size={11}
+                      weight="bold"
+                      className={`transition-transform duration-200 ${openGroup === group.id ? 'rotate-180' : ''}`} />
+                  </Link>
+                ) : (
+                  <button
+                    ref={(el) => { triggerRefs.current[group.id] = el }}
+                    className="flex items-center gap-1 text-[13px] text-anthracite/70 hover:text-anthracite transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap cursor-pointer"
+                    aria-expanded={openGroup === group.id}
+                    aria-haspopup="true"
+                    style={{ fontFamily: 'var(--font-body)' }}
+                    onClick={() => setOpenGroup(openGroup === group.id ? null : group.id)}>
+                    {group.label}
+                    <CaretDown
+                      size={11}
+                      weight="bold"
+                      className={`transition-transform duration-200 ${openGroup === group.id ? 'rotate-180' : ''}`} />
+                  </button>
+                )}
 
-              <AnimatePresence>
-                {openGroup === group.id && (
-                  <motion.div
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[220px] bg-snow border border-sediment/25 shadow-sm py-2"
-                    initial={reduce ? undefined : { opacity: 0, y: -6 }}
-                    animate={reduce ? undefined : { opacity: 1, y: 0 }}
-                    exit={reduce ? undefined : { opacity: 0, y: -6 }}
-                    transition={reduce ? undefined : { duration: 0.16, ease: EASE }}
-                    onMouseEnter={() => openDesktop(group.id)}
-                    onMouseLeave={scheduleClose}
-                    role="menu">
+                <AnimatePresence>
+                  {openGroup === group.id && (
+                    <motion.div
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[220px] bg-snow border border-sediment/25 shadow-sm py-2"
+                      initial={reduce ? undefined : { opacity: 0, y: -6 }}
+                      animate={reduce ? undefined : { opacity: 1, y: 0 }}
+                      exit={reduce ? undefined : { opacity: 0, y: -6 }}
+                      transition={reduce ? undefined : { duration: 0.16, ease: EASE }}
+                      onMouseEnter={() => openDesktop(group.id)}
+                      onMouseLeave={scheduleClose}
+                      role="menu">
 
-                    {group.children.map(({ label, to, dot }) => (
-                      <Link
-                        key={to}
-                        href={to}
-                        role="menuitem"
-                        className="flex items-center gap-2.5 px-4 py-1.5 text-[13px] text-anthracite/70 hover:text-anthracite hover:bg-bone transition-colors duration-100"
-                        style={{ fontFamily: 'var(--font-body)' }}
-                        onClick={() => setOpenGroup(null)}>
-                        {dot && (
-                          <span className={`flex-shrink-0 w-[5px] h-[5px] ${dot}`} aria-hidden="true" />
-                        )}
-                        {label}
-                      </Link>
-                    ))}
-
-                    {group.footer && (
-                      <>
-                        <div className="my-1.5 border-t border-sediment/15" />
-                        <Link href={group.footer.to}
+                      {group.children.map(({ label, to, dot }) => (
+                        <Link
+                          key={to}
+                          href={to}
                           role="menuitem"
-                          className="flex items-center px-4 py-1.5 text-[11.5px] text-datum hover:text-datum/75 transition-colors duration-100 tracking-[-0.005em]"
+                          className="flex items-center gap-2.5 px-4 py-1.5 text-[13px] text-anthracite/70 hover:text-anthracite hover:bg-bone transition-colors duration-100"
                           style={{ fontFamily: 'var(--font-body)' }}
                           onClick={() => setOpenGroup(null)}>
-                          {group.footer.label} →
+                          {dot && (
+                            <span className={`flex-shrink-0 w-[5px] h-[5px] ${dot}`} aria-hidden="true" />
+                          )}
+                          {label}
                         </Link>
-                      </>
-                    )}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
+                      ))}
 
-          {/* Flat links — no dropdown */}
-          {FLAT_LINKS.map(({ label, to }) => (
-            <Link key={to} href={to}
-              className="text-[13px] text-anthracite/70 hover:text-anthracite hover:underline hover:underline-offset-4 hover:decoration-anthracite/25 transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap">
-              {label}
-            </Link>
-          ))}
+                      {group.footer && (
+                        <>
+                          <div className="my-1.5 border-t border-sediment/15" />
+                          <Link href={group.footer.to}
+                            role="menuitem"
+                            className="flex items-center px-4 py-1.5 text-[11.5px] text-datum hover:text-datum/75 transition-colors duration-100 tracking-[-0.005em]"
+                            style={{ fontFamily: 'var(--font-body)' }}
+                            onClick={() => setOpenGroup(null)}>
+                            {group.footer.label} →
+                          </Link>
+                        </>
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            )
+          })}
         </nav>
 
         {/* Mobile toggle */}
@@ -242,64 +275,67 @@ export function Navbar() {
               Home
             </Link>
 
-            {NAV_GROUPS.map((group) => (
-              <div key={group.id}>
-                <button
-                  className="w-full flex items-center justify-between text-[14px] text-anthracite/70 py-3 border-b border-sediment/10 cursor-pointer"
-                  onClick={() => setMobileOpenGroup(mobileOpenGroup === group.id ? null : group.id)}
-                  aria-expanded={mobileOpenGroup === group.id}
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  {group.label}
-                  <CaretDown
-                    size={12}
-                    weight="bold"
-                    className={`text-anthracite/40 transition-transform duration-200 ${mobileOpenGroup === group.id ? 'rotate-180' : ''}`} />
-                </button>
+            {NAV_ITEMS.map((item) => {
+              if (item.type === 'link') {
+                return (
+                  <Link key={item.to} href={item.to}
+                    className="text-[14px] text-anthracite/70 py-3 border-b border-sediment/10"
+                    style={{ fontFamily: 'var(--font-body)' }}
+                    onClick={closeMobile}>
+                    {item.label}
+                  </Link>
+                )
+              }
+              const group = item
+              return (
+                <div key={group.id}>
+                  <button
+                    className="w-full flex items-center justify-between text-[14px] text-anthracite/70 py-3 border-b border-sediment/10 cursor-pointer"
+                    onClick={() => setMobileOpenGroup(mobileOpenGroup === group.id ? null : group.id)}
+                    aria-expanded={mobileOpenGroup === group.id}
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    {group.label}
+                    <CaretDown
+                      size={12}
+                      weight="bold"
+                      className={`text-anthracite/40 transition-transform duration-200 ${mobileOpenGroup === group.id ? 'rotate-180' : ''}`} />
+                  </button>
 
-                <AnimatePresence>
-                  {mobileOpenGroup === group.id && (
-                    <motion.div
-                      className="flex flex-col bg-bone -mx-6 px-8 py-2 border-b border-sediment/10"
-                      initial={reduce ? undefined : { opacity: 0, height: 0 }}
-                      animate={reduce ? undefined : { opacity: 1, height: 'auto' }}
-                      exit={reduce ? undefined : { opacity: 0, height: 0 }}
-                      transition={reduce ? undefined : { duration: 0.2, ease: EASE }}>
-                      {group.children.map(({ label, to, dot }) => (
-                        <Link
-                          key={to}
-                          href={to}
-                          className="flex items-center gap-2.5 py-2.5 text-[13.5px] text-anthracite/70"
-                          style={{ fontFamily: 'var(--font-body)' }}
-                          onClick={closeMobile}>
-                          {dot && (
-                            <span className={`flex-shrink-0 w-[5px] h-[5px] ${dot}`} aria-hidden="true" />
-                          )}
-                          {label}
-                        </Link>
-                      ))}
-                      {group.footer && (
-                        <Link href={group.footer.to}
-                          className="py-2.5 pb-3 text-[12px] text-datum"
-                          style={{ fontFamily: 'var(--font-body)' }}
-                          onClick={closeMobile}>
-                          {group.footer.label} →
-                        </Link>
-                      )}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-
-            {/* Flat mobile links */}
-            {FLAT_LINKS.map(({ label, to }) => (
-              <Link key={to} href={to}
-                className="text-[14px] text-anthracite/70 py-3 border-b border-sediment/10"
-                style={{ fontFamily: 'var(--font-body)' }}
-                onClick={closeMobile}>
-                {label}
-              </Link>
-            ))}
+                  <AnimatePresence>
+                    {mobileOpenGroup === group.id && (
+                      <motion.div
+                        className="flex flex-col bg-bone -mx-6 px-8 py-2 border-b border-sediment/10"
+                        initial={reduce ? undefined : { opacity: 0, height: 0 }}
+                        animate={reduce ? undefined : { opacity: 1, height: 'auto' }}
+                        exit={reduce ? undefined : { opacity: 0, height: 0 }}
+                        transition={reduce ? undefined : { duration: 0.2, ease: EASE }}>
+                        {group.children.map(({ label, to, dot }) => (
+                          <Link
+                            key={to}
+                            href={to}
+                            className="flex items-center gap-2.5 py-2.5 text-[13.5px] text-anthracite/70"
+                            style={{ fontFamily: 'var(--font-body)' }}
+                            onClick={closeMobile}>
+                            {dot && (
+                              <span className={`flex-shrink-0 w-[5px] h-[5px] ${dot}`} aria-hidden="true" />
+                            )}
+                            {label}
+                          </Link>
+                        ))}
+                        {group.footer && (
+                          <Link href={group.footer.to}
+                            className="py-2.5 pb-3 text-[12px] text-datum"
+                            style={{ fontFamily: 'var(--font-body)' }}
+                            onClick={closeMobile}>
+                            {group.footer.label} →
+                          </Link>
+                        )}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )
+            })}
           </motion.div>
         )}
       </AnimatePresence>

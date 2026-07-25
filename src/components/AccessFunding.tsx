@@ -6,6 +6,7 @@ const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
 const FUNDING = [
+  { label: 'Entity', value: 'Aedifica LLC, a New Jersey limited liability company.' },
   { label: 'Districts', value: 'Pathway and Explore run on district, Title, and grant funding, scoped to the school year and budget cycle you actually have.' },
   { label: 'Workforce', value: 'Rebuild and Launch align to WIOA, state apprenticeship, and clean-energy workforce funding streams.' },
   { label: 'Employers', value: 'Talent Pipeline participation is structured as workforce investment, with outcome data that survives a board review.' },
@@ -39,7 +40,7 @@ export function AccessFunding() {
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
-              No cost to learners. Full cost transparency to partners.
+              No cost to scholars. Full cost transparency to partners.
             </motion.h2>
             <motion.p
               className="text-[15px] text-anthracite/78 leading-[1.72] max-w-[52ch]"
@@ -50,7 +51,7 @@ export function AccessFunding() {
               transition={reduce ? undefined : { duration: 0.5, delay: 0.1, ease: EASE }}>
               Aedifica programs are funded through institutional partners, districts, workforce boards,
               agencies, employers, and philanthropy, and aligned to New Jersey's funded green and
-              apprenticeship priorities. Learners never pay. Partners always know exactly what a cohort
+              apprenticeship priorities. Scholars never pay. Partners always know exactly what a cohort
               costs and what it returns.
             </motion.p>
           </div>

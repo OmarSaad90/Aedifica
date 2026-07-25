@@ -48,37 +48,54 @@ export function FourGates() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-snow py-14 lg:py-20" aria-labelledby="gates-heading">
+    <>
+      {/* ── Hero: no picture, this is the page opener now that it leads Partner ── */}
+      <section
+        className="bg-anthracite min-h-[46vh] flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-20"
+        aria-labelledby="gates-heading">
+        <div className="max-w-7xl mx-auto px-6 w-full">
+          <div className="max-w-[62ch]">
+
+            <motion.span
+              className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/75 px-3 py-1 mb-8 select-none"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 10 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
+              Before we begin
+            </motion.span>
+
+            <motion.h1
+              id="gates-heading"
+              className="text-[2.5rem] lg:text-[3.75rem] xl:text-[4.25rem] leading-[1.05] tracking-[-0.032em] text-white italic mb-8 [text-wrap:balance]"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+              initial={reduce ? undefined : { opacity: 0, y: 40 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING_EASE }}>
+              A disciplined pathway requires{' '}
+              <span className="text-datum-light">four commitments</span>{' '}
+              before instruction begins.
+            </motion.h1>
+
+            <motion.p
+              className="text-[14.5px] text-white/70 leading-[1.7] max-w-[58ch]"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 14 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}>
+              These are preconditions, not preferences. Aedifica does not open a cohort until all
+              four are in place, because every outcome we publish depends on them being real
+              before day one. Naming them early is also the fastest way for a prospective partner
+              to see whether the pieces are in reach.
+            </motion.p>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── The four commitments ── bg-snow */}
+      <section className="bg-snow py-14 lg:py-20" aria-label="Four commitments">
       <div className="max-w-7xl mx-auto px-6">
-
-        <motion.div
-          className="flex items-center gap-3 mb-5"
-          initial={reduce ? undefined : { opacity: 0 }}
-          whileInView={reduce ? undefined : { opacity: 1 }}
-          viewport={reduce ? undefined : VIEWPORT}
-          transition={reduce ? undefined : { duration: 0.4, ease: EASE }}
-        >
-          <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-          <p
-            className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium leading-none"
-            style={{ fontFamily: 'var(--font-body)' }}
-          >
-            Before we begin
-          </p>
-        </motion.div>
-
-        <motion.h2
-          id="gates-heading"
-          className="text-[2.25rem] lg:text-[3.25rem] xl:text-[3.875rem] leading-[1.08] tracking-[-0.028em] text-anthracite italic mb-10 lg:mb-14 max-w-[32ch]"
-          style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-          initial={reduce ? undefined : { opacity: 0, y: 24 }}
-          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-          viewport={reduce ? undefined : VIEWPORT}
-          transition={reduce ? undefined : { duration: 0.55, delay: 0.06, ease: EASE }}>
-          A disciplined pathway requires{' '}
-          <span className="text-datum">four commitments</span>{' '}
-          before instruction begins.
-        </motion.h2>
 
         {/* 2×2 grid — all cells on snow surface, sediment dividers */}
         <div className="max-w-[56rem] mx-auto">
@@ -128,7 +145,7 @@ export function FourGates() {
             style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
             Curriculum without these commitments is a class. Aedifica is designed to build a pathway.
           </p>
-          <Link href="/partner"
+          <Link href="#contact-form"
             className="flex-shrink-0 inline-flex items-center justify-center bg-datum text-white text-[13px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-colors duration-150 hover:bg-datum/85"
             style={{ fontFamily: 'var(--font-body)' }}>
             Discuss a Founding Partnership
@@ -136,6 +153,7 @@ export function FourGates() {
         </motion.div>
 
       </div>
-    </section>
+      </section>
+    </>
   )
 }

@@ -57,7 +57,7 @@ export function ExploreQuotes() {
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, delay: 0.1, ease: EASE }}>
-              Ten weeks is enough time to change how a student sees a bridge, and themselves. These are reflections from the 2025 Building Bridges cohort: seventh and eighth graders who arrived describing engineering as "fixing things" and left talking about prototypes, sustainability, and what to do when a design fails. Student quotes are anonymized to protect privacy.
+              Twelve weeks is enough time to change how a student sees a bridge, and themselves. These are reflections from the 2025 Building Bridges cohort: seventh and eighth graders who arrived describing engineering as "fixing things" and left talking about prototypes, sustainability, and what to do when a design fails. Student quotes are anonymized to protect privacy.
             </motion.p>
           </div>
 
