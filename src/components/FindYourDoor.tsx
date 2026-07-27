@@ -95,7 +95,7 @@ export function FindYourDoor() {
           viewport={reduce ? undefined : VIEWPORT}
           transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}
         >
-          Tell us who you are. We&rsquo;ll point you to <span className="text-wine">the right door.</span>
+          Tell us who you are. We&rsquo;ll point you to the right door.
         </motion.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
