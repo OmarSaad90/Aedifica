@@ -5,24 +5,27 @@ const VIEWPORT    = { once: true, margin: '-70px 0px' } as const
 const EASE        = [0.25, 0.1, 0.25, 1] as const
 const SPRING_EASE = [0.32, 0.72, 0, 1] as const
 
-const ITEMS: { Icon: Icon; tag: string; title: string; body: string }[] = [
+const ITEMS: { Icon: Icon; tag: string; title: string; body: string; color: string }[] = [
   {
     Icon: HardHat,
     tag:   'Field-built',
-    title: 'Designed from the jobsite backward',
+    title: 'Designed from the work, not the textbook',
     body:  'Curriculum carries named employer validators who confirm what we teach matches the work New Jersey general contractors are doing today.',
+    color: 'text-wine',
   },
   {
     Icon: ChartLineUp,
     tag:   'Evidence-run',
     title: 'Measured by outcomes, not hours',
     body:  'Placement rate, credential attainment, wage at placement, and apprenticeship articulation, published with the same definitions, every cohort.',
+    color: 'text-terracotta-deep',
   },
   {
     Icon: Handshake,
     tag:   'Partner-shaped',
     title: 'Built with institutions, not around them',
     body:  'Recruitment, fiscal capacity, and role definition stay with the partners who already do them well. Aedifica owns curriculum, instruction, and measurement. Where a vocational or trade school already trains the craft, we add the construction-management layer above it rather than a competing program.',
+    color: 'text-ink-soft',
   },
 ]
 
@@ -133,12 +136,11 @@ export function AedificaModel() {
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.4, ease: EASE }}
               >
-                <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
                 <p
-                  className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium leading-none"
+                  className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium leading-none"
                   style={{ fontFamily: 'var(--font-body)' }}
                 >
-                  Our approach
+                  § 03 — Our approach
                 </p>
               </motion.div>
               <motion.h2
@@ -156,7 +158,7 @@ export function AedificaModel() {
 
             {/* Items */}
             <div className="max-w-[52rem] mx-auto lg:max-w-none lg:mx-0">
-              {ITEMS.map(({ Icon: IconComp, tag, title, body }, i) => (
+              {ITEMS.map(({ Icon: IconComp, tag, title, body, color }, i) => (
                 <motion.div
                   key={title}
                   className="flex items-start gap-6 lg:gap-10 py-6 lg:py-8 border-t border-sediment/25"
@@ -168,13 +170,13 @@ export function AedificaModel() {
                   <IconComp
                     size={26}
                     weight="regular"
-                    className="flex-shrink-0 text-datum mt-1"
+                    className={`flex-shrink-0 ${color} mt-1`}
                     aria-hidden={true}
                   />
 
                   <div className="min-w-0">
                     <span
-                      className="block text-[10.5px] uppercase tracking-[0.12em] text-datum mb-2"
+                      className={`block text-[10.5px] uppercase tracking-[0.12em] ${color} mb-2`}
                       style={{ fontFamily: 'var(--font-body)' }}
                     >
                       {tag}

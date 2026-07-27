@@ -41,11 +41,11 @@ function PillarItem({ Icon: IconComp, label, subtext }: Pillar) {
       <IconComp
         size={20}
         weight="regular"
-        className="text-datum mb-3"
+        className="text-ink-soft mb-3"
         aria-hidden={true}
       />
       <p
-        className="text-[14px] text-datum font-medium mb-2 leading-snug tracking-[-0.01em]"
+        className="text-[14px] text-anthracite font-medium mb-2 leading-snug tracking-[-0.01em]"
         style={{ fontFamily: 'var(--font-body)' }}
       >
         {label}
@@ -64,7 +64,7 @@ export function CredibilityBar() {
   const reduce = useReducedMotion()
 
   return (
-    <section className="bg-bone py-14 relative z-10 -mt-10 lg:-mt-14 border-t border-datum/20" aria-label="Program commitments">
+    <section className="bg-bone py-14 relative z-10 -mt-10 lg:-mt-14 border-t border-anthracite/15" aria-label="Program commitments">
       <div className="max-w-[1400px] mx-auto px-6">
 
         {/* Eyebrow */}

@@ -20,9 +20,8 @@ export function MissingChannel() {
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.4, ease: EASE }}
           >
-            <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
             <p
-              className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium leading-none"
+              className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium leading-none"
               style={{ fontFamily: 'var(--font-body)' }}
             >
               The missing channel
@@ -54,19 +53,19 @@ export function MissingChannel() {
           <div className="flex items-center">
             <div className="flex-1 relative border-t border-anthracite/25">
               <span
-                className="absolute right-0 top-0 -translate-y-1/2 w-[9px] h-[9px] rotate-45 bg-datum"
+                className="absolute right-0 top-0 -translate-y-1/2 w-[9px] h-[9px] rotate-45 bg-ink-soft"
                 aria-hidden="true"
               />
             </div>
             <p
-              className="flex-shrink-0 px-5 lg:px-7 text-[11px] lg:text-[12px] uppercase tracking-[0.12em] text-datum whitespace-nowrap"
+              className="flex-shrink-0 px-5 lg:px-7 text-[11px] lg:text-[12px] uppercase tracking-[0.12em] text-ink-soft font-semibold whitespace-nowrap"
               style={{ fontFamily: 'var(--font-body)' }}
             >
               no bridge
             </p>
             <div className="flex-1 relative border-t border-anthracite/25">
               <span
-                className="absolute left-0 top-0 -translate-y-1/2 w-[9px] h-[9px] rotate-45 bg-datum"
+                className="absolute left-0 top-0 -translate-y-1/2 w-[9px] h-[9px] rotate-45 bg-ink-soft"
                 aria-hidden="true"
               />
             </div>

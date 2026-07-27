@@ -45,7 +45,7 @@ const PROGRAMS = [
     name: 'Rebuild',
     code: 'EDF·04 · Light burgundy channel',
     who: 'Adult scholars, career changers, returning workers, veterans, and justice-impacted talent.',
-    format: 'Bridge cohorts scoped to partner capacity and funding cycle, with wraparound supports and an employer-validated capstone.',
+    format: 'Bridge cohorts scoped to partner capacity, with wraparound supports and an employer-validated capstone.',
     delivers: 'Credentials, confidence, and a defined interview opportunity in a construction-management-track role.',
     cta: 'See Rebuild',
     to: '/programs/rebuild',
@@ -78,12 +78,12 @@ export function Programs() {
           <div className="lg:flex lg:items-start lg:justify-between lg:gap-16 xl:gap-24 mb-14 lg:mb-20">
             <div>
               <motion.p
-                className="text-[10.5px] uppercase tracking-[0.22em] text-datum mb-7 leading-none select-none"
+                className="text-[10.5px] uppercase tracking-[0.22em] text-ink-soft font-semibold mb-7 leading-none select-none"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 10 }}
                 animate={reduce ? undefined : { opacity: 1, y: 0 }}
                 transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-                Programs
+                § 04 — Programs
               </motion.p>
 
               <motion.h1
@@ -133,9 +133,8 @@ export function Programs() {
                   whileInView={reduce ? undefined : { opacity: 1 }}
                   viewport={reduce ? undefined : VIEWPORT}
                   transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-                  <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
                   <p
-                    className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium leading-none"
+                    className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium leading-none"
                     style={{ fontFamily: 'var(--font-body)' }}>
                     Side by side
                   </p>
@@ -175,11 +174,11 @@ export function Programs() {
                 <caption className="sr-only">Program comparison, audience, format, and outcome</caption>
                 <thead>
                   <tr className="bg-bone">
-                    {['Program', 'Who it serves', 'Format', 'What it delivers', ''].map((h) => (
+                    {['Program', 'Who it serves', 'Format', 'What it delivers', 'Next step'].map((h) => (
                       <th
                         key={h}
                         scope="col"
-                        className={`text-left px-5 py-3 text-[10.5px] uppercase tracking-[0.12em] text-anthracite/78 font-medium border-b border-sediment/25 ${h === '' ? 'w-[180px]' : ''}`}
+                        className={`text-left px-5 py-3 text-[10.5px] uppercase tracking-[0.12em] text-anthracite/78 font-medium border-b border-sediment/25 ${h === 'Next step' ? 'w-[180px]' : ''}`}
                         style={{ fontFamily: 'var(--font-body)' }}>
                         {h}
                       </th>

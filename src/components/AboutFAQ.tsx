@@ -39,8 +39,7 @@ export function AboutFAQ() {
           whileInView={reduce ? undefined : { opacity: 1 }}
           viewport={reduce ? undefined : VIEWPORT}
           transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-          <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-          <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Frequently asked questions</p>
+          <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>§ 19 — Frequently asked questions</p>
         </motion.div>
         <motion.h2
           id="faq-h2"
@@ -116,7 +115,7 @@ export function AboutFAQ() {
                   viewport={reduce ? undefined : VIEWPORT}
                   transition={reduce ? undefined : { duration: 0.4, delay: 0.3, ease: EASE }}>
                   A different question for your district, board, or company?{' '}
-                  <Link href="/partner" className="text-datum underline underline-offset-2 decoration-datum/40 hover:decoration-datum transition-colors duration-150">Talk to the team</Link>.
+                  <Link href="/partner" className="text-anthracite underline underline-offset-2 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">Talk to the team</Link>.
                 </motion.p>
               )}
             </div>

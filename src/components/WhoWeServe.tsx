@@ -72,7 +72,7 @@ function AudienceGroup({
           <div
             key={item}
             className={`flex items-start gap-2.5 py-4 ${i < items.length - 1 ? 'border-b border-sediment/30' : ''} ${i >= items.length - 2 ? 'sm:border-b-0' : ''}`}>
-            <span className={`flex-shrink-0 w-[7px] h-[7px] rotate-45 mt-[6px] ${color === 'text-datum' ? 'bg-datum' : 'bg-patina'}`} aria-hidden="true" />
+            <span className={`flex-shrink-0 w-[7px] h-[7px] rotate-45 mt-[6px] ${color === 'text-wine' ? 'bg-wine' : 'bg-terracotta'}`} aria-hidden="true" />
             <p
               className="text-[14.5px] text-anthracite/85 leading-[1.45]"
               style={{ fontFamily: 'var(--font-body)' }}>
@@ -100,11 +100,10 @@ export function WhoWeServe() {
             whileInView={reduce ? undefined : { opacity: 1 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-            <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
             <p
-              className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium leading-none"
+              className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium leading-none"
               style={{ fontFamily: 'var(--font-body)' }}>
-              Who we serve
+              Who we work with
             </p>
           </motion.div>
 
@@ -124,10 +123,10 @@ export function WhoWeServe() {
             instead of a plain rule, the two sides meeting at a keystone diamond. */}
         <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-0">
           <div className="lg:pr-14 xl:pr-16">
-            <AudienceGroup Icon={Buildings} color="text-datum" tag="Institutions & employers" title="The people building the pathway" items={PARTNERS} delay={0} />
+            <AudienceGroup Icon={Buildings} color="text-wine" tag="Institutions & employers" title="The people building the pathway" items={PARTNERS} delay={0} />
           </div>
           <div className="lg:pl-14 xl:pl-16">
-            <AudienceGroup Icon={Users} color="text-patina" tag="Scholars" title="The people walking the pathway" items={LEARNERS} delay={0.08} />
+            <AudienceGroup Icon={Users} color="text-terracotta-deep" tag="Scholars" title="The people walking the pathway" items={LEARNERS} delay={0.08} />
           </div>
 
           <div

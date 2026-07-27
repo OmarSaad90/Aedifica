@@ -434,7 +434,7 @@ function SecHead({ num, text }: { num: string; text: string }) {
       viewport={VIEWPORT}
       transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
       <span
-        className="not-italic text-datum mr-3 text-[15px] align-middle"
+        className="not-italic text-ink-soft mr-3 text-[15px] align-middle"
         style={{ fontFamily: 'var(--font-body)', fontWeight: 400, letterSpacing: '-0.01em' }}>
         {num}
       </span>
@@ -1107,7 +1107,7 @@ export function SupervisorGapFullReport() {
                 cohort, whether or not the numbers flatter us.
               </p>
               <Link href="/partner"
-                className="inline-flex items-center gap-2 text-[13.5px] text-datum tracking-[-0.01em] group py-2 -my-2"
+                className="inline-flex items-center gap-2 text-[13.5px] text-anthracite tracking-[-0.01em] group py-2 -my-2"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Request a resource or ask about availability
                 <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden>→</span>
@@ -1122,32 +1122,32 @@ export function SupervisorGapFullReport() {
       <section className="bg-snow pt-10 lg:pt-16 pb-0" aria-label="Partner with Aedifica">
         <div className="max-w-[1100px] mx-auto px-6">
           <motion.div
-            className="bg-datum px-10 pt-10 pb-10 lg:px-16 lg:pt-14 lg:pb-12 text-center rounded-t-[2rem]"
+            className="bg-bone px-10 pt-10 pb-10 lg:px-16 lg:pt-14 lg:pb-12 text-center rounded-t-[2rem]"
             initial={reduce ? undefined : { opacity: 0, y: 28 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
 
             <h2
-              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.03em] text-white italic mb-6"
+              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.03em] text-anthracite italic mb-6"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
               The resources you need are available on request.
             </h2>
 
             <p
-              className="text-[15px] text-white/90 leading-[1.7] max-w-[52ch] mx-auto mb-10"
+              className="text-[15px] text-anthracite/80 leading-[1.7] max-w-[52ch] mx-auto mb-10"
               style={{ fontFamily: 'var(--font-body)' }}>
               Contact Aedifica to receive any resource directly, discuss employer validation, accountability frameworks, or institutional partnerships.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link href="/partner"
-                className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/92"
+                className="inline-flex items-center justify-center bg-anthracite text-white text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/85"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Start a Partnership Conversation
               </Link>
               <Link href="/impact"
-                className="inline-flex items-center justify-center border border-white/30 text-white text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/8"
+                className="inline-flex items-center justify-center border border-anthracite text-anthracite text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/6"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 View the Impact Framework
               </Link>

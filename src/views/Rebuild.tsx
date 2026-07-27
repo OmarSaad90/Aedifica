@@ -11,7 +11,7 @@ const SPRING = [0.32, 0.72, 0, 1] as const
 const INFO_ROWS = [
   ['Status', 'Designed, curriculum complete; no cohort delivered'],
   ['Audience', 'Adult scholars · non-traditional talent'],
-  ['Delivery models', 'Standalone cohort, or a construction-management overlay on an existing vocational or trade-school program'],
+  ['Delivery models', 'Standalone cohort · or a construction-management overlay on an existing vocational or trade-school program'],
   ['Format', 'Bridge cohorts, scoped to partner capacity and funding cycle'],
   ['Supports', 'Wraparound services via community partners'],
   ['Cost to scholars', 'None, funded through institutional partners'],
@@ -164,7 +164,7 @@ export function Rebuild() {
                 rather than competing with them: their training builds the craft, and Rebuild adds the
                 construction-management layer above it. The school keeps its program, its students, and
                 its credential.{' '}
-                <Link href="/trade-schools" className="text-datum hover:underline underline-offset-2">
+                <Link href="/trade-schools" className="text-anthracite underline underline-offset-2 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">
                   See how the overlay works for vocational and trade schools
                 </Link>.
               </motion.p>
@@ -177,7 +177,7 @@ export function Rebuild() {
                   whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                   viewport={reduce ? undefined : VIEWPORT}
                   transition={reduce ? undefined : { duration: 0.4, delay: i * 0.05, ease: EASE }}>
-                  <p className="text-[12.5px] uppercase tracking-[0.13em] text-datum pt-0.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
+                  <p className="text-[12.5px] uppercase tracking-[0.13em] text-ink-soft font-semibold pt-0.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
                   <p className="text-[13.5px] text-anthracite/80 leading-[1.55]" style={{ fontFamily: 'var(--font-body)' }}>{value}</p>
                 </motion.div>
               ))}
@@ -201,7 +201,7 @@ export function Rebuild() {
               <ul className="list-none space-y-3">
                 {MINI_LIST.map(item => (
                   <li key={item} className="flex gap-3 items-start">
-                    <span className="flex-shrink-0 w-[6px] h-[6px] rotate-45 bg-datum mt-[7px]" aria-hidden="true" />
+                    <span className="flex-shrink-0 w-[6px] h-[6px] rotate-45 bg-rebuild-deep mt-[7px]" aria-hidden="true" />
                     <span className="text-[13.5px] text-anthracite/78 leading-[1.55]" style={{ fontFamily: 'var(--font-body)' }}>{item}</span>
                   </li>
                 ))}
@@ -221,21 +221,10 @@ export function Rebuild() {
             whileInView={reduce ? undefined : { opacity: 1 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-            <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-            <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>The Rebuild scholar journey, starting point to next step</p>
+            <p id="journey-h2" className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>The Rebuild scholar journey, starting point to next step</p>
           </motion.div>
-          <motion.h2
-            id="journey-h2"
-            className="text-[2rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic mb-10 lg:mb-12 max-w-[28ch] [text-wrap:balance]"
-            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-            initial={reduce ? undefined : { opacity: 0, y: 22 }}
-            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-            viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
-            Seventeen stages, in order.
-          </motion.h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 xl:gap-x-14 border-t border-sediment/25">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 xl:gap-x-14 border-t border-sediment/25 mt-10 lg:mt-12">
             {JOURNEY.map(({ stage, note }, i) => (
               <motion.div
                 key={stage}
@@ -279,32 +268,23 @@ export function Rebuild() {
                 whileInView={reduce ? undefined : { opacity: 1 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-                <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-                <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Curriculum shell</p>
+                <p id="curriculum-h2" className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Curriculum shells</p>
               </motion.div>
-              <motion.h2
-                id="curriculum-h2"
-                className="text-[2rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic [text-wrap:balance]"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-                initial={reduce ? undefined : { opacity: 0, y: 22 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
-                The curriculum behind the cohort.
-              </motion.h2>
             </div>
             <div className="flex gap-2.5 flex-shrink-0">
-              <button type="button" onClick={() => setOpen(true)} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Expand</button>
-              <button type="button" onClick={() => setOpen(false)} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Collapse</button>
-              <button type="button" onClick={() => { setOpen(true); setTimeout(() => window.print(), 350) }} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Print</button>
+              <button type="button" onClick={() => setOpen(true)} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Expand all</button>
+              <button type="button" onClick={() => setOpen(false)} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Collapse all</button>
+              <button type="button" onClick={() => { setOpen(true); setTimeout(() => window.print(), 350) }} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Print curriculum</button>
             </div>
           </div>
 
           <CurriculumShell
             id="rebuild"
-            color="var(--color-datum)"
+            color="var(--color-rebuild-deep)"
             open={open}
             onToggle={() => setOpen(o => !o)}
+            openLabel="Open outline"
+            closeLabel="Close outline"
             meta="Adults · flexible cohort length · nine learning areas · outline"
             collapsedTitle="Rebuild: the curriculum behind the cohort"
             eyebrow="Adult bridge cohort · Construction management · New Jersey"
@@ -322,7 +302,7 @@ export function Rebuild() {
                   whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                   viewport={reduce ? undefined : VIEWPORT}
                   transition={reduce ? undefined : { duration: 0.42, delay: Math.min(i * 0.05, 0.3), ease: EASE }}>
-                  <p className="text-[10px] uppercase tracking-[0.12em] text-datum mb-2.5" style={{ fontFamily: 'var(--font-body)' }}>{num}</p>
+                  <p className="text-[10px] uppercase tracking-[0.12em] text-rebuild-deep mb-2.5" style={{ fontFamily: 'var(--font-body)' }}>{num}</p>
                   <p className="text-[1.0625rem] text-anthracite italic leading-[1.25] tracking-[-0.015em] mb-2.5" style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>{title}</p>
                   <p className="text-[13px] text-anthracite/70 leading-[1.6]" style={{ fontFamily: 'var(--font-body)' }}>{desc}</p>
                 </motion.div>
@@ -349,12 +329,6 @@ export function Rebuild() {
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-
-            <h2
-              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.03em] text-white italic mb-8 [text-wrap:balance]"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-              A real way in, for the people the system overlooked.
-            </h2>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-10">
               <Link href="/partner"

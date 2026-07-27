@@ -17,6 +17,7 @@ const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
 const INFO_ROWS = [
+  ['Status', 'Delivered, three summers (2022–2024), Stevens pre-college'],
   ['Audience', 'High schools and districts, grades 9–12'],
   ['Format', 'District-embedded curriculum · project-based'],
   ['Alignment', 'NJ & NY standards · college articulation'],
@@ -53,14 +54,6 @@ const NINE_LESSONS = [
   'Financial evaluation: cost, ROI & life-cycle costing',
   'Environmental & social sustainability',
   'Traps in decision-making: bias, risk & analysis, into the final engineering project',
-] as const
-
-// The nine lessons run in a real progression: context and method, then design
-// practice, then evaluation and decision-making into the final project.
-const LESSON_GROUPS = [
-  { label: 'Foundations', lessons: NINE_LESSONS.slice(0, 3) },
-  { label: 'Design practice', lessons: NINE_LESSONS.slice(3, 6) },
-  { label: 'Evaluation & decisions', lessons: NINE_LESSONS.slice(6, 9) },
 ] as const
 
 // ── Bridge Builders: 12 weeks ──
@@ -414,8 +407,8 @@ export function Pathway() {
                 transition={reduce ? undefined : { duration: 0.5, delay: 0.14, ease: EASE }}>
                 <strong className="text-anthracite font-medium">Existing STEM is a foundation, not a
                 substitute.</strong> A strong STEM department teaches the science and math this work rests
-                on. Engineering and construction management are a separate discipline (scope, schedule,
-                cost, safety, sequencing) and one that sits outside most certification routes and
+                on. Engineering and construction management are a separate discipline: scope, schedule,
+                cost, safety, sequencing, and one that sits outside most certification routes and
                 teacher-preparation programs, because it is learned on projects rather than in coursework.
                 Aedifica supplies instructors who practice it, and works alongside your educators rather
                 than around them: they keep the classroom relationship, we bring the jobsite.
@@ -429,7 +422,7 @@ export function Pathway() {
                   whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                   viewport={reduce ? undefined : VIEWPORT}
                   transition={reduce ? undefined : { duration: 0.4, delay: i * 0.05, ease: EASE }}>
-                  <p className="text-[12.5px] uppercase tracking-[0.13em] text-datum pt-0.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
+                  <p className="text-[12.5px] uppercase tracking-[0.13em] text-ink-soft font-semibold pt-0.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
                   <p className="text-[13.5px] text-anthracite/80 leading-[1.55]" style={{ fontFamily: 'var(--font-body)' }}>{value}</p>
                 </motion.div>
               ))}
@@ -453,7 +446,7 @@ export function Pathway() {
               <ul className="list-none space-y-3">
                 {MINI_LIST.map(item => (
                   <li key={item} className="flex gap-3 items-start">
-                    <span className="flex-shrink-0 w-[6px] h-[6px] rotate-45 bg-datum mt-[7px]" aria-hidden="true" />
+                    <span className="flex-shrink-0 w-[6px] h-[6px] rotate-45 bg-quarry mt-[7px]" aria-hidden="true" />
                     <span className="text-[13.5px] text-anthracite/78 leading-[1.55]" style={{ fontFamily: 'var(--font-body)' }}>{item}</span>
                   </li>
                 ))}
@@ -461,6 +454,20 @@ export function Pathway() {
             </div>
 
           </div>
+
+          <motion.p
+            className="text-[13px] text-anthracite/78 leading-[1.65] mt-10"
+            style={{ fontFamily: 'var(--font-body)' }}
+            initial={reduce ? undefined : { opacity: 0, y: 14 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.45, ease: EASE }}>
+            <strong className="text-anthracite font-medium">Delivery record:</strong> Pathway has been
+            taught for three summers (2022–2024) in the Stevens Institute of Technology pre-college
+            Civil Engineering course. Participant satisfaction data and sourcing are reported in{' '}
+            <Link href="/impact" className="text-anthracite underline underline-offset-2 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">Impact &amp; accountability</Link>,
+            alongside the Explore results.
+          </motion.p>
         </div>
       </section>
 
@@ -475,8 +482,7 @@ export function Pathway() {
                 whileInView={reduce ? undefined : { opacity: 1 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-                <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-                <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Proven delivery · Stevens pre-college</p>
+                <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Proven delivery · Stevens pre-college</p>
               </motion.div>
               <motion.h2
                 id="delivery-h2"
@@ -519,7 +525,8 @@ export function Pathway() {
           <p className="mt-6 text-[12px] text-anthracite/60 italic leading-[1.6] max-w-[70ch]" style={{ fontFamily: 'var(--font-body)' }}>
             Student satisfaction surveys, Stevens Institute of Technology Office of Pre-College
             Programs (2022–2024). These are participant ratings of the course and instructor, not
-            academic-outcome measures.
+            academic-outcome measures. Enrollment, completion, and articulation figures for Pathway
+            are not yet published.
           </p>
         </div>
       </section>
@@ -537,8 +544,7 @@ export function Pathway() {
               whileInView={reduce ? undefined : { opacity: 1 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-              <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-              <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Standards-aligned · New Jersey & New York</p>
+              <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Standards-aligned · New Jersey & New York</p>
             </motion.div>
             <motion.h2
               id="lessons-h2"
@@ -571,7 +577,7 @@ export function Pathway() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.42, delay: i * 0.07, ease: EASE }}>
-                <IconComp size={22} weight="regular" className="text-datum mb-3.5" aria-hidden={true} />
+                <IconComp size={22} weight="regular" className="text-ink-soft mb-3.5" aria-hidden={true} />
                 <p className="text-[1rem] text-anthracite font-medium tracking-[-0.01em] mb-2.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
                 <p className="text-[13px] text-anthracite/70 leading-[1.6]" style={{ fontFamily: 'var(--font-body)' }}>{value}</p>
               </motion.div>
@@ -588,65 +594,45 @@ export function Pathway() {
             The nine lessons
           </motion.p>
 
-          {/* Grouped into the three stages the lessons actually run in, instead of
-              one long single-file list, numbering stays continuous across groups. */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 lg:divide-x lg:divide-sediment/20">
-            {LESSON_GROUPS.map((group, gi) => (
-              <div key={group.label} className={`${gi > 0 ? 'mt-9 lg:mt-0 lg:pl-8 xl:pl-10' : ''} ${gi < 2 ? 'lg:pr-8 xl:pr-10' : ''}`}>
-                <p
-                  className="text-[11px] uppercase tracking-[0.12em] text-anthracite/60 pb-4 border-b-2 border-sediment/40 mb-1"
-                  style={{ fontFamily: 'var(--font-body)' }}>
-                  {group.label}
-                </p>
-                <ol>
-                  {group.lessons.map((lesson, li) => {
-                    const i = gi * 3 + li
-                    return (
-                      <motion.li
-                        key={lesson}
-                        className="group flex items-baseline gap-4 py-4 border-b border-sediment/20"
-                        initial={reduce ? undefined : { opacity: 0, y: 10 }}
-                        whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                        viewport={reduce ? undefined : VIEWPORT}
-                        transition={reduce ? undefined : { duration: 0.35, delay: Math.min(i * 0.04, 0.3), ease: EASE }}>
-                        <span
-                          className="flex-shrink-0 w-6 text-[13px] text-anthracite/55 tabular-nums group-hover:text-datum transition-colors duration-150"
-                          style={{ fontFamily: 'var(--font-body)' }}>
-                          {String(i + 1).padStart(2, '0')}
-                        </span>
-                        <span className="text-[14px] text-anthracite/85 leading-[1.45]" style={{ fontFamily: 'var(--font-body)' }}>
-                          {lesson}
-                        </span>
-                      </motion.li>
-                    )
-                  })}
-                </ol>
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-12">
+            {NINE_LESSONS.map((lesson, i) => (
+              <motion.div
+                key={lesson}
+                className="flex items-start gap-3 py-4 border-b border-sediment/20"
+                initial={reduce ? undefined : { opacity: 0, y: 10 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.35, delay: Math.min(i * 0.04, 0.3), ease: EASE }}>
+                <span className="flex-shrink-0 w-[9px] h-[9px] rotate-45 bg-quarry mt-[6px]" aria-hidden="true" />
+                <span className="text-[14px] text-anthracite/85 leading-[1.45]" style={{ fontFamily: 'var(--font-body)' }}>
+                  {lesson}
+                </span>
+              </motion.div>
             ))}
           </div>
 
           <motion.div
-            className="border border-anthracite/15 px-6 py-6 lg:px-8 lg:py-7 mt-12 lg:mt-14 print:hidden"
+            className="border border-wine px-6 py-6 lg:px-8 lg:py-7 mt-12 lg:mt-14 print:hidden"
             initial={reduce ? undefined : { opacity: 0, y: 16 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
-            <p className="text-[10.5px] uppercase tracking-[0.16em] text-datum mb-4 select-none" style={{ fontFamily: 'var(--font-body)' }}>This is a sample curriculum</p>
+            <p className="text-[10.5px] uppercase tracking-[0.16em] text-wine font-semibold mb-4 select-none" style={{ fontFamily: 'var(--font-body)' }}>This is a sample curriculum</p>
             <div className="space-y-3 max-w-[74ch]">
               <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
-                <strong className="text-anthracite font-medium">What you see below is a sample, not the catalogue.</strong> Resilient
-                Futures is a complete, real curriculum we have designed and can run; it exists to show a district how we build, not to
+                <strong className="text-anthracite font-medium">What you see below is a sample, not the catalogue.</strong> <i>Resilient
+                Futures</i> is a complete, real curriculum we have designed and can run; it exists to show a district how we build, not to
                 define what a district receives.
               </p>
               <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
-                <strong className="text-anthracite font-medium">Where it comes from.</strong> It is built on the Hillside-Stevens bridge
-                program and the Resilient Futures studio designs. Pathway&rsquo;s delivered record is three summers of pre-college
+                <strong className="text-anthracite font-medium">Where it comes from.</strong> It is built on the Hillside–Stevens bridge
+                programme and the Resilient Futures studio designs. Pathway&rsquo;s delivered record is three summers of pre-college
                 engineering at Stevens Institute of Technology (2022&ndash;2024), reported in{' '}
-                <Link href="/impact" className="text-datum hover:underline underline-offset-2">Impact &amp; accountability</Link>.
+                <Link href="/impact" className="text-anthracite underline underline-offset-2 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">Impact &amp; accountability</Link>.
               </p>
               <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
                 <strong className="text-anthracite font-medium">We build to order.</strong> Content, sequence, delivery mode, and calendar
-                are scoped with your district, see &ldquo;Ways to run it&rdquo; below. If this sample does not fit your schedule or your
+                are scoped with your district, see &ldquo;Ways to run it&rdquo; above. If this sample does not fit your schedule or your
                 cohort, we write the one that does.
               </p>
             </div>
@@ -667,32 +653,23 @@ export function Pathway() {
                 whileInView={reduce ? undefined : { opacity: 1 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-                <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-                <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Curriculum shell, open what you need</p>
+                <p id="curriculum-h2" className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Curriculum shells</p>
               </motion.div>
-              <motion.h2
-                id="curriculum-h2"
-                className="text-[2rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic [text-wrap:balance]"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-                initial={reduce ? undefined : { opacity: 0, y: 22 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
-                From a semester survey to a mentored capstone.
-              </motion.h2>
             </div>
             <div className="flex gap-2.5 flex-shrink-0">
-              <button type="button" onClick={() => setOpen(true)} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Expand</button>
-              <button type="button" onClick={() => setOpen(false)} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Collapse</button>
-              <button type="button" onClick={() => { setOpen(true); setTimeout(() => window.print(), 350) }} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Print</button>
+              <button type="button" onClick={() => setOpen(true)} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Expand all</button>
+              <button type="button" onClick={() => setOpen(false)} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Collapse all</button>
+              <button type="button" onClick={() => { setOpen(true); setTimeout(() => window.print(), 350) }} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Print curriculum</button>
             </div>
           </div>
 
           <CurriculumShell
             id="resilient"
-            color="var(--color-datum)"
+            color="var(--color-quarry)"
             open={open}
             onToggle={() => setOpen(o => !o)}
+            legendAriaLabel="Standards key, filter the units by framework"
+            legendAllShownText="Showing all standards frameworks. Each week or unit carries the exact standards it addresses, color-coded and labeled by framework; hover any code for its full description. The master matrix at the end consolidates the complete alignment across all three pathways."
             meta="Grades 6–12 · three grade-band pathways · full curriculum"
             collapsedTitle="Resilient Futures: Standards-Aligned STEM Engineering Curriculum"
             eyebrow="Grades 6–12 · Engineering Design · Out-of-School-Time STEM"
@@ -719,8 +696,8 @@ export function Pathway() {
               { cat: 'car', name: 'Career Readiness' },
             ]}>
 
-            <Band id="pathway-bridge" numLabel="01" rangeLabel="Grades 6–8 · Middle School" title="Bridge Builders"
-              desc="A twelve-week engineering studio built on the proven Hillside-Stevens bridge program. Students run a full engineering design cycle on an authentic Hudson River crossing challenge: defining the problem, modeling and costing designs, weighing risk and sustainability, building and load-testing prototypes, and defending their work at a public showcase."
+            <Band dark color="var(--color-quarry)" id="pathway-bridge" numLabel="01" rangeLabel="Grades 6–8 · Middle School" title="Bridge Builders"
+              desc="A twelve-week engineering studio built on the proven Hillside–Stevens bridge program. Students run a full engineering design cycle on an authentic Hudson River crossing challenge: defining the problem, modeling and costing designs, weighing risk and sustainability, building and load-testing prototypes, and defending their work at a public showcase."
               meta={[
                 { label: 'Essential question', value: 'How can young engineers design a bridge that is strong, affordable, sustainable, and useful to the community?' },
                 { label: 'NJ anchor challenge', value: 'Hudson River crossing · aging bridges · flooding & transportation resilience' },
@@ -728,7 +705,7 @@ export function Pathway() {
               ]}
               weeks={BRIDGE_BUILDERS_WEEKS} />
 
-            <Band id="pathway-infra" numLabel="02" rangeLabel="Grades 9–12 · High School" title="Infrastructure Fellows"
+            <Band dark color="var(--color-quarry)" id="pathway-infra" numLabel="02" rangeLabel="Grades 9–12 · High School" title="Infrastructure Fellows"
               desc="An applied civil-engineering pre-college studio. Fellows take a real local site, a bridge, intersection, stormwater system, water main, or coastline, through professional practice: site analysis, public datasets, CAD, cost and risk modeling, and a formal technical briefing. A companion Smart Cities studio adds sensors, data, and environmental monitoring."
               meta={[
                 { label: 'Essential question', value: 'How do civil engineers design infrastructure that is safe, durable, affordable, sustainable, equitable, and resilient under real constraints?' },
@@ -738,7 +715,7 @@ export function Pathway() {
               ]}
               weeks={INFRA_FELLOWS_UNITS} />
 
-            <Band id="pathway-research" numLabel="03" rangeLabel="Grades 11–12 · Advanced" title="STEM Research Scholars"
+            <Band dark color="var(--color-quarry)" id="pathway-research" numLabel="03" rangeLabel="Grades 11–12 · Advanced" title="STEM Research Scholars"
               desc="A mentored research and design intensive for advanced students. Scholars work in teams with university and professional mentors to investigate a real New Jersey resilience question, run a methodology, analyze data, and produce a capstone defended at a public STEM Expo, a true on-ramp to college research and engineering pathways."
               meta={[
                 { label: 'Essential question', value: 'How can student researchers investigate a real resilience challenge and produce evidence-based recommendations?' },
@@ -799,7 +776,7 @@ export function Pathway() {
 
             <CurriculumFooter
               programTitle="Resilient Futures"
-              programDesc="A standards-aligned STEM engineering program for grades 6–12, built on the proven Hillside-Stevens engineering model and designed for free, year-round out-of-school-time delivery."
+              programDesc="A standards-aligned STEM engineering program for grades 6–12, built on the proven Hillside–Stevens engineering model and designed for free, year-round out-of-school-time delivery."
               partners={['Aedifica, program operator', 'Hillside Public Schools, school collaboration', 'Stevens Institute of Technology, university partner']}
               frameworks={['NGSS / NJSLS-Science', 'NJSLS-Mathematics', 'NJSLS-English Language Arts', 'Design, Technology & CS (8.1 / 8.2)', 'Career Readiness (9.2 / 9.4)']}
               disclaimer="Curriculum derived from the Bridging Brilliance / Building Bridges program and the Resilient Futures studio designs. High-school standard codes indicate alignment targets and should be confirmed against the current NJSLS revisions before publication."
@@ -819,8 +796,7 @@ export function Pathway() {
               whileInView={reduce ? undefined : { opacity: 1 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-              <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-              <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Ways to run it</p>
+              <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Ways to run it</p>
             </motion.div>
             <motion.h2
               className="text-[1.875rem] lg:text-[2.5rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic mb-5 [text-wrap:balance]"
@@ -841,7 +817,7 @@ export function Pathway() {
               Pathway is built with your district rather than delivered to it. Content, delivery mode,
               and timeline are scoped with your team, and the content adapts to how your cohort learns:
               reading level, language supports, hands-on ratio, and pacing. The standards alignment
-              holds regardless of the shape you choose. The Resilient Futures curriculum above is one
+              holds regardless of the shape you choose. The Resilient Futures curriculum below is one
               instance, not the template.
             </motion.p>
           </div>
@@ -880,8 +856,7 @@ export function Pathway() {
               whileInView={reduce ? undefined : { opacity: 1 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-              <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-              <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>What it takes to run it</p>
+              <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>What it takes to run it</p>
             </motion.div>
             <motion.h2
               className="text-[1.875rem] lg:text-[2.5rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic mb-5 [text-wrap:balance]"
@@ -920,7 +895,7 @@ export function Pathway() {
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, delay: Math.min(i * 0.05, 0.3), ease: EASE }}>
-              <p className="text-[12.5px] uppercase tracking-[0.13em] text-datum pt-0.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
+              <p className="text-[12.5px] uppercase tracking-[0.13em] text-ink-soft font-semibold pt-0.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
               <p className="text-[13.5px] text-anthracite/80 leading-[1.55] max-w-[58ch]" style={{ fontFamily: 'var(--font-body)' }}>{value}</p>
             </motion.div>
           ))}
@@ -960,7 +935,7 @@ export function Pathway() {
 
             <p className="text-[12.5px] text-anthracite leading-[1.65] max-w-[58ch] mx-auto">
               <strong className="font-medium">For districts:</strong> Pathway is co-authored with your
-              educators, designed with them, never at them, and implementable by the people who
+              educators, designed <em>with</em> them, never at them, and implementable by the people who
               inherit it.
             </p>
 

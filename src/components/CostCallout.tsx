@@ -61,7 +61,7 @@ export function CostCallout() {
               </p>
               <div className="border-t border-sediment/25 pt-6">
                 <p
-                  className="text-[10.5px] text-datum uppercase tracking-[0.18em] mb-3 select-none"
+                  className="text-[10.5px] text-ink-soft font-semibold uppercase tracking-[0.18em] mb-3 select-none"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   How it works
                 </p>
@@ -80,7 +80,7 @@ export function CostCallout() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.45, delay: 0.18, ease: EASE }}>
               <Link href="/partner"
-                className="inline-flex items-center gap-2 text-[13.5px] text-datum tracking-[-0.01em] group"
+                className="inline-flex items-center gap-2 text-[13.5px] text-anthracite tracking-[-0.01em] group"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Ask about funding and access
                 <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>

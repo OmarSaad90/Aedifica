@@ -29,8 +29,7 @@ export function AccessFunding() {
               whileInView={reduce ? undefined : { opacity: 1 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-              <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-              <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Access & funding</p>
+              <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>§ 18 — Access & funding</p>
             </motion.div>
             <motion.h2
               id="access-h2"
@@ -66,7 +65,7 @@ export function AccessFunding() {
                   whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                   viewport={reduce ? undefined : VIEWPORT}
                   transition={reduce ? undefined : { duration: 0.4, delay: i * 0.06, ease: EASE }}>
-                  <p className="text-[10.5px] uppercase tracking-[0.14em] text-datum pt-1" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
+                  <p className="text-[10.5px] uppercase tracking-[0.14em] text-terracotta-deep pt-1" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
                   <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>{value}</p>
                 </motion.div>
               ))}

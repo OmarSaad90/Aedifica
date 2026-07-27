@@ -37,8 +37,7 @@ export function ExploreQuotes() {
               whileInView={reduce ? undefined : { opacity: 1 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-              <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-              <p className="text-[12px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Middle school · Building Bridges</p>
+              <p className="text-[12px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Middle school · Building Bridges</p>
             </motion.div>
             <motion.h2
               id="quotes-h2"
@@ -48,17 +47,8 @@ export function ExploreQuotes() {
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-              Aedifica Explore.
+              Aedifica Explore
             </motion.h2>
-            <motion.p
-              className="text-[15px] text-anthracite/72 leading-[1.72]"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={reduce ? undefined : { opacity: 0, y: 18 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.55, delay: 0.1, ease: EASE }}>
-              Twelve weeks is enough time to change how a student sees a bridge, and themselves. These are reflections from the 2025 Building Bridges cohort: seventh and eighth graders who arrived describing engineering as "fixing things" and left talking about prototypes, sustainability, and what to do when a design fails. Student quotes are anonymized to protect privacy.
-            </motion.p>
           </div>
 
           {/* The image is absolutely positioned inside its wrapper so its own

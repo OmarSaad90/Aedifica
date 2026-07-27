@@ -175,7 +175,7 @@ export function BridgingBrillianceCaseStudy() {
             initial={reduce ? undefined : { opacity: 0, y: 40 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
-            Building trust, ownership, and opportunity in <span className="text-datum">STEM learning</span>.
+            Building trust, ownership, and opportunity in STEM learning.
           </motion.h1>
 
           <motion.p
@@ -211,8 +211,7 @@ export function BridgingBrillianceCaseStudy() {
             whileInView={reduce ? undefined : { opacity: 1 }}
             viewport={VIEWPORT}
             transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-            <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-            <p className="text-[13px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Overview</p>
+            <p className="text-[13px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Overview</p>
           </motion.div>
           <motion.h2
             id="bb-overview-h2"
@@ -274,7 +273,6 @@ export function BridgingBrillianceCaseStudy() {
             whileInView={reduce ? undefined : { opacity: 1 }}
             viewport={VIEWPORT}
             transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-            <span className="w-7 h-[2px] bg-quarry flex-shrink-0" aria-hidden="true" />
             <p className="text-[13px] uppercase tracking-[0.14em] text-anthracite/75 font-medium" style={{ fontFamily: 'var(--font-body)' }}>At a glance</p>
           </motion.div>
           <motion.h2
@@ -446,7 +444,7 @@ export function BridgingBrillianceCaseStudy() {
       <section className="bg-snow py-10 lg:py-14" aria-label="Return to research archive">
         <div className="max-w-[68ch] mx-auto px-6">
           <Link href="/research"
-            className="inline-flex items-center gap-2 text-[13.5px] text-datum underline underline-offset-4 decoration-datum/40 hover:decoration-datum transition-colors duration-150"
+            className="inline-flex items-center gap-2 text-[13.5px] text-anthracite underline underline-offset-4 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150"
             style={{ fontFamily: 'var(--font-body)' }}>
             <span aria-hidden="true">&larr;</span>
             Back to the research archive

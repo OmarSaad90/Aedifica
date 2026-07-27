@@ -9,10 +9,10 @@ const SPRING = [0.32, 0.72, 0, 1] as const
 // Heights on a sqrt scale (not linear) so the near-zero end stays visible instead of vanishing to 0px.
 // Real values are always shown as text next to the bar; the shape is illustrative, never the only signal.
 const SKYLINE = [
-  { label: '2030 demand', value: '≈2,500', height: 132, fill: 'bg-datum' },
-  { label: 'Annual pipeline', value: '≈120', height: 29, fill: 'bg-datum/70' },
-  { label: 'Enrolled now', value: '≈60', height: 20, fill: 'bg-datum/45' },
-  { label: 'Credentialed today', value: '≈0', height: 5, fill: 'bg-datum/25' },
+  { label: '2030 demand', value: '≈2,500', height: 132, fill: 'bg-wine' },
+  { label: 'Annual pipeline', value: '≈120', height: 29, fill: 'bg-terracotta' },
+  { label: 'Enrolled now', value: '≈60', height: 20, fill: 'bg-rule' },
+  { label: 'Credentialed', value: '≈0', height: 5, fill: 'bg-blush' },
 ] as const
 
 const PUBLICATIONS = [
@@ -22,13 +22,17 @@ const PUBLICATIONS = [
     body: 'The shortage of green-fluent construction managers in New Jersey: demand mapping, pipeline analysis, and pathway architecture. Aedifica Research, June 2026.',
     status: 'Published',
     statusCls: 'bg-white text-anthracite',
+    dot: '●',
+    dotCls: 'text-wine',
   },
   {
     id: 'R·02',
     title: 'Bridging Brilliance: a delivery case study',
-    body: 'What a ten-week, twenty-one-student community STEM intensive taught us about running cohorts inside a real school week: materials, staffing, showcase, and what we would change.',
+    body: 'What a twelve-week, twenty-one-student community STEM intensive taught us about running cohorts inside a real school week: materials, staffing, showcase, and what we would change.',
     status: 'In progress',
     statusCls: 'bg-white/15 text-white',
+    dot: '◐',
+    dotCls: 'text-terracotta',
   },
   {
     id: 'R·03',
@@ -36,13 +40,17 @@ const PUBLICATIONS = [
     body: 'A methods note: how Aedifica fixes placement, credential, wage, and articulation definitions before cohort one, and why same-definition reporting is the moat.',
     status: 'In progress',
     statusCls: 'bg-white/15 text-white',
+    dot: '◐',
+    dotCls: 'text-terracotta',
   },
   {
     id: 'R·04',
     title: 'The non-traditional advantage',
-    body: 'Evidence review: why adults returning to work, veterans, and justice-impacted learners out-persist traditional cohorts when wraparound design is done properly.',
+    body: 'Evidence review: why adults returning to work, veterans, and justice-impacted scholars out-persist traditional cohorts when wraparound design is done properly.',
     status: 'Planned',
     statusCls: 'border border-white/30 text-white/75',
+    dot: '○',
+    dotCls: 'text-white/45',
   },
   {
     id: 'R·05',
@@ -50,6 +58,8 @@ const PUBLICATIONS = [
     body: 'The first same-definition outcomes publication: placement, credential attainment, wage at placement, and articulation for the inaugural Rebuild cohort.',
     status: 'Planned',
     statusCls: 'border border-white/30 text-white/75',
+    dot: '○',
+    dotCls: 'text-white/45',
   },
 ] as const
 
@@ -68,7 +78,7 @@ export function Research() {
             initial={reduce ? undefined : { opacity: 0, y: 10 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-            Aedifica Research
+            § 12 — Aedifica Research
           </motion.span>
 
           <motion.h1
@@ -124,11 +134,8 @@ export function Research() {
 
                 <div>
                   <div className="flex items-center gap-3 mb-5">
-                    <span className="inline-block text-[10px] uppercase tracking-[0.12em] bg-anthracite text-white px-2.5 py-1 leading-none select-none" style={{ fontFamily: 'var(--font-body)' }}>
-                      Published
-                    </span>
-                    <span className="text-[11px] uppercase tracking-[0.1em] text-anthracite/75" style={{ fontFamily: 'var(--font-body)' }}>
-                      R&middot;01 &middot; June 2026
+                    <span className="text-[11px] uppercase tracking-[0.1em] text-wine font-medium" style={{ fontFamily: 'var(--font-body)' }}>
+                      Featured report &middot; June 2026
                     </span>
                   </div>
 
@@ -136,17 +143,46 @@ export function Research() {
                     The supervisor gap
                   </h3>
                   <p className="text-[14.5px] text-anthracite/80 leading-[1.7] mb-8 max-w-[46ch]" style={{ fontFamily: 'var(--font-body)' }}>
-                    New Jersey&rsquo;s building-electrification mandates will require an estimated
-                    2,000 to 3,000 green-fluent construction managers by 2030. The credentialed
-                    supply today is near zero. This report maps the demand, the pipeline, and the
-                    pathway architecture required to close the distance.
+                    New Jersey&rsquo;s building-electrification mandates and clean-infrastructure
+                    funding will require an estimated 2,000 to 3,000 green-fluent construction
+                    managers by 2030. The credentialed supply today is near zero. This report maps
+                    the demand, the pipeline, and the pathway architecture required to close the
+                    distance.
                   </p>
 
-                  <Link href="/partner"
-                    className="inline-flex items-center gap-2 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/85 group">
-                    Request the full report
-                    <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
-                  </Link>
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 mb-8 text-[11px] uppercase tracking-[0.1em] text-anthracite/60" style={{ fontFamily: 'var(--font-body)' }}>
+                    <span>Aedifica Research</span>
+                    <span aria-hidden="true">·</span>
+                    <span>Published · 2026-06</span>
+                    <span aria-hidden="true">·</span>
+                    <span>New Jersey / NY metro</span>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-x-6 gap-y-5 mb-8 border-t border-l border-sediment/25">
+                    {[
+                      { n: '2,000–3,000', l: 'Green-fluent construction managers required by 2030 (est.)' },
+                      { n: '≈ 0', l: 'Credentialed green-CM supply today' },
+                      { n: '2030', l: 'Electrification-mandate horizon' },
+                      { n: '$1B+', l: 'Delivered infrastructure behind the analysis team' },
+                    ].map(({ n, l }) => (
+                      <div key={l} className="border-r border-b border-sediment/25 px-4 py-3.5">
+                        <p className="text-[1.75rem] lg:text-[2rem] text-wine italic leading-none tracking-[-0.02em] mb-1.5" style={{ fontFamily: 'var(--font-heading)', fontWeight: 500 }}>{n}</p>
+                        <p className="text-[11px] text-anthracite/70 leading-[1.4]" style={{ fontFamily: 'var(--font-body)' }}>{l}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap gap-3">
+                    <Link href="/partner"
+                      className="inline-flex items-center gap-2 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/85 group">
+                      Request the full report
+                      <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
+                    </Link>
+                    <Link href="/partner#contact-form"
+                      className="inline-flex items-center gap-2 border border-anthracite text-anthracite text-[13.5px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-colors duration-150 hover:bg-anthracite/6">
+                      Book a research briefing
+                    </Link>
+                  </div>
                 </div>
 
                 {/* Skyline exhibit: a receding silhouette, demand down to near-zero supply */}
@@ -187,6 +223,10 @@ export function Research() {
                       </span>
                     ))}
                   </div>
+                  <p className="text-[11px] text-anthracite/55 leading-[1.55] mt-5 pt-4 border-t border-sediment/20" style={{ fontFamily: 'var(--font-body)' }}>
+                    Series colors carry the auxiliary accent layer; values are labeled, <strong className="text-anthracite/70 font-medium">color never carries meaning alone.</strong> Source:
+                    Aedifica Research analysis of NJ electrification mandates and program-supply data. Forward-looking figures are Aedifica estimates.
+                  </p>
                 </div>
 
               </div>
@@ -219,7 +259,7 @@ export function Research() {
                         {Array.from({ length: 10 }).map((_, i) => (
                           <motion.span
                             key={i}
-                            className="flex-1 bg-patina"
+                            className="flex-1 bg-terracotta"
                             initial={reduce ? undefined : { height: 0 }}
                             whileInView={reduce ? undefined : { height: '100%' }}
                             viewport={VIEWPORT}
@@ -246,7 +286,7 @@ export function Research() {
                     Bridging Brilliance: a delivery case study
                   </h3>
                   <p className="text-[14.5px] text-anthracite/80 leading-[1.7] mb-8 max-w-[46ch]" style={{ fontFamily: 'var(--font-body)' }}>
-                    What a ten-week, twenty-one-student community STEM intensive taught us about
+                    What a twelve-week, twenty-one-student community STEM intensive taught us about
                     running cohorts inside a real school week: materials, staffing, showcase, and
                     what we would change.
                   </p>
@@ -269,24 +309,15 @@ export function Research() {
       {/* ── Coming next in the archive ── bg-anthracite */}
       <section className="bg-anthracite py-14 lg:py-20" aria-labelledby="research-archive-h2">
         <div className="max-w-7xl mx-auto px-6">
-          <motion.h2
-            id="research-archive-h2"
-            className="text-[1.375rem] lg:text-[1.625rem] leading-[1.2] tracking-[-0.02em] text-white italic mb-3"
-            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-            initial={reduce ? undefined : { opacity: 0 }}
-            whileInView={reduce ? undefined : { opacity: 1 }}
-            viewport={VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.5, ease: SPRING }}>
-            The full archive.
-          </motion.h2>
           <motion.p
-            className="text-[13px] text-white/60 leading-[1.6] max-w-[62ch] mb-10 lg:mb-12"
+            id="research-archive-h2"
+            className="text-[13.5px] uppercase tracking-[0.14em] text-white/70 font-medium mb-10 lg:mb-12"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0 }}
             whileInView={reduce ? undefined : { opacity: 1 }}
             viewport={VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.4, delay: 0.06, ease: EASE }}>
-            Every Aedifica publication, indexed. Status is carried by label and glyph, never by color alone.
+            transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+            Publications archive, status is carried by label and glyph, never by color alone.
           </motion.p>
 
           <div className="border-t border-white/12">
@@ -298,7 +329,7 @@ export function Research() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.4, delay: Math.min(i * 0.05, 0.2), ease: EASE }}>
-                <p className="text-[1.125rem] italic leading-none pt-0.5" style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--color-datum-light)' }}>
+                <p className="text-[1.125rem] italic leading-none pt-0.5" style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, color: 'var(--color-clay-light)' }}>
                   {pub.id}
                 </p>
                 <div>
@@ -309,7 +340,8 @@ export function Research() {
                     {pub.body}
                   </p>
                 </div>
-                <span className={`inline-block text-[10px] uppercase tracking-[0.12em] px-2.5 py-1 leading-none select-none flex-shrink-0 justify-self-start sm:justify-self-end ${pub.statusCls}`} style={{ fontFamily: 'var(--font-body)' }}>
+                <span className={`inline-flex items-center gap-1 text-[10px] uppercase tracking-[0.12em] px-2.5 py-1 leading-none select-none flex-shrink-0 justify-self-start sm:justify-self-end ${pub.statusCls}`} style={{ fontFamily: 'var(--font-body)' }}>
+                  <span className={pub.dotCls} aria-hidden="true">{pub.dot}</span>
                   {pub.status}
                 </span>
               </motion.article>
@@ -332,7 +364,7 @@ export function Research() {
             <p
               className="text-[12.5px] text-anthracite/70 leading-[1.7]"
               style={{ fontFamily: 'var(--font-body)' }}>
-              <strong className="text-anthracite font-medium">Methodology note.</strong> Aedifica
+              <strong className="text-wine font-medium">Methodology note.</strong> Aedifica
               Research distinguishes measured results from projections in every publication.
               Forward-looking figures, including the supervisor-gap estimates above, are Aedifica
               estimates, stated with their assumptions. Cohort outcomes are reported only after they

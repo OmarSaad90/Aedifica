@@ -32,7 +32,7 @@ export function SharedPrinciples() {
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
             <h3
-              className="text-[2.25rem] lg:text-[3.25rem] xl:text-[4.25rem] leading-[1.05] tracking-[-0.03em] text-datum italic mb-4"
+              className="text-[2.25rem] lg:text-[3.25rem] xl:text-[4.25rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic mb-4"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
               Role relevance
             </h3>
@@ -51,7 +51,7 @@ export function SharedPrinciples() {
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.5, delay: 0.12, ease: EASE }}>
             <h3
-              className="text-[1.25rem] lg:text-[1.625rem] xl:text-[2rem] leading-[1.15] tracking-[-0.015em] text-datum mb-3"
+              className="text-[1.25rem] lg:text-[1.625rem] xl:text-[2rem] leading-[1.15] tracking-[-0.015em] text-anthracite mb-3"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
               Employer validation
             </h3>
@@ -75,7 +75,7 @@ export function SharedPrinciples() {
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
             <h3
-              className="text-[1.25rem] lg:text-[1.625rem] xl:text-[2rem] leading-[1.15] tracking-[-0.015em] text-datum mb-3"
+              className="text-[1.25rem] lg:text-[1.625rem] xl:text-[2rem] leading-[1.15] tracking-[-0.015em] text-anthracite mb-3"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
               Institutional alignment
             </h3>
@@ -93,7 +93,7 @@ export function SharedPrinciples() {
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, delay: 0.12, ease: SPRING }}>
             <h3
-              className="text-[2.25rem] lg:text-[3.25rem] xl:text-[4.25rem] leading-[1.05] tracking-[-0.03em] text-datum italic mb-4"
+              className="text-[2.25rem] lg:text-[3.25rem] xl:text-[4.25rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic mb-4"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
               Outcome accountability
             </h3>

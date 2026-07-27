@@ -40,7 +40,7 @@ const INFO_ROWS = [
   ['Audience', 'Middle-school scholars, grades 6–8'],
   ['Format', 'School-year modules · summer STEM camps'],
   ['Setting', 'Schools and community organizations'],
-  ['Safety', 'Background-checked staff and FERPA-aligned data practices; full policy published before launch'],
+  ['Safety', 'Background-checked staff, supervision ratios, and FERPA-aligned data practices'],
   ['Cost to scholars', 'None, funded through institutional partners'],
 ] as const
 
@@ -146,7 +146,7 @@ const BB_UNIT2_WEEKS: WeekRow[] = [
     ],
   },
   {
-    num: 7, unit: 'Week', question: 'How do social and environmental factors shape the "best" design?',
+    num: 7, unit: 'Week', question: 'How do social and environmental factors shape the “best” design?',
     desc: <>Social sustainability, environmental justice, habitat, emissions, noise, and views; teams complete an <strong className="text-anthracite/90 font-medium">impact matrix</strong> scoring designs across social, economic, and environmental dimensions, then debate whether lowest cost is always best.</>,
     chips: [
       { code: 'MS-ETS1-1/2', cat: 'sci', desc: 'Criteria and constraints including social and environmental factors.' },
@@ -490,7 +490,7 @@ export function Explore() {
                   whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                   viewport={reduce ? undefined : VIEWPORT}
                   transition={reduce ? undefined : { duration: 0.4, delay: i * 0.05, ease: EASE }}>
-                  <p className="text-[12.5px] uppercase tracking-[0.13em] text-datum pt-0.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
+                  <p className="text-[12.5px] uppercase tracking-[0.13em] text-ink-soft font-semibold pt-0.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
                   <p className="text-[13.5px] text-anthracite/80 leading-[1.55]" style={{ fontFamily: 'var(--font-body)' }}>{value}</p>
                 </motion.div>
               ))}
@@ -536,8 +536,7 @@ export function Explore() {
                 whileInView={reduce ? undefined : { opacity: 1 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-                <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-                <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Inside a session</p>
+                <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Inside a session</p>
               </motion.div>
               <motion.h2
                 id="session-h2"
@@ -571,7 +570,7 @@ export function Explore() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.42, delay: Math.min(i * 0.06, 0.3), ease: EASE }}>
-                <IconComp size={22} weight="regular" className="text-datum mb-3.5" aria-hidden={true} />
+                <IconComp size={22} weight="regular" className="text-ink-soft mb-3.5" aria-hidden={true} />
                 <p className="text-[1.0625rem] text-anthracite italic leading-[1.25] tracking-[-0.015em] mb-2.5" style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>{title}</p>
                 <p className="text-[13px] text-anthracite/70 leading-[1.6]" style={{ fontFamily: 'var(--font-body)' }}>{body}</p>
               </motion.div>
@@ -596,7 +595,7 @@ export function Explore() {
               Explore is scoped with you, not delivered off a shelf. Content, delivery mode, and calendar
               are set by what your school actually has: a semester course, an add-on to an existing class,
               an after-school block, or a vacation or holiday intensive. The two curricula below are the
-              same program in two shapes. Bridging Brilliance ran as a twelve-week in-school intensive, and
+              same program in two shapes: Bridging Brilliance ran as a twelve-week in-school intensive, and
               Summer STEM Camps carries the same engineering thread across a school break. Content is also
               tuned to how a particular cohort learns: reading level, language supports, hands-on ratio,
               and pacing all move without changing the standards the program hits.
@@ -608,8 +607,7 @@ export function Explore() {
                 whileInView={reduce ? undefined : { opacity: 1 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-                <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-                <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Ways to run it</p>
+                <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Ways to run it</p>
               </motion.div>
               <motion.h2
                 id="run-h2"
@@ -631,7 +629,7 @@ export function Explore() {
             {RUN_MODELS.map(({ title }, i) => (
               <span
                 key={title}
-                className={`rotate-45 bg-datum ${['w-1.5 h-1.5', 'w-2 h-2', 'w-2.5 h-2.5', 'w-3 h-3', 'w-3.5 h-3.5', 'w-4 h-4'][i]}`}
+                className={`rotate-45 bg-ink-soft ${['w-1.5 h-1.5', 'w-2 h-2', 'w-2.5 h-2.5', 'w-3 h-3', 'w-3.5 h-3.5', 'w-4 h-4'][i]}`}
                 aria-hidden="true"
               />
             ))}
@@ -670,8 +668,7 @@ export function Explore() {
               whileInView={reduce ? undefined : { opacity: 1 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-              <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-              <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Evidence you can show</p>
+              <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Evidence you can show</p>
             </motion.div>
             <motion.h2
               id="evidence-h2"
@@ -712,7 +709,7 @@ export function Explore() {
             {['12.5%', '37.5%', '62.5%', '87.5%'].map((x, i) => (
               <div key={x} className="hidden lg:block absolute -top-[6px]" style={{ left: x }} aria-hidden="true">
                 <motion.span
-                  className="block w-2 h-2 -translate-x-1/2 rotate-45 bg-bone border border-datum"
+                  className="block w-2 h-2 -translate-x-1/2 rotate-45 bg-bone border border-anthracite/40"
                   initial={reduce ? undefined : { opacity: 0 }}
                   whileInView={reduce ? undefined : { opacity: 1 }}
                   viewport={reduce ? undefined : VIEWPORT}
@@ -754,12 +751,12 @@ export function Explore() {
         <div className="max-w-7xl mx-auto px-6">
 
           <motion.div
-            className="border border-anthracite/15 px-6 py-6 lg:px-8 lg:py-7 mb-12 lg:mb-14 print:hidden"
+            className="border border-wine px-6 py-6 lg:px-8 lg:py-7 mb-12 lg:mb-14 print:hidden"
             initial={reduce ? undefined : { opacity: 0, y: 16 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
-            <p className="text-[10.5px] uppercase tracking-[0.16em] text-datum mb-4 select-none" style={{ fontFamily: 'var(--font-body)' }}>These are sample curricula</p>
+            <p className="text-[10.5px] uppercase tracking-[0.16em] text-wine font-semibold mb-4 select-none" style={{ fontFamily: 'var(--font-body)' }}>These are sample curricula</p>
             <div className="space-y-3 max-w-[74ch]">
               <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
                 <strong className="text-anthracite font-medium">What you see below are samples, not the catalogue.</strong> They
@@ -769,7 +766,7 @@ export function Explore() {
                 <strong className="text-anthracite font-medium">Where they come from.</strong> Bridging
                 Brilliance, Engineering the Hudson, was delivered at Hillside Innovation Academy with
                 twenty-one students, and is documented in{' '}
-                <Link href="/impact" className="text-datum hover:underline underline-offset-2">Impact &amp; accountability</Link>.
+                <Link href="/impact" className="text-anthracite underline underline-offset-2 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">Impact &amp; accountability</Link>.
                 Summer STEM Camps is an Aedifica camp model designed for grades 6&ndash;12, designed and not yet delivered.
               </p>
               <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
@@ -788,19 +785,8 @@ export function Explore() {
                 whileInView={reduce ? undefined : { opacity: 1 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-                <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-                <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Curriculum shells, open what you need</p>
+                <p id="curriculum-h2" className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Sample curriculum shells, open what you need</p>
               </motion.div>
-              <motion.h2
-                id="curriculum-h2"
-                className="text-[2rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic [text-wrap:balance]"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-                initial={reduce ? undefined : { opacity: 0, y: 22 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
-                The full curricula, week by week.
-              </motion.h2>
             </div>
             <div className="flex gap-2.5 flex-shrink-0">
               <button type="button" onClick={expandAll} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Expand all</button>
@@ -842,7 +828,7 @@ export function Explore() {
                 { cat: 'car', name: 'Career Readiness' },
               ]}>
 
-              <Band id="bb-unit1" numLabel="01" rangeLabel="Unit 1 · Weeks 1–3" title="Engineering & Sustainability Foundations"
+              <Band color="var(--color-datum)" id="bb-unit1" numLabel="01" rangeLabel="Unit 1 · Weeks 1–3" title="Engineering & Sustainability Foundations"
                 desc="Students learn how engineers think and why sustainable infrastructure matters, then investigate the real Hudson River crossing, its geography, community, and needs, to define a formal engineering problem with criteria and constraints."
                 meta={[
                   { label: 'Essential question', value: 'What is engineering, and why does our community need a sustainable Hudson crossing?' },
@@ -851,7 +837,7 @@ export function Explore() {
                 ]}
                 weeks={BB_UNIT1_WEEKS} />
 
-              <Band id="bb-unit2" numLabel="02" rangeLabel="Unit 2 · Weeks 4–7" title="Bridge Types, Geometry & Digital Modeling"
+              <Band color="var(--color-datum)" id="bb-unit2" numLabel="02" rangeLabel="Unit 2 · Weeks 4–7" title="Bridge Types, Geometry & Digital Modeling"
                 desc="Students connect structure to function, model their bridges with scale drawings and digital tools, cost their designs as an efficiency metric, and weigh the social and environmental impact of the choices they make."
                 meta={[
                   { label: 'Essential question', value: 'How can math and modeling produce a bridge that is strong, affordable, and sustainable?' },
@@ -860,7 +846,7 @@ export function Explore() {
                 ]}
                 weeks={BB_UNIT2_WEEKS} />
 
-              <Band id="bb-unit3" numLabel="03" rangeLabel="Unit 3 · Weeks 8–12" title="Risk, Prototyping, Testing & Communication"
+              <Band color="var(--color-datum)" id="bb-unit3" numLabel="03" rangeLabel="Unit 3 · Weeks 8–12" title="Risk, Prototyping, Testing & Communication"
                 desc="Students manage risk, build and load-test physical prototypes, analyze the data to improve their designs, and defend their solution with evidence at a public Bridge Showcase & Testing Competition."
                 meta={[
                   { label: 'Essential question', value: "Which design best meets our community's needs, and how do we prove it?" },
@@ -928,6 +914,10 @@ export function Explore() {
               color="var(--color-datum)"
               open={open.has('summer')}
               onToggle={() => toggle('summer')}
+              openLabel="Open programs"
+              closeLabel="Close programs"
+              legendAriaLabel="Standards key, filter the days by framework"
+              legendAllShownText="Showing all standards frameworks. Each day is color-coded and labeled by its framework; hover any tag for detail."
               meta="Grades 6–12 · three camp models · full 10-day Engineering Explorers map"
               collapsedTitle="Summer STEM Camps: Engineering Explorers & Built-Environment Intensives"
               eyebrow="Grades 6–12 · Summer STEM Camps · 1–2 Week Intensives"
@@ -958,7 +948,7 @@ export function Explore() {
                 items={CAMP_MODELS} />
 
               <div className="pt-10 lg:pt-12 max-w-[68ch]">
-                <p className="text-[10.5px] uppercase tracking-[0.16em] text-datum mb-3" style={{ fontFamily: 'var(--font-body)' }}>Featured map · Engineering Explorers · 2-week model</p>
+                <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-soft font-semibold mb-3" style={{ fontFamily: 'var(--font-body)' }}>Featured map · Engineering Explorers · 2-week model</p>
                 <h4 className="text-[1.5rem] lg:text-[1.75rem] text-anthracite italic leading-[1.15] tracking-[-0.02em] mb-3" style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>Every day names the standards it teaches</h4>
                 <p className="text-[13.5px] text-anthracite/75 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
                   The two-week Engineering Explorers camp runs ten studio days, seven days rotating through
@@ -967,7 +957,7 @@ export function Explore() {
                 </p>
               </div>
 
-              <Band id="summer-week1" numLabel="01" rangeLabel="Week 1 · Days 1–7" title="Explore the Engineering Domains"
+              <Band color="var(--color-datum)" id="summer-week1" numLabel="01" rangeLabel="Week 1 · Days 1–7" title="Explore the Engineering Domains"
                 desc="A rotating tour through the core domains of engineering, structures, materials, circuits, robotics, water, and energy, building the skills, vocabulary, and confidence students carry into the design sprint."
                 meta={[
                   { label: 'Focus', value: 'Engineering identity · measurement & testing · circuits, robotics & sustainability' },
@@ -976,7 +966,7 @@ export function Explore() {
                 ]}
                 weeks={SUMMER_WEEK1_DAYS} />
 
-              <Band id="summer-week2" numLabel="02" rangeLabel="Week 2 · Days 8–10" title="Design Sprint & STEM Expo"
+              <Band color="var(--color-datum)" id="summer-week2" numLabel="02" rangeLabel="Week 2 · Days 8–10" title="Design Sprint & STEM Expo"
                 desc="Teams choose a real local problem, define criteria and constraints, prototype and test under real limits, and present their solution at a public STEM Expo."
                 meta={[
                   { label: 'Essential question', value: "Which solution best fits our community's problem, and how do we show it works?" },
@@ -990,9 +980,9 @@ export function Explore() {
                 cards={[
                   { cat: 'sci', name: 'NGSS / Science', sub: 'Practices & core ideas', items: [
                     { code: 'MS-ETS1', desc: 'Engineering design: define, model, test, optimize.' },
-                    { code: 'PS · Forces', desc: 'Structures, forces, and material performance.' },
-                    { code: 'PS · Energy', desc: 'Energy systems, transfer, and efficiency.' },
-                    { code: 'ESS · Earth', desc: 'Water, stormwater, and human impact.' },
+                    { code: 'PS: Forces', desc: 'Structures, forces, and material performance.' },
+                    { code: 'PS: Energy', desc: 'Energy systems, transfer, and efficiency.' },
+                    { code: 'ESS: Earth', desc: 'Water, stormwater, and human impact.' },
                     { code: 'Practices', desc: 'Science & engineering practices throughout.' },
                   ] },
                   { cat: 'math', name: 'Math & Data', sub: 'Quantitative reasoning', items: [
@@ -1041,8 +1031,7 @@ export function Explore() {
               whileInView={reduce ? undefined : { opacity: 1 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-              <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-              <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>What it takes to run it</p>
+              <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>What it takes to run it</p>
             </motion.div>
             <motion.h2
               className="text-[1.875rem] lg:text-[2.5rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic mb-5 [text-wrap:balance]"
@@ -1066,13 +1055,13 @@ export function Explore() {
           </div>
 
           {[
-            ['Schedule footprint', 'Flexible, single workshop through semester course; see "Ways to run it" above. Bridging Brilliance ran twelve weeks inside the school week.'],
+            ['Schedule footprint', 'Flexible, single workshop through semester course; see “Ways to run it” above. Bridging Brilliance ran twelve weeks inside the school week.'],
             ['Who teaches', 'Aedifica instructors, working construction-management and engineering professionals, with your teacher of record present.'],
             ['Cohort size', 'Minimum 10, maximum 25. Bridging Brilliance ran with twenty-one students.'],
-            ['Your staff commitment', 'Scoped with your team before the cohort starts, and published here once confirmed.'],
+            ['Your staff commitment', 'Planning hours before the cohort, plus in-room hours per week for the teacher of record, confirmed with your team before launch.'],
             ['Room & materials', 'The partner provides the room. Aedifica brings all materials: kits, consumables, and testing equipment.'],
             ['Lead time', 'Four weeks from signed agreement to first session. The programs are built and ready to run.'],
-            ['Pilot option', 'Single-cohort pilots are available for partners who want to test the model before a full commitment.'],
+            ['Pilot option', 'Whether a single-cohort pilot fits, and on what terms, is confirmed with each partner.'],
           ].map(([label, value], i) => (
             <motion.div
               key={label}
@@ -1081,7 +1070,7 @@ export function Explore() {
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, delay: Math.min(i * 0.05, 0.3), ease: EASE }}>
-              <p className="text-[12.5px] uppercase tracking-[0.13em] text-datum pt-0.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
+              <p className="text-[12.5px] uppercase tracking-[0.13em] text-ink-soft font-semibold pt-0.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
               <p className="text-[13.5px] text-anthracite/80 leading-[1.55] max-w-[58ch]" style={{ fontFamily: 'var(--font-body)' }}>{value}</p>
             </motion.div>
           ))}
@@ -1120,9 +1109,10 @@ export function Explore() {
             </div>
 
             <p className="text-[12.5px] text-white leading-[1.65] max-w-[56ch] mx-auto">
-              Explore is designed to run inside a real school week, with real students, real materials,
-              and a real showcase at the end. Programs are delivered by staff with appropriate supervision
-              and student-privacy practices aligned to FERPA.
+              For schools and community partners: Explore is designed to run inside a real school week,
+              with real students, real materials, and a real showcase at the end. Programs are delivered
+              by background-checked staff with appropriate supervision and student-privacy practices
+              aligned to FERPA.
             </p>
 
           </motion.div>

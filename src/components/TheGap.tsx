@@ -21,12 +21,11 @@ export function TheGap() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, ease: EASE }}
             >
-              <span className="w-7 h-[2px] bg-datum-light flex-shrink-0" aria-hidden="true" />
               <p
-                className="text-[13.5px] uppercase tracking-[0.14em] text-datum-light font-medium leading-none"
+                className="text-[13.5px] uppercase tracking-[0.14em] text-white/70 font-medium leading-none"
                 style={{ fontFamily: 'var(--font-body)' }}
               >
-                Why Aedifica exists
+                § 01 — Why Aedifica exists
               </p>
             </motion.div>
 
@@ -39,7 +38,7 @@ export function TheGap() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, ease: EASE }}
             >
-              We build the builders New Jersey is <span className="text-datum-light">counting on.</span>
+              We build the builders New Jersey is <span className="text-wine-light">counting on.</span>
             </motion.h2>
 
             <motion.p
@@ -51,7 +50,7 @@ export function TheGap() {
               transition={reduce ? undefined : { duration: 0.5, delay: 0.07, ease: EASE }}
             >
               The construction-management workforce is aging out faster than it is being replaced. The
-              curriculum pipeline still treats industry as an afterthought, and a growing population of
+              curriculum pipeline still treats industry as an afterthought. And a growing population of
               capable, non-traditional scholars remains outside pathways designed for eighteen-year-olds.
             </motion.p>
 
@@ -92,7 +91,7 @@ export function TheGap() {
             >
               <div className="relative z-10">
                 <p
-                  className="text-[10.5px] uppercase tracking-[0.18em] text-datum-light mb-4 select-none leading-none"
+                  className="text-[10.5px] uppercase tracking-[0.18em] text-white/70 mb-4 select-none leading-none"
                   style={{ fontFamily: 'var(--font-body)' }}
                 >
                   The premise

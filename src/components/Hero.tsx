@@ -19,7 +19,7 @@ export function Hero() {
         <div className="lg:flex-1 lg:max-w-[820px]">
 
         <motion.p
-          className="text-[10.5px] uppercase tracking-[0.22em] text-datum mb-7 leading-none"
+          className="text-[10.5px] uppercase tracking-[0.22em] text-ink-soft mb-7 leading-none"
           style={{ fontFamily: 'var(--font-body)' }}
           initial={reduce ? undefined : { opacity: 0, y: 10 }}
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ export function Hero() {
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
           transition={reduce ? undefined : { duration: 0.7, delay: 0.22, ease: SPRING }}
         >
-          New Jersey is being rebuilt. <span className="text-datum">Its builders are not.</span>
+          New Jersey is being rebuilt. <span className="text-wine">Its builders are not.</span>
         </motion.h1>
 
         <motion.p
@@ -46,7 +46,7 @@ export function Hero() {
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
           transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}
         >
-          The rebuild is already funded: transportation, airport expansion, resiliency, electrification, and public works across New Jersey and the New York metro region. Those projects need more than engineers and tradespeople. They need <strong className="font-semibold text-anthracite">construction managers</strong>: the coordinators, estimators, schedulers, document-control professionals, safety leaders, and field supervisors who turn funding into finished work.
+          The rebuild is already funded: transportation, airport expansion, resiliency, electrification, and public works across New Jersey and the New York metro region. Those projects need more than engineers and tradespeople. They need <strong className="font-semibold text-wine">construction managers</strong>: the coordinators, estimators, schedulers, document-control professionals, safety leaders, and field supervisors who turn funding into finished work.
         </motion.p>
 
         <motion.div
@@ -56,12 +56,12 @@ export function Hero() {
           transition={reduce ? undefined : { duration: 0.45, delay: 0.44, ease: EASE }}
         >
           <Link href="/partner"
-            className="inline-flex items-center bg-patina text-white text-[13px] font-medium px-6 py-3 tracking-[-0.01em] hover:bg-patina/85 transition-colors duration-150 active:scale-[0.98] whitespace-nowrap"
+            className="inline-flex items-center bg-anthracite text-white text-[13px] font-medium px-6 py-3 tracking-[-0.01em] hover:bg-anthracite/85 transition-colors duration-150 active:scale-[0.98] whitespace-nowrap"
           >
             Partner with Aedifica
           </Link>
           <Link href="/programs#compare"
-            className="inline-flex items-center border border-datum text-datum text-[13px] font-medium px-6 py-3 tracking-[-0.01em] hover:bg-datum/6 transition-colors duration-150 active:scale-[0.98] whitespace-nowrap"
+            className="inline-flex items-center border border-anthracite text-anthracite text-[13px] font-medium px-6 py-3 tracking-[-0.01em] hover:bg-anthracite/6 transition-colors duration-150 active:scale-[0.98] whitespace-nowrap"
           >
             Compare the Programs
           </Link>
@@ -82,7 +82,7 @@ export function Hero() {
           {[
             { n: '$1B+', l: 'delivered infrastructure behind our leadership' },
             { n: 'Employer-validated', l: 'capstone required before any credential' },
-            { n: 'NJ-funded', l: 'green and apprenticeship priorities' },
+            { n: 'NJ-funded', l: 'green & apprenticeship priorities' },
             { n: 'No cost to scholars', l: 'programs funded through institutional partners' },
           ].map(({ n, l }) => (
             <div key={n} className="lg:flex-1 lg:px-7 first:lg:pl-0 last:lg:pr-0">

@@ -5,8 +5,6 @@ const VIEWPORT = { once: true, margin: '-60px 0px' } as const
 const EASE     = [0.25, 0.1, 0.25, 1] as const
 const SPRING   = [0.32, 0.72, 0, 1] as const
 
-const VOCABULARY = ['Scope', 'Schedule', 'Cost', 'Safety', 'Quality'] as const
-
 export function WhatWeDo() {
   const reduce = useReducedMotion()
 
@@ -27,12 +25,11 @@ export function WhatWeDo() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, ease: EASE }}
             >
-              <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
               <p
-                className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium leading-none"
+                className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium leading-none"
                 style={{ fontFamily: 'var(--font-body)' }}
               >
-                What we do
+                § 02 — What we do
               </p>
             </motion.div>
 
@@ -46,7 +43,7 @@ export function WhatWeDo() {
               transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}
             >
               Aedifica builds construction-management pathways, and{' '}
-              <span className="text-datum">the people who walk them.</span>
+              <span className="text-wine">the people who walk them.</span>
             </motion.h2>
 
             <motion.p
@@ -94,29 +91,12 @@ export function WhatWeDo() {
               transition={reduce ? undefined : { duration: 0.5, delay: 0.1, ease: EASE }}
             >
               <p
-                className="text-[10.5px] uppercase tracking-[0.18em] text-datum mb-5 select-none leading-none"
+                className="text-[14.5px] text-anthracite/85 leading-[1.65] pb-5 mb-5 border-b border-sediment/30"
                 style={{ fontFamily: 'var(--font-body)' }}
               >
-                What scholars leave with
-              </p>
-
-              <div className="flex flex-wrap gap-2 mb-5">
-                {VOCABULARY.map((word) => (
-                  <span
-                    key={word}
-                    className="text-[10.5px] uppercase tracking-[0.08em] px-2.5 py-1 border border-anthracite/20 text-anthracite/75"
-                    style={{ fontFamily: 'var(--font-body)' }}
-                  >
-                    {word}
-                  </span>
-                ))}
-              </div>
-
-              <p
-                className="text-[14.5px] text-anthracite/85 leading-[1.6] pb-5 mb-5 border-b border-sediment/30"
-                style={{ fontFamily: 'var(--font-body)' }}
-              >
-                A credential that articulates, and a capstone validated by people who run real projects.
+                Scholars leave with the vocabulary of{' '}
+                <strong className="text-anthracite font-medium">scope, schedule, cost, safety, and quality</strong>;
+                a credential that articulates; and a capstone validated by people who run real projects.
               </p>
 
               <p

@@ -39,7 +39,7 @@ export function TalentPipelineDetails() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-                It is what turns a curriculum into <span className="text-datum">a pathway.</span>
+                It is what turns a curriculum into a pathway.
               </motion.h2>
               <p className="text-[15px] text-anthracite/78 leading-[1.72] mb-6 max-w-[58ch]" style={{ fontFamily: 'var(--font-body)' }}>
                 Talent Pipeline is the employer side of the architecture. It carries no program color
@@ -84,7 +84,7 @@ export function TalentPipelineDetails() {
             {FUNCTIONS.map(({ num, title, body }, i) => (
               <div key={num} className={['py-8 lg:py-9 border-b border-sediment/30', i % 2 === 0 ? 'lg:pr-12 xl:pr-16 lg:border-r lg:border-sediment/30' : 'lg:pl-12 xl:pl-16'].join(' ')}>
                 <div className="flex items-baseline gap-4 mb-3.5">
-                  <span className="text-[12px] tracking-[0.08em] text-datum tabular-nums select-none" style={{ fontFamily: 'var(--font-body)' }} aria-hidden="true">{num}</span>
+                  <span className="text-[12px] tracking-[0.08em] text-ink-soft tabular-nums select-none" style={{ fontFamily: 'var(--font-body)' }} aria-hidden="true">{num}</span>
                   <h3 className="text-[1.375rem] lg:text-[1.5rem] italic text-anthracite leading-[1.15] tracking-[-0.018em]" style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>{title}</h3>
                 </div>
                 <p className="text-[13.5px] text-anthracite/80 leading-[1.7] max-w-[52ch]" style={{ fontFamily: 'var(--font-body)' }}>{body}</p>
@@ -124,7 +124,7 @@ export function TalentPipelineDetails() {
                   whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
                   viewport={reduce ? undefined : VIEWPORT}
                   transition={reduce ? undefined : { duration: 0.5, delay: i * 0.09, ease: EASE }}>
-                  <span className="absolute -left-8 lg:-left-10 top-[7px] w-[11px] h-[11px] rotate-45 bg-datum-light" style={{ boxShadow: '0 0 0 5px var(--color-anthracite)' }} aria-hidden="true" />
+                  <span className="absolute -left-8 lg:-left-10 top-[7px] w-[11px] h-[11px] rotate-45 bg-white/40" style={{ boxShadow: '0 0 0 5px var(--color-anthracite)' }} aria-hidden="true" />
                   <p className="text-[1.375rem] lg:text-[1.625rem] italic text-white leading-[1.1] mb-1.5" style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>{actor}</p>
                   <p className="text-[13.5px] text-white/70 leading-[1.6]" style={{ fontFamily: 'var(--font-body)' }}>{line}</p>
                 </motion.div>

@@ -100,7 +100,7 @@ export function HowToChoose() {
               </div>
 
               <Link href={to}
-                className="inline-flex items-center gap-1.5 text-[12.5px] text-datum tracking-[-0.01em] mt-4 lg:mt-0 group flex-shrink-0"
+                className="inline-flex items-center gap-1.5 text-[12.5px] text-anthracite tracking-[-0.01em] mt-4 lg:mt-0 group flex-shrink-0"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 View {name}
                 <span className="transition-transform duration-150 group-hover:translate-x-0.5" aria-hidden="true">→</span>

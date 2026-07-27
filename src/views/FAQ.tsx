@@ -281,7 +281,7 @@ export function FAQ() {
                             <motion.span
                               animate={reduce ? undefined : { rotate: isOpen ? 180 : 0 }}
                               transition={reduce ? undefined : { duration: 0.25, ease: EASE }}
-                              className="flex-shrink-0 mt-0.5 text-anthracite/40 transition-colors duration-150 group-hover:text-datum"
+                              className="flex-shrink-0 mt-0.5 text-anthracite/40 transition-colors duration-150 group-hover:text-anthracite"
                               aria-hidden="true">
                               <CaretDown size={16} weight="bold" />
                             </motion.span>

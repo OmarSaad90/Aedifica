@@ -56,16 +56,6 @@ export function Experience() {
               In their own words: what the pathway feels like from inside.
             </motion.h1>
 
-            <motion.p
-              className="text-[14.5px] text-white/65 leading-[1.7] max-w-[52ch]"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={reduce ? undefined : { opacity: 0, y: 14 }}
-              animate={reduce ? undefined : { opacity: 1, y: 0 }}
-              transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}>
-              Two cohorts, two very different voices: middle schoolers meeting engineering for the
-              first time, and high schoolers building toward a college major.
-            </motion.p>
-
           </div>
         </div>
       </section>

@@ -18,6 +18,16 @@ export const metadata: Metadata = {
   description:
     'Aedifica builds disciplined, employer-informed construction-management workforce pathways for overlooked learners, institutions, and employers in New Jersey.',
   robots: { index: true, follow: true },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
+  manifest: '/site.webmanifest',
   openGraph: {
     siteName: 'Aedifica',
     type: 'website',
@@ -33,9 +43,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-anthracite focus:text-white focus:text-[13px] focus:px-4 focus:py-2.5"
+        >
+          Skip to main content
+        </a>
         <LenisProvider>
           <Navbar />
-          <div className="pt-[70px]">
+          <div id="main" className="pt-[70px]">
             {children}
           </div>
           <Footer />

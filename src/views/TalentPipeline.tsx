@@ -67,7 +67,7 @@ export function TalentPipeline() {
               initial={reduce ? undefined : { opacity: 0, y: 40 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
-              The Talent Pipeline is where the pathway pays off, for everyone.
+              The Talent Pipeline is the channel that completes the pathway, and it is the piece we are building now.
             </motion.h1>
 
             <motion.div
@@ -139,9 +139,9 @@ export function TalentPipeline() {
                   whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                   viewport={reduce ? undefined : VIEWPORT}
                   transition={reduce ? undefined : { duration: 0.4, delay: i * 0.05, ease: EASE }}>
-                  <IconComp size={18} weight="regular" className="text-datum flex-shrink-0 mt-0.5" aria-hidden={true} />
+                  <IconComp size={18} weight="regular" className="text-ink-soft flex-shrink-0 mt-0.5" aria-hidden={true} />
                   <div className="grid grid-cols-[110px_1fr] gap-4 flex-1">
-                    <p className="text-[12.5px] uppercase tracking-[0.13em] text-datum pt-0.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
+                    <p className="text-[12.5px] uppercase tracking-[0.13em] text-ink-soft font-semibold pt-0.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
                     <p className="text-[13.5px] text-anthracite/80 leading-[1.55]" style={{ fontFamily: 'var(--font-body)' }}>{value}</p>
                   </div>
                 </motion.div>
@@ -166,7 +166,7 @@ export function TalentPipeline() {
               <ul className="list-none space-y-3">
                 {MINI_LIST.map(item => (
                   <li key={item} className="flex gap-3 items-start">
-                    <span className="flex-shrink-0 w-[6px] h-[6px] rotate-45 bg-datum mt-[7px]" aria-hidden="true" />
+                    <span className="flex-shrink-0 w-[6px] h-[6px] rotate-45 bg-pipeline mt-[7px]" aria-hidden="true" />
                     <span className="text-[13.5px] text-anthracite/78 leading-[1.55]" style={{ fontFamily: 'var(--font-body)' }}>{item}</span>
                   </li>
                 ))}
@@ -186,12 +186,6 @@ export function TalentPipeline() {
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-
-            <h2
-              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.03em] text-anthracite italic mb-8 [text-wrap:balance]"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-              No cohort starts without you.
-            </h2>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-10">
               <Link href="/partner"

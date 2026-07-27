@@ -10,8 +10,8 @@ type NavGroup = {
   type: 'group'
   id: string
   label: string
+  to?: string
   children: NavChild[]
-  footer?: { label: string; to: string }
 }
 type NavLink = { type: 'link'; label: string; to: string }
 type NavItem = NavGroup | NavLink
@@ -30,7 +30,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: 'Rebuild',         to: '/programs/rebuild',         dot: 'bg-rebuild'       },
       { label: 'Talent Pipeline', to: '/programs/talent-pipeline', dot: 'bg-pipeline'       },
     ],
-    footer: { label: 'View all programs', to: '/programs' },
+    to: '/programs',
   },
   { type: 'link', label: 'Scholar Experience', to: '/experience' },
   {
@@ -68,6 +68,51 @@ const LOGO_SCALE: Record<string, number> = {
   '/images/logo-explore.png':  1.0,
 }
 
+// TEST: animated logo videos. Drop files into public/videos/logos/ using these
+// exact names to try them; anything missing silently falls back to the static
+// PNG above, so partial drops are safe. See public/videos/logos/README.txt.
+const SERVICE_LOGO_VIDEOS: Record<string, string> = {
+  '/':                         '/videos/logos/logo-general.mp4',
+  '/programs/rebuild':         '/videos/logos/logo-rebuild.mp4',
+  '/programs/launch':          '/videos/logos/logo-launch.mp4',
+  '/programs/pathway':         '/videos/logos/logo-pathway.mp4',
+  '/programs/talent-pipeline': '/videos/logos/logo-general.mp4',
+  '/programs/explore':         '/videos/logos/logo-explore.mp4',
+}
+const DEFAULT_LOGO_VIDEO = '/videos/logos/logo-general.mp4'
+
+// TEST: tries the looping video logo first; if the file is missing (404) or
+// fails to load, falls back to the static PNG with no visible flash.
+function NavLogo({ videoSrc, imgSrc, scale }: { videoSrc: string; imgSrc: string; scale: number }) {
+  const [videoFailed, setVideoFailed] = useState(false)
+
+  if (videoFailed) {
+    return (
+      <img
+        src={imgSrc}
+        alt="Aedifica"
+        className="h-full w-auto"
+        style={{ mixBlendMode: 'multiply', transform: `scale(${scale})`, transformOrigin: 'center' }}
+      />
+    )
+  }
+
+  return (
+    <video
+      key={videoSrc}
+      autoPlay
+      muted
+      loop
+      playsInline
+      className="h-full w-auto"
+      style={{ mixBlendMode: 'multiply', transform: `scale(${scale})`, transformOrigin: 'center' }}
+      onError={() => setVideoFailed(true)}
+      aria-label="Aedifica">
+      <source src={videoSrc} type="video/mp4" />
+    </video>
+  )
+}
+
 export function Navbar() {
   const [mobileOpen, setMobileOpen]             = useState(false)
   const [openGroup, setOpenGroup]               = useState<string | null>(null)
@@ -77,6 +122,7 @@ export function Navbar() {
   const reduce      = useReducedMotion()
   const pathname = usePathname()
   const logoSrc = SERVICE_LOGOS[pathname] ?? DEFAULT_LOGO
+  const logoVideoSrc = SERVICE_LOGO_VIDEOS[pathname] ?? DEFAULT_LOGO_VIDEO
   const { scrollY } = useScroll()
   const [scrolled, setScrolled] = useState(false)
   useMotionValueEvent(scrollY, 'change', (y) => setScrolled(y > 8))
@@ -109,16 +155,7 @@ export function Navbar() {
         <div className="flex items-center gap-3 flex-shrink-0">
           <Link href="/" className="flex items-center gap-3">
             <div className="h-9 w-[27px] flex-shrink-0 overflow-hidden flex items-center justify-center">
-              <img
-                src={logoSrc}
-                alt="Aedifica"
-                className="h-full w-auto"
-                style={{
-                  mixBlendMode: 'multiply',
-                  transform: `scale(${LOGO_SCALE[logoSrc] ?? 1})`,
-                  transformOrigin: 'center',
-                }}
-              />
+              <NavLogo videoSrc={logoVideoSrc} imgSrc={logoSrc} scale={LOGO_SCALE[logoSrc] ?? 1} />
             </div>
             <span
               className="text-[14px] tracking-[0.06em] text-anthracite uppercase"
@@ -126,12 +163,6 @@ export function Navbar() {
               Aedifica
             </span>
           </Link>
-          <span className="hidden lg:block w-px h-3.5 bg-anthracite/20 flex-shrink-0" aria-hidden="true" />
-          <span
-            className="hidden lg:block text-[12px] text-anthracite/85 italic leading-none"
-            style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-            We build the builders
-          </span>
         </div>
 
         {/* Desktop nav */}
@@ -165,12 +196,12 @@ export function Navbar() {
                   }
                 }}>
 
-                {group.footer ? (
-                  // Groups with a "view all" landing page: the label itself navigates there
+                {group.to ? (
+                  // Groups with a landing page: the label itself navigates there
                   // (hover already opens the flyout for browsing, this is for clicking through).
                   <Link
                     ref={(el) => { triggerRefs.current[group.id] = el }}
-                    href={group.footer.to}
+                    href={group.to}
                     className="flex items-center gap-1 text-[13px] text-anthracite/70 hover:text-anthracite transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap cursor-pointer"
                     aria-expanded={openGroup === group.id}
                     aria-haspopup="true"
@@ -225,19 +256,6 @@ export function Navbar() {
                           {label}
                         </Link>
                       ))}
-
-                      {group.footer && (
-                        <>
-                          <div className="my-1.5 border-t border-sediment/15" />
-                          <Link href={group.footer.to}
-                            role="menuitem"
-                            className="flex items-center px-4 py-1.5 text-[11.5px] text-datum hover:text-datum/75 transition-colors duration-100 tracking-[-0.005em]"
-                            style={{ fontFamily: 'var(--font-body)' }}
-                            onClick={() => setOpenGroup(null)}>
-                            {group.footer.label} →
-                          </Link>
-                        </>
-                      )}
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -322,14 +340,6 @@ export function Navbar() {
                             {label}
                           </Link>
                         ))}
-                        {group.footer && (
-                          <Link href={group.footer.to}
-                            className="py-2.5 pb-3 text-[12px] text-datum"
-                            style={{ fontFamily: 'var(--font-body)' }}
-                            onClick={closeMobile}>
-                            {group.footer.label} →
-                          </Link>
-                        )}
                       </motion.div>
                     )}
                   </AnimatePresence>

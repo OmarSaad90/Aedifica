@@ -97,9 +97,8 @@ export function Services() {
           whileInView={reduce ? undefined : { opacity: 1 }}
           viewport={reduce ? undefined : VIEWPORT}
           transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-          <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
           <p
-            className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium leading-none"
+            className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium leading-none"
             style={{ fontFamily: 'var(--font-body)' }}>
             The pathway
           </p>
@@ -200,7 +199,7 @@ export function Services() {
             </p>
           </div>
           <Link href="/programs/talent-pipeline"
-            className="inline-flex items-center gap-1.5 text-[12px] text-datum tracking-[-0.01em] flex-shrink-0 group"
+            className="inline-flex items-center gap-1.5 text-[12px] text-anthracite tracking-[-0.01em] flex-shrink-0 group"
             style={{ fontFamily: 'var(--font-body)' }}>
             View Talent Pipeline
             <span className="transition-transform duration-150 group-hover:translate-x-0.5" aria-hidden="true">→</span>
@@ -215,9 +214,8 @@ export function Services() {
             whileInView={reduce ? undefined : { opacity: 1 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-            <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
             <p
-              className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium leading-none"
+              className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium leading-none"
               style={{ fontFamily: 'var(--font-body)' }}>
               Choose your on-ramp
             </p>

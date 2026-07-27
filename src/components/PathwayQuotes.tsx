@@ -35,7 +35,6 @@ export function PathwayQuotes() {
               whileInView={reduce ? undefined : { opacity: 1 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-              <span className="w-7 h-[2px] bg-quarry flex-shrink-0" aria-hidden="true" />
               <p className="text-[12px] uppercase tracking-[0.14em] text-white/70 font-medium" style={{ fontFamily: 'var(--font-body)' }}>High school · Stevens pre-college</p>
             </motion.div>
             <motion.h2
@@ -46,17 +45,8 @@ export function PathwayQuotes() {
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-              Aedifica Pathway.
+              Aedifica Pathway
             </motion.h2>
-            <motion.p
-              className="text-[15px] text-white/60 leading-[1.72]"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={reduce ? undefined : { opacity: 0, y: 18 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.55, delay: 0.1, ease: EASE }}>
-              Three summers of the Civil Engineering and Design Pathway at Stevens Institute of Technology (2022, 2023, and 2024) produced consistent survey results. These are their words, anonymized by cohort year and reproduced from post-program surveys.
-            </motion.p>
           </div>
 
           {/* Absolutely positioned so its own intrinsic size can't inflate the grid

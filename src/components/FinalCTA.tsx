@@ -33,7 +33,6 @@ export function FinalCTA() {
               whileInView={reduce ? undefined : { opacity: 1 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-              <span className="w-7 h-[2px] bg-white/70 flex-shrink-0" aria-hidden="true" />
               <p
                 className="text-[13.5px] uppercase tracking-[0.14em] text-white/70 font-medium leading-none"
                 style={{ fontFamily: 'var(--font-body)' }}>
@@ -61,7 +60,7 @@ export function FinalCTA() {
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.5, delay: 0.22, ease: EASE }}>
             <Link href="/partner"
-              className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/92"
+              className="inline-flex items-center justify-center bg-white text-anthracite text-[14px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/92"
               style={{ fontFamily: 'var(--font-body)' }}>
               Start a Partnership Conversation
             </Link>

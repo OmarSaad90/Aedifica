@@ -19,7 +19,6 @@ const CONTACT_FACTS: { Icon: Icon; label: string; value: string; pending?: boole
 ]
 
 const INTEREST_OPTIONS = [
-  { value: '', label: "Select what you're interested in" },
   { value: 'explore', label: 'Explore: middle school' },
   { value: 'pathway', label: 'Pathway: high schools & districts' },
   { value: 'launch', label: 'Launch: institutional pathway design' },
@@ -44,10 +43,10 @@ type FormState = {
 const EMPTY_FORM: FormState = { name: '', email: '', org: '', interest: '', message: '', consent: false }
 
 const inputCls =
-  'w-full px-4 py-3 bg-transparent border border-anthracite/22 text-anthracite text-[14px] placeholder:text-anthracite/50 focus:border-datum focus:outline-none transition-colors duration-150'
+  'w-full px-4 py-3 bg-transparent border border-anthracite/22 text-anthracite text-[14px] placeholder:text-anthracite/50 focus:border-anthracite focus:outline-none transition-colors duration-150'
 
 const selectCls =
-  'w-full pl-4 pr-10 py-3 bg-bone border border-anthracite/22 text-anthracite text-[14px] focus:border-datum focus:outline-none transition-colors duration-150 appearance-none cursor-pointer'
+  'w-full pl-4 pr-10 py-3 bg-bone border border-anthracite/22 text-anthracite text-[14px] focus:border-anthracite focus:outline-none transition-colors duration-150 appearance-none cursor-pointer'
 
 const labelCls =
   'block text-[11px] text-anthracite/70 uppercase tracking-[0.15em] mb-1.5 select-none'
@@ -95,12 +94,12 @@ export function Partner() {
 
       {/* ── §17 Partner: closing declaration ── */}
       <section
-        className="bg-patina py-16 lg:py-24 relative overflow-hidden"
+        className="bg-anthracite py-16 lg:py-24 relative overflow-hidden"
         aria-labelledby="partner-h1">
         <div className="max-w-7xl mx-auto px-6 w-full">
 
           <motion.span
-            className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/15 text-white/90 px-3 py-1 mb-6 select-none"
+            className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-blush px-3 py-1 mb-6 select-none"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 10 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -143,6 +142,22 @@ export function Partner() {
             applicant pool. The pathway to it is what we build.
           </motion.p>
 
+          <motion.div
+            className="flex flex-wrap gap-3 mt-9"
+            initial={reduce ? undefined : { opacity: 0, y: 14 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}>
+            <a href="#contact-form"
+              className="inline-flex items-center bg-white text-anthracite text-[13px] font-medium px-6 py-3 tracking-[-0.01em] hover:bg-white/90 transition-colors duration-150 active:scale-[0.98] whitespace-nowrap">
+              Start a Partnership Conversation
+            </a>
+            <a href="/impact"
+              className="inline-flex items-center border border-white/50 text-white text-[13px] font-medium px-6 py-3 tracking-[-0.01em] hover:bg-white/10 transition-colors duration-150 active:scale-[0.98] whitespace-nowrap">
+              View the Impact Framework
+            </a>
+          </motion.div>
+
         </div>
       </section>
 
@@ -158,8 +173,7 @@ export function Partner() {
                 whileInView={reduce ? undefined : { opacity: 1 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-                <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-                <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Contact</p>
+                <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>§ 21 — Contact</p>
               </motion.div>
               <motion.h2
                 id="contact-h2"
@@ -181,11 +195,11 @@ export function Partner() {
                     whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                     viewport={reduce ? undefined : VIEWPORT}
                     transition={reduce ? undefined : { duration: 0.4, delay: i * 0.06, ease: EASE }}>
-                    <IconComp size={18} weight="regular" className="text-datum flex-shrink-0 mt-0.5" aria-hidden={true} />
+                    <IconComp size={18} weight="regular" className="text-ink-soft flex-shrink-0 mt-0.5" aria-hidden={true} />
                     <div>
-                      <p className="text-[10.5px] uppercase tracking-[0.14em] text-datum mb-1" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
+                      <p className="text-[10.5px] uppercase tracking-[0.14em] text-ink-soft font-semibold mb-1" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
                       {label === 'Email'
-                        ? <a href={`mailto:${value}`} className="text-[14px] text-anthracite hover:text-datum transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>{value}</a>
+                        ? <a href={`mailto:${value}`} className="text-[14px] text-anthracite hover:underline underline-offset-2 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>{value}</a>
                         : <p className={`text-[13.5px] leading-[1.55] max-w-[46ch] ${pending ? 'text-anthracite/55 italic' : 'text-anthracite/80'}`} style={{ fontFamily: 'var(--font-body)' }}>{value}</p>}
                     </div>
                   </motion.div>
@@ -203,7 +217,7 @@ export function Partner() {
                     animate={reduce ? undefined : { opacity: 1, y: 0 }}
                     transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
                     <span
-                      className="inline-block text-[11px] uppercase tracking-[0.18em] bg-datum/10 text-datum px-3 py-1 mb-6 select-none"
+                      className="inline-block text-[11px] uppercase tracking-[0.18em] bg-anthracite/8 text-anthracite px-3 py-1 mb-6 select-none"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       Received
                     </span>
@@ -237,7 +251,7 @@ export function Partner() {
                     <div className="space-y-5">
                       <div>
                         <label htmlFor="cf-name" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                          Your name <span className="text-datum" aria-hidden="true">*</span>
+                          Your name
                         </label>
                         <input id="cf-name" type="text" required autoComplete="name"
                           value={form.name} onChange={set('name')}
@@ -246,7 +260,7 @@ export function Partner() {
 
                       <div>
                         <label htmlFor="cf-email" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                          Email <span className="text-datum" aria-hidden="true">*</span>
+                          Email
                         </label>
                         <input id="cf-email" type="email" required autoComplete="email"
                           value={form.email} onChange={set('email')}
@@ -278,7 +292,7 @@ export function Partner() {
 
                       <div>
                         <label htmlFor="cf-message" className={labelCls} style={{ fontFamily: 'var(--font-body)' }}>
-                          What are you trying to build? <span className="text-datum" aria-hidden="true">*</span>
+                          What are you trying to build?
                         </label>
                         <textarea id="cf-message" required rows={4}
                           value={form.message} onChange={set('message')}
@@ -291,7 +305,7 @@ export function Partner() {
                       {formError && (
                         <p
                           role="alert"
-                          className="text-[12.5px] text-datum leading-[1.5] mb-4"
+                          className="text-[12.5px] text-wine leading-[1.5] mb-4"
                           style={{ fontFamily: 'var(--font-body)' }}>
                           Please fill in your name, a valid email, a message, and accept the consent statement.
                         </p>
@@ -302,7 +316,7 @@ export function Partner() {
                           required
                           checked={form.consent}
                           onChange={e => setForm(prev => ({ ...prev, consent: e.target.checked }))}
-                          className="mt-[3px] flex-shrink-0 w-4 h-4 border border-sediment/40 accent-datum cursor-pointer"
+                          className="mt-[3px] flex-shrink-0 w-4 h-4 border border-sediment/40 accent-anthracite cursor-pointer"
                         />
                         <span
                           className="text-[12.5px] text-anthracite/75 leading-[1.58]"
@@ -313,7 +327,7 @@ export function Partner() {
                       <button
                         type="submit"
                         disabled={submitting}
-                        className="w-full sm:w-auto inline-flex items-center justify-center bg-datum text-white text-[13.5px] tracking-[-0.01em] px-8 py-3.5 hover:bg-datum/88 active:scale-[0.98] transition-all duration-150 disabled:opacity-60 disabled:cursor-not-allowed"
+                        className="w-full sm:w-auto inline-flex items-center justify-center bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-8 py-3.5 hover:bg-anthracite/88 active:scale-[0.98] transition-all duration-150 disabled:opacity-60 disabled:cursor-not-allowed"
                         style={{ fontFamily: 'var(--font-body)' }}>
                         {submitting ? 'Sending…' : 'Send the inquiry'}
                       </button>

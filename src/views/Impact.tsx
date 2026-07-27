@@ -7,16 +7,16 @@ const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
 const STATS = [
-  { num: '21', label: 'Students, first cohort', meaning: 'Middle-school students in grades 7-8, about 22% of the school.', accent: 'text-datum' },
-  { num: '12 weeks', label: 'Program length', meaning: 'Hands-on, NGSS-aligned engineering, delivered at the school and on campus.', accent: 'text-patina' },
-  { num: '55%', label: 'Advanced STEM placements', meaning: 'Of eighth-graders (6 of 11) accepted to the highly selective Union County Vocational-Technical Schools for 2025-26.', accent: 'text-datum' },
-  { num: '≈ 93', label: 'Final-grade average', meaning: 'Average final grade among participants across the 12-week program.', accent: 'text-patina' },
-  { num: '100% / 85%', label: 'Survey response', meaning: 'Pre- and post-program survey response rate.', accent: 'text-datum' },
-  { num: '$10,340', label: 'Program investment', meaning: 'Independently reviewed and certified by Stevens (2025).', accent: 'text-patina' },
+  { num: '21', label: 'Students, first cohort', meaning: 'Middle-school students in grades 7-8, about 22% of the school.', accent: 'text-wine' },
+  { num: '12 weeks', label: 'Program length', meaning: 'Hands-on, NGSS-aligned engineering, delivered at the school and on campus.', accent: 'text-wine' },
+  { num: '55%', label: 'Advanced STEM placements', meaning: 'Of eighth-graders (6 of 11) accepted to the highly selective Union County Vocational-Technical Schools for 2025-26.', accent: 'text-wine' },
+  { num: '≈ 93', label: 'Final-grade average', meaning: 'Average final grade among participants.', accent: 'text-wine' },
+  { num: '100% / 85%', label: 'Survey response', meaning: 'Pre- and post-program survey response.', accent: 'text-wine' },
+  { num: '$10,340', label: 'Program investment', meaning: 'Independently reviewed and certified by Stevens (2025).', accent: 'text-wine' },
 ] as const
 
 const GOALS = [
-  'Expanded students’ view of engineering, from fixing things to designing, testing, and improving real solutions',
+  'Expanded students’ view of engineering, from “fixing things” to designing, testing, and improving real solutions',
   'Demystified the path to engineering careers, through work alongside undergraduates, graduate researchers, and faculty',
   'Built confidence to pursue STEM, in public speaking, technical communication, and navigating a college campus',
 ] as const
@@ -30,17 +30,17 @@ const PROGRAM_STATUS = [
 ] as const
 
 const PATHWAY_STATS = [
-  { num: '73–80%', label: 'Rated the program Excellent', meaning: 'Each year, and 0% rated it Poor, all three years.', accent: 'text-quarry' },
-  { num: '88–96%', label: 'Rated Professor Karam Excellent', meaning: '2022 through 2024.', accent: 'text-patina' },
-  { num: '85–100%', label: 'Rated the teaching above average', meaning: 'On being motivating and approachable.', accent: 'text-quarry' },
-  { num: '3 summers', label: 'Same course, same instructor', meaning: '2022, 2023, and 2024.', accent: 'text-patina' },
+  { num: '73–80%', label: 'Rated the program Excellent', meaning: 'Each year, and 0% rated it Poor, all three years.', accent: 'text-wine' },
+  { num: '88–96%', label: 'Rated Professor Karam Excellent', meaning: '(2022–2024)', accent: 'text-wine' },
+  { num: '85–100%', label: 'Rated the teaching above average', meaning: 'On being motivating and approachable.', accent: 'text-wine' },
+  { num: '3 summers', label: 'Same course, same instructor', meaning: '2022, 2023, and 2024.', accent: 'text-wine' },
 ] as const
 
 const METRICS = [
-  { name: 'Placement rate', definition: 'Share of completers placed in a construction-management-track role within 90 days of completion.', reported: 'Per cohort, published' },
-  { name: 'Credential attainment', definition: 'Share of enrollees earning the target industry-recognized credential during the program window.', reported: 'Per cohort, published' },
-  { name: 'Wage at placement', definition: 'Median starting wage of placed completers, reported against the regional occupational baseline.', reported: 'Per cohort, published' },
-  { name: 'Apprenticeship articulation', definition: 'Share of completers entering a signed apprenticeship, union-local, county-college, or employer training progression.', reported: 'Per cohort, published' },
+  { name: 'Placement rate', definition: 'Share of completers placed in a construction-management-track role within 90 days of completion.', reported: 'Per cohort, published', color: 'bg-wine' },
+  { name: 'Credential attainment', definition: 'Share of enrollees earning the target industry-recognized credential during the program window.', reported: 'Per cohort, published', color: 'bg-terracotta' },
+  { name: 'Wage at placement', definition: 'Median starting wage of placed completers, reported against the regional occupational baseline.', reported: 'Per cohort, published', color: 'bg-rule' },
+  { name: 'Apprenticeship articulation', definition: 'Share of completers entering a signed apprenticeship, union-local, county-college, or employer training progression.', reported: 'Per cohort, published', color: 'bg-blush' },
 ] as const
 
 export function Impact() {
@@ -80,7 +80,7 @@ export function Impact() {
               initial={reduce ? undefined : { opacity: 0, y: 10 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-              Impact & Accountability
+              § 11 — Impact & Accountability
             </motion.span>
 
             <motion.h1
@@ -99,13 +99,17 @@ export function Impact() {
               initial={reduce ? undefined : { opacity: 0, y: 14 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}>
-              Two of our five programs have run in the field: Explore and Pathway. The three
+              Two of our five programs have run in the field. Explore has been delivered for two
+              years, documented below as the Building Bridges program. Pathway has been delivered
+              for three years through Stevens pre-college, documented with participant satisfaction
+              data and scholar reflections rather than academic-outcome measures. The three
               workforce-track programs, Launch, Rebuild, and Talent Pipeline, are designed and not
-              yet delivered. We measure ourselves by placement rate, credential attainment, wage at
-              placement, and apprenticeship articulation, not by hours delivered or seats filled.
-              Every Aedifica program publishes outcome data using the same definitions, every cohort.
-              Cohort 1&rsquo;s metric is also Cohort 8&rsquo;s metric. We do not redefine placement to
-              inflate headlines.
+              yet delivered. For those, we publish <em className="not-italic text-wine-light">how</em> we
+              measure before we publish what we measured. We measure ourselves by placement rate,
+              credential attainment, wage at placement, and apprenticeship articulation, not by
+              hours delivered or seats filled. Every Aedifica program publishes outcome data using
+              the same definitions, every cohort. Cohort 1&rsquo;s metric is also Cohort 8&rsquo;s
+              metric. We do not redefine &ldquo;placement&rdquo; to inflate headlines.
             </motion.p>
 
           </div>
@@ -194,8 +198,7 @@ export function Impact() {
                 whileInView={reduce ? undefined : { opacity: 1 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-                <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-                <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>First delivery · the Explore model in the field</p>
+                <p className="text-[13.5px] uppercase tracking-[0.14em] text-wine font-medium" style={{ fontFamily: 'var(--font-body)' }}>First delivery · the Explore model in the field</p>
               </motion.div>
               <motion.h2
                 id="delivery-h2"
@@ -234,7 +237,7 @@ export function Impact() {
                   loading="lazy"
                 />
               </motion.div>
-              <p className="text-[10.5px] uppercase tracking-[0.13em] text-datum mb-3" style={{ fontFamily: 'var(--font-body)' }}>Progress on all three program goals</p>
+              <p className="text-[10.5px] uppercase tracking-[0.13em] text-ink-soft font-semibold mb-3" style={{ fontFamily: 'var(--font-body)' }}>Progress on all three program goals, pre/post surveys and student performance</p>
               <ul className="list-none space-y-3">
                 {GOALS.map(item => (
                   <li key={item} className="flex gap-3 items-start">
@@ -279,7 +282,7 @@ export function Impact() {
           </div>
 
           <motion.p
-            className="text-[11.5px] italic text-anthracite/70 leading-[1.65] max-w-[80ch] mt-6"
+            className="text-[11.5px] italic text-anthracite/70 leading-[1.65] max-w-[80ch] mt-6 border border-wine px-5 py-4"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0 }}
             whileInView={reduce ? undefined : { opacity: 1 }}
@@ -302,8 +305,7 @@ export function Impact() {
               whileInView={reduce ? undefined : { opacity: 1 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-              <span className="w-7 h-[2px] bg-quarry flex-shrink-0" aria-hidden="true" />
-              <p className="text-[13.5px] uppercase tracking-[0.14em] text-quarry font-medium" style={{ fontFamily: 'var(--font-body)' }}>Second delivery · the Pathway model in the field</p>
+              <p className="text-[13.5px] uppercase tracking-[0.14em] text-wine font-medium" style={{ fontFamily: 'var(--font-body)' }}>Second delivery · the Pathway model in the field</p>
             </motion.div>
             <motion.h2
               className="text-[2rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic mb-6 max-w-[20ch] [text-wrap:balance]"
@@ -357,7 +359,7 @@ export function Impact() {
             </div>
 
             <motion.p
-              className="text-[11.5px] italic text-anthracite/70 leading-[1.65] max-w-[80ch] mt-6"
+              className="text-[11.5px] italic text-anthracite/70 leading-[1.65] max-w-[80ch] mt-6 border border-wine px-5 py-4"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0 }}
               whileInView={reduce ? undefined : { opacity: 1 }}
@@ -384,8 +386,7 @@ export function Impact() {
             whileInView={reduce ? undefined : { opacity: 1 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-            <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-            <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>The workforce pathway</p>
+            <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>The workforce pathway</p>
           </motion.div>
           <motion.h2
             id="metrics-h2"
@@ -430,11 +431,11 @@ export function Impact() {
                 </tr>
               </thead>
               <tbody>
-                {METRICS.map(({ name, definition, reported }) => (
+                {METRICS.map(({ name, definition, reported, color }) => (
                   <tr key={name} className="border-b border-sediment/20 last:border-b-0">
                     <td className="px-5 py-4 align-top">
                       <div className="flex items-start gap-3">
-                        <span className="flex-shrink-0 w-[9px] h-[9px] rotate-45 mt-[6px] bg-datum" aria-hidden="true" />
+                        <span className={`flex-shrink-0 w-[9px] h-[9px] rotate-45 mt-[6px] ${color}`} aria-hidden="true" />
                         <span className="text-[1.0625rem] italic text-anthracite leading-[1.3]" style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
                           {name}
                         </span>
@@ -454,7 +455,7 @@ export function Impact() {
 
           {/* Mobile: stacked rows */}
           <div className="lg:hidden space-y-5">
-            {METRICS.map(({ name, definition, reported }, i) => (
+            {METRICS.map(({ name, definition, reported, color }, i) => (
               <motion.div
                 key={name}
                 className="border border-sediment/25 px-6 py-6 bg-snow"
@@ -463,7 +464,7 @@ export function Impact() {
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.45, delay: i * 0.06, ease: EASE }}>
                 <div className="flex items-start gap-3 mb-4">
-                  <span className="flex-shrink-0 w-[9px] h-[9px] rotate-45 mt-[8px] bg-datum" aria-hidden="true" />
+                  <span className={`flex-shrink-0 w-[9px] h-[9px] rotate-45 mt-[8px] ${color}`} aria-hidden="true" />
                   <span className="text-[1.1rem] italic text-anthracite leading-[1.2]" style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
                     {name}
                   </span>
@@ -471,7 +472,7 @@ export function Impact() {
                 <p className="text-[13.5px] text-anthracite/78 leading-[1.55] mb-4" style={{ fontFamily: 'var(--font-body)' }}>
                   {definition}
                 </p>
-                <p className="text-[11px] uppercase tracking-[0.1em] text-datum" style={{ fontFamily: 'var(--font-body)' }}>
+                <p className="text-[11px] uppercase tracking-[0.1em] text-ink-soft font-semibold" style={{ fontFamily: 'var(--font-body)' }}>
                   {reported}
                 </p>
               </motion.div>
@@ -485,32 +486,32 @@ export function Impact() {
       <section className="bg-snow pt-6 lg:pt-10 pb-0" aria-label="Get involved with Aedifica">
         <div className="max-w-[1100px] mx-auto px-6">
           <motion.div
-            className="bg-datum px-10 pt-10 pb-10 lg:px-16 lg:pt-14 lg:pb-12 text-center rounded-t-[2rem]"
+            className="bg-bone px-10 pt-10 pb-10 lg:px-16 lg:pt-14 lg:pb-12 text-center rounded-t-[2rem]"
             initial={reduce ? undefined : { opacity: 0, y: 28 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
 
             <h2
-              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.03em] text-white italic mb-6"
+              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.03em] text-anthracite italic mb-6"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
               Help the next scholar find the pathway.
             </h2>
 
             <p
-              className="text-[15px] text-white/90 leading-[1.7] max-w-[52ch] mx-auto mb-10"
+              className="text-[15px] text-anthracite/80 leading-[1.7] max-w-[52ch] mx-auto mb-10"
               style={{ fontFamily: 'var(--font-body)' }}>
               Every cohort starts with a school, a partner, or a funder willing to open a door. If you want to bring an Aedifica program to your students or support the next cohort, we'd welcome the conversation.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link href="/partner"
-                className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/92"
+                className="inline-flex items-center justify-center bg-anthracite text-white text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/85"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Start a Partnership Conversation
               </Link>
               <Link href="/curriculum/bridging-brilliance"
-                className="inline-flex items-center justify-center border border-white/30 text-white text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/8"
+                className="inline-flex items-center justify-center border border-anthracite text-anthracite text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/6"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Explore the Bridging Brilliance curriculum
               </Link>

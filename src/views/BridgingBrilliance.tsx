@@ -1176,7 +1176,7 @@ export function BridgingBrilliance() {
             {/* Left */}
             <div>
               <motion.p
-                className="text-[11px] uppercase tracking-[0.14em] text-datum mb-4"
+                className="text-[11px] uppercase tracking-[0.14em] text-ink-soft font-semibold mb-4"
                 style={{ fontFamily: 'var(--font-body)' }}
                 initial={reduce ? undefined : { opacity: 0, y: 8 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -1336,7 +1336,7 @@ export function BridgingBrilliance() {
               <div className="flex-shrink-0 flex items-start justify-between gap-4 px-7 py-5 border-b border-sediment/15">
                 <div>
                   <p
-                    className="text-[10px] uppercase tracking-[0.14em] text-datum mb-1"
+                    className="text-[10px] uppercase tracking-[0.14em] text-ink-soft font-semibold mb-1"
                     style={{ fontFamily: 'var(--font-body)' }}>
                     From the instructor
                   </p>

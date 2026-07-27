@@ -20,6 +20,16 @@
   --color-pipeline:      #C6AAAF;  /* Talent Pipeline program identity (Program 05) — client value, placeholder pending final brand book update */
   --color-pipeline-deep: #988589;  /* Pipeline, darkened (70% pipeline / 30% anthracite, same formula as rebuild-deep) — solid-fill use with white text; recompute if the client changes the pipeline color */
   --color-datum-light:  #9C9CC8;  /* Datum, lightened toward white (~35%) — small labels/text on bg-anthracite; raw datum is only ~2.7:1 on anthracite and fails WCAG AA below large-text size */
+  --color-wine:       #894B5D;   /* Wine — client's headline-emphasis accent (rgb(137,75,93)), distinct from datum/patina */
+  --color-wine-light:   #B28A96;  /* Wine, lightened toward white (~35%, same formula as datum-light) — for wine emphasis text on bg-anthracite; raw wine is ~2.1:1 there and fails WCAG AA */
+  --color-terracotta:   #D3927D;  /* Terracotta — client's rgb(211,146,125), metric-table row marker */
+  --color-terracotta-deep: #806057; /* Terracotta, darkened (50% terracotta / 50% anthracite) — text/icon use on light backgrounds; raw terracotta is only ~2.4:1 on snow/bone and fails WCAG AA */
+  --color-blush:      #E2C1BE;  /* Blush — client's rgb(226,193,190), metric-table row marker */
+  --color-blush-deep:   #887778;  /* Blush, darkened (50% blush / 50% anthracite, same formula as terracotta-deep) — text use on light backgrounds; raw blush is only ~1.6:1 on snow/bone and fails WCAG AA */
+  --color-rule:       #DBD3CF;  /* Rule — client's rgb(219,211,207), neutral metric-table row marker */
+  --color-clay:       #7D6461;  /* Clay — client's rgb(125,100,97), founder-card role marker (f3) */
+  --color-clay-light:   #AB9A98;  /* Clay, lightened toward white (~35%, same formula as datum-light/wine-light) — for clay labels/numerals on bg-anthracite; raw clay is ~2.5:1 there and fails WCAG AA */
+  --color-ink-soft:     #625C60;  /* Ink-soft — client's rgb(98,92,96), founder-card role marker (f4) */
   --color-snow:       #FAF7F1;   /* The light — page background */
   --color-bone:       #F4EEE4;   /* The page — alternate sections */
   --color-sediment:   #C7B377;   /* Yellow-olive dried moss — warmth, human-centred moments */

@@ -10,11 +10,11 @@ const VIEWPORT = { once: true, margin: '-40px 0px' } as const
 export type StdCat = 'sci' | 'math' | 'ela' | 'des' | 'car'
 
 export const STD_COLORS: Record<StdCat, string> = {
-  sci:  '#16243F',
-  math: '#9C5500',
-  ela:  '#1E7A72',
-  des:  '#3E5C8A',
-  car:  '#7A4E63',
+  sci:  'var(--color-wine)',
+  math: 'var(--color-terracotta)',
+  ela:  'var(--color-clay)',
+  des:  'var(--color-rule)',
+  car:  'var(--color-blush)',
 }
 
 const StdFilterContext = createContext<StdCat | null>(null)
@@ -25,8 +25,13 @@ export function StdBadge({ cat, code, desc }: { cat: StdCat; code: string; desc:
   return (
     <span
       title={desc}
-      className="inline-block text-[9px] font-medium tracking-[0.03em] px-1.5 py-0.5 text-white leading-none cursor-help whitespace-nowrap transition-opacity duration-150"
-      style={{ backgroundColor: STD_COLORS[cat], fontFamily: 'var(--font-body)', opacity: dimmed ? 0.28 : 1 }}>
+      className="inline-block text-[9px] font-medium tracking-[0.03em] px-1.5 py-0.5 text-anthracite leading-none cursor-help whitespace-nowrap transition-opacity duration-150 border"
+      style={{
+        borderColor: STD_COLORS[cat],
+        backgroundColor: `color-mix(in srgb, ${STD_COLORS[cat]} 14%, white)`,
+        fontFamily: 'var(--font-body)',
+        opacity: dimmed ? 0.28 : 1,
+      }}>
       {code}
     </span>
   )
@@ -39,10 +44,16 @@ export function StandardsLegend({
   frameworks,
   active,
   onSelect,
+  keyLabel = 'Standards key, tap to filter',
+  groupAriaLabel = 'Standards key, filter the weeks by framework',
+  allShownText = 'Showing all standards frameworks. Every week names the standards it teaches, color-coded and labeled by framework; hover any code for its full description.',
 }: {
   frameworks: Framework[]
   active: StdCat | null
   onSelect: (cat: StdCat | null) => void
+  keyLabel?: string
+  groupAriaLabel?: string
+  allShownText?: string
 }) {
   const activeName = frameworks.find(f => f.cat === active)?.name
 
@@ -51,9 +62,9 @@ export function StandardsLegend({
       <p
         className="text-[10px] uppercase tracking-[0.14em] text-anthracite/60 mb-3.5"
         style={{ fontFamily: 'var(--font-body)' }}>
-        Standards key, tap to filter
+        {keyLabel}
       </p>
-      <div className="flex flex-wrap gap-2 mb-3.5" role="group" aria-label="Filter weeks by standards framework">
+      <div className="flex flex-wrap gap-2 mb-3.5" role="group" aria-label={groupAriaLabel}>
         {frameworks.map(({ cat, name }) => {
           const isActive = active === cat
           return (
@@ -73,7 +84,7 @@ export function StandardsLegend({
       <p className="text-[12px] text-anthracite/65 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }} aria-live="polite">
         {active
           ? `Showing ${activeName}. Every other framework is dimmed; codes stay visible on hover.`
-          : 'Showing all standards frameworks. Every week names the standards it teaches, color-coded and labeled; hover any code for its full description.'}
+          : allShownText}
       </p>
     </div>
   )
@@ -96,6 +107,8 @@ export function Band({
   meta,
   weeks,
   id,
+  color,
+  dark,
 }: {
   id: string
   numLabel: string
@@ -104,6 +117,8 @@ export function Band({
   desc: string
   meta: { label: string; value: string }[]
   weeks: WeekRow[]
+  color?: string
+  dark?: boolean
 }) {
   const reduce = useReducedMotion()
   return (
@@ -117,8 +132,8 @@ export function Band({
         </div>
         <div>
           <span
-            className="block text-[11px] uppercase tracking-[0.14em] text-datum mb-2.5"
-            style={{ fontFamily: 'var(--font-body)' }}>
+            className="inline-block border-2 px-2.5 py-1 text-[11px] uppercase tracking-[0.14em] text-ink-soft font-semibold mb-2.5"
+            style={{ fontFamily: 'var(--font-body)', borderColor: color }}>
             {rangeLabel}
           </span>
           <h4
@@ -135,7 +150,7 @@ export function Band({
             {meta.map(({ label, value }) => (
               <div key={label}>
                 <p
-                  className="text-[10px] uppercase tracking-[0.12em] text-anthracite/55 mb-1.5"
+                  className="text-[10.5px] uppercase tracking-[0.12em] text-anthracite font-semibold mb-1.5"
                   style={{ fontFamily: 'var(--font-body)' }}>
                   {label}
                 </p>
@@ -150,37 +165,51 @@ export function Band({
         </div>
       </div>
 
-      <div className="divide-y divide-sediment/15">
-        {weeks.map((w, i) => (
-          <motion.div
-            key={w.num}
-            className="group py-5 lg:py-6 lg:grid lg:grid-cols-[64px_1fr] lg:gap-6"
-            initial={reduce ? undefined : { opacity: 0, y: 10 }}
-            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-            viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.4, delay: Math.min(i * 0.04, 0.3), ease: EASE }}>
-            <span
-              className="block text-[11px] text-anthracite/45 uppercase tracking-[0.08em] mb-2 lg:mb-0 lg:pt-0.5 group-hover:text-datum transition-colors duration-150"
-              style={{ fontFamily: 'var(--font-body)' }}>
-              {w.unit} {w.num}
-            </span>
-            <div>
-              <p
-                className="text-[1.0625rem] lg:text-[1.125rem] text-anthracite italic leading-[1.3] tracking-[-0.015em] mb-2"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                {w.question}
-              </p>
-              <p
-                className="text-[13px] text-anthracite/72 leading-[1.62] mb-3 max-w-[68ch]"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                {w.desc}
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {w.chips.map(c => <StdBadge key={c.code} cat={c.cat} code={c.code} desc={c.desc} />)}
+      <div className="space-y-3 lg:space-y-4">
+        {weeks.map((w, i) => {
+          const isStudio = w.unit === 'Studio'
+          const fill = isStudio ? 'var(--color-blush)' : (color ?? 'var(--color-ink-soft)')
+          const rowDark = isStudio ? true : dark
+          return (
+            <motion.div
+              key={w.num}
+              className="group border border-sediment/25 sm:grid sm:grid-cols-[84px_1fr]"
+              initial={reduce ? undefined : { opacity: 0, y: 10 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.4, delay: Math.min(i * 0.04, 0.3), ease: EASE }}>
+              <div
+                className={`flex items-center gap-2 px-5 py-3 sm:flex-col sm:justify-center sm:gap-0.5 sm:px-2 sm:py-6 ${rowDark ? 'text-anthracite' : 'text-white'}`}
+                style={{ backgroundColor: fill }}>
+                <span
+                  className="text-[1.625rem] leading-none italic"
+                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                  {w.num}
+                </span>
+                <span
+                  className="text-[9px] uppercase tracking-[0.14em] opacity-85"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  {w.unit}
+                </span>
               </div>
-            </div>
-          </motion.div>
-        ))}
+              <div className="px-5 py-5 lg:px-6 lg:py-6">
+                <p
+                  className="text-[1.0625rem] lg:text-[1.125rem] text-anthracite italic leading-[1.3] tracking-[-0.015em] mb-2"
+                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                  {w.question}
+                </p>
+                <p
+                  className="text-[13px] text-anthracite/72 leading-[1.62] mb-3 max-w-[68ch]"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  {w.desc}
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {w.chips.map(c => <StdBadge key={c.code} cat={c.cat} code={c.code} desc={c.desc} />)}
+                </div>
+              </div>
+            </motion.div>
+          )
+        })}
       </div>
     </div>
   )
@@ -198,7 +227,7 @@ export function ModelCards({ id, eyebrow, title, desc, items }: { id: string; ey
   return (
     <div id={id} className="pt-10 lg:pt-12 border-t border-sediment/20 scroll-mt-24">
       <div className="max-w-[62ch] mb-8 lg:mb-10">
-        <p className="text-[10.5px] uppercase tracking-[0.16em] text-datum mb-3" style={{ fontFamily: 'var(--font-body)' }}>{eyebrow}</p>
+        <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-soft font-semibold mb-3" style={{ fontFamily: 'var(--font-body)' }}>{eyebrow}</p>
         <h4 className="text-[1.5rem] lg:text-[1.75rem] text-anthracite italic leading-[1.15] tracking-[-0.02em] mb-3" style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>{title}</h4>
         <p className="text-[13.5px] text-anthracite/75 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>{desc}</p>
       </div>
@@ -248,7 +277,7 @@ export function DeliverablesTable({
   return (
     <div id={id} className="pt-10 lg:pt-12 border-t border-sediment/20 scroll-mt-24">
       <div className="max-w-[68ch] mb-8 lg:mb-10">
-        <p className="text-[10.5px] uppercase tracking-[0.16em] text-datum mb-3" style={{ fontFamily: 'var(--font-body)' }}>{eyebrow}</p>
+        <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-soft font-semibold mb-3" style={{ fontFamily: 'var(--font-body)' }}>{eyebrow}</p>
         <h4 className="text-[1.5rem] lg:text-[1.75rem] text-anthracite italic leading-[1.15] tracking-[-0.02em] mb-3" style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>{title}</h4>
         <p className="text-[13.5px] text-anthracite/75 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>{desc}</p>
       </div>
@@ -289,7 +318,7 @@ export function StandardsMatrix({ id, eyebrow, title, desc, cards }: { id: strin
   return (
     <div id={id} className="pt-10 lg:pt-12 border-t border-sediment/20 scroll-mt-24">
       <div className="max-w-[68ch] mb-8 lg:mb-10">
-        <p className="text-[10.5px] uppercase tracking-[0.16em] text-datum mb-3" style={{ fontFamily: 'var(--font-body)' }}>{eyebrow}</p>
+        <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-soft font-semibold mb-3" style={{ fontFamily: 'var(--font-body)' }}>{eyebrow}</p>
         <h4 className="text-[1.5rem] lg:text-[1.75rem] text-anthracite italic leading-[1.15] tracking-[-0.02em] mb-3" style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>{title}</h4>
         <p className="text-[13.5px] text-anthracite/75 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>{desc}</p>
       </div>
@@ -323,7 +352,7 @@ export function InstructionalApproach({ id, eyebrow, title, desc, cells }: { id:
   return (
     <div id={id} className="pt-10 lg:pt-12 border-t border-sediment/20 scroll-mt-24">
       <div className="max-w-[62ch] mb-8 lg:mb-10">
-        <p className="text-[10.5px] uppercase tracking-[0.16em] text-datum mb-3" style={{ fontFamily: 'var(--font-body)' }}>{eyebrow}</p>
+        <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-soft font-semibold mb-3" style={{ fontFamily: 'var(--font-body)' }}>{eyebrow}</p>
         <h4 className="text-[1.5rem] lg:text-[1.75rem] text-anthracite italic leading-[1.15] tracking-[-0.02em] mb-3" style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>{title}</h4>
         <p className="text-[13.5px] text-anthracite/75 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>{desc}</p>
       </div>
@@ -394,6 +423,11 @@ export function CurriculumShell({
   toc,
   frameworks,
   children,
+  openLabel = 'Open curriculum',
+  closeLabel = 'Close curriculum',
+  legendKeyLabel,
+  legendAriaLabel,
+  legendAllShownText,
 }: {
   id: string
   color: string
@@ -408,12 +442,17 @@ export function CurriculumShell({
   toc?: { label: string; href: string }[]
   frameworks: Framework[]
   children: ReactNode
+  openLabel?: string
+  closeLabel?: string
+  legendKeyLabel?: string
+  legendAriaLabel?: string
+  legendAllShownText?: string
 }) {
   const reduce = useReducedMotion()
   const [activeCat, setActiveCat] = useActiveCat()
 
   return (
-    <div className="border border-sediment/25 print:border-0">
+    <div className="border-2 print:border-0" style={{ borderColor: color }}>
       <button
         type="button"
         onClick={onToggle}
@@ -428,7 +467,7 @@ export function CurriculumShell({
         </span>
         <span className="flex-shrink-0 flex items-center gap-2.5 mt-1.5">
           <span className="text-[11.5px] uppercase tracking-[0.1em] hidden sm:inline" style={{ fontFamily: 'var(--font-body)', color }}>
-            {open ? 'Close curriculum' : 'Open curriculum'}
+            {open ? closeLabel : openLabel}
           </span>
           <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2, ease: EASE }} style={{ color }}>
             <CaretDown size={16} aria-hidden="true" />
@@ -456,9 +495,9 @@ export function CurriculumShell({
                   {intro}
                 </p>
                 {facts.length > 0 && (
-                  <div className="grid grid-cols-2 sm:grid-cols-4 border-t border-l border-sediment/20">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {facts.map(({ value, label }) => (
-                      <div key={label} className="border-r border-b border-sediment/20 px-5 py-4">
+                      <div key={label} className="border-2 px-5 py-4" style={{ borderColor: color }}>
                         <p className="text-[1.5rem] italic leading-none tracking-[-0.02em] mb-1.5" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300, color }}>{value}</p>
                         <p className="text-[11px] text-anthracite/68 leading-[1.4]" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
                       </div>
@@ -471,7 +510,7 @@ export function CurriculumShell({
                       <a
                         key={href}
                         href={href}
-                        className="text-[12.5px] text-datum underline underline-offset-4 decoration-datum/40 hover:decoration-datum transition-colors duration-150"
+                        className="text-[12.5px] text-anthracite underline underline-offset-4 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150"
                         style={{ fontFamily: 'var(--font-body)' }}>
                         {label}
                       </a>
@@ -481,7 +520,14 @@ export function CurriculumShell({
               </div>
 
               {frameworks.length > 0 && (
-                <StandardsLegend frameworks={frameworks} active={activeCat} onSelect={setActiveCat} />
+                <StandardsLegend
+                  frameworks={frameworks}
+                  active={activeCat}
+                  onSelect={setActiveCat}
+                  keyLabel={legendKeyLabel}
+                  groupAriaLabel={legendAriaLabel}
+                  allShownText={legendAllShownText}
+                />
               )}
 
               <StdFilterContext.Provider value={activeCat}>

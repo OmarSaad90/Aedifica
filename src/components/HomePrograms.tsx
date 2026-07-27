@@ -89,9 +89,8 @@ export function HomePrograms() {
           whileInView={reduce ? undefined : { opacity: 1 }}
           viewport={reduce ? undefined : VIEWPORT}
           transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-          <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
           <p
-            className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium leading-none"
+            className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium leading-none"
             style={{ fontFamily: 'var(--font-body)' }}>
             The five programs
           </p>
@@ -221,7 +220,7 @@ export function HomePrograms() {
           viewport={reduce ? undefined : VIEWPORT}
           transition={reduce ? undefined : { duration: 0.5, delay: 0.4, ease: EASE }}>
           <Link href="/programs#compare"
-            className="inline-flex items-center gap-2 text-[14px] text-datum tracking-[-0.01em] group"
+            className="inline-flex items-center gap-2 text-[14px] text-anthracite tracking-[-0.01em] group"
             style={{ fontFamily: 'var(--font-body)' }}>
             Compare all five, side by side
             <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>

@@ -160,7 +160,7 @@ export function Apply() {
                 className={[
                   'text-left px-5 py-5 border transition-colors duration-150',
                   selected === i
-                    ? 'border-datum bg-datum/6'
+                    ? 'border-anthracite bg-anthracite/6'
                     : 'border-sediment/25 bg-white hover:border-sediment/50',
                 ].join(' ')}
                 initial={reduce ? undefined : { opacity: 0, y: 16 }}
@@ -170,16 +170,13 @@ export function Apply() {
                 <p
                   className={[
                     'text-[9.5px] uppercase tracking-[0.15em] mb-2 transition-colors duration-150',
-                    selected === i ? 'text-datum' : 'text-anthracite/75',
+                    selected === i ? 'text-anthracite' : 'text-anthracite/75',
                   ].join(' ')}
                   style={{ fontFamily: 'var(--font-body)' }}>
                   {p.tag}
                 </p>
                 <p
-                  className={[
-                    'text-[14.5px] tracking-[-0.015em] leading-[1.3] transition-colors duration-150',
-                    selected === i ? 'text-datum' : 'text-anthracite',
-                  ].join(' ')}
+                  className="text-[14.5px] tracking-[-0.015em] leading-[1.3] text-anthracite transition-colors duration-150"
                   style={{ fontFamily: 'var(--font-heading)', fontWeight: 400, fontStyle: 'italic' }}>
                   {p.name}
                 </p>
@@ -236,7 +233,7 @@ export function Apply() {
                 <div className="flex flex-col gap-3 lg:min-w-[140px]">
                   {prog.to && (
                     <Link href={prog.to}
-                      className="inline-flex items-center gap-2 text-[13px] text-datum tracking-[-0.01em] group"
+                      className="inline-flex items-center gap-2 text-[13px] text-anthracite tracking-[-0.01em] group"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       View program
                       <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
@@ -321,7 +318,7 @@ export function Apply() {
                   {fits.map(f => (
                     <span
                       key={f}
-                      className="text-[10.5px] text-datum border border-datum/30 px-2.5 py-0.5 tracking-[-0.01em]"
+                      className="text-[10.5px] text-anthracite border border-anthracite/30 px-2.5 py-0.5 tracking-[-0.01em]"
                       style={{ fontFamily: 'var(--font-body)' }}>
                       {f}
                     </span>
@@ -371,7 +368,7 @@ export function Apply() {
                     whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
                     viewport={reduce ? undefined : VIEWPORT}
                     transition={reduce ? undefined : { duration: 0.38, delay: i * 0.05, ease: EASE }}>
-                    <span className="w-[4px] h-[4px] bg-datum rounded-full flex-shrink-0 mt-[8px]" aria-hidden="true" />
+                    <span className="w-[4px] h-[4px] bg-anthracite rounded-full flex-shrink-0 mt-[8px]" aria-hidden="true" />
                     <span
                       className="text-[13.5px] text-anthracite/75 leading-[1.6]"
                       style={{ fontFamily: 'var(--font-body)' }}>
@@ -510,7 +507,7 @@ export function Apply() {
             <div className="mb-14 lg:mb-0">
               <p
                 className="text-[10.5px] uppercase tracking-[0.2em] mb-7 select-none"
-                style={{ fontFamily: 'var(--font-body)', color: 'var(--color-datum-light)' }}>
+                style={{ fontFamily: 'var(--font-body)', color: 'rgba(255,255,255,0.7)' }}>
                 Where the funding comes from
               </p>
               <div className="border-t border-white/12">
@@ -569,7 +566,7 @@ export function Apply() {
             <div>
               <p
                 className="text-[10.5px] uppercase tracking-[0.2em] mb-7 select-none"
-                style={{ fontFamily: 'var(--font-body)', color: 'var(--color-datum-light)' }}>
+                style={{ fontFamily: 'var(--font-body)', color: 'rgba(255,255,255,0.7)' }}>
                 Support that makes completion possible
               </p>
               <motion.p
@@ -600,7 +597,7 @@ export function Apply() {
                     transition={reduce ? undefined : { duration: 0.38, delay: i * 0.045, ease: EASE }}>
                     <span
                       className="flex-shrink-0 w-[7px] h-[7px] rotate-45 mt-[7px]"
-                      style={{ backgroundColor: 'var(--color-datum-light)' }}
+                      style={{ backgroundColor: 'rgba(255,255,255,0.4)' }}
                       aria-hidden="true"
                     />
                     <p className="text-[13.5px] leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
@@ -640,32 +637,32 @@ export function Apply() {
       <section className="bg-snow pt-10 lg:pt-14 pb-0" aria-label="Start application">
         <div className="max-w-[1100px] mx-auto px-6">
           <motion.div
-            className="bg-datum px-10 pt-10 pb-10 lg:px-16 lg:pt-14 lg:pb-12 text-center rounded-t-[2rem]"
+            className="bg-bone px-10 pt-10 pb-10 lg:px-16 lg:pt-14 lg:pb-12 text-center rounded-t-[2rem]"
             initial={reduce ? undefined : { opacity: 0, y: 28 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
 
             <h2
-              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.03em] text-white italic mb-6 [text-wrap:balance]"
+              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.03em] text-anthracite italic mb-6 [text-wrap:balance]"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
               Ready to take the next step?
             </h2>
 
             <p
-              className="text-[15px] text-white/90 leading-[1.7] max-w-[50ch] mx-auto mb-10"
+              className="text-[15px] text-anthracite/80 leading-[1.7] max-w-[50ch] mx-auto mb-10"
               style={{ fontFamily: 'var(--font-body)' }}>
               Reach out to Aedifica. We will help identify the right program, confirm eligibility, and tell you when the next cohort opens.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link href="/partner"
-                className="inline-flex items-center justify-center bg-white text-datum text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/92"
+                className="inline-flex items-center justify-center bg-anthracite text-white text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/85"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Contact Aedifica
               </Link>
               <Link href="/faq"
-                className="inline-flex items-center justify-center border border-white/30 text-white text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-white/8"
+                className="inline-flex items-center justify-center border border-anthracite text-anthracite text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/6"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Read the FAQ
               </Link>

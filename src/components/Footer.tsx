@@ -4,40 +4,46 @@ const COLUMNS = [
   {
     heading: 'Programs',
     links: [
-      { label: 'Explore', href: '/programs/explore' },
-      { label: 'Pathway', href: '/programs/pathway' },
-      { label: 'Launch', href: '/programs/launch' },
-      { label: 'Rebuild', href: '/programs/rebuild' },
+      { label: 'Aedifica Explore', href: '/programs/explore' },
+      { label: 'Aedifica Pathway', href: '/programs/pathway' },
+      { label: 'Aedifica Launch', href: '/programs/launch' },
+      { label: 'Aedifica Rebuild', href: '/programs/rebuild' },
       { label: 'Talent Pipeline', href: '/programs/talent-pipeline' },
-      { label: 'View all programs', href: '/programs' },
+      { label: 'Compare programs', href: '/programs#compare' },
     ],
   },
   {
     heading: 'Evidence',
     links: [
-      { label: 'Impact Framework', href: '/impact' },
+      { label: 'Impact framework', href: '/impact' },
       { label: 'Aedifica Research', href: '/research' },
-      { label: 'Scholar Experience', href: '/experience' },
       { label: 'Bridging Brilliance', href: '/curriculum/bridging-brilliance' },
+      { label: 'Resilient Futures', href: '/programs/pathway#resilient' },
+      { label: 'BUILD NJ GREEN', href: '/programs/launch#buildnjgreen' },
+      { label: 'Scholar experience', href: '/experience' },
     ],
   },
   {
     heading: 'Aedifica',
     links: [
       { label: 'About', href: '/about' },
-      { label: 'Our Values', href: '/about#about-values-h2' },
-      { label: 'Who We Serve', href: '/partner#serve-h2' },
-      { label: 'Access & Funding', href: '/about#access-h2' },
-      { label: 'FAQ', href: '/about#faq-h2' },
+      { label: 'Values', href: '/about#values' },
+      { label: 'Origin & history', href: '/about#history' },
+      { label: 'The founders', href: '/about#founders' },
+      { label: 'Principles', href: '/about#principles' },
+      { label: 'Access & funding', href: '/about#access' },
+      { label: 'FAQ', href: '/about#faq' },
     ],
   },
   {
-    heading: 'Get Involved',
+    heading: 'Get involved',
     links: [
+      { label: 'Who we work with', href: '/partner#serve-h2' },
       { label: 'For Families', href: '/families' },
       { label: 'For Vocational & Trade Schools', href: '/trade-schools' },
-      { label: 'Partner With Us', href: '/partner' },
-      { label: 'Contact', href: '/partner' },
+      { label: 'Partner', href: '/partner' },
+      { label: 'Contact', href: '/partner#contact-form' },
+      { label: 'Accessibility: skip to content', href: '#main' },
     ],
   },
 ] as const
@@ -47,7 +53,7 @@ export function Footer() {
     <footer className="bg-anthracite">
       <div className="max-w-7xl mx-auto px-6 pt-8 pb-4 lg:pt-11 lg:pb-5">
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2.6fr] gap-10 lg:gap-20 mb-5 lg:mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_3.1fr] gap-10 lg:gap-16 mb-5 lg:mb-6">
 
           {/* Brand */}
           <div>
@@ -66,14 +72,14 @@ export function Footer() {
               Earth. Engineers. Education.
             </p>
             <p
-              className="text-[13px] text-white/75 italic leading-[1.6] max-w-[28ch] mt-2"
+              className="text-[1.5rem] text-wine-light not-italic leading-[1.2] max-w-[16ch] mt-3"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
               From foundations to futures.
             </p>
           </div>
 
           {/* Nav columns */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8">
             {COLUMNS.map(({ heading, links }) => (
               <div key={heading}>
                 <p
@@ -103,12 +109,21 @@ export function Footer() {
           <p
             className="text-[12px] text-white/50"
             style={{ fontFamily: 'var(--font-body)' }}>
-            &copy; {new Date().getFullYear()} Aedifica &middot; New Jersey / New York metro service area
+            &copy; {new Date().getFullYear()} Aedifica, New Jersey / New York metro service area
           </p>
           <p
             className="text-[12px] text-white/50"
             style={{ fontFamily: 'var(--font-body)' }}>
             Construction-management workforce, built from overlooked talent.
+          </p>
+          <p
+            className="text-[12px] text-white/50"
+            style={{ fontFamily: 'var(--font-body)' }}>
+            <Link href="/" className="hover:text-white/80 transition-colors duration-150">Privacy Policy</Link>
+            {' · '}
+            <Link href="/" className="hover:text-white/80 transition-colors duration-150">Terms of Use</Link>
+            {' · '}
+            <Link href="#main" className="hover:text-white/80 transition-colors duration-150">Accessibility Statement</Link>
           </p>
         </div>
 

@@ -32,7 +32,7 @@ const MINI_LIST = [
 ] as const
 
 const CREDENTIALS = [
-  { name: 'OSHA 30-Hour', org: 'U.S. Occupational Safety and Health Administration', desc: 'Baseline supervisory safety credential required by many general contractors and construction employers.', target: '100%' },
+  { name: 'OSHA 30-Hour', org: 'U.S. OSHA', desc: 'Baseline supervisory safety credential required by many general contractors and construction employers.', target: '100%' },
   { name: 'LEED Green Associate', org: 'U.S. Green Building Council', desc: 'Professional credential for green-building practitioners and construction staff supporting LEED projects.', target: '85%' },
   { name: 'PMI-CAPM', org: 'Project Management Institute', desc: 'Entry-level project-management credential valued for assistant project manager, coordinator, and CM candidates.', target: '75%' },
 ] as const
@@ -92,14 +92,14 @@ const PHASE1_WEEKS: WeekRow[] = [
       { code: 'Cost control', cat: 'math', desc: 'Cost estimating, tracking, and reporting.' },
       { code: 'Change orders', cat: 'math', desc: 'Change-order review and impact analysis.' },
     ] },
-  { num: 5, unit: 'Week', question: 'How do supervisors keep a jobsite safe? (OSHA 30, Part I)',
+  { num: 5, unit: 'Week', question: 'How do supervisors keep a jobsite safe? (OSHA 30 · Part I)',
     desc: <>OSHA orientation, rights and responsibilities, and supervisory safety duties; <strong className="text-anthracite/90 font-medium">fall protection</strong>, PPE, and ladder and scaffold awareness; hazard identification and the job hazard analysis that supervisors lead every day.</>,
     chips: [
       { code: 'OSHA 30', cat: 'ela', desc: 'OSHA 30-Hour Construction Safety, supervisory outreach credential.' },
       { code: 'Fall protection', cat: 'ela', desc: 'Fall protection systems and requirements.' },
       { code: 'PPE / JHA', cat: 'ela', desc: 'Personal protective equipment and job hazard analysis.' },
     ] },
-  { num: 6, unit: 'Week', question: 'What hazards must a manager control? (OSHA 30, Part II)',
+  { num: 6, unit: 'Week', question: 'What hazards must a manager control? (OSHA 30 · Part II)',
     desc: <>Electrical, excavation and trenching, materials handling, and hazard communication; struck-by and caught-in hazards; <strong className="text-anthracite/90 font-medium">safety leadership</strong>, incident prevention, and toolbox talks, completing the OSHA 30-Hour credential.</>,
     chips: [
       { code: 'OSHA 30', cat: 'ela', desc: 'Completes the OSHA 30-Hour Construction Safety credential.' },
@@ -277,9 +277,10 @@ export function Launch() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
-                The flagship Launch build is <strong className="text-anthracite font-medium">BUILD NJ GREEN</strong>,
+                The flagship Launch design is <strong className="text-anthracite font-medium">BUILD NJ GREEN</strong>,
                 a green-fluent construction-management pathway aligned to New Jersey's
-                building-electrification mandates and clean-infrastructure funding priorities.
+                building-electrification mandates and clean-infrastructure funding priorities. The
+                curriculum below is complete and ready to deliver; it has not yet been run with a cohort.
               </motion.p>
 
               {INFO_ROWS.map(({ Icon: IconComp, label, value }, i) => (
@@ -290,9 +291,9 @@ export function Launch() {
                   whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                   viewport={reduce ? undefined : VIEWPORT}
                   transition={reduce ? undefined : { duration: 0.4, delay: i * 0.05, ease: EASE }}>
-                  <IconComp size={18} weight="regular" className="text-datum flex-shrink-0 mt-0.5" aria-hidden={true} />
+                  <IconComp size={18} weight="regular" className="text-ink-soft flex-shrink-0 mt-0.5" aria-hidden={true} />
                   <div className="grid grid-cols-[110px_1fr] gap-4 flex-1">
-                    <p className="text-[12.5px] uppercase tracking-[0.13em] text-datum pt-0.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
+                    <p className="text-[12.5px] uppercase tracking-[0.13em] text-ink-soft font-semibold pt-0.5" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
                     <p className="text-[13.5px] text-anthracite/80 leading-[1.55]" style={{ fontFamily: 'var(--font-body)' }}>{value}</p>
                   </div>
                 </motion.div>
@@ -317,7 +318,7 @@ export function Launch() {
               <ul className="list-none space-y-3">
                 {MINI_LIST.map(item => (
                   <li key={item} className="flex gap-3 items-start">
-                    <span className="flex-shrink-0 w-[6px] h-[6px] rotate-45 bg-datum mt-[7px]" aria-hidden="true" />
+                    <span className="flex-shrink-0 w-[6px] h-[6px] rotate-45 bg-sediment mt-[7px]" aria-hidden="true" />
                     <span className="text-[13.5px] text-anthracite/78 leading-[1.55]" style={{ fontFamily: 'var(--font-body)' }}>{item}</span>
                   </li>
                 ))}
@@ -333,22 +334,22 @@ export function Launch() {
         <div className="max-w-7xl mx-auto px-6">
 
           <motion.div
-            className="border border-anthracite/15 px-6 py-6 lg:px-8 lg:py-7 mb-12 lg:mb-14 print:hidden"
+            className="border border-wine px-6 py-6 lg:px-8 lg:py-7 mb-12 lg:mb-14 print:hidden"
             initial={reduce ? undefined : { opacity: 0, y: 16 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
-            <p className="text-[10.5px] uppercase tracking-[0.16em] text-datum mb-4 select-none" style={{ fontFamily: 'var(--font-body)' }}>This is a sample curriculum</p>
+            <p className="text-[10.5px] uppercase tracking-[0.16em] text-wine font-semibold mb-4 select-none" style={{ fontFamily: 'var(--font-body)' }}>This is a sample curriculum</p>
             <div className="space-y-3 max-w-[74ch]">
               <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
-                <strong className="text-anthracite font-medium">What you see below is a sample, not the catalogue.</strong> BUILD
-                NJ GREEN is a complete 16-week, 240-hour curriculum, designed in full and ready to deliver.
+                <strong className="text-anthracite font-medium">What you see below is a sample, not the catalogue.</strong> <i>BUILD
+                NJ GREEN</i> is a complete 16-week, 240-hour curriculum, designed in full and ready to deliver.
               </p>
               <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
                 <strong className="text-anthracite font-medium">Delivery status.</strong> It has not yet been run with a cohort.
                 Community-based partners are engaged and grant applications are submitted; no Launch cohort has been delivered to
                 date. The full status ledger is in{' '}
-                <Link href="/impact" className="text-datum hover:underline underline-offset-2">Impact &amp; accountability</Link>.
+                <Link href="/impact" className="text-anthracite underline underline-offset-2 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">Impact &amp; accountability</Link>.
               </p>
               <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
                 <strong className="text-anthracite font-medium">We build to order.</strong> Launch is institutional pathway design:
@@ -366,32 +367,24 @@ export function Launch() {
                 whileInView={reduce ? undefined : { opacity: 1 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-                <span className="w-7 h-[2px] bg-datum flex-shrink-0" aria-hidden="true" />
-                <p className="text-[13.5px] uppercase tracking-[0.14em] text-datum font-medium" style={{ fontFamily: 'var(--font-body)' }}>Curriculum shell, open what you need</p>
+                <p id="curriculum-h2" className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Curriculum shells</p>
               </motion.div>
-              <motion.h2
-                id="curriculum-h2"
-                className="text-[2rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic [text-wrap:balance]"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-                initial={reduce ? undefined : { opacity: 0, y: 22 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
-                An example program, fully designed.
-              </motion.h2>
             </div>
             <div className="flex gap-2.5 flex-shrink-0">
-              <button type="button" onClick={() => setOpen(true)} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Expand</button>
-              <button type="button" onClick={() => setOpen(false)} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Collapse</button>
-              <button type="button" onClick={() => { setOpen(true); setTimeout(() => window.print(), 350) }} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Print</button>
+              <button type="button" onClick={() => setOpen(true)} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Expand all</button>
+              <button type="button" onClick={() => setOpen(false)} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Collapse all</button>
+              <button type="button" onClick={() => { setOpen(true); setTimeout(() => window.print(), 350) }} className="text-[11.5px] uppercase tracking-[0.08em] text-anthracite/75 border border-anthracite/20 px-3.5 py-2 hover:border-anthracite/45 transition-colors duration-150" style={{ fontFamily: 'var(--font-body)' }}>Print curriculum</button>
             </div>
           </div>
 
           <CurriculumShell
             id="buildnjgreen"
-            color="var(--color-datum)"
+            color="var(--color-sediment)"
             open={open}
             onToggle={() => setOpen(o => !o)}
+            legendKeyLabel="Competency key, tap to filter"
+            legendAriaLabel="Competency key, filter the weeks by domain"
+            legendAllShownText="Showing all competency areas. Each of the sixteen weeks is tagged by competency area: green building, construction management, safety, energy & environment, and project management, and points toward the OSHA 30, LEED Green Associate, and PMI-CAPM credentials. Hover any tag for detail."
             meta="16 weeks · 240 hours · OSHA 30, LEED GA & PMI-CAPM preparation · full curriculum"
             collapsedTitle="BUILD NJ GREEN: Green Construction Management Workforce Curriculum"
             eyebrow="16-Week Workforce Program · Green Construction Management · New Jersey"
@@ -420,7 +413,7 @@ export function Launch() {
               { cat: 'car', name: 'Project & Professional' },
             ]}>
 
-            <Band id="launch-foundations" numLabel="01" rangeLabel="Entry Tier · Weeks 1–6" title="Foundations & Core Construction Management"
+            <Band dark color="var(--color-sediment)" id="launch-foundations" numLabel="01" rangeLabel="Entry Tier · Weeks 1–6" title="Foundations & Core Construction Management"
               desc="The entry tier establishes the green economy context and the core construction-management practice every supervisor needs, project lifecycle, scheduling, and cost control, and delivers the full OSHA 30-Hour Construction Safety credential."
               meta={[
                 { label: 'Focus', value: 'Green building principles · CM fundamentals · jobsite safety leadership' },
@@ -429,7 +422,7 @@ export function Launch() {
               ]}
               weeks={PHASE1_WEEKS} />
 
-            <Band id="launch-systems" numLabel="02" rangeLabel="Advanced Tier · Weeks 7–12" title="Green Systems, Energy & Environment"
+            <Band dark color="var(--color-sediment)" id="launch-systems" numLabel="02" rangeLabel="Advanced Tier · Weeks 7–12" title="Green Systems, Energy & Environment"
               desc="The advanced tier builds the green specialization that sets these managers apart, green specifications and digital tools, energy-efficient building systems, and the environmental compliance and green-infrastructure oversight New Jersey projects demand."
               meta={[
                 { label: 'Focus', value: 'Green specs & BIM · envelope, HVAC & solar · commissioning · environmental compliance' },
@@ -438,7 +431,7 @@ export function Launch() {
               ]}
               weeks={PHASE2_WEEKS} />
 
-            <Band id="launch-capstone" numLabel="03" rangeLabel="Advanced Tier · Weeks 13–16" title="Credentials & Capstone"
+            <Band dark color="var(--color-sediment)" id="launch-capstone" numLabel="03" rangeLabel="Advanced Tier · Weeks 13–16" title="Credentials & Capstone"
               desc="The final tier converts the program into credentials and a portfolio: participants prepare for and sit the LEED Green Associate and PMI-CAPM exams, complete the green construction management capstone, and present to instructors and industry reviewers."
               meta={[
                 { label: 'Focus', value: 'LEED GA exam · CAPM exam · capstone portfolio · employer readiness' },
@@ -450,14 +443,14 @@ export function Launch() {
             {/* Credentials trio */}
             <div id="launch-credentials" className="pt-10 lg:pt-12 border-t border-sediment/20 scroll-mt-24">
               <div className="max-w-[68ch] mb-8 lg:mb-10">
-                <p className="text-[10.5px] uppercase tracking-[0.16em] text-datum mb-3" style={{ fontFamily: 'var(--font-body)' }}>Industry-recognized credentials</p>
+                <p className="text-[10.5px] uppercase tracking-[0.16em] text-ink-soft font-semibold mb-3" style={{ fontFamily: 'var(--font-body)' }}>Industry-recognized credentials</p>
                 <h4 className="text-[1.5rem] lg:text-[1.75rem] text-anthracite italic leading-[1.15] tracking-[-0.02em] mb-3" style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>Three stackable credentials by graduation</h4>
                 <p className="text-[13.5px] text-anthracite/75 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>Every completer earns baseline supervisory safety certification and prepares for two nationally recognized green-building and project-management credentials, all at zero credential cost to participants under the proposed program model.</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {CREDENTIALS.map(({ name, org, desc, target }) => (
                   <div key={name} className="border border-sediment/20 px-6 py-7">
-                    <p className="text-[2rem] italic text-datum leading-none tracking-[-0.03em] mb-2" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>{target}</p>
+                    <p className="text-[2rem] italic text-sediment leading-none tracking-[-0.03em] mb-2" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>{target}</p>
                     <p className="text-[10px] uppercase tracking-[0.12em] text-anthracite/60 mb-4" style={{ fontFamily: 'var(--font-body)' }}>target completers</p>
                     <p className="text-[1.0625rem] italic text-anthracite leading-none mb-1.5" style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>{name}</p>
                     <p className="text-[11px] text-anthracite/60 uppercase tracking-[0.08em] mb-3" style={{ fontFamily: 'var(--font-body)' }}>{org}</p>
@@ -538,12 +531,6 @@ export function Launch() {
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-
-            <h2
-              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.08] tracking-[-0.03em] text-anthracite italic mb-8 [text-wrap:balance]"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-              Built to be inherited.
-            </h2>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-10">
               <Link href="/partner"

@@ -99,7 +99,7 @@ export function Partnership() {
                 <IconComp
                   size={36}
                   weight="regular"
-                  className="text-datum mb-4"
+                  className="text-ink-soft mb-4"
                   aria-hidden={true}
                 />
 
@@ -110,7 +110,7 @@ export function Partnership() {
                     {name}
                   </h3>
                   <Link href={to}
-                    className="flex-shrink-0 inline-flex items-center gap-2 text-[13px] text-datum tracking-[-0.01em] group self-start"
+                    className="flex-shrink-0 inline-flex items-center gap-2 text-[13px] text-anthracite tracking-[-0.01em] group self-start"
                     style={{ fontFamily: 'var(--font-body)' }}>
                     {cta}
                     <span

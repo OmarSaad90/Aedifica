@@ -44,7 +44,7 @@ const VALUES: Value[] = [
     name: 'Equity is the strategy.',
     shortForm: 'The talent pipeline, not the side door.',
     description:
-      'Overlooked adults (justice-impacted, returning to work after caregiving, transitioning from military service) are not a beneficiary group. They are the talent pipeline. We design wraparound supports, regulatory pathways, and credential articulation specifically for the population we currently serve, and we serve one population excellently before adding the next. The durable construction workforce New Jersey needs will not be built from the people the system already served well.',
+      'Overlooked adults, justice-impacted, returning to work after caregiving, transitioning from military service, are not a beneficiary group. They are the talent pipeline. We design wraparound supports, regulatory pathways, and credential articulation specifically for the population we currently serve, and we serve one population excellently before adding the next. The durable construction workforce New Jersey needs will not be built from the people the system already served well.',
     bg: 'bg-quarry',
     textMain: 'text-anthracite',
     textSub: 'text-anthracite',
@@ -152,6 +152,8 @@ const FOUNDER_LETTER: { text: string; pull?: boolean }[] = [
 type TeamMember = {
   name: string
   role: string
+  roleColor: string
+  credentials: string
   bio: string
   fullBio?: string[]
   image: string
@@ -161,6 +163,8 @@ const TEAM: TeamMember[] = [
   {
     name: 'Dr. Karim Karam',
     role: 'Co-Founder & CEO',
+    roleColor: 'text-wine',
+    credentials: 'Stevens Institute of Technology · MIT · Construction Management',
     bio: 'Dr. Karim Karam is Co-Founder & CEO of Aedifica and a Teaching Associate Professor at Stevens Institute of Technology, where he leads the graduate Construction Management program. His work sits at the intersection of engineering, education, construction, and workforce mobility.',
     fullBio: [
       "The son of a Lebanese engineer who was the first in his family to attend university, Karim grew up with the belief that education is one of the few things no one can take away. At MIT he taught probability and statistics and was involved in OpenCourseWare's mission to expand access to knowledge. In industry, he helped build and train construction teams across major infrastructure work.",
@@ -177,6 +181,8 @@ const TEAM: TeamMember[] = [
   {
     name: 'Evelyne Karam',
     role: 'Co-Founder & Chief Education Strategy Officer',
+    roleColor: 'text-terracotta-deep',
+    credentials: 'Education policy · Curriculum design · Evaluation',
     bio: 'Evelyne Karam is Co-Founder & Chief Education Strategy Officer of Aedifica. She brings expertise in education policy, curriculum design, evaluation, capacity building, and cross-sector reform, including USAID-, UNICEF-, and ministry-linked education initiatives.',
     fullBio: [
       "Aedifica's moat is not generic curriculum but published placement, retention, wage progression, employer-signed pathways, articulation agreements, and disciplined outcomes reporting. That is precisely where her education-strategy and evaluation background strengthens the founding team.",
@@ -190,6 +196,8 @@ const TEAM: TeamMember[] = [
   {
     name: 'Dr. Nicole Gilmore-Silva',
     role: 'Co-Founder & Chief Education and Industry Partnerships Officer',
+    roleColor: 'text-clay',
+    credentials: 'Ed.D. · Teach For America · Founding middle-school principal',
     bio: 'Dr. Nicole Gilmore-Silva is Co-Founder & Chief Education and Industry Partnerships Officer of Aedifica. A former principal and district leader with more than two decades in public education, she builds the school, university, employer, and community partnerships that connect learners to the industries shaping the future.',
     fullBio: [
       'Her cross-sector workforce development and partnership experience spans Union and Essex counties, New Jersey. She cultivated the partnership between Stevens Institute of Technology and Hillside Innovation Academy that became a foundation for Aedifica\'s community delivery model, and leads the organization\'s community-organization and workforce-agency relationships.',
@@ -210,6 +218,8 @@ const TEAM: TeamMember[] = [
   {
     name: 'Kimi Stephenson',
     role: 'Co-Founder & Community Program Lead',
+    roleColor: 'text-ink-soft',
+    credentials: 'M.S. Construction Engineering & Mgmt., Stevens · B.A. Criminal Justice, Rutgers · OSHA-10 · BPI',
     bio: 'Kimi Stephenson is Co-Founder & Community Program Lead of Aedifica, with over fifteen years at the intersection of construction, property, and education. She holds an M.S. in Construction Engineering and Management from Stevens Institute of Technology and co-designed the Bridging Brilliance STEM program at Hillside Innovation Academy.',
     fullBio: [
       'She carries the program-delivery side of the model: what it actually takes to run a cohort inside a school week, with real students, real materials, and a real showcase at the end.',
@@ -247,15 +257,20 @@ function TeamMemberCard({ member, index, reduce, onExpandBio, bioExpanded }: {
       </div>
 
       <p
-        className="text-[10.5px] text-anthracite/80 uppercase tracking-[0.18em] leading-[1.55] mb-2.5 select-none min-h-[3.1rem]"
+        className={`text-[10.5px] ${member.roleColor} uppercase tracking-[0.18em] leading-[1.55] mb-2.5 select-none min-h-[3.1rem]`}
         style={{ fontFamily: 'var(--font-body)' }}>
         {member.role}
       </p>
       <h3
-        className="text-[1.5rem] lg:text-[1.75rem] italic text-anthracite leading-[1.08] tracking-[-0.022em] mb-4"
+        className="text-[1.5rem] lg:text-[1.75rem] italic text-anthracite leading-[1.08] tracking-[-0.022em] mb-2"
         style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
         {member.name}
       </h3>
+      <p
+        className="text-[10.5px] text-anthracite/55 uppercase tracking-[0.08em] leading-[1.5] mb-4"
+        style={{ fontFamily: 'var(--font-body)' }}>
+        {member.credentials}
+      </p>
       <p
         className="text-[13px] text-anthracite/78 leading-[1.65] flex-1"
         style={{ fontFamily: 'var(--font-body)' }}>
@@ -266,8 +281,8 @@ function TeamMemberCard({ member, index, reduce, onExpandBio, bioExpanded }: {
         <button
           onClick={(e) => onExpandBio(e.currentTarget as HTMLButtonElement)}
           aria-expanded={bioExpanded}
-          className="mt-4 self-start text-[13px] underline underline-offset-2 decoration-[#5C5D9C]/40 hover:decoration-[#5C5D9C] transition-colors duration-150 cursor-pointer bg-transparent border-none p-0"
-          style={{ fontFamily: 'var(--font-body)', color: '#5C5D9C' }}>
+          className="mt-4 self-start text-[13px] text-wine underline underline-offset-2 decoration-wine/40 hover:decoration-wine transition-colors duration-150 cursor-pointer bg-transparent border-none p-0"
+          style={{ fontFamily: 'var(--font-body)' }}>
           Read full biography
         </button>
       )}
@@ -367,7 +382,7 @@ export function About() {
             initial={reduce ? undefined : { opacity: 0, y: 10 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-            About Aedifica
+            § 13 — About Aedifica
           </motion.span>
 
           <motion.h1
@@ -377,7 +392,7 @@ export function About() {
             initial={reduce ? undefined : { opacity: 0, y: 40 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
-            We build<br className="hidden sm:block" /> the builders.
+About Aedifica
           </motion.h1>
 
           <motion.p
@@ -417,26 +432,34 @@ export function About() {
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.75, ease: SPRING }}>
+              <div className="flex items-center gap-3 mb-8">
+                <span className="w-[10px] h-[10px] rotate-45 bg-wine flex-shrink-0" aria-hidden="true" />
+                <h3
+                  className="text-[1.375rem] lg:text-[1.625rem] leading-[1.1] tracking-[-0.015em] text-anthracite italic"
+                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 500 }}>
+                  Mission &amp; Vision
+                </h3>
+              </div>
               <p
-                className="text-[10.5px] text-anthracite/80 uppercase tracking-[0.2em] mb-5 select-none"
+                className="text-[13px] text-anthracite/80 uppercase tracking-[0.2em] mb-5 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Mission
               </p>
-              <div className="w-10 border-t-2 border-datum mb-8" aria-hidden="true" />
+              <div className="w-10 border-t-2 border-wine mb-8" aria-hidden="true" />
               <p
                 className="text-[1.5rem] lg:text-[2rem] leading-[1.2] tracking-[-0.025em] text-anthracite italic mb-14"
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
                 Aedifica designs and delivers construction-management career pathways for schools, workforce partners, and employers, with a focus on scholars who have talent but lack a clear route into the built environment.
               </p>
               <p
-                className="text-[10.5px] text-anthracite/80 uppercase tracking-[0.2em] mb-5 select-none"
+                className="text-[13px] text-anthracite/80 uppercase tracking-[0.2em] mb-5 select-none"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Vision
               </p>
-              <div className="w-10 border-t-2 border-datum mb-8" aria-hidden="true" />
+              <div className="w-10 border-t-2 border-wine mb-8" aria-hidden="true" />
               <h2
                 id="about-vision-h2"
-                className="text-[2rem] lg:text-[3rem] xl:text-[3.75rem] leading-[1.1] tracking-[-0.03em] text-anthracite italic mb-6"
+                className="text-[1.5rem] lg:text-[2rem] leading-[1.2] tracking-[-0.025em] text-anthracite italic mb-6"
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
                 We envision a New Jersey where every scholar, at every age, from every background, can see, walk, and own a clear path into the careers that build the state.
               </h2>
@@ -444,7 +467,7 @@ export function About() {
               <p
                 className="text-[13px] text-anthracite/65 leading-[1.6] italic"
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                Signature: From foundations to futures. Earth. Engineers. Education.
+                Signature: <span className="text-wine not-italic">From foundations to futures.</span> &middot; Earth. Engineers. Education.
               </p>
             </motion.div>
 
@@ -471,7 +494,7 @@ export function About() {
       </section>
 
       {/* ── Values ── bg-bone */}
-      <section className="bg-bone pt-14 lg:pt-20 pb-10 lg:pb-14" aria-label="Values">
+      <section id="values" className="bg-bone pt-14 lg:pt-20 pb-10 lg:pb-14 scroll-mt-24" aria-label="Values">
         <div className="max-w-7xl mx-auto px-6">
 
           <motion.div
@@ -483,35 +506,34 @@ export function About() {
             <p
               className="text-[12.5px] text-anthracite/75 uppercase tracking-[0.2em] mb-5 select-none font-medium text-center"
               style={{ fontFamily: 'var(--font-body)' }}>
-              Values
+              § 14 — Values
             </p>
             <h2
               id="about-values-h2"
               className="text-[1.75rem] lg:text-[2.375rem] leading-[1.15] tracking-[-0.025em] text-anthracite italic mb-12 lg:mb-14 mx-auto max-w-[26ch] text-center [text-wrap:balance]"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-              Earth. Engineers. Education. <span className="text-datum">And the two values that hold them together.</span>
+              Earth. Engineers. Education, and the two values that hold them together.
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-x-12 xl:gap-x-16">
               {([
                 {
                   word: 'Earth.',
-                  // Raw quarry only clears ~2.7:1 on snow; darkened variant passes large-text 3:1
-                  color: 'text-[#5F6E67]',
-                  rule: 'border-quarry',
+                  color: 'text-wine',
+                  rule: 'border-wine',
                   mark: 'earth' as const,
                   def: 'The foundation: the communities we live in, the infrastructure we depend on, and the environment we have a responsibility to protect and improve. Connect infrastructure, sustainability, and place.',
                 },
                 {
                   word: 'Engineers.',
-                  color: 'text-datum',
-                  rule: 'border-datum',
+                  color: 'text-wine',
+                  rule: 'border-wine',
                   mark: 'engineers' as const,
                   def: 'The builders of possibility: the people who turn ideas into roads, bridges, schools, hospitals, resilient coastlines, and transit systems. Teach disciplined problem-solving and project-management thinking.',
                 },
                 {
                   word: 'Education.',
-                  color: 'text-patina',
-                  rule: 'border-patina',
+                  color: 'text-wine',
+                  rule: 'border-wine',
                   mark: 'education' as const,
                   def: 'The bridge: the force that allows people to enter that world, understand it, shape it, and build a better future. Create clear pathways, not isolated workshops.',
                 },
@@ -554,7 +576,7 @@ export function About() {
       </section>
 
       {/* ── Origin / Brand Story ── bg-snow */}
-      <section className="bg-snow py-14 lg:py-20" aria-labelledby="about-origin-h2">
+      <section id="history" className="bg-snow py-14 lg:py-20 scroll-mt-24" aria-labelledby="about-origin-h2">
         <div className="max-w-7xl mx-auto px-6">
           <div className="lg:grid lg:grid-cols-[1fr_0.72fr] lg:gap-16 xl:gap-24 lg:items-start">
 
@@ -566,7 +588,7 @@ export function About() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-                Origin
+                § 15 — Origin &amp; history
               </motion.p>
 
               <motion.h2
@@ -577,7 +599,7 @@ export function About() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.7, delay: 0.06, ease: SPRING }}>
-                Founded inside the problem, not above it.
+                How Aedifica came to exist.
               </motion.h2>
 
               <motion.div
@@ -586,31 +608,45 @@ export function About() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.55, delay: 0.12, ease: EASE }}>
-                <p className="text-[15px] text-anthracite/75 leading-[1.72]" style={{ fontFamily: 'var(--font-body)' }}>
-                  Aedifica was conceived at the intersection of three stubborn realities: a construction workforce ageing out faster than it is being replaced; a curriculum pipeline that too often treats industry as an afterthought; and a growing population of non-traditional scholars who possess enormous capacity but are poorly served by institutional pathways designed for eighteen-year-olds.
+                <p
+                  className="text-[12px] text-anthracite/75 uppercase tracking-[0.18em] mb-3 select-none"
+                  style={{ fontFamily: 'var(--font-body)' }}>
+                  Organizational history
                 </p>
-                <p className="text-[15px] text-anthracite/75 leading-[1.72]" style={{ fontFamily: 'var(--font-body)' }}>
-                  Our founders came from both sides of that divide: licensed engineers and site experience on one hand, curriculum designers and educator-practitioners on the other. Aedifica exists because they refused to accept the polite fiction that these are separate problems for separate professions.
+                <p className="text-[13.5px] text-anthracite/72 leading-[1.72]" style={{ fontFamily: 'var(--font-body)' }}>
+                  Aedifica grew from years of construction-management practice in the field, teaching,
+                  pre-college engineering programming, STEM outreach, and workforce-pathway design. The
+                  model brings together classroom rigor, hands-on construction thinking, employer
+                  relevance, and measurable scholar outcomes: a foundation in construction-management
+                  education; prior delivery through middle school (Hillside and community-based
+                  programming), high school (pre-college), and practical training and upskilling in
+                  industry; expansion into New Jersey-focused workforce pathway architecture; and the
+                  five programs, Explore, Pathway, Launch, Rebuild, and the Talent Pipeline, designed
+                  as a single scalable pathway. Delivery status for each is published in{' '}
+                  <Link href="/impact" className="text-anthracite underline underline-offset-2 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">
+                    Impact &amp; accountability
+                  </Link>.
                 </p>
+
                 <div className="pt-4 border-t border-sediment/20">
                   <p
-                    className="text-[10px] text-anthracite/75 uppercase tracking-[0.18em] mb-3 select-none"
+                    className="text-[12px] text-anthracite/75 uppercase tracking-[0.18em] mb-3 select-none"
                     style={{ fontFamily: 'var(--font-body)' }}>
-                    Organizational history
+                    Origin
                   </p>
-                  <p className="text-[13.5px] text-anthracite/72 leading-[1.72]" style={{ fontFamily: 'var(--font-body)' }}>
-                    Aedifica grew from years of construction-management practice in the field, teaching,
-                    pre-college engineering programming, STEM outreach, and workforce-pathway design. The
-                    model brings together classroom rigor, hands-on construction thinking, employer
-                    relevance, and measurable scholar outcomes: a foundation in construction-management
-                    education; prior delivery through middle school (Hillside and community-based
-                    programming), high school (pre-college), and practical training and upskilling in
-                    industry; expansion into New Jersey-focused workforce pathway architecture; and the
-                    five programs, Explore, Pathway, Launch, Rebuild, and the Talent Pipeline, designed
-                    as a single scalable pathway. Delivery status for each is published in{' '}
-                    <Link href="/impact" className="text-datum hover:underline underline-offset-2">
-                      Impact &amp; accountability
-                    </Link>.
+                  <p
+                    className="text-[1.625rem] lg:text-[1.875rem] text-anthracite italic leading-[1.15] tracking-[-0.02em] mb-4"
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                    Founded inside the problem, not above it.
+                  </p>
+                  <p className="text-[15px] text-anthracite/75 leading-[1.72] mb-4" style={{ fontFamily: 'var(--font-body)' }}>
+                    Aedifica was conceived at the intersection of three stubborn realities: a construction workforce aging out faster than it is being replaced; a curriculum pipeline that too often treats industry as an afterthought; and a growing population of non-traditional scholars who possess enormous capacity but are poorly served by institutional pathways designed for eighteen-year-olds.
+                  </p>
+                  <p className="text-[15px] text-anthracite/75 leading-[1.72] mb-4" style={{ fontFamily: 'var(--font-body)' }}>
+                    Its founders came from both sides of that divide, licensed engineers and site experience on one hand, curriculum designers and educator-practitioners on the other. Aedifica exists because they refused to accept the polite fiction that these are separate problems for separate professions.
+                  </p>
+                  <p className="text-[15px] text-anthracite/75 leading-[1.72]" style={{ fontFamily: 'var(--font-body)' }}>
+                    Between educator and employer, Aedifica does not referee. We translate, and when translation is insufficient, we rebuild the terms of the conversation itself.
                   </p>
                 </div>
               </motion.div>
@@ -636,7 +672,7 @@ export function About() {
       </section>
 
       {/* ── Team ── bg-bone */}
-      <section className="bg-bone pt-14 lg:pt-20 pb-10 lg:pb-14" aria-labelledby="about-team-h2">
+      <section id="founders" className="bg-bone pt-14 lg:pt-20 pb-10 lg:pb-14 scroll-mt-24" aria-labelledby="about-team-h2">
         <div className="max-w-7xl mx-auto px-6">
 
           <div className="mb-10 lg:mb-14">
@@ -647,7 +683,7 @@ export function About() {
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-              The Founders
+              § 16 — The founders
             </motion.p>
             <motion.h2
               id="about-team-h2"
@@ -721,18 +757,8 @@ export function About() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.6, ease: SPRING }}>
-                In Dr. Karam's own words.
+                in Dr. Karam's own words
               </motion.h2>
-              <motion.p
-                className="text-[14px] text-anthracite/75 leading-[1.72] max-w-[40ch]"
-                style={{ fontFamily: 'var(--font-body)' }}
-                initial={reduce ? undefined : { opacity: 0, y: 14 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
-                Why Aedifica exists, from the person who founded it: a letter about family, education,
-                and the pathway from a small village in Lebanon to building the builders of New Jersey.
-              </motion.p>
             </div>
 
             {/* Right: the letter, opening visible, remainder behind a disclosure */}
@@ -757,7 +783,7 @@ export function About() {
               <button
                 onClick={(e) => { lastTriggerRef.current = e.currentTarget; setLetterOpen(true) }}
                 aria-haspopup="dialog"
-                className="mt-7 text-[13.5px] text-datum underline underline-offset-4 decoration-datum/40 hover:decoration-datum transition-colors duration-150 cursor-pointer bg-transparent border-none p-0"
+                className="mt-7 text-[13.5px] text-wine underline underline-offset-4 decoration-wine/40 hover:decoration-wine transition-colors duration-150 cursor-pointer bg-transparent border-none p-0"
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Read the full letter
               </button>
@@ -769,13 +795,22 @@ export function About() {
       </section>
 
       {/* ── Value Mosaic — five principles as a color-block system, not a scroll of stripes ── */}
-      <section className="bg-bone pt-14 lg:pt-20 pb-14 lg:pb-20" aria-labelledby="about-principles-h2">
+      <section id="principles" className="bg-bone pt-14 lg:pt-20 pb-14 lg:pb-20 scroll-mt-24" aria-labelledby="about-principles-h2">
         <div className="max-w-7xl mx-auto px-6">
 
-          <div className="lg:grid lg:grid-cols-[1fr_0.55fr] lg:gap-16 lg:items-end mb-12 lg:mb-14">
+          <div className="mb-12 lg:mb-14">
+            <motion.p
+              className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium mb-5"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0 }}
+              whileInView={reduce ? undefined : { opacity: 1 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+              § 17 — Operating principles
+            </motion.p>
             <motion.h2
               id="about-principles-h2"
-              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.5rem] leading-[1.06] tracking-[-0.03em] text-anthracite italic scroll-mt-24"
+              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.5rem] leading-[1.06] tracking-[-0.03em] text-anthracite italic scroll-mt-24 max-w-[16ch]"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 24 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -783,15 +818,6 @@ export function About() {
               transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
               Six operating principles, and what each one costs us.
             </motion.h2>
-            <motion.p
-              className="text-[14px] text-anthracite/75 leading-[1.7] mt-4 lg:mt-0"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={reduce ? undefined : { opacity: 0, y: 14 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
-              These are commitments that can be tested in a deliverable, a meeting, or an email thread. Each one is paired with a specific, observable position.
-            </motion.p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-[3px]">
@@ -866,14 +892,17 @@ export function About() {
                     {expandedMember.name}
                   </h3>
                   <div className="space-y-5">
-                    {expandedMember.fullBio.map((para, pi) => (
-                      <p
-                        key={pi}
-                        className="text-[14px] text-anthracite/75 leading-[1.72]"
-                        style={{ fontFamily: 'var(--font-body)' }}>
-                        {para}
-                      </p>
-                    ))}
+                    {expandedMember.fullBio.map((para, pi, fullBio) => {
+                      const isClosingQuote = expandedMember.name === 'Dr. Nicole Gilmore-Silva' && pi === fullBio.length - 1
+                      return (
+                        <p
+                          key={pi}
+                          className={isClosingQuote ? 'text-[14px] text-wine leading-[1.72]' : 'text-[14px] text-anthracite/75 leading-[1.72]'}
+                          style={{ fontFamily: 'var(--font-body)' }}>
+                          {para}
+                        </p>
+                      )
+                    })}
                   </div>
                 </div>
               </div>
@@ -937,7 +966,7 @@ export function About() {
                   <h3
                     className="text-[1.75rem] italic text-anthracite leading-[1.08] tracking-[-0.022em] mb-7"
                     style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-                    In Dr. Karam's own words
+                    in Dr. Karam's own words
                   </h3>
                   <div className="space-y-5">
                     {FOUNDER_LETTER.map((para, pi) =>
@@ -957,16 +986,6 @@ export function About() {
                         </p>
                       )
                     )}
-                    <div className="pt-4 border-t border-sediment/25">
-                      <p
-                        className="text-[1.125rem] italic text-anthracite leading-none mb-1.5"
-                        style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                        Dr. Karim Karam
-                      </p>
-                      <p className="text-[12px] text-anthracite/70" style={{ fontFamily: 'var(--font-body)' }}>
-                        Co-Founder &amp; CEO, Aedifica
-                      </p>
-                    </div>
                   </div>
                 </div>
               </div>
