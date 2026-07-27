@@ -355,22 +355,19 @@ export function Research() {
           anchored with a hairline rule instead of floating unattached. */}
       <section className="bg-snow py-12 lg:py-16" aria-label="Methodology note">
         <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            className="max-w-[70ch] border-t border-sediment/25 pt-8"
+          <motion.p
+            className="max-w-[70ch] text-[12.5px] text-anthracite/70 leading-[1.7] border border-wine px-5 py-4"
+            style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0 }}
             whileInView={reduce ? undefined : { opacity: 1 }}
             viewport={VIEWPORT}
             transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-            <p
-              className="text-[12.5px] text-anthracite/70 leading-[1.7]"
-              style={{ fontFamily: 'var(--font-body)' }}>
-              <strong className="text-wine font-medium">Methodology note.</strong> Aedifica
-              Research distinguishes measured results from projections in every publication.
-              Forward-looking figures, including the supervisor-gap estimates above, are Aedifica
-              estimates, stated with their assumptions. Cohort outcomes are reported only after they
-              occur, using definitions fixed before enrollment.
-            </p>
-          </motion.div>
+            <strong className="text-anthracite font-medium">Methodology note.</strong> Aedifica
+            Research distinguishes measured results from projections in every publication.
+            Forward-looking figures, including the supervisor-gap estimates above, are Aedifica
+            estimates, stated with their assumptions. Cohort outcomes are reported only after they
+            occur, using definitions fixed before enrollment.
+          </motion.p>
         </div>
       </section>
 

@@ -143,7 +143,7 @@ export function FourGates() {
           transition={reduce ? undefined : { duration: 0.6, delay: 0.2, ease: EASE }}>
           <div>
             <span
-              className="inline-block text-[10.5px] uppercase tracking-[0.14em] border border-wine/40 text-wine px-2.5 py-1 mb-3 select-none"
+              className="inline-block text-[10.5px] uppercase tracking-[0.14em] border border-ink-soft/40 text-ink-soft px-2.5 py-1 mb-3 select-none"
               style={{ fontFamily: 'var(--font-body)' }}>
               Founding partnership
             </span>
