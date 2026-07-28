@@ -65,7 +65,7 @@ export function CredibilityBar() {
 
   return (
     <section className="bg-bone py-14 relative z-10 -mt-10 lg:-mt-14 border-t border-anthracite/15" aria-label="Program commitments">
-      <div className="max-w-[1400px] mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
 
         {/* Eyebrow */}
         <motion.p

@@ -27,29 +27,13 @@ export function TalentPipeline() {
   return (
     <main>
 
-      {/* ── Hero: color/picture split ── */}
+      {/* ── Hero ── */}
       <section
-        className="bg-pipeline min-h-[58vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-pipeline min-h-[56vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="pipeline-h1">
 
-        <motion.div
-          className="hidden lg:block absolute inset-y-0 right-0 w-[40%]"
-          style={{ willChange: 'opacity, transform' }}
-          initial={reduce ? undefined : { opacity: 0 }}
-          animate={reduce ? undefined : { opacity: 1 }}
-          transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
-          <img
-            src="/images/campus-group.jpg"
-            alt="Construction-management students in program classroom at Stevens Institute of Technology, New Jersey"
-            className="w-full h-full object-cover"
-            style={{ filter: 'grayscale(25%) contrast(1.08)' }}
-            loading="eager"
-            fetchPriority="high"
-          />
-        </motion.div>
-
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="lg:max-w-[58%] lg:pr-8 xl:pr-12">
+          <div>
 
             <motion.span
               className="inline-block text-[11px] uppercase tracking-[0.18em] bg-anthracite/10 text-anthracite px-3 py-1 mb-10 select-none"
@@ -62,7 +46,7 @@ export function TalentPipeline() {
 
             <motion.h1
               id="pipeline-h1"
-              className="text-[2.75rem] lg:text-[4.25rem] xl:text-[5.25rem] leading-[0.98] tracking-[-0.035em] text-anthracite italic mb-10 [text-wrap:balance]"
+              className="text-[2.75rem] lg:text-[4.25rem] xl:text-[5.25rem] leading-[0.98] tracking-[-0.035em] text-anthracite italic mb-10 max-w-[42ch] [text-wrap:balance]"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 40 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}

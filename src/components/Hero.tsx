@@ -14,7 +14,7 @@ export function Hero() {
       className="relative min-h-[90vh] bg-snow flex items-center overflow-hidden"
       aria-labelledby="hero-heading"
     >
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 w-full py-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-16">
         <div className="lg:flex lg:items-start lg:gap-16 xl:gap-24">
         <div className="lg:flex-1 lg:max-w-[820px]">
 
@@ -82,7 +82,7 @@ export function Hero() {
           {[
             { n: '$1B+', l: 'delivered infrastructure behind our leadership' },
             { n: 'Employer-validated', l: 'capstone required before any credential' },
-            { n: 'NJ-funded', l: 'green & apprenticeship priorities' },
+            { n: 'State & federal funded', l: 'green & apprenticeship priorities' },
             { n: 'No cost to scholars', l: 'programs funded through institutional partners' },
           ].map(({ n, l }) => (
             <div key={n} className="lg:flex-1 lg:px-7 first:lg:pl-0 last:lg:pr-0">

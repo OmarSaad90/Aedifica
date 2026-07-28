@@ -132,8 +132,8 @@ export function Band({
         </div>
         <div>
           <span
-            className="inline-block border-2 px-2.5 py-1 text-[11px] uppercase tracking-[0.14em] text-ink-soft font-semibold mb-2.5"
-            style={{ fontFamily: 'var(--font-body)', borderColor: color }}>
+            className="inline-block text-[11px] uppercase tracking-[0.14em] text-ink-soft font-semibold mb-2.5"
+            style={{ fontFamily: 'var(--font-body)' }}>
             {rangeLabel}
           </span>
           <h4
@@ -452,7 +452,7 @@ export function CurriculumShell({
   const [activeCat, setActiveCat] = useActiveCat()
 
   return (
-    <div className="border-2 print:border-0" style={{ borderColor: color }}>
+    <div className="border border-anthracite/20 print:border-0">
       <button
         type="button"
         onClick={onToggle}
@@ -497,7 +497,7 @@ export function CurriculumShell({
                 {facts.length > 0 && (
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {facts.map(({ value, label }) => (
-                      <div key={label} className="border-2 px-5 py-4" style={{ borderColor: color }}>
+                      <div key={label} className="px-5 py-4">
                         <p className="text-[1.5rem] italic leading-none tracking-[-0.02em] mb-1.5" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300, color }}>{value}</p>
                         <p className="text-[11px] text-anthracite/68 leading-[1.4]" style={{ fontFamily: 'var(--font-body)' }}>{label}</p>
                       </div>

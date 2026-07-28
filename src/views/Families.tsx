@@ -112,7 +112,7 @@ export function Families() {
               </motion.p>
             </div>
             <motion.div
-              className="mt-10 lg:mt-0 border border-terracotta px-7 py-8"
+              className="mt-10 lg:mt-0"
               initial={reduce ? undefined : { opacity: 0, y: 16 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}

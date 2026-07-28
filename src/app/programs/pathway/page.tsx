@@ -6,7 +6,7 @@ import { SITE_URL } from '@/src/lib/config'
 export const metadata: Metadata = {
   title: 'Pathway | High-School Civil Engineering Curriculum · NJ',
   description:
-    'Aedifica Pathway is a high-school construction-management and civil engineering curriculum designed for career readiness and articulation in New Jersey, informed by three summers of pre-college engineering delivery at Stevens Institute of Technology.',
+    'Aedifica Pathway is a high-school construction-management and civil engineering curriculum designed for career readiness and articulation in New Jersey, informed by pre-college engineering delivery at Stevens Institute of Technology, continuous every summer since 2022.',
   alternates: { canonical: `${SITE_URL}/programs/pathway` },
   openGraph: {
     title: 'Pathway | High-School Civil Engineering Curriculum · NJ',

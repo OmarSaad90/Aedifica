@@ -12,30 +12,13 @@ export function Experience() {
   return (
     <main>
 
-      {/* ── Hero: color/picture split ── */}
+      {/* ── Hero ── */}
       <section
-        className="bg-anthracite min-h-[52vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-20"
+        className="bg-anthracite min-h-[42vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-20"
         aria-labelledby="experience-h1">
 
-        <motion.div
-          className="hidden lg:block absolute inset-y-0 right-0 w-[40%]"
-          style={{ willChange: 'opacity' }}
-          initial={reduce ? undefined : { opacity: 0 }}
-          animate={reduce ? undefined : { opacity: 1 }}
-          transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}
-          aria-hidden="true">
-          <img
-            src="/images/bridge-test.jpg"
-            alt="Students testing a bridge prototype during an Aedifica program session"
-            className="w-full h-full object-cover"
-            style={{ filter: 'grayscale(25%) contrast(1.08)' }}
-            loading="eager"
-            fetchPriority="high"
-          />
-        </motion.div>
-
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="lg:max-w-[58%] lg:pr-8 xl:pr-12">
+          <div className="lg:max-w-[62ch]">
 
             <motion.span
               className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/70 px-3 py-1 mb-8 select-none"

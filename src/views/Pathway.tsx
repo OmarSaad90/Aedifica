@@ -17,7 +17,7 @@ const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
 const INFO_ROWS = [
-  ['Status', 'Delivered, three summers (2022–2024), Stevens pre-college'],
+  ['Status', 'Continuously delivered every summer since 2022, Stevens pre-college'],
   ['Audience', 'High schools and districts, grades 9–12'],
   ['Format', 'District-embedded curriculum · project-based'],
   ['Alignment', 'NJ & NY standards · college articulation'],
@@ -31,8 +31,8 @@ const MINI_LIST = [
 ] as const
 
 const DELIVERY_STATS = [
-  { value: '73–80%', label: 'rated the program Excellent each year, and 0% rated it Poor, all three years' },
-  { value: '88–96%', label: 'rated Professor Karam Excellent (2022–2024)' },
+  { value: '96–98%', label: 'rated the program Excellent each year, and 0% rated it Poor, all three years' },
+  { value: '97–99%', label: 'rated Professor Karam Excellent (2022–2024)' },
   { value: '85–100%', label: 'rated the teaching above average on being motivating and approachable' },
   { value: '3 summers', label: '2022, 2023, and 2024, same course, same instructor' },
 ] as const
@@ -307,29 +307,13 @@ export function Pathway() {
   return (
     <main>
 
-      {/* ── Hero: color/picture split ── */}
+      {/* ── Hero ── */}
       <section
-        className="bg-quarry min-h-[62vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-quarry min-h-[56vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="pathway-h1">
 
-        <motion.div
-          className="hidden lg:block absolute inset-y-0 right-0 w-[40%]"
-          style={{ willChange: 'opacity, transform' }}
-          initial={reduce ? undefined : { opacity: 0 }}
-          animate={reduce ? undefined : { opacity: 1 }}
-          transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}>
-          <img
-            src="/images/stevens-students.jpg"
-            alt="Construction-management pathway students at Stevens Institute of Technology, New Jersey"
-            className="w-full h-full object-cover"
-            style={{ filter: 'grayscale(25%) contrast(1.08)' }}
-            loading="eager"
-            fetchPriority="high"
-          />
-        </motion.div>
-
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="lg:max-w-[64%] lg:pr-8 xl:pr-12">
+          <div>
 
             <motion.span
               className="inline-block text-[11px] uppercase tracking-[0.18em] bg-anthracite/10 text-anthracite px-3 py-1 mb-8 select-none"
@@ -345,7 +329,7 @@ export function Pathway() {
                 as many lines and ballooning past the others in height. */}
             <motion.h1
               id="pathway-h1"
-              className="text-[2.25rem] lg:text-[3.25rem] xl:text-[3.875rem] leading-[1.08] tracking-[-0.03em] text-anthracite italic mb-8 [text-wrap:balance]"
+              className="text-[2.25rem] lg:text-[3.25rem] xl:text-[3.875rem] leading-[1.08] tracking-[-0.03em] text-anthracite italic mb-8 max-w-[38ch] [text-wrap:balance]"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 40 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -463,7 +447,7 @@ export function Pathway() {
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.45, ease: EASE }}>
             <strong className="text-anthracite font-medium">Delivery record:</strong> Pathway has been
-            taught for three summers (2022–2024) in the Stevens Institute of Technology pre-college
+            taught continuously every summer since 2022 in the Stevens Institute of Technology pre-college
             Civil Engineering course. Participant satisfaction data and sourcing are reported in{' '}
             <Link href="/impact" className="text-anthracite underline underline-offset-2 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">Impact &amp; accountability</Link>,
             alongside the Explore results.
@@ -471,7 +455,7 @@ export function Pathway() {
         </div>
       </section>
 
-      {/* ── Proven delivery: three summers ── bg-bone */}
+      {/* ── Proven delivery: every summer since 2022 ── bg-bone */}
       <section className="bg-bone py-14 lg:py-20" aria-labelledby="delivery-h2">
         <div className="max-w-7xl mx-auto px-6">
           <div className="lg:grid lg:grid-cols-[1fr_1.4fr] lg:gap-16 xl:gap-20 lg:items-start mb-10 lg:mb-12">
@@ -492,7 +476,7 @@ export function Pathway() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
-                The Pathway model, taught for three summers.
+                The Pathway model, taught every summer since 2022.
               </motion.h2>
             </div>
             <motion.p
@@ -503,7 +487,7 @@ export function Pathway() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.5, delay: 0.1, ease: EASE }}>
               Aedifica's Pathway model is grounded in the Stevens Institute of Technology pre-college
-              Civil Engineering course, taught by co-founder Dr. Karim Karam. Across three summers,
+              Civil Engineering course, taught by co-founder Dr. Karim Karam. Every summer since 2022,
               students rated the course and instructor consistently high.
             </motion.p>
           </div>
@@ -612,7 +596,7 @@ export function Pathway() {
           </div>
 
           <motion.div
-            className="border border-wine px-6 py-6 lg:px-8 lg:py-7 mt-12 lg:mt-14 print:hidden"
+            className="mt-12 lg:mt-14 print:hidden"
             initial={reduce ? undefined : { opacity: 0, y: 16 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
@@ -626,8 +610,8 @@ export function Pathway() {
               </p>
               <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>
                 <strong className="text-anthracite font-medium">Where it comes from.</strong> It is built on the Hillside–Stevens bridge
-                programme and the Resilient Futures studio designs. Pathway&rsquo;s delivered record is three summers of pre-college
-                engineering at Stevens Institute of Technology (2022&ndash;2024), reported in{' '}
+                programme and the Resilient Futures studio designs. Pathway&rsquo;s delivered record is continuous, every summer
+                since 2022, of pre-college engineering at Stevens Institute of Technology, reported in{' '}
                 <Link href="/impact" className="text-anthracite underline underline-offset-2 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">Impact &amp; accountability</Link>.
               </p>
               <p className="text-[13.5px] text-anthracite/78 leading-[1.65]" style={{ fontFamily: 'var(--font-body)' }}>

@@ -25,46 +25,25 @@ export function PathwayQuotes() {
     <section className="bg-anthracite py-14 lg:py-20" aria-labelledby="pathway-quotes-h2">
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* Mirrored from Explore: image left, text right, instead of repeating
-            the same text-left/image-right order in the same colors reversed. */}
-        <div className="lg:grid lg:grid-cols-[1fr_1.1fr] lg:gap-16 xl:gap-20 mb-12 lg:mb-16">
-          <div className="lg:order-2">
-            <motion.div
-              className="flex items-center gap-3 mb-4"
-              initial={reduce ? undefined : { opacity: 0 }}
-              whileInView={reduce ? undefined : { opacity: 1 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-              <p className="text-[12px] uppercase tracking-[0.14em] text-white/70 font-medium" style={{ fontFamily: 'var(--font-body)' }}>High school · Stevens pre-college</p>
-            </motion.div>
-            <motion.h2
-              id="pathway-quotes-h2"
-              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.07] tracking-[-0.03em] text-white italic [text-wrap:balance] scroll-mt-24 mb-6"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-              initial={reduce ? undefined : { opacity: 0, y: 24 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-              Aedifica Pathway
-            </motion.h2>
-          </div>
-
-          {/* Absolutely positioned so its own intrinsic size can't inflate the grid
-              row — the row height comes only from the text column. */}
+        <div className="mb-12 lg:mb-16">
           <motion.div
-            className="relative mt-10 lg:mt-0 lg:order-1 min-h-[280px] overflow-hidden"
-            initial={reduce ? undefined : { opacity: 0, y: 18 }}
+            className="flex items-center gap-3 mb-4"
+            initial={reduce ? undefined : { opacity: 0 }}
+            whileInView={reduce ? undefined : { opacity: 1 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+            <p className="text-[12px] uppercase tracking-[0.14em] text-white/70 font-medium" style={{ fontFamily: 'var(--font-body)' }}>High school · Stevens pre-college</p>
+          </motion.div>
+          <motion.h2
+            id="pathway-quotes-h2"
+            className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.07] tracking-[-0.03em] text-white italic [text-wrap:balance] scroll-mt-24 mb-6"
+            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+            initial={reduce ? undefined : { opacity: 0, y: 24 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
-            <img
-              src="/images/campus-group.jpg"
-              alt="Stevens pre-college Pathway students presenting their work"
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ filter: 'grayscale(15%) contrast(1.05) brightness(0.94)' }}
-              loading="lazy"
-            />
-          </motion.div>
+            transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
+            Pathway
+          </motion.h2>
         </div>
 
         {/* A dense numbered list instead of a hero quote plus a grid — the same

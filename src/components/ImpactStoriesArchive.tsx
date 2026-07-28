@@ -106,7 +106,7 @@ const STORIES: Story[] = [
     type: 'Instructor Story · Curriculum in action',
     title: 'Taught by a practicing civil engineer',
     quote: 'He made us all think on our feet and think outside the box while considering the needs and happiness of the client.',
-    body: "The Pathway runs on a practicing civil engineer who teaches through real projects and first-hand industry stories, consistently the program's most-praised element, rated \"Excellent\" by 88-96% of students each summer.",
+    body: "The Pathway runs on a practicing civil engineer who teaches through real projects and first-hand industry stories, consistently the program's most-praised element, rated \"Excellent\" by 97-99% of students each summer.",
     pill: 'Pathway',
   },
   {

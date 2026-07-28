@@ -59,72 +59,9 @@ export function AedificaModel() {
     <section className="bg-bone py-14 lg:py-20" aria-labelledby="model-heading">
       <div className="max-w-7xl mx-auto px-6">
 
-        <div className="lg:grid lg:grid-cols-[6fr_7fr] lg:gap-16 xl:gap-20 lg:items-start">
+        <div className="lg:grid lg:grid-cols-[7fr_6fr] lg:gap-16 xl:gap-20 lg:items-start">
 
-          {/* Left: sticky brand video */}
-          <motion.div
-            className="mb-10 lg:mb-0 lg:sticky lg:top-24"
-            initial={reduce ? undefined : { opacity: 0, x: -20 }}
-            whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
-            viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.65, ease: EASE }}>
-            {/* Bleeds past the container's left gutter and carries a hairline frame
-                instead of overlaid text, since the footage shifts color too much
-                underneath to guarantee any caption stays legible. */}
-            <div className="overflow-hidden border border-anthracite/12 lg:-ml-6 lg:w-[calc(100%+1.5rem)]">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full"
-                aria-hidden="true">
-                <source src="/videos/aedifica-brand.mp4" type="video/mp4" />
-              </video>
-            </div>
-
-            {/* Exposure → Skills → Credentials → Opportunity, stacked under the video */}
-            <div className="mt-8 border-t border-sediment/30 pl-1">
-              {FLOW_STAGES.map((stage, i) => (
-                <motion.div
-                  key={stage.label}
-                  className="py-4 lg:py-5 border-b border-sediment/30"
-                  initial={reduce ? undefined : { opacity: 0, y: 14 }}
-                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                  viewport={reduce ? undefined : VIEWPORT}
-                  transition={reduce ? undefined : { duration: 0.5, delay: 0.1 + i * 0.08, ease: EASE }}
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <span
-                      className="flex-shrink-0 w-[13px] h-[13px] rotate-45"
-                      style={{ backgroundColor: stage.color }}
-                      aria-hidden="true"
-                    />
-                    <span
-                      className="text-[11px] uppercase tracking-[0.16em] text-anthracite/80"
-                      style={{ fontFamily: 'var(--font-body)' }}
-                    >
-                      Stage {String(i + 1).padStart(2, '0')}
-                    </span>
-                  </div>
-                  <p
-                    className="text-[1.625rem] lg:text-[1.875rem] italic text-anthracite leading-none mb-2.5"
-                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
-                  >
-                    {stage.label}
-                  </p>
-                  <p
-                    className="text-[12.5px] text-anthracite/70 leading-[1.6] max-w-[46ch]"
-                    style={{ fontFamily: 'var(--font-body)' }}
-                  >
-                    {stage.desc}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right: intro + items */}
+          {/* Left: intro + items */}
           <div className="lg:mt-2">
 
             {/* Section intro */}
@@ -218,6 +155,57 @@ export function AedificaModel() {
             </div>
 
           </div>
+
+          {/* Right: stage list. Top padding pushes it past the section intro
+              (eyebrow + heading) so it starts level with "Field-built", the first
+              item on the left, instead of the heading above it. */}
+          <motion.div
+            className="mt-12 lg:mt-0 lg:pt-[186px]"
+            initial={reduce ? undefined : { opacity: 0, x: 20 }}
+            whileInView={reduce ? undefined : { opacity: 1, x: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.65, ease: EASE }}>
+            {/* Exposure → Skills → Credentials → Opportunity */}
+            <div className="border-t border-sediment/30 pl-1">
+              {FLOW_STAGES.map((stage, i) => (
+                <motion.div
+                  key={stage.label}
+                  className="py-4 lg:py-5 border-b border-sediment/30"
+                  initial={reduce ? undefined : { opacity: 0, y: 14 }}
+                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                  viewport={reduce ? undefined : VIEWPORT}
+                  transition={reduce ? undefined : { duration: 0.5, delay: 0.1 + i * 0.08, ease: EASE }}
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <span
+                      className="flex-shrink-0 w-[13px] h-[13px] rotate-45"
+                      style={{ backgroundColor: stage.color }}
+                      aria-hidden="true"
+                    />
+                    <span
+                      className="text-[11px] uppercase tracking-[0.16em] text-anthracite/80"
+                      style={{ fontFamily: 'var(--font-body)' }}
+                    >
+                      Stage {String(i + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                  <p
+                    className="text-[1.625rem] lg:text-[1.875rem] italic text-anthracite leading-none mb-2.5"
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
+                  >
+                    {stage.label}
+                  </p>
+                  <p
+                    className="text-[12.5px] text-anthracite/70 leading-[1.6] max-w-[46ch]"
+                    style={{ fontFamily: 'var(--font-body)' }}
+                  >
+                    {stage.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
         </div>
 
       </div>

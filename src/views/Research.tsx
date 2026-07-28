@@ -356,7 +356,7 @@ export function Research() {
       <section className="bg-snow py-12 lg:py-16" aria-label="Methodology note">
         <div className="max-w-7xl mx-auto px-6">
           <motion.p
-            className="max-w-[70ch] text-[12.5px] text-anthracite/70 leading-[1.7] border border-wine px-5 py-4"
+            className="text-[12.5px] text-anthracite/70 leading-[1.7]"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0 }}
             whileInView={reduce ? undefined : { opacity: 1 }}

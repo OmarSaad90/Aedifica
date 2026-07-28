@@ -348,7 +348,7 @@ export function PartnerAudienceSelector() {
       {/* ── Contact Form ── */}
       <section
         ref={formRef}
-        className="bg-bone py-12 lg:py-18 scroll-mt-[70px]"
+        className="bg-bone py-12 lg:py-18 scroll-mt-[78px]"
         aria-labelledby="partner-form-h2">
         <div className="max-w-[1080px] mx-auto px-6">
 

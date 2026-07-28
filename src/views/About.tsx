@@ -372,7 +372,7 @@ export function About() {
 
       {/* ── Hero ── */}
       <section
-        className="bg-anthracite min-h-[72vh] flex flex-col justify-end pb-16 lg:pb-24 relative overflow-hidden"
+        className="bg-anthracite min-h-[56vh] flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24 relative overflow-hidden"
         aria-labelledby="about-h1">
         <div className="max-w-7xl mx-auto px-6 w-full">
 
@@ -396,7 +396,7 @@ About Aedifica
           </motion.h1>
 
           <motion.p
-            className="text-[14.5px] text-white/60 leading-[1.65] max-w-[60ch] mb-5"
+            className="text-[14.5px] text-white/60 leading-[1.65] max-w-[85ch] mb-5"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 14 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -407,7 +407,7 @@ About Aedifica
           </motion.p>
 
           <motion.p
-            className="text-[13px] text-white/50 leading-[1.65] max-w-[62ch]"
+            className="text-[13px] text-white/50 leading-[1.65] max-w-[85ch]"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 14 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -611,42 +611,42 @@ About Aedifica
                 <p
                   className="text-[12px] text-anthracite/75 uppercase tracking-[0.18em] mb-3 select-none"
                   style={{ fontFamily: 'var(--font-body)' }}>
-                  Organizational history
+                  Origin
                 </p>
-                <p className="text-[13.5px] text-anthracite/72 leading-[1.72]" style={{ fontFamily: 'var(--font-body)' }}>
-                  Aedifica grew from years of construction-management practice in the field, teaching,
-                  pre-college engineering programming, STEM outreach, and workforce-pathway design. The
-                  model brings together classroom rigor, hands-on construction thinking, employer
-                  relevance, and measurable scholar outcomes: a foundation in construction-management
-                  education; prior delivery through middle school (Hillside and community-based
-                  programming), high school (pre-college), and practical training and upskilling in
-                  industry; expansion into New Jersey-focused workforce pathway architecture; and the
-                  five programs, Explore, Pathway, Launch, Rebuild, and the Talent Pipeline, designed
-                  as a single scalable pathway. Delivery status for each is published in{' '}
-                  <Link href="/impact" className="text-anthracite underline underline-offset-2 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">
-                    Impact &amp; accountability
-                  </Link>.
+                <p
+                  className="text-[1.625rem] lg:text-[1.875rem] text-anthracite italic leading-[1.15] tracking-[-0.02em] mb-4"
+                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                  Founded inside the problem, not above it.
+                </p>
+                <p className="text-[15px] text-anthracite/75 leading-[1.72] mb-4" style={{ fontFamily: 'var(--font-body)' }}>
+                  Aedifica was conceived at the intersection of three stubborn realities: a construction workforce aging out faster than it is being replaced; a curriculum pipeline that too often treats industry as an afterthought; and a growing population of non-traditional scholars who possess enormous capacity but are poorly served by institutional pathways designed for eighteen-year-olds.
+                </p>
+                <p className="text-[15px] text-anthracite/75 leading-[1.72] mb-4" style={{ fontFamily: 'var(--font-body)' }}>
+                  Its founders came from both sides of that divide, licensed engineers and site experience on one hand, curriculum designers and educator-practitioners on the other. Aedifica exists because they refused to accept the polite fiction that these are separate problems for separate professions.
+                </p>
+                <p className="text-[15px] text-anthracite/75 leading-[1.72]" style={{ fontFamily: 'var(--font-body)' }}>
+                  Between educator and employer, Aedifica does not referee. We translate, and when translation is insufficient, we rebuild the terms of the conversation itself.
                 </p>
 
                 <div className="pt-4 border-t border-sediment/20">
                   <p
                     className="text-[12px] text-anthracite/75 uppercase tracking-[0.18em] mb-3 select-none"
                     style={{ fontFamily: 'var(--font-body)' }}>
-                    Origin
+                    Organizational history
                   </p>
-                  <p
-                    className="text-[1.625rem] lg:text-[1.875rem] text-anthracite italic leading-[1.15] tracking-[-0.02em] mb-4"
-                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                    Founded inside the problem, not above it.
-                  </p>
-                  <p className="text-[15px] text-anthracite/75 leading-[1.72] mb-4" style={{ fontFamily: 'var(--font-body)' }}>
-                    Aedifica was conceived at the intersection of three stubborn realities: a construction workforce aging out faster than it is being replaced; a curriculum pipeline that too often treats industry as an afterthought; and a growing population of non-traditional scholars who possess enormous capacity but are poorly served by institutional pathways designed for eighteen-year-olds.
-                  </p>
-                  <p className="text-[15px] text-anthracite/75 leading-[1.72] mb-4" style={{ fontFamily: 'var(--font-body)' }}>
-                    Its founders came from both sides of that divide, licensed engineers and site experience on one hand, curriculum designers and educator-practitioners on the other. Aedifica exists because they refused to accept the polite fiction that these are separate problems for separate professions.
-                  </p>
-                  <p className="text-[15px] text-anthracite/75 leading-[1.72]" style={{ fontFamily: 'var(--font-body)' }}>
-                    Between educator and employer, Aedifica does not referee. We translate, and when translation is insufficient, we rebuild the terms of the conversation itself.
+                  <p className="text-[13.5px] text-anthracite/72 leading-[1.72]" style={{ fontFamily: 'var(--font-body)' }}>
+                    Aedifica grew from years of construction-management practice in the field, teaching,
+                    pre-college engineering programming, STEM outreach, and workforce-pathway design. The
+                    model brings together classroom rigor, hands-on construction thinking, employer
+                    relevance, and measurable scholar outcomes: a foundation in construction-management
+                    education; prior delivery through middle school (Hillside and community-based
+                    programming), high school (pre-college), and practical training and upskilling in
+                    industry; expansion into New Jersey-focused workforce pathway architecture; and the
+                    five programs, Explore, Pathway, Launch, Rebuild, and the Talent Pipeline, designed
+                    as a single scalable pathway. Delivery status for each is published in{' '}
+                    <Link href="/impact" className="text-anthracite underline underline-offset-2 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">
+                      Impact &amp; accountability
+                    </Link>.
                   </p>
                 </div>
               </motion.div>

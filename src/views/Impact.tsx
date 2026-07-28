@@ -23,15 +23,15 @@ const GOALS = [
 
 const PROGRAM_STATUS = [
   { name: 'Explore', status: 'Delivered', detail: 'Two years, Building Bridges. Quantitative results below.', color: 'bg-datum', dark: false },
-  { name: 'Pathway', status: 'Delivered', detail: 'Three summers (2022-2024), Stevens pre-college, same course and instructor. Documented by participant satisfaction surveys from the Stevens Office of Pre-College Programs, reported below. These are course and instructor ratings, not academic-outcome measures; enrollment, completion, and articulation figures are not yet published.', color: 'bg-quarry', dark: true },
+  { name: 'Pathway', status: 'Delivered', detail: 'Continuously delivered every summer since 2022, Stevens pre-college, same course and instructor. Documented by participant satisfaction surveys from the Stevens Office of Pre-College Programs, reported below. These are course and instructor ratings, not academic-outcome measures; enrollment, completion, and articulation figures are not yet published.', color: 'bg-quarry', dark: true },
   { name: 'Launch', status: 'Designed', detail: 'Community-based partners engaged, grant applications submitted. No cohort delivered.', color: 'bg-sediment', dark: true },
   { name: 'Rebuild', status: 'Designed', detail: 'Curriculum and cohort model complete. No cohort delivered.', color: 'bg-rebuild-deep', dark: false },
   { name: 'Talent Pipeline', status: 'In formation', detail: 'Contractor relationships available, referral channel not yet formed.', color: 'bg-pipeline', dark: true },
 ] as const
 
 const PATHWAY_STATS = [
-  { num: '73–80%', label: 'Rated the program Excellent', meaning: 'Each year, and 0% rated it Poor, all three years.', accent: 'text-wine' },
-  { num: '88–96%', label: 'Rated Professor Karam Excellent', meaning: '(2022–2024)', accent: 'text-wine' },
+  { num: '96–98%', label: 'Rated the program Excellent', meaning: 'Each year, and 0% rated it Poor, all three years.', accent: 'text-wine' },
+  { num: '97–99%', label: 'Rated Professor Karam Excellent', meaning: '(2022–2024)', accent: 'text-wine' },
   { num: '85–100%', label: 'Rated the teaching above average', meaning: 'On being motivating and approachable.', accent: 'text-wine' },
   { num: '3 summers', label: 'Same course, same instructor', meaning: '2022, 2023, and 2024.', accent: 'text-wine' },
 ] as const
@@ -49,30 +49,13 @@ export function Impact() {
   return (
     <main>
 
-      {/* ── Hero: color/picture split ── */}
+      {/* ── Hero ── */}
       <section
-        className="bg-anthracite min-h-[58vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-anthracite min-h-[44vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="impact-h1">
 
-        <motion.div
-          className="hidden lg:block absolute inset-y-0 right-0 w-[40%]"
-          style={{ willChange: 'opacity' }}
-          initial={reduce ? undefined : { opacity: 0 }}
-          animate={reduce ? undefined : { opacity: 1 }}
-          transition={reduce ? undefined : { duration: 0.9, delay: 0.25, ease: EASE }}
-          aria-hidden="true">
-          <img
-            src="/images/impact-hero.png"
-            alt="Hillside middle school students holding bridge prototypes and poster boards"
-            className="w-full h-full object-cover"
-            style={{ filter: 'grayscale(20%) contrast(1.08)' }}
-            loading="eager"
-            fetchPriority="high"
-          />
-        </motion.div>
-
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="lg:max-w-[58%] lg:pr-8 xl:pr-12">
+          <div>
 
             <motion.span
               className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/70 px-3 py-1 mb-8 select-none"
@@ -85,7 +68,7 @@ export function Impact() {
 
             <motion.h1
               id="impact-h1"
-              className="text-[2.5rem] lg:text-[4rem] xl:text-[4.75rem] leading-[1] tracking-[-0.036em] text-white italic mb-8 [text-wrap:balance]"
+              className="text-[2.5rem] lg:text-[4rem] xl:text-[4.75rem] leading-[1] tracking-[-0.036em] text-white italic mb-8 max-w-[20ch] [text-wrap:balance]"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 40 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -94,14 +77,14 @@ export function Impact() {
             </motion.h1>
 
             <motion.p
-              className="text-[14.5px] text-white/65 leading-[1.72] max-w-[54ch]"
+              className="text-[14.5px] text-white/65 leading-[1.72] max-w-[85ch]"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 14 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}>
               Two of our five programs have run in the field. Explore has been delivered for two
               years, documented below as the Building Bridges program. Pathway has been delivered
-              for three years through Stevens pre-college, documented with participant satisfaction
+              continuously every summer since 2022 through Stevens pre-college, documented with participant satisfaction
               data and scholar reflections rather than academic-outcome measures. The three
               workforce-track programs, Launch, Rebuild, and Talent Pipeline, are designed and not
               yet delivered. For those, we publish <em className="not-italic text-wine-light">how</em> we
@@ -128,9 +111,9 @@ export function Impact() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
               Explore has been delivered for two years, documented below as the Building Bridges
-              program. Pathway has been delivered for three years through Stevens pre-college,
-              documented with participant satisfaction data and scholar reflections rather than
-              academic-outcome measures.
+              program. Pathway has been delivered continuously every summer since 2022 through Stevens
+              pre-college, documented with participant satisfaction data and scholar reflections rather
+              than academic-outcome measures.
             </motion.p>
             <motion.p
               className="text-[13px] text-anthracite/60 italic leading-[1.6]"
@@ -282,7 +265,7 @@ export function Impact() {
           </div>
 
           <motion.p
-            className="text-[11.5px] italic text-anthracite/70 leading-[1.65] max-w-[80ch] mt-6 border border-wine px-5 py-4"
+            className="text-[11.5px] italic text-anthracite/70 leading-[1.65] mt-6"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0 }}
             whileInView={reduce ? undefined : { opacity: 1 }}
@@ -314,7 +297,7 @@ export function Impact() {
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
-              The Pathway model, taught for three summers.
+              The Pathway model, taught every summer since 2022.
             </motion.h2>
             <motion.p
               className="text-[15px] text-anthracite/78 leading-[1.72] max-w-[60ch] mb-10 lg:mb-12"
@@ -324,8 +307,8 @@ export function Impact() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, delay: 0.08, ease: EASE }}>
               Aedifica&rsquo;s Pathway model is grounded in the Stevens Institute of Technology
-              pre-college Civil Engineering course, taught by co-founder Dr. Karim Karam. Across
-              three summers, students rated the course and instructor consistently high.
+              pre-college Civil Engineering course, taught by co-founder Dr. Karim Karam. Every
+              summer since 2022, students rated the course and instructor consistently high.
             </motion.p>
 
             <div className="border-t border-sediment/20">
@@ -359,7 +342,7 @@ export function Impact() {
             </div>
 
             <motion.p
-              className="text-[11.5px] italic text-anthracite/70 leading-[1.65] max-w-[80ch] mt-6 border border-wine px-5 py-4"
+              className="text-[11.5px] italic text-anthracite/70 leading-[1.65] mt-6"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0 }}
               whileInView={reduce ? undefined : { opacity: 1 }}

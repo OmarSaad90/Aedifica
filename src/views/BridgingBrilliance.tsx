@@ -526,9 +526,9 @@ export function BridgingBrilliance() {
         </div>
       </section>
 
-      {/* ── Sticky section bar ── sits under the fixed navbar (h-16 + 6px spec strip) */}
+      {/* ── Sticky section bar ── sits under the fixed navbar (h-[72px] + 6px spec strip) */}
       <nav
-        className="sticky top-[70px] z-40 bg-snow border-b border-sediment/25"
+        className="sticky top-[78px] z-40 bg-snow border-b border-sediment/25"
         aria-label="On this page">
         <div className="max-w-7xl mx-auto px-6 flex items-center lg:justify-center gap-6 lg:gap-8 overflow-x-auto whitespace-nowrap py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {SECTION_LINKS.map(({ id, label }) => {

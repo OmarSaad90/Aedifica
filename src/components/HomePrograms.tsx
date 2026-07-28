@@ -119,9 +119,9 @@ export function HomePrograms() {
         </motion.p>
 
         {/* 4-program quadrant panel — one sheet cut into equal cells by hairline mortar
-            lines (the section's own bg-bone showing through a 2px gap), joined at the
-            center by the house diamond glyph instead of four boxes sitting in a row. */}
-        <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-0.5">
+            lines (the section's own bg-snow showing through a 2px gap) instead of four
+            boxes sitting in a row. */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-0.5">
           {PROGRAMS.map(({ chip, name, body, meta, cta, to, color, dark }, i) => (
             <motion.div
               key={name}
@@ -157,18 +157,6 @@ export function HomePrograms() {
               </Link>
             </motion.div>
           ))}
-
-          {/* The crossing point — halo breaks the mortar lines cleanly behind the
-              marker, same construction as HeroPathway's waypoints. */}
-          <div
-            className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden sm:block"
-            aria-hidden="true"
-          >
-            <div className="relative w-9 h-9 -translate-x-1/2 -translate-y-1/2">
-              <span className="absolute inset-0 rotate-45 bg-snow" />
-              <span className="absolute inset-0 m-auto w-5 h-5 rotate-45 bg-anthracite" />
-            </div>
-          </div>
         </div>
 
         {/* Talent Pipeline — Program 05, full width. Same mortar gap as the panel

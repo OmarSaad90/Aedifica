@@ -12,8 +12,8 @@ const QUOTES = [
   { text: 'When we mess up, this only sets you up for a new door to open.', size: 'md' },
   { text: 'It is as important to learn as to succeed.', size: 'lg' },
   { text: 'Engineering is designing, creating, testing, and improving solutions.', size: 'lg' },
-  { text: 'Engineering means designing for sustainability and using serious critical thinking skills.', size: 'md' },
-  { text: 'Not everything will be easy.', size: 'xl' },
+  { text: 'Engineering means designing for sustainability and using serious critical thinking skills.', size: 'xl' },
+  { text: 'Not everything will be easy.', size: 'lg' },
 ] as const
 
 const SIZE_CLASSES: Record<string, string> = {
@@ -29,46 +29,25 @@ export function ExploreQuotes() {
     <section className="bg-bone py-14 lg:py-20" aria-labelledby="quotes-h2">
       <div className="max-w-7xl mx-auto px-6">
 
-        <div className="lg:grid lg:grid-cols-[1.1fr_1fr] lg:gap-16 xl:gap-20 mb-12 lg:mb-16">
-          <div>
-            <motion.div
-              className="flex items-center gap-3 mb-4"
-              initial={reduce ? undefined : { opacity: 0 }}
-              whileInView={reduce ? undefined : { opacity: 1 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-              <p className="text-[12px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Middle school · Building Bridges</p>
-            </motion.div>
-            <motion.h2
-              id="quotes-h2"
-              className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.07] tracking-[-0.03em] text-anthracite italic [text-wrap:balance] scroll-mt-24 mb-6"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-              initial={reduce ? undefined : { opacity: 0, y: 24 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
-              Aedifica Explore
-            </motion.h2>
-          </div>
-
-          {/* The image is absolutely positioned inside its wrapper so its own
-              (square) intrinsic size can't inflate the grid row — the row height
-              comes only from the text column, and the photo crops to match it,
-              instead of pushing the row taller and leaving a gap under the text. */}
+        <div className="mb-12 lg:mb-16">
           <motion.div
-            className="relative mt-10 lg:mt-0 min-h-[280px] overflow-hidden"
-            initial={reduce ? undefined : { opacity: 0, y: 18 }}
+            className="flex items-center gap-3 mb-4"
+            initial={reduce ? undefined : { opacity: 0 }}
+            whileInView={reduce ? undefined : { opacity: 1 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+            <p className="text-[12px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Middle school · Building Bridges</p>
+          </motion.div>
+          <motion.h2
+            id="quotes-h2"
+            className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.07] tracking-[-0.03em] text-anthracite italic [text-wrap:balance] scroll-mt-24 mb-6"
+            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+            initial={reduce ? undefined : { opacity: 0, y: 24 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
             viewport={reduce ? undefined : VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
-            <img
-              src="/images/hia-students-bridge.jpg"
-              alt="Building Bridges students presenting their K'Nex bridge model, Aedifica Explore"
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ filter: 'grayscale(15%) contrast(1.05)', objectPosition: 'center 22%' }}
-              loading="lazy"
-            />
-          </motion.div>
+            transition={reduce ? undefined : { duration: 0.65, ease: SPRING }}>
+            Explore
+          </motion.h2>
         </div>
 
         {/* A typographic cluster, not a hero quote plus a grid — CSS columns let the

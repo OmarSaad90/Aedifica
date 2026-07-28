@@ -50,6 +50,8 @@ const NAV_ITEMS: NavItem[] = [
 
 const EASE = [0.25, 0.1, 0.25, 1] as const
 
+const WORDMARK_LOGO = '/images/logo-wordmark.png'
+
 const SERVICE_LOGOS: Record<string, string> = {
   '/programs/rebuild':         '/images/logo-rebuild.png',
   '/programs/launch':          '/images/logo-talent.png',
@@ -149,20 +151,26 @@ export function Navbar() {
         <span className="flex-1 bg-rebuild" />
         <span className="flex-1 bg-pipeline" />
       </div>
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
+      <div className="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between gap-6">
 
         {/* Logo + wordmark + tagline */}
         <div className="flex items-center gap-3 flex-shrink-0">
           <Link href="/" className="flex items-center gap-3">
-            <div className="h-9 w-[27px] flex-shrink-0 overflow-hidden flex items-center justify-center">
+            <div className="h-11 w-[33px] flex-shrink-0 overflow-hidden flex items-center justify-center">
               <NavLogo videoSrc={logoVideoSrc} imgSrc={logoSrc} scale={LOGO_SCALE[logoSrc] ?? 1} />
             </div>
-            <span
-              className="text-[14px] tracking-[0.06em] text-anthracite uppercase"
-              style={{ fontFamily: 'var(--font-wordmark)', fontWeight: 400 }}>
-              Aedifica
-            </span>
+            <img
+              src={WORDMARK_LOGO}
+              alt="Aedifica"
+              className="h-6 w-auto flex-shrink-0"
+              style={{ mixBlendMode: 'multiply' }} />
           </Link>
+          <span className="hidden xl:block w-px h-5 bg-anthracite/15 flex-shrink-0" aria-hidden="true" />
+          <span
+            className="hidden xl:block text-[13px] italic text-anthracite/70 whitespace-nowrap tracking-[-0.01em]"
+            style={{ fontFamily: 'var(--font-heading)' }}>
+            We build the builders.
+          </span>
         </div>
 
         {/* Desktop nav */}
