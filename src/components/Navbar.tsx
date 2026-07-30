@@ -75,11 +75,11 @@ const LOGO_SCALE: Record<string, number> = {
 // PNG above, so partial drops are safe. See public/videos/logos/README.txt.
 const SERVICE_LOGO_VIDEOS: Record<string, string> = {
   '/':                         '/videos/logos/logo-general.mp4',
-  '/programs/rebuild':         '/videos/logos/logo-rebuild.mp4',
-  '/programs/launch':          '/videos/logos/logo-launch.mp4',
-  '/programs/pathway':         '/videos/logos/logo-pathway.mp4',
+  '/programs/rebuild':         '/videos/logos/logo-rebuild-raw.webm', // TEST: client's raw export, unprocessed
+  '/programs/launch':          '/videos/logos/logo-launch-raw.webm',  // TEST: client's raw export, unprocessed
+  '/programs/pathway':         '/videos/logos/logo-pathway-raw.webm', // TEST: client's raw export, unprocessed
   '/programs/talent-pipeline': '/videos/logos/logo-general.mp4',
-  '/programs/explore':         '/videos/logos/logo-explore.mp4',
+  '/programs/explore':         '/videos/logos/logo-explore-raw.webm', // TEST: client's raw export, unprocessed
 }
 const DEFAULT_LOGO_VIDEO = '/videos/logos/logo-general.mp4'
 
@@ -110,7 +110,7 @@ function NavLogo({ videoSrc, imgSrc, scale }: { videoSrc: string; imgSrc: string
       style={{ mixBlendMode: 'multiply', transform: `scale(${scale})`, transformOrigin: 'center' }}
       onError={() => setVideoFailed(true)}
       aria-label="Aedifica">
-      <source src={videoSrc} type="video/mp4" />
+      <source src={videoSrc} type={videoSrc.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />
     </video>
   )
 }
@@ -151,25 +151,32 @@ export function Navbar() {
         <span className="flex-1 bg-rebuild" />
         <span className="flex-1 bg-pipeline" />
       </div>
-      <div className="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between gap-6">
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between gap-6 py-3">
 
-        {/* Logo + wordmark + tagline */}
-        <div className="flex items-center gap-3 flex-shrink-0">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="h-11 w-[33px] flex-shrink-0 overflow-hidden flex items-center justify-center">
-              <NavLogo videoSrc={logoVideoSrc} imgSrc={logoSrc} scale={LOGO_SCALE[logoSrc] ?? 1} />
-            </div>
-            <img
-              src={WORDMARK_LOGO}
-              alt="Aedifica"
-              className="h-6 w-auto flex-shrink-0"
-              style={{ mixBlendMode: 'multiply' }} />
-          </Link>
-          <span className="hidden xl:block w-px h-5 bg-anthracite/15 flex-shrink-0" aria-hidden="true" />
+        {/* Logo + wordmark + tagline, stacked two rows so nav links can center against the whole block */}
+        <div className="flex flex-col gap-1 flex-shrink-0">
+          <div className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-3">
+              <div className="h-11 w-[33px] flex-shrink-0 overflow-hidden flex items-center justify-center">
+                <NavLogo videoSrc={logoVideoSrc} imgSrc={logoSrc} scale={LOGO_SCALE[logoSrc] ?? 1} />
+              </div>
+              <img
+                src={WORDMARK_LOGO}
+                alt="Aedifica"
+                className="h-6 w-auto flex-shrink-0"
+                style={{ mixBlendMode: 'multiply' }} />
+            </Link>
+            <span className="hidden xl:block w-px h-5 bg-anthracite/15 flex-shrink-0" aria-hidden="true" />
+            <span
+              className="hidden xl:block text-[13px] italic text-anthracite/70 whitespace-nowrap tracking-[-0.01em]"
+              style={{ fontFamily: 'var(--font-heading)' }}>
+              We build the builders.
+            </span>
+          </div>
           <span
-            className="hidden xl:block text-[13px] italic text-anthracite/70 whitespace-nowrap tracking-[-0.01em]"
-            style={{ fontFamily: 'var(--font-heading)' }}>
-            We build the builders.
+            className="text-[10px] uppercase tracking-[0.14em] text-anthracite/60 font-semibold whitespace-nowrap"
+            style={{ fontFamily: 'var(--font-body)' }}>
+            Earth. Engineers. Education.
           </span>
         </div>
 
@@ -274,7 +281,7 @@ export function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="lg:hidden -mr-3 p-3 text-anthracite ml-auto cursor-pointer"
+          className="lg:hidden -mr-3 p-3 text-anthracite cursor-pointer"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={mobileOpen}>

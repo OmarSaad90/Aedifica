@@ -28,45 +28,43 @@ export function Families() {
   return (
     <main>
 
-      {/* ── Hero: dark, no picture, wine-split emphasis ── */}
+      {/* ── Hero: blush, no picture, wine-split emphasis ── */}
       <section
-        className="bg-anthracite min-h-[54vh] flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-blush min-h-[54vh] flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="families-h1">
 
         <div className="max-w-7xl mx-auto px-6 w-full">
-          <div className="max-w-[62ch]">
 
-            <motion.span
-              className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/80 px-3 py-1 mb-10 select-none"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={reduce ? undefined : { opacity: 0, y: 10 }}
-              animate={reduce ? undefined : { opacity: 1, y: 0 }}
-              transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-              For Families
-            </motion.span>
+          <motion.span
+            className="inline-block text-[11px] uppercase tracking-[0.18em] bg-anthracite/8 text-anthracite/80 px-3 py-1 mb-10 select-none"
+            style={{ fontFamily: 'var(--font-body)' }}
+            initial={reduce ? undefined : { opacity: 0, y: 10 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
+            For Families
+          </motion.span>
 
-            <motion.h1
-              id="families-h1"
-              className="text-[2.5rem] lg:text-[4rem] xl:text-[4.75rem] leading-[1] tracking-[-0.032em] text-white italic mb-8 [text-wrap:balance]"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-              initial={reduce ? undefined : { opacity: 0, y: 40 }}
-              animate={reduce ? undefined : { opacity: 1, y: 0 }}
-              transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
-              A real path into careers that build our communities, <span className="text-wine-light">at no cost to your child.</span>
-            </motion.h1>
+          <motion.h1
+            id="families-h1"
+            className="text-[2.5rem] lg:text-[4rem] xl:text-[4.75rem] leading-[1] tracking-[-0.032em] text-anthracite italic mb-8 [text-wrap:balance]"
+            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+            initial={reduce ? undefined : { opacity: 0, y: 40 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
+            A real path into careers that build our communities, <span className="text-wine">at no cost to your child.</span>
+          </motion.h1>
 
-            <motion.p
-              className="text-[14.5px] text-white/70 leading-[1.7] max-w-[54ch]"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={reduce ? undefined : { opacity: 0, y: 14 }}
-              animate={reduce ? undefined : { opacity: 1, y: 0 }}
-              transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}>
-              If your child is curious about how roads, bridges, schools, and neighborhoods get
-              built, Aedifica helps them explore those careers with real professionals and
-              hands-on projects, starting as early as middle school.
-            </motion.p>
+          <motion.p
+            className="text-[14.5px] text-anthracite/80 leading-[1.7]"
+            style={{ fontFamily: 'var(--font-body)' }}
+            initial={reduce ? undefined : { opacity: 0, y: 14 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}>
+            If your child is curious about how roads, bridges, schools, and neighborhoods get
+            built, Aedifica helps them explore those careers with real professionals and
+            hands-on projects, starting as early as middle school.
+          </motion.p>
 
-          </div>
         </div>
       </section>
 
@@ -160,7 +158,7 @@ export function Families() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
               <img
-                src="/images/partnership-event.jpg"
+                src="/images/families-event.avif"
                 alt="Families and students at an Aedifica program event"
                 className="w-full h-[260px] lg:h-[320px] object-cover"
                 style={{ filter: 'grayscale(20%) contrast(1.05)' }}

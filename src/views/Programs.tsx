@@ -49,7 +49,7 @@ const PROGRAMS = [
     delivers: 'Credentials, confidence, and a defined interview opportunity in a construction-management-track role.',
     cta: 'See Rebuild',
     to: '/programs/rebuild',
-    color: 'bg-rebuild-deep',
+    color: 'bg-rebuild',
     dark: false,
   },
   {
@@ -88,7 +88,7 @@ export function Programs() {
 
               <motion.h1
                 id="programs-heading"
-                className="text-[2.5rem] lg:text-[3.75rem] xl:text-[4.75rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic max-w-[16ch]"
+                className="text-[2.5rem] lg:text-[clamp(2.5rem,5vw,4rem)] lg:whitespace-nowrap leading-[1.05] tracking-[-0.03em] text-anthracite italic"
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
                 initial={reduce ? undefined : { opacity: 0, y: 28 }}
                 animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -189,19 +189,16 @@ export function Programs() {
                   {PROGRAMS.map(({ name, code, who, format, delivers, cta, to, color, dark }) => (
                     <tr key={name} className="border-b border-sediment/20 last:border-b-0">
                       <td className="px-5 py-4 align-top">
-                        <div className="flex items-start gap-3">
-                          <span className={`flex-shrink-0 w-[9px] h-[9px] rotate-45 mt-[6px] ${color}`} aria-hidden="true" />
-                          <span>
-                            <span
-                              className="block text-[1.1rem] italic text-anthracite leading-none mb-1.5"
-                              style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
-                              {name}
-                            </span>
-                            <span
-                              className="block text-[10px] uppercase tracking-[0.1em] text-anthracite/60"
-                              style={{ fontFamily: 'var(--font-body)' }}>
-                              {code}
-                            </span>
+                        <div>
+                          <span
+                            className="block text-[1.1rem] italic text-anthracite leading-none mb-1.5"
+                            style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                            {name}
+                          </span>
+                          <span
+                            className="block text-[10px] uppercase tracking-[0.1em] text-anthracite/60"
+                            style={{ fontFamily: 'var(--font-body)' }}>
+                            {code}
                           </span>
                         </div>
                       </td>

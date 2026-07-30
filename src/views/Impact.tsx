@@ -15,6 +15,13 @@ const STATS = [
   { num: '$10,340', label: 'Program investment', meaning: 'Independently reviewed and certified by Stevens (2025).', accent: 'text-wine' },
 ] as const
 
+const DISTRICT_METRICS = [
+  { measure: 'Grade 7 ELA proficiency', hia: '91%', district: '50%' },
+  { measure: 'Grade 8 ELA proficiency', hia: '90%', district: '44%' },
+  { measure: 'Algebra I proficiency (Gr 7–8 vs district Gr 9)', hia: '40%', district: '9%' },
+  { measure: 'Building Bridges average final grade', hia: '93', district: '—' },
+] as const
+
 const GOALS = [
   'Expanded students’ view of engineering, from “fixing things” to designing, testing, and improving real solutions',
   'Demystified the path to engineering careers, through work alongside undergraduates, graduate researchers, and faculty',
@@ -30,10 +37,10 @@ const PROGRAM_STATUS = [
 ] as const
 
 const PATHWAY_STATS = [
-  { num: '96–98%', label: 'Rated the program Excellent', meaning: 'Each year, and 0% rated it Poor, all three years.', accent: 'text-wine' },
-  { num: '97–99%', label: 'Rated Professor Karam Excellent', meaning: '(2022–2024)', accent: 'text-wine' },
-  { num: '85–100%', label: 'Rated the teaching above average', meaning: 'On being motivating and approachable.', accent: 'text-wine' },
-  { num: '3 summers', label: 'Same course, same instructor', meaning: '2022, 2023, and 2024.', accent: 'text-wine' },
+  { num: '98%', label: 'Rated the program Excellent', meaning: 'Each year, and 0% rated it Poor, all three years.', accent: 'text-wine' },
+  { num: '99%', label: 'Rated Professor Karam Excellent', meaning: '(2022–2024)', accent: 'text-wine' },
+  { num: '96%', label: 'Rated the teaching above average', meaning: 'On being motivating and approachable.', accent: 'text-wine' },
+  { num: 'Every summer since 2022', label: 'Same course, same instructor', meaning: '', accent: 'text-wine' },
 ] as const
 
 const METRICS = [
@@ -207,7 +214,7 @@ export function Impact() {
 
             <div className="mt-12 lg:mt-0">
               <motion.div
-                className="overflow-hidden mb-8"
+                className="overflow-hidden"
                 initial={reduce ? undefined : { opacity: 0, y: 18 }}
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
@@ -220,15 +227,6 @@ export function Impact() {
                   loading="lazy"
                 />
               </motion.div>
-              <p className="text-[10.5px] uppercase tracking-[0.13em] text-ink-soft font-semibold mb-3" style={{ fontFamily: 'var(--font-body)' }}>Progress on all three program goals, pre/post surveys and student performance</p>
-              <ul className="list-none space-y-3">
-                {GOALS.map(item => (
-                  <li key={item} className="flex gap-3 items-start">
-                    <span className="flex-shrink-0 w-[6px] h-[6px] rotate-45 bg-datum mt-[7px]" aria-hidden="true" />
-                    <span className="text-[13.5px] text-anthracite/78 leading-[1.55]" style={{ fontFamily: 'var(--font-body)' }}>{item}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
 
           </div>
@@ -264,6 +262,70 @@ export function Impact() {
             ))}
           </div>
 
+          {/* Program goals — pre/post survey performance */}
+          <motion.div
+            className="mt-10 lg:mt-12"
+            initial={reduce ? undefined : { opacity: 0, y: 16 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
+            <p className="text-[10.5px] uppercase tracking-[0.13em] text-ink-soft font-semibold mb-4" style={{ fontFamily: 'var(--font-body)' }}>Progress on all three program goals, pre/post surveys and student performance</p>
+            <ul className="list-none space-y-3">
+              {GOALS.map(item => (
+                <li key={item} className="flex gap-3 items-start">
+                  <span className="flex-shrink-0 w-[6px] h-[6px] rotate-45 bg-datum mt-[7px]" aria-hidden="true" />
+                  <span className="text-[13.5px] text-anthracite/78 leading-[1.55]" style={{ fontFamily: 'var(--font-body)' }}>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* District metrics — school-wide NJSLA results vs. district, the broader pattern
+              Building Bridges is one contributing factor within */}
+          <motion.div
+            className="mt-10 lg:mt-12"
+            initial={reduce ? undefined : { opacity: 0, y: 16 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.5, ease: EASE }}>
+            <p className="text-[10.5px] uppercase tracking-[0.13em] text-ink-soft font-semibold mb-4" style={{ fontFamily: 'var(--font-body)' }}>
+              Where we measure — Hillside Innovation Academy vs. district, Spring 2025 NJSLA
+            </p>
+            <div className="overflow-hidden border border-sediment/25">
+              <table className="w-full border-collapse">
+                <caption className="sr-only">Hillside Innovation Academy proficiency vs. district, Spring 2025 NJSLA</caption>
+                <thead>
+                  <tr className="bg-bone">
+                    {['Measure', 'HIA', 'District'].map((h) => (
+                      <th
+                        key={h}
+                        scope="col"
+                        className={`text-left px-5 py-3 text-[10.5px] uppercase tracking-[0.12em] text-anthracite/78 font-medium border-b border-sediment/25 ${h === 'Measure' ? '' : 'w-[100px]'}`}
+                        style={{ fontFamily: 'var(--font-body)' }}>
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {DISTRICT_METRICS.map(({ measure, hia, district }) => (
+                    <tr key={measure} className="border-b border-sediment/20 last:border-b-0">
+                      <td className="px-5 py-4 align-top text-[13.5px] text-anthracite/85 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>
+                        {measure}
+                      </td>
+                      <td className="px-5 py-4 align-top text-[13.5px] text-anthracite leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>
+                        {hia}
+                      </td>
+                      <td className="px-5 py-4 align-top text-[13.5px] text-anthracite/75 leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>
+                        {district}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
+
           <motion.p
             className="text-[11.5px] italic text-anthracite/70 leading-[1.65] mt-6"
             style={{ fontFamily: 'var(--font-body)' }}
@@ -273,11 +335,12 @@ export function Impact() {
             transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
             <strong className="not-italic font-medium">Sources & scope.</strong> Figures from the
             Engineering Information Foundation 2025 program report and the Hillside Innovation
-            Academy Year-2 snapshot (July 2025). UCVTS includes Union County Magnet High School
-            (ranked #1 in New Jersey). School-wide, HIA students far outpaced district proficiency on
-            the Spring 2025 NJSLA, for example, 91% Grade 7 ELA proficiency against a 50% district
-            average, a broader pattern to which Building Bridges is viewed as one contributing
-            factor, not the sole cause.
+            Academy Building Bridges Year-2 snapshot (July 2025), authored by Hillside Public
+            Schools with Stevens Institute of Technology. The proficiency figures are school-wide
+            NJSLA results, not Building Bridges cohort results; the school views Building Bridges
+            as one contributing factor within that broader pattern, not the sole cause, a
+            distinction we keep deliberately. UCVTS includes Union County Magnet High School,
+            ranked #1 in New Jersey and #26 nationally.
           </motion.p>
 
           {/* ── Second delivery: the Pathway model in the field ── */}

@@ -290,56 +290,6 @@ function TeamMemberCard({ member, index, reduce, onExpandBio, bioExpanded }: {
   )
 }
 
-// Small hand-drawn line marks for the Earth / Engineers / Education signature.
-// Deliberately not the sitewide Phosphor icon set — same drawn-line language as
-// TheGap's skyline and WhoWeServe's truss, scaled down to a quiet, minimal glyph.
-type EEEVariant = 'earth' | 'engineers' | 'education'
-
-function EEEMark({ variant, colorClass, reduce }: { variant: EEEVariant; colorClass: string; reduce: boolean | null }) {
-  const stroke = { fill: 'none' as const, stroke: 'currentColor', strokeWidth: 1.4, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
-  const draw = (delay: number) => ({
-    initial: reduce ? undefined : { pathLength: 0 },
-    whileInView: reduce ? undefined : { pathLength: 1 },
-    viewport: reduce ? undefined : VIEWPORT,
-    transition: reduce ? undefined : { duration: 0.65, ease: EASE, delay },
-  })
-
-  if (variant === 'earth') {
-    return (
-      <svg width="52" height="30" viewBox="0 0 56 32" aria-hidden="true" className={`mb-4 opacity-80 ${colorClass}`}>
-        <motion.path d="M2,11 C12,5 20,15 30,8 C38,3 48,10 54,6" {...stroke} {...draw(0)} />
-        <motion.path d="M2,19 C12,13 20,23 30,16 C38,11 48,18 54,14" {...stroke} {...draw(0.12)} />
-        <motion.path d="M2,27 C12,21 20,30 30,24 C38,19 48,26 54,22" {...stroke} {...draw(0.24)} />
-        <motion.rect
-          x="27.5" y="13.5" width="5" height="5" fill="currentColor" stroke="none"
-          style={{ transformOrigin: '30px 16px', rotate: 45 }}
-          initial={reduce ? undefined : { opacity: 0, scale: 0 }}
-          whileInView={reduce ? undefined : { opacity: 1, scale: 1 }}
-          viewport={reduce ? undefined : VIEWPORT}
-          transition={reduce ? undefined : { duration: 0.3, ease: EASE, delay: 0.45 }}
-        />
-      </svg>
-    )
-  }
-
-  if (variant === 'engineers') {
-    return (
-      <svg width="52" height="30" viewBox="0 0 56 32" aria-hidden="true" className={`mb-4 opacity-80 ${colorClass}`}>
-        <motion.path d="M4,28 L4,10 L52,10 L52,28 Z" {...stroke} {...draw(0)} />
-        <motion.path d="M4,28 L52,10" {...stroke} {...draw(0.32)} />
-      </svg>
-    )
-  }
-
-  return (
-    <svg width="52" height="30" viewBox="0 0 56 32" aria-hidden="true" className={`mb-4 opacity-80 ${colorClass}`}>
-      <motion.path d="M4,28 C4,8 52,8 52,28" {...stroke} {...draw(0)} />
-      <motion.line x1="4" y1="28" x2="4" y2="31" {...stroke} {...draw(0.4)} />
-      <motion.line x1="52" y1="28" x2="52" y2="31" {...stroke} {...draw(0.44)} />
-    </svg>
-  )
-}
-
 export function About() {
   const reduce = useReducedMotion()
   const [expandedMember, setExpandedMember] = useState<TeamMember | null>(null)
@@ -372,12 +322,12 @@ export function About() {
 
       {/* ── Hero ── */}
       <section
-        className="bg-anthracite min-h-[56vh] flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24 relative overflow-hidden"
+        className="bg-anthracite min-h-[38vh] flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24 relative overflow-hidden"
         aria-labelledby="about-h1">
         <div className="max-w-7xl mx-auto px-6 w-full">
 
           <motion.span
-            className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/70 px-3 py-1 mb-6 select-none"
+            className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/70 px-3 py-1 mb-8 select-none"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 10 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -385,15 +335,7 @@ export function About() {
             § 13 — About Aedifica
           </motion.span>
 
-          <motion.h1
-            id="about-h1"
-            className="text-[3.5rem] lg:text-[5.5rem] xl:text-[6rem] leading-[0.93] tracking-[-0.04em] text-white italic mb-10"
-            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-            initial={reduce ? undefined : { opacity: 0, y: 40 }}
-            animate={reduce ? undefined : { opacity: 1, y: 0 }}
-            transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
-About Aedifica
-          </motion.h1>
+          <h1 id="about-h1" className="sr-only">About Aedifica</h1>
 
           <motion.p
             className="text-[14.5px] text-white/60 leading-[1.65] max-w-[85ch] mb-5"
@@ -520,24 +462,21 @@ About Aedifica
                   word: 'Earth.',
                   color: 'text-wine',
                   rule: 'border-wine',
-                  mark: 'earth' as const,
                   def: 'The foundation: the communities we live in, the infrastructure we depend on, and the environment we have a responsibility to protect and improve. Connect infrastructure, sustainability, and place.',
                 },
                 {
                   word: 'Engineers.',
                   color: 'text-wine',
                   rule: 'border-wine',
-                  mark: 'engineers' as const,
                   def: 'The builders of possibility: the people who turn ideas into roads, bridges, schools, hospitals, resilient coastlines, and transit systems. Teach disciplined problem-solving and project-management thinking.',
                 },
                 {
                   word: 'Education.',
                   color: 'text-wine',
                   rule: 'border-wine',
-                  mark: 'education' as const,
                   def: 'The bridge: the force that allows people to enter that world, understand it, shape it, and build a better future. Create clear pathways, not isolated workshops.',
                 },
-              ] as const).map(({ word, color, rule, mark, def }, i) => (
+              ] as const).map(({ word, color, rule, def }, i) => (
                 <motion.div
                   key={word}
                   className={`border-t-2 ${rule} pt-6`}
@@ -545,7 +484,6 @@ About Aedifica
                   whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                   viewport={reduce ? undefined : VIEWPORT}
                   transition={reduce ? undefined : { duration: 0.55, delay: i * 0.09, ease: EASE }}>
-                  <EEEMark variant={mark} colorClass={color} reduce={reduce} />
                   <p
                     className={`text-[2.25rem] lg:text-[2.75rem] italic leading-none mb-4 ${color}`}
                     style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>

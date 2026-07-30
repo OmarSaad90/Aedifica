@@ -175,8 +175,8 @@ export function Rebuild() {
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
                 <img
-                  src="/images/bridge-shelves.jpg"
-                  alt="Construction engineering models and textbooks used in Rebuild cohort study"
+                  src="/images/rebuild-site-visit.avif"
+                  alt="Rebuild scholars on a site visit to an active rail and bridge construction project"
                   className="w-full h-[260px] lg:h-[320px] object-cover"
                   style={{ filter: 'grayscale(20%) contrast(1.05)' }}
                   loading="lazy"

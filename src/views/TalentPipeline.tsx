@@ -133,20 +133,6 @@ export function TalentPipeline() {
             </div>
 
             <div className="mt-12 lg:mt-0">
-              <motion.div
-                className="overflow-hidden mb-8"
-                initial={reduce ? undefined : { opacity: 0, y: 18 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
-                <img
-                  src="/images/impact-event.jpg"
-                  alt="Employer partners reviewing candidate capstones at an Aedifica program event"
-                  className="w-full h-[260px] lg:h-[320px] object-cover"
-                  style={{ filter: 'grayscale(20%) contrast(1.05)' }}
-                  loading="lazy"
-                />
-              </motion.div>
               <ul className="list-none space-y-3">
                 {MINI_LIST.map(item => (
                   <li key={item} className="flex gap-3 items-start">

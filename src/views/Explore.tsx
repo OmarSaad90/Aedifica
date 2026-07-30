@@ -377,7 +377,7 @@ export function Explore() {
 
       {/* ── Hero ── */}
       <section
-        className="bg-datum min-h-[56vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-datum min-h-[46vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="explore-h1">
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
@@ -394,7 +394,7 @@ export function Explore() {
 
             <motion.h1
               id="explore-h1"
-              className="text-[2.75rem] lg:text-[4.5rem] xl:text-[5.5rem] leading-[0.97] tracking-[-0.035em] text-white italic mb-10 max-w-[22ch] [text-wrap:balance]"
+              className="text-[2.75rem] lg:text-[clamp(2.5rem,5vw,4rem)] lg:whitespace-nowrap leading-[0.97] tracking-[-0.035em] text-white italic mb-10"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 40 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -466,6 +466,36 @@ export function Explore() {
                 learn the work from people who do it.
               </motion.p>
 
+              <motion.div
+                className="max-w-[62ch] mb-10"
+                initial={reduce ? undefined : { opacity: 0, y: 16 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.5, delay: 0.18, ease: EASE }}>
+                <p className="text-[10.5px] uppercase tracking-[0.14em] text-ink-soft font-semibold mb-3" style={{ fontFamily: 'var(--font-body)' }}>Where it leads</p>
+                <p className="text-[1.375rem] lg:text-[1.625rem] text-anthracite italic leading-[1.2] tracking-[-0.02em] mb-4 [text-wrap:balance]" style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+                  Exposure that moves students into the state&rsquo;s most selective schools.
+                </p>
+                <p className="text-[14.5px] text-anthracite/72 leading-[1.72] mb-4" style={{ fontFamily: 'var(--font-body)' }}>
+                  Explore is early exposure with a destination. In its first delivery as Building Bridges,
+                  six of eleven eighth-graders, 55%, were accepted to the Union County Vocational-Technical
+                  Schools for 2025&ndash;26, a rate the host school reported as far exceeding county averages.
+                  UCVTS includes Union County Magnet High School, ranked #1 in New Jersey and #26 nationally,
+                  alongside the Academy for Information Technology and the Academy for Allied Health Sciences.
+                </p>
+                <p className="text-[14.5px] text-anthracite/72 leading-[1.72]" style={{ fontFamily: 'var(--font-body)' }}>
+                  That is the throughline of the whole pathway: middle-school exposure opens the door to
+                  selective technical high schools, and from there to the credentialed, employer-connected
+                  work that Pathway, Launch, and the overlay for vocational and trade schools carry forward.{' '}
+                  <Link href="/trade-schools" className="text-anthracite underline underline-offset-2 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">
+                    See how the same relationship extends to vocational and trade schools
+                  </Link>, or{' '}
+                  <Link href="/research/bridging-brilliance" className="text-anthracite underline underline-offset-2 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">
+                    read the full Building Bridges results
+                  </Link>.
+                </p>
+              </motion.div>
+
               {INFO_ROWS.map(([label, value], i) => (
                 <motion.div
                   key={label}
@@ -488,7 +518,7 @@ export function Explore() {
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
                 <img
-                  src="/images/bb-students.jpg"
+                  src="/images/explore-expo-1.avif"
                   alt="Hillside Innovation Academy students presenting bridge prototypes at Stevens Institute of Technology"
                   className="w-full h-[260px] lg:h-[320px] object-cover"
                   style={{ filter: 'grayscale(20%) contrast(1.05)' }}
@@ -512,29 +542,27 @@ export function Explore() {
       {/* ── Inside a session ── bg-bone */}
       <section className="bg-bone py-14 lg:py-20" aria-labelledby="session-h2">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="lg:grid lg:grid-cols-[1fr_1.4fr] lg:gap-16 xl:gap-20 lg:items-start mb-10 lg:mb-12">
-            <div>
-              <motion.div
-                className="flex items-center gap-3 mb-5"
-                initial={reduce ? undefined : { opacity: 0 }}
-                whileInView={reduce ? undefined : { opacity: 1 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-                <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Inside a session</p>
-              </motion.div>
-              <motion.h2
-                id="session-h2"
-                className="text-[2rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic [text-wrap:balance]"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-                initial={reduce ? undefined : { opacity: 0, y: 22 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
-                Hands-on from the first minute.
-              </motion.h2>
-            </div>
+          <div className="mb-10 lg:mb-12">
+            <motion.div
+              className="flex items-center gap-3 mb-5"
+              initial={reduce ? undefined : { opacity: 0 }}
+              whileInView={reduce ? undefined : { opacity: 1 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+              <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Inside a session</p>
+            </motion.div>
+            <motion.h2
+              id="session-h2"
+              className="text-[2rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic mb-6 [text-wrap:balance]"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+              initial={reduce ? undefined : { opacity: 0, y: 22 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
+              Hands-on from the first minute.
+            </motion.h2>
             <motion.p
-              className="text-[14.5px] text-anthracite/72 leading-[1.7] mt-6 lg:mt-2 max-w-[60ch]"
+              className="text-[14.5px] text-anthracite/72 leading-[1.7] lg:whitespace-nowrap"
               style={{ fontFamily: 'var(--font-body)' }}
               initial={reduce ? undefined : { opacity: 0, y: 16 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -566,27 +594,10 @@ export function Explore() {
       {/* ── Ways to run it ── bg-snow */}
       <section className="bg-snow py-14 lg:py-20" aria-labelledby="run-h2">
         <div className="max-w-7xl mx-auto px-6">
-          {/* Mirrored from the section above: body copy left, eyebrow/title right,
-              so this header doesn't read as the same block reused down the page. */}
-          <div className="lg:grid lg:grid-cols-[1.4fr_1fr] lg:gap-16 xl:gap-20 lg:items-start mb-10 lg:mb-12">
-            <motion.p
-              className="text-[14.5px] text-anthracite/72 leading-[1.7] mt-6 lg:mt-2 max-w-[62ch] lg:order-1"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={reduce ? undefined : { opacity: 0, y: 16 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.5, delay: 0.1, ease: EASE }}>
-              Explore is scoped with you, not delivered off a shelf. Content, delivery mode, and calendar
-              are set by what your school actually has: a semester course, an add-on to an existing class,
-              an after-school block, or a vacation or holiday intensive. The two curricula below are the
-              same program in two shapes: Bridging Brilliance ran as a twelve-week in-school intensive, and
-              Summer STEM Camps carries the same engineering thread across a school break. Content is also
-              tuned to how a particular cohort learns: reading level, language supports, hands-on ratio,
-              and pacing all move without changing the standards the program hits.
-            </motion.p>
-            <div className="lg:order-2 lg:text-right">
+          <div className="lg:grid lg:grid-cols-[1fr_1.4fr] lg:gap-16 xl:gap-20 lg:items-start mb-10 lg:mb-12">
+            <div>
               <motion.div
-                className="flex items-center lg:flex-row-reverse gap-3 mb-5"
+                className="flex items-center gap-3 mb-5"
                 initial={reduce ? undefined : { opacity: 0 }}
                 whileInView={reduce ? undefined : { opacity: 1 }}
                 viewport={reduce ? undefined : VIEWPORT}
@@ -604,20 +615,23 @@ export function Explore() {
                 One program, many ways to run it.
               </motion.h2>
             </div>
+            <motion.p
+              className="text-[14.5px] text-anthracite/72 leading-[1.7] mt-6 lg:mt-2 max-w-[62ch]"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 16 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.1, ease: EASE }}>
+              Explore is scoped with you, not delivered off a shelf. Content, delivery mode, and calendar
+              are set by what your school actually has: a semester course, an add-on to an existing class,
+              an after-school block, or a vacation or holiday intensive. The two curricula below are the
+              same program in two shapes: Bridging Brilliance ran as a twelve-week in-school intensive, and
+              Summer STEM Camps carries the same engineering thread across a school break. Content is also
+              tuned to how a particular cohort learns: reading level, language supports, hands-on ratio,
+              and pacing all move without changing the standards the program hits.
+            </motion.p>
           </div>
 
-          {/* Delivery models scale up in commitment left to right, so the marker grows
-              with them instead of six identical icon cards. Full single-row scale reads
-              cleanly only at xl; lg falls back to a plain 3-up grid. */}
-          <div className="hidden xl:grid xl:grid-cols-6 xl:items-end gap-x-8 mb-3">
-            {RUN_MODELS.map(({ title }, i) => (
-              <span
-                key={title}
-                className={`rotate-45 bg-ink-soft ${['w-1.5 h-1.5', 'w-2 h-2', 'w-2.5 h-2.5', 'w-3 h-3', 'w-3.5 h-3.5', 'w-4 h-4'][i]}`}
-                aria-hidden="true"
-              />
-            ))}
-          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-x-8 divide-y sm:divide-y-0 divide-sediment/20 border-t border-sediment/20 pt-1">
             {RUN_MODELS.map(({ title, body }, i) => (
               <motion.div
@@ -656,13 +670,15 @@ export function Explore() {
             </motion.div>
             <motion.h2
               id="evidence-h2"
-              className="text-[2rem] lg:text-[3rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic [text-wrap:balance] mb-5"
+              className="text-[2rem] lg:text-[3rem] leading-[1.1] tracking-[-0.028em] [text-wrap:balance] mb-5"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 22 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
-              Evidence schools and funders can show.
+              <Link href="/impact" className="text-anthracite italic hover:text-anthracite/70 transition-colors duration-150">
+                Evidence schools and funders can show.
+              </Link>
             </motion.h2>
             <motion.p
               className="text-[14.5px] text-anthracite/72 leading-[1.7] max-w-[56ch] mx-auto"
@@ -675,6 +691,49 @@ export function Explore() {
               visible, structured evidence, usable in parent communications, board reports, accreditation
               reviews, and grant applications.
             </motion.p>
+            <motion.div
+              className="mt-6"
+              initial={reduce ? undefined : { opacity: 0, y: 12 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.45, delay: 0.16, ease: EASE }}>
+              <Link href="/impact"
+                className="inline-flex items-center gap-2 text-[13.5px] text-anthracite font-medium underline underline-offset-4 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150 group">
+                See the full impact results
+                <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
+              </Link>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[56rem] mx-auto mb-14 lg:mb-16">
+            <motion.div
+              className="overflow-hidden"
+              initial={reduce ? undefined : { opacity: 0, y: 18 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
+              <img
+                src="/images/explore-expo-2.avif"
+                alt="Explore scholars presenting a bridge prototype and research poster at the STEM Expo"
+                className="w-full h-[220px] object-cover"
+                style={{ filter: 'grayscale(20%) contrast(1.05)' }}
+                loading="lazy"
+              />
+            </motion.div>
+            <motion.div
+              className="overflow-hidden"
+              initial={reduce ? undefined : { opacity: 0, y: 18 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.6, delay: 0.08, ease: EASE }}>
+              <img
+                src="/images/explore-expo-3.avif"
+                alt="Explore scholars and families with a completed bridge prototype and research poster"
+                className="w-full h-[220px] object-cover"
+                style={{ filter: 'grayscale(20%) contrast(1.05)' }}
+                loading="lazy"
+              />
+            </motion.div>
           </div>
 
           {/* The four stages are the actual design cycle this program teaches, so a

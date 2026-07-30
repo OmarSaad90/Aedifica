@@ -13,7 +13,6 @@ const QUOTES = [
   { text: 'It is as important to learn as to succeed.', size: 'lg' },
   { text: 'Engineering is designing, creating, testing, and improving solutions.', size: 'lg' },
   { text: 'Engineering means designing for sustainability and using serious critical thinking skills.', size: 'xl' },
-  { text: 'Not everything will be easy.', size: 'lg' },
 ] as const
 
 const SIZE_CLASSES: Record<string, string> = {
@@ -36,7 +35,7 @@ export function ExploreQuotes() {
             whileInView={reduce ? undefined : { opacity: 1 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-            <p className="text-[12px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Middle school · Building Bridges</p>
+            <p className="text-[12px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Middle school</p>
           </motion.div>
           <motion.h2
             id="quotes-h2"

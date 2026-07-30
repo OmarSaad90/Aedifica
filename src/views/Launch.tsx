@@ -195,7 +195,7 @@ export function Launch() {
 
       {/* ── Hero ── */}
       <section
-        className="bg-sediment min-h-[56vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-sediment min-h-[46vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="launch-h1">
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
@@ -212,7 +212,7 @@ export function Launch() {
 
             <motion.h1
               id="launch-h1"
-              className="text-[2.75rem] lg:text-[4.25rem] xl:text-[5.25rem] leading-[0.98] tracking-[-0.035em] text-anthracite italic mb-10 max-w-[28ch] [text-wrap:balance]"
+              className="text-[2.25rem] lg:text-[clamp(2.25rem,3.75vw,3rem)] lg:whitespace-nowrap leading-[0.98] tracking-[-0.035em] text-anthracite italic mb-10"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 40 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -261,7 +261,7 @@ export function Launch() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.5, delay: 0.08, ease: EASE }}>
-                The flagship Launch design is <strong className="text-anthracite font-medium">BUILD NJ GREEN</strong>,
+                The flagship Launch design is <strong className="text-anthracite font-medium"><span style={{ fontVariant: 'small-caps' }}>Build</span> NJ <span style={{ fontVariant: 'small-caps' }}>Green</span></strong>,
                 a green-fluent construction-management pathway aligned to New Jersey's
                 building-electrification mandates and clean-infrastructure funding priorities. The
                 curriculum below is complete and ready to deliver; it has not yet been run with a cohort.
@@ -292,8 +292,8 @@ export function Launch() {
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
                 <img
-                  src="/images/planning-session.jpg"
-                  alt="Institutional partners in a Launch program-design planning session"
+                  src="/images/launch-jobsite.avif"
+                  alt="Workforce trainees on a paving and infrastructure jobsite"
                   className="w-full h-[260px] lg:h-[320px] object-cover"
                   style={{ filter: 'grayscale(20%) contrast(1.05)' }}
                   loading="lazy"
@@ -370,9 +370,9 @@ export function Launch() {
             legendAriaLabel="Competency key, filter the weeks by domain"
             legendAllShownText="Showing all competency areas. Each of the sixteen weeks is tagged by competency area: green building, construction management, safety, energy & environment, and project management, and points toward the OSHA 30, LEED Green Associate, and PMI-CAPM credentials. Hover any tag for detail."
             meta="16 weeks · 240 hours · OSHA 30, LEED GA & PMI-CAPM preparation · full curriculum"
-            collapsedTitle="BUILD NJ GREEN: Green Construction Management Workforce Curriculum"
+            collapsedTitle={<><span style={{ fontVariant: 'small-caps' }}>Build</span> NJ <span style={{ fontVariant: 'small-caps' }}>Green</span>: Green Construction Management Workforce Curriculum</>}
             eyebrow="16-Week Workforce Program · Green Construction Management · New Jersey"
-            title="Build NJ Green."
+            title={<><span style={{ fontVariant: 'small-caps' }}>Build</span> NJ <span style={{ fontVariant: 'small-caps' }}>Green.</span></>}
             intro="A 16-week, 240-hour adult training program that prepares New Jersey workers to lead the state's clean-energy, high-performance, and energy-efficiency projects as credentialed green Construction Managers. The program combines core construction-management practice with green building knowledge, jobsite safety, environmental compliance, energy-efficient systems, LEED documentation, and project-management certification preparation, through applied case studies, hands-on workshops, digital tools, construction-management simulations, credential study sessions, and a final capstone project."
             facts={[
               { value: '16', label: 'Weeks · 240 hours' },

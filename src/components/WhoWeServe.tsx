@@ -119,63 +119,13 @@ export function WhoWeServe() {
           </motion.h2>
         </div>
 
-        {/* Partners left, learners right — a drawn truss spans the gap between them
-            instead of a plain rule, the two sides meeting at a keystone diamond. */}
-        <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-0">
+        {/* Partners left, learners right */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-0">
           <div className="lg:pr-14 xl:pr-16">
             <AudienceGroup Icon={Buildings} color="text-wine" tag="Institutions & employers" title="The people building the pathway" items={PARTNERS} delay={0} />
           </div>
           <div className="lg:pl-14 xl:pl-16">
             <AudienceGroup Icon={Users} color="text-terracotta-deep" tag="Scholars" title="The people walking the pathway" items={LEARNERS} delay={0.08} />
-          </div>
-
-          <div
-            className="pointer-events-none absolute inset-y-0 left-1/2 w-6 -translate-x-1/2 hidden lg:block"
-            aria-hidden="true"
-          >
-            <svg
-              className="h-full w-full"
-              viewBox="0 0 24 400"
-              preserveAspectRatio="none"
-            >
-              <motion.line
-                x1="4" y1="0" x2="4" y2="400"
-                stroke="var(--color-anthracite)" strokeOpacity="0.16" strokeWidth="1"
-                initial={reduce ? undefined : { pathLength: 0 }}
-                whileInView={reduce ? undefined : { pathLength: 1 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.9, ease: EASE, delay: 0.1 }}
-              />
-              <motion.line
-                x1="20" y1="0" x2="20" y2="400"
-                stroke="var(--color-anthracite)" strokeOpacity="0.16" strokeWidth="1"
-                initial={reduce ? undefined : { pathLength: 0 }}
-                whileInView={reduce ? undefined : { pathLength: 1 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.9, ease: EASE, delay: 0.1 }}
-              />
-              <motion.polyline
-                points="4,0 20,50 4,100 20,150 4,200 20,250 4,300 20,350 4,400"
-                fill="none"
-                stroke="var(--color-anthracite)" strokeOpacity="0.16" strokeWidth="1"
-                initial={reduce ? undefined : { pathLength: 0 }}
-                whileInView={reduce ? undefined : { pathLength: 1 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 1.1, ease: EASE, delay: 0.3 }}
-              />
-            </svg>
-
-            {/* Keystone — the two sides meeting at the truss's center joint */}
-            <motion.div
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-              initial={reduce ? undefined : { scale: 0, opacity: 0 }}
-              whileInView={reduce ? undefined : { scale: 1, opacity: 1 }}
-              viewport={reduce ? undefined : VIEWPORT}
-              transition={reduce ? undefined : { duration: 0.4, ease: EASE, delay: 0.85 }}
-            >
-              <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 block w-8 h-8 rotate-45 bg-snow" />
-              <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 block w-4 h-4 rotate-45 bg-anthracite" />
-            </motion.div>
           </div>
         </div>
 

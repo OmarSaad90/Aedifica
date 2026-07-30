@@ -434,9 +434,9 @@ export function CurriculumShell({
   open: boolean
   onToggle: () => void
   meta: string
-  collapsedTitle: string
+  collapsedTitle: ReactNode
   eyebrow: string
-  title: string
+  title: ReactNode
   intro: string
   facts: { value: string; label: string }[]
   toc?: { label: string; href: string }[]
@@ -505,7 +505,7 @@ export function CurriculumShell({
                   </div>
                 )}
                 {toc && toc.length > 0 && (
-                  <nav aria-label={`${collapsedTitle} contents`} className="flex flex-wrap gap-x-6 gap-y-2 mt-6">
+                  <nav aria-label={`${eyebrow} contents`} className="flex flex-wrap gap-x-6 gap-y-2 mt-6">
                     {toc.map(({ label, href }) => (
                       <a
                         key={href}

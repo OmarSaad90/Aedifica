@@ -19,13 +19,13 @@ export function Hero() {
         <div className="lg:flex-1 lg:max-w-[820px]">
 
         <motion.p
-          className="text-[10.5px] uppercase tracking-[0.22em] text-ink-soft mb-7 leading-none"
+          className="text-[10.5px] uppercase tracking-[0.22em] text-wine font-bold mb-7 leading-none"
           style={{ fontFamily: 'var(--font-body)' }}
           initial={reduce ? undefined : { opacity: 0, y: 10 }}
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
           transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}
         >
-          Earth. Engineers. Education.
+          From foundations to futures
         </motion.p>
 
         <motion.h1

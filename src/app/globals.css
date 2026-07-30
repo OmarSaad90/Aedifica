@@ -13,7 +13,7 @@
 @theme {
   /* Brand colors — exact client values from brand book v4 */
   --color-datum:      #6667AB;   /* Periwinkle — the anchor, only color that operates alone */
-  --color-quarry:     #8A9A93;   /* Sage-green — neutral wayfinding, considered space */
+  --color-quarry:     #859F94;   /* Sage-green — neutral wayfinding, considered space */
   --color-patina:     #836479;   /* Mauve-aubergine — the mark, reserved for emphasis */
   --color-rebuild:      #A0838F;  /* Rebuild program identity — brand-updated 2026-07-02 */
   --color-rebuild-deep: #7E6973;  /* Rebuild, darkened (70% rebuild / 30% anthracite) — solid-fill sections carrying white body text; raw rebuild is too light for white text to pass WCAG AA below large-text size */
@@ -32,7 +32,7 @@
   --color-ink-soft:     #625C60;  /* Ink-soft — client's rgb(98,92,96), founder-card role marker (f4) */
   --color-snow:       #FAF7F1;   /* The light — page background */
   --color-bone:       #F4EEE4;   /* The page — alternate sections */
-  --color-sediment:   #C7B377;   /* Yellow-olive dried moss — warmth, human-centred moments */
+  --color-sediment:   #CDB97D;   /* Yellow-olive dried moss — warmth, human-centred moments */
   --color-anthracite: #2D2D31;   /* The line — primary text */
 
   /* Typefaces */

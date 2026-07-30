@@ -45,46 +45,44 @@ export function Votech() {
   return (
     <main>
 
-      {/* ── Hero: no picture, avoids reusing Rebuild's site-tour.jpg ── */}
+      {/* ── Hero: terracotta, no picture ── */}
       <section
-        className="bg-anthracite min-h-[54vh] flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-terracotta min-h-[54vh] flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="votech-h1">
 
         <div className="max-w-7xl mx-auto px-6 w-full">
-          <div className="max-w-[62ch]">
 
-            <motion.span
-              className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/80 px-3 py-1 mb-10 select-none"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={reduce ? undefined : { opacity: 0, y: 10 }}
-              animate={reduce ? undefined : { opacity: 1, y: 0 }}
-              transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-              For Vocational &amp; Trade Schools
-            </motion.span>
+          <motion.span
+            className="inline-block text-[11px] uppercase tracking-[0.18em] bg-anthracite/10 text-anthracite px-3 py-1 mb-10 select-none"
+            style={{ fontFamily: 'var(--font-body)' }}
+            initial={reduce ? undefined : { opacity: 0, y: 10 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
+            For Vocational &amp; Trade Schools
+          </motion.span>
 
-            <motion.h1
-              id="votech-h1"
-              className="text-[2.5rem] lg:text-[4rem] xl:text-[4.75rem] leading-[1] tracking-[-0.032em] text-white italic mb-8 [text-wrap:balance]"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-              initial={reduce ? undefined : { opacity: 0, y: 40 }}
-              animate={reduce ? undefined : { opacity: 1, y: 0 }}
-              transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
-              We don&rsquo;t replace your program. <span className="text-wine-light">We add the layer above it.</span>
-            </motion.h1>
+          <motion.h1
+            id="votech-h1"
+            className="text-[2.5rem] lg:text-[4rem] xl:text-[4.75rem] leading-[1] tracking-[-0.032em] text-anthracite italic mb-8 [text-wrap:balance]"
+            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+            initial={reduce ? undefined : { opacity: 0, y: 40 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
+            We don&rsquo;t replace your program. <span className="not-italic font-medium">We add the layer above it.</span>
+          </motion.h1>
 
-            <motion.p
-              className="text-[14.5px] text-white/70 leading-[1.7] max-w-[58ch]"
-              style={{ fontFamily: 'var(--font-body)' }}
-              initial={reduce ? undefined : { opacity: 0, y: 14 }}
-              animate={reduce ? undefined : { opacity: 1, y: 0 }}
-              transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}>
-              Your training builds the craft. Aedifica adds the construction-management layer on top of
-              it: scope, schedule, cost, safety, quality, and the supervisory skills that move a skilled
-              tradesperson toward coordinator, estimator, scheduler, or field supervisor. You keep your
-              program, your students, and your credential. We add the ceiling above it.
-            </motion.p>
+          <motion.p
+            className="text-[14.5px] text-anthracite leading-[1.7]"
+            style={{ fontFamily: 'var(--font-body)' }}
+            initial={reduce ? undefined : { opacity: 0, y: 14 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}>
+            Your training builds the craft. Aedifica adds the construction-management layer on top of
+            it: scope, schedule, cost, safety, quality, and the supervisory skills that move a skilled
+            tradesperson toward coordinator, estimator, scheduler, or field supervisor. You keep your
+            program, your students, and your credential. We add the ceiling above it.
+          </motion.p>
 
-          </div>
         </div>
       </section>
 
@@ -130,20 +128,36 @@ export function Votech() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="lg:grid lg:grid-cols-[1fr_1.1fr] lg:gap-16 xl:gap-20 lg:items-start">
 
-            <ul className="list-none space-y-3">
-              {MINI_LIST.map((item, i) => (
-                <motion.li
-                  key={item}
-                  className="flex gap-3 items-start"
-                  initial={reduce ? undefined : { opacity: 0, y: 10 }}
-                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                  viewport={reduce ? undefined : VIEWPORT}
-                  transition={reduce ? undefined : { duration: 0.4, delay: i * 0.05, ease: EASE }}>
-                  <span className="flex-shrink-0 w-[6px] h-[6px] rotate-45 bg-ink-soft mt-[7px]" aria-hidden="true" />
-                  <span className="text-[13.5px] text-anthracite/78 leading-[1.55]" style={{ fontFamily: 'var(--font-body)' }}>{item}</span>
-                </motion.li>
-              ))}
-            </ul>
+            <div>
+              <motion.div
+                className="overflow-hidden mb-8"
+                initial={reduce ? undefined : { opacity: 0, y: 18 }}
+                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                viewport={reduce ? undefined : VIEWPORT}
+                transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
+                <img
+                  src="/images/votech-site-visit.avif"
+                  alt="Vocational and trade program trainees on an active rail construction jobsite"
+                  className="w-full h-[260px] lg:h-[320px] object-cover"
+                  style={{ filter: 'grayscale(20%) contrast(1.05)' }}
+                  loading="lazy"
+                />
+              </motion.div>
+              <ul className="list-none space-y-3">
+                {MINI_LIST.map((item, i) => (
+                  <motion.li
+                    key={item}
+                    className="flex gap-3 items-start"
+                    initial={reduce ? undefined : { opacity: 0, y: 10 }}
+                    whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                    viewport={reduce ? undefined : VIEWPORT}
+                    transition={reduce ? undefined : { duration: 0.4, delay: i * 0.05, ease: EASE }}>
+                    <span className="flex-shrink-0 w-[6px] h-[6px] rotate-45 bg-ink-soft mt-[7px]" aria-hidden="true" />
+                    <span className="text-[13.5px] text-anthracite/78 leading-[1.55]" style={{ fontFamily: 'var(--font-body)' }}>{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
 
             <div className="mt-12 lg:mt-0">
               {FIELD_ROWS.map(({ Icon: IconComp, label, value }, i) => (

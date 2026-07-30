@@ -2,7 +2,6 @@
 import { useState } from 'react'
 import { motion, useReducedMotion, AnimatePresence } from 'motion/react'
 import { EnvelopeSimple, Phone, MapPin, UsersThree, ChatCircleText, CalendarBlank, CaretDown, type Icon } from '@phosphor-icons/react'
-import { FourGates } from '../components/FourGates'
 import { WhoWeServe } from '../components/WhoWeServe'
 
 const VIEWPORT = { once: true, margin: '-60px 0px' } as const
@@ -153,9 +152,6 @@ export function Partner() {
         </div>
       </section>
 
-      {/* ── §17 Partner: four commitments ── */}
-      <FourGates />
-
       {/* ── Who we work with (moved from About) ── */}
       <WhoWeServe />
 
@@ -171,7 +167,7 @@ export function Partner() {
                 whileInView={reduce ? undefined : { opacity: 1 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-                <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>§ 21 — Contact</p>
+                <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>§ 20 — Contact</p>
               </motion.div>
               <motion.h2
                 id="contact-h2"
@@ -205,7 +201,7 @@ export function Partner() {
               </div>
             </div>
 
-            <div className="mt-12 lg:mt-0">
+            <div className="mt-12 lg:mt-[38px]">
               <AnimatePresence mode="wait">
                 {submitted ? (
                   <motion.div

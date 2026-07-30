@@ -31,10 +31,10 @@ const MINI_LIST = [
 ] as const
 
 const DELIVERY_STATS = [
-  { value: '96–98%', label: 'rated the program Excellent each year, and 0% rated it Poor, all three years' },
-  { value: '97–99%', label: 'rated Professor Karam Excellent (2022–2024)' },
-  { value: '85–100%', label: 'rated the teaching above average on being motivating and approachable' },
-  { value: '3 summers', label: '2022, 2023, and 2024, same course, same instructor' },
+  { value: '98%', label: 'rated the program Excellent each year, and 0% rated it Poor, all three years' },
+  { value: '99%', label: 'rated Professor Karam Excellent (2022–2024)' },
+  { value: '96%', label: 'rated the teaching above average on being motivating and approachable' },
+  { value: 'Every summer since 2022', label: 'same course, same instructor' },
 ] as const
 
 const STANDARDS_ROWS: { Icon: Icon; label: string; value: string }[] = [
@@ -309,7 +309,7 @@ export function Pathway() {
 
       {/* ── Hero ── */}
       <section
-        className="bg-quarry min-h-[56vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-quarry min-h-[46vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-20 lg:pb-28"
         aria-labelledby="pathway-h1">
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
@@ -324,12 +324,13 @@ export function Pathway() {
               Program 02 · High schools
             </motion.span>
 
-            {/* A longer headline than the other program pages, so the scale steps down
-                a notch from the shared clamp to keep this hero from wrapping to twice
-                as many lines and ballooning past the others in height. */}
+            {/* By far the longest hero sentence of the five programs (82 chars, 2x+ Launch's).
+                Forcing it to one line like its siblings means it can't hold the shared display
+                scale — at this container width it caps out well below the other heroes' 3-4rem+.
+                Known tradeoff, flagged for the client. */}
             <motion.h1
               id="pathway-h1"
-              className="text-[2.25rem] lg:text-[3.25rem] xl:text-[3.875rem] leading-[1.08] tracking-[-0.03em] text-anthracite italic mb-8 max-w-[38ch] [text-wrap:balance]"
+              className="text-[2.25rem] lg:text-[clamp(2.25rem,3.9vw,3.25rem)] lg:whitespace-nowrap leading-[1.08] tracking-[-0.03em] text-anthracite italic mb-8"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 40 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -420,7 +421,7 @@ export function Pathway() {
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
                 <img
-                  src="/images/stevens-program.jpg"
+                  src="/images/pathway-cohort.avif"
                   alt="High-school students in the Aedifica Pathway civil engineering program at Stevens Institute of Technology"
                   className="w-full h-[260px] lg:h-[320px] object-cover"
                   style={{ filter: 'grayscale(20%) contrast(1.05)' }}
@@ -512,6 +513,37 @@ export function Pathway() {
             academic-outcome measures. Enrollment, completion, and articulation figures for Pathway
             are not yet published.
           </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10 lg:mt-12">
+            <motion.div
+              className="overflow-hidden"
+              initial={reduce ? undefined : { opacity: 0, y: 18 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
+              <img
+                src="/images/pathway-critique.avif"
+                alt="A Pathway student examining a bridge prototype during a design critique"
+                className="w-full h-[300px] lg:h-[360px] object-cover"
+                style={{ filter: 'grayscale(20%) contrast(1.05)' }}
+                loading="lazy"
+              />
+            </motion.div>
+            <motion.div
+              className="overflow-hidden"
+              initial={reduce ? undefined : { opacity: 0, y: 18 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.6, delay: 0.08, ease: EASE }}>
+              <img
+                src="/images/pathway-model-review.avif"
+                alt="Pathway students reviewing a completed bridge model together"
+                className="w-full h-[300px] lg:h-[360px] object-cover"
+                style={{ filter: 'grayscale(20%) contrast(1.05)' }}
+                loading="lazy"
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -551,6 +583,21 @@ export function Pathway() {
               sequence, explicitly aligned to both New Jersey and New York standards.
             </motion.p>
           </div>
+
+          <motion.div
+            className="overflow-hidden max-w-[46rem] mx-auto mb-14 lg:mb-16"
+            initial={reduce ? undefined : { opacity: 0, y: 18 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
+            <img
+              src="/images/pathway-mapping.avif"
+              alt="Pathway students presenting a site-analysis mapping exercise"
+              className="w-full h-[260px] lg:h-[320px] object-cover"
+              style={{ filter: 'grayscale(20%) contrast(1.05)' }}
+              loading="lazy"
+            />
+          </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-sediment/20 mb-14 lg:mb-16">
             {STANDARDS_ROWS.map(({ Icon: IconComp, label, value }, i) => (
