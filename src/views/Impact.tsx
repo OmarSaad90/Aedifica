@@ -556,11 +556,6 @@ export function Impact() {
                 style={{ fontFamily: 'var(--font-body)' }}>
                 Start a Partnership Conversation
               </Link>
-              <Link href="/curriculum/bridging-brilliance"
-                className="inline-flex items-center justify-center border border-anthracite text-anthracite text-[14px] tracking-[-0.01em] px-8 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/6"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                Explore the Bridging Brilliance curriculum
-              </Link>
             </div>
 
           </motion.div>

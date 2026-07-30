@@ -17,7 +17,7 @@ const COLUMNS = [
     links: [
       { label: 'Impact framework', href: '/impact' },
       { label: 'Aedifica Research', href: '/research' },
-      { label: 'Bridging Brilliance', href: '/curriculum/bridging-brilliance' },
+      { label: 'Bridging Brilliance', href: '/partner' },
       { label: 'Resilient Futures', href: '/programs/pathway#resilient' },
       { label: 'BUILD NJ GREEN', href: '/programs/launch#buildnjgreen' },
       { label: 'Scholar experience', href: '/experience' },

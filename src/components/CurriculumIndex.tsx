@@ -11,7 +11,7 @@ const CURRICULA = [
     title: 'Bridging Brilliance: Engineering the Hudson',
     meta: 'Explore · Grades 7–8 · 12 weeks',
     desc: 'Three units, twelve weeks, standards-tagged: from the engineering design process to a load-tested bridge defended before professional judges.',
-    to: '/curriculum/bridging-brilliance',
+    to: '/partner',
     color: 'bg-datum',
   },
   {

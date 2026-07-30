@@ -490,8 +490,8 @@ export function Explore() {
                   <Link href="/trade-schools" className="text-anthracite underline underline-offset-2 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">
                     See how the same relationship extends to vocational and trade schools
                   </Link>, or{' '}
-                  <Link href="/research/bridging-brilliance" className="text-anthracite underline underline-offset-2 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">
-                    read the full Building Bridges results
+                  <Link href="/partner" className="text-anthracite underline underline-offset-2 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">
+                    ask us for the full Building Bridges results
                   </Link>.
                 </p>
               </motion.div>
