@@ -11,49 +11,39 @@ export function Hero() {
 
   return (
     <section
-      className="relative min-h-[90vh] bg-snow flex items-center overflow-hidden"
+      className="relative bg-snow overflow-hidden min-h-[calc(100vh-130px)] flex items-center"
       aria-labelledby="hero-heading"
     >
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-12 lg:py-16">
         <div className="lg:flex lg:items-start lg:gap-16 xl:gap-24">
         <div className="lg:flex-1 lg:max-w-[820px]">
 
-        <motion.p
-          className="text-[10.5px] uppercase tracking-[0.22em] text-wine font-bold mb-7 leading-none"
-          style={{ fontFamily: 'var(--font-body)' }}
-          initial={reduce ? undefined : { opacity: 0, y: 10 }}
-          animate={reduce ? undefined : { opacity: 1, y: 0 }}
-          transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}
-        >
-          From foundations to futures
-        </motion.p>
-
         <motion.h1
           id="hero-heading"
-          className="text-[2.75rem] lg:text-[3.75rem] xl:text-[5.25rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic pb-1 mb-7 max-w-[15ch] [text-wrap:balance]"
+          className="text-[2.75rem] lg:text-[4rem] xl:text-[5.5rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic pb-1 mb-7 lg:mb-8 max-w-[15ch] [text-wrap:balance]"
           style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
           initial={reduce ? undefined : { opacity: 0, y: 28 }}
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
-          transition={reduce ? undefined : { duration: 0.7, delay: 0.22, ease: SPRING }}
+          transition={reduce ? undefined : { duration: 0.7, delay: 0.1, ease: SPRING }}
         >
           New Jersey is being rebuilt. <span className="text-wine">Its builders are not.</span>
         </motion.h1>
 
         <motion.p
-          className="text-[15.5px] text-anthracite/70 leading-[1.65] max-w-[62ch] mb-9"
+          className="text-[15.5px] lg:text-[16.5px] text-anthracite/70 leading-[1.65] max-w-[62ch] mb-9 lg:mb-11"
           style={{ fontFamily: 'var(--font-body)' }}
           initial={reduce ? undefined : { opacity: 0, y: 18 }}
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
-          transition={reduce ? undefined : { duration: 0.55, delay: 0.36, ease: EASE }}
+          transition={reduce ? undefined : { duration: 0.55, delay: 0.26, ease: EASE }}
         >
           The rebuild is already funded: transportation, airport expansion, resiliency, electrification, and public works across New Jersey and the New York metro region. Those projects need more than engineers and tradespeople. They need <strong className="font-semibold text-wine">construction managers</strong>: the coordinators, estimators, schedulers, document-control professionals, safety leaders, and field supervisors who turn funding into finished work.
         </motion.p>
 
         <motion.div
-          className="flex flex-wrap gap-3"
+          className="flex flex-wrap gap-3 lg:mt-1"
           initial={reduce ? undefined : { opacity: 0, y: 12 }}
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
-          transition={reduce ? undefined : { duration: 0.45, delay: 0.44, ease: EASE }}
+          transition={reduce ? undefined : { duration: 0.45, delay: 0.34, ease: EASE }}
         >
           <Link href="/partner"
             className="inline-flex items-center bg-anthracite text-white text-[13px] font-medium px-6 py-3 tracking-[-0.01em] hover:bg-anthracite/85 transition-colors duration-150 active:scale-[0.98] whitespace-nowrap"
@@ -72,35 +62,6 @@ export function Hero() {
         <HeroPathway />
 
         </div>
-
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:divide-x divide-anthracite/12 border-t border-anthracite/12 mt-14 lg:mt-16 pt-8 gap-6 lg:gap-0"
-          initial={reduce ? undefined : { opacity: 0, y: 16 }}
-          animate={reduce ? undefined : { opacity: 1, y: 0 }}
-          transition={reduce ? undefined : { duration: 0.5, delay: 0.56, ease: EASE }}
-        >
-          {[
-            { n: '$1B+', l: 'delivered infrastructure behind our leadership' },
-            { n: 'Employer-validated', l: 'capstone required before any credential' },
-            { n: 'State & federal funded', l: 'green & apprenticeship priorities' },
-            { n: 'No cost to scholars', l: 'programs funded through institutional partners' },
-          ].map(({ n, l }) => (
-            <div key={n} className="lg:flex-1 lg:px-7 first:lg:pl-0 last:lg:pr-0">
-              <p
-                className="text-[1.375rem] lg:text-[1.5rem] xl:text-[1.625rem] text-anthracite italic leading-[1.08] mb-2"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
-              >
-                {n}
-              </p>
-              <p
-                className="text-[12.5px] text-anthracite/75 uppercase tracking-[0.08em] leading-[1.5] max-w-[24ch]"
-                style={{ fontFamily: 'var(--font-body)' }}
-              >
-                {l}
-              </p>
-            </div>
-          ))}
-        </motion.div>
 
       </div>
     </section>

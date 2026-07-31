@@ -16,7 +16,7 @@ const PROGRAMS: Program[] = [
 ]
 
 const CURVE_W = 96
-const CURVE_H = 520
+const CURVE_H = 580
 
 // First/last markers sit level with their row's vertical center; the label
 // column uses justify-between, which flushes row 1 to the top edge and the
@@ -48,9 +48,9 @@ export function HeroPathway() {
   const reduce = useReducedMotion()
 
   return (
-    <div className="w-full lg:w-[350px] xl:w-[390px] flex-shrink-0">
+    <div className="w-full lg:w-[380px] xl:w-[420px] flex-shrink-0">
       <motion.p
-        className="text-[10.5px] uppercase tracking-[0.22em] text-anthracite/75 mb-8 lg:mb-10"
+        className="text-[10.5px] uppercase tracking-[0.22em] text-anthracite/75 mb-8 lg:mb-12"
         style={{ fontFamily: 'var(--font-body)' }}
         initial={reduce ? undefined : { opacity: 0 }}
         animate={reduce ? undefined : { opacity: 1 }}
@@ -88,18 +88,18 @@ export function HeroPathway() {
             >
               {/* halo — breaks the line cleanly behind the marker */}
               <rect
-                x={p.x - 14}
-                y={p.y - 14}
-                width={28}
-                height={28}
+                x={p.x - 15}
+                y={p.y - 15}
+                width={30}
+                height={30}
                 fill="var(--color-snow)"
                 transform={`rotate(45 ${p.x} ${p.y})`}
               />
               <rect
-                x={p.x - 10}
-                y={p.y - 10}
-                width={20}
-                height={20}
+                x={p.x - 11}
+                y={p.y - 11}
+                width={22}
+                height={22}
                 fill={PROGRAMS[i].color}
                 transform={`rotate(45 ${p.x} ${p.y})`}
               />
@@ -121,13 +121,13 @@ export function HeroPathway() {
                 style={{ '--pc': program.color } as CSSProperties}
               >
                 <span
-                  className="block text-[1.5rem] xl:text-[1.625rem] text-anthracite italic leading-none group-hover:text-[var(--pc)] transition-colors duration-150 [text-wrap:balance]"
+                  className="block text-[1.625rem] xl:text-[1.75rem] text-anthracite italic leading-none group-hover:text-[var(--pc)] transition-colors duration-150 [text-wrap:balance]"
                   style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
                 >
                   {program.name}
                 </span>
                 <span
-                  className="block text-[9.5px] text-anthracite/78 uppercase tracking-[0.13em] mt-2 group-hover:text-anthracite transition-colors duration-150"
+                  className="block text-[10px] text-anthracite/78 uppercase tracking-[0.13em] mt-2 group-hover:text-anthracite transition-colors duration-150"
                   style={{ fontFamily: 'var(--font-body)' }}
                 >
                   {program.audience}

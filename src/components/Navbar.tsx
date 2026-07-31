@@ -151,37 +151,34 @@ export function Navbar() {
         <span className="flex-1 bg-rebuild" />
         <span className="flex-1 bg-pipeline" />
       </div>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between gap-6 py-3">
+      <div className="max-w-7xl mx-auto px-6 flex items-center lg:items-end justify-between gap-6 py-5">
 
-        {/* Logo + wordmark + tagline, stacked two rows so nav links can center against the whole block */}
+        {/* Logo + wordmark + tagline stack, three rows so nav links can center against the whole block */}
         <div className="flex flex-col gap-1 flex-shrink-0">
-          <div className="flex items-center gap-3">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="h-11 w-[33px] flex-shrink-0 overflow-hidden flex items-center justify-center">
-                <NavLogo videoSrc={logoVideoSrc} imgSrc={logoSrc} scale={LOGO_SCALE[logoSrc] ?? 1} />
-              </div>
-              <img
-                src={WORDMARK_LOGO}
-                alt="Aedifica"
-                className="h-6 w-auto flex-shrink-0"
-                style={{ mixBlendMode: 'multiply' }} />
-            </Link>
-            <span className="hidden xl:block w-px h-5 bg-anthracite/15 flex-shrink-0" aria-hidden="true" />
-            <span
-              className="hidden xl:block text-[13px] italic text-anthracite/70 whitespace-nowrap tracking-[-0.01em]"
-              style={{ fontFamily: 'var(--font-heading)' }}>
-              We build the builders.
-            </span>
-          </div>
+          <Link href="/" className="flex items-center gap-3">
+            <div className="h-14 w-10 flex-shrink-0 overflow-hidden flex items-center justify-center">
+              <NavLogo videoSrc={logoVideoSrc} imgSrc={logoSrc} scale={LOGO_SCALE[logoSrc] ?? 1} />
+            </div>
+            <img
+              src={WORDMARK_LOGO}
+              alt="Aedifica"
+              className="h-8 w-auto flex-shrink-0"
+              style={{ mixBlendMode: 'multiply' }} />
+          </Link>
           <span
-            className="text-[10px] uppercase tracking-[0.14em] text-anthracite/60 font-semibold whitespace-nowrap"
+            className="text-[10px] uppercase tracking-[0.2em] text-anthracite/60 font-semibold whitespace-nowrap"
             style={{ fontFamily: 'var(--font-body)' }}>
             Earth. Engineers. Education.
           </span>
+          <span
+            className="text-[10px] uppercase tracking-[0.18em] text-wine font-bold whitespace-nowrap"
+            style={{ fontFamily: 'var(--font-body)' }}>
+            From foundations to futures
+          </span>
         </div>
 
-        {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-5 xl:gap-6" aria-label="Primary">
+        {/* Desktop nav — sits in the gap between the two tagline lines, MITES-style, not flush at the stack's bottom */}
+        <nav className="hidden lg:flex items-center gap-5 xl:gap-6 mb-2" aria-label="Primary">
 
           <Link href="/"
             className="text-[13px] text-anthracite/70 hover:text-anthracite hover:underline hover:underline-offset-4 hover:decoration-anthracite/25 transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap">
