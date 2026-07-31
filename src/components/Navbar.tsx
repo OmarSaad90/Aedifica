@@ -74,14 +74,14 @@ const LOGO_SCALE: Record<string, number> = {
 // exact names to try them; anything missing silently falls back to the static
 // PNG above, so partial drops are safe. See public/videos/logos/README.txt.
 const SERVICE_LOGO_VIDEOS: Record<string, string> = {
-  '/':                         '/videos/logos/logo-general.mp4',
+  '/':                         '/videos/logos/logo-general-new.webm',
   '/programs/rebuild':         '/videos/logos/logo-rebuild-raw.webm', // TEST: client's raw export, unprocessed
   '/programs/launch':          '/videos/logos/logo-launch-raw.webm',  // TEST: client's raw export, unprocessed
   '/programs/pathway':         '/videos/logos/logo-pathway-raw.webm', // TEST: client's raw export, unprocessed
-  '/programs/talent-pipeline': '/videos/logos/logo-general.mp4',
+  '/programs/talent-pipeline': '/videos/logos/logo-general-new.webm',
   '/programs/explore':         '/videos/logos/logo-explore-raw.webm', // TEST: client's raw export, unprocessed
 }
-const DEFAULT_LOGO_VIDEO = '/videos/logos/logo-general.mp4'
+const DEFAULT_LOGO_VIDEO = '/videos/logos/logo-general-new.webm'
 
 // TEST: tries the looping video logo first; if the file is missing (404) or
 // fails to load, falls back to the static PNG with no visible flash.
