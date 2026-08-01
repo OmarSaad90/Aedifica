@@ -25,7 +25,7 @@ export function TheGap() {
                 className="text-[13.5px] uppercase tracking-[0.14em] text-white/70 font-medium leading-none"
                 style={{ fontFamily: 'var(--font-body)' }}
               >
-                § 01 — Why Aedifica exists
+                Why Aedifica exists
               </p>
             </motion.div>
 

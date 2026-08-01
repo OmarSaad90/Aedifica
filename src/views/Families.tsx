@@ -30,7 +30,7 @@ export function Families() {
 
       {/* ── Hero: blush, no picture, wine-split emphasis ── */}
       <section
-        className="bg-blush min-h-[54vh] flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-blush min-h-[46vh] flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="families-h1">
 
         <div className="max-w-7xl mx-auto px-6 w-full">
@@ -46,7 +46,7 @@ export function Families() {
 
           <motion.h1
             id="families-h1"
-            className="text-[2.5rem] lg:text-[4rem] xl:text-[4.75rem] leading-[1] tracking-[-0.032em] text-anthracite italic mb-8 [text-wrap:balance]"
+            className="text-[2.75rem] lg:text-[clamp(2.5rem,5vw,4rem)] leading-[0.98] tracking-[-0.035em] text-anthracite italic mb-8 [text-wrap:balance]"
             style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
             initial={reduce ? undefined : { opacity: 0, y: 40 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}

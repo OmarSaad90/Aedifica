@@ -327,12 +327,12 @@ export function About() {
         <div className="max-w-7xl mx-auto px-6 w-full">
 
           <motion.span
-            className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/70 px-3 py-1 mb-8 select-none"
+            className="inline-block text-[12px] uppercase tracking-[0.18em] bg-white/10 text-white/70 px-3 py-1 mb-8 select-none"
             style={{ fontFamily: 'var(--font-body)' }}
             initial={reduce ? undefined : { opacity: 0, y: 10 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-            § 13 — About Aedifica
+            About Aedifica
           </motion.span>
 
           <h1 id="about-h1" className="sr-only">About Aedifica</h1>
@@ -367,27 +367,38 @@ export function About() {
       {/* ── Mission & Vision ── bg-snow */}
       <section className="bg-snow py-14 lg:py-20" aria-labelledby="about-vision-h2">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="lg:grid lg:grid-cols-[1fr_0.6fr] lg:gap-16 xl:gap-24 lg:items-center">
+
+          {/* Heading + Mission label sit above the split, so the grid below starts
+              exactly at the mission paragraph — that's the row the video's top
+              aligns to via items-start. */}
+          <motion.div
+            initial={reduce ? undefined : { opacity: 0, y: 20 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={reduce ? undefined : VIEWPORT}
+            transition={reduce ? undefined : { duration: 0.6, ease: SPRING }}>
+            <div className="flex items-center gap-3 mb-8">
+              <span className="w-[10px] h-[10px] rotate-45 bg-wine flex-shrink-0" aria-hidden="true" />
+              <h3
+                className="text-[1.375rem] lg:text-[1.625rem] leading-[1.1] tracking-[-0.015em] text-anthracite italic"
+                style={{ fontFamily: 'var(--font-heading)', fontWeight: 500 }}>
+                Mission &amp; Vision
+              </h3>
+            </div>
+            <p
+              className="text-[13px] text-anthracite/80 uppercase tracking-[0.2em] mb-5 select-none"
+              style={{ fontFamily: 'var(--font-body)' }}>
+              Mission
+            </p>
+            <div className="w-10 border-t-2 border-wine mb-8" aria-hidden="true" />
+          </motion.div>
+
+          <div className="lg:grid lg:grid-cols-[0.6fr_1fr] lg:gap-16 xl:gap-24 lg:items-start">
 
             <motion.div
               initial={reduce ? undefined : { opacity: 0, y: 32 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.75, ease: SPRING }}>
-              <div className="flex items-center gap-3 mb-8">
-                <span className="w-[10px] h-[10px] rotate-45 bg-wine flex-shrink-0" aria-hidden="true" />
-                <h3
-                  className="text-[1.375rem] lg:text-[1.625rem] leading-[1.1] tracking-[-0.015em] text-anthracite italic"
-                  style={{ fontFamily: 'var(--font-heading)', fontWeight: 500 }}>
-                  Mission &amp; Vision
-                </h3>
-              </div>
-              <p
-                className="text-[13px] text-anthracite/80 uppercase tracking-[0.2em] mb-5 select-none"
-                style={{ fontFamily: 'var(--font-body)' }}>
-                Mission
-              </p>
-              <div className="w-10 border-t-2 border-wine mb-8" aria-hidden="true" />
               <p
                 className="text-[1.5rem] lg:text-[2rem] leading-[1.2] tracking-[-0.025em] text-anthracite italic mb-14"
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
@@ -405,7 +416,7 @@ export function About() {
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
                 We envision a New Jersey where every scholar, at every age, from every background, can see, walk, and own a clear path into the careers that build the state.
               </h2>
-              
+
               <p
                 className="text-[13px] text-anthracite/65 leading-[1.6] italic"
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
@@ -448,7 +459,7 @@ export function About() {
             <p
               className="text-[12.5px] text-anthracite/75 uppercase tracking-[0.2em] mb-5 select-none font-medium text-center"
               style={{ fontFamily: 'var(--font-body)' }}>
-              § 14 — Values
+              Values
             </p>
             <h2
               id="about-values-h2"
@@ -526,7 +537,7 @@ export function About() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-                § 15 — Origin &amp; history
+                Origin &amp; history
               </motion.p>
 
               <motion.h2
@@ -621,7 +632,7 @@ export function About() {
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-              § 16 — The founders
+              The founders
             </motion.p>
             <motion.h2
               id="about-team-h2"
@@ -744,7 +755,7 @@ export function About() {
               whileInView={reduce ? undefined : { opacity: 1 }}
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-              § 17 — Operating principles
+              Operating principles
             </motion.p>
             <motion.h2
               id="about-principles-h2"

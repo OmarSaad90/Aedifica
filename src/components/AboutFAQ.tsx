@@ -39,7 +39,7 @@ export function AboutFAQ() {
           whileInView={reduce ? undefined : { opacity: 1 }}
           viewport={reduce ? undefined : VIEWPORT}
           transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-          <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>§ 19 — Frequently asked questions</p>
+          <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Frequently asked questions</p>
         </motion.div>
         <motion.h2
           id="faq-h2"

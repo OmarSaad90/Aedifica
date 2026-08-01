@@ -62,7 +62,7 @@ export function FourGates() {
             whileInView={reduce ? undefined : { opacity: 1 }}
             viewport={reduce ? undefined : VIEWPORT}
             transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-            § 20 — Partnership
+            Partnership
           </motion.p>
 
           <motion.h2

@@ -5,21 +5,14 @@ const VIEWPORT = { once: true, margin: '100px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
-// Sized by brevity, not position: the shortest lines read as the punchiest and
-// get the most weight, so the whole set flows as one typographic cluster
-// instead of a hero quote followed by a grid of leftovers.
 const QUOTES = [
-  { text: 'When we mess up, this only sets you up for a new door to open.', size: 'md' },
-  { text: 'It is as important to learn as to succeed.', size: 'lg' },
-  { text: 'Engineering is designing, creating, testing, and improving solutions.', size: 'lg' },
-  { text: 'Engineering means designing for sustainability and using serious critical thinking skills.', size: 'xl' },
+  'When we mess up, this only sets you up for a new door to open.',
+  'It is as important to learn as to succeed.',
+  'Engineering is designing, creating, testing, and improving solutions.',
+  'Engineering means designing for sustainability and using serious critical thinking skills.',
 ] as const
 
-const SIZE_CLASSES: Record<string, string> = {
-  xl: 'text-[2.25rem] lg:text-[2.75rem] leading-[1.15]',
-  lg: 'text-[1.625rem] lg:text-[1.875rem] leading-[1.25]',
-  md: 'text-[1.25rem] lg:text-[1.4375rem] leading-[1.35]',
-}
+const QUOTE_SIZE = 'text-[1.625rem] lg:text-[1.875rem] leading-[1.25]'
 
 export function ExploreQuotes() {
   const reduce = useReducedMotion()
@@ -49,11 +42,9 @@ export function ExploreQuotes() {
           </motion.h2>
         </div>
 
-        {/* A typographic cluster, not a hero quote plus a grid — CSS columns let the
-            five quotes flow and interlock by height instead of lining up in rows,
-            with size doing the emphasis work that position used to do. */}
+        {/* CSS columns let the quotes flow and interlock by height instead of lining up in rows. */}
         <div className="columns-1 lg:columns-2 lg:gap-x-14 xl:gap-x-20">
-          {QUOTES.map(({ text, size }, i) => (
+          {QUOTES.map((text, i) => (
             <motion.div
               key={text}
               className="break-inside-avoid border-t border-sediment/25 pt-6 pb-10 lg:pb-12"
@@ -62,7 +53,7 @@ export function ExploreQuotes() {
               viewport={reduce ? undefined : VIEWPORT}
               transition={reduce ? undefined : { duration: 0.45, delay: Math.min(i * 0.06, 0.3), ease: EASE }}>
               <p
-                className={`text-anthracite italic tracking-[-0.02em] mb-4 [text-wrap:balance] ${SIZE_CLASSES[size]}`}
+                className={`text-anthracite italic tracking-[-0.02em] mb-4 [text-wrap:balance] ${QUOTE_SIZE}`}
                 style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
                 "{text}"
               </p>

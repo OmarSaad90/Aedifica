@@ -324,13 +324,9 @@ export function Pathway() {
               Program 02 · High schools
             </motion.span>
 
-            {/* By far the longest hero sentence of the five programs (82 chars, 2x+ Launch's).
-                Forcing it to one line like its siblings means it can't hold the shared display
-                scale — at this container width it caps out well below the other heroes' 3-4rem+.
-                Known tradeoff, flagged for the client. */}
             <motion.h1
               id="pathway-h1"
-              className="text-[2.25rem] lg:text-[clamp(2.25rem,3.9vw,3.25rem)] lg:whitespace-nowrap leading-[1.08] tracking-[-0.03em] text-anthracite italic mb-8"
+              className="text-[2.75rem] lg:text-[clamp(2.5rem,5vw,4rem)] leading-[0.98] tracking-[-0.035em] text-anthracite italic mb-8 max-w-[42ch] [text-wrap:balance]"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 40 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}

@@ -16,7 +16,7 @@ const PROGRAMS: Program[] = [
 ]
 
 const CURVE_W = 96
-const CURVE_H = 580
+const CURVE_H = 460
 
 // First/last markers sit level with their row's vertical center; the label
 // column uses justify-between, which flushes row 1 to the top edge and the
@@ -48,9 +48,9 @@ export function HeroPathway() {
   const reduce = useReducedMotion()
 
   return (
-    <div className="w-full lg:w-[380px] xl:w-[420px] flex-shrink-0">
+    <div className="w-full lg:w-[280px] xl:w-[300px] flex-shrink-0 lg:ml-auto">
       <motion.p
-        className="text-[10.5px] uppercase tracking-[0.22em] text-anthracite/75 mb-8 lg:mb-12"
+        className="text-[10.5px] uppercase tracking-[0.22em] text-anthracite/75 mb-6 lg:mb-9"
         style={{ fontFamily: 'var(--font-body)' }}
         initial={reduce ? undefined : { opacity: 0 }}
         animate={reduce ? undefined : { opacity: 1 }}

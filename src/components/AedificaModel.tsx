@@ -77,7 +77,7 @@ export function AedificaModel() {
                   className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium leading-none"
                   style={{ fontFamily: 'var(--font-body)' }}
                 >
-                  § 03 — Our approach
+                  Our approach
                 </p>
               </motion.div>
               <motion.h2

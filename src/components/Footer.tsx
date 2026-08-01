@@ -17,7 +17,7 @@ const COLUMNS = [
     links: [
       { label: 'Impact framework', href: '/impact' },
       { label: 'Aedifica Research', href: '/research' },
-      { label: 'Bridging Brilliance', href: '/partner' },
+      { label: 'Bridging Brilliance', href: '/research#bridging-brilliance' },
       { label: 'Resilient Futures', href: '/programs/pathway#resilient' },
       { label: 'BUILD NJ GREEN', href: '/programs/launch#buildnjgreen' },
       { label: 'Scholar experience', href: '/experience' },
@@ -61,19 +61,19 @@ export function Footer() {
               className="inline-block mb-4"
               aria-label="Aedifica home">
               <span
-                className="text-[14px] tracking-[0.06em] text-white uppercase"
+                className="text-[19px] tracking-[0.08em] text-white uppercase"
                 style={{ fontFamily: 'var(--font-wordmark)', fontWeight: 400 }}>
                 Aedifica
               </span>
             </Link>
             <p
-              className="text-[13px] text-white/60 leading-[1.65] max-w-[28ch]"
+              className="text-[11.5px] uppercase tracking-[0.2em] text-white/60 font-semibold whitespace-nowrap"
               style={{ fontFamily: 'var(--font-body)' }}>
               Earth. Engineers. Education.
             </p>
             <p
-              className="text-[1.5rem] text-wine-light not-italic leading-[1.2] max-w-[16ch] mt-3"
-              style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
+              className="text-[11.5px] uppercase tracking-[0.18em] text-wine-light font-bold whitespace-nowrap mt-2"
+              style={{ fontFamily: 'var(--font-body)' }}>
               From foundations to futures.
             </p>
           </div>

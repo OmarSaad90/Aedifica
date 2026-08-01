@@ -70,12 +70,12 @@ export function Impact() {
               initial={reduce ? undefined : { opacity: 0, y: 10 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-              § 11 — Impact & Accountability
+              Impact & Accountability
             </motion.span>
 
             <motion.h1
               id="impact-h1"
-              className="text-[2.5rem] lg:text-[4rem] xl:text-[4.75rem] leading-[1] tracking-[-0.036em] text-white italic mb-8 max-w-[20ch] [text-wrap:balance]"
+              className="text-[2.75rem] lg:text-[clamp(2.5rem,5vw,4rem)] lg:whitespace-nowrap leading-[0.98] tracking-[-0.035em] text-white italic mb-8"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 40 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -179,56 +179,35 @@ export function Impact() {
       {/* ── First delivery: intro + info ── bg-snow */}
       <section className="bg-snow py-14 lg:py-20" aria-labelledby="delivery-h2">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="lg:grid lg:grid-cols-[1.2fr_1fr] lg:gap-16 xl:gap-20 lg:items-start">
+          <div>
+            <motion.div
+              className="flex items-center gap-3 mb-5"
+              initial={reduce ? undefined : { opacity: 0 }}
+              whileInView={reduce ? undefined : { opacity: 1 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
+              <p className="text-[13.5px] uppercase tracking-[0.14em] text-wine font-medium" style={{ fontFamily: 'var(--font-body)' }}>First delivery · the Explore model in the field</p>
+            </motion.div>
+            <motion.h2
+              id="delivery-h2"
+              className="text-[2rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic mb-6 max-w-[18ch] [text-wrap:balance]"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+              initial={reduce ? undefined : { opacity: 0, y: 22 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
+              Building Bridges: our Explore model, proven in Spring 2025.
+            </motion.h2>
 
-            <div>
-              <motion.div
-                className="flex items-center gap-3 mb-5"
-                initial={reduce ? undefined : { opacity: 0 }}
-                whileInView={reduce ? undefined : { opacity: 1 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-                <p className="text-[13.5px] uppercase tracking-[0.14em] text-wine font-medium" style={{ fontFamily: 'var(--font-body)' }}>First delivery · the Explore model in the field</p>
-              </motion.div>
-              <motion.h2
-                id="delivery-h2"
-                className="text-[2rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-anthracite italic mb-6 max-w-[18ch] [text-wrap:balance]"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-                initial={reduce ? undefined : { opacity: 0, y: 22 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
-                Building Bridges: our Explore model, proven in Spring 2025.
-              </motion.h2>
-
-              <motion.p
-                className="text-[15px] text-anthracite/78 leading-[1.72] max-w-[60ch]"
-                style={{ fontFamily: 'var(--font-body)' }}
-                initial={reduce ? undefined : { opacity: 0, y: 18 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.55, delay: 0.08, ease: EASE }}>
-                Aedifica&rsquo;s Explore model was delivered as <strong className="font-medium text-anthracite">Building Bridges: Strengthening STEM Pathways from Hillside to Hoboken</strong>, a twelve-week, project-based engineering program at Hillside Innovation Academy, in partnership with Stevens Institute of Technology and funded by the Engineering Information Foundation. It is aligned to the Next Generation Science Standards and was led by Aedifica co-founders Dr. Karim Karam and Kimi Stephenson.
-              </motion.p>
-            </div>
-
-            <div className="mt-12 lg:mt-0">
-              <motion.div
-                className="overflow-hidden"
-                initial={reduce ? undefined : { opacity: 0, y: 18 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={reduce ? undefined : VIEWPORT}
-                transition={reduce ? undefined : { duration: 0.6, ease: EASE }}>
-                <img
-                  src="/images/knex-bridge.jpg"
-                  alt="A student-built bridge prototype from the Building Bridges program"
-                  className="w-full h-[260px] lg:h-[320px] object-cover"
-                  style={{ filter: 'grayscale(20%) contrast(1.05)' }}
-                  loading="lazy"
-                />
-              </motion.div>
-            </div>
-
+            <motion.p
+              className="text-[15px] text-anthracite/78 leading-[1.72] max-w-[60ch]"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 18 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={reduce ? undefined : VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.55, delay: 0.08, ease: EASE }}>
+              Aedifica&rsquo;s Explore model was delivered as <strong className="font-medium text-anthracite">Building Bridges: Strengthening STEM Pathways from Hillside to Hoboken</strong>, a twelve-week, project-based engineering program at Hillside Innovation Academy, in partnership with Stevens Institute of Technology and funded by the Engineering Information Foundation. It is aligned to the Next Generation Science Standards and was led by Aedifica co-founders Dr. Karim Karam and Kimi Stephenson.
+            </motion.p>
           </div>
 
           {/* Stats — 3-col horizontal on lg: num | label | meaning */}

@@ -25,13 +25,13 @@ export function WhatWeDo() {
             className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium leading-none"
             style={{ fontFamily: 'var(--font-body)' }}
           >
-            § 02 — What we do
+            What we do
           </p>
         </motion.div>
 
         <motion.h2
           id="whatwedo-heading"
-          className="text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] leading-[1.12] tracking-[-0.025em] text-anthracite italic mb-8 max-w-[26ch] [text-wrap:balance]"
+          className="text-[2.125rem] lg:text-[3rem] xl:text-[3.5rem] leading-[1.12] tracking-[-0.025em] text-anthracite italic mb-8 [text-wrap:balance]"
           style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
           initial={reduce ? undefined : { opacity: 0, y: 22 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -43,7 +43,7 @@ export function WhatWeDo() {
         </motion.h2>
 
         <motion.p
-          className="text-[15.5px] text-anthracite/75 leading-[1.7] max-w-[75ch] mb-5"
+          className="text-[16.5px] text-anthracite/75 leading-[1.7] mb-5"
           style={{ fontFamily: 'var(--font-body)' }}
           initial={reduce ? undefined : { opacity: 0, y: 18 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -60,7 +60,7 @@ export function WhatWeDo() {
         </motion.p>
 
         <motion.p
-          className="text-[15.5px] text-anthracite/75 leading-[1.7] max-w-[75ch] mb-5"
+          className="text-[16.5px] text-anthracite/75 leading-[1.7] mb-5"
           style={{ fontFamily: 'var(--font-body)' }}
           initial={reduce ? undefined : { opacity: 0, y: 18 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -76,14 +76,13 @@ export function WhatWeDo() {
 
         {/* What scholars leave with — flows directly under the intro as part of the same text. */}
         <motion.div
-          className="max-w-[75ch]"
           initial={reduce ? undefined : { opacity: 0, y: 18 }}
           whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
           viewport={reduce ? undefined : VIEWPORT}
           transition={reduce ? undefined : { duration: 0.5, delay: 0.1, ease: EASE }}
         >
           <p
-            className="text-[14.5px] text-anthracite/85 leading-[1.65] mb-4"
+            className="text-[15.5px] text-anthracite/85 leading-[1.65] mb-4"
             style={{ fontFamily: 'var(--font-body)' }}
           >
             Scholars leave with the vocabulary of{' '}
@@ -92,7 +91,7 @@ export function WhatWeDo() {
           </p>
 
           <p
-            className="text-[1.0625rem] text-anthracite/80 italic leading-[1.45]"
+            className="text-[1.125rem] text-anthracite/80 italic leading-[1.45]"
             style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
           >
             They also leave with something harder to report and just as deliberate: the confidence

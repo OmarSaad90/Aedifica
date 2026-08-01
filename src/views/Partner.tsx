@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { motion, useReducedMotion, AnimatePresence } from 'motion/react'
-import { EnvelopeSimple, Phone, MapPin, UsersThree, ChatCircleText, CalendarBlank, CaretDown, type Icon } from '@phosphor-icons/react'
+import { EnvelopeSimple, Phone, MapPin, UsersThree, ChatCircleText, CaretDown, type Icon } from '@phosphor-icons/react'
 import { WhoWeServe } from '../components/WhoWeServe'
 
 const VIEWPORT = { once: true, margin: '-60px 0px' } as const
@@ -11,7 +11,6 @@ const SPRING = [0.32, 0.72, 0, 1] as const
 const CONTACT_FACTS: { Icon: Icon; label: string; value: string; pending?: boolean }[] = [
   { Icon: EnvelopeSimple, label: 'Email', value: 'info@edfca.com' },
   { Icon: Phone, label: 'Phone', value: 'Line coming soon, reach us by email for now', pending: true },
-  { Icon: CalendarBlank, label: 'Schedule', value: 'Link coming soon, reach us by email for now', pending: true },
   { Icon: MapPin, label: 'Service area', value: 'New Jersey / New York metro region' },
   { Icon: UsersThree, label: 'Best for', value: 'Districts, workforce boards, county colleges, vocational and trade schools, employers, agencies, and funders, and the families and scholars they serve' },
   { Icon: ChatCircleText, label: 'Response', value: 'Partnership inquiries receive a scoped reply, not a brochure' },
@@ -105,7 +104,7 @@ export function Partner() {
 
           <motion.h1
             id="partner-h1"
-            className="text-[2.25rem] lg:text-[3.25rem] xl:text-[3.75rem] leading-[1.05] tracking-[-0.03em] text-white italic mb-8 max-w-[22ch] [text-wrap:balance]"
+            className="text-[2.75rem] lg:text-[clamp(2.5rem,5vw,4rem)] lg:whitespace-nowrap leading-[0.98] tracking-[-0.035em] text-white italic mb-8"
             style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
             initial={reduce ? undefined : { opacity: 0, y: 30 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -167,7 +166,7 @@ export function Partner() {
                 whileInView={reduce ? undefined : { opacity: 1 }}
                 viewport={reduce ? undefined : VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.4, ease: EASE }}>
-                <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>§ 20 — Contact</p>
+                <p className="text-[13.5px] uppercase tracking-[0.14em] text-ink-soft font-medium" style={{ fontFamily: 'var(--font-body)' }}>Contact</p>
               </motion.div>
               <motion.h2
                 id="contact-h2"

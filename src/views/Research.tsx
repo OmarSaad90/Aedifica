@@ -78,12 +78,12 @@ export function Research() {
             initial={reduce ? undefined : { opacity: 0, y: 10 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-            § 12 — Aedifica Research
+            Aedifica Research
           </motion.span>
 
           <motion.h1
             id="research-h1"
-            className="text-[2.25rem] lg:text-[3.75rem] xl:text-[4.5rem] leading-[1.02] tracking-[-0.032em] text-white italic mb-8 max-w-[18ch] [text-wrap:balance]"
+            className="text-[2.75rem] lg:text-[clamp(2.5rem,5vw,4rem)] lg:whitespace-nowrap leading-[0.98] tracking-[-0.035em] text-white italic mb-8"
             style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
             initial={reduce ? undefined : { opacity: 0, y: 40 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -234,7 +234,8 @@ export function Research() {
 
             {/* ── R·02 Bridging Brilliance ── */}
             <motion.article
-              className="bg-bone px-7 py-9 lg:px-12 lg:py-12"
+              id="bridging-brilliance"
+              className="bg-bone px-7 py-9 lg:px-12 lg:py-12 scroll-mt-24"
               initial={reduce ? undefined : { opacity: 0, y: 24 }}
               whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
               viewport={VIEWPORT}

@@ -15,22 +15,23 @@ export function Hero() {
       aria-labelledby="hero-heading"
     >
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-12 lg:py-16">
-        <div className="lg:flex lg:items-start lg:gap-16 xl:gap-24">
-        <div className="lg:flex-1 lg:max-w-[820px]">
+        <div className="lg:flex lg:items-start lg:gap-8 xl:gap-10">
+        <div className="lg:flex-1">
 
         <motion.h1
           id="hero-heading"
-          className="text-[2.75rem] lg:text-[4rem] xl:text-[5.5rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic pb-1 mb-7 lg:mb-8 max-w-[15ch] [text-wrap:balance]"
+          className="text-[3rem] lg:text-[4.5rem] xl:text-[6rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic pb-1 mb-8 lg:mb-9"
           style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
           initial={reduce ? undefined : { opacity: 0, y: 28 }}
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
           transition={reduce ? undefined : { duration: 0.7, delay: 0.1, ease: SPRING }}
         >
-          New Jersey is being rebuilt. <span className="text-wine">Its builders are not.</span>
+          <span className="block whitespace-nowrap mb-2 lg:mb-3">New Jersey is being rebuilt.</span>
+          <span className="block text-wine">Its builders are not.</span>
         </motion.h1>
 
         <motion.p
-          className="text-[15.5px] lg:text-[16.5px] text-anthracite/70 leading-[1.65] max-w-[62ch] mb-9 lg:mb-11"
+          className="text-[16.5px] lg:text-[18px] text-anthracite/70 leading-[1.65] max-w-[62ch] mb-9 lg:mb-11"
           style={{ fontFamily: 'var(--font-body)' }}
           initial={reduce ? undefined : { opacity: 0, y: 18 }}
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -46,12 +47,12 @@ export function Hero() {
           transition={reduce ? undefined : { duration: 0.45, delay: 0.34, ease: EASE }}
         >
           <Link href="/partner"
-            className="inline-flex items-center bg-anthracite text-white text-[13px] font-medium px-6 py-3 tracking-[-0.01em] hover:bg-anthracite/85 transition-colors duration-150 active:scale-[0.98] whitespace-nowrap"
+            className="inline-flex items-center bg-anthracite text-white text-[13.5px] font-medium px-6 py-3.5 tracking-[-0.01em] hover:bg-anthracite/85 transition-colors duration-150 active:scale-[0.98] whitespace-nowrap"
           >
             Partner with Aedifica
           </Link>
           <Link href="/programs#compare"
-            className="inline-flex items-center border border-anthracite text-anthracite text-[13px] font-medium px-6 py-3 tracking-[-0.01em] hover:bg-anthracite/6 transition-colors duration-150 active:scale-[0.98] whitespace-nowrap"
+            className="inline-flex items-center border border-anthracite text-anthracite text-[13.5px] font-medium px-6 py-3.5 tracking-[-0.01em] hover:bg-anthracite/6 transition-colors duration-150 active:scale-[0.98] whitespace-nowrap"
           >
             Compare the Programs
           </Link>

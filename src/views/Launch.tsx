@@ -212,7 +212,7 @@ export function Launch() {
 
             <motion.h1
               id="launch-h1"
-              className="text-[2.25rem] lg:text-[clamp(2.25rem,3.75vw,3rem)] lg:whitespace-nowrap leading-[0.98] tracking-[-0.035em] text-anthracite italic mb-10"
+              className="text-[2.75rem] lg:text-[clamp(2.5rem,5vw,4rem)] lg:whitespace-nowrap leading-[0.98] tracking-[-0.035em] text-anthracite italic mb-10"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 40 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}

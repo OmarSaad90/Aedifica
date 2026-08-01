@@ -50,7 +50,7 @@ const NAV_ITEMS: NavItem[] = [
 
 const EASE = [0.25, 0.1, 0.25, 1] as const
 
-const WORDMARK_LOGO = '/images/logo-wordmark.png'
+const WORDMARK_LOGO = '/images/logo-wordmark-new.png'
 
 const SERVICE_LOGOS: Record<string, string> = {
   '/programs/rebuild':         '/images/logo-rebuild.png',

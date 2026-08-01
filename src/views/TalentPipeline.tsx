@@ -29,7 +29,7 @@ export function TalentPipeline() {
 
       {/* ── Hero ── */}
       <section
-        className="bg-pipeline min-h-[56vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
+        className="bg-pipeline min-h-[46vh] relative overflow-hidden flex flex-col justify-end pt-24 lg:pt-28 pb-16 lg:pb-24"
         aria-labelledby="pipeline-h1">
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
@@ -46,7 +46,7 @@ export function TalentPipeline() {
 
             <motion.h1
               id="pipeline-h1"
-              className="text-[2.75rem] lg:text-[4.25rem] xl:text-[5.25rem] leading-[0.98] tracking-[-0.035em] text-anthracite italic mb-10 max-w-[42ch] [text-wrap:balance]"
+              className="text-[2.75rem] lg:text-[clamp(2.5rem,5vw,4rem)] leading-[0.98] tracking-[-0.035em] text-anthracite italic mb-10 max-w-[42ch] [text-wrap:balance]"
               style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
               initial={reduce ? undefined : { opacity: 0, y: 40 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
