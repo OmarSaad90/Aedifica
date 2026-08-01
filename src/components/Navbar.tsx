@@ -1,7 +1,6 @@
 ﻿'use client'
 import { useState, useRef } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { List, X, CaretDown } from '@phosphor-icons/react'
 import { motion, AnimatePresence, useReducedMotion, useScroll, useMotionValueEvent } from 'motion/react'
 
@@ -122,9 +121,11 @@ export function Navbar() {
   const closeTimer  = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const triggerRefs = useRef<Record<string, HTMLButtonElement | HTMLAnchorElement | null>>({})
   const reduce      = useReducedMotion()
-  const pathname = usePathname()
-  const logoSrc = SERVICE_LOGOS[pathname] ?? DEFAULT_LOGO
-  const logoVideoSrc = SERVICE_LOGO_VIDEOS[pathname] ?? DEFAULT_LOGO_VIDEO
+  // Client asked to drop per-service logo routing and use the general logo
+  // everywhere. SERVICE_LOGOS/SERVICE_LOGO_VIDEOS kept below, unused, in case
+  // per-route logos come back.
+  const logoSrc = DEFAULT_LOGO
+  const logoVideoSrc = DEFAULT_LOGO_VIDEO
   const { scrollY } = useScroll()
   const [scrolled, setScrolled] = useState(false)
   useMotionValueEvent(scrollY, 'change', (y) => setScrolled(y > 8))

@@ -68,7 +68,7 @@ export function Votech() {
             initial={reduce ? undefined : { opacity: 0, y: 40 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
-            We don&rsquo;t replace your program. <span className="not-italic font-medium">We add the layer above it.</span>
+            We don&rsquo;t replace your program. We add the layer above it.
           </motion.h1>
 
           <motion.p
