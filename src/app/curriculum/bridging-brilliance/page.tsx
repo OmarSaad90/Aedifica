@@ -6,7 +6,7 @@ import { SITE_URL } from '@/src/lib/config'
 export const metadata: Metadata = {
   title: 'Bridging Brilliance: Engineering the Hudson',
   description:
-    'A twelve-week middle school engineering program where students design, build, test, and present a sustainable bridge across the Hudson River. Aligned with five standards frameworks across NGSS/NJSLS-Science, Mathematics, ELA, Design & Technology, and Career Readiness.',
+    'A twelve-week middle school engineering program: students design, build, test, and present a sustainable bridge across the Hudson River. NGSS-aligned.',
   alternates: { canonical: `${SITE_URL}/curriculum/bridging-brilliance` },
   openGraph: {
     title: 'Bridging Brilliance: Engineering the Hudson | Aedifica',

@@ -119,11 +119,11 @@ export function Footer() {
           <p
             className="text-[12px] text-white/50"
             style={{ fontFamily: 'var(--font-body)' }}>
-            <Link href="/" className="hover:text-white/80 transition-colors duration-150">Privacy Policy</Link>
+            <Link href="/privacy" className="hover:text-white/80 transition-colors duration-150">Privacy Policy</Link>
             {' · '}
-            <Link href="/" className="hover:text-white/80 transition-colors duration-150">Terms of Use</Link>
+            <Link href="/terms" className="hover:text-white/80 transition-colors duration-150">Terms of Use</Link>
             {' · '}
-            <Link href="#main" className="hover:text-white/80 transition-colors duration-150">Accessibility Statement</Link>
+            <Link href="/accessibility" className="hover:text-white/80 transition-colors duration-150">Accessibility Statement</Link>
           </p>
         </div>
 

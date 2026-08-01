@@ -308,6 +308,14 @@ section{--acc:var(--terracotta);}
 .prog-note b{color:var(--anthracite);}
 
 /* curriculum shells (progressive disclosure) */
+.legal{max-width:74ch;}
+.legal p{font-family:var(--font-accessible); font-size:1rem; line-height:1.7; color:var(--anthracite); margin:0 0 16px;}
+.legal h3{font-family:var(--font-display); font-weight:500; font-size:1.3rem; color:var(--anthracite); margin:34px 0 12px; padding-top:6px; border-top:1px solid var(--rule);}
+.legal .ph{background:#FFF6C7; border-left:3px solid #B8860B; padding:12px 16px; border-radius:3px; font-size:.94rem;}
+.legal .ph b{color:#8a6100;}
+.ph-inline{background:#FFF6C7; color:#8a6100; padding:1px 6px; border-radius:3px; font-family:var(--font-mono); font-size:.85em; white-space:nowrap;}
+.legal-note{background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--wine); padding:16px 20px; border-radius:3px; margin:18px 0 6px; font-family:var(--font-accessible); font-size:.95rem; line-height:1.6; color:var(--anthracite);}
+.legal-updated{font-family:var(--font-mono); font-size:.85rem; color:var(--ink-soft); margin-top:24px !important;}
 .doors{display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin:36px 0 4px;}
 .door{position:relative; display:block; text-decoration:none; background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:22px 20px 20px; overflow:hidden; transition:transform .16s ease, box-shadow .2s ease, border-color .2s ease;}
 .door::before{content:""; position:absolute; left:0; top:0; bottom:0; width:5px; background:var(--dc);}
@@ -1067,6 +1075,12 @@ html.js .vpage.active{display:block;}
           <p>Explore is where the pathway begins: career awareness and hands-on discovery in the built environment for middle-school scholars. Students meet the professionals who plan, manage, and deliver the places they live in — and discover that those careers are respected, achievable, and theirs to claim.</p>
           <p>Delivery is community-based and school-friendly, built on the model proven through the Bridging Brilliance STEM program at Hillside Innovation Academy — a twelve-week intensive with twenty-one students, documented as an Aedifica delivery foundation.</p>
           <p><b>This is not a second STEM class.</b> If your school already has strong STEM, Explore adds the part that STEM programs rarely reach: engineering and construction practice. That gap isn't a reflection on your teachers — engineering practice sits outside most certification routes and teacher-preparation programs, because it's learned on projects rather than in coursework. Aedifica instructors are working construction-management and engineering professionals, so students learn the work from people who do it.</p>
+          <div class="reveal" style="margin-top:34px; border-top:1px solid var(--rule); padding-top:34px;">
+            <span class="tag">Where it leads</span>
+            <h3 style="font-family:var(--font-display); font-weight:500; font-size:clamp(1.5rem,2.8vw,2rem); line-height:1.15; margin:10px 0 8px;">Exposure that moves students into the state's most selective schools.</h3>
+            <p style="font-family:var(--font-text); font-size:1.04rem; color:var(--anthracite); max-width:64ch;">Explore is early exposure with a destination. In its first delivery as Building Bridges, <b>six of eleven eighth-graders &mdash; 55% &mdash; were accepted to the Union County Vocational-Technical Schools</b> for 2025&ndash;26, a rate the host school reported as far exceeding county averages. UCVTS includes Union County Magnet High School, <b>ranked #1 in New Jersey and #26 nationally</b>, alongside the Academy for Information Technology and the Academy for Allied Health Sciences.</p>
+            <p style="font-family:var(--font-text); font-size:1.04rem; color:var(--anthracite); max-width:64ch;">That is the throughline of the whole pathway: middle-school exposure opens the door to selective technical high schools, and from there to the credentialed, employer-connected work that Pathway, Launch, and the overlay for vocational and trade schools carry forward. <a href="#votech">See how the same relationship extends to vocational and trade schools</a>, or <a href="#impact">read the full Building Bridges results</a>.</p>
+          </div>
         </div>
         <div class="col reveal">
           <div class="fieldlist">
@@ -2803,7 +2817,7 @@ html.js .vpage.active{display:block;}
         <h3 style="font-family:var(--font-display); font-weight:500; font-size:clamp(1.6rem,3vw,2.2rem); line-height:1.12; letter-spacing:-0.01em; max-width:26ch; margin:0 0 16px;">Building Bridges: our Explore model, proven in Spring 2025.</h3>
         <p style="font-family:var(--font-text); font-size:1.06rem; color:var(--anthracite); max-width:66ch;">Aedifica's Explore model was delivered as <b>Building Bridges: Strengthening STEM Pathways from Hillside to Hoboken</b> — a twelve-week, project-based engineering program at Hillside Innovation Academy, in partnership with Stevens Institute of Technology and funded by the Engineering Information Foundation. It is aligned to the Next Generation Science Standards and was led by Aedifica co-founders Dr. Karim Karam and Kimi Stephenson.</p>
         <div class="rpt-stats">
-          <div class="rs reveal"><span class="n">21</span><span class="l">middle-school students in the first cohort (grades 7–8) — about 22% of the school</span></div>
+          <div class="rs reveal"><span class="n">21</span><span class="l">students in the first cohort (grades 7 and 8), documented by name in the host school's program snapshot</span></div>
           <div class="rs reveal"><span class="n">12 weeks</span><span class="l">hands-on, NGSS-aligned engineering, delivered at the school and on campus</span></div>
           <div class="rs reveal"><span class="n">55%</span><span class="l">of eighth-graders (6 of 11) accepted to the highly selective Union County Vocational-Technical Schools for 2025–26</span></div>
           <div class="rs reveal"><span class="n">≈ 93</span><span class="l">average final grade among participants</span></div>
@@ -2816,7 +2830,19 @@ html.js .vpage.active{display:block;}
           <li>Demystified the path to engineering careers — through work alongside undergraduates, graduate researchers, and faculty</li>
           <li>Built confidence to pursue STEM — in public speaking, technical communication, and navigating a college campus</li>
         </ul>
-        <p class="method-note"><b>Sources &amp; scope.</b> Figures from the Engineering Information Foundation 2025 program report and the Hillside Innovation Academy Year-2 snapshot (July 2025). UCVTS includes Union County Magnet High School (ranked #1 in New Jersey). School-wide, HIA students far outpaced district proficiency on the Spring 2025 NJSLA — for example, 91% Grade 7 ELA proficiency against a 50% district average — a broader pattern to which Building Bridges is viewed as one contributing factor, not the sole cause.</p>
+        <div class="reveal" style="margin:30px 0 8px;">
+          <p class="tag" style="display:block; margin-bottom:12px;">Where we measure &mdash; Hillside Innovation Academy vs. district, Spring 2025 NJSLA</p>
+          <table class="metric-table">
+            <thead><tr><th>Measure</th><th>HIA</th><th>District</th></tr></thead>
+            <tbody>
+              <tr class="m1"><td data-label="Measure">Grade 7 ELA proficiency</td><td data-label="HIA">91%</td><td data-label="District">50%</td></tr>
+              <tr class="m2"><td data-label="Measure">Grade 8 ELA proficiency</td><td data-label="HIA">90%</td><td data-label="District">44%</td></tr>
+              <tr class="m3"><td data-label="Measure">Algebra I proficiency (Gr 7&ndash;8 vs district Gr 9)</td><td data-label="HIA">40%</td><td data-label="District">9%</td></tr>
+              <tr class="m1"><td data-label="Measure">Building Bridges average final grade</td><td data-label="HIA">93</td><td data-label="District">&mdash;</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="method-note"><b>Sources &amp; scope.</b> Figures from the Engineering Information Foundation 2025 program report and the Hillside Innovation Academy Building Bridges Year-2 snapshot (July 2025), authored by Hillside Public Schools with Stevens Institute of Technology. The proficiency figures are school-wide NJSLA results, not Building Bridges cohort results; the school views Building Bridges as one contributing factor within that broader pattern, not the sole cause &mdash; a distinction we keep deliberately. UCVTS includes Union County Magnet High School, ranked #1 in New Jersey and #26 nationally.</p>
       </div>
       <div class="reveal" style="margin-top:46px; border-top:1px solid var(--rule); padding-top:38px;">
         <div class="rpt-kicker">Second delivery · the Pathway model in the field</div>
@@ -3343,6 +3369,114 @@ html.js .vpage.active{display:block;}
 
   </div><!-- /page-contact -->
 
+  <!-- ===================== PRIVACY ===================== -->
+  <div class="vpage" id="page-privacy" data-page="privacy" role="region" aria-label="Privacy Statement">
+  <section id="privacy" aria-labelledby="privacy-h">
+    <div class="wrap" style="max-width:820px;">
+      <div class="sectionmark reveal">Legal</div>
+      <h2 id="privacy-h" class="lead reveal">Privacy Statement</h2>
+      <div class="legal-note reveal"><b>Working draft.</b> This statement is a working draft pending review by legal counsel. Bracketed items marked <span class="ph-inline">[ CONFIRM ]</span> or <span class="ph-inline">[ ADD ]</span> are not yet finalized and must be completed and verified before this page is treated as final.</div>
+      <div class="legal reveal">
+        <p>Aedifica LLC (&ldquo;Aedifica,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;) builds construction-management education-to-workforce pathways for scholars, schools, and partners. Many of our scholars are minors, and we treat their information with the heightened care that responsibility demands. This Privacy Statement explains what personal information we collect, how we use it, and the choices you have.</p>
+        <p>Aedifica is a New Jersey limited liability company. If you have questions about this statement, contact us at <span class="ph-inline">[ ADD: privacy contact email ]</span> or <span class="ph-inline">[ ADD: phone ]</span>.</p>
+
+        <h3>Children&rsquo;s and student information comes first</h3>
+        <p>Most of the people in our programs are students, many under 18 and some under 13. This shapes everything below.</p>
+        <p>When Aedifica delivers a program inside a school, district, or partner institution, we generally act on that institution&rsquo;s behalf as a service provider and, where applicable, a &ldquo;school official&rdquo; under the federal Family Educational Rights and Privacy Act (FERPA). In that role, the school &mdash; not Aedifica &mdash; is the primary steward of student records, and the school&rsquo;s own privacy policies and consent processes govern. We use student information only to deliver, assess, and report on the program we were engaged to provide. <b>We do not sell student information, and we do not use it for advertising.</b></p>
+        <p>For any program that enrolls a child directly rather than through a school, we obtain verifiable parental or guardian consent before collecting a child&rsquo;s personal information, consistent with the federal Children&rsquo;s Online Privacy Protection Act (COPPA) and applicable state law.</p>
+        <p class="ph"><b>[ CONFIRM with counsel ]</b> whether Aedifica is a FERPA &ldquo;school official,&rdquo; a service provider under New Jersey student-privacy law, and/or a COPPA-covered operator for any direct-enrollment program. The correct designation determines much of this section.</p>
+
+        <h3>New Jersey student-privacy law</h3>
+        <p>Because Aedifica delivers programs in New Jersey schools, we operate under New Jersey&rsquo;s student-privacy laws in addition to FERPA. Two are especially relevant.</p>
+        <p><b>The Student Online Personal Protection Act (SOPPA-NJ)</b> governs operators of online services used for K&ndash;12 school purposes. Where it applies to us, it prohibits selling student data, using it for targeted advertising, or building profiles of students for non-educational purposes, and it requires reasonable security measures and deletion of data on request or when a contract ends. Consistent with the law, we do not present students or parents with targeted advertising based on information obtained through a program, and we do not sell a student&rsquo;s personally identifiable information or collect it for purposes unrelated to educational instruction.</p>
+        <p><b>The New Jersey Data Privacy Act (NJDPA)</b>, in effect since January 15, 2025, adds broader obligations &mdash; including opt-in consent for sensitive data and data-protection assessments where the law&rsquo;s thresholds apply &mdash; and gives individuals rights to access, correct, delete, and opt out of certain data uses. For minors it sets a higher bar: for children under 13, parental consent is required before data may be sold or used for targeted advertising; for those aged 13 to 16, their own consent is required. As stated above, we do not sell student data or use it for targeted advertising at all.</p>
+        <p><b>Breach notification.</b> If a breach affecting personal information occurs, we will notify the affected school and affected individuals in accordance with New Jersey&rsquo;s breach-notification requirements and our agreements with partner schools.</p>
+        <p><b>Written agreements with schools.</b> Where Aedifica processes student data on a school&rsquo;s behalf, we enter into a written data-protection agreement; that agreement, together with the school&rsquo;s own policies, governs how student data is handled.</p>
+        <p class="ph"><b>[ CONFIRM with counsel ]</b> (1) whether Aedifica meets the SOPPA-NJ &ldquo;operator&rdquo; definition and/or the NJDPA applicability thresholds; (2) your actual breach-notification timeline and recipients; (3) that your standard school data-processing agreement exists and matches this description. <b>[ ADD ]</b> New York Education Law &sect;2-d here if you deliver in New York.</p>
+
+        <h3>What personal information we collect</h3>
+        <p>Depending on your relationship with us, we may collect: contact and biographic information (name, home or school address, email, phone, and for scholars, grade level and school); program information (enrollment, attendance, coursework, capstone materials, assessments, credentials earned, and outcome data such as completion and, for workforce programs, placement and articulation); demographic information where a partner, funder, or grant requires it, provided at your option where the law allows; image, likeness, and voice at in-person or virtual events, with notice at the event; and aggregated website and communication analytics such as page visits and email opens.</p>
+        <p><b>Sensitive information.</b> We avoid collecting sensitive personal information. Where a program requires health, accommodation, or eligibility details, we collect only what is necessary and protect it accordingly.</p>
+        <p class="ph"><b>[ CONFIRM ]</b> whether media (photo/video) consent is collected separately, and how a parent opts a child out.</p>
+
+        <h3>How we collect it</h3>
+        <p>Directly from you; from a parent, guardian, teacher, or partner school supporting a scholar&rsquo;s participation; through enrollment processes; and through service providers that help us run and measure programs.</p>
+
+        <h3>How we use it</h3>
+        <p>To deliver and improve our programs; to communicate with scholars, families, and partners about enrollment and program updates; to assess and report outcomes to schools, employers, and funders; to process any payments or reimbursements; and to meet legal and grant-compliance obligations. We measure program impact using aggregated and, wherever possible, de-identified data. We will always honor a request to stop non-essential communications.</p>
+
+        <h3>When we share it</h3>
+        <p>We share personal information only as needed to run our programs, and with: partner schools, districts, and institutions through which a program is delivered; employers and workforce partners, for workforce-track programs, limited to what a scholar has agreed to share for interviews and placement; funders and grantors, ordinarily as aggregated or de-identified outcome data except where a grant requires more and you have been told; and service providers who host, support, or help us measure programs, under contracts that restrict their use of the data. <b>We do not sell personal information. We do not share student information for third-party advertising or marketing.</b></p>
+        <p class="ph"><b>[ CONFIRM ]</b> name your actual sub-processors &mdash; enrollment/form platform, email tool, analytics, hosting.</p>
+
+        <h3>How we store and protect it</h3>
+        <p>We use administrative, technical, and physical safeguards appropriate to the sensitivity of the information, including access controls and encryption where appropriate.</p>
+        <p class="ph"><b>[ CONFIRM with counsel / IT ]</b> where data is actually stored, retention periods, and your breach-notification process. This section must describe real practice.</p>
+
+        <h3>How long we keep it</h3>
+        <p>We keep personal information for as long as needed to deliver programs, meet legal and grant obligations, and maintain program records, after which we delete or de-identify it. <span class="ph-inline">[ ADD: retention schedule ]</span></p>
+
+        <h3>Your choices and rights</h3>
+        <p>You may ask to access, correct, or delete your personal information, and to opt out of non-essential communications. For a scholar who is a minor, a parent or guardian may make these requests. Contact us at the address above; we may need to verify your identity first. Some information may be retained where the law or a grant requires.</p>
+
+        <h3>Changes to this statement</h3>
+        <p>We may update this statement from time to time. Significant changes will be posted here or communicated directly.</p>
+        <p class="legal-updated"><b>Last updated:</b> <span class="ph-inline">[ ADD date ]</span></p>
+      </div>
+    </div>
+  </section>
+  </div><!-- /page-privacy -->
+
+  <!-- ===================== TERMS ===================== -->
+  <div class="vpage" id="page-terms" data-page="terms" role="region" aria-label="Terms of Use">
+  <section id="terms" aria-labelledby="terms-h">
+    <div class="wrap" style="max-width:820px;">
+      <div class="sectionmark reveal">Legal</div>
+      <h2 id="terms-h" class="lead reveal">Terms of Use</h2>
+      <div class="legal-note reveal"><b>Working draft.</b> Pending review by legal counsel. Do not treat as final until the bracketed items are completed and the whole has been reviewed.</div>
+      <div class="legal reveal">
+        <p>These Terms of Use govern your use of the Aedifica website. By using this site, you agree to them. Aedifica LLC is a New Jersey limited liability company.</p>
+        <h3>Use of this site</h3>
+        <p>This website is provided for information about Aedifica&rsquo;s programs and partnerships. You may view and share its content for your own informational, educational, or partnership-evaluation purposes. You agree not to misuse the site, interfere with its operation, or use it to violate any law.</p>
+        <h3>No professional advice</h3>
+        <p>Content on this site is general information, not legal, financial, employment, or educational advice, and does not create any advisory relationship. Program details, outcomes, and availability are described in good faith and may change.</p>
+        <h3>Program information and outcomes</h3>
+        <p>Where this site describes program status &mdash; delivered, designed, or in formation &mdash; and reports outcomes, those descriptions reflect our understanding at the time of publication and are sourced where possible. Sample curricula are illustrative; actual programs are scoped with each partner. Nothing on this site is an offer, guarantee of enrollment, guarantee of employment, or guarantee of any specific outcome.</p>
+        <h3>Intellectual property</h3>
+        <p>The Aedifica name, curricula, program designs, and site content are the property of Aedifica LLC or its partners and are protected by applicable law. <span class="ph-inline">[ CONFIRM: trademark status and any partner-owned content, e.g. Stevens/Hillside materials ]</span></p>
+        <h3>Third-party links</h3>
+        <p>This site may link to third-party sites we do not control and are not responsible for.</p>
+        <h3>Limitation of liability</h3>
+        <p class="ph"><b>[ CONFIRM with counsel ]</b> the limitation-of-liability, disclaimer-of-warranties, indemnification, and governing-law (New Jersey) provisions appropriate for Aedifica. Standard boilerplate has intentionally been left out pending review rather than inserted unreviewed.</p>
+        <h3>Contact</h3>
+        <p>Questions about these Terms: <span class="ph-inline">[ ADD: contact email ]</span>.</p>
+        <p class="legal-updated"><b>Last updated:</b> <span class="ph-inline">[ ADD date ]</span></p>
+      </div>
+    </div>
+  </section>
+  </div><!-- /page-terms -->
+
+  <!-- ===================== ACCESSIBILITY ===================== -->
+  <div class="vpage" id="page-accessibility" data-page="accessibility" role="region" aria-label="Accessibility Statement">
+  <section id="accessibility" aria-labelledby="accessibility-h">
+    <div class="wrap" style="max-width:820px;">
+      <div class="sectionmark reveal">Legal</div>
+      <h2 id="accessibility-h" class="lead reveal">Accessibility Statement</h2>
+      <div class="legal reveal">
+        <p>Aedifica is committed to making this website usable by everyone, including people who rely on assistive technology. Access is a design requirement in our programs, and we hold this site to the same standard.</p>
+        <h3>What we aim for</h3>
+        <p>We aim to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 at Level AA. In building this site we have implemented a skip-to-content link, a single clear heading structure on every page with no skipped heading levels, visible keyboard focus indicators, reduced-motion support for people who prefer it, text alternatives for images, and color choices checked for contrast, with color never used as the only way to convey meaning.</p>
+        <h3>Ongoing work</h3>
+        <p>Accessibility is continuing work, and some content may not yet fully meet our target. We welcome reports of any barrier you encounter and will make reasonable efforts to fix it.</p>
+        <h3>Contact us about accessibility</h3>
+        <p>If you have trouble using any part of this site, or need information in an alternative format, contact us at <span class="ph-inline">[ ADD: accessibility contact email ]</span> or <span class="ph-inline">[ ADD: phone ]</span>, and we will work with you to provide the information or service you need.</p>
+        <p class="legal-updated"><b>Last updated:</b> <span class="ph-inline">[ ADD date ]</span></p>
+      </div>
+    </div>
+  </section>
+  </div><!-- /page-accessibility -->
+
+
 </main>
 
 <footer class="site">
@@ -3417,7 +3551,7 @@ html.js .vpage.active{display:block;}
     <div class="foot-bottom">
       <span>© <span id="year">2026</span> Aedifica — New Jersey / New York metro service area</span>
       <span>Construction-management workforce, built from overlooked talent.</span>
-      <span><a href="#top">Privacy Policy</a> · <a href="#top">Terms of Use</a> · <a href="#main">Accessibility Statement</a></span>
+      <span><a href="#privacy" data-page="privacy">Privacy Policy</a> · <a href="#terms" data-page="terms">Terms of Use</a> · <a href="#accessibility" data-page="accessibility">Accessibility Statement</a></span>
     </div>
   </div>
 </footer>
@@ -3516,7 +3650,8 @@ html.js .vpage.active{display:block;}
     home: 'top', programs: 'programs', explore: 'explore', pathway: 'pathway',
     launch: 'launch', rebuild: 'rebuild', pipeline: 'pipeline', experience: 'experience',
     impact: 'impact', research: 'research', about: 'about', contact: 'partner',
-    families: 'families', votech: 'votech'
+    families: 'families', votech: 'votech',
+    privacy: 'privacy', terms: 'terms', accessibility: 'accessibility'
   };
 
   function pageEl(key) { return document.getElementById('page-' + key); }

@@ -179,10 +179,10 @@ export function Navbar() {
         </div>
 
         {/* Desktop nav — sits in the gap between the two tagline lines, MITES-style, not flush at the stack's bottom */}
-        <nav className="hidden lg:flex items-center gap-5 xl:gap-6 mb-2" aria-label="Primary">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 mb-2" aria-label="Primary">
 
           <Link href="/"
-            className="text-[13px] text-anthracite/70 hover:text-anthracite hover:underline hover:underline-offset-4 hover:decoration-anthracite/25 transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap">
+            className="text-[14.5px] text-anthracite/70 hover:text-anthracite hover:underline hover:underline-offset-4 hover:decoration-anthracite/25 transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap">
             Home
           </Link>
 
@@ -190,7 +190,7 @@ export function Navbar() {
             if (item.type === 'link') {
               return (
                 <Link key={item.to} href={item.to}
-                  className="text-[13px] text-anthracite/70 hover:text-anthracite hover:underline hover:underline-offset-4 hover:decoration-anthracite/25 transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap">
+                  className="text-[14.5px] text-anthracite/70 hover:text-anthracite hover:underline hover:underline-offset-4 hover:decoration-anthracite/25 transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap">
                   {item.label}
                 </Link>
               )
@@ -215,7 +215,7 @@ export function Navbar() {
                   <Link
                     ref={(el) => { triggerRefs.current[group.id] = el }}
                     href={group.to}
-                    className="flex items-center gap-1 text-[13px] text-anthracite/70 hover:text-anthracite transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap cursor-pointer"
+                    className="flex items-center gap-1 text-[14.5px] text-anthracite/70 hover:text-anthracite transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap cursor-pointer"
                     aria-expanded={openGroup === group.id}
                     aria-haspopup="true"
                     style={{ fontFamily: 'var(--font-body)' }}
@@ -230,7 +230,7 @@ export function Navbar() {
                 ) : (
                   <button
                     ref={(el) => { triggerRefs.current[group.id] = el }}
-                    className="flex items-center gap-1 text-[13px] text-anthracite/70 hover:text-anthracite transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap cursor-pointer"
+                    className="flex items-center gap-1 text-[14.5px] text-anthracite/70 hover:text-anthracite transition-colors duration-150 tracking-[-0.01em] whitespace-nowrap cursor-pointer"
                     aria-expanded={openGroup === group.id}
                     aria-haspopup="true"
                     style={{ fontFamily: 'var(--font-body)' }}

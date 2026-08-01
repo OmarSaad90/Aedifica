@@ -1,4 +1,5 @@
 import { SITE_URL } from './config'
+import { FAQS } from './faqData'
 
 export const HOME_SCHEMA = {
   '@context': 'https://schema.org',
@@ -7,7 +8,10 @@ export const HOME_SCHEMA = {
       '@type': 'Organization',
       '@id': `${SITE_URL}/#organization`,
       name: 'Aedifica',
+      alternateName: 'Aedifica LLC',
       url: SITE_URL,
+      logo: `${SITE_URL}/icon-512.png`,
+      image: `${SITE_URL}/icon-512.png`,
       description:
         'Employer-informed construction-management workforce pathways for overlooked learners, institutions, and employers in New Jersey.',
       areaServed: { '@type': 'State', name: 'New Jersey' },
@@ -467,6 +471,73 @@ export const APPLY_SCHEMA = {
   ],
 }
 
+const FAQ_QUESTIONS = FAQS.flatMap((group) => group.items).map((item) => ({
+  '@type': 'Question',
+  name: item.q,
+  acceptedAnswer: { '@type': 'Answer', text: item.a },
+}))
+
+export const PRIVACY_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      url: `${SITE_URL}/privacy`,
+      name: 'Privacy Statement | Aedifica',
+      description:
+        'How Aedifica collects, uses, shares, and protects personal information, including student data under FERPA, COPPA, SOPPA-NJ, and the NJDPA.',
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Privacy Statement', item: `${SITE_URL}/privacy` },
+      ],
+    },
+  ],
+}
+
+export const TERMS_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      url: `${SITE_URL}/terms`,
+      name: 'Terms of Use | Aedifica',
+      description: 'The terms that govern your use of the Aedifica website.',
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Terms of Use', item: `${SITE_URL}/terms` },
+      ],
+    },
+  ],
+}
+
+export const ACCESSIBILITY_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      url: `${SITE_URL}/accessibility`,
+      name: 'Accessibility Statement | Aedifica',
+      description: 'Aedifica’s commitment to WCAG 2.1 AA accessibility and how to report a barrier.',
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Accessibility Statement', item: `${SITE_URL}/accessibility` },
+      ],
+    },
+  ],
+}
+
 export const FAQ_SCHEMA = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -477,6 +548,7 @@ export const FAQ_SCHEMA = {
       description:
         'Answers to common questions about Aedifica programs, eligibility, applications, cost, and participation.',
       isPartOf: { '@id': `${SITE_URL}/#website` },
+      mainEntity: FAQ_QUESTIONS,
     },
     {
       '@type': 'BreadcrumbList',
