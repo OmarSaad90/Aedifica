@@ -48,7 +48,7 @@ export function HeroPathway() {
   const reduce = useReducedMotion()
 
   return (
-    <div className="w-full lg:w-[280px] xl:w-[300px] flex-shrink-0 lg:ml-auto">
+    <div className="hidden lg:block lg:w-[280px] xl:w-[300px] flex-shrink-0 lg:ml-auto">
       <motion.p
         className="text-[10.5px] uppercase tracking-[0.22em] text-anthracite/75 mb-6 lg:mb-9"
         style={{ fontFamily: 'var(--font-body)' }}
@@ -138,37 +138,6 @@ export function HeroPathway() {
         </div>
       </div>
 
-      {/* ── Mobile / tablet: compact row, no curve ── */}
-      <div className="flex flex-wrap gap-x-7 gap-y-4 lg:hidden">
-        {PROGRAMS.map((program, i) => (
-          <motion.div
-            key={program.name}
-            initial={reduce ? undefined : { opacity: 0, y: 10 }}
-            animate={reduce ? undefined : { opacity: 1, y: 0 }}
-            transition={reduce ? undefined : { duration: 0.45, ease: EASE, delay: 0.55 + i * 0.08 }}
-          >
-            <Link href={program.to} className="flex items-center gap-3">
-              <span
-                className="flex-shrink-0 w-[13px] h-[13px] rotate-45 ring-4 ring-snow"
-                style={{ backgroundColor: program.color }}
-                aria-hidden="true"
-              />
-              <span
-                className="text-[15px] text-anthracite italic"
-                style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}
-              >
-                {program.name}
-              </span>
-              <span
-                className="text-[9.5px] text-anthracite/78 uppercase tracking-[0.12em]"
-                style={{ fontFamily: 'var(--font-body)' }}
-              >
-                {program.audience}
-              </span>
-            </Link>
-          </motion.div>
-        ))}
-      </div>
     </div>
   )
 }
