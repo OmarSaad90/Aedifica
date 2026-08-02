@@ -20,13 +20,13 @@ export function Hero() {
 
         <motion.h1
           id="hero-heading"
-          className="text-[3rem] lg:text-[4.5rem] xl:text-[6rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic pb-1 mb-8 lg:mb-9"
+          className="text-[2.25rem] sm:text-[2.75rem] lg:text-[4.5rem] xl:text-[6rem] leading-[1.05] tracking-[-0.03em] text-anthracite italic pb-1 mb-8 lg:mb-9"
           style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
           initial={reduce ? undefined : { opacity: 0, y: 28 }}
           animate={reduce ? undefined : { opacity: 1, y: 0 }}
           transition={reduce ? undefined : { duration: 0.7, delay: 0.1, ease: SPRING }}
         >
-          <span className="block whitespace-nowrap mb-2 lg:mb-3">New Jersey is being rebuilt.</span>
+          <span className="block lg:whitespace-nowrap mb-2 lg:mb-3">New Jersey is being rebuilt.</span>
           <span className="block text-wine">Its builders are not.</span>
         </motion.h1>
 

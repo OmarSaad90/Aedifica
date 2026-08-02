@@ -320,17 +320,33 @@ export function Navbar() {
               const group = item
               return (
                 <div key={group.id}>
-                  <button
-                    className="w-full flex items-center justify-between text-[14px] text-anthracite/70 py-3 border-b border-sediment/10 cursor-pointer"
-                    onClick={() => setMobileOpenGroup(mobileOpenGroup === group.id ? null : group.id)}
-                    aria-expanded={mobileOpenGroup === group.id}
-                    style={{ fontFamily: 'var(--font-body)' }}>
-                    {group.label}
-                    <CaretDown
-                      size={12}
-                      weight="bold"
-                      className={`text-anthracite/40 transition-transform duration-200 ${mobileOpenGroup === group.id ? 'rotate-180' : ''}`} />
-                  </button>
+                  <div className="w-full flex items-center justify-between border-b border-sediment/10">
+                    {group.to ? (
+                      <Link
+                        href={group.to}
+                        className="flex-1 text-[14px] text-anthracite/70 py-3"
+                        style={{ fontFamily: 'var(--font-body)' }}
+                        onClick={closeMobile}>
+                        {group.label}
+                      </Link>
+                    ) : (
+                      <span
+                        className="flex-1 text-[14px] text-anthracite/70 py-3"
+                        style={{ fontFamily: 'var(--font-body)' }}>
+                        {group.label}
+                      </span>
+                    )}
+                    <button
+                      className="p-3 -mr-3 cursor-pointer"
+                      onClick={() => setMobileOpenGroup(mobileOpenGroup === group.id ? null : group.id)}
+                      aria-expanded={mobileOpenGroup === group.id}
+                      aria-label={`Toggle ${group.label} submenu`}>
+                      <CaretDown
+                        size={12}
+                        weight="bold"
+                        className={`text-anthracite/40 transition-transform duration-200 ${mobileOpenGroup === group.id ? 'rotate-180' : ''}`} />
+                    </button>
+                  </div>
 
                   <AnimatePresence>
                     {mobileOpenGroup === group.id && (
