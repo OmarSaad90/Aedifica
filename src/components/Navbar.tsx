@@ -98,6 +98,9 @@ function NavLogo({ videoSrc, imgSrc, scale }: { videoSrc: string; imgSrc: string
     )
   }
 
+  // mp4 sibling (same content, H.264) covers browsers that can't play webm at all
+  const mp4Src = videoSrc.replace(/\.webm$/, '.mp4')
+
   return (
     <video
       key={videoSrc}
@@ -109,7 +112,8 @@ function NavLogo({ videoSrc, imgSrc, scale }: { videoSrc: string; imgSrc: string
       style={{ mixBlendMode: 'multiply', transform: `scale(${scale})`, transformOrigin: 'center' }}
       onError={() => setVideoFailed(true)}
       aria-label="Aedifica">
-      <source src={videoSrc} type={videoSrc.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />
+      <source src={videoSrc} type="video/webm" />
+      <source src={mp4Src} type="video/mp4" />
     </video>
   )
 }
