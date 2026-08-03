@@ -2,6 +2,18 @@
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'motion/react'
 
+// Illustrative bars behind the "Who Will Run the Build?" card — the value-chain
+// lead-time ladder from the report itself (laborer through civil engineer),
+// same shape as the report's own Exhibit 5, condensed for a preview tile.
+// Colors match the report's own Exhibit 5 (value-chain lead-time ladder):
+// quarry for the trades, terracotta for site supervisor, wine for construction manager.
+const CHAIN = [
+  { label: 'Laborer', value: 'weeks', height: 44, fill: 'bg-quarry' },
+  { label: 'Skilled trade', value: '1–4 yrs', height: 74, fill: 'bg-quarry' },
+  { label: 'Site supervisor', value: '5–8 yrs', height: 104, fill: 'bg-terracotta' },
+  { label: 'Construction manager', value: '5–10 yrs', height: 132, fill: 'bg-wine' },
+] as const
+
 const VIEWPORT = { once: true, margin: '-60px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
@@ -36,6 +48,15 @@ const PUBLICATIONS = [
   },
   {
     id: 'R·03',
+    title: 'Who will run the build?',
+    body: 'A five-year, national point of view: why the binding constraint in US construction moves up the value chain, and the credentialed green construction manager becomes the scarcest, most AI-durable role in the built environment. Aedifica Strategy Insights, June 2026.',
+    status: 'Published',
+    statusCls: 'bg-white text-anthracite',
+    dot: '●',
+    dotCls: 'text-datum',
+  },
+  {
+    id: 'R·04',
     title: 'Outcome definitions that survive an audit',
     body: 'A methods note: how Aedifica fixes placement, credential, wage, and articulation definitions before cohort one, and why same-definition reporting is the moat.',
     status: 'In progress',
@@ -44,7 +65,7 @@ const PUBLICATIONS = [
     dotCls: 'text-terracotta',
   },
   {
-    id: 'R·04',
+    id: 'R·05',
     title: 'The non-traditional advantage',
     body: 'Evidence review: why adults returning to work, veterans, and justice-impacted scholars out-persist traditional cohorts when wraparound design is done properly.',
     status: 'Planned',
@@ -53,7 +74,7 @@ const PUBLICATIONS = [
     dotCls: 'text-white/45',
   },
   {
-    id: 'R·05',
+    id: 'R·06',
     title: 'Rebuild Cohort 1: outcomes report',
     body: 'The first same-definition outcomes publication: placement, credential attainment, wage at placement, and articulation for the inaugural Rebuild cohort.',
     status: 'Planned',
@@ -287,6 +308,105 @@ export function Research() {
                     Read the full case study
                     <span aria-hidden="true">&rarr;</span>
                   </Link>
+                </div>
+
+              </div>
+            </motion.article>
+
+            {/* ── Strategy Insights · Who will run the build? ── a distinct series from
+                the numbered R· Research catalogue above: national/value-chain scope,
+                vs. Supervisor Gap's New Jersey/construction-manager focus. ── */}
+            <motion.article
+              className="bg-bone px-7 py-9 lg:px-12 lg:py-12"
+              initial={reduce ? undefined : { opacity: 0, y: 24 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={VIEWPORT}
+              transition={reduce ? undefined : { duration: 0.6, ease: SPRING }}>
+
+              <div className="lg:grid lg:grid-cols-[0.95fr_1.15fr] lg:gap-16 xl:gap-20 lg:items-center">
+
+                <div>
+                  <div className="flex items-center gap-3 mb-5">
+                    <span className="text-[11px] uppercase tracking-[0.1em] text-sediment-deep font-medium" style={{ fontFamily: 'var(--font-body)' }}>
+                      Aedifica Strategy Insights &middot; June 2026
+                    </span>
+                  </div>
+
+                  <h3 className="text-[1.875rem] lg:text-[2.5rem] leading-[1.08] tracking-[-0.026em] text-anthracite italic mb-5 [text-wrap:balance]" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+                    Who will run the build?
+                  </h3>
+                  <p className="text-[14.5px] text-anthracite/80 leading-[1.7] mb-8 max-w-[46ch]" style={{ fontFamily: 'var(--font-body)' }}>
+                    The next decade of US infrastructure and clean-energy spending is funded. The
+                    labor that delivers it is not. A five-year point of view on why the binding
+                    constraint moves up the value chain, from the jobsite to the trailer, and the
+                    scarce, AI-durable role becomes the credentialed green construction manager.
+                  </p>
+
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 mb-8 text-[11px] uppercase tracking-[0.1em] text-anthracite/60" style={{ fontFamily: 'var(--font-body)' }}>
+                    <span>Aedifica Strategy Insights</span>
+                    <span aria-hidden="true">·</span>
+                    <span>Published · 2026-06</span>
+                    <span aria-hidden="true">·</span>
+                    <span>United States / New Jersey test case</span>
+                  </div>
+
+                  <div className="flex flex-wrap gap-3">
+                    <Link href="/research/who-will-run-the-build"
+                      className="inline-flex items-center gap-2 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/85 group">
+                      Read the full report
+                      <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
+                    </Link>
+                  </div>
+                  <p className="text-[12px] text-anthracite/60 leading-[1.6] mt-4" style={{ fontFamily: 'var(--font-body)' }}>
+                    For the New Jersey-specific deep dive on this same shortage, see{' '}
+                    <Link href="/research/supervisor-gap" className="text-anthracite underline underline-offset-4 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">
+                      The Supervisor Gap
+                    </Link>.
+                  </p>
+                </div>
+
+                {/* Value-chain exhibit: lead-time-to-competence ladder, laborer through construction manager */}
+                <div className="mt-12 lg:mt-0">
+                  <div className="flex items-start justify-between gap-4 mb-6">
+                    <p className="text-[12px] text-anthracite/75 leading-[1.4] max-w-[30ch]" style={{ fontFamily: 'var(--font-body)' }}>
+                      Lead-time to competence, by role: the bottleneck migrates to whoever takes longest to train
+                    </p>
+                    <p className="text-[10px] uppercase tracking-[0.1em] text-anthracite/75 flex-shrink-0" style={{ fontFamily: 'var(--font-body)' }}>
+                      Exhibit 05
+                    </p>
+                  </div>
+                  <div className="flex items-end gap-6 lg:gap-8 h-[180px] mb-3" role="img" aria-label="Chart: lead time to competence rises from weeks for a laborer, to 1 to 4 years for a skilled trade, 5 to 8 years for a site supervisor, and 5 to 10 years plus a degree for a construction manager.">
+                    {CHAIN.map(({ label, value, height, fill }, i) => (
+                      <motion.div
+                        key={label}
+                        className="flex flex-col items-center justify-end flex-1 h-full"
+                        initial={reduce ? undefined : { opacity: 0 }}
+                        whileInView={reduce ? undefined : { opacity: 1 }}
+                        viewport={VIEWPORT}
+                        transition={reduce ? undefined : { duration: 0.4, delay: i * 0.06, ease: EASE }}>
+                        <span className="text-[12px] text-anthracite font-medium mb-2" style={{ fontFamily: 'var(--font-body)' }}>{value}</span>
+                        <motion.div
+                          className={`w-full ${fill}`}
+                          initial={reduce ? undefined : { height: 0 }}
+                          whileInView={reduce ? undefined : { height }}
+                          viewport={VIEWPORT}
+                          transition={reduce ? undefined : { duration: 0.7, delay: 0.15 + i * 0.08, ease: EASE }}
+                          style={reduce ? { height } : undefined}
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
+                  <div className="flex gap-6 lg:gap-8">
+                    {CHAIN.map(({ label }) => (
+                      <span key={label} className="flex-1 text-[10.5px] text-anthracite/70 text-center leading-[1.3]" style={{ fontFamily: 'var(--font-body)' }}>
+                        {label}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-[11px] text-anthracite/55 leading-[1.55] mt-5 pt-4 border-t border-sediment/20" style={{ fontFamily: 'var(--font-body)' }}>
+                    Series colors carry the auxiliary accent layer; values are labeled, <strong className="text-anthracite/70 font-medium">color never carries meaning alone.</strong> Source:
+                    Aedifica analysis; lead-time bands from BLS occupational entry requirements.
+                  </p>
                 </div>
 
               </div>

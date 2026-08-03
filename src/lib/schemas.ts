@@ -279,6 +279,35 @@ export const SUPERVISOR_GAP_SCHEMA = {
   ],
 }
 
+export const WHO_WILL_RUN_THE_BUILD_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      url: `${SITE_URL}/research/who-will-run-the-build`,
+      name: 'Who Will Run the Build? | Aedifica Strategy Insights',
+      description:
+        'Over the next five years, the binding constraint in US construction will move up the value chain, from the jobsite to the trailer, making the credentialed green construction manager the scarcest, most AI-durable role in the built environment.',
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      about: { '@id': `${SITE_URL}/#organization` },
+      specialty: 'Construction-management and civil-engineering workforce strategy across the US built environment',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Research', item: `${SITE_URL}/research` },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Who Will Run the Build?',
+          item: `${SITE_URL}/research/who-will-run-the-build`,
+        },
+      ],
+    },
+  ],
+}
+
 export const BB_RESEARCH_SCHEMA = {
   '@context': 'https://schema.org',
   '@graph': [

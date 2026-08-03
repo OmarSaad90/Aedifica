@@ -1,0 +1,972 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Who Will Run the Build? — Strategy Insights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,400&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Neutrals — warm Aedifica system (bone ground / anthracite ink) */
+    --paper:#FAF6EE;          /* warm cream ground */
+    --panel:#FFFDF8;          /* warm near-white — exhibit cards lift off the page */
+    --ink:#262320;            /* warm anthracite */
+    --ink-soft:#524B41;       /* warm dark taupe */
+    --muted:#8C8375;          /* warm mid taupe */
+    --rule:#E7E0D2;           /* warm hairline */
+    --rule-strong:#D4CBB8;    /* warm strong rule */
+
+    --datum20:#DCD6E6; --datum40:#B7ADD0; --datum60:#9184B5; --datum80:#6E5F9C; --datum100:#564A86;
+    --quarry20:#D6DBD3; --quarry40:#AEB9AC; --quarry60:#8A9A89; --quarry80:#6E8074; --quarry100:#5B7064;
+    --sediment20:#EBE3CC; --sediment40:#DBCDA0; --sediment60:#CBB877; --sediment80:#C0A857; --sediment100:#AF9540;
+    --patina20:#DAC9D1; --patina40:#C0A5B2; --patina60:#A4889A; --patina80:#8C6C80; --patina100:#7B5870;
+    --lilac:#B5A4B0; --lotus:#E1C5C1; --clay:#C18C7C; --hawthorn:#7E3F4F;
+
+    --accent:#7E3F4F;
+    --accent2:#564A86;
+
+    --serif:"Fraunces", Georgia, "Times New Roman", serif;
+    --sans:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+    --col:46rem;
+    --wide:64rem;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-size:17px; line-height:1.62;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:var(--wide); margin:0 auto; padding:0 28px}
+  .col{max-width:var(--col); margin-left:auto; margin-right:auto}
+
+  /* ---- running header ---- */
+  .topbar{
+    position:sticky; top:0; z-index:40;
+    background:rgba(251,250,247,.86); backdrop-filter:saturate(140%) blur(8px);
+    border-bottom:1px solid var(--rule);
+    font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
+  }
+  .topbar .wrap{display:flex; justify-content:space-between; align-items:center; padding-top:11px; padding-bottom:11px}
+  .topbar b{color:var(--ink); font-weight:600}
+  .topbar .pg{color:var(--accent)}
+
+  /* ---- eyebrow / labels ---- */
+  .eyebrow{font-family:var(--mono); font-size:11.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); font-weight:600}
+  .kicker{font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted)}
+
+  /* ---- COVER ---- */
+  .cover{position:relative; overflow:hidden; border-bottom:1px solid var(--rule)}
+  .cover .wrap{padding-top:70px; padding-bottom:64px; position:relative; z-index:2}
+  .cover h1{
+    font-family:var(--serif); font-weight:500; font-optical-sizing:auto;
+    font-size:clamp(46px, 8.4vw, 104px); line-height:.98; letter-spacing:-.015em;
+    margin:.32em 0 .28em; max-width:14ch; color:var(--ink);
+  }
+  .cover h1 em{font-style:italic; color:var(--accent)}
+  .deck{font-size:clamp(18px,2.3vw,22px); line-height:1.5; color:var(--ink-soft); max-width:40rem; font-weight:400}
+  .deck b{color:var(--ink); font-weight:600}
+  .byline{margin-top:36px; display:flex; flex-wrap:wrap; gap:10px 30px; align-items:baseline;
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.05em; color:var(--muted)}
+  .byline .who{color:var(--ink); font-weight:600; letter-spacing:.1em; text-transform:uppercase; font-size:12px}
+  .scaffold{position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.9}
+
+  /* ---- generic section ---- */
+  section.block{padding:64px 0; border-bottom:1px solid var(--rule)}
+  .sec-head{margin-bottom:14px}
+  .sec-head .eyebrow{display:block; margin-bottom:14px}
+  h2.title{
+    font-family:var(--serif); font-weight:500; letter-spacing:-.01em;
+    font-size:clamp(30px,4.6vw,46px); line-height:1.04; margin:0 0 .5em; max-width:20ch; color:var(--ink);
+  }
+  h3.sub{font-family:var(--serif); font-weight:600; font-size:23px; line-height:1.18; margin:2.1em 0 .5em; color:var(--ink); letter-spacing:-.005em}
+  p{margin:0 0 1.1em}
+  p.lede{font-size:20.5px; line-height:1.5; color:var(--ink); font-weight:400}
+  p.lede:first-letter{}
+  .col p strong, .col li strong{font-weight:600; color:var(--ink)}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(126,63,79,.3)}
+  a:hover{border-bottom-color:var(--accent)}
+
+  /* section divider band */
+  .divider{padding:54px 0; border-bottom:1px solid var(--rule)}
+  .divider .wrap{display:flex; gap:26px; align-items:flex-start}
+  .divider .num{font-family:var(--serif); font-size:clamp(54px,9vw,92px); line-height:.8; color:var(--datum40); font-weight:400; flex:0 0 auto}
+  .divider .dtxt{padding-top:6px}
+  .divider .eyebrow{display:block; margin-bottom:8px}
+  .divider h2{font-family:var(--serif); font-weight:500; font-size:clamp(26px,4vw,40px); line-height:1.05; margin:0; letter-spacing:-.01em; max-width:22ch}
+  .divider.d-quarry{background:var(--quarry20)}
+  .divider.d-sediment{background:var(--sediment20)}
+  .divider.d-patina{background:var(--patina20)}
+  .divider.d-datum{background:var(--datum20)}
+  .divider.d-quarry .num{color:var(--quarry60)}
+  .divider.d-sediment .num{color:var(--sediment80)}
+  .divider.d-patina .num{color:var(--patina60)}
+  .divider.d-datum .num{color:var(--datum60)}
+
+  /* ---- executive summary list ---- */
+  .summary{counter-reset:s}
+  .summary .item{display:grid; grid-template-columns:auto 1fr; gap:22px; padding:22px 0; border-top:1px solid var(--rule); align-items:start}
+  .summary .item:last-child{border-bottom:1px solid var(--rule)}
+  .summary .item::before{
+    counter-increment:s; content:counter(s,decimal-leading-zero);
+    font-family:var(--mono); font-size:13px; color:var(--accent); font-weight:600; padding-top:4px; letter-spacing:.04em;
+  }
+  .summary .item p{margin:0; font-size:17.5px; line-height:1.55}
+  .summary .item p b{color:var(--ink)}
+
+  /* ---- exhibit ---- */
+  figure.exhibit{margin:40px 0 8px; background:var(--panel); border:1px solid var(--rule); border-radius:2px;
+     box-shadow:0 1px 0 rgba(35,30,51,.03), 0 18px 40px -34px rgba(35,30,51,.5)}
+  .ex-pad{padding:26px 28px 8px}
+  .ex-label{font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); font-weight:600; display:flex; gap:14px; align-items:center}
+  .ex-label .of{color:var(--muted)}
+  .ex-title{font-family:var(--serif); font-weight:600; font-size:22px; line-height:1.18; margin:.5em 0 .15em; color:var(--ink); letter-spacing:-.005em; max-width:34ch}
+  .ex-units{font-family:var(--mono); font-size:11.5px; color:var(--muted); letter-spacing:.04em; margin-bottom:6px}
+  .ex-body{padding:6px 28px 4px}
+  figcaption{padding:14px 28px 22px}
+  .sowhat{font-family:var(--serif); font-style:italic; font-size:16.5px; line-height:1.45; color:var(--ink); border-left:3px solid var(--accent); padding-left:14px; margin:0 0 12px}
+  .source{font-family:var(--mono); font-size:10.5px; line-height:1.5; color:var(--muted); letter-spacing:.02em}
+  .source b{color:var(--ink-soft); font-weight:600}
+
+  /* ---- stat strip ---- */
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); margin:34px 0}
+  .stats .s{background:var(--panel); padding:20px 18px}
+  .stats .n{font-family:var(--serif); font-weight:500; font-size:34px; line-height:1; color:var(--accent2); letter-spacing:-.01em}
+  .stats .l{font-size:13px; line-height:1.35; color:var(--ink-soft); margin-top:8px}
+  .stats .src{font-family:var(--mono); font-size:9.5px; color:var(--muted); margin-top:8px; letter-spacing:.03em}
+
+  /* ---- framework (Exhibit 1) ---- */
+  .frame{display:grid; gap:14px}
+  .frame .force-row{display:grid; grid-template-columns:repeat(2,1fr); gap:14px}
+  .force{padding:14px 16px; border-radius:2px; border:1px solid var(--rule)}
+  .force .h{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; margin-bottom:6px}
+  .force .t{font-weight:600; font-size:15px; margin-bottom:3px; color:var(--ink)}
+  .force .d{font-size:13.5px; line-height:1.4; color:var(--ink-soft)}
+  .force.demand{background:linear-gradient(180deg,#fff,var(--patina20))}
+  .force.demand .h{color:var(--patina100)}
+  .force.supply{background:linear-gradient(180deg,#fff,var(--quarry20))}
+  .force.supply .h{color:var(--quarry100)}
+  .squeeze{margin:4px 0; padding:18px 20px; background:var(--ink); color:#fff; border-radius:2px; display:flex; gap:18px; align-items:center}
+  .squeeze .arr{font-family:var(--mono); color:var(--sediment60); font-weight:600; font-size:22px}
+  .squeeze .stxt b{color:#fff; font-weight:600}
+  .squeeze .stxt{font-size:15px; line-height:1.4; color:#D9D3C6}
+  .squeeze .pill{margin-left:auto; flex:0 0 auto; font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; background:var(--accent); color:#fff; padding:8px 12px; border-radius:2px; font-weight:600}
+
+  /* ---- value chain ladder (Exhibit 5 + cover) ---- */
+  .ladder{display:grid; gap:9px}
+  .rung{display:grid; grid-template-columns:148px 1fr 116px; gap:16px; align-items:center}
+  .rung .role{font-family:var(--mono); font-size:11.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-soft); text-align:right; font-weight:500}
+  .rung .bar{height:30px; border-radius:2px; position:relative; background:var(--quarry20)}
+  .rung .bar span{position:absolute; inset:0; border-radius:2px}
+  .rung .meta{font-family:var(--mono); font-size:11px; color:var(--muted); letter-spacing:.02em}
+  .rung.hot .role{color:var(--accent); font-weight:700}
+  .rung.hot .bar{outline:2px solid var(--accent); outline-offset:1px}
+  .rung.hot .meta{color:var(--accent); font-weight:600}
+
+  /* ---- AI durability bar (Exhibit 6) ---- */
+  .aibar{display:flex; height:62px; border-radius:2px; overflow:hidden; border:1px solid var(--rule)}
+  .aibar .seg{display:flex; flex-direction:column; justify-content:center; padding:0 14px; color:#fff; min-width:0}
+  .aibar .lo{background:var(--quarry80); flex:0 0 83.6%}
+  .aibar .hi{background:var(--datum80); flex:1 1 auto; padding:0 10px}
+  .aibar .seg b{font-family:var(--serif); font-size:21px; font-weight:500; line-height:1}
+  .aibar .seg small{font-family:var(--mono); font-size:9.5px; letter-spacing:.02em; opacity:.94; margin-top:3px; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .aibar .hi small{white-space:normal}
+  .ailegend{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px}
+  .ailegend .l{font-size:13.5px; line-height:1.45; color:var(--ink-soft); padding-left:14px; border-left:3px solid var(--quarry80)}
+  .ailegend .l.b{border-left-color:var(--datum80)}
+  .ailegend .l b{color:var(--ink)}
+
+  /* ---- scenario matrix (Exhibit 7) ---- */
+  .matrix{position:relative; border:1px solid var(--rule-strong); border-radius:2px; aspect-ratio:1.5/1; background:
+     linear-gradient(0deg,transparent 49.6%,var(--rule) 49.6%,var(--rule) 50.4%,transparent 50.4%),
+     linear-gradient(90deg,transparent 49.6%,var(--rule) 49.6%,var(--rule) 50.4%,transparent 50.4%);}
+  .matrix .ax{position:absolute; font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+  .matrix .ax.x{bottom:8px; left:50%; transform:translateX(-50%)}
+  .matrix .ax.y{top:50%; left:-8px; transform:rotate(-90deg) translateX(50%); transform-origin:left}
+  .matrix .end{position:absolute; font-family:var(--mono); font-size:10px; color:var(--muted); letter-spacing:.04em}
+  .scn{position:absolute; width:27%; transform:translate(-50%,-50%)}
+  .scn .dot{width:13px; height:13px; border-radius:50%; margin-bottom:6px}
+  .scn .nm{font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; line-height:1.2}
+  .scn .pb{font-family:var(--mono); font-size:10px; color:var(--muted)}
+  .scn.base .dot{background:var(--accent2)} .scn.base .nm{color:var(--accent2)}
+  .scn.up .dot{background:var(--quarry80)} .scn.up .nm{color:var(--quarry100)}
+  .scn.down .dot{background:var(--accent)} .scn.down .nm{color:var(--accent)}
+
+  .scn-cards{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:34px}
+  .scard{border:1px solid var(--rule); border-radius:2px; overflow:hidden; background:var(--panel)}
+  .scard .top{padding:14px 16px; color:#fff}
+  .scard.base .top{background:var(--accent2)} .scard.up .top{background:var(--quarry80)} .scard.down .top{background:var(--accent)}
+  .scard .top .nm{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; opacity:.9}
+  .scard .top .pb{font-family:var(--serif); font-size:30px; font-weight:500; line-height:1; margin-top:4px}
+  .scard .top .pl{font-family:var(--mono); font-size:10px; letter-spacing:.06em; opacity:.85}
+  .scard .bd{padding:14px 16px}
+  .scard .bd p{font-size:13.5px; line-height:1.5; margin:0 0 10px; color:var(--ink-soft)}
+  .scard .bd .lab{font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:600; display:block; margin-bottom:3px}
+  .scard .bd p b{color:var(--ink)}
+
+  /* ---- stakeholder map (Exhibit 8) ---- */
+  .smap{width:100%; border-collapse:collapse; font-size:13.5px}
+  .smap th{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); text-align:left; padding:10px 14px; border-bottom:2px solid var(--ink); font-weight:600; vertical-align:bottom}
+  .smap td{padding:13px 14px; border-bottom:1px solid var(--rule); vertical-align:top; line-height:1.42; color:var(--ink-soft)}
+  .smap td.who{font-weight:600; color:var(--ink); width:20%}
+  .smap td.act{color:var(--ink)}
+  .chip{display:inline-block; font-family:var(--mono); font-size:10px; letter-spacing:.04em; text-transform:uppercase; padding:3px 8px; border-radius:2px; font-weight:600}
+  .chip.hi{background:var(--accent); color:#fff}
+  .chip.mh{background:var(--clay); color:#fff}
+  .chip.op{background:var(--quarry80); color:#fff}
+
+  /* ---- roadmap (Exhibit 9) ---- */
+  .road{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  .lane{border:1px solid var(--rule); border-radius:2px; overflow:hidden}
+  .lane .hd{padding:12px 16px; border-bottom:1px solid var(--rule)}
+  .lane .hd .ph{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:600}
+  .lane .hd .nm{font-family:var(--serif); font-size:18px; font-weight:600; color:var(--ink); margin-top:2px; line-height:1.1}
+  .lane.l1 .hd{background:var(--patina20)} .lane.l2 .hd{background:var(--sediment20)} .lane.l3 .hd{background:var(--quarry20)}
+  .lane ul{list-style:none; margin:0; padding:12px 16px}
+  .lane li{font-size:13.5px; line-height:1.42; padding:8px 0 8px 18px; position:relative; border-bottom:1px dashed var(--rule); color:var(--ink-soft)}
+  .lane li:last-child{border-bottom:0}
+  .lane li::before{content:""; position:absolute; left:0; top:14px; width:7px; height:7px; border-radius:50%; background:var(--accent)}
+  .lane li b{color:var(--ink)}
+  .lane li .tag{display:block; font-family:var(--mono); font-size:9px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent2); font-weight:600; margin-top:3px}
+
+  /* ---- timeline (Exhibit 4) — demand above the line, supply response below ---- */
+  .tl{position:relative; height:360px; margin:8px 0 4px; min-width:600px}
+  /* plot is inset 8% each side so the first/last event boxes never clip the edge */
+  .tl .plot{position:absolute; left:8%; right:8%; top:0; bottom:0}
+  .tl .axis{position:absolute; left:0; right:0; top:180px; height:2px; background:var(--rule-strong)}
+  .tl .win{position:absolute; top:150px; height:60px; background:rgba(126,63,79,.06);
+    border-left:1px dashed var(--accent); border-right:1px dashed var(--accent); border-radius:2px}
+  .tl .winlbl{position:absolute; top:2px; font-family:var(--mono); font-size:10px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--accent); font-weight:600; white-space:nowrap}
+  .tl .yr{position:absolute; top:322px; transform:translateX(-50%); font-family:var(--mono); font-size:10.5px; color:var(--muted)}
+  .tl .yr.mark{color:var(--ink-soft); font-weight:600}
+
+  .tl .ev{position:absolute; width:16.5%; max-width:150px; transform:translateX(-50%); box-sizing:border-box; padding:0 4px}
+  .tl .ev .cap{font-size:11px; line-height:1.28; color:var(--ink-soft)}
+  .tl .ev .cap b{color:var(--ink); display:block; font-size:11.5px; line-height:1.14; margin-bottom:1px}
+  .tl .ev .stem{width:1px; height:22px; background:var(--rule-strong); margin:0 auto}
+  .tl .ev .dot{width:11px; height:11px; border-radius:50%; margin:0 auto; border:2px solid var(--panel); box-shadow:0 0 0 1px var(--rule-strong)}
+  /* demand: caption grows upward, dot pinned to the axis */
+  .tl .ev.dmd{top:76px; height:106px; display:flex; flex-direction:column; justify-content:flex-end; text-align:center}
+  .tl .ev.dmd .stem{margin:5px auto 4px}
+  /* supply: dot on the axis, caption below */
+  .tl .ev.sup{top:175px; text-align:center}
+  .tl .ev.sup .stem{margin:4px auto 5px}
+
+  /* ---- watchlist dashboard (Exhibit 10) ---- */
+  .watch{width:100%; border-collapse:collapse; font-size:13.5px}
+  .watch th{font-family:var(--mono); font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); text-align:left; padding:10px 12px; border-bottom:2px solid var(--ink); font-weight:600}
+  .watch td{padding:12px; border-bottom:1px solid var(--rule); vertical-align:middle; line-height:1.38}
+  .watch td.ind{font-weight:600; color:var(--ink); width:30%}
+  .watch td.ind small{display:block; font-weight:400; color:var(--muted); font-family:var(--mono); font-size:10px; letter-spacing:.02em; margin-top:2px}
+  .sig{font-family:var(--mono); font-size:10.5px; letter-spacing:.04em; font-weight:600; white-space:nowrap}
+  .sig .ar{display:inline-block; width:14px}
+  .sig.confirm{color:var(--accent)} .sig.relieve{color:var(--quarry100)} .sig.accel{color:var(--clay)}
+  .gauge{display:inline-block; width:64px; height:7px; border-radius:4px; background:var(--rule); position:relative; vertical-align:middle; margin-right:8px}
+  .gauge i{position:absolute; left:0; top:0; bottom:0; border-radius:4px; background:var(--accent)}
+
+  /* ---- pull quote ---- */
+  .pull{padding:30px 0; margin:8px 0}
+  .pull p{font-family:var(--serif); font-weight:500; font-size:clamp(24px,3.4vw,33px); line-height:1.16; color:var(--accent); letter-spacing:-.01em; max-width:24ch; margin:0}
+
+  /* ---- methodology / sources ---- */
+  .meth p{font-size:15px; color:var(--ink-soft)}
+  .srclist{font-family:var(--mono); font-size:11.5px; line-height:1.7; color:var(--ink-soft); columns:1; counter-reset:sr}
+  .srclist .r{padding:7px 0; border-bottom:1px solid var(--rule); display:grid; grid-template-columns:auto 1fr; gap:12px}
+  .srclist .r::before{counter-increment:sr; content:counter(sr); color:var(--accent); font-weight:600}
+  .srclist .r b{color:var(--ink); font-weight:600}
+  .assumptions{background:var(--sediment20); border:1px solid var(--rule); border-radius:2px; padding:18px 20px; margin:24px 0}
+  .assumptions .h{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--sediment100); font-weight:600; margin-bottom:8px}
+  .assumptions ul{margin:0; padding-left:18px; font-size:13.5px; color:var(--ink-soft); line-height:1.5}
+  .assumptions li{margin-bottom:6px}
+
+  footer.end{padding:48px 0 64px; background:var(--ink); color:#D9D3C6}
+  footer.end .wrap{display:flex; flex-wrap:wrap; justify-content:space-between; gap:18px; align-items:center}
+  footer.end .bk{font-family:var(--serif); color:#fff; font-size:22px; font-weight:500}
+  footer.end .mono{font-family:var(--mono); font-size:11px; letter-spacing:.06em; color:#A79E8C}
+  footer.end a{color:#fff; border-bottom-color:rgba(255,255,255,.35)}
+
+  /* reveal */
+  .rv{opacity:0; transform:translateY(14px); transition:opacity .7s ease, transform .7s ease}
+  .rv.in{opacity:1; transform:none}
+
+  @media (max-width:860px){
+    body{font-size:16px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .scn-cards,.road{grid-template-columns:1fr}
+    .frame .force-row{grid-template-columns:1fr}
+    .ailegend{grid-template-columns:1fr}
+    .rung{grid-template-columns:96px 1fr; }
+    .rung .meta{display:none}
+    .matrix{aspect-ratio:1/1}
+    .smap, .watch{font-size:12.5px}
+    .divider .wrap{gap:16px}
+  }
+  @media (prefers-reduced-motion:reduce){ .rv{transition:none; opacity:1; transform:none} html{scroll-behavior:auto} }
+  @media print{ .topbar{display:none} section.block{break-inside:avoid} figure.exhibit{break-inside:avoid} body{background:#fff} }
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap"><span><b>AEDIFICA</b> · Strategy Insights</span><span class="pg">Who will run the build? · June 2026</span></div></div>
+
+<!-- =================== COVER =================== -->
+<header class="cover">
+  <svg class="scaffold" viewBox="0 0 1200 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#564A86" stop-opacity="0"/>
+        <stop offset="1" stop-color="#564A86" stop-opacity="0.06"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="1200" height="720" fill="url(#g1)"/>
+    <!-- ascending value-chain rungs, faint -->
+    <g stroke="#564A86" stroke-opacity="0.12" stroke-width="1">
+      <line x1="760" y1="640" x2="1180" y2="640"/>
+      <line x1="800" y1="556" x2="1180" y2="556"/>
+      <line x1="840" y1="472" x2="1180" y2="472"/>
+      <line x1="880" y1="388" x2="1180" y2="388"/>
+      <line x1="920" y1="304" x2="1180" y2="304"/>
+    </g>
+    <rect x="880" y="380" width="300" height="16" fill="#7E3F4F" fill-opacity="0.16"/>
+    <g stroke="#7E3F4F" stroke-opacity="0.5" stroke-width="1.5" stroke-dasharray="3 5">
+      <line x1="880" y1="372" x2="880" y2="660"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <span class="eyebrow">Strategy Insights · Workforce &amp; the Built Environment</span>
+    <h1>Who will run the&nbsp;<em>build?</em></h1>
+    <p class="deck">The next decade of US infrastructure and clean-energy spending is funded. The labor that delivers it is not. Over the next five years, the binding constraint will move <b>up the value chain</b>—from the jobsite to the trailer—and the scarce, decisive, AI-durable role becomes the <b>credentialed green construction manager.</b> New Jersey is the test case.</p>
+    <div class="byline">
+      <span class="who">Aedifica · Strategy Insights</span>
+      <span>A five-year point of view · 2026–2031</span>
+      <span>June 2026</span>
+    </div>
+  </div>
+</header>
+
+<!-- =================== EXEC SUMMARY =================== -->
+<section class="block">
+  <div class="wrap">
+    <div class="col sec-head">
+      <span class="eyebrow">Executive Summary</span>
+      <h2 class="title">The shortage is real, structural, and moving upmarket.</h2>
+      <p class="lede">The familiar story—"not enough hands on tools"—is becoming the wrong story. The hands are slowly arriving. What the United States has not built is the supervisory and engineering layer that turns funded projects into finished ones.</p>
+    </div>
+    <div class="col summary">
+      <div class="item"><p><b>Demand is locked in, not cyclical.</b> Infrastructure, clean-energy mandates, building retrofits, and the data-center build-out commit multiyear capital that is far less sensitive to interest rates than housing or commercial real estate. Construction occupations make up nearly half of all new energy-related jobs on a net-zero path to 2030.</p></div>
+      <div class="item"><p><b>Supply is contracting at both ends of the pipeline.</b> The experienced supervisory cohort is retiring while the entry pipeline narrows—US 8th-grade math scores fell 27 points from 2019 to 2023, and new international student enrollment dropped 17% into fall 2025, removing a stream that supplies roughly three-quarters of US electrical-engineering graduates.</p></div>
+      <div class="item"><p><b>The bottleneck is migrating up the value chain.</b> Gen Z entry and wage signals are slowly refilling the trades, but the gating roles—construction managers and civil engineers—take years to train. They become the constraint precisely when demand peaks.</p></div>
+      <div class="item"><p><b>The decisive role is AI-durable in the most valuable way.</b> About 84% of built-environment workers sit in occupations with below-average AI exposure. The supervisory layer is the exception—but it is <em>augmented, not automated</em>. The manager who can wield AI tooling gets more valuable, not less.</p></div>
+      <div class="item"><p><b>The green credential is the multiplier.</b> One trained green construction manager shapes the sustainable practices of dozens of workers on every project for a career. In New Jersey, fewer than 12% of active construction managers hold any green credential—against binding 2050 decarbonization mandates.</p></div>
+      <div class="item"><p><b>The prediction:</b> By 2030, credentialed, sustainability-fluent construction managers and the engineers who gate projects will be the single most contested, least substitutable, and highest-leverage roles in the built environment—and the states, firms, and training providers that rebuild this layer first will capture a durable advantage. The window to act is the next 36 months.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== DIVIDER A =================== -->
+<div class="divider d-patina"><div class="wrap"><div class="num">01</div><div class="dtxt"><span class="eyebrow">Why this matters now</span><h2>Two forces are converging on the same narrow role at the same moment.</h2></div></div></div>
+
+<section class="block">
+  <div class="wrap">
+    <div class="col">
+      <p class="lede">For a decade the construction-labor conversation has been a volume problem: how many bodies, how fast. That framing is now obscuring the more important shift. The aggregate trades gap is easing—Associated Builders and Contractors trimmed its annual new-worker estimate from over half a million in 2023–24 to roughly 350,000 for 2026—while the <strong>composition</strong> of the gap hardens around the roles that are slowest to replace.</p>
+      <p>Three things make this moment different from previous cycles. The demand is policy-committed and multi-source, so it will not soften with a downturn. The supply constraint is demographic and educational, so it cannot be solved by a quarter of strong hiring. And the scarce role sits at the supervisory layer, where lead times to competence are measured in years, not weeks.</p>
+    </div>
+
+    <div class="col">
+      <figure class="exhibit rv">
+        <div class="ex-pad">
+          <div class="ex-label">Exhibit 1 <span class="of">/ Executive framework</span></div>
+          <div class="ex-title">The supervisory squeeze</div>
+          <div class="ex-units">Demand-side and supply-side forces converging on one gating role</div>
+        </div>
+        <div class="ex-body">
+          <div class="frame">
+            <div class="force-row">
+              <div class="force demand"><div class="h">Demand ↑ pushing down</div><div class="t">Funded build-out</div><div class="d">IIJA, IRA, state clean-energy mandates, retrofits, and data centers commit multiyear capital.</div></div>
+              <div class="force demand"><div class="h">Demand ↑ pushing down</div><div class="t">Complexity premium</div><div class="d">Green code, commissioning, and electrification raise the supervisory skill bar per project.</div></div>
+            </div>
+            <div class="squeeze">
+              <span class="arr">▼</span>
+              <div class="stxt"><b>The credentialed green construction manager</b> — the role that gates every project and takes years to train.</div>
+              <span class="pill">The bottleneck</span>
+            </div>
+            <div class="force-row">
+              <div class="force supply"><div class="h">Supply ↓ pushing up</div><div class="t">Experienced cohort retiring</div><div class="d">Boomer supervisors and engineers exit faster than mid-career talent can replace them.</div></div>
+              <div class="force supply"><div class="h">Supply ↓ pushing up</div><div class="t">Narrowing entry pipeline</div><div class="d">Declining STEM performance, fewer engineering entrants, and a shrinking international stream.</div></div>
+            </div>
+          </div>
+        </div>
+        <figcaption>
+          <p class="sowhat">The shortage is not a volume problem to be out-hired in a good quarter; it is a structural vise tightening on the one role that is hardest and slowest to replace.</p>
+          <p class="source"><b>Source:</b> Aedifica analysis synthesizing US Bureau of Labor Statistics Occupational Outlook (2024–34); Associated Builders &amp; Contractors workforce model (2025–26); IEA <i>World Energy Employment</i> (2023); NSF NCSES (2026).</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- =================== DIVIDER B — context =================== -->
+<div class="divider d-quarry"><div class="wrap"><div class="num">02</div><div class="dtxt"><span class="eyebrow">Market &amp; context</span><h2>A funded wave of demand meets a workforce drawing down from both ends.</h2></div></div></div>
+
+<section class="block">
+  <div class="wrap">
+    <div class="col">
+      <p class="lede">The United States has committed an extraordinary, multi-decade pipeline of construction-intensive investment. What separates it from prior booms is durability: these outlays are statutory, mandate-driven, or strategically essential, and therefore largely indifferent to the business cycle.</p>
+    </div>
+
+    <div class="stats col" style="max-width:var(--wide)">
+      <div class="s"><div class="n">$106,980</div><div class="l">Median annual wage, US construction managers, May 2024</div><div class="src">BLS OOH, 2024</div></div>
+      <div class="s"><div class="n">+9%</div><div class="l">Projected CM employment growth, 2024–34 (much faster than average)</div><div class="src">BLS, 2024–34</div></div>
+      <div class="s"><div class="n">~46,800</div><div class="l">Construction-manager openings projected per year, this decade</div><div class="src">BLS, 2024–34</div></div>
+      <div class="s"><div class="n">92%</div><div class="l">Of construction firms report difficulty filling open positions</div><div class="src">AGC / NCCER, 2025</div></div>
+    </div>
+
+    <div class="col">
+      <p>Roughly <strong>32 million</strong> energy-and-infrastructure hires are projected across 2025–2035—about 17 million new roles and 15 million replacements. On a net-zero path, the IEA finds construction occupations account for nearly half of all new energy-related jobs to 2030, with installation and management roles flagged as the hardest to hire. The wave is not one program; it is the overlay of several, which is exactly why it resists the cycle.</p>
+
+      <figure class="exhibit rv">
+        <div class="ex-pad">
+          <div class="ex-label">Exhibit 2 <span class="of">/ Trend chart</span></div>
+          <div class="ex-title">The demand wave is structural, not cyclical</div>
+          <div class="ex-units">Illustrative index of net-new + replacement demand for construction labor, by driver · 2025 = 42 (indexed)</div>
+        </div>
+        <div class="ex-body"><div id="chart-wave" style="width:100%"></div></div>
+        <figcaption>
+          <p class="sowhat">Four independent engines stack into a plateau that holds through 2030—so demand will not slacken with interest rates, and the gap will not "wait out" a slowdown.</p>
+          <p class="source"><b>Source:</b> Aedifica indexed model. Inputs and shape derived from BLS employment projections (2024–34); ABC new-worker estimates (2023–26); IEA <i>World Energy Employment</i> (2023); Brookings energy-workforce hiring outlook (2024); McKinsey, <i>Will a labor crunch derail plans to upgrade US infrastructure?</i> (2022). <b>Index is illustrative</b>—relative shape, not absolute headcount.</p>
+        </figcaption>
+      </figure>
+
+      <h3 class="sub">Supply is drawing down from both ends</h3>
+      <p>The workforce is thinning at the top as it slowly thickens at the bottom. Workers aged 55+ make up close to a third of the construction workforce, concentrating retirements in the experienced supervisory and engineering ranks. Meanwhile the entry pipeline that feeds the credentialed layer is under strain: US 8th-grade math achievement fell sharply post-pandemic, and the international student stream—long a load-bearing source of US engineering talent—has begun to contract.</p>
+
+      <figure class="exhibit rv">
+        <div class="ex-pad">
+          <div class="ex-label">Exhibit 3 <span class="of">/ Supply pressure</span></div>
+          <div class="ex-title">Contracting at both ends of the pipeline</div>
+          <div class="ex-units">Selected indicators of supervisory-supply erosion</div>
+        </div>
+        <div class="ex-body">
+          <div class="ailegend" style="grid-template-columns:1fr 1fr; gap:24px; margin-top:6px">
+            <div>
+              <div class="kicker" style="margin-bottom:12px; color:var(--quarry100)">Aging out — the top of the pipeline</div>
+              <div class="ladder" style="gap:14px">
+                <div class="rung" style="grid-template-columns:1fr"><div><b>~30%</b> of construction workers are 55 or older
+                  <div class="bar" style="margin-top:6px; background:var(--quarry20)"><span style="width:30%; background:var(--quarry80)"></span></div></div></div>
+                <div class="rung" style="grid-template-columns:1fr"><div><b>2.4 : 1</b> energy workers near retirement vs. new entrants under 25 (advanced economies)
+                  <div class="bar" style="margin-top:6px; background:var(--quarry20)"><span style="width:71%; background:var(--quarry80)"></span></div></div></div>
+                <div class="rung" style="grid-template-columns:1fr"><div><b>&lt;12%</b> of active NJ construction managers hold any green credential
+                  <div class="bar" style="margin-top:6px; background:var(--quarry20)"><span style="width:12%; background:var(--accent)"></span></div></div></div>
+              </div>
+            </div>
+            <div>
+              <div class="kicker" style="margin-bottom:12px; color:var(--patina100)">Narrowing entry — the bottom of the pipeline</div>
+              <div class="ladder" style="gap:14px">
+                <div class="rung" style="grid-template-columns:1fr"><div><b>−27 pts</b> US 8th-grade math score, 2019→2023 (TIMSS)
+                  <div class="bar" style="margin-top:6px; background:var(--patina20)"><span style="width:54%; background:var(--patina80)"></span></div></div></div>
+                <div class="rung" style="grid-template-columns:1fr"><div><b>−17%</b> new international student enrollment into fall 2025
+                  <div class="bar" style="margin-top:6px; background:var(--patina20)"><span style="width:40%; background:var(--patina80)"></span></div></div></div>
+                <div class="rung" style="grid-template-columns:1fr"><div><b>~74%</b> of US electrical-engineering graduates are international students
+                  <div class="bar" style="margin-top:6px; background:var(--patina20)"><span style="width:74%; background:var(--patina80)"></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption>
+          <p class="sowhat">Retirements drain the experienced layer faster than the entry pipeline can refill it—and the inflow that most directly feeds engineering and management is the part now contracting.</p>
+          <p class="source"><b>Source:</b> BLS &amp; industry surveys on workforce age (2024–25); IEA (2025); NSF NCSES / TIMSS (2026); IIE <i>Fall 2025 Snapshot</i>; Atlantic Council (2025). NJ green-credential share per New Jersey Office of Climate Action &amp; the Green Economy, <i>Growing Green Jobs Report</i> (Sept 2025), as cited in Aedifica program research.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- =================== DIVIDER C — core prediction =================== -->
+<div class="divider d-datum"><div class="wrap"><div class="num">03</div><div class="dtxt"><span class="eyebrow">Core prediction</span><h2>By 2030, the binding constraint is the supervisor, not the laborer.</h2></div></div></div>
+
+<section class="block">
+  <div class="wrap">
+    <div class="col">
+      <p class="lede">Our central prediction is specific: within five years, the credentialed, sustainability-fluent construction manager—and the civil engineer who gates the project—becomes the most contested and least substitutable role in the built environment. Wage premiums for these roles widen faster than for the trades; time-to-fill lengthens; and in mandate-heavy states, project schedules begin to bend around the availability of qualified supervisors rather than crews.</p>
+    </div>
+
+    <div class="pull col"><p>Funding builds the project. People finish it. The decade's scarce resource is the person who runs the job.</p></div>
+
+    <div class="col">
+      <h3 class="sub">The logic, in four moves</h3>
+      <p><strong>1 · The demand is committed and stacked.</strong> Infrastructure law, clean-energy mandates, retrofit programs, and data-center capital do not move together with the cycle. Even as headline spending growth moderates, the floor under construction demand is structurally higher and lasts longer than in any prior boom.</p>
+      <p><strong>2 · The supervisory layer is the slow variable.</strong> A laborer can be productive in weeks; a competent construction manager or licensed engineer takes years and real project exposure. When demand peaks, the trades can flex—the management and engineering layer cannot. That asymmetry is what turns a volume problem into a bottleneck.</p>
+      <p><strong>3 · Complexity raises the bar exactly where supply is thin.</strong> Green building, electrification, energy-code compliance, and commissioning all load onto the supervisor. The job is not just harder to fill; the bar for filling it is rising at the same time.</p>
+      <p><strong>4 · The role is AI-durable in the valuable direction.</strong> Physical trades are insulated from automation; the supervisory layer is the part AI touches—but as a force multiplier, not a replacement. The manager who orchestrates planning, scheduling, and risk with AI tooling delivers more, raising the value of the human in the chair.</p>
+
+      <figure class="exhibit rv">
+        <div class="ex-pad">
+          <div class="ex-label">Exhibit 4 <span class="of">/ Timeline</span></div>
+          <div class="ex-title">The window to rebuild the pipeline, 2025–2034</div>
+          <div class="ex-units">Demand milestones (above the line) vs. the supervisory-supply response (below the line)</div>
+        </div>
+        <div class="ex-body" style="overflow-x:auto"><div id="timeline" class="tl"></div></div>
+        <figcaption>
+          <p class="sowhat">Because supervisors take years to train, the response must begin now to land before the demand plateau—roughly a 36-month window to act.</p>
+          <p class="source"><b>Source:</b> Aedifica synthesis of IIJA obligation schedules; state clean-energy mandate timelines; BLS retirement and projection data (2024–34); McKinsey (2022). Dates approximate.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="exhibit rv">
+        <div class="ex-pad">
+          <div class="ex-label">Exhibit 5 <span class="of">/ Value-chain view</span></div>
+          <div class="ex-title">The bottleneck is migrating up the value chain</div>
+          <div class="ex-units">Relative tightening of the gap and lead-time to competence, by role</div>
+        </div>
+        <div class="ex-body">
+          <div class="ladder">
+            <div class="rung"><div class="role">Laborer</div><div class="bar"><span style="width:42%; background:var(--quarry60)"></span></div><div class="meta">weeks to train</div></div>
+            <div class="rung"><div class="role">Skilled trade</div><div class="bar"><span style="width:58%; background:var(--quarry80)"></span></div><div class="meta">1–4 yrs (apprenticeship)</div></div>
+            <div class="rung hot"><div class="role">Site supervisor</div><div class="bar"><span style="width:82%; background:var(--clay)"></span></div><div class="meta">5–8 yrs experience</div></div>
+            <div class="rung hot"><div class="role">Construction manager</div><div class="bar"><span style="width:94%; background:var(--accent)"></span></div><div class="meta">degree + 5–10 yrs</div></div>
+            <div class="rung"><div class="role">Civil engineer</div><div class="bar"><span style="width:88%; background:var(--datum80)"></span></div><div class="meta">degree + licensure</div></div>
+          </div>
+        </div>
+        <figcaption>
+          <p class="sowhat">The roles with the longest lead times sit exactly where the gap is tightening fastest—so the part of the workforce you cannot improvise is the part now in shortest supply.</p>
+          <p class="source"><b>Source:</b> Aedifica analysis; lead-time bands from BLS occupational entry requirements; tightening estimated from BLS openings-vs-supply and McKinsey value-chain framing (2022).</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- =================== DIVIDER D — evidence =================== -->
+<div class="divider d-sediment"><div class="wrap"><div class="num">04</div><div class="dtxt"><span class="eyebrow">Evidence base</span><h2>The role is the rare combination of scarce, high-value, and AI-resilient.</h2></div></div></div>
+
+<section class="block">
+  <div class="wrap">
+    <div class="col">
+      <p class="lede">If the supervisory layer were merely scarce, wages would clear it over time. What makes this prediction sturdy is that the same role is simultaneously high-mobility, high-multiplier, and durable against the decade's biggest labor-market disruptor.</p>
+      <p>Independent analyses converge on the durability point. Brookings finds that about 84% of the 17.3 million built-environment workers occupy roles with below-average AI exposure; sector-level indices place construction among the categories with effectively zero high-exposure occupations. The exception is the management and engineering layer—but the same studies note these roles are <strong>complemented</strong> by AI rather than displaced. The implication is counterintuitive and important: AI makes the scarce supervisor more productive and therefore more valuable, deepening rather than relieving the premium on the role.</p>
+
+      <figure class="exhibit rv">
+        <div class="ex-pad">
+          <div class="ex-label">Exhibit 6 <span class="of">/ AI durability</span></div>
+          <div class="ex-title">Augmented, not automated</div>
+          <div class="ex-units">Share of built-environment workers by AI exposure (n ≈ 17.3M)</div>
+        </div>
+        <div class="ex-body">
+          <div class="aibar">
+            <div class="seg lo"><b>83.6%</b><small>Below-average AI exposure · physical &amp; craft roles</small></div>
+            <div class="seg hi"><b>16.4%</b><small>Higher exposure</small></div>
+          </div>
+          <div class="ailegend">
+            <div class="l"><b>The trades are insulated.</b> Physical, on-site, dexterity-driven work sits at the low end of automation risk and benefits from complementary tools.</div>
+            <div class="l b"><b>The supervisor is augmented.</b> Managers and engineers are AI-exposed—but as leverage. The human who wields the tooling delivers more, raising the role's value.</div>
+          </div>
+        </div>
+        <figcaption>
+          <p class="sowhat">AI does not relieve the supervisory shortage; by raising what one good manager can deliver, it makes the scarce role even more worth competing for.</p>
+          <p class="source"><b>Source:</b> Brookings, <i>The AI durability of built-environment careers</i> (2026); AI exposure indices (Felten–Raj–Seamans; Microsoft Research, 2025); Eloundou et al. (2024).</p>
+        </figcaption>
+      </figure>
+
+      <h3 class="sub">Why the green credential is the lever, not a label</h3>
+      <p>The mobility case is concrete. The construction-manager role carries a median wage near $107,000—more than double the all-occupation median—and the BLS projects roughly 46,800 openings a year through 2034. Layer on a green credential and the role becomes both scarcer and more strategic: in New Jersey, fewer than one in eight active construction managers holds any green credential, even as the state's Energy Master Plan commits to an 80% emissions cut by 2050 and programs such as EmPower NJ drive a wave of retrofit work that specifically requires envelope, energy-code, and commissioning fluency.</p>
+      <p>The multiplier is the defining argument. A single credentialed green construction manager does not just fill one seat; they shape the sustainable practices of dozens of workers on every project they run, for the length of a career. That is why the supervisory layer—not the laborer headcount—is the highest-leverage place to invest a scarce training dollar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =================== DIVIDER E — implications =================== -->
+<div class="divider d-patina"><div class="wrap"><div class="num">05</div><div class="dtxt"><span class="eyebrow">Strategic implications</span><h2>The same shift threatens some stakeholders and opens a lane for others.</h2></div></div></div>
+
+<section class="block">
+  <div class="wrap">
+    <div class="col">
+      <p class="lede">A constraint that moves up the value chain redistributes risk and opportunity. For asset owners and contractors it is an execution threat; for states it is a mandate-delivery risk; for educators and training providers—and the workers who choose this track—it is the clearest opening in the labor market.</p>
+    </div>
+    <div class="col" style="max-width:var(--wide)">
+      <figure class="exhibit rv">
+        <div class="ex-pad">
+          <div class="ex-label">Exhibit 7 <span class="of">/ Stakeholder impact map</span></div>
+          <div class="ex-title">Who is exposed, what changes, and what to do</div>
+          <div class="ex-units">By stakeholder group</div>
+        </div>
+        <div class="ex-body" style="overflow-x:auto">
+          <table class="smap">
+            <thead><tr><th>Stakeholder</th><th>Exposure</th><th>What changes</th><th>What to do now</th></tr></thead>
+            <tbody>
+              <tr><td class="who">Owners &amp; contractors</td><td><span class="chip hi">High</span></td><td>Supervisory scarcity—not crew size—gates delivery; schedules bend to manager availability.</td><td class="act">Build grow-your-own CM pipelines; retain experienced supervisors; deploy AI planning tools to extend each manager's reach.</td></tr>
+              <tr><td class="who">States &amp; policymakers</td><td><span class="chip hi">High</span></td><td>Decarbonization and infrastructure mandates risk slipping for lack of qualified supervisors.</td><td class="act">Fund and approve green-CM credential pathways; tie program funding to workforce-capacity milestones; coordinate and sequence spend.</td></tr>
+              <tr><td class="who">Investors &amp; developers</td><td><span class="chip mh">Med–High</span></td><td>Labor-supervisory risk becomes a real driver of cost and schedule variance across markets.</td><td class="act">Price supervisory depth into market selection; treat workforce pipelines as enabling infrastructure worth backing.</td></tr>
+              <tr><td class="who">Educators &amp; training providers</td><td><span class="chip op">Opportunity</span></td><td>A near-empty registry for green-CM training in many states; first movers define the category.</td><td class="act">Launch employer-aligned green-CM credentials; get approved on state eligible-training registries; pair early exposure with adult reskilling.</td></tr>
+              <tr><td class="who">Workers &amp; students</td><td><span class="chip op">Opportunity</span></td><td>The supervisory track offers the highest mobility and strongest AI durability in the sector.</td><td class="act">Enter the credentialed, green-specialized management path; stack trade experience into supervisory credentials.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <figcaption>
+          <p class="sowhat">The risk for owners and states is the mirror image of the opening for educators and workers—and the organizations that build the pipeline capture both the demand and the goodwill.</p>
+          <p class="source"><b>Source:</b> Aedifica analysis. Exposure ratings qualitative, based on stakeholder reliance on supervisory-layer availability.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- =================== DIVIDER F — scenarios =================== -->
+<div class="divider d-quarry"><div class="wrap"><div class="num">06</div><div class="dtxt"><span class="eyebrow">Scenario outlook</span><h2>Three paths, separated by one decision: whether we rebuild the pipeline.</h2></div></div></div>
+
+<section class="block">
+  <div class="wrap">
+    <div class="col">
+      <p class="lede">The outcome turns on two variables: how intensely demand lands, and how strongly the supervisory pipeline responds. The base case assumes a partial, uneven response to a high, durable demand wave.</p>
+    </div>
+
+    <div class="col" style="max-width:54rem">
+      <figure class="exhibit rv">
+        <div class="ex-pad">
+          <div class="ex-label">Exhibit 8 <span class="of">/ Scenario matrix</span></div>
+          <div class="ex-title">Demand intensity × pipeline response</div>
+          <div class="ex-units">Probability-weighted, five-year horizon</div>
+        </div>
+        <div class="ex-body" style="padding-bottom:20px">
+          <div class="matrix">
+            <span class="end" style="top:6px; left:8px">High demand</span>
+            <span class="end" style="bottom:24px; left:8px">Moderate demand</span>
+            <span class="end" style="top:6px; right:8px">Strong response</span>
+            <span class="end" style="bottom:24px; right:8px">Weak response</span>
+            <span class="ax x">Pipeline response →</span>
+            <span class="ax y">Demand intensity →</span>
+            <div class="scn up" style="left:74%; top:24%"><div class="dot"></div><div class="nm">Upside</div><div class="pb">~25%</div></div>
+            <div class="scn base" style="left:40%; top:38%"><div class="dot"></div><div class="nm">Base case</div><div class="pb">~55%</div></div>
+            <div class="scn down" style="left:24%; top:74%"><div class="dot"></div><div class="nm">Downside</div><div class="pb">~20%</div></div>
+          </div>
+        </div>
+        <figcaption>
+          <p class="source"><b>Source:</b> Aedifica scenario model. Probabilities are judgmental estimates, not statistical forecasts.</p>
+        </figcaption>
+      </figure>
+
+      <div class="scn-cards">
+        <div class="scard base">
+          <div class="top"><div class="nm">Base case</div><div class="pb">~55%</div><div class="pl">Most likely</div></div>
+          <div class="bd">
+            <p>Demand stays high; spending growth moderates. The trades refill slowly, but the supervisory shortfall persists and concentrates in green-credentialed CM and civil-engineering roles. Wage premiums for credentialed supervisors widen; mandate-heavy states see schedule slippage, not collapse.</p>
+            <p><span class="lab">Key assumptions</span><b>Partial, uneven pipeline response; durable demand; AI adoption gradual.</b></p>
+            <p><span class="lab">Early signals</span>Widening CM wage premium; lengthening time-to-fill for credentialed roles; thin training registries.</p>
+            <p><span class="lab">Strategic response</span>Move first on the supervisory pipeline; lock employer demand to de-risk training.</p>
+          </div>
+        </div>
+        <div class="scard up">
+          <div class="top"><div class="nm">Upside</div><div class="pb">~25%</div><div class="pl">Coordinated response</div></div>
+          <div class="bd">
+            <p>Early STEM exposure scales, adult reskilling and apprenticeship-to-management ladders mature, and AI tooling lifts supervisor productivity. The supervisory layer is rebuilt; mandate states deliver closer to schedule, and the green-credential premium becomes a talent magnet rather than a bottleneck.</p>
+            <p><span class="lab">Key assumptions</span><b>Public-private pipelines fund and scale; credentials gain portability.</b></p>
+            <p><span class="lab">Early signals</span>Surge in green-CM completions; employer-sponsored training up; registry approvals; clear trade-to-management ladders.</p>
+            <p><span class="lab">Strategic response</span>Scale what works; institutionalize regional academies and credential standards.</p>
+          </div>
+        </div>
+        <div class="scard down">
+          <div class="top"><div class="nm">Downside</div><div class="pb">~20%</div><div class="pl">Bottleneck binds</div></div>
+          <div class="bd">
+            <p>Demand spikes (data-center and clean-energy acceleration) while the pipeline is neglected; an immigration squeeze thins the trades and the international stream guts engineering inflow. The supervisory bottleneck binds: cancellations rise, costs inflate, and decarbonization timelines slip materially.</p>
+            <p><span class="lab">Key assumptions</span><b>Pipeline underfunded; labor-supply shocks compound; demand over-runs.</b></p>
+            <p><span class="lab">Early signals</span>Rising project cancellations; multi-month CM vacancies; falling EE/CE enrollment; deeper visa declines.</p>
+            <p><span class="lab">Strategic response</span>Emergency reskilling; risk-sharing contracts; ruthless project sequencing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== DIVIDER G — actions =================== -->
+<div class="divider d-datum"><div class="wrap"><div class="num">07</div><div class="dtxt"><span class="eyebrow">Recommended actions</span><h2>A 36-month agenda to rebuild the supervisory layer.</h2></div></div></div>
+
+<section class="block">
+  <div class="wrap">
+    <div class="col">
+      <p class="lede">The actions that matter most are the ones that compress the supervisory lead time—building the pipeline at both ends (early exposure and adult reskilling) while de-risking the path with employer demand. Sequence matters more than scale.</p>
+    </div>
+    <div class="col" style="max-width:var(--wide)">
+      <figure class="exhibit rv">
+        <div class="ex-pad">
+          <div class="ex-label">Exhibit 9 <span class="of">/ Strategic action roadmap</span></div>
+          <div class="ex-title">From signal to scale, in three horizons</div>
+          <div class="ex-units">Prioritized agenda for training providers, owners, and states</div>
+        </div>
+        <div class="ex-body">
+          <div class="road">
+            <div class="lane l1">
+              <div class="hd"><div class="ph">Horizon 1 · 0–6 months</div><div class="nm">Establish</div></div>
+              <ul>
+                <li><b>Map the local supervisory gap</b> — which credentialed roles, which projects are gated.<span class="tag">Owners · States</span></li>
+                <li><b>Stand up green-CM credential pathways</b> and pursue approval on the state eligible-training registry.<span class="tag">Providers · Aedifica Pathway &amp; Rebuild</span></li>
+                <li><b>Lock employer commitments</b> — hiring guarantees that de-risk trainee investment.<span class="tag">Owners · Providers</span></li>
+                <li><b>Launch early-exposure pilots</b> in middle and high schools to widen the entry funnel.<span class="tag">Educators · Aedifica Explore &amp; Launch</span></li>
+              </ul>
+            </div>
+            <div class="lane l2">
+              <div class="hd"><div class="ph">Horizon 2 · 6–24 months</div><div class="nm">Scale</div></div>
+              <ul>
+                <li><b>Build apprenticeship-to-management ladders</b> — trade → supervisor → CM.<span class="tag">Providers · Owners</span></li>
+                <li><b>Scale adult reskilling</b> into CM with a green specialization for returning workers.<span class="tag">Aedifica Pathway &amp; Rebuild</span></li>
+                <li><b>Embed AI and digital-twin tooling</b> into supervisor training as augmentation.<span class="tag">Owners · Providers</span></li>
+                <li><b>Shift procurement</b> toward risk-sharing and collaborative contracting.<span class="tag">Owners · States</span></li>
+              </ul>
+            </div>
+            <div class="lane l3">
+              <div class="hd"><div class="ph">Horizon 3 · 2+ years</div><div class="nm">Institutionalize</div></div>
+              <ul>
+                <li><b>Stand up regional academies</b> with sustained public-private funding.<span class="tag">States · Providers</span></li>
+                <li><b>Make credentials portable</b> and move toward skills-based hiring across states.<span class="tag">States · Owners</span></li>
+                <li><b>Track the multiplier</b> — each green CM's influence on workers' practices.<span class="tag">Providers</span></li>
+                <li><b>Tie mandate funding to capacity</b> and coordinate "dig once" across programs.<span class="tag">States</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <figcaption>
+          <p class="sowhat">Because the supervisory lead time is the binding variable, the highest-return move is the one that starts the longest clock first: build the pipeline now, de-risked by committed demand.</p>
+          <p class="source"><b>Source:</b> Aedifica analysis; action patterns adapted from McKinsey (2022) and IEA/CSIS workforce recommendations (2023–25).</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- =================== DIVIDER H — watchlist =================== -->
+<div class="divider d-sediment"><div class="wrap"><div class="num">08</div><div class="dtxt"><span class="eyebrow">Watchlist</span><h2>The dashboard that will confirm, accelerate, or reverse this call.</h2></div></div></div>
+
+<section class="block">
+  <div class="wrap">
+    <div class="col">
+      <p class="lede">A point of view is only as good as the signals that would change it. These are the leading indicators to monitor—and the direction each one points.</p>
+    </div>
+    <div class="col" style="max-width:var(--wide)">
+      <figure class="exhibit rv">
+        <div class="ex-pad">
+          <div class="ex-label">Exhibit 10 <span class="of">/ Watchlist dashboard</span></div>
+          <div class="ex-title">Leading indicators for the supervisory-shortage thesis</div>
+          <div class="ex-units">What to watch · current read · what the move would mean</div>
+        </div>
+        <div class="ex-body" style="overflow-x:auto">
+          <table class="watch">
+            <thead><tr><th>Indicator</th><th>Current read</th><th>If it moves…</th></tr></thead>
+            <tbody>
+              <tr><td class="ind">CM wage premium vs. trades median<small>BLS OEWS</small></td><td><span class="gauge"><i style="width:78%"></i></span>Wide &amp; widening</td><td><span class="sig confirm"><span class="ar">▲</span>Widens → confirms</span></td></tr>
+              <tr><td class="ind">Time-to-fill, green-credentialed CM roles<small>Employer / registry data</small></td><td><span class="gauge"><i style="width:72%"></i></span>Long</td><td><span class="sig confirm"><span class="ar">▲</span>Lengthens → confirms</span></td></tr>
+              <tr><td class="ind">Green-CM credential completions<small>LEED AP, state credentials</small></td><td><span class="gauge"><i style="width:22%; background:var(--quarry80)"></i></span>Low base</td><td><span class="sig relieve"><span class="ar">▲</span>Rises → relieves</span></td></tr>
+              <tr><td class="ind">Approved green-CM training programs<small>State eligible-training registry</small></td><td><span class="gauge"><i style="width:10%; background:var(--quarry80)"></i></span>Near-empty (NJ)</td><td><span class="sig relieve"><span class="ar">▲</span>Grows → relieves</span></td></tr>
+              <tr><td class="ind">IIJA / clean-energy obligation pace + data-center starts<small>Federal &amp; state outlays</small></td><td><span class="gauge"><i style="width:80%; background:var(--clay)"></i></span>Elevated</td><td><span class="sig accel"><span class="ar">▲</span>Up → accelerates demand</span></td></tr>
+              <tr><td class="ind">Construction 55+ share / retirement rate<small>BLS CPS</small></td><td><span class="gauge"><i style="width:64%; background:var(--clay)"></i></span>High</td><td><span class="sig accel"><span class="ar">▲</span>Up → accelerates gap</span></td></tr>
+              <tr><td class="ind">EE / CE enrollment + student-visa issuance<small>IIE, NCES, State Dept.</small></td><td><span class="gauge"><i style="width:38%; background:var(--clay)"></i></span>Declining</td><td><span class="sig accel"><span class="ar">▼</span>Down → accelerates gap</span></td></tr>
+              <tr><td class="ind">AI adoption in preconstruction / PM<small>AGC/Sage outlook</small></td><td><span class="gauge"><i style="width:61%; background:var(--quarry80)"></i></span>Rising (61% of firms)</td><td><span class="sig relieve"><span class="ar">▲</span>Up → augments supervisors</span></td></tr>
+              <tr><td class="ind">Immigration-enforcement impact on trades<small>AGC survey</small></td><td><span class="gauge"><i style="width:33%; background:var(--clay)"></i></span>~1 in 3 firms affected</td><td><span class="sig accel"><span class="ar">▲</span>Up → tightens trades</span></td></tr>
+              <tr><td class="ind">US 8th-grade math trajectory<small>TIMSS / NAEP</small></td><td><span class="gauge"><i style="width:46%; background:var(--clay)"></i></span>Below pre-pandemic</td><td><span class="sig accel"><span class="ar">▼</span>Down → long-run gap</span></td></tr>
+            </tbody>
+          </table>
+          <div style="display:flex; gap:22px; flex-wrap:wrap; margin-top:14px" class="kicker">
+            <span><span style="color:var(--accent)">▲ confirm</span> · the thesis is playing out</span>
+            <span><span style="color:var(--clay)">▲ accelerate</span> · the gap widens faster</span>
+            <span><span style="color:var(--quarry100)">▲ relieve</span> · pressure eases</span>
+          </div>
+        </div>
+        <figcaption>
+          <p class="sowhat">Watch the wage premium and time-to-fill to confirm the call; watch credential completions and registry approvals to know whether the response is finally arriving.</p>
+          <p class="source"><b>Source:</b> Aedifica dashboard, compiling BLS OEWS &amp; CPS; AGC/Sage 2026 Outlook; IIE/NCES; state eligible-training registries. Gauge positions indicative.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- =================== CONCLUSION =================== -->
+<section class="block" style="background:var(--ink); color:#EDE7DB; border-bottom:none">
+  <div class="wrap">
+    <div class="col">
+      <span class="eyebrow" style="color:var(--sediment60)">Conclusion</span>
+      <h2 class="title" style="color:#fff; max-width:24ch; margin-top:14px">The money is committed. The question is who runs the job.</h2>
+      <p style="color:#D9D3C6; font-size:20px; line-height:1.5">For a generation, the built environment treated workforce as a volume problem—count the bodies, raise the wage, wait for the cycle. The next five years will reward a different instinct. Steel and capital are not the scarce inputs. Judgment is. The credentialed, sustainability-fluent person who can run a complex job—and now wield AI to run it better—is the resource the decade is short of.</p>
+      <p style="color:#D9D3C6; font-size:20px; line-height:1.5">Whoever builds that person—earliest, at both ends of the pipeline, de-risked by real employer demand—will not just fill a gap. They will own the supply of the one role everyone else is about to be bidding for. <strong style="color:#fff">In a decade defined by what we build, the advantage goes to whoever trains the people who run the build.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- =================== SOURCES / METHODOLOGY =================== -->
+<section class="block meth">
+  <div class="wrap">
+    <div class="col sec-head">
+      <span class="eyebrow">Sources &amp; methodology</span>
+      <h2 class="title">How this view was built.</h2>
+    </div>
+    <div class="col">
+      <p>This is a synthesis, not a primary forecast. We triangulated three bodies of evidence: (1) US labor-market data on construction and the construction-manager occupation; (2) demand projections from infrastructure, clean-energy, and built-environment workforce research; and (3) education-pipeline and AI-exposure studies that bound the supply side. Where a figure is an Aedifica construction—the demand index in Exhibit 2, the lead-time bands in Exhibit 5, the gauge positions in Exhibit 10—it is labeled illustrative or indicative, and the underlying inputs are named. Probabilities in the scenario section are judgmental.</p>
+
+      <div class="assumptions">
+        <div class="h">Key assumptions &amp; caveats</div>
+        <ul>
+          <li>The Exhibit 2 demand index conveys <b>relative shape and durability</b>, not absolute headcount; it is derived from, not equal to, the cited series.</li>
+          <li>New Jersey green-credential and registry figures are drawn from <b>Aedifica program research</b> citing the NJ Office of Climate Action &amp; the Green Economy <i>Growing Green Jobs Report</i> (Sept 2025); these should be confirmed against the primary document with page references before external publication.</li>
+          <li>Demand and supply both carry policy risk: immigration enforcement, interest-rate moves, and federal-program pace can shift the trajectory in either direction.</li>
+          <li>"Construction manager" refers to SOC 11-9021; figures may differ from narrower job-title definitions.</li>
+        </ul>
+      </div>
+
+      <h3 class="sub">Selected sources</h3>
+      <div class="srclist">
+        <div class="r"><div>US Bureau of Labor Statistics — <b>Occupational Outlook Handbook: Construction Managers</b> (median wage $106,980, May 2024; +9% projected 2024–34; ~46,800 annual openings) &amp; Occupational Employment and Wage Statistics.</div></div>
+        <div class="r"><div>Associated Builders and Contractors — annual construction <b>new-worker estimates</b> (2023–2026) via Construction Dive.</div></div>
+        <div class="r"><div>Associated General Contractors of America / NCCER — <b>2025 Workforce Survey</b> (92% of firms struggle to hire; 45% report labor-driven delays; ~1 in 3 affected by immigration enforcement).</div></div>
+        <div class="r"><div>International Energy Agency — <b>World Energy Employment</b> (2023) and 2025 skills update (construction ≈ half of new energy jobs to 2030; 2.4:1 retirement ratio; retrofits ≈ 1.3M jobs by 2030).</div></div>
+        <div class="r"><div>Brookings Institution — <b>The AI durability of built-environment careers</b> (2026): 83.6% of 17.3M built-environment workers in below-average AI-exposure roles; energy + infrastructure ≈ 32M hires 2025–35.</div></div>
+        <div class="r"><div>NSF National Center for Science and Engineering Statistics / TIMSS — <b>US 8th-grade math −27 points, 2019–2023</b>; US below OECD math average; international STEM-graduate comparisons.</div></div>
+        <div class="r"><div>Institute of International Education / NAFSA — <b>Fall 2025 enrollment snapshot</b> (new international enrollment −17%); PIIE, <i>Class Dismissed</i> (2026) on STEM-workforce and GDP effects.</div></div>
+        <div class="r"><div>Atlantic Council (2025) — clean-energy workforce deficits; <b>~74% of US electrical-engineering graduates are international students.</b></div></div>
+        <div class="r"><div>McKinsey &amp; Company — <b>Will a labor crunch derail plans to upgrade US infrastructure?</b> (Oct 2022): BIL job creation peaking 2027–28; value-chain shortfall framing. <i>Used as the structural and stylistic reference; this document is independent and not affiliated with McKinsey.</i></div></div>
+        <div class="r"><div>New Jersey Office of Climate Action &amp; the Green Economy — <b>Growing Green Jobs Report</b> (Sept 2025); NJ Energy Master Plan; NJBPU EmPower NJ — via Aedifica program research.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="end">
+  <div class="wrap">
+    <div>
+      <div class="bk">Aedifica · Strategy Insights</div>
+      <div class="mono" style="margin-top:8px">Who will run the build? — A five-year point of view · June 2026</div>
+    </div>
+    <div class="mono" style="max-width:30rem; text-align:right">
+      Independent analysis. Not affiliated with or endorsed by McKinsey &amp; Company. Figures labeled illustrative or indicative are Aedifica constructions; confirm primary sources before republication.
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var NS="http://www.w3.org/2000/svg";
+  function el(n,a){var e=document.createElementNS(NS,n);if(a)for(var k in a)e.setAttribute(k,a[k]);return e;}
+
+  /* ---------- Exhibit 2: stacked area demand wave ---------- */
+  function wave(){
+    var host=document.getElementById("chart-wave"); if(!host) return;
+    var years=[2025,2026,2027,2028,2029,2030,2031,2032,2033,2034];
+    var series=[
+      {name:"Infrastructure (IIJA)", color:"var(--datum80)", data:[18,22,26,28,27,24,20,16,13,11]},
+      {name:"Clean energy & retrofits", color:"var(--quarry80)", data:[8,11,14,17,20,22,21,20,19,18]},
+      {name:"Data centers & adv. mfg.", color:"var(--sediment80)", data:[6,9,13,17,20,21,21,20,19,18]},
+      {name:"Replacement (retirements)", color:"var(--patina80)", data:[10,11,12,13,14,15,16,16,17,17]}
+    ];
+    var W=880,H=360, m={t:18,r:206,b:40,l:44};
+    var iw=W-m.l-m.r, ih=H-m.t-m.b;
+    var n=years.length;
+    var totals=years.map(function(_,i){return series.reduce(function(s,ss){return s+ss.data[i];},0);});
+    var ymax=Math.max.apply(null,totals)*1.06;
+    var x=function(i){return m.l + iw*(i/(n-1));};
+    var y=function(v){return m.t + ih*(1 - v/ymax);};
+    var svg=el("svg",{viewBox:"0 0 "+W+" "+H, width:"100%", role:"img","aria-label":"Stacked area chart of indexed construction-labor demand by driver, 2025 to 2034"});
+    // gridlines
+    [0,20,40,60,80].forEach(function(g){
+      svg.appendChild(el("line",{x1:m.l,y1:y(g),x2:m.l+iw,y2:y(g),stroke:"var(--rule)","stroke-width":1}));
+      var t=el("text",{x:m.l-8,y:y(g)+4,"text-anchor":"end",fill:"var(--muted)","font-family":"var(--mono)","font-size":10});t.textContent=g;svg.appendChild(t);
+    });
+    // stacked areas (bottom up)
+    var base=years.map(function(){return 0;});
+    series.forEach(function(s){
+      var top=base.map(function(b,i){return b+s.data[i];});
+      var d="M"+x(0)+","+y(base[0]);
+      for(var i=0;i<n;i++){ d+=" L"+x(i)+","+y(top[i]); }
+      for(var j=n-1;j>=0;j--){ d+=" L"+x(j)+","+y(base[j]); }
+      d+=" Z";
+      svg.appendChild(el("path",{d:d,fill:s.color,"fill-opacity":0.92,stroke:"#fff","stroke-width":0.6}));
+      base=top;
+    });
+    // top outline
+    var dT="M"+x(0)+","+y(totals[0]); for(var i=1;i<n;i++) dT+=" L"+x(i)+","+y(totals[i]);
+    svg.appendChild(el("path",{d:dT,fill:"none",stroke:"var(--ink)","stroke-width":1.4,"stroke-opacity":0.55}));
+    // x labels
+    years.forEach(function(yr,i){ if(i%1===0){var t=el("text",{x:x(i),y:H-14,"text-anchor":"middle",fill:"var(--muted)","font-family":"var(--mono)","font-size":10});t.textContent=yr;svg.appendChild(t);} });
+    // peak annotation
+    var pk=totals.indexOf(Math.max.apply(null,totals));
+    svg.appendChild(el("circle",{cx:x(pk),cy:y(totals[pk]),r:3.5,fill:"var(--hawthorn)"}));
+    var pa=el("text",{x:x(pk),y:y(totals[pk])-10,"text-anchor":"middle",fill:"var(--hawthorn)","font-family":"var(--mono)","font-size":10,"font-weight":600});pa.textContent="plateau ~2029–30";svg.appendChild(pa);
+    // legend
+    var lx=m.l+iw+20, ly=m.t+8;
+    series.slice().reverse().forEach(function(s,k){
+      svg.appendChild(el("rect",{x:lx,y:ly+k*26,width:12,height:12,rx:2,fill:s.color}));
+      var t=el("text",{x:lx+18,y:ly+k*26+10,fill:"var(--ink-soft)","font-family":"var(--mono)","font-size":10});t.textContent=s.name;svg.appendChild(t);
+    });
+    host.appendChild(svg);
+  }
+
+  /* ---------- Exhibit 4: timeline ----------
+     Demand milestones sit ABOVE the line, the supply response BELOW it
+     (matching the exhibit caption). Everything is positioned inside an
+     8%-inset plot so the first/last boxes never touch the edge, and event
+     boxes are 16.5% wide while same-side events are >=22% apart — so they
+     cannot overlap at any screen width. */
+  function timeline(){
+    var host=document.getElementById("timeline"); if(!host) return;
+    var plot=document.createElement("div"); plot.className="plot"; host.appendChild(plot);
+    var axis=document.createElement("div"); axis.className="axis"; plot.appendChild(axis);
+    var start=2025,end=2034,span=end-start;
+    function pct(yr){return ((yr-start)/span*100);}
+
+    // shaded 36-month window (2025–2028) + label
+    var win=document.createElement("div"); win.className="win";
+    win.style.left=pct(2025)+"%"; win.style.width=(pct(2028)-pct(2025))+"%"; plot.appendChild(win);
+    var wl=document.createElement("div"); wl.className="winlbl"; wl.style.left=pct(2025)+"%";
+    wl.textContent="◀ 36-month window to build supply"; plot.appendChild(wl);
+
+    // year ruler along the base
+    var marks={2025:1,2028:1,2030:1};
+    for(var yr=2025;yr<=2034;yr++){
+      var y=document.createElement("span"); y.className="yr"+(marks[yr]?" mark":"");
+      y.style.left=pct(yr)+"%"; y.textContent=yr; plot.appendChild(y);
+    }
+
+    var demand=[
+      {yr:2026, t:"Demand ramps", d:"clean-energy + data-center starts"},
+      {yr:2028, t:"Infrastructure peak", d:"IIJA workforce demand peaks"},
+      {yr:2030, t:"Mandate milestones", d:"state clean-energy targets bite"}
+    ];
+    var supply=[
+      {yr:2025, t:"Act now", d:"stand up green-CM pathways", hot:true},
+      {yr:2027, t:"First cohorts", d:"reskilled supervisors enter"},
+      {yr:2032, t:"Pipeline matures", d:"credentialed CMs at scale"}
+    ];
+    demand.forEach(function(e){
+      var w=document.createElement("div"); w.className="ev dmd"; w.style.left=pct(e.yr)+"%";
+      w.innerHTML='<div class="cap"><b>'+e.t+'</b>'+e.d+'</div>'
+                 +'<div class="stem"></div>'
+                 +'<div class="dot" style="background:var(--clay)"></div>';
+      plot.appendChild(w);
+    });
+    supply.forEach(function(e){
+      var w=document.createElement("div"); w.className="ev sup"; w.style.left=pct(e.yr)+"%";
+      var c=e.hot?"var(--hawthorn)":"var(--datum80)";
+      w.innerHTML='<div class="dot" style="background:'+c+'"></div>'
+                 +'<div class="stem"></div>'
+                 +'<div class="cap"><b style="'+(e.hot?'color:var(--hawthorn)':'')+'">'+e.t+'</b>'+e.d+'</div>';
+      plot.appendChild(w);
+    });
+  }
+
+  function init(){ try{wave();}catch(e){} try{timeline();}catch(e){}
+    // reveal on scroll
+    var io;
+    if("IntersectionObserver" in window){
+      io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}});},{threshold:0.12});
+      document.querySelectorAll(".rv").forEach(function(n){io.observe(n);});
+    } else { document.querySelectorAll(".rv").forEach(function(n){n.classList.add("in");}); }
+  }
+  if(document.readyState!=="loading") init(); else document.addEventListener("DOMContentLoaded",init);
+})();
+</script>
+</body>
+</html>
