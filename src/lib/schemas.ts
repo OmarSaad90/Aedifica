@@ -417,39 +417,6 @@ export const PARTNER_SCHEMA = {
   ],
 }
 
-export const BB_SCHEMA = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'Course',
-      name: 'Bridging Brilliance: Engineering the Hudson',
-      description:
-        'A twelve-week middle school engineering program where students design, model, build, test, and present a sustainable bridge across the Hudson River. Aligned with five standards frameworks: NGSS/NJSLS-Science, NJSLS Mathematics, NJSLS English Language Arts, Design, Technology & CS, and Career Readiness.',
-      provider: { '@id': `${SITE_URL}/#organization` },
-      educationalLevel: 'Middle School',
-      teaches:
-        'Engineering design, bridge typologies, digital modeling, physical prototyping, load testing, data analysis, and technical communication',
-      hasCourseInstance: {
-        '@type': 'CourseInstance',
-        courseMode: 'on-campus',
-        duration: 'P12W',
-      },
-    },
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Bridging Brilliance',
-          item: `${SITE_URL}/curriculum/bridging-brilliance`,
-        },
-      ],
-    },
-  ],
-}
-
 export const APPLY_SCHEMA = {
   '@context': 'https://schema.org',
   '@graph': [

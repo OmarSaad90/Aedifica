@@ -8,13 +8,6 @@ const SPRING = [0.32, 0.72, 0, 1] as const
 
 const CURRICULA = [
   {
-    title: 'Bridging Brilliance: Engineering the Hudson',
-    meta: 'Explore · Grades 7–8 · 12 weeks',
-    desc: 'Three units, twelve weeks, standards-tagged: from the engineering design process to a load-tested bridge defended before professional judges.',
-    to: '/partner',
-    color: 'bg-datum',
-  },
-  {
     title: 'Summer STEM Camps',
     meta: 'Explore · Grades 6–12 · 1–2 weeks',
     desc: 'Engineering Explorers with the complete ten-day map, plus Construction & Built Environment and Girls in Engineering & Technology.',

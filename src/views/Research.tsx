@@ -29,9 +29,9 @@ const PUBLICATIONS = [
     id: 'R·02',
     title: 'Bridging Brilliance: a delivery case study',
     body: 'What a twelve-week, twenty-one-student community STEM intensive taught us about running cohorts inside a real school week: materials, staffing, showcase, and what we would change.',
-    status: 'In progress',
-    statusCls: 'bg-white/15 text-white',
-    dot: '◐',
+    status: 'Published',
+    statusCls: 'bg-white text-anthracite',
+    dot: '●',
     dotCls: 'text-terracotta',
   },
   {
@@ -275,8 +275,8 @@ export function Research() {
 
                 <div className="mt-12 lg:mt-0 lg:order-2">
                   <div className="flex items-center gap-3 mb-5">
-                    <span className="inline-block text-[10px] uppercase tracking-[0.12em] bg-anthracite/10 text-anthracite px-2.5 py-1 leading-none select-none" style={{ fontFamily: 'var(--font-body)' }}>
-                      In progress
+                    <span className="inline-block text-[10px] uppercase tracking-[0.12em] bg-anthracite text-white px-2.5 py-1 leading-none select-none" style={{ fontFamily: 'var(--font-body)' }}>
+                      Published
                     </span>
                     <span className="text-[11px] uppercase tracking-[0.1em] text-anthracite/75" style={{ fontFamily: 'var(--font-body)' }}>
                       R&middot;02 &middot; Delivery case study
@@ -292,12 +292,12 @@ export function Research() {
                     what we would change.
                   </p>
 
-                  <p className="text-[13.5px] text-anthracite/72 italic leading-[1.5]" style={{ fontFamily: 'var(--font-body)' }}>
-                    Full case study pending institutional clearance.{' '}
-                    <Link href="/partner" className="not-italic font-medium text-anthracite underline underline-offset-4 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">
-                      Ask for a preview
-                    </Link>
-                  </p>
+                  <Link href="/research/bridging-brilliance"
+                    className="inline-flex items-center gap-2 text-[13.5px] font-medium text-anthracite underline underline-offset-4 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150"
+                    style={{ fontFamily: 'var(--font-body)' }}>
+                    Read the full case study
+                    <span aria-hidden="true">&rarr;</span>
+                  </Link>
                 </div>
 
               </div>

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
 import { BridgingBrillianceCaseStudy } from '@/src/views/BridgingBrillianceCaseStudy'
 import { BB_RESEARCH_SCHEMA } from '@/src/lib/schemas'
 import { SITE_URL } from '@/src/lib/config'
@@ -18,10 +17,6 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  // Gated pending client sign-off on full-publish vs. request-only. Remove this
-  // line to bring the page back live.
-  notFound()
-
   return (
     <>
       <script

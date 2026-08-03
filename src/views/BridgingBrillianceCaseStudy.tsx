@@ -8,13 +8,96 @@ const SPRING = [0.32, 0.72, 0, 1] as const
 
 type ColorKey = 'datum' | 'quarry' | 'sediment' | 'patina'
 
-// quarry (~2.76:1) and sediment (~1.9:1) fail WCAG as text on snow; only datum and patina clear 4.5:1.
-// `quote` is aria-hidden decoration only, so it can safely use the true color regardless.
-const COLOR_MAP: Record<ColorKey, { border: string; text: string; quote: string }> = {
-  datum: { border: 'border-datum', text: 'text-datum', quote: 'text-datum' },
-  quarry: { border: 'border-quarry', text: 'text-anthracite', quote: 'text-quarry' },
-  sediment: { border: 'border-sediment', text: 'text-anthracite', quote: 'text-sediment' },
-  patina: { border: 'border-patina', text: 'text-patina', quote: 'text-patina' },
+// Resolved hex — for SVG attributes, where CSS custom properties don't propagate cross-browser.
+// The source article's own "patina" swatch is #A0838F, which is our rebuild token exactly
+// (not our site patina, #836479); matched here so the lesson accents track the source hex.
+const HEX: Record<ColorKey, string> = {
+  datum: '#6667AB',
+  quarry: '#859F94',
+  sediment: '#CDB97D',
+  patina: '#A0838F',
+}
+
+// Raw quarry (~2.7:1) and raw sediment (~1.9:1) fail WCAG on snow/bone at any size, so every
+// lesson still reads fully in its own hue: `small` uses each color's AA-safe "-deep" mix
+// (globals.css) for visible text, `numeral` is aria-hidden decoration and runs the true hue.
+const COLOR_MAP: Record<ColorKey, { border: string; numeral: string; small: string; quote: string }> = {
+  datum: { border: 'border-datum', numeral: 'text-datum/60', small: 'text-datum', quote: 'text-datum' },
+  quarry: { border: 'border-quarry', numeral: 'text-quarry/60', small: 'text-quarry-deep', quote: 'text-quarry' },
+  sediment: { border: 'border-sediment', numeral: 'text-sediment/60', small: 'text-sediment-deep', quote: 'text-sediment' },
+  patina: { border: 'border-rebuild', numeral: 'text-rebuild/60', small: 'text-rebuild-deep', quote: 'text-rebuild' },
+}
+
+// Mirrors the source article's counter cycle (datum, quarry, sediment, patina, repeating).
+const GLANCE_COLORS: ColorKey[] = ['datum', 'quarry', 'sediment', 'patina', 'datum', 'quarry', 'sediment', 'patina', 'datum', 'quarry']
+
+// ── Fig. 0: the cover construction, four spans between two structural datums ──
+// Direct port of the source article's own SVG: same viewBox, same coordinates, same four
+// curved spans + echo lines + two vertical datum lines. Label font is our body face (Space
+// Grotesk) in place of the source's mono face, since this site caps at two typefaces.
+function BridgeFigure() {
+  const lbl = { fontFamily: 'var(--font-body)', fontSize: '9.5px', letterSpacing: '0.14em', fill: '#625C60' } as const
+  const ann = { fontFamily: 'var(--font-heading)', fontStyle: 'italic', fontSize: '13.5px', fill: '#625C60' } as const
+  return (
+    <figure>
+      <svg
+        viewBox="-64 0 648 340"
+        className="w-full h-auto"
+        role="img"
+        aria-label="Cover construction: four spans bridge two structural datums, middle school to high school, curiosity to confidence, Hillside to Hoboken, and students' current sense of what is possible to a wider horizon.">
+        <line x1="70" y1="52" x2="70" y2="298" stroke="#444041" strokeWidth="1.6" />
+        <line x1="450" y1="52" x2="450" y2="298" stroke="#444041" strokeWidth="1.6" />
+
+        <path d="M70,86 Q260,100 450,86" fill="none" stroke="#6667AB" strokeWidth="2.4" />
+        <path d="M70,86 Q260,109 450,86" fill="none" stroke="rgba(102,103,171,0.4)" strokeWidth="1.6" />
+        <circle cx="70" cy="86" r="3.4" fill="#6667AB" />
+        <circle cx="450" cy="86" r="3.4" fill="#6667AB" />
+        <text x="58" y="90" textAnchor="end" style={lbl}>MIDDLE SCHOOL</text>
+        <text x="462" y="90" style={lbl}>HIGH SCHOOL</text>
+
+        <path d="M70,146 Q260,162 450,146" fill="none" stroke="#859F94" strokeWidth="2.4" />
+        <path d="M70,146 Q260,171 450,146" fill="none" stroke="rgba(133,159,148,0.4)" strokeWidth="1.6" />
+        <circle cx="70" cy="146" r="3.4" fill="#859F94" />
+        <circle cx="450" cy="146" r="3.4" fill="#859F94" />
+        <text x="58" y="150" textAnchor="end" style={lbl}>CURIOSITY</text>
+        <text x="462" y="150" style={lbl}>CONFIDENCE</text>
+
+        <path d="M70,206 Q260,224 450,206" fill="none" stroke="#A0838F" strokeWidth="2.4" />
+        <path d="M70,206 Q260,233 450,206" fill="none" stroke="rgba(160,131,143,0.4)" strokeWidth="1.6" />
+        <circle cx="70" cy="206" r="3.4" fill="#A0838F" />
+        <circle cx="450" cy="206" r="3.4" fill="#A0838F" />
+        <text x="58" y="210" textAnchor="end" style={lbl}>HILLSIDE</text>
+        <text x="462" y="210" style={lbl}>HOBOKEN</text>
+
+        <path d="M70,266 Q260,286 450,266" fill="none" stroke="#CDB97D" strokeWidth="2.4" />
+        <path d="M70,266 Q260,295 450,266" fill="none" stroke="rgba(205,185,125,0.4)" strokeWidth="1.6" />
+        <circle cx="70" cy="266" r="3.4" fill="#CDB97D" />
+        <circle cx="450" cy="266" r="3.4" fill="#CDB97D" />
+        <text x="58" y="270" textAnchor="end" style={lbl}>WHAT IS POSSIBLE</text>
+        <text x="462" y="270" style={lbl}>A WIDER HORIZON</text>
+
+        <text x="260" y="36" textAnchor="middle" style={ann}>a program designed as a bridge, four spans, one crossing</text>
+      </svg>
+      <figcaption className="mt-2 text-center text-[10px] uppercase tracking-[0.16em] text-anthracite/55" style={{ fontFamily: 'var(--font-body)' }}>
+        Fig. 0 &middot; The program as a bridge &middot; Four spans, one crossing
+      </figcaption>
+    </figure>
+  )
+}
+
+// ── The spine: a datum-line tick strip, filling one tick per lesson toward "of 10" ──
+function LessonSpine({ filled, color }: { filled: number; color: string }) {
+  const xs = [8, 21, 34, 47, 60, 73, 86, 99, 112, 125]
+  const dim = 'rgba(45,45,49,0.2)'
+  return (
+    <svg viewBox="0 0 130 16" width="130" height="16" className="mt-3" aria-hidden="true">
+      <line x1="4" y1="8" x2="126" y2="8" stroke={dim} strokeWidth="1" />
+      {xs.map((x, i) => {
+        const on = i < filled
+        return <line key={x} x1={x} x2={x} y1={on ? 3 : 5} y2={on ? 13 : 11} stroke={on ? color : dim} strokeWidth={on ? 2.4 : 1.6} />
+      })}
+    </svg>
+  )
 }
 
 const GLANCE = [
@@ -158,47 +241,57 @@ export function BridgingBrillianceCaseStudy() {
 
       {/* ── Hero ── */}
       <section className="bg-bone pt-24 lg:pt-28 pb-16 lg:pb-20" aria-labelledby="bb-h1">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.span
-            className="inline-block text-[11px] uppercase tracking-[0.18em] bg-anthracite/8 text-anthracite/75 px-3 py-1 mb-8 select-none"
-            style={{ fontFamily: 'var(--font-body)' }}
-            initial={reduce ? undefined : { opacity: 0, y: 10 }}
-            animate={reduce ? undefined : { opacity: 1, y: 0 }}
-            transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
-            Aedifica Research · R-02 · Field notes
-          </motion.span>
+        <div className="max-w-7xl mx-auto px-6 lg:grid lg:grid-cols-[1.15fr_0.95fr] lg:gap-12 xl:gap-16 lg:items-center">
+          <div>
+            <motion.span
+              className="inline-block text-[11px] uppercase tracking-[0.18em] bg-anthracite/8 text-anthracite/75 px-3 py-1 mb-8 select-none"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 10 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={reduce ? undefined : { duration: 0.45, delay: 0.1, ease: EASE }}>
+              Aedifica Research · R-02 · Field notes
+            </motion.span>
 
-          <motion.h1
-            id="bb-h1"
-            className="text-[2.25rem] lg:text-[3.75rem] xl:text-[4.5rem] leading-[1.02] tracking-[-0.032em] text-anthracite italic mb-8 max-w-[22ch] [text-wrap:balance]"
-            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-            initial={reduce ? undefined : { opacity: 0, y: 40 }}
-            animate={reduce ? undefined : { opacity: 1, y: 0 }}
-            transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
-            Building trust, ownership, and opportunity in STEM learning.
-          </motion.h1>
+            <motion.h1
+              id="bb-h1"
+              className="text-[2.25rem] lg:text-[3.75rem] xl:text-[4.5rem] leading-[1.02] tracking-[-0.032em] text-anthracite italic mb-8 max-w-[22ch] [text-wrap:balance]"
+              style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
+              initial={reduce ? undefined : { opacity: 0, y: 40 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={reduce ? undefined : { duration: 0.8, delay: 0.18, ease: SPRING }}>
+              Building trust, ownership, and opportunity in STEM learning
+            </motion.h1>
 
-          <motion.p
-            className="text-[16px] lg:text-[17px] text-anthracite/78 leading-[1.65] max-w-[62ch] mb-6"
-            style={{ fontFamily: 'var(--font-body)' }}
-            initial={reduce ? undefined : { opacity: 0, y: 14 }}
-            animate={reduce ? undefined : { opacity: 1, y: 0 }}
-            transition={reduce ? undefined : { duration: 0.55, delay: 0.32, ease: EASE }}>
-            Lessons from HIA Bridging Brilliance. When we launched this year&rsquo;s program, we knew
-            we were designing more than a STEM enrichment experience. <strong className="font-medium text-anthracite">We were building a
-            bridge</strong>: between middle school and high school, between curiosity and confidence,
-            between Hillside and Hoboken, and between students&rsquo; current sense of what is possible
-            and the much wider horizon that engineering can offer.
-          </motion.p>
+            <motion.p
+              className="text-[16px] lg:text-[17px] text-anthracite/78 leading-[1.65] max-w-[62ch] mb-6"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0, y: 14 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={reduce ? undefined : { duration: 0.55, delay: 0.32, ease: EASE }}>
+              Lessons from HIA Bridging Brilliance. When we launched this year&rsquo;s program, we knew
+              we were designing more than a STEM enrichment experience. <strong className="font-medium text-anthracite">We were building a
+              bridge</strong>: between middle school and high school, between curiosity and confidence,
+              between Hillside and Hoboken, and between students&rsquo; current sense of what is possible
+              and the much wider horizon that engineering can offer.
+            </motion.p>
 
-          <motion.p
-            className="text-[12px] uppercase tracking-[0.12em] text-anthracite/60"
-            style={{ fontFamily: 'var(--font-body)' }}
+            <motion.p
+              className="text-[12px] uppercase tracking-[0.12em] text-anthracite/60"
+              style={{ fontFamily: 'var(--font-body)' }}
+              initial={reduce ? undefined : { opacity: 0 }}
+              animate={reduce ? undefined : { opacity: 1 }}
+              transition={reduce ? undefined : { duration: 0.5, delay: 0.4, ease: EASE }}>
+              HIA Bridging Brilliance &middot; Lessons from the instructor
+            </motion.p>
+          </div>
+
+          <motion.div
+            className="mt-14 lg:mt-0"
             initial={reduce ? undefined : { opacity: 0 }}
             animate={reduce ? undefined : { opacity: 1 }}
-            transition={reduce ? undefined : { duration: 0.5, delay: 0.4, ease: EASE }}>
-            HIA Bridging Brilliance &middot; Lessons from the instructor
-          </motion.p>
+            transition={reduce ? undefined : { duration: 0.6, delay: 0.4, ease: EASE }}>
+            <BridgeFigure />
+          </motion.div>
         </div>
       </section>
 
@@ -215,7 +308,7 @@ export function BridgingBrillianceCaseStudy() {
           </motion.div>
           <motion.h2
             id="bb-overview-h2"
-            className="text-[1.75rem] lg:text-[2.25rem] leading-[1.15] tracking-[-0.026em] text-anthracite italic mb-6 max-w-[24ch] [text-wrap:balance]"
+            className="text-[1.75rem] lg:text-[2.25rem] leading-[1.15] tracking-[-0.026em] text-anthracite italic mb-6 [text-wrap:balance]"
             style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
             initial={reduce ? undefined : { opacity: 0, y: 20 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -294,7 +387,7 @@ export function BridgingBrillianceCaseStudy() {
                 whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
                 viewport={VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.35, delay: Math.min(i * 0.03, 0.3), ease: EASE }}>
-                <span className="text-[13px] text-anthracite/50" style={{ fontFamily: 'var(--font-body)' }}>
+                <span className={`text-[13px] font-medium ${COLOR_MAP[GLANCE_COLORS[i]].small}`} style={{ fontFamily: 'var(--font-body)' }}>
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <span className="text-[15px] text-anthracite" style={{ fontFamily: 'var(--font-body)' }}>{item}</span>
@@ -319,22 +412,23 @@ export function BridgingBrillianceCaseStudy() {
                 viewport={VIEWPORT}
                 transition={reduce ? undefined : { duration: 0.6, ease: SPRING }}>
 
-                <div className="grid grid-cols-[auto_1fr] gap-5 lg:gap-7 items-start mb-6">
+                <div className="grid grid-cols-[auto_1fr] gap-6 lg:gap-8 items-start mb-8">
                   <p
-                    className={`text-[2.75rem] lg:text-[3.75rem] italic leading-[0.85] ${c.text} select-none`}
+                    className={`text-[3rem] lg:text-[4.25rem] italic leading-[0.85] ${c.numeral} select-none`}
                     style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
                     aria-hidden="true">
                     {lesson.num}
                   </p>
                   <div>
-                    <p className={`text-[11px] uppercase tracking-[0.14em] mb-2 ${c.text}`} style={{ fontFamily: 'var(--font-body)' }}>
+                    <p className={`text-[12px] uppercase tracking-[0.14em] mb-3 ${c.small}`} style={{ fontFamily: 'var(--font-body)' }}>
                       Lesson {lesson.num} of 10
                     </p>
                     <h3
-                      className="text-[1.375rem] lg:text-[1.75rem] leading-[1.15] tracking-[-0.02em] text-anthracite italic max-w-[26ch] [text-wrap:balance]"
+                      className={`text-[1.625rem] lg:text-[2.25rem] leading-[1.18] tracking-[-0.02em] italic [text-wrap:balance] ${c.small}`}
                       style={{ fontFamily: 'var(--font-heading)', fontWeight: 400 }}>
                       {lesson.title}
                     </h3>
+                    <LessonSpine filled={parseInt(lesson.num, 10)} color={HEX[lesson.color]} />
                   </div>
                 </div>
 
@@ -381,7 +475,7 @@ export function BridgingBrillianceCaseStudy() {
           </motion.p>
           <motion.h2
             id="bb-conclusion-h2"
-            className="text-[2rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-white italic mb-8 max-w-[16ch]"
+            className="text-[1.5rem] sm:text-[1.875rem] lg:text-[2.75rem] leading-[1.1] tracking-[-0.028em] text-white italic mb-8 [text-wrap:balance]"
             style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
             initial={reduce ? undefined : { opacity: 0, y: 20 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -427,7 +521,7 @@ export function BridgingBrillianceCaseStudy() {
           </motion.p>
 
           <motion.p
-            className="text-[1.25rem] lg:text-[1.5rem] italic text-white leading-[1.4] tracking-[-0.015em] border-t border-white/20 pt-8 max-w-[36ch]"
+            className="text-[1.25rem] lg:text-[1.5rem] italic text-white leading-[1.4] tracking-[-0.015em] border-t border-white/20 pt-8 [text-wrap:pretty]"
             style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
             initial={reduce ? undefined : { opacity: 0, y: 16 }}
             whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
@@ -440,9 +534,15 @@ export function BridgingBrillianceCaseStudy() {
         </div>
       </section>
 
-      {/* ── Back to archive ── bg-snow */}
-      <section className="bg-snow py-10 lg:py-14" aria-label="Return to research archive">
+      {/* ── Footer credit + back to archive ── bg-snow */}
+      <section className="bg-snow py-10 lg:py-14" aria-label="Article credit and return to research archive">
         <div className="max-w-[68ch] mx-auto px-6">
+          <div className="border-t border-anthracite/12 pt-6 mb-8 text-[12.5px] text-anthracite/60 leading-[1.7]" style={{ fontFamily: 'var(--font-body)' }}>
+            <p className="mb-1">
+              <strong className="text-anthracite/75 font-medium">HIA Bridging Brilliance</strong> &middot; Lessons from the instructor &middot; Building trust, ownership, and opportunity in STEM learning
+            </p>
+            <p>Program partners include school leadership, university partners, instructors, families, and community supporters, as described above.</p>
+          </div>
           <Link href="/research"
             className="inline-flex items-center gap-2 text-[13.5px] text-anthracite underline underline-offset-4 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150"
             style={{ fontFamily: 'var(--font-body)' }}>
