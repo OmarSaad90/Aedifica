@@ -105,20 +105,9 @@ export function Research() {
         </div>
       </section>
 
-      {/* ── Two active investigations ── bg-snow ── */}
-      <section className="bg-snow py-14 lg:py-20" aria-labelledby="research-featured-h2">
+      {/* ── Featured research ── bg-snow ── */}
+      <section className="bg-snow py-14 lg:py-20" aria-label="Featured research">
         <div className="max-w-7xl mx-auto px-6">
-
-          <motion.h2
-            id="research-featured-h2"
-            className="text-[1.5rem] lg:text-[1.875rem] leading-[1.2] tracking-[-0.02em] text-anthracite italic mb-10 lg:mb-12 max-w-[28ch]"
-            style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}
-            initial={reduce ? undefined : { opacity: 0, y: 20 }}
-            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-            viewport={VIEWPORT}
-            transition={reduce ? undefined : { duration: 0.55, ease: SPRING }}>
-            Two investigations, in progress.
-          </motion.h2>
 
           <div className="space-y-8 lg:space-y-10">
 
@@ -173,9 +162,9 @@ export function Research() {
                   </div>
 
                   <div className="flex flex-wrap gap-3">
-                    <Link href="/partner"
+                    <Link href="/research/supervisor-gap"
                       className="inline-flex items-center gap-2 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/85 group">
-                      Request the full report
+                      Read the full case study
                       <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
                     </Link>
                     <Link href="/partner#contact-form"
