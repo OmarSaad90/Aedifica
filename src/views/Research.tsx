@@ -140,9 +140,10 @@ export function Research() {
               viewport={VIEWPORT}
               transition={reduce ? undefined : { duration: 0.6, ease: SPRING }}>
 
-              <div className="lg:grid lg:grid-cols-[0.95fr_1.15fr] lg:gap-16 xl:gap-20 lg:items-center">
+              <div className="lg:grid lg:grid-cols-[0.95fr_1.15fr] lg:gap-x-16 xl:gap-x-20 lg:items-center">
 
-                <div>
+                {/* Title + body copy first (mobile and desktop), so mobile reads title → text → graph → CTA. */}
+                <div className="lg:col-start-1 lg:row-start-1 lg:self-start">
                   <div className="flex items-center gap-3 mb-5">
                     <span className="text-[11px] uppercase tracking-[0.1em] text-wine font-medium" style={{ fontFamily: 'var(--font-body)' }}>
                       Featured report &middot; June 2026
@@ -181,22 +182,12 @@ export function Research() {
                       </div>
                     ))}
                   </div>
-
-                  <div className="flex flex-wrap gap-3">
-                    <Link href="/research/supervisor-gap"
-                      className="inline-flex items-center gap-2 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/85 group">
-                      Read the full case study
-                      <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
-                    </Link>
-                    <Link href="/partner#contact-form"
-                      className="inline-flex items-center gap-2 border border-anthracite text-anthracite text-[13.5px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-colors duration-150 hover:bg-anthracite/6">
-                      Book a research briefing
-                    </Link>
-                  </div>
                 </div>
 
-                {/* Skyline exhibit: a receding silhouette, demand down to near-zero supply */}
-                <div className="mt-12 lg:mt-0">
+                {/* Skyline exhibit: a receding silhouette, demand down to near-zero supply.
+                    Spans both text rows in column 2 on desktop (unchanged from before); on
+                    mobile it falls in DOM order between the body copy above and the CTA below. */}
+                <div className="mt-12 lg:mt-0 lg:col-start-2 lg:row-start-1 lg:row-span-2">
                   <div className="flex items-start justify-between gap-4 mb-6">
                     <p className="text-[12px] text-anthracite/75 leading-[1.4] max-w-[30ch]" style={{ fontFamily: 'var(--font-body)' }}>
                       Demand vs. pipeline: green-fluent construction managers, NJ, 2030 horizon
@@ -239,6 +230,18 @@ export function Research() {
                   </p>
                 </div>
 
+                <div className="mt-8 lg:mt-0 lg:col-start-1 lg:row-start-2 lg:self-start flex flex-wrap gap-3">
+                  <Link href="/research/supervisor-gap"
+                    className="inline-flex items-center gap-2 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/85 group">
+                    Read the full case study
+                    <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
+                  </Link>
+                  <Link href="/partner#contact-form"
+                    className="inline-flex items-center gap-2 border border-anthracite text-anthracite text-[13.5px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-colors duration-150 hover:bg-anthracite/6">
+                    Book a research briefing
+                  </Link>
+                </div>
+
               </div>
             </motion.article>
 
@@ -251,10 +254,33 @@ export function Research() {
               viewport={VIEWPORT}
               transition={reduce ? undefined : { duration: 0.6, delay: 0.08, ease: SPRING }}>
 
-              <div className="lg:grid lg:grid-cols-[1.15fr_0.95fr] lg:gap-16 xl:gap-20 lg:items-center">
+              <div className="lg:grid lg:grid-cols-[1.15fr_0.95fr] lg:gap-x-16 xl:gap-x-20 lg:items-center">
 
-                {/* Ten-lesson tally on the left this time, for rhythm against R·01 above */}
-                <div className="lg:order-1">
+                {/* Title + body copy first (mobile and desktop), so mobile reads title → text → graph → CTA.
+                    Desktop keeps this in column 2 (narrower), matching the original layout. */}
+                <div className="lg:col-start-2 lg:row-start-1 lg:self-start">
+                  <div className="flex items-center gap-3 mb-5">
+                    <span className="inline-block text-[10px] uppercase tracking-[0.12em] bg-anthracite text-white px-2.5 py-1 leading-none select-none" style={{ fontFamily: 'var(--font-body)' }}>
+                      Published
+                    </span>
+                    <span className="text-[11px] uppercase tracking-[0.1em] text-anthracite/75" style={{ fontFamily: 'var(--font-body)' }}>
+                      R&middot;02 &middot; Delivery case study
+                    </span>
+                  </div>
+
+                  <h3 className="text-[1.875rem] lg:text-[2.5rem] leading-[1.08] tracking-[-0.026em] text-anthracite italic mb-5 max-w-[16ch] [text-wrap:balance]" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
+                    Bridging Brilliance: a delivery case study
+                  </h3>
+                  <p className="text-[14.5px] text-anthracite/80 leading-[1.7] mb-8 max-w-[46ch]" style={{ fontFamily: 'var(--font-body)' }}>
+                    What a twelve-week, twenty-one-student community STEM intensive taught us about
+                    running cohorts inside a real school week: materials, staffing, showcase, and
+                    what we would change.
+                  </p>
+                </div>
+
+                {/* Ten-lesson tally: spans both text rows in column 1 on desktop (unchanged from
+                    before); on mobile it falls in DOM order between the body copy above and the CTA below. */}
+                <div className="mt-12 lg:mt-0 lg:col-start-1 lg:row-start-1 lg:row-span-2">
                   <div className="flex items-start justify-between gap-4 mb-6">
                     <p className="text-[12px] text-anthracite/75 leading-[1.4] max-w-[26ch]" style={{ fontFamily: 'var(--font-body)' }}>
                       Field lessons documented, from building trust early to cross-institutional partnership
@@ -283,25 +309,7 @@ export function Research() {
                   </div>
                 </div>
 
-                <div className="mt-12 lg:mt-0 lg:order-2">
-                  <div className="flex items-center gap-3 mb-5">
-                    <span className="inline-block text-[10px] uppercase tracking-[0.12em] bg-anthracite text-white px-2.5 py-1 leading-none select-none" style={{ fontFamily: 'var(--font-body)' }}>
-                      Published
-                    </span>
-                    <span className="text-[11px] uppercase tracking-[0.1em] text-anthracite/75" style={{ fontFamily: 'var(--font-body)' }}>
-                      R&middot;02 &middot; Delivery case study
-                    </span>
-                  </div>
-
-                  <h3 className="text-[1.875rem] lg:text-[2.5rem] leading-[1.08] tracking-[-0.026em] text-anthracite italic mb-5 max-w-[16ch] [text-wrap:balance]" style={{ fontFamily: 'var(--font-heading)', fontWeight: 300 }}>
-                    Bridging Brilliance: a delivery case study
-                  </h3>
-                  <p className="text-[14.5px] text-anthracite/80 leading-[1.7] mb-8 max-w-[46ch]" style={{ fontFamily: 'var(--font-body)' }}>
-                    What a twelve-week, twenty-one-student community STEM intensive taught us about
-                    running cohorts inside a real school week: materials, staffing, showcase, and
-                    what we would change.
-                  </p>
-
+                <div className="mt-8 lg:mt-0 lg:col-start-2 lg:row-start-2 lg:self-start">
                   <Link href="/research/bridging-brilliance"
                     className="inline-flex items-center gap-2 text-[13.5px] font-medium text-anthracite underline underline-offset-4 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150"
                     style={{ fontFamily: 'var(--font-body)' }}>
@@ -323,9 +331,10 @@ export function Research() {
               viewport={VIEWPORT}
               transition={reduce ? undefined : { duration: 0.6, ease: SPRING }}>
 
-              <div className="lg:grid lg:grid-cols-[0.95fr_1.15fr] lg:gap-16 xl:gap-20 lg:items-center">
+              <div className="lg:grid lg:grid-cols-[0.95fr_1.15fr] lg:gap-x-16 xl:gap-x-20 lg:items-center">
 
-                <div>
+                {/* Title + body copy first (mobile and desktop), so mobile reads title → text → graph → CTA. */}
+                <div className="lg:col-start-1 lg:row-start-1 lg:self-start">
                   <div className="flex items-center gap-3 mb-5">
                     <span className="text-[11px] uppercase tracking-[0.1em] text-sediment-deep font-medium" style={{ fontFamily: 'var(--font-body)' }}>
                       Aedifica Strategy Insights &middot; June 2026
@@ -349,24 +358,12 @@ export function Research() {
                     <span aria-hidden="true">·</span>
                     <span>United States / New Jersey test case</span>
                   </div>
-
-                  <div className="flex flex-wrap gap-3">
-                    <Link href="/research/who-will-run-the-build"
-                      className="inline-flex items-center gap-2 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/85 group">
-                      Read the full report
-                      <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
-                    </Link>
-                  </div>
-                  <p className="text-[12px] text-anthracite/60 leading-[1.6] mt-4" style={{ fontFamily: 'var(--font-body)' }}>
-                    For the New Jersey-specific deep dive on this same shortage, see{' '}
-                    <Link href="/research/supervisor-gap" className="text-anthracite underline underline-offset-4 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">
-                      The Supervisor Gap
-                    </Link>.
-                  </p>
                 </div>
 
-                {/* Value-chain exhibit: lead-time-to-competence ladder, laborer through construction manager */}
-                <div className="mt-12 lg:mt-0">
+                {/* Value-chain exhibit: lead-time-to-competence ladder, laborer through construction manager.
+                    Spans both text rows in column 2 on desktop (unchanged from before); on
+                    mobile it falls in DOM order between the body copy above and the CTA below. */}
+                <div className="mt-12 lg:mt-0 lg:col-start-2 lg:row-start-1 lg:row-span-2">
                   <div className="flex items-start justify-between gap-4 mb-6">
                     <p className="text-[12px] text-anthracite/75 leading-[1.4] max-w-[30ch]" style={{ fontFamily: 'var(--font-body)' }}>
                       Lead-time to competence, by role: the bottleneck migrates to whoever takes longest to train
@@ -406,6 +403,22 @@ export function Research() {
                   <p className="text-[11px] text-anthracite/55 leading-[1.55] mt-5 pt-4 border-t border-sediment/20" style={{ fontFamily: 'var(--font-body)' }}>
                     Series colors carry the auxiliary accent layer; values are labeled, <strong className="text-anthracite/70 font-medium">color never carries meaning alone.</strong> Source:
                     Aedifica analysis; lead-time bands from BLS occupational entry requirements.
+                  </p>
+                </div>
+
+                <div className="mt-8 lg:mt-0 lg:col-start-1 lg:row-start-2 lg:self-start">
+                  <div className="flex flex-wrap gap-3">
+                    <Link href="/research/who-will-run-the-build"
+                      className="inline-flex items-center gap-2 bg-anthracite text-white text-[13.5px] tracking-[-0.01em] px-7 py-3.5 active:scale-[0.98] transition-[transform,background-color] duration-150 hover:bg-anthracite/85 group">
+                      Read the full report
+                      <span className="transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
+                    </Link>
+                  </div>
+                  <p className="text-[12px] text-anthracite/60 leading-[1.6] mt-4" style={{ fontFamily: 'var(--font-body)' }}>
+                    For the New Jersey-specific deep dive on this same shortage, see{' '}
+                    <Link href="/research/supervisor-gap" className="text-anthracite underline underline-offset-4 decoration-anthracite/30 hover:decoration-anthracite transition-colors duration-150">
+                      The Supervisor Gap
+                    </Link>.
                   </p>
                 </div>
 

@@ -467,7 +467,7 @@ export function SupervisorGapFullReport() {
 
       {/* ── Hero ── */}
       <section
-        className="bg-anthracite min-h-[56vh] flex flex-col justify-end pb-14 lg:pb-20 relative overflow-hidden"
+        className="bg-anthracite min-h-[56vh] flex flex-col justify-end pt-20 lg:pt-0 pb-14 lg:pb-20 relative overflow-hidden"
         aria-labelledby="insights-h1">
 
         <div className="max-w-7xl mx-auto px-6 w-full">

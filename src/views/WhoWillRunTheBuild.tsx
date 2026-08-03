@@ -691,7 +691,7 @@ export function WhoWillRunTheBuildReport() {
     <main>
 
       {/* ── Hero ── */}
-      <section className="bg-anthracite min-h-[56vh] flex flex-col justify-end pb-14 lg:pb-20 relative overflow-hidden" aria-labelledby="wwrb-h1">
+      <section className="bg-anthracite min-h-[56vh] flex flex-col justify-end pt-20 lg:pt-0 pb-14 lg:pb-20 relative overflow-hidden" aria-labelledby="wwrb-h1">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <motion.span
             className="inline-block text-[11px] uppercase tracking-[0.18em] bg-white/10 text-white/70 px-3 py-1 mb-6 select-none"
