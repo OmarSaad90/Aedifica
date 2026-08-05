@@ -188,14 +188,9 @@ export function Research() {
                     Spans both text rows in column 2 on desktop (unchanged from before); on
                     mobile it falls in DOM order between the body copy above and the CTA below. */}
                 <div className="mt-12 lg:mt-0 lg:col-start-2 lg:row-start-1 lg:row-span-2">
-                  <div className="flex items-start justify-between gap-4 mb-6">
-                    <p className="text-[12px] text-anthracite/75 leading-[1.4] max-w-[30ch]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Demand vs. pipeline: green-fluent construction managers, NJ, 2030 horizon
-                    </p>
-                    <p className="text-[10px] uppercase tracking-[0.1em] text-anthracite/75 flex-shrink-0" style={{ fontFamily: 'var(--font-body)' }}>
-                      Exhibit 01
-                    </p>
-                  </div>
+                  <p className="text-[12px] text-anthracite/75 leading-[1.4] max-w-[30ch] mb-6" style={{ fontFamily: 'var(--font-body)' }}>
+                    Demand vs. pipeline: green-fluent construction managers, NJ, 2030 horizon
+                  </p>
                   <div className="flex items-end gap-6 lg:gap-8 h-[180px] mb-3" role="img" aria-label="Chart: projected 2030 demand about 2,500 green-fluent construction managers, against an annual pipeline of about 120, about 60 currently enrolled, and near zero credentialed today.">
                     {SKYLINE.map(({ label, value, height, fill }, i) => (
                       <motion.div
@@ -225,8 +220,7 @@ export function Research() {
                     ))}
                   </div>
                   <p className="text-[11px] text-anthracite/55 leading-[1.55] mt-5 pt-4 border-t border-sediment/20" style={{ fontFamily: 'var(--font-body)' }}>
-                    Series colors carry the auxiliary accent layer; values are labeled, <strong className="text-anthracite/70 font-medium">color never carries meaning alone.</strong> Source:
-                    Aedifica Research analysis of NJ electrification mandates and program-supply data. Forward-looking figures are Aedifica estimates.
+                    Source: Aedifica Research analysis of NJ electrification mandates and program-supply data. Forward-looking figures are Aedifica estimates.
                   </p>
                 </div>
 
@@ -281,14 +275,9 @@ export function Research() {
                 {/* Ten-lesson tally: spans both text rows in column 1 on desktop (unchanged from
                     before); on mobile it falls in DOM order between the body copy above and the CTA below. */}
                 <div className="mt-12 lg:mt-0 lg:col-start-1 lg:row-start-1 lg:row-span-2">
-                  <div className="flex items-start justify-between gap-4 mb-6">
-                    <p className="text-[12px] text-anthracite/75 leading-[1.4] max-w-[26ch]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Field lessons documented, from building trust early to cross-institutional partnership
-                    </p>
-                    <p className="text-[10px] uppercase tracking-[0.1em] text-anthracite/75 flex-shrink-0" style={{ fontFamily: 'var(--font-body)' }}>
-                      Exhibit 02
-                    </p>
-                  </div>
+                  <p className="text-[12px] text-anthracite/75 leading-[1.4] max-w-[26ch] mb-6" style={{ fontFamily: 'var(--font-body)' }}>
+                    Field lessons documented, from building trust early to cross-institutional partnership
+                  </p>
                   <div className="flex items-end gap-6 lg:gap-8 h-[180px] mb-3">
                     <div className="flex-1 flex flex-col justify-end h-full">
                       <span className="text-[12px] text-anthracite font-medium mb-2" style={{ fontFamily: 'var(--font-body)' }}>10 of 10 lessons</span>
@@ -364,14 +353,9 @@ export function Research() {
                     Spans both text rows in column 2 on desktop (unchanged from before); on
                     mobile it falls in DOM order between the body copy above and the CTA below. */}
                 <div className="mt-12 lg:mt-0 lg:col-start-2 lg:row-start-1 lg:row-span-2">
-                  <div className="flex items-start justify-between gap-4 mb-6">
-                    <p className="text-[12px] text-anthracite/75 leading-[1.4] max-w-[30ch]" style={{ fontFamily: 'var(--font-body)' }}>
-                      Lead-time to competence, by role: the bottleneck migrates to whoever takes longest to train
-                    </p>
-                    <p className="text-[10px] uppercase tracking-[0.1em] text-anthracite/75 flex-shrink-0" style={{ fontFamily: 'var(--font-body)' }}>
-                      Exhibit 05
-                    </p>
-                  </div>
+                  <p className="text-[12px] text-anthracite/75 leading-[1.4] max-w-[30ch] mb-6" style={{ fontFamily: 'var(--font-body)' }}>
+                    Lead-time to competence, by role: the bottleneck migrates to whoever takes longest to train
+                  </p>
                   <div className="flex items-end gap-6 lg:gap-8 h-[180px] mb-3" role="img" aria-label="Chart: lead time to competence rises from weeks for a laborer, to 1 to 4 years for a skilled trade, 5 to 8 years for a site supervisor, and 5 to 10 years plus a degree for a construction manager.">
                     {CHAIN.map(({ label, value, height, fill }, i) => (
                       <motion.div
@@ -401,8 +385,7 @@ export function Research() {
                     ))}
                   </div>
                   <p className="text-[11px] text-anthracite/55 leading-[1.55] mt-5 pt-4 border-t border-sediment/20" style={{ fontFamily: 'var(--font-body)' }}>
-                    Series colors carry the auxiliary accent layer; values are labeled, <strong className="text-anthracite/70 font-medium">color never carries meaning alone.</strong> Source:
-                    Aedifica analysis; lead-time bands from BLS occupational entry requirements.
+                    Source: Aedifica analysis; lead-time bands from BLS occupational entry requirements.
                   </p>
                 </div>
 
