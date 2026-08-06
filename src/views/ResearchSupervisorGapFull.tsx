@@ -80,7 +80,8 @@ function SectionPair({ text, exhibit, flip = false }: { text: ReactNode; exhibit
 }
 
 // ── Exhibit 1: Stacked column chart — worker gap 2025–2027 ─────────────────
-function Exhibit1({ reduce }: { reduce: boolean }) {
+// Exported so the /research card preview can reuse the same chart, condensed.
+export function Exhibit1({ reduce }: { reduce: boolean }) {
   const svgRef = useRef<SVGSVGElement>(null)
   const inView = useInView(svgRef, { once: true, margin: '0px 0px -60px 0px' })
   const go = inView

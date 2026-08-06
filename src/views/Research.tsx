@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'motion/react'
+import { Exhibit1 } from './ResearchSupervisorGapFull'
 
 // Illustrative bars behind the "Who Will Run the Build?" card — the value-chain
 // lead-time ladder from the report itself (laborer through civil engineer),
@@ -18,14 +19,17 @@ const VIEWPORT = { once: true, margin: '-60px 0px' } as const
 const EASE = [0.25, 0.1, 0.25, 1] as const
 const SPRING = [0.32, 0.72, 0, 1] as const
 
-// Heights on a sqrt scale (not linear) so the near-zero end stays visible instead of vanishing to 0px.
-// Real values are always shown as text next to the bar; the shape is illustrative, never the only signal.
-const SKYLINE = [
-  { label: '2030 demand', value: '≈2,500', height: 132, fill: 'bg-wine' },
-  { label: 'Annual pipeline', value: '≈120', height: 29, fill: 'bg-terracotta' },
-  { label: 'Enrolled now', value: '≈60', height: 20, fill: 'bg-rule' },
-  { label: 'Credentialed', value: '≈0', height: 5, fill: 'bg-blush' },
+// Condensed, fluid-width stand-in for Exhibit 1 (worker-gap stacked column chart) on
+// small screens: the full-report SVG has a 520px min-width and needs a horizontal
+// scroll to see in full, unlike the other flex-bar exhibits on this page. Same
+// underlying values (thousands, rounded), rendered as simple stacked bars that
+// compress to fit instead. Full SVG still shown at lg+.
+const EXHIBIT1_MOBILE = [
+  { yr: '2025', total: 439, replace: 242, newD: 197 },
+  { yr: '2026', total: 349, replace: 227, newD: 122 },
+  { yr: '2027', total: 456, replace: 228, newD: 228 },
 ] as const
+const EXHIBIT1_SCALE = 140 / 456 // px per thousand, so the 456 (tallest) bar hits 140px
 
 const PUBLICATIONS = [
   {
@@ -168,59 +172,77 @@ export function Research() {
                     <span aria-hidden="true">·</span>
                     <span>New Jersey / NY metro</span>
                   </div>
-
-                  <div className="grid grid-cols-2 gap-x-6 gap-y-5 mb-8 border-t border-l border-sediment/25">
-                    {[
-                      { n: '2,000–3,000', l: 'Green-fluent construction managers required by 2030 (est.)' },
-                      { n: '≈ 0', l: 'Credentialed green-CM supply today' },
-                      { n: '2030', l: 'Electrification-mandate horizon' },
-                      { n: '$1B+', l: 'Delivered infrastructure behind the analysis team' },
-                    ].map(({ n, l }) => (
-                      <div key={l} className="border-r border-b border-sediment/25 px-4 py-3.5">
-                        <p className="text-[1.75rem] lg:text-[2rem] text-wine italic leading-none tracking-[-0.02em] mb-1.5" style={{ fontFamily: 'var(--font-heading)', fontWeight: 500 }}>{n}</p>
-                        <p className="text-[11px] text-anthracite/70 leading-[1.4]" style={{ fontFamily: 'var(--font-body)' }}>{l}</p>
-                      </div>
-                    ))}
-                  </div>
                 </div>
 
-                {/* Skyline exhibit: a receding silhouette, demand down to near-zero supply.
-                    Spans both text rows in column 2 on desktop (unchanged from before); on
-                    mobile it falls in DOM order between the body copy above and the CTA below. */}
+                {/* Exhibit 1 (worker-gap stacked column chart), reused from the full report,
+                    condensed: chart only, no legend block, short one-line caption instead of
+                    the full exhibit title/source chrome. Spans both text rows in column 2 on
+                    desktop; on mobile it falls in DOM order between the body copy and the CTA.
+                    The full-report SVG has a 520px min-width (needs a horizontal scroll to
+                    see in full), unlike this page's other flex-bar exhibits, so below lg it's
+                    swapped for a fluid-width stacked-bar stand-in using the same values. */}
                 <div className="mt-12 lg:mt-0 lg:col-start-2 lg:row-start-1 lg:row-span-2">
-                  <p className="text-[12px] text-anthracite/75 leading-[1.4] max-w-[30ch] mb-6" style={{ fontFamily: 'var(--font-body)' }}>
-                    Demand vs. pipeline: green-fluent construction managers, NJ, 2030 horizon
+                  <p className="text-[12px] text-anthracite/75 leading-[1.4] max-w-[34ch] mb-6" style={{ fontFamily: 'var(--font-body)' }}>
+                    Exhibit 1 &middot; Net new U.S. construction workers needed, by year, thousands
                   </p>
-                  <div className="flex items-end gap-6 lg:gap-8 h-[180px] mb-3" role="img" aria-label="Chart: projected 2030 demand about 2,500 green-fluent construction managers, against an annual pipeline of about 120, about 60 currently enrolled, and near zero credentialed today.">
-                    {SKYLINE.map(({ label, value, height, fill }, i) => (
-                      <motion.div
-                        key={label}
-                        className="flex flex-col items-center justify-end flex-1 h-full"
-                        initial={reduce ? undefined : { opacity: 0 }}
-                        whileInView={reduce ? undefined : { opacity: 1 }}
-                        viewport={VIEWPORT}
-                        transition={reduce ? undefined : { duration: 0.4, delay: i * 0.06, ease: EASE }}>
-                        <span className="text-[12px] text-anthracite font-medium mb-2" style={{ fontFamily: 'var(--font-body)' }}>{value}</span>
+
+                  <div className="hidden lg:block">
+                    <Exhibit1 reduce={reduce ?? false} />
+                  </div>
+
+                  <div className="lg:hidden">
+                    <div className="flex items-end gap-6 h-[140px] mb-3">
+                      {EXHIBIT1_MOBILE.map(({ yr, total, replace, newD }, i) => (
                         <motion.div
-                          className={`w-full ${fill}`}
-                          initial={reduce ? undefined : { height: 0 }}
-                          whileInView={reduce ? undefined : { height: Math.round(height * 1.3) }}
+                          key={yr}
+                          className="flex flex-col items-center justify-end flex-1 h-full"
+                          initial={reduce ? undefined : { opacity: 0 }}
+                          whileInView={reduce ? undefined : { opacity: 1 }}
                           viewport={VIEWPORT}
-                          transition={reduce ? undefined : { duration: 0.7, delay: 0.15 + i * 0.08, ease: EASE }}
-                          style={reduce ? { height: Math.round(height * 1.3) } : undefined}
-                        />
-                      </motion.div>
-                    ))}
-                  </div>
-                  <div className="flex gap-6 lg:gap-8">
-                    {SKYLINE.map(({ label }) => (
-                      <span key={label} className="flex-1 text-[10.5px] text-anthracite/70 text-center leading-[1.3]" style={{ fontFamily: 'var(--font-body)' }}>
-                        {label}
+                          transition={reduce ? undefined : { duration: 0.4, delay: i * 0.08, ease: EASE }}>
+                          <span className="text-[12px] text-anthracite font-medium mb-2" style={{ fontFamily: 'var(--font-body)' }}>{total}</span>
+                          <div className="w-full flex flex-col">
+                            <motion.div
+                              className="w-full bg-datum-light"
+                              initial={reduce ? undefined : { height: 0 }}
+                              whileInView={reduce ? undefined : { height: Math.round(newD * EXHIBIT1_SCALE) }}
+                              viewport={VIEWPORT}
+                              transition={reduce ? undefined : { duration: 0.55, delay: 0.15 + i * 0.1, ease: EASE }}
+                              style={reduce ? { height: Math.round(newD * EXHIBIT1_SCALE) } : undefined}
+                            />
+                            <motion.div
+                              className="w-full bg-datum"
+                              initial={reduce ? undefined : { height: 0 }}
+                              whileInView={reduce ? undefined : { height: Math.round(replace * EXHIBIT1_SCALE) }}
+                              viewport={VIEWPORT}
+                              transition={reduce ? undefined : { duration: 0.55, delay: 0.15 + i * 0.1 + 0.08, ease: EASE }}
+                              style={reduce ? { height: Math.round(replace * EXHIBIT1_SCALE) } : undefined}
+                            />
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                    <div className="flex gap-6 mb-4">
+                      {EXHIBIT1_MOBILE.map(({ yr }) => (
+                        <span key={yr} className="flex-1 text-[10.5px] text-anthracite/70 text-center leading-[1.3]" style={{ fontFamily: 'var(--font-body)' }}>
+                          {yr}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex flex-wrap gap-x-5 gap-y-1.5">
+                      <span className="flex items-center gap-2 text-[11px] text-anthracite/75" style={{ fontFamily: 'var(--font-body)' }}>
+                        <span className="w-3 h-3 flex-shrink-0 bg-datum" aria-hidden="true" />
+                        Replace retirements &amp; exits
                       </span>
-                    ))}
+                      <span className="flex items-center gap-2 text-[11px] text-anthracite/75" style={{ fontFamily: 'var(--font-body)' }}>
+                        <span className="w-3 h-3 flex-shrink-0 bg-datum-light" aria-hidden="true" />
+                        Meet new construction demand
+                      </span>
+                    </div>
                   </div>
+
                   <p className="text-[11px] text-anthracite/55 leading-[1.55] mt-5 pt-4 border-t border-sediment/20" style={{ fontFamily: 'var(--font-body)' }}>
-                    Source: Aedifica Research analysis of NJ electrification mandates and program-supply data. Forward-looking figures are Aedifica estimates.
+                    Source: ABC 2025–26 workforce models; AGC / Sage 2026 Construction Outlook.
                   </p>
                 </div>
 
