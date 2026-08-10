@@ -197,7 +197,7 @@ const TEAM: TeamMember[] = [
     name: 'Dr. Nicole Gilmore-Silva',
     role: 'Co-Founder & Chief Education and Industry Partnerships Officer',
     roleColor: 'text-clay',
-    credentials: 'Ed.D. · Teach For America · Founding middle-school principal',
+    credentials: 'Teach For America · Founding middle-school principal',
     bio: 'Dr. Nicole Gilmore-Silva is Co-Founder & Chief Education and Industry Partnerships Officer of Aedifica. A former principal and district leader with more than two decades in public education, she builds the school, university, employer, and community partnerships that connect learners to the industries shaping the future.',
     fullBio: [
       'Her cross-sector workforce development and partnership experience spans Union and Essex counties, New Jersey. She cultivated the partnership between Stevens Institute of Technology and Hillside Innovation Academy that became a foundation for Aedifica\'s community delivery model, and leads the organization\'s community-organization and workforce-agency relationships.',
