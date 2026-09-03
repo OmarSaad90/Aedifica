@@ -80,7 +80,7 @@ const SERVICE_LOGO_VIDEOS: Record<string, string> = {
   '/programs/talent-pipeline': '/videos/logos/logo-general-new.webm',
   '/programs/explore':         '/videos/logos/logo-explore-raw.webm', // TEST: client's raw export, unprocessed
 }
-const DEFAULT_LOGO_VIDEO = '/videos/logos/logo-general-new.webm'
+const DEFAULT_LOGO_VIDEO = '/videos/logos/logofinal1.webm'
 
 // TEST: tries the looping video logo first; if the file is missing (404) or
 // fails to load, falls back to the static PNG with no visible flash.
